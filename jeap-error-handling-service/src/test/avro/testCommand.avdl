@@ -1,0 +1,20 @@
+@namespace("ch.admin.bit.jeap.errorhandling.command.test")
+protocol TestCommandProtocol {
+  import idl "MessagingBaseTypes.avdl";
+
+  record TestCommandPayload {
+    string message;
+  }
+
+  record TestCommandReferences {
+  }
+
+  record TestCommand {
+    ch.admin.bit.jeap.messaging.avro.AvroMessageIdentity identity;
+    ch.admin.bit.jeap.messaging.avro.AvroMessageType type;
+    ch.admin.bit.jeap.messaging.avro.AvroMessagePublisher publisher;
+    TestCommandPayload payload;
+    TestCommandReferences references;
+    string commandVersion = "1.0.0";
+  }
+}

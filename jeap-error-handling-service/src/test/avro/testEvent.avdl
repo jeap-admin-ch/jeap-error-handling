@@ -1,0 +1,20 @@
+@namespace("ch.admin.bit.jeap.errorhandling.event.test")
+protocol TestEventProtocol {
+  import idl "DomainEventBaseTypes.avdl";
+
+  record TestPayload {
+    string message;
+  }
+
+  record TestReferences {
+  }
+
+  record TestEvent {
+    ch.admin.bit.jeap.domainevent.avro.AvroDomainEventIdentity identity;
+    ch.admin.bit.jeap.domainevent.avro.AvroDomainEventType type;
+    ch.admin.bit.jeap.domainevent.avro.AvroDomainEventPublisher publisher;
+    TestPayload payload;
+    TestReferences references;
+    string domainEventVersion;
+  }
+}

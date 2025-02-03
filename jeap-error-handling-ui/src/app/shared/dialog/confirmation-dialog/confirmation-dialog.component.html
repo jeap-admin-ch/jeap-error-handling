@@ -1,0 +1,6 @@
+<h2 mat-dialog-title>{{'i18n.errorhandling.dialog.header' | translate}}</h2>
+<mat-dialog-content>{{ data.message }}</mat-dialog-content>
+<mat-dialog-actions>
+	<button mat-button [mat-dialog-close]="true">{{'i18n.errorhandling.dialog.submit' | translate}}</button>
+	<button mat-button [mat-dialog-close]="false">{{'i18n.errorhandling.dialog.cancel' | translate}}</button>
+</mat-dialog-actions>

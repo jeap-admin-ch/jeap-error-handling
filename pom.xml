@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <url>https://github.com/jeap-admin-ch/jeap-error-handling/tree/main</url>
+    <scm>
+        <url>https://github.com/jeap-admin-ch/jeap-error-handling.git</url>
+    </scm>
+    <developers>
+        <developer>
+            <name>BIT</name>
+            <organization>Federal Office of Information Technology, Systems and Telecommunication FOITT</organization>
+            <organizationUrl>https://www.bit.admin.ch/</organizationUrl>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+
+    <artifactId>jeap-error-handling-parent</artifactId>
+    <version>9.5.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
+    <description>JEAP Error Handling Parent</description>
+
+    <parent>
+        <groupId>ch.admin.bit.jeap</groupId>
+        <artifactId>jeap-spring-boot-parent</artifactId>
+        <version>26.22.3</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <modules>
+        <module>jeap-error-handling-ui</module>
+        <module>jeap-error-handling-service</module>
+        <module>jeap-error-handling-service-instance</module>
+    </modules>
+
+    <properties>
+        <!-- Sonar config -->
+        <sonar.exclusions>
+            **/org/**/*.java,**/com/**/*.java
+        </sonar.exclusions>
+        <sonar.cpd.exclusions>
+            **/*Dto.java
+        </sonar.cpd.exclusions>
+        <sonar.coverage.exclusions>
+            **/*Dto.java,**/config/*,**/*Exception.java,**/*Constants.java,**/*Registry.java,**/*Config.java,**/*Mock*,**/*Application.java,**/*Properties.java
+        </sonar.coverage.exclusions>
+
+        <maven.javadoc.skip>false</maven.javadoc.skip>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>ch.admin.bit.jeap</groupId>
+                <artifactId>jeap-error-handling-ui</artifactId>
+                <version>9.5.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.admin.bit.jeap</groupId>
+                <artifactId>jeap-error-handling-service</artifactId>
+                <version>9.5.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.admin.bit.jeap</groupId>
+                <artifactId>jeap-error-handling-service-instance</artifactId>
+                <version>9.5.0-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!-- Add license entry to jar manifest -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <configuration>
+                        <archive>
+                            <manifestEntries>
+                                <Bundle-License>https://www.apache.org/licenses/LICENSE-2.0</Bundle-License>
+                            </manifestEntries>
+                        </archive>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <!-- Check third-party license compliance -->
+            <plugin>
+                <groupId>org.honton.chas</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+            </plugin>
+            <!-- Generate third-party license list -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

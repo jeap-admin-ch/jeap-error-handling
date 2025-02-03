@@ -1,0 +1,77 @@
+jeap:
+  messaging:
+    kafka:
+      errorTopicName: "errorTopic"
+  errorhandling:
+    topic: "${jeap.messaging.kafka.errorTopicName}"
+    auth:
+      client-id: "${spring.application.name}"
+    task-management:
+      service:
+        enabled: false
+    resend:
+      scheduler:
+        cron-expression: "*/2 * * * * *" # Reschedule events every 2 seconds in tests
+        lock-at-least: 0s
+      default-resending-strategy:
+        delay: 2s
+        max-retries: 3
+    frontend:
+      application-url: "http://localhost:8080"
+  security:
+    oauth2:
+      resourceserver:
+        authorization-server:
+          issuer: "http://localhost:8080/test"
+        system-name: "jme"
+  monitor:
+    prometheus:
+      user: prometheus
+      password: "{noop}test"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+spring:
+  application:
+    name: jeap-error-handling-service
+  jpa.hibernate.naming.implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: "jdbc:h2:mem:testdb"
+  flyway:
+    # For tests, skip migrations 1.0.0 and 1.1.0, because 1.1.0 contains postgres-specific table column type cast statements
+    # that migrate some ID columns from varchar to UUID.
+    # For tests, the schema will be created with a h2-compatible script with version 1.1.1, which already has the UUID
+    # type ID columns integrated.
+    # Starting with migration version 1.2.0, the scripts will be the same for both integration tests and productive code
+    # Separating the scripts into postgres-specific folders would have impact on client applications as they would have
+    # to change their flyway location configuration property, which is a breaking change we strive to avoid.
+    locations: classpath:db/migration/common, classpath:db/migration/h2
+    baseline-version: "1.1.0"
+
+logging:
+  level:
+    kafka: WARN
+    org:
+      apache:
+        kafka: WARN
+        zookeeper: WARN
+      springframework:
+        kafka: WARN
+        orm: WARN
+    io:
+      confluent: WARN
+    state:
+      change: WARN
+    com:
+      zaxxer: WARN
+    ch:
+      admin:
+        bit:
+          jeap:
+            kafka: WARN

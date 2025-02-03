@@ -1,0 +1,196 @@
+<div column-main-content>
+	<div style="position: relative; min-height: 200px;">
+		<mat-progress-bar *ngIf="isLoading" mode="query"></mat-progress-bar>
+		<table (matSortChange)="announceSortChange()" [dataSource]="data" class="ob-table table-sm" mat-table
+			   matSort>
+			<caption>Error Group List</caption>
+			<ng-container matColumnDef="selection">
+				<th *matHeaderCellDef mat-header-cell>
+					<mat-checkbox (change)="$event ? masterToggle() : null"
+								  [checked]="selection.hasValue() && isAllSelected()"
+								  [indeterminate]="selection.hasValue() && !isAllSelected()">
+					</mat-checkbox>
+				</th>
+				<td *matCellDef="let row" mat-cell>
+					<mat-checkbox (change)="$event ? selection.toggle(row) : null"
+								  (click)="$event.stopPropagation()"
+								  [checked]="selection.isSelected(row)">
+					</mat-checkbox>
+				</td>
+			</ng-container>
+
+			<ng-container matColumnDef="anzahl">
+				<th *matHeaderCellDef style="min-width: 80px;" mat-header-cell>{{ 'i18n.error.errorCount' | translate }}
+				</th>
+				<td *matCellDef="let row" mat-cell>{{ row.errorCount }}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="name">
+				<th *matHeaderCellDef style="min-width: 250px;" mat-header-cell>{{ 'i18n.errorhandling.form.eventname' | translate }}
+				</th>
+				<td *matCellDef="let row" mat-cell>{{ row.errorEvent }}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="quelle">
+				<th *matHeaderCellDef style="min-width: 300px;" mat-header-cell>{{ 'i18n.error.publisher' | translate }}
+				</th>
+				<td *matCellDef="let row" mat-cell>{{ row.errorPublisher }}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="meldung">
+				<th *matHeaderCellDef style="min-width: 200px;" mat-header-cell>{{ 'i18n.error.errormessage' | translate }}
+				</th>
+				<td *matCellDef="let row"
+					mat-cell
+					[matTooltip]="row.errorMessage"
+					class="truncate-cell">
+					{{ row.errorMessage }}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="fehlerCode">
+				<th *matHeaderCellDef style="min-width: 150px;" mat-header-cell>{{ 'i18n.error.errorcode' | translate }}
+				</th>
+				<td *matCellDef="let row" mat-cell>{{ row.errorCode }}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="erstAuftreten">
+				<th *matHeaderCellDef style="min-width: 120px;" mat-header-cell>{{ 'i18n.error.createdAt' | translate }}
+				</th>
+				<td *matCellDef="let row" mat-cell>{{ row.firstErrorAt }}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="letztesAuftreten">
+				<th *matHeaderCellDef style="min-width: 120px;"	mat-header-cell>{{ 'i18n.error.modifiedAt' | translate }}
+				</th>
+				<td *matCellDef="let row" mat-cell>{{ row.latestErrorAt }}</td>
+			</ng-container>
+			<ng-container class="oblique-input-container" matColumnDef="freiText">
+				<th *matHeaderCellDef mat-header-cell style="min-width: 120px;">{{ 'i18n.error.timestamp.freeText' | translate }}
+				</th>
+				<td *matCellDef="let row" mat-cell>
+					<!-- user is allowed to edit-->
+					<div *ngIf="this.hasEditRole">
+						<ng-container *ngIf="editingElement !== row; else editMode">
+							<ng-container *ngIf="row.freeText; else emptyState">
+								<div class="ticket-number-container">
+									{{ row.freeText }}
+									<mat-icon (click)="startEdit(row)" class="obicon"
+											  svgIcon="pen"></mat-icon>
+								</div>
+							</ng-container>
+							<ng-template #emptyState>
+								<input (keydown.enter)="updateFreeText(row.errorGroupId, $event.target.value)"
+									   *ngIf="!row.freeText"
+									   class="oblique-input"
+									   matInput
+									   placeholder="{{ 'i18n.error.timestamp.freeText' | translate }}"
+									   type="text">
+							</ng-template>
+						</ng-container>
+						<ng-template #editMode>
+							<input #freeTextInput
+								   (blur)="cancelEdit()"
+								   (keydown.enter)="updateFreeText(row.errorGroupId, freeTextInput.value)"
+								   (keydown.escape)="cancelEdit()"
+								   [value]="row.freeText">
+						</ng-template>
+					</div>
+					<!-- user is NOT allowed to edit-->
+					<ng-container *ngIf="!this.hasEditRole">
+						<div class="ticket-number-container">
+							{{ row.freeText }}
+						</div>
+					</ng-container>
+
+
+				</td>
+			</ng-container>
+			<ng-container class="oblique-input-container" matColumnDef="jira">
+				<th *matHeaderCellDef mat-header-cell style="min-width: 120px;">{{ 'i18n.error.timestamp.ticketNumber' | translate }}
+				</th>
+				<td *matCellDef="let row" mat-cell>
+					<!-- user is allowed to edit-->
+					<div *ngIf="this.hasEditRole">
+						<ng-container *ngIf="editingElement !== row; else editMode">
+							<ng-container *ngIf="row.ticketNumber; else emptyState">
+								<div class="ticket-number-container">
+									<a *ngIf="row.ticketNumber"
+									   [href]="environment.TICKETING_SYSTEM_URL.replace('{ticketNumber}', row.ticketNumber)"
+									   [matTooltip]="'i18n.error.timestamp.ticketNumber' | translate"
+									   class="ticket-number-link"
+									   id="jira-ticket-link-btn"
+									   mat-button
+									   obButton="primary"
+									   target="_blank">
+										{{ row.ticketNumber }}
+										<mat-icon class="arrow-icon">arrow_forward</mat-icon>
+									</a>
+									<mat-icon (click)="startEdit(row)" class="obicon"
+											  svgIcon="pen"></mat-icon>
+								</div>
+							</ng-container>
+							<ng-template #emptyState>
+								<input (keydown.enter)="updateTicketNumber(row.errorGroupId, $event.target.value)"
+									   *ngIf="!row.ticketNumber"
+									   class="oblique-input"
+									   matInput
+									   placeholder="{{ 'i18n.error.timestamp.ticketNumber' | translate }}"
+									   type="text">
+							</ng-template>
+						</ng-container>
+						<ng-template #editMode>
+							<input #ticketNumberInput
+								   (blur)="cancelEdit()"
+								   (keydown.enter)="updateTicketNumber(row.errorGroupId, ticketNumberInput.value)"
+								   (keydown.escape)="cancelEdit()"
+								   [value]="row.ticketNumber">
+						</ng-template>
+					</div>
+					<!-- user is NOT allowed to edit-->
+					<ng-container *ngIf="!this.hasEditRole">
+						<div class="ticket-number-container">
+							<a *ngIf="row.ticketNumber"
+							   [href]="environment.TICKETING_SYSTEM_URL.replace('{ticketNumber}', row.ticketNumber)"
+							   [matTooltip]="'i18n.error.timestamp.ticketNumber' | translate"
+							   class="ticket-number-link"
+							   id="jira-ticket-link-btn-readonly"
+							   mat-button
+							   obButton="primary"
+							   target="_blank">
+								{{ row.ticketNumber }}
+								<mat-icon class="arrow-icon">arrow_forward</mat-icon>
+							</a>
+						</div>
+					</ng-container>
+				</td>
+			</ng-container>
+
+			<ng-container matColumnDef="errorDetails">
+				<th *matHeaderCellDef id="actions-column" mat-header-cell>
+				</th>
+				<td *matCellDef="let row" id="actions-row" mat-cell>
+					<div class="actions-wrapper">
+						<a (click)="toErrorDetails(row.ticketNumber)"
+						   [class.disabled]="!row.ticketNumber"
+						   [disabled]="!row.ticketNumber"
+						   [matTooltip]="'i18n.errorhandling.details' | translate"
+						   [routerLink]="['/error-list', row.id]"
+						   mat-icon-button
+						   obButton="secondary">
+							<mat-icon svgIcon="eye"></mat-icon>
+						</a>
+					</div>
+				</td>
+			</ng-container>
+
+			<tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+			<tr (click)="selection.toggle(row)" *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+		</table>
+	</div>
+	<div class="paginator-container">
+		<mat-paginator (page)="announcePaginatorChange()"
+					   [length]="resultsLength"
+					   [pageSizeOptions]="[5,10,20,50,100]"
+					   [pageSize]="20"/>
+	</div>
+</div>

@@ -1,0 +1,10 @@
+<ob-master-layout [navigation]="navigation">
+	<ng-container obHeaderTitle>{{'i18n.application.title' | translate}}</ng-container>
+	<ul class="navbar-nav navbar-controls ml-sm-auto" role="menu" obHeaderControls>
+	</ul>
+
+	<ng-container obFooterInfo>
+		<p class="small">&copy; 2024 {{'i18n.application.organization.name' | translate}} - Powered with &#9825; by jEAP Error Handling Service (Version: {{getVersion()}}) </p>
+	</ng-container>
+</ob-master-layout>
+

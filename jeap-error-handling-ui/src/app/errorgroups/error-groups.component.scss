@@ -1,0 +1,54 @@
+.ticket-number-container {
+	display: flex;
+	align-items: center;
+}
+
+.ticket-number-container input {
+	margin-right: 8px;
+}
+
+.ticket-number-container a {
+	flex-shrink: 0;
+}
+
+.ticket-number-link {
+	text-decoration: none;
+	color: blue;
+	margin-right: 8px
+}
+
+.obicon {
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+.arrow-icon {
+	margin-left: 8px;
+	transform: rotate(300deg);
+	transition: transform 0.3s ease;
+}
+
+.oblique-input-container {
+	perspective: 500px;
+}
+
+.oblique-input {
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	outline: none;
+}
+
+.oblique-input:focus {
+	border-color: black;
+}
+
+.truncate-cell {
+	max-height: 4.5em; /* Approximately 3 lines (1.5em per line) */
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+

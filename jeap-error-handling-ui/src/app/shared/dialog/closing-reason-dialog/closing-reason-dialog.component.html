@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>{{'i18n.errorhandling.dialog.header' | translate}}</h2>
+<mat-dialog-content>
+	<p>{{'i18n.errorhandling.closing-dialog.prompt' | translate}}</p>
+	<mat-form-field>
+		<input matInput [(ngModel)]="data.inputText" maxlength="1000" />
+	</mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button mat-button (click)="onCancelClick()">{{'i18n.errorhandling.dialog.cancel' | translate}}</button>
+	<button mat-button [mat-dialog-close]="data.inputText || '-' ">{{'i18n.errorhandling.dialog.submit' | translate}}</button>
+</mat-dialog-actions>

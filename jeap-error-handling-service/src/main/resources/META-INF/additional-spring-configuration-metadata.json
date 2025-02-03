@@ -1,0 +1,16 @@
+{
+  "groups": [],
+  "properties": [
+    {
+      "name": "jeap.errorhandling.topic",
+      "type": "java.lang.String",
+      "description": "Topic to listen for error events."
+    },
+    {
+      "name": "jeap.errorhandling.deadLetterTopicName",
+      "type": "java.lang.String",
+      "description": "Dead letter topic to publish errors inside the error handling service to."
+    }
+  ]
+}
+

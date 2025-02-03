@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="/home/dev/development/projects/jeap-ui-template/src/app/login/login.service.spec.ts">
+    <testCase name="LoginService should be created" duration="61"/>
+  </file>
+  <file path="/home/dev/development/projects/jeap-ui-template/src/app/xyz/xyz.component.spec.ts">
+    <testCase name="XyzComponent should create" duration="117"/>
+  </file>
+  <file path="/home/dev/development/projects/jeap-ui-template/src/app/app.component.spec.ts">
+    <testCase name="AppComponent should create the app" duration="141"/>
+    <testCase name="AppComponent should test success" duration="81"/>
+  </file>
+</testExecutions>

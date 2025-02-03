@@ -1,0 +1,212 @@
+<div *ngIf="errorDto$ | async as error">
+
+	<div class="row details-heading">
+		<div class="col-12">
+			<h3>{{ 'i18n.errorhandling.details.error' | translate }}</h3>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-2"><strong>ID</strong></div>
+		<div class="col-10">{{ error.id }}</div>
+	</div>
+
+	<div class="row">
+		<div class="col-2"><strong>{{ 'i18n.error.timestamp' | translate }}</strong></div>
+		<div class="col-10">{{ error.timestamp }}</div>
+	</div>
+
+	<div class="row">
+		<div class="col-2"><strong>{{ 'i18n.error.state' | translate }}</strong></div>
+		<div class="col-10">{{ ('i18n.error.errorstate.' + error.errorState)| translate }}</div>
+	</div>
+
+	<div class="row">
+		<div class="col-2"><strong>{{ 'i18n.error.publisher' | translate }}</strong></div>
+		<div class="col-10">{{ error.errorPublisher }}</div>
+	</div>
+
+	<div class="row">
+		<div class="col-2"><strong>{{ 'i18n.error.errormessage' | translate }}</strong></div>
+		<div class="col-10">{{ error.errorMessage }}</div>
+	</div>
+
+	<div class="row">
+		<div class="col-2"><strong>{{ 'i18n.error.errorcode' | translate }}</strong></div>
+		<div class="col-10">{{ error.errorCode }}</div>
+	</div>
+
+	<div class="row">
+		<div class="col-2"><strong>{{ 'i18n.error.temporality' | translate }}</strong></div>
+		<div class="col-10">{{ 'i18n.error.temporality.' + error.errorTemporality | translate }}</div>
+	</div>
+
+	<div class="row">
+		<div class="col-2"><strong>{{ 'i18n.error.original-trace-id' | translate }}</strong></div>
+		<div class="col-10">{{ error.originalTraceIdString }}</div>
+	</div>
+
+	<div class="row" *ngIf="error.nextResendTimestamp">
+		<div class="col-2"><strong>{{ 'i18n.error.next-automated-resend' | translate }}</strong></div>
+		<div class="col-10">{{ error.nextResendTimestamp }}</div>
+	</div>
+
+	<div class="row" *ngIf="error.errorCountForEvent">
+		<div class="col-2"><strong>{{ 'i18n.error.error-count-for-event' | translate }}</strong></div>
+		<div class="col-10">{{ error.errorCountForEvent }}</div>
+	</div>
+
+	<div class="row" *ngIf="error.closingReason">
+		<div class="col-2"><strong>{{ 'i18n.errorhandling.form.closing-reason' | translate }}</strong></div>
+		<div class="col-10">{{ error.closingReason }}</div>
+	</div>
+
+	<div class="row">
+		<div class="col-2"><strong>{{ 'i18n.error.timestamp.ticketNumber' | translate }}</strong></div>
+		<div class="col-10">
+			<a [href]="generateTicketSystemUrl(error.ticketNumber)" target="_blank">
+				{{ error.ticketNumber }}
+			</a>
+		</div>
+	</div>
+
+	<div  class="row">
+		<div class="col-2"><strong>{{ 'i18n.error.timestamp.freeText' | translate }}</strong></div>
+		<div class="col-10">{{ error.freeText }}</div>
+	</div>
+
+	<div class="row">
+		<div class="col-12">
+			<h3 class="details-heading">{{ 'i18n.errorhandling.details.event' | translate }}</h3>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-2"><strong>{{ 'i18n.error.event.name' | translate }}</strong></div>
+		<div class="col-10">{{ error.eventName }}</div>
+	</div>
+
+	<div class="row">
+		<div class="col-2"><strong>{{ 'i18n.error.event.id' | translate }}</strong></div>
+		<div class="col-10">{{ error.eventId }}</div>
+	</div>
+
+	<div class="row">
+		<div class="col-2"><strong>{{ 'i18n.error.event.timestamp' | translate }}</strong></div>
+		<div class="col-10">{{ error.eventTimestamp }}</div>
+	</div>
+
+	<div class="row">
+		<div class="col-2"><strong>{{ 'i18n.error.event.publisher' | translate }}</strong></div>
+		<div class="col-10">{{ error.eventPublisher }}</div>
+	</div>
+
+	<div class="row">
+		<div class="col-2"><strong>{{ 'i18n.error.event.topic' | translate }}</strong></div>
+		<div class="col-10">{{ error.eventTopicDetails }}</div>
+	</div>
+
+	<div class="row">
+		<div class="col-2"><strong>{{ 'i18n.error.event.cluster' | translate }}</strong></div>
+		<div class="col-10">{{ error.eventClusterName }}</div>
+	</div>
+
+	<div class="row">
+		<div class="col-12">
+			<button mat-flat-button color="primary" (click)="back()">{{ 'i18n.back' | translate }}</button>
+			<button mat-stroked-button color="primary" [disabled]="actionsDisabled"
+					*ngIf="error.originalTraceIdString"
+					(click)="openDeepLink(error.originalTraceIdString)">{{ 'i18n.errorhandling.show-log' | translate }}</button>
+			<button mat-flat-button color="accent" [disabled]="actionsDisabled" class="button-right"
+					*ngIf="error.canRetry"
+					(click)="resendRow(error)">{{ 'i18n.errorhandling.action.retry' | translate }}</button>
+			<button mat-stroked-button color="warn" [disabled]="actionsDisabled" class="button-right"
+					*ngIf="error.canDelete"
+					(click)="delete(error.id)">{{ 'i18n.errorhandling.action.delete' | translate }}</button>
+		</div>
+	</div>
+
+	<div *ngIf="error.auditLogDTOs && error.auditLogDTOs.length > 0">
+		<div class="row">
+			<div class="col-12">
+				<h4 class="details-heading">{{ 'i18n.error.audit-log.heading' | translate }}</h4>
+			</div>
+		</div>
+
+		<table mat-table [dataSource]="error.auditLogDTOs" matSort class="ob-table table-sm">
+
+			<!-- action -->
+			<ng-container matColumnDef="action">
+				<th mat-header-cell *matHeaderCellDef>{{ 'i18n.error.audit-log.action' | translate }}</th>
+				<td mat-cell
+					*matCellDef="let row">{{'i18n.error.audit-log.action.' + row.action | translate}}</td>
+			</ng-container>
+
+			<!-- action timestamp -->
+			<ng-container matColumnDef="created" >
+				<th mat-header-cell *matHeaderCellDef>{{ 'i18n.error.audit-log.created' | translate }}</th>
+				<td mat-cell *matCellDef="let row">{{row.created}}</td>
+			</ng-container>
+
+			<!-- user given name -->
+			<ng-container matColumnDef="givenName">
+				<th mat-header-cell *matHeaderCellDef>{{ 'i18n.error.audit-log.given-name' | translate }}</th>
+				<td mat-cell *matCellDef="let row">{{row.givenName}}</td>
+			</ng-container>
+
+			<!-- user family name -->
+			<ng-container matColumnDef="familyName">
+				<th mat-header-cell *matHeaderCellDef>{{ 'i18n.error.audit-log.family-name' | translate }}</th>
+				<td mat-cell *matCellDef="let row">{{row.familyName}}</td>
+			</ng-container>
+
+			<!-- user ext-id -->
+			<ng-container matColumnDef="extId">
+				<th mat-header-cell *matHeaderCellDef>{{ 'i18n.error.audit-log.ext-id' | translate }}</th>
+				<td mat-cell *matCellDef="let row">{{row.extId}}</td>
+			</ng-container>
+
+			<!-- authentication subject -->
+			<ng-container matColumnDef="subject">
+				<th mat-header-cell *matHeaderCellDef>{{ 'i18n.error.audit-log.subject' | translate }}</th>
+				<td mat-cell *matCellDef="let row">{{row.subject}}</td>
+			</ng-container>
+
+			<!-- authentication context -->
+			<ng-container matColumnDef="authContext">
+				<th mat-header-cell *matHeaderCellDef>{{ 'i18n.error.audit-log.auth-context' | translate }}</th>
+				<td mat-cell *matCellDef="let row">{{row.authContext}}</td>
+			</ng-container>
+
+			<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+			<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+		</table>
+	</div>
+
+	<div class="row">
+		<div class="col-12">
+			<h4 class="details-heading">{{ 'i18n.errorhandling.details.event.payload' | translate }}</h4>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-12">
+			<pre>{{ causingEventPayload$ | async }}</pre>
+		</div>
+	</div>
+
+	<div *ngIf="error.stacktrace">
+		<div class="row">
+			<div class="col-12">
+				<h4 class="details-heading">Stacktrace</h4>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12">
+				<pre>{{ error.stacktrace }}</pre>
+			</div>
+		</div>
+	</div>
+</div>
