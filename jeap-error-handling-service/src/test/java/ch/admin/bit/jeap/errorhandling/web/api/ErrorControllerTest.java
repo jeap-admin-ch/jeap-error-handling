@@ -8,6 +8,7 @@ import ch.admin.bit.jeap.errorhandling.domain.error.ErrorService;
 import ch.admin.bit.jeap.errorhandling.domain.group.ErrorGroupService;
 import ch.admin.bit.jeap.errorhandling.domain.resend.scheduler.ScheduledResendService;
 import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.DomainEventDeserializer;
+import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.KafkaBatchConsumerProducer;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.*;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.AuditLog.AuditedAction;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
@@ -57,6 +58,9 @@ class ErrorControllerTest {
     private static final String PROFILE = "error-controller-test";
     @MockBean
     private ErrorRepository errorRepository;
+
+    @MockBean
+    KafkaBatchConsumerProducer kafkaBatchConsumerProducer;
 
     @Profile(PROFILE) // prevent other tests using class path scanning picking up this configuration
     @Configuration

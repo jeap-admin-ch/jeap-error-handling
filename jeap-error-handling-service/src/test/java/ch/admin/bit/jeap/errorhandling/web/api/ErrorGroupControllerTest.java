@@ -8,6 +8,7 @@ import ch.admin.bit.jeap.errorhandling.domain.group.ErrorGroupAggregatedDataList
 import ch.admin.bit.jeap.errorhandling.domain.group.ErrorGroupService;
 import ch.admin.bit.jeap.errorhandling.domain.resend.scheduler.ScheduledResendService;
 import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.DomainEventDeserializer;
+import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.KafkaBatchConsumerProducer;
 import ch.admin.bit.jeap.messaging.kafka.properties.KafkaProperties;
 import ch.admin.bit.jeap.security.resource.semanticAuthentication.SemanticApplicationRole;
 import ch.admin.bit.jeap.security.resource.token.JeapAuthenticationToken;
@@ -87,6 +88,8 @@ class ErrorGroupControllerTest {
     private ScheduledResendService scheduledResendService;
     @MockBean
     private AuditLogService auditLogService;
+    @MockBean
+    KafkaBatchConsumerProducer kafkaBatchConsumerProducer;
     @MockBean
     private DomainEventDeserializer domainEventDeserializer;
     private ErrorGroupAggregatedData errorGroupAggregatedData;
