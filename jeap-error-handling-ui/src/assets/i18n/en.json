@@ -96,5 +96,11 @@
   "i18n.error.timestamp.freeText": "Free text",
   "i18n.error.createdAt": "First occurred",
   "i18n.error.modifiedAt": "Last occurred",
-  "i18n.error.errorCount": "Count"
+  "i18n.error.errorCount": "Count",
+  "i18n.routes.reactivate-dead-letter.title": "Reactivate dead letter messages",
+  "i18n.deadLetter.number-of-messages": "Number of messages (max. 500):",
+  "i18n.deadLetter.reactivate": "Reactivate",
+  "i18n.deadLetter.dead-letter-messages": "dead letter messages",
+  "i18n.deadLetter.error-message": "Error: Messages from the dead letter topic could not be reactivated.",
+  "i18n.deadLetter.success-message": "Messages from the dead-letter topic have been restored."
 }

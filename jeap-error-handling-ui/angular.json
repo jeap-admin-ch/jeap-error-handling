@@ -142,7 +142,7 @@
           "builder": "@angular-builders/jest:run",
           "options": {
             "configPath": "./tests/jest.config.js",
-            "no-cache": true,
+            "no-cache": [],
             "watch": true,
             "verbose": true
           },

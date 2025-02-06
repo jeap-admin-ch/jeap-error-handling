@@ -27,6 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.config.KafkaListenerEndpointRegistry;
 import org.springframework.kafka.test.utils.ContainerTestUtils;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 
 import java.time.Duration;
@@ -84,6 +85,8 @@ class KafkaFailedEventResenderMulticlusterIT {
     private KafkaProperties kafkaProperties;
     @Autowired
     private KafkaFailedEventResender kafkaFailedEventResender;
+    @MockitoBean
+    protected KafkaDeadLetterBatchConsumerProducer kafkaDeadLetterBatchConsumerProducer;
 
     @BeforeEach
     void waitForKafka() {

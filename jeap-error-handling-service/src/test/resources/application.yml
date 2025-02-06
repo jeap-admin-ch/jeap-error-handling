@@ -1,9 +1,9 @@
 jeap:
   messaging:
     kafka:
-      errorTopicName: "errorTopic"
+      errorTopicName: errorTopic
   errorhandling:
-    topic: "${jeap.messaging.kafka.errorTopicName}"
+    topic: errorTopic
     auth:
       client-id: "${spring.application.name}"
     task-management:

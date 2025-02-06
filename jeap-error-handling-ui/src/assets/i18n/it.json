@@ -95,6 +95,11 @@
   "i18n.error.errorCount": "Conteggio",
   "i18n.errorPages.title": "Errore",
   "i18n.errorPages.forbidden.title": "Accesso non autorizzato",
-  "i18n.errorPages.forbidden.text": "Non disponi delle autorizzazioni necessarie per visualizzare questo contenuto."
-
+  "i18n.errorPages.forbidden.text": "Non disponi delle autorizzazioni necessarie per visualizzare questo contenuto.",
+  "i18n.routes.reactivate-dead-letter.title": "Riattivare i messaggi di dead letter",
+  "i18n.deadLetter.number-of-messages": "Numero di messages (max. 500):",
+  "i18n.deadLetter.reactivate": "Riattivare",
+  "i18n.deadLetter.dead-letter-messages": "messaggi di dead letter",
+  "i18n.deadLetter.error-message": "Errore: I messaggi dal dead letter topic non possono essere riattivati.",
+  "i18n.deadLetter.success-message": "I messaggi dal topic dead-letter sono stati ripristinati."
 }

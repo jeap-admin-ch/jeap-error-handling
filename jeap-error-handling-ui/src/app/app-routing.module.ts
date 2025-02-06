@@ -9,14 +9,21 @@ import {
 	QdRoleFilter,
 	QdRoleFilterMatcher
 } from '@quadrel-services/qd-auth';
-import {ErrorGroupPageComponent} from "./pages/error-group-page/error-group-page.component";
-import {ForbiddenPageComponent} from "./pages/error-pages/forbidden-page/forbidden-page.component";
+import {ErrorGroupPageComponent} from './pages/error-group-page/error-group-page.component';
+import {ForbiddenPageComponent} from './pages/error-pages/forbidden-page/forbidden-page.component';
+import {ReactivateDeadLetterPageComponent} from './pages/reactivate-dead-letter-page/reactivate-dead-letter-page.component';
 
 
 const roleFilter_view = QdApplicationRoleFilter.hasRole(
 	QdRoleFilterMatcher.ANY,
 	'error',
 	'view'
+);
+
+const roleFilter_retry = QdApplicationRoleFilter.hasRole(
+	QdRoleFilterMatcher.ANY,
+	'error',
+	'retry'
 );
 
 export const roleFilter_errorgroup_edit: QdRoleFilter = QdApplicationRoleFilter.hasRole(
@@ -67,6 +74,14 @@ const appRoutes: Routes = [
 		canActivate: [QdAuthorizationGuard],
 		data: {
 			roleFilter: [roleFilter_errorgroup_view]
+		}
+	},
+	{
+		path: 'reactivate-dead-letter', component: ReactivateDeadLetterPageComponent,
+		canLoad: [QdAuthorizationGuard],
+		canActivate: [QdAuthorizationGuard],
+		data: {
+			roleFilter: [roleFilter_retry]
 		}
 	}
 ];

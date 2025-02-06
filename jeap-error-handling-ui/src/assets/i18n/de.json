@@ -95,5 +95,11 @@
   "i18n.oblique.scrolling.top-control": "Zum Seitenanfang",
   "i18n.errorPages.title": "Fehler",
   "i18n.errorPages.forbidden.title": "Nicht autorisierter Zugriff",
-  "i18n.errorPages.forbidden.text": "Sie verfügen nicht über die notwendigen Berechtigungen, um diesen Inhalt anzuzeigen."
+  "i18n.errorPages.forbidden.text": "Sie verfügen nicht über die notwendigen Berechtigungen, um diesen Inhalt anzuzeigen.",
+  "i18n.routes.reactivate-dead-letter.title": "Dead letter Messages reaktivieren",
+  "i18n.deadLetter.number-of-messages": "Anzahl der messages (max. 500):",
+  "i18n.deadLetter.reactivate": "Reaktiviere",
+  "i18n.deadLetter.dead-letter-messages": "Dead-Letter Messages",
+  "i18n.deadLetter.error-message": "Fehler: Messages aus der Dead-Letter Topic konnten nicht reaktiviert werden.",
+  "i18n.deadLetter.success-message": "Messages von der Dead-Letter Topic wurden wieder hergestellt."
 }

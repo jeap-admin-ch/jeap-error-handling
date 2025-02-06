@@ -6,6 +6,7 @@ import ch.admin.bit.jeap.domainevent.avro.AvroDomainEventType;
 import ch.admin.bit.jeap.errorhandling.event.test.TestEvent;
 import ch.admin.bit.jeap.errorhandling.event.test.TestPayload;
 import ch.admin.bit.jeap.errorhandling.event.test.TestReferences;
+import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.KafkaDeadLetterBatchConsumerProducer;
 import ch.admin.bit.jeap.messaging.avro.AvroMessage;
 import ch.admin.bit.jeap.messaging.avro.errorevent.MessageProcessingFailedEvent;
 import ch.admin.bit.jeap.messaging.avro.errorevent.MessageProcessingFailedEventBuilder;
@@ -34,6 +35,7 @@ import org.springframework.kafka.listener.MessageListenerContainer;
 import org.springframework.kafka.test.utils.ContainerTestUtils;
 import org.springframework.messaging.support.GenericMessage;
 import org.springframework.stereotype.Component;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
@@ -72,6 +74,9 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
 
     @Autowired
     protected KafkaAdmin kafkaAdmin;
+
+    @MockitoBean
+    protected KafkaDeadLetterBatchConsumerProducer kafkaDeadLetterBatchConsumerProducer;
 
     private static TestEvent createTestEvent(String messagePayload) {
         return TestEvent.newBuilder()

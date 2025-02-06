@@ -5,6 +5,7 @@ import ch.admin.bit.jeap.crypto.api.KeyId;
 import ch.admin.bit.jeap.crypto.internal.core.noop.NoopKeyIdCryptoService;
 import ch.admin.bit.jeap.errorhandling.command.test.TestCommand;
 import ch.admin.bit.jeap.errorhandling.event.test.TestEvent;
+import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.KafkaDeadLetterBatchConsumerProducer;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.*;
 import ch.admin.bit.jeap.messaging.avro.AvroMessage;
 import ch.admin.bit.jeap.messaging.avro.AvroMessageKey;
@@ -42,7 +43,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @Slf4j
 @SpringBootTest(webEnvironment = DEFINED_PORT,
         properties = {"server.port=8303",
-                "jeap.errorhandling.deadLetterTopicName=" + ErrorHandlingITBase.ERROR_TOPIC,
+                "jeap.errorhandling.deadLetterTopicName=" + ErrorHandlingITBase.DEAD_LETTER_TOPIC,
                 "jeap.security.oauth2.resourceserver.authorization-server.issuer=" + JwsBuilder.DEFAULT_ISSUER,
                 "jeap.security.oauth2.resourceserver.authorization-server.jwk-set-uri=http://localhost:${server.port}/.well-known/jwks.json"})
 @AutoConfigureObservability
@@ -50,6 +51,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 public abstract class ErrorHandlingITBase extends KafkaIntegrationTestBase {
     protected static final String DOMAIN_EVENT_TOPIC = "originalTopic";
     protected static final String COMMAND_TOPIC = "commandTopic";
+    protected static final String DEAD_LETTER_TOPIC = "dltTopic";
     protected static final String ERROR_TOPIC = "errorTopic";
     protected static final String TEMPORARY_ERROR = "temp";
     protected static final String PERMANENT_ERROR = "perm";
@@ -76,6 +78,8 @@ public abstract class ErrorHandlingITBase extends KafkaIntegrationTestBase {
     protected JwsBuilderFactory jwsBuilderFactory;
     @Autowired
     protected KafkaConfiguration kafkaConfiguration;
+    @Autowired
+    protected KafkaDeadLetterBatchConsumerProducer kafkaDeadLetterBatchConsumerProducer;
 
     @AfterEach
     @BeforeEach

@@ -12,7 +12,8 @@ export class AppComponent {
 
 	navigation = [
 		{url: 'error-list', label: 'i18n.routes.error-list.title'},
-		{url: 'error-group', label: 'i18n.routes.error-group.title'}
+		{url: 'error-group', label: 'i18n.routes.error-group.title'},
+		{url: 'reactivate-dead-letter', label: 'i18n.routes.reactivate-dead-letter.title'}
 	];
 
 	private readonly translateService = inject(TranslateService);

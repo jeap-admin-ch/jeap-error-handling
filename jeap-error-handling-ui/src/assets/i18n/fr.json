@@ -95,5 +95,11 @@
   "i18n.oblique.scrolling.top-control": "Retour au début",
   "i18n.errorPages.title": "Erreur",
   "i18n.errorPages.forbidden.title": "Accès non autorisé",
-  "i18n.errorPages.forbidden.text": "Vous ne disposez pas des autorisations nécessaires pour afficher ce contenu."
+  "i18n.errorPages.forbidden.text": "Vous ne disposez pas des autorisations nécessaires pour afficher ce contenu.",
+  "i18n.routes.reactivate-dead-letter.title": "Réactiver les messages de dead letter",
+  "i18n.deadLetter.number-of-messages": "Nombre de messages (max. 500):",
+  "i18n.deadLetter.reactivate": "Réactiver",
+  "i18n.deadLetter.dead-letter-messages": "messages de dead letter",
+  "i18n.deadLetter.error-message": "Erreur: Les messages du dead letter topic n'ont pas pu être réactivés.",
+  "i18n.deadLetter.success-message": "Les messages du topic dead-letter ont été restaurés."
 }
