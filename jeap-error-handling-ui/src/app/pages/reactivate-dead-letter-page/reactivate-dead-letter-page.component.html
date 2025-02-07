@@ -17,8 +17,6 @@
 		{{ 'i18n.deadLetter.reactivate' | translate }} {{ maxMessages }} {{ 'i18n.deadLetter.dead-letter-messages' | translate }}
 	</button>
 	<div *ngIf="isInProgress" class="progress-container">
-		<span class="material-symbols-outlined">skull</span>
 		<mat-progress-bar mode="indeterminate"></mat-progress-bar>
-		<mat-icon>check</mat-icon>
 	</div>
 </div>
