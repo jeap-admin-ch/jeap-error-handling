@@ -8,11 +8,6 @@ Third-party dependencies grouped by their license type (see [pom.xml](/pom.xml) 
 Apache License Version 2.0
 -------------------------------
 
- * Hibernate Commons Annotations - [org.hibernate.common:hibernate-commons-annotations](http://hibernate.org)
-
-Apache License, Version 2.0
--------------------------------
-
  * consumer - [au.com.dius.pact:consumer](https://github.com/pact-foundation/pact-jvm)
  * junit5 - [au.com.dius.pact.consumer:junit5](https://github.com/pact-foundation/pact-jvm)
  * matchers - [au.com.dius.pact.core:matchers](https://github.com/pact-foundation/pact-jvm)
@@ -216,8 +211,8 @@ Apache License, Version 2.0
  * Apache HttpClient Mime - [org.apache.httpcomponents:httpmime](http://hc.apache.org/httpcomponents-client)
  * Apache HttpClient - [org.apache.httpcomponents.client5:httpclient5](https://hc.apache.org/httpcomponents-client-5.4.x/5.4.1/httpclient5/)
  * Apache HttpClient Fluent - [org.apache.httpcomponents.client5:httpclient5-fluent](https://hc.apache.org/httpcomponents-client-5.4.x/5.4.1/httpclient5-fluent/)
- * Apache HttpComponents Core HTTP/1.1 - [org.apache.httpcomponents.core5:httpcore5](https://hc.apache.org/httpcomponents-core-5.3.x/5.3.1/httpcore5/)
- * Apache HttpComponents Core HTTP/2 - [org.apache.httpcomponents.core5:httpcore5-h2](https://hc.apache.org/httpcomponents-core-5.3.x/5.3.1/httpcore5-h2/)
+ * Apache HttpComponents Core HTTP/1.1 - [org.apache.httpcomponents.core5:httpcore5](https://hc.apache.org/httpcomponents-core-5.3.x/5.3.2/httpcore5/)
+ * Apache HttpComponents Core HTTP/2 - [org.apache.httpcomponents.core5:httpcore5-h2](https://hc.apache.org/httpcomponents-core-5.3.x/5.3.2/httpcore5-h2/)
  * Apache Kafka - [org.apache.kafka:kafka-clients](https://kafka.apache.org)
  * Apache Kafka - [org.apache.kafka:kafka-group-coordinator](https://kafka.apache.org)
  * Apache Kafka - [org.apache.kafka:kafka-group-coordinator-api](https://kafka.apache.org)
@@ -249,6 +244,7 @@ Apache License, Version 2.0
  * TagSoup - [org.ccil.cowan.tagsoup:tagsoup](http://home.ccil.org/~cowan/XML/tagsoup/)
  * flyway-core - [org.flywaydb:flyway-core](https://flywaydb.org/flyway-core)
  * flyway-database-postgresql - [org.flywaydb:flyway-database-postgresql](https://flywaydb.org/flyway-database-postgresql)
+ * Hibernate Commons Annotations - [org.hibernate.common:hibernate-commons-annotations](http://hibernate.org)
  * Hibernate Validator Engine - [org.hibernate.validator:hibernate-validator](http://hibernate.org/validator/hibernate-validator)
  * Javassist - [org.javassist:javassist](http://www.javassist.org/)
  * JBoss Logging 3 - [org.jboss.logging:jboss-logging](http://www.jboss.org)
@@ -395,8 +391,6 @@ BSD License 3
 Bouncy Castle Licence
 -------------------------------
 
- * Bouncy Castle PKIX, CMS, EAC, TSP, PKCS, OCSP, CMP, and CRMF APIs - [org.bouncycastle:bcpkix-jdk15on](https://www.bouncycastle.org/java.html)
- * Bouncy Castle Provider - [org.bouncycastle:bcprov-jdk15on](https://www.bouncycastle.org/java.html)
  * Bouncy Castle Provider - [org.bouncycastle:bcprov-jdk18on](https://www.bouncycastle.org/java.html)
 
 CDDL
