@@ -10,6 +10,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 - Update parent from 26.22.3 to 26.23.0
+- Publish to maven central
 
 ## [9.6.0] - 2025-02-07
 

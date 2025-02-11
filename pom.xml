@@ -5,10 +5,13 @@
     <url>https://github.com/jeap-admin-ch/jeap-error-handling/tree/main</url>
     <scm>
         <url>https://github.com/jeap-admin-ch/jeap-error-handling.git</url>
+        <connection>scm:git:git://github.com/jeap-admin-ch/jeap-error-handling.git</connection>
+        <developerConnection>scm:git:ssh://github.com:jeap-admin-ch/jeap-error-handling.git</developerConnection>
     </scm>
     <developers>
         <developer>
             <name>BIT</name>
+            <email>jeap-community@bit.admin.ch</email>
             <organization>Federal Office of Information Technology, Systems and Telecommunication FOITT</organization>
             <organizationUrl>https://www.bit.admin.ch/</organizationUrl>
         </developer>
