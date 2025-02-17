@@ -7,6 +7,7 @@ import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorEventData
 import ch.admin.bit.jeap.messaging.kafka.properties.KafkaProperties;
 
 import java.time.ZonedDateTime;
+import java.util.Arrays;
 import java.util.UUID;
 
 public class ErrorStubs {
@@ -74,6 +75,16 @@ public class ErrorStubs {
                                 .clusterName(clusterName)
                                 .build())
                         .metadata(eventMetadata)
+                        .headers(Arrays.asList(
+                                MessageHeader.builder()
+                                        .headerName("dummy")
+                                        .headerValue("dummyValue".getBytes())
+                                        .build(),
+                                MessageHeader.builder()
+                                        .headerName("jeap-cert")
+                                        .headerValue("jeap-cert-value".getBytes())
+                                        .build()
+                        ))
                         .build())
                 .errorEventData(ErrorEventData.builder()
                         .temporality(temporality)

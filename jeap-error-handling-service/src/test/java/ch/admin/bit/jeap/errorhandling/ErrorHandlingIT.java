@@ -17,7 +17,11 @@ import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorEventData
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorGroup;
 import ch.admin.bit.jeap.errorhandling.util.EventProcessingFailedEventBuilder;
 import ch.admin.bit.jeap.errorhandling.web.api.ErrorDTO;
-import ch.admin.bit.jeap.messaging.avro.*;
+import ch.admin.bit.jeap.messaging.avro.AvroMessage;
+import ch.admin.bit.jeap.messaging.avro.AvroMessageIdentity;
+import ch.admin.bit.jeap.messaging.avro.AvroMessageKey;
+import ch.admin.bit.jeap.messaging.avro.AvroMessagePublisher;
+import ch.admin.bit.jeap.messaging.avro.AvroMessageType;
 import ch.admin.bit.jeap.messaging.avro.errorevent.MessageHandlerExceptionInformation;
 import ch.admin.bit.jeap.messaging.avro.errorevent.MessageProcessingFailedEvent;
 import ch.admin.bit.jeap.messaging.avro.errorevent.MessageProcessingFailedEventBuilder;
@@ -35,6 +39,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
@@ -46,7 +51,10 @@ import static ch.admin.bit.jeap.errorhandling.infrastructure.persistence.AuditLo
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.DEFINED_PORT;
 
 @SpringBootTest(webEnvironment = DEFINED_PORT,
@@ -54,7 +62,10 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
                 "jeap.errorhandling.deadLetterTopicName=" + ErrorHandlingITBase.ERROR_TOPIC,
                 "jeap.errorhandling.topic=${jeap.messaging.kafka.errorTopicName}",
                 "jeap.security.oauth2.resourceserver.authorization-server.issuer=" + JwsBuilder.DEFAULT_ISSUER,
-                "jeap.security.oauth2.resourceserver.authorization-server.jwk-set-uri=http://localhost:${server.port}/.well-known/jwks.json"})
+                "jeap.security.oauth2.resourceserver.authorization-server.jwk-set-uri=http://localhost:${server.port}/.well-known/jwks.json",
+                "logging.level.ch.admin.bit.jeap.errorhandling=DEBUG"
+        })
+@DirtiesContext
 class ErrorHandlingIT extends ErrorHandlingITBase {
 
     private static final String SUBJECT = "69368608-D736-43C8-5F76-55B7BF168299";
@@ -474,7 +485,17 @@ class ErrorHandlingIT extends ErrorHandlingITBase {
                 new ProducerRecord<>(DOMAIN_EVENT_TOPIC, domainEvent);
         String headerName = JeapKafkaAvroSerdeCryptoConfig.ENCRYPTED_VALUE_HEADER_NAME;
         byte[] headerValue = JeapKafkaAvroSerdeCryptoConfig.ENCRYPTED_VALUE_HEADER_TRUE;
+        String headerNameCert = "jeap-cert";
+        byte[] headerValueCert = {1, 2, 3 }; // dummy value
+        String headerNameSign = "jeap-sign";
+        byte[] headerValueSign = {1, 2, 3, 4 }; // dummy value
+        String headerNameSignKey = "jeap-sign-key";
+        byte[] headerValueSignKey = {1, 2, 3, 4, 5 }; // dummy value
+
         producerRecord.headers().add(headerName, headerValue);
+        producerRecord.headers().add(headerNameCert, headerValueCert);
+        producerRecord.headers().add(headerNameSign, headerValueSign);
+        producerRecord.headers().add(headerNameSignKey, headerValueSignKey);
         kafkaTemplate.send(producerRecord);
 
         // then
@@ -498,8 +519,23 @@ class ErrorHandlingIT extends ErrorHandlingITBase {
         TestEvent reSentEvent = consumedEvents.get(1);
         assertEquals(originalEventCausingError, reSentEvent, "Re-sent event equals original event");
         List<ConsumerRecord<AvroMessageKey,TestEvent>> consumedRecords = testConsumer.getConsumedRecordsByIdempotenceId(domainEvent.getIdentity().getIdempotenceId());
-        assertTrue(consumedRecords.stream().allMatch(r -> r.headers().lastHeader(JeapKafkaAvroSerdeCryptoConfig.ENCRYPTED_VALUE_HEADER_NAME) != null),
-                "Header value from original message is passed through");
+        for(ConsumerRecord<AvroMessageKey,TestEvent> record : consumedRecords) {
+            assertTrue(getHeaderValue(JeapKafkaAvroSerdeCryptoConfig.ENCRYPTED_VALUE_HEADER_NAME, record) != null,
+                    "Header value from original message is passed through");
+            assertTrue(getHeaderValue(headerNameCert, record) != null,
+                    "Header value from original message is passed through");
+            assertTrue(getHeaderValue(headerNameSign, record) != null,
+                    "Header value from original message is passed through");
+            assertTrue(getHeaderValue(headerNameSignKey, record) != null,
+                    "Header value from original message is passed through");
+        }
+    }
+
+    private Object getHeaderValue(String headerName, ConsumerRecord<AvroMessageKey,TestEvent> record) {
+        if(record.headers() == null)        {
+            return null;}
+
+        return record.headers().lastHeader(headerName);
     }
 
     @Test

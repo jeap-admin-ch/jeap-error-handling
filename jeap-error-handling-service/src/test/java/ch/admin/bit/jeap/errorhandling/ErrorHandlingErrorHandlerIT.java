@@ -117,6 +117,7 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
         assertTrue(genericMessage.getPayload() instanceof MessageProcessingFailedEvent);
         assertEquals("java.lang.Exception: Could not deserialize value", ((MessageProcessingFailedEvent) genericMessage.getPayload()).getPayload().getErrorMessage());
         assertEquals("fake Event", StandardCharsets.UTF_8.decode(((MessageProcessingFailedEvent) genericMessage.getPayload()).getPayload().getOriginalMessage()).toString());
+        producer.close();
     }
 
     @Test
@@ -135,6 +136,7 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
         assertTrue(genericMessage.getPayload() instanceof MessageProcessingFailedEvent);
         assertTrue(((MessageProcessingFailedEvent) genericMessage.getPayload()).getPayload().getErrorMessage().startsWith("java.lang.ClassCastException"));
         assertTrue(StandardCharsets.UTF_8.decode(((MessageProcessingFailedEvent) genericMessage.getPayload()).getPayload().getOriginalMessage()).toString().contains("Content Test Event"));
+        producer.close();
     }
 
     @Test
@@ -154,6 +156,7 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
         assertTrue(genericMessage.getPayload() instanceof MessageProcessingFailedEvent);
         assertTrue(((MessageProcessingFailedEvent) genericMessage.getPayload()).getPayload().getErrorMessage()
                 .contains("NonAvroMessageException"));
+        producer.close();
     }
 
     private Producer<String, String> createStringMessageProducer() {
@@ -206,7 +209,7 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
 
         private final List<GenericMessage<?>> consumedMessages = new ArrayList<>();
 
-        @TestKafkaListener(topics = {DLT_TOPIC}, id = "dlt-consumer")
+        @TestKafkaListener(topics = {DLT_TOPIC}, groupId = "dlt-consumer")
         public void consume(final GenericMessage<?> message) {
             consumedMessages.add(message);
 

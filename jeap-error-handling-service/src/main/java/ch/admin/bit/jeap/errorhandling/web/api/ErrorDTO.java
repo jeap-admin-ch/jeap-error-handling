@@ -37,4 +37,6 @@ class ErrorDTO {
     private List<AuditLogDTO> auditLogDTOs;
     private String ticketNumber;
     private String freeText;
+    private boolean signed;
+    private String jeapCert;
 }

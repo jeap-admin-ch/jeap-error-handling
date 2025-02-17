@@ -1097,8 +1097,8 @@ The following npm packages may be included in this product:
  - @types/istanbul-lib-coverage@2.0.6
  - @types/istanbul-lib-report@3.0.3
  - @types/istanbul-reports@3.0.4
- - @types/node@22.9.1
- - @types/ws@8.5.13
+ - @types/node@22.12.0
+ - @types/ws@8.5.14
 
 These packages each contain the following license:
 
@@ -1158,7 +1158,7 @@ SOFTWARE.
 
 The following npm package may be included in this product:
 
- - node-gyp@10.2.0
+ - node-gyp@10.3.1
 
 This package contains the following license:
 
@@ -1224,9 +1224,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following npm packages may be included in this product:
 
- - agent-base@7.1.1
+ - agent-base@7.1.3
  - https-proxy-agent@7.0.5
- - socks-proxy-agent@8.0.4
+ - socks-proxy-agent@8.0.5
 
 These packages each contain the following license:
 
@@ -1321,7 +1321,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 The following npm package may be included in this product:
 
- - debug@4.3.7
+ - debug@4.4.0
 
 This package contains the following license:
 
@@ -1950,7 +1950,7 @@ END OF TERMS AND CONDITIONS
 
 The following npm package may be included in this product:
 
- - caniuse-lite@1.0.30001683
+ - caniuse-lite@1.0.30001696
 
 This package contains the following license:
 
@@ -2528,7 +2528,7 @@ SOFTWARE.
 
 The following npm package may be included in this product:
 
- - @babel/parser@7.26.2
+ - @babel/parser@7.26.7
 
 This package contains the following license:
 
@@ -2642,7 +2642,7 @@ THE SOFTWARE.
 
 The following npm package may be included in this product:
 
- - fastq@1.17.1
+ - fastq@1.19.0
 
 This package contains the following license:
 
@@ -2749,7 +2749,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 The following npm package may be included in this product:
 
- - fast-uri@3.0.3
+ - fast-uri@3.0.6
 
 This package contains the following license:
 
@@ -2874,26 +2874,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 -----------
 
-The following npm package may be included in this product:
-
- - uri-js@4.4.1
-
-This package contains the following license:
-
-Copyright 2011 Gary Court. All rights reserved.
-
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-
-1.	Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-
-2.	Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY GARY COURT "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL GARY COURT OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-The views and conclusions contained in the software and documentation are those of the authors and should not be interpreted as representing official policies, either expressed or implied, of Gary Court.
-
------------
-
 The following npm packages may be included in this product:
 
  - convert-source-map@1.9.0
@@ -2947,7 +2927,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 The following npm package may be included in this product:
 
- - electron-to-chromium@1.5.63
+ - electron-to-chromium@1.5.90
 
 This package contains the following license:
 
@@ -3021,7 +3001,7 @@ SOFTWARE.
 
 The following npm packages may be included in this product:
 
- - @jridgewell/gen-mapping@0.3.5
+ - @jridgewell/gen-mapping@0.3.8
  - @jridgewell/set-array@1.2.1
 
 These packages each contain the following license:
@@ -3111,8 +3091,7 @@ The following npm packages may be included in this product:
  - emoji-regex@8.0.0
  - emoji-regex@9.2.2
  - jsesc@2.5.2
- - jsesc@3.0.2
- - punycode@2.3.1
+ - jsesc@3.1.0
 
 These packages each contain the following license:
 
@@ -3211,7 +3190,7 @@ terms above.
 
 The following npm package may be included in this product:
 
- - sass@1.81.0
+ - sass@1.83.4
 
 This package contains the following license:
 
@@ -3832,8 +3811,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 --------------------------------------------------------------------------------
 
-coverage, dart_style, dartdoc, glob, http, http_parser, matcher, path, pool,
-pub_semver, source_span, string_scanner, test and watcher license:
+coverage, dartdoc, glob, http, http_parser, matcher, path, pool, pub_semver,
+source_span, string_scanner, test and watcher license:
 
 Copyright 2014, the Dart project authors. 
 
@@ -4400,11 +4379,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 --------------------------------------------------------------------------------
 
-petitparser and xml license:
+petitparser license:
 
 The MIT License
 
-Copyright (c) 2006-2023 Lukas Renggli.
+Copyright (c) 2006-2025 Lukas Renggli.
 All rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -4455,36 +4434,6 @@ SOFTWARE.
 
 --------------------------------------------------------------------------------
 
-pubspec license:
-
-Copyright (c) 2015, Anders Holmgren.
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above copyright
-      notice, this list of conditions and the following disclaimer in the
-      documentation and/or other materials provided with the distribution.
-    * Neither the name of the <organization> nor the
-      names of its contributors may be used to endorse or promote products
-      derived from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
-DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
 pubspec_parse license:
 
 Copyright 2018, the Dart project authors.
@@ -4518,7 +4467,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 --------------------------------------------------------------------------------
 
-quiver and retry license:
+retry license:
 
 
                                  Apache License
@@ -4824,36 +4773,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 --------------------------------------------------------------------------------
 
-uri license:
-
-Copyright 2013, the Dart project authors. All rights reserved.
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google Inc. nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
 web license:
 
 Copyright 2023, the Dart project authors.
@@ -4915,6 +4834,34 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+--------------------------------------------------------------------------------
+
+xml license:
+
+The MIT License
+
+Copyright (c) 2006-2023 Lukas Renggli.
+All rights reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 
 
 --------------------------------------------------------------------------------
@@ -5154,7 +5101,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following npm packages may be included in this product:
 
- - @angular/compiler-cli@18.2.12
+ - @angular/compiler-cli@18.2.13
  - eastasianwidth@0.2.0
  - err-code@2.0.3
  - imurmurhash@0.1.4
@@ -5199,7 +5146,7 @@ SOFTWARE.
 
 The following npm package may be included in this product:
 
- - readdirp@4.0.2
+ - readdirp@4.1.1
 
 This package contains the following license:
 
@@ -5260,21 +5207,21 @@ SOFTWARE.
 The following npm packages may be included in this product:
 
  - @babel/code-frame@7.26.2
- - @babel/compat-data@7.26.2
+ - @babel/compat-data@7.26.5
  - @babel/core@7.25.2
- - @babel/core@7.26.0
+ - @babel/core@7.26.7
  - @babel/generator@7.25.0
- - @babel/generator@7.26.2
- - @babel/helper-compilation-targets@7.25.9
+ - @babel/generator@7.26.5
+ - @babel/helper-compilation-targets@7.26.5
  - @babel/helper-module-imports@7.25.9
  - @babel/helper-module-transforms@7.26.0
  - @babel/helper-string-parser@7.25.9
  - @babel/helper-validator-identifier@7.25.9
  - @babel/helper-validator-option@7.25.9
- - @babel/helpers@7.26.0
+ - @babel/helpers@7.26.7
  - @babel/template@7.25.9
- - @babel/traverse@7.25.9
- - @babel/types@7.26.0
+ - @babel/traverse@7.26.7
+ - @babel/types@7.26.7
 
 These packages each contain the following license:
 
@@ -5366,8 +5313,9 @@ SOFTWARE.
 
 The following npm packages may be included in this product:
 
- - @parcel/watcher-linux-x64-glibc@2.5.0
- - @parcel/watcher@2.5.0
+ - @parcel/watcher-linux-x64-glibc@2.5.1
+ - @parcel/watcher-linux-x64-musl@2.5.1
+ - @parcel/watcher@2.5.1
 
 These packages each contain the following license:
 
@@ -5518,11 +5466,11 @@ SOFTWARE.
 
 The following npm packages may be included in this product:
 
- - @angular-eslint/bundled-angular-compiler@18.4.1
- - @angular-eslint/eslint-plugin-template@18.4.1
- - @angular-eslint/eslint-plugin@18.4.1
- - @angular-eslint/schematics@18.4.1
- - @angular-eslint/utils@18.4.1
+ - @angular-eslint/bundled-angular-compiler@18.4.3
+ - @angular-eslint/eslint-plugin-template@18.4.3
+ - @angular-eslint/eslint-plugin@18.4.3
+ - @angular-eslint/schematics@18.4.3
+ - @angular-eslint/utils@18.4.3
 
 These packages each contain the following license:
 
@@ -5618,7 +5566,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 The following npm package may be included in this product:
 
- - undici-types@6.19.8
+ - undici-types@6.20.0
 
 This package contains the following license:
 
@@ -6269,18 +6217,18 @@ IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 The following npm packages may be included in this product:
 
- - @angular-devkit/core@18.2.12
- - @angular-devkit/schematics@18.2.12
- - @angular/animations@18.2.12
- - @angular/common@18.2.12
- - @angular/compiler@18.2.12
- - @angular/core@18.2.12
- - @angular/forms@18.2.12
- - @angular/localize@18.2.12
- - @angular/platform-browser-dynamic@18.2.12
- - @angular/platform-browser@18.2.12
- - @angular/router@18.2.12
- - @schematics/angular@18.2.12
+ - @angular-devkit/core@18.2.14
+ - @angular-devkit/schematics@18.2.14
+ - @angular/animations@18.2.13
+ - @angular/common@18.2.13
+ - @angular/compiler@18.2.13
+ - @angular/core@18.2.13
+ - @angular/forms@18.2.13
+ - @angular/localize@18.2.13
+ - @angular/platform-browser-dynamic@18.2.13
+ - @angular/platform-browser@18.2.13
+ - @angular/router@18.2.13
+ - @schematics/angular@18.2.14
 
 These packages each contain the following license:
 
@@ -6340,37 +6288,7 @@ THE SOFTWARE.
 
 The following npm package may be included in this product:
 
- - @angular-devkit/core@17.3.11
-
-This package contains the following license:
-
-The MIT License
-
-Copyright (c) 2017 Google, Inc.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - node-releases@2.0.18
+ - node-releases@2.0.19
 
 This package contains the following license:
 
@@ -6400,13 +6318,13 @@ THE SOFTWARE.
 
 The following npm package may be included in this product:
 
- - @oblique/oblique@12.0.2
+ - @oblique/oblique@12.2.3
 
 This package contains the following license:
 
 The MIT License
 
-Copyright (c) 2020-2024 The Swiss Confederation, represented by the Federal Office of Information Technology, Systems and Telecommunication FOITT
+Copyright (c) 2020-2025 The Swiss Confederation, represented by the Federal Office of Information Technology, Systems and Telecommunication FOITT
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -6492,7 +6410,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following npm package may be included in this product:
 
- - chokidar@4.0.1
+ - chokidar@4.0.3
 
 This package contains the following license:
 
@@ -6791,12 +6709,11 @@ SOFTWARE.
 
 -----------
 
-The following npm packages may be included in this product:
+The following npm package may be included in this product:
 
- - ajv@8.12.0
  - ajv@8.17.1
 
-These packages each contain the following license:
+This package contains the following license:
 
 The MIT License (MIT)
 
@@ -6933,7 +6850,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 The following npm packages may be included in this product:
 
  - picomatch@2.3.1
- - picomatch@4.0.1
  - picomatch@4.0.2
 
 These packages each contain the following license:
@@ -7274,7 +7190,7 @@ THE SOFTWARE.
 
 The following npm package may be included in this product:
 
- - rfc4648@1.5.3
+ - rfc4648@1.5.4
 
 This package contains the following license:
 
@@ -7292,7 +7208,7 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 
 The following npm package may be included in this product:
 
- - browserslist@4.24.2
+ - browserslist@4.24.4
 
 This package contains the following license:
 
@@ -7321,7 +7237,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following npm package may be included in this product:
 
- - update-browserslist-db@1.1.1
+ - update-browserslist-db@1.1.2
 
 This package contains the following license:
 
@@ -7400,12 +7316,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 -----------
 
-The following npm packages may be included in this product:
+The following npm package may be included in this product:
 
- - jsonc-parser@3.2.1
  - jsonc-parser@3.3.1
 
-These packages each contain the following license:
+This package contains the following license:
 
 The MIT License (MIT)
 

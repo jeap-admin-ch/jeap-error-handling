@@ -179,6 +179,8 @@ class ErrorControllerTest {
         assertAuditLogDTO(response.getAuditLogDTOs().get(1), RESEND_CAUSING_EVENT, user);
         assertEquals("some-ticket-number", response.getTicketNumber());
         assertEquals("some-free-text", response.getFreeText());
+        assertTrue(response.isSigned());
+        assertEquals("6A 65 61 70 2D 63 65 72 74 2D 76 61 6C 75 65", response.getJeapCert());
     }
 
     @Test

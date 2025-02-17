@@ -18,6 +18,7 @@ jeap:
         max-retries: 3
     frontend:
       application-url: "http://localhost:8080"
+
   security:
     oauth2:
       resourceserver:
@@ -53,7 +54,6 @@ spring:
     # to change their flyway location configuration property, which is a breaking change we strive to avoid.
     locations: classpath:db/migration/common, classpath:db/migration/h2
     baseline-version: "1.1.0"
-
 logging:
   level:
     kafka: WARN

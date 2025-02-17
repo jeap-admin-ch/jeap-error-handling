@@ -22,6 +22,8 @@ export interface ErrorDTO {
 	auditLogDTOs: AuditLogDTO[];
 	ticketNumber: string;
 	freeText: string;
+	signed : boolean;
+	jeapCert: string;
 }
 
 export interface AuditLogDTO {

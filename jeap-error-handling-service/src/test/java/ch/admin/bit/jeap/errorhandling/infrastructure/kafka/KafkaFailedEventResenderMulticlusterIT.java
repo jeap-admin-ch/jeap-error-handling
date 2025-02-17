@@ -27,6 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.config.KafkaListenerEndpointRegistry;
 import org.springframework.kafka.test.utils.ContainerTestUtils;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 
@@ -43,7 +44,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(properties = {
         "jeap.messaging.kafka.embedded=false",
         "jeap.messaging.kafka.systemName=test",
-        "jeap.messaging.kafka.errorTopicName=errorTopic",
         "jeap.messaging.kafka.cluster.first.bootstrapServers=localhost:" + (EmbeddedKafkaMultiClusterExtension.BASE_PORT + PORT_OFFSET),
         "jeap.messaging.kafka.cluster.first.securityProtocol=PLAINTEXT",
         "jeap.messaging.kafka.cluster.first.schemaRegistryUrl=mock://registry-outbox-1",
@@ -54,12 +54,14 @@ import static org.assertj.core.api.Assertions.assertThat;
         "jeap.messaging.kafka.cluster.second.schemaRegistryUrl=mock://registry-outbox-2",
         "jeap.messaging.kafka.cluster.second.schemaRegistryUsername=unused",
         "jeap.messaging.kafka.cluster.second.schemaRegistryPassword=unused",
-        "jeap.errorhandling.deadLetterTopicName=" + KafkaFailedEventResenderMulticlusterIT.ERROR_TOPIC
+        "jeap.errorhandling.topic=errorTopic",
+        "jeap.errorhandling.deadLetterTopicName=" + KafkaFailedEventResenderMulticlusterIT.DLQ_TOPIC,
 })
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class KafkaFailedEventResenderMulticlusterIT {
 
     static final int PORT_OFFSET = 50;
-    static final String ERROR_TOPIC = "errorTopic";
+    static final String DLQ_TOPIC = "deadLetterTopic";
 
     private static final String FIRST_CLUSTER_NAME = "first";
     private static final String SECOND_CLUSTER_NAME = "second";

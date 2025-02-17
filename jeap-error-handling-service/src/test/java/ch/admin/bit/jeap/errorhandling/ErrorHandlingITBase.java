@@ -6,7 +6,11 @@ import ch.admin.bit.jeap.crypto.internal.core.noop.NoopKeyIdCryptoService;
 import ch.admin.bit.jeap.errorhandling.command.test.TestCommand;
 import ch.admin.bit.jeap.errorhandling.event.test.TestEvent;
 import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.KafkaDeadLetterBatchConsumerProducer;
-import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.*;
+import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.AuditLogRepository;
+import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.CausingEventRepository;
+import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorGroupRepository;
+import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorRepository;
+import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ScheduledResendRepository;
 import ch.admin.bit.jeap.messaging.avro.AvroMessage;
 import ch.admin.bit.jeap.messaging.avro.AvroMessageKey;
 import ch.admin.bit.jeap.messaging.kafka.KafkaConfiguration;
@@ -16,6 +20,7 @@ import ch.admin.bit.jeap.messaging.kafka.test.TestKafkaListener;
 import ch.admin.bit.jeap.security.test.jws.JwsBuilder;
 import ch.admin.bit.jeap.security.test.jws.JwsBuilderFactory;
 import ch.admin.bit.jeap.security.test.resource.configuration.JeapOAuth2IntegrationTestResourceConfiguration;
+import jakarta.transaction.Transactional;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -81,8 +86,9 @@ public abstract class ErrorHandlingITBase extends KafkaIntegrationTestBase {
     @Autowired
     protected KafkaDeadLetterBatchConsumerProducer kafkaDeadLetterBatchConsumerProducer;
 
-    @AfterEach
     @BeforeEach
+    @AfterEach
+    @Transactional
     void clearRepository() {
         log.info("Clearing repositories");
         scheduledResendRepository.deleteAll();
@@ -118,7 +124,7 @@ public abstract class ErrorHandlingITBase extends KafkaIntegrationTestBase {
         @Getter
         private boolean successfulRetrySimulated;
 
-        @TestKafkaListener(topics = {DOMAIN_EVENT_TOPIC}, id = "test-consumer")
+        @TestKafkaListener(topics = {DOMAIN_EVENT_TOPIC}, groupId = "test-consumer")
         public void consume(final ConsumerRecord<AvroMessageKey, TestEvent> testEventConsumerRecord) {
             TestEvent testEvent = testEventConsumerRecord.value();
             consumedEvents.add(testEvent);
@@ -129,30 +135,34 @@ public abstract class ErrorHandlingITBase extends KafkaIntegrationTestBase {
             simulateError(payloadMessage);
         }
 
-        @TestKafkaListener(topics = {COMMAND_TOPIC}, id = "test-command-consumer")
+        @TestKafkaListener(topics = {COMMAND_TOPIC}, groupId = "test-command-consumer")
         public void consume(final TestCommand testCommand) {
             consumedCommands.add(testCommand);
 
             String payloadMessage = testCommand.getPayload().getMessage();
-            log.info("Consuming command in T            return null;estConsumer: {}", payloadMessage);
+            log.info("Consuming command in TestConsumer: {}", payloadMessage);
             simulateError(payloadMessage);
         }
 
         private void simulateError(String payloadMessage) {
             if (TEMPORARY_ERROR.equals(payloadMessage)) {
+                log.debug("Simulating temporary error");
                 throw new TestMessageProcessingException(TEMPORARY, "500", payloadMessage);
             } else if (PERMANENT_ERROR.equals(payloadMessage)) {
+                log.debug("Simulating permanent error");
                 throw new TestMessageProcessingException(PERMANENT, "404", payloadMessage);
             } else if (RETRY_SUCCESS.equals(payloadMessage)) {
                 boolean isFirstMessage = (consumedEvents.size() + consumedCommands.size()) == 1;
                 if (isFirstMessage) {
+                    log.debug("Simulating retry, first attempt");
                     throw new TestMessageProcessingException(PERMANENT, "404", payloadMessage);
                 } else {
+                    log.debug("Simulating retry, not first attempt");
                     successfulRetrySimulated = true;
                     return; // ack
                 }
             }
-            throw new IllegalStateException("Unexpected error");
+            throw new IllegalStateException("Unexpected error: " + payloadMessage);
         }
 
         public void reset() {

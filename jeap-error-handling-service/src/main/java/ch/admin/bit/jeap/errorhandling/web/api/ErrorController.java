@@ -9,8 +9,10 @@ import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.DomainEventDeseriali
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.AuditLog;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.EventMessage;
+import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.MessageHeader;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.User;
 import ch.admin.bit.jeap.messaging.kafka.properties.KafkaProperties;
+import ch.admin.bit.jeap.messaging.kafka.signature.SignatureHeaders;
 import ch.admin.bit.jeap.security.resource.semanticAuthentication.ServletSemanticAuthorization;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -21,13 +23,14 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.charset.StandardCharsets;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HexFormat;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import static ch.admin.bit.jeap.errorhandling.web.api.DateTimeUtils.timestamp;
 import static java.util.stream.Collectors.toList;
 
 @Tag(name = "Errors")
@@ -277,6 +280,7 @@ public class ErrorController {
 
     private ErrorDTO.ErrorDTOBuilder toErrorDtoBuilder(Error error) {
         ZonedDateTime nextResendTime = scheduledResendService.getNextResendTimestamp(error.getId());
+        String jeapCert = extractJeapCert(error.getCausingEvent().getHeaders());
         return ErrorDTO.builder()
                 .id(error.getId().toString())
                 .errorState(error.getState().name())
@@ -293,8 +297,30 @@ public class ErrorController {
                 .closingReason(error.getClosingReason())
                 .ticketNumber(error.getErrorGroup() != null ? error.getErrorGroup().getTicketNumber() : null)
                 .freeText(error.getErrorGroup() != null ? error.getErrorGroup().getFreeText() : null)
+                .signed(jeapCert != null)
+                .jeapCert(jeapCert)
                 .canRetry(error.getState().isRetryAllowed())
                 .canDelete(error.getState().isDeleteAllowed());
+    }
+
+    private String extractJeapCert(List<MessageHeader> headers) {
+        return extractHeaderValue(SignatureHeaders.SIGNATURE_CERTIFICATE_HEADER_KEY, headers);
+    }
+
+    private String extractHeaderValue(String headerName, List<MessageHeader> headers) {
+        if (headers == null) {
+            return null;
+        }
+        return headers.stream()
+                .filter(header -> header.getHeaderName().equals(headerName))
+                .map(MessageHeader::getHeaderValue)
+                .map(this::bytesToHex)
+                .findFirst()
+                .orElse(null);
+    }
+
+    private String bytesToHex(byte[] bytes) {
+        return HexFormat.of().withDelimiter(" ").formatHex(bytes).toUpperCase();
     }
 
     private List<Error.ErrorState> convertErrorStates(List<String> states) {
