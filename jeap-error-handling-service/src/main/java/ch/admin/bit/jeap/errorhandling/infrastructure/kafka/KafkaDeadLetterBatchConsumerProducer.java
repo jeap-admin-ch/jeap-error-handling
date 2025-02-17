@@ -57,14 +57,35 @@ public class KafkaDeadLetterBatchConsumerProducer {
     public void consumeAndProduce(int maxRecords) {
         log.info("Start consuming and producing messages from topic {} to topic {} with maxRecords {}", deadLetterTopicName, errorTopicName, maxRecords);
 
+        int received = 0;
+        int lastReceived;
+        int count = 0;
+
+        while (received < maxRecords) {
+            lastReceived = consumeAndProduceInBatch(maxRecords - received);
+            received += lastReceived;
+            count++;
+
+            if ((count > 1 && received == lastReceived) || lastReceived == 0) {
+                break;
+            }
+        }
+
+        log.info("Consumed and produced {} records. Stopping consumer and producer.", received);
+    }
+
+    public int consumeAndProduceInBatch(int maxRecords) {
+        log.info("Poll topic with maxRecords {}", maxRecords);
+
         try (KafkaConsumer<byte[], byte[]> consumer = createConsumer(kafkaConfiguration, maxRecords);
              KafkaProducer<byte[], byte[]> producer = createProducer(kafkaConfiguration)) {
 
             consumer.subscribe(Collections.singletonList(deadLetterTopicName));
 
-            ConsumerRecords<byte[], byte[]> records = consumer.poll(Duration.ofSeconds(30));
+            ConsumerRecords<byte[], byte[]> records = consumer.poll(Duration.ofSeconds(5));
 
             final int received = records.count();
+            log.info("Received {} records", received);
 
             for (ConsumerRecord<byte[], byte[]> data : records) {
                 log.debug("Received message from partition {} with offset {}", data.partition(), data.offset());
@@ -77,7 +98,8 @@ public class KafkaDeadLetterBatchConsumerProducer {
 
             }
 
-            log.info("Consumed and produced {} records. Stopping consumer and producer.", received);
+            log.info("Consumed and produced {} records.", received);
+            return received;
 
         } catch (Exception e) {
             log.error("Error occurred while consuming and producing messages", e);

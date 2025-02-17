@@ -68,6 +68,20 @@ class KafkaDeadLetterBatchConsumerProducerIT extends ErrorHandlingITBase {
         awaitSingleErrorInRepository(3);
     }
 
+    @Test
+    void consumeAndProduce_fetchMessagesAndWait_messagesResent() {
+        //given
+        sendSync(DEAD_LETTER_TOPIC, createEventProcessingFailedEvent());
+        sendSync(DEAD_LETTER_TOPIC, createEventProcessingFailedEvent());
+        assertThat(errorRepository.findAll()).isEmpty();
+
+        //when
+        kafkaDeadLetterBatchConsumerProducer.consumeAndProduce(3);
+
+        //then
+        awaitSingleErrorInRepository(2);
+    }
+
     private void awaitSingleErrorInRepository(int size) {
         await("failure has been recorded in repository").atMost(FORTY_SECONDS)
                 .until(() -> errorRepository.findAll().size() == size);
