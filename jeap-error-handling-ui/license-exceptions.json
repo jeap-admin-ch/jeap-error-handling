@@ -1,0 +1,65 @@
+{
+  "acceptableLicenses": [
+    "CC-BY-4.0",
+    "BlueOak-1.0.0",
+    "(AFL-2.1 OR BSD-3-Clause)",
+    "(MIT OR GPL-3.0-or-later)",
+    "(BSD-3-Clause OR GPL-2.0)",
+    "(MIT AND Zlib)",
+    "(MIT OR CC0-1.0)",
+    "0BSD"
+  ],
+  "exceptions": {
+    "caniuse-lite@*": {
+      "reason": "CC-BY-4.0; see: https://github.com/browserslist/caniuse-lite"
+    },
+    "chownr@*": {
+      "reason": "BlueOak-1.0.0; see: https://github.com/isaacs/chownr"
+    },
+    "jackspeak@*": {
+      "reason": "BlueOak-1.0.0; see: https://github.com/isaacs/jackspeak"
+    },
+    "json-schema@*": {
+      "reason": "(AFL-2.1 OR BSD-3-Clause); see: https://github.com/kriszyp/json-schema"
+    },
+    "jszip@*": {
+      "reason": "(MIT OR GPL-3.0-or-later); see: https://github.com/Stuk/jszip"
+    },
+    "node-forge@*": {
+      "reason": "(BSD-3-Clause OR GPL-2.0); see: https://github.com/digitalbazaar/forge"
+    },
+    "package-json-from-dist@*": {
+      "reason": "BlueOak-1.0.0; see: https://github.com/isaacs/package-json-from-dist"
+    },
+    "pako@*": {
+      "reason": "(MIT AND Zlib); see: https://github.com/nodeca/pako"
+    },
+    "path-scurry@*": {
+      "reason": "BlueOak-1.0.0; see: https://github.com/isaacs/path-scurry"
+    },
+    "tslib@*": {
+      "reason": "0BSD; see: https://github.com/Microsoft/tslib"
+    },
+    "type-fest@*": {
+      "reason": "(MIT OR CC0-1.0); see: https://github.com/sindresorhus/type-fest"
+    },
+    "yallist@*": {
+      "reason": "BlueOak-1.0.0; see: https://github.com/isaacs/yallist"
+    },
+    "jeap-error-handling-ui@1.0.0": {
+      "reason": "All Rights Reserved; BIT internal package"
+    },
+    "@quadrel-services/qd-auth@16.1.10": {
+      "reason": "UNKNOWN; BIT internal package"
+    },
+    "@ngx-translate/core@15.0.0": {
+      "reason": "MIT; see: https://github.com/ngx-translate/core"
+    },
+    "@ngx-translate/http-loader@8.0.0": {
+      "reason": "MIT; see: https://github.com/ngx-translate/http-loader"
+    },
+    "argparse@2.0.1": {
+      "reason": "Python 2.0; Transitive development dependency, which is not included in the product. See: https://github.com/nodeca/argparse"
+    }
+  }
+}

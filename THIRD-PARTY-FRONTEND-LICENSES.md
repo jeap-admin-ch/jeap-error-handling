@@ -1,7460 +1,6191 @@
-This file was generated with the generate-license-file npm package!
-https://www.npmjs.com/package/generate-license-file
+ - **[@ampproject/remapping@2.3.0](https://github.com/ampproject/remapping)**
+    - name: @ampproject/remapping
+    - version: 2.3.0
+    - licenses: Apache-2.0
+    - repository: https://github.com/ampproject/remapping
+ - **[@angular-builders/common@1.0.2](Repository)**
+    - name: @angular-builders/common
+    - version: 1.0.2
+    - licenses: MIT
+    - repository: Repository
+ - **[@angular-builders/jest@17.0.3](https://github.com/just-jeb/angular-builders)**
+    - name: @angular-builders/jest
+    - version: 17.0.3
+    - licenses: MIT
+    - repository: https://github.com/just-jeb/angular-builders
+ - **[@angular-devkit/architect@0.1703.11](https://github.com/angular/angular-cli)**
+    - name: @angular-devkit/architect
+    - version: 0.1703.11
+    - licenses: MIT
+    - repository: https://github.com/angular/angular-cli
+ - **[@angular-devkit/architect@0.1802.14](https://github.com/angular/angular-cli)**
+    - name: @angular-devkit/architect
+    - version: 0.1802.14
+    - licenses: MIT
+    - repository: https://github.com/angular/angular-cli
+ - **[@angular-devkit/build-angular@18.2.14](https://github.com/angular/angular-cli)**
+    - name: @angular-devkit/build-angular
+    - version: 18.2.14
+    - licenses: MIT
+    - repository: https://github.com/angular/angular-cli
+ - **[@angular-devkit/build-webpack@0.1802.14](https://github.com/angular/angular-cli)**
+    - name: @angular-devkit/build-webpack
+    - version: 0.1802.14
+    - licenses: MIT
+    - repository: https://github.com/angular/angular-cli
+ - **[@angular-devkit/core@17.3.11](https://github.com/angular/angular-cli)**
+    - name: @angular-devkit/core
+    - version: 17.3.11
+    - licenses: MIT
+    - repository: https://github.com/angular/angular-cli
+ - **[@angular-devkit/core@18.2.14](https://github.com/angular/angular-cli)**
+    - name: @angular-devkit/core
+    - version: 18.2.14
+    - licenses: MIT
+    - repository: https://github.com/angular/angular-cli
+ - **[@angular-devkit/schematics@18.2.14](https://github.com/angular/angular-cli)**
+    - name: @angular-devkit/schematics
+    - version: 18.2.14
+    - licenses: MIT
+    - repository: https://github.com/angular/angular-cli
+ - **[@angular-eslint/bundled-angular-compiler@18.4.3](https://github.com/angular-eslint/angular-eslint)**
+    - name: @angular-eslint/bundled-angular-compiler
+    - version: 18.4.3
+    - licenses: MIT
+    - repository: https://github.com/angular-eslint/angular-eslint
+ - **[@angular-eslint/eslint-plugin-template@18.4.3](https://github.com/angular-eslint/angular-eslint)**
+    - name: @angular-eslint/eslint-plugin-template
+    - version: 18.4.3
+    - licenses: MIT
+    - repository: https://github.com/angular-eslint/angular-eslint
+ - **[@angular-eslint/eslint-plugin@18.4.3](https://github.com/angular-eslint/angular-eslint)**
+    - name: @angular-eslint/eslint-plugin
+    - version: 18.4.3
+    - licenses: MIT
+    - repository: https://github.com/angular-eslint/angular-eslint
+ - **[@angular-eslint/schematics@18.4.3](https://github.com/angular-eslint/angular-eslint)**
+    - name: @angular-eslint/schematics
+    - version: 18.4.3
+    - licenses: MIT
+    - repository: https://github.com/angular-eslint/angular-eslint
+ - **[@angular-eslint/utils@18.4.3](https://github.com/angular-eslint/angular-eslint)**
+    - name: @angular-eslint/utils
+    - version: 18.4.3
+    - licenses: MIT
+    - repository: https://github.com/angular-eslint/angular-eslint
+ - **[@angular/animations@18.2.13](https://github.com/angular/angular)**
+    - name: @angular/animations
+    - version: 18.2.13
+    - licenses: MIT
+    - repository: https://github.com/angular/angular
+ - **[@angular/build@18.2.14](https://github.com/angular/angular-cli)**
+    - name: @angular/build
+    - version: 18.2.14
+    - licenses: MIT
+    - repository: https://github.com/angular/angular-cli
+ - **[@angular/cdk@18.2.14](https://github.com/angular/components)**
+    - name: @angular/cdk
+    - version: 18.2.14
+    - licenses: MIT
+    - repository: https://github.com/angular/components
+ - **[@angular/cli@18.2.14](https://github.com/angular/angular-cli)**
+    - name: @angular/cli
+    - version: 18.2.14
+    - licenses: MIT
+    - repository: https://github.com/angular/angular-cli
+ - **[@angular/common@18.2.13](https://github.com/angular/angular)**
+    - name: @angular/common
+    - version: 18.2.13
+    - licenses: MIT
+    - repository: https://github.com/angular/angular
+ - **[@angular/compiler-cli@18.2.13](https://github.com/angular/angular)**
+    - name: @angular/compiler-cli
+    - version: 18.2.13
+    - licenses: MIT
+    - repository: https://github.com/angular/angular
+ - **[@angular/compiler@18.2.13](https://github.com/angular/angular)**
+    - name: @angular/compiler
+    - version: 18.2.13
+    - licenses: MIT
+    - repository: https://github.com/angular/angular
+ - **[@angular/compiler@9.0.0](https://github.com/angular/angular)**
+    - name: @angular/compiler
+    - version: 9.0.0
+    - licenses: MIT
+    - repository: https://github.com/angular/angular
+ - **[@angular/core@18.2.13](https://github.com/angular/angular)**
+    - name: @angular/core
+    - version: 18.2.13
+    - licenses: MIT
+    - repository: https://github.com/angular/angular
+ - **[@angular/core@9.0.0](https://github.com/angular/angular)**
+    - name: @angular/core
+    - version: 9.0.0
+    - licenses: MIT
+    - repository: https://github.com/angular/angular
+ - **[@angular/forms@18.2.13](https://github.com/angular/angular)**
+    - name: @angular/forms
+    - version: 18.2.13
+    - licenses: MIT
+    - repository: https://github.com/angular/angular
+ - **[@angular/localize@18.2.13](https://github.com/angular/angular)**
+    - name: @angular/localize
+    - version: 18.2.13
+    - licenses: MIT
+    - repository: https://github.com/angular/angular
+ - **[@angular/material@18.2.14](https://github.com/angular/components)**
+    - name: @angular/material
+    - version: 18.2.14
+    - licenses: MIT
+    - repository: https://github.com/angular/components
+ - **[@angular/platform-browser-dynamic@18.2.13](https://github.com/angular/angular)**
+    - name: @angular/platform-browser-dynamic
+    - version: 18.2.13
+    - licenses: MIT
+    - repository: https://github.com/angular/angular
+ - **[@angular/platform-browser@18.2.13](https://github.com/angular/angular)**
+    - name: @angular/platform-browser
+    - version: 18.2.13
+    - licenses: MIT
+    - repository: https://github.com/angular/angular
+ - **[@angular/router@18.2.13](https://github.com/angular/angular)**
+    - name: @angular/router
+    - version: 18.2.13
+    - licenses: MIT
+    - repository: https://github.com/angular/angular
+ - **[@babel/code-frame@7.26.2](https://github.com/babel/babel)**
+    - name: @babel/code-frame
+    - version: 7.26.2
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/compat-data@7.26.5](https://github.com/babel/babel)**
+    - name: @babel/compat-data
+    - version: 7.26.5
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/core@7.25.2](https://github.com/babel/babel)**
+    - name: @babel/core
+    - version: 7.25.2
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/core@7.26.7](https://github.com/babel/babel)**
+    - name: @babel/core
+    - version: 7.26.7
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/generator@7.25.0](https://github.com/babel/babel)**
+    - name: @babel/generator
+    - version: 7.25.0
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/generator@7.26.5](https://github.com/babel/babel)**
+    - name: @babel/generator
+    - version: 7.26.5
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/helper-annotate-as-pure@7.24.7](https://github.com/babel/babel)**
+    - name: @babel/helper-annotate-as-pure
+    - version: 7.24.7
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/helper-annotate-as-pure@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/helper-annotate-as-pure
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/helper-compilation-targets@7.26.5](https://github.com/babel/babel)**
+    - name: @babel/helper-compilation-targets
+    - version: 7.26.5
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/helper-create-class-features-plugin@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/helper-create-class-features-plugin
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/helper-create-regexp-features-plugin@7.26.3](https://github.com/babel/babel)**
+    - name: @babel/helper-create-regexp-features-plugin
+    - version: 7.26.3
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/helper-define-polyfill-provider@0.6.3](https://github.com/babel/babel-polyfills)**
+    - name: @babel/helper-define-polyfill-provider
+    - version: 0.6.3
+    - licenses: MIT
+    - repository: https://github.com/babel/babel-polyfills
+ - **[@babel/helper-member-expression-to-functions@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/helper-member-expression-to-functions
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/helper-module-imports@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/helper-module-imports
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/helper-module-transforms@7.26.0](https://github.com/babel/babel)**
+    - name: @babel/helper-module-transforms
+    - version: 7.26.0
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/helper-optimise-call-expression@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/helper-optimise-call-expression
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/helper-plugin-utils@7.26.5](https://github.com/babel/babel)**
+    - name: @babel/helper-plugin-utils
+    - version: 7.26.5
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/helper-remap-async-to-generator@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/helper-remap-async-to-generator
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/helper-replace-supers@7.26.5](https://github.com/babel/babel)**
+    - name: @babel/helper-replace-supers
+    - version: 7.26.5
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/helper-skip-transparent-expression-wrappers@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/helper-skip-transparent-expression-wrappers
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/helper-split-export-declaration@7.24.7](https://github.com/babel/babel)**
+    - name: @babel/helper-split-export-declaration
+    - version: 7.24.7
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/helper-string-parser@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/helper-string-parser
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/helper-validator-identifier@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/helper-validator-identifier
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/helper-validator-option@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/helper-validator-option
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/helper-wrap-function@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/helper-wrap-function
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/helpers@7.26.7](https://github.com/babel/babel)**
+    - name: @babel/helpers
+    - version: 7.26.7
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/parser@7.26.7](https://github.com/babel/babel)**
+    - name: @babel/parser
+    - version: 7.26.7
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-bugfix-firefox-class-in-computed-class-key@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-bugfix-firefox-class-in-computed-class-key
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-bugfix-safari-class-field-initializer-scope@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-bugfix-safari-class-field-initializer-scope
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-bugfix-v8-static-class-fields-redefine-readonly@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-bugfix-v8-static-class-fields-redefine-readonly
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-proposal-private-property-in-object@7.21.0-placeholder-for-preset-env.2](https://github.com/babel/babel-plugin-proposal-private-property-in-object)**
+    - name: @babel/plugin-proposal-private-property-in-object
+    - version: 7.21.0-placeholder-for-preset-env.2
+    - licenses: MIT
+    - repository: https://github.com/babel/babel-plugin-proposal-private-property-in-object
+ - **[@babel/plugin-syntax-async-generators@7.8.4](https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-async-generators)**
+    - name: @babel/plugin-syntax-async-generators
+    - version: 7.8.4
+    - licenses: MIT
+    - repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-async-generators
+ - **[@babel/plugin-syntax-bigint@7.8.3](https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-bigint)**
+    - name: @babel/plugin-syntax-bigint
+    - version: 7.8.3
+    - licenses: MIT
+    - repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-bigint
+ - **[@babel/plugin-syntax-class-properties@7.12.13](https://github.com/babel/babel)**
+    - name: @babel/plugin-syntax-class-properties
+    - version: 7.12.13
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-syntax-class-static-block@7.14.5](https://github.com/babel/babel)**
+    - name: @babel/plugin-syntax-class-static-block
+    - version: 7.14.5
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-syntax-dynamic-import@7.8.3](https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-dynamic-import)**
+    - name: @babel/plugin-syntax-dynamic-import
+    - version: 7.8.3
+    - licenses: MIT
+    - repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-dynamic-import
+ - **[@babel/plugin-syntax-export-namespace-from@7.8.3](https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-export-namespace-from)**
+    - name: @babel/plugin-syntax-export-namespace-from
+    - version: 7.8.3
+    - licenses: MIT
+    - repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-export-namespace-from
+ - **[@babel/plugin-syntax-import-assertions@7.26.0](https://github.com/babel/babel)**
+    - name: @babel/plugin-syntax-import-assertions
+    - version: 7.26.0
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-syntax-import-attributes@7.24.7](https://github.com/babel/babel)**
+    - name: @babel/plugin-syntax-import-attributes
+    - version: 7.24.7
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-syntax-import-meta@7.10.4](https://github.com/babel/babel)**
+    - name: @babel/plugin-syntax-import-meta
+    - version: 7.10.4
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-syntax-json-strings@7.8.3](https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-json-strings)**
+    - name: @babel/plugin-syntax-json-strings
+    - version: 7.8.3
+    - licenses: MIT
+    - repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-json-strings
+ - **[@babel/plugin-syntax-jsx@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-syntax-jsx
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-syntax-logical-assignment-operators@7.10.4](https://github.com/babel/babel)**
+    - name: @babel/plugin-syntax-logical-assignment-operators
+    - version: 7.10.4
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-syntax-nullish-coalescing-operator@7.8.3](https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-nullish-coalescing-operator)**
+    - name: @babel/plugin-syntax-nullish-coalescing-operator
+    - version: 7.8.3
+    - licenses: MIT
+    - repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-nullish-coalescing-operator
+ - **[@babel/plugin-syntax-numeric-separator@7.10.4](https://github.com/babel/babel)**
+    - name: @babel/plugin-syntax-numeric-separator
+    - version: 7.10.4
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-syntax-object-rest-spread@7.8.3](https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-object-rest-spread)**
+    - name: @babel/plugin-syntax-object-rest-spread
+    - version: 7.8.3
+    - licenses: MIT
+    - repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-object-rest-spread
+ - **[@babel/plugin-syntax-optional-catch-binding@7.8.3](https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-optional-catch-binding)**
+    - name: @babel/plugin-syntax-optional-catch-binding
+    - version: 7.8.3
+    - licenses: MIT
+    - repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-optional-catch-binding
+ - **[@babel/plugin-syntax-optional-chaining@7.8.3](https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-optional-chaining)**
+    - name: @babel/plugin-syntax-optional-chaining
+    - version: 7.8.3
+    - licenses: MIT
+    - repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-optional-chaining
+ - **[@babel/plugin-syntax-private-property-in-object@7.14.5](https://github.com/babel/babel)**
+    - name: @babel/plugin-syntax-private-property-in-object
+    - version: 7.14.5
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-syntax-top-level-await@7.14.5](https://github.com/babel/babel)**
+    - name: @babel/plugin-syntax-top-level-await
+    - version: 7.14.5
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-syntax-typescript@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-syntax-typescript
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-syntax-unicode-sets-regex@7.18.6](https://github.com/babel/babel)**
+    - name: @babel/plugin-syntax-unicode-sets-regex
+    - version: 7.18.6
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-arrow-functions@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-arrow-functions
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-async-generator-functions@7.25.0](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-async-generator-functions
+    - version: 7.25.0
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-async-to-generator@7.24.7](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-async-to-generator
+    - version: 7.24.7
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-block-scoped-functions@7.26.5](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-block-scoped-functions
+    - version: 7.26.5
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-block-scoping@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-block-scoping
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-class-properties@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-class-properties
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-class-static-block@7.26.0](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-class-static-block
+    - version: 7.26.0
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-classes@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-classes
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-computed-properties@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-computed-properties
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-destructuring@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-destructuring
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-dotall-regex@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-dotall-regex
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-duplicate-keys@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-duplicate-keys
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-duplicate-named-capturing-groups-regex@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-duplicate-named-capturing-groups-regex
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-dynamic-import@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-dynamic-import
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-exponentiation-operator@7.26.3](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-exponentiation-operator
+    - version: 7.26.3
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-export-namespace-from@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-export-namespace-from
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-for-of@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-for-of
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-function-name@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-function-name
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-json-strings@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-json-strings
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-literals@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-literals
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-logical-assignment-operators@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-logical-assignment-operators
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-member-expression-literals@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-member-expression-literals
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-modules-amd@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-modules-amd
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-modules-commonjs@7.26.3](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-modules-commonjs
+    - version: 7.26.3
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-modules-systemjs@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-modules-systemjs
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-modules-umd@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-modules-umd
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-named-capturing-groups-regex@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-named-capturing-groups-regex
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-new-target@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-new-target
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-nullish-coalescing-operator@7.26.6](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-nullish-coalescing-operator
+    - version: 7.26.6
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-numeric-separator@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-numeric-separator
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-object-rest-spread@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-object-rest-spread
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-object-super@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-object-super
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-optional-catch-binding@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-optional-catch-binding
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-optional-chaining@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-optional-chaining
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-parameters@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-parameters
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-private-methods@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-private-methods
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-private-property-in-object@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-private-property-in-object
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-property-literals@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-property-literals
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-regenerator@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-regenerator
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-reserved-words@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-reserved-words
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-runtime@7.24.7](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-runtime
+    - version: 7.24.7
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-shorthand-properties@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-shorthand-properties
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-spread@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-spread
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-sticky-regex@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-sticky-regex
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-template-literals@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-template-literals
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-typeof-symbol@7.26.7](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-typeof-symbol
+    - version: 7.26.7
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-unicode-escapes@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-unicode-escapes
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-unicode-property-regex@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-unicode-property-regex
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-unicode-regex@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-unicode-regex
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/plugin-transform-unicode-sets-regex@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/plugin-transform-unicode-sets-regex
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/preset-env@7.25.3](https://github.com/babel/babel)**
+    - name: @babel/preset-env
+    - version: 7.25.3
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/preset-modules@0.1.6-no-external-plugins](https://github.com/babel/preset-modules)**
+    - name: @babel/preset-modules
+    - version: 0.1.6-no-external-plugins
+    - licenses: MIT
+    - repository: https://github.com/babel/preset-modules
+ - **[@babel/runtime@7.25.0](https://github.com/babel/babel)**
+    - name: @babel/runtime
+    - version: 7.25.0
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/template@7.25.9](https://github.com/babel/babel)**
+    - name: @babel/template
+    - version: 7.25.9
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/traverse@7.26.7](https://github.com/babel/babel)**
+    - name: @babel/traverse
+    - version: 7.26.7
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@babel/types@7.26.7](https://github.com/babel/babel)**
+    - name: @babel/types
+    - version: 7.26.7
+    - licenses: MIT
+    - repository: https://github.com/babel/babel
+ - **[@bbc/apache2-license-checker@1.1.4](https://github.com/bbc/apache2-license-checker)**
+    - name: @bbc/apache2-license-checker
+    - version: 1.1.4
+    - licenses: Apache-2.0
+    - repository: https://github.com/bbc/apache2-license-checker
+ - **[@bcoe/v8-coverage@0.2.3](https://github.com/demurgos/v8-coverage)**
+    - name: @bcoe/v8-coverage
+    - version: 0.2.3
+    - licenses: MIT
+    - repository: https://github.com/demurgos/v8-coverage
+ - **[@conventional-changelog/git-client@1.0.1](https://github.com/conventional-changelog/conventional-changelog)**
+    - name: @conventional-changelog/git-client
+    - version: 1.0.1
+    - licenses: MIT
+    - repository: https://github.com/conventional-changelog/conventional-changelog
+ - **[@cspotcode/source-map-support@0.8.1](https://github.com/cspotcode/node-source-map-support)**
+    - name: @cspotcode/source-map-support
+    - version: 0.8.1
+    - licenses: MIT
+    - repository: https://github.com/cspotcode/node-source-map-support
+ - **[@discoveryjs/json-ext@0.6.1](https://github.com/discoveryjs/json-ext)**
+    - name: @discoveryjs/json-ext
+    - version: 0.6.1
+    - licenses: MIT
+    - repository: https://github.com/discoveryjs/json-ext
+ - **[@esbuild/linux-x64@0.21.5](https://github.com/evanw/esbuild)**
+    - name: @esbuild/linux-x64
+    - version: 0.21.5
+    - licenses: MIT
+    - repository: https://github.com/evanw/esbuild
+ - **[@esbuild/linux-x64@0.23.0](https://github.com/evanw/esbuild)**
+    - name: @esbuild/linux-x64
+    - version: 0.23.0
+    - licenses: MIT
+    - repository: https://github.com/evanw/esbuild
+ - **[@hutson/parse-repository-url@5.0.0](https://github.com/hyper-expanse/parse-repository-url)**
+    - name: @hutson/parse-repository-url
+    - version: 5.0.0
+    - licenses: Apache-2.0
+    - repository: https://github.com/hyper-expanse/parse-repository-url
+ - **[@inquirer/checkbox@2.5.0](https://github.com/SBoudrias/Inquirer.js)**
+    - name: @inquirer/checkbox
+    - version: 2.5.0
+    - licenses: MIT
+    - repository: https://github.com/SBoudrias/Inquirer.js
+ - **[@inquirer/confirm@3.1.22](https://github.com/SBoudrias/Inquirer.js)**
+    - name: @inquirer/confirm
+    - version: 3.1.22
+    - licenses: MIT
+    - repository: https://github.com/SBoudrias/Inquirer.js
+ - **[@inquirer/core@9.2.1](https://github.com/SBoudrias/Inquirer.js)**
+    - name: @inquirer/core
+    - version: 9.2.1
+    - licenses: MIT
+    - repository: https://github.com/SBoudrias/Inquirer.js
+ - **[@inquirer/editor@2.2.0](https://github.com/SBoudrias/Inquirer.js)**
+    - name: @inquirer/editor
+    - version: 2.2.0
+    - licenses: MIT
+    - repository: https://github.com/SBoudrias/Inquirer.js
+ - **[@inquirer/expand@2.3.0](https://github.com/SBoudrias/Inquirer.js)**
+    - name: @inquirer/expand
+    - version: 2.3.0
+    - licenses: MIT
+    - repository: https://github.com/SBoudrias/Inquirer.js
+ - **[@inquirer/figures@1.0.10](https://github.com/SBoudrias/Inquirer.js)**
+    - name: @inquirer/figures
+    - version: 1.0.10
+    - licenses: MIT
+    - repository: https://github.com/SBoudrias/Inquirer.js
+ - **[@inquirer/input@2.3.0](https://github.com/SBoudrias/Inquirer.js)**
+    - name: @inquirer/input
+    - version: 2.3.0
+    - licenses: MIT
+    - repository: https://github.com/SBoudrias/Inquirer.js
+ - **[@inquirer/number@1.1.0](https://github.com/SBoudrias/Inquirer.js)**
+    - name: @inquirer/number
+    - version: 1.1.0
+    - licenses: MIT
+    - repository: https://github.com/SBoudrias/Inquirer.js
+ - **[@inquirer/password@2.2.0](https://github.com/SBoudrias/Inquirer.js)**
+    - name: @inquirer/password
+    - version: 2.2.0
+    - licenses: MIT
+    - repository: https://github.com/SBoudrias/Inquirer.js
+ - **[@inquirer/prompts@5.3.8](https://github.com/SBoudrias/Inquirer.js)**
+    - name: @inquirer/prompts
+    - version: 5.3.8
+    - licenses: MIT
+    - repository: https://github.com/SBoudrias/Inquirer.js
+ - **[@inquirer/rawlist@2.3.0](https://github.com/SBoudrias/Inquirer.js)**
+    - name: @inquirer/rawlist
+    - version: 2.3.0
+    - licenses: MIT
+    - repository: https://github.com/SBoudrias/Inquirer.js
+ - **[@inquirer/search@1.1.0](https://github.com/SBoudrias/Inquirer.js)**
+    - name: @inquirer/search
+    - version: 1.1.0
+    - licenses: MIT
+    - repository: https://github.com/SBoudrias/Inquirer.js
+ - **[@inquirer/select@2.5.0](https://github.com/SBoudrias/Inquirer.js)**
+    - name: @inquirer/select
+    - version: 2.5.0
+    - licenses: MIT
+    - repository: https://github.com/SBoudrias/Inquirer.js
+ - **[@inquirer/type@1.5.5](https://github.com/SBoudrias/Inquirer.js)**
+    - name: @inquirer/type
+    - version: 1.5.5
+    - licenses: MIT
+    - repository: https://github.com/SBoudrias/Inquirer.js
+ - **[@inquirer/type@2.0.0](https://github.com/SBoudrias/Inquirer.js)**
+    - name: @inquirer/type
+    - version: 2.0.0
+    - licenses: MIT
+    - repository: https://github.com/SBoudrias/Inquirer.js
+ - **[@isaacs/cliui@8.0.2](https://github.com/yargs/cliui)**
+    - name: @isaacs/cliui
+    - version: 8.0.2
+    - licenses: ISC
+    - repository: https://github.com/yargs/cliui
+ - **[@istanbuljs/load-nyc-config@1.1.0](https://github.com/istanbuljs/load-nyc-config)**
+    - name: @istanbuljs/load-nyc-config
+    - version: 1.1.0
+    - licenses: ISC
+    - repository: https://github.com/istanbuljs/load-nyc-config
+ - **[@istanbuljs/schema@0.1.3](https://github.com/istanbuljs/schema)**
+    - name: @istanbuljs/schema
+    - version: 0.1.3
+    - licenses: MIT
+    - repository: https://github.com/istanbuljs/schema
+ - **[@jest/console@29.7.0](https://github.com/jestjs/jest)**
+    - name: @jest/console
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[@jest/core@29.7.0](https://github.com/jestjs/jest)**
+    - name: @jest/core
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[@jest/environment@28.1.3](https://github.com/facebook/jest)**
+    - name: @jest/environment
+    - version: 28.1.3
+    - licenses: MIT
+    - repository: https://github.com/facebook/jest
+ - **[@jest/environment@29.7.0](https://github.com/jestjs/jest)**
+    - name: @jest/environment
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[@jest/expect-utils@29.7.0](https://github.com/jestjs/jest)**
+    - name: @jest/expect-utils
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[@jest/expect@29.7.0](https://github.com/jestjs/jest)**
+    - name: @jest/expect
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[@jest/fake-timers@28.1.3](https://github.com/facebook/jest)**
+    - name: @jest/fake-timers
+    - version: 28.1.3
+    - licenses: MIT
+    - repository: https://github.com/facebook/jest
+ - **[@jest/fake-timers@29.7.0](https://github.com/jestjs/jest)**
+    - name: @jest/fake-timers
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[@jest/globals@29.7.0](https://github.com/jestjs/jest)**
+    - name: @jest/globals
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[@jest/reporters@29.7.0](https://github.com/jestjs/jest)**
+    - name: @jest/reporters
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[@jest/schemas@28.1.3](https://github.com/facebook/jest)**
+    - name: @jest/schemas
+    - version: 28.1.3
+    - licenses: MIT
+    - repository: https://github.com/facebook/jest
+ - **[@jest/schemas@29.6.3](https://github.com/jestjs/jest)**
+    - name: @jest/schemas
+    - version: 29.6.3
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[@jest/source-map@29.6.3](https://github.com/jestjs/jest)**
+    - name: @jest/source-map
+    - version: 29.6.3
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[@jest/test-result@29.7.0](https://github.com/jestjs/jest)**
+    - name: @jest/test-result
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[@jest/test-sequencer@29.7.0](https://github.com/jestjs/jest)**
+    - name: @jest/test-sequencer
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[@jest/transform@29.7.0](https://github.com/jestjs/jest)**
+    - name: @jest/transform
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[@jest/types@28.1.3](https://github.com/facebook/jest)**
+    - name: @jest/types
+    - version: 28.1.3
+    - licenses: MIT
+    - repository: https://github.com/facebook/jest
+ - **[@jest/types@29.6.3](https://github.com/jestjs/jest)**
+    - name: @jest/types
+    - version: 29.6.3
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[@jridgewell/gen-mapping@0.3.8](https://github.com/jridgewell/gen-mapping)**
+    - name: @jridgewell/gen-mapping
+    - version: 0.3.8
+    - licenses: MIT
+    - repository: https://github.com/jridgewell/gen-mapping
+ - **[@jridgewell/resolve-uri@3.1.2](https://github.com/jridgewell/resolve-uri)**
+    - name: @jridgewell/resolve-uri
+    - version: 3.1.2
+    - licenses: MIT
+    - repository: https://github.com/jridgewell/resolve-uri
+ - **[@jridgewell/set-array@1.2.1](https://github.com/jridgewell/set-array)**
+    - name: @jridgewell/set-array
+    - version: 1.2.1
+    - licenses: MIT
+    - repository: https://github.com/jridgewell/set-array
+ - **[@jridgewell/source-map@0.3.6](https://github.com/jridgewell/source-map)**
+    - name: @jridgewell/source-map
+    - version: 0.3.6
+    - licenses: MIT
+    - repository: https://github.com/jridgewell/source-map
+ - **[@jridgewell/sourcemap-codec@1.5.0](https://github.com/jridgewell/sourcemap-codec)**
+    - name: @jridgewell/sourcemap-codec
+    - version: 1.5.0
+    - licenses: MIT
+    - repository: https://github.com/jridgewell/sourcemap-codec
+ - **[@jridgewell/trace-mapping@0.3.25](https://github.com/jridgewell/trace-mapping)**
+    - name: @jridgewell/trace-mapping
+    - version: 0.3.25
+    - licenses: MIT
+    - repository: https://github.com/jridgewell/trace-mapping
+ - **[@jridgewell/trace-mapping@0.3.9](https://github.com/jridgewell/trace-mapping)**
+    - name: @jridgewell/trace-mapping
+    - version: 0.3.9
+    - licenses: MIT
+    - repository: https://github.com/jridgewell/trace-mapping
+ - **[@jsonjoy.com/base64@1.1.2](https://github.com/jsonjoy-com/base64)**
+    - name: @jsonjoy.com/base64
+    - version: 1.1.2
+    - licenses: Apache-2.0
+    - repository: https://github.com/jsonjoy-com/base64
+ - **[@jsonjoy.com/json-pack@1.1.1](https://github.com/jsonjoy-com/json-pack)**
+    - name: @jsonjoy.com/json-pack
+    - version: 1.1.1
+    - licenses: Apache-2.0
+    - repository: https://github.com/jsonjoy-com/json-pack
+ - **[@jsonjoy.com/util@1.5.0](https://github.com/jsonjoy-com/util)**
+    - name: @jsonjoy.com/util
+    - version: 1.5.0
+    - licenses: Apache-2.0
+    - repository: https://github.com/jsonjoy-com/util
+ - **[@kwsites/file-exists@1.1.1](https://github.com/kwsites/file-exists)**
+    - name: @kwsites/file-exists
+    - version: 1.1.1
+    - licenses: MIT
+    - repository: https://github.com/kwsites/file-exists
+ - **[@kwsites/promise-deferred@1.1.1](https://github.com/kwsites/promise-deferred)**
+    - name: @kwsites/promise-deferred
+    - version: 1.1.1
+    - licenses: MIT
+    - repository: https://github.com/kwsites/promise-deferred
+ - **[@leichtgewicht/ip-codec@2.0.5](https://github.com/martinheidegger/ip-codec)**
+    - name: @leichtgewicht/ip-codec
+    - version: 2.0.5
+    - licenses: MIT
+    - repository: https://github.com/martinheidegger/ip-codec
+ - **[@listr2/prompt-adapter-inquirer@2.0.15](https://github.com/listr2/listr2)**
+    - name: @listr2/prompt-adapter-inquirer
+    - version: 2.0.15
+    - licenses: MIT
+    - repository: https://github.com/listr2/listr2
+ - **[@lmdb/lmdb-linux-x64@3.0.13](https://github.com/kriszyp/lmdb-js)**
+    - name: @lmdb/lmdb-linux-x64
+    - version: 3.0.13
+    - licenses: MIT
+    - repository: https://github.com/kriszyp/lmdb-js
+ - **[@msgpackr-extract/msgpackr-extract-linux-x64@3.0.3](https://github.com/kriszyp/msgpackr-extract)**
+    - name: @msgpackr-extract/msgpackr-extract-linux-x64
+    - version: 3.0.3
+    - licenses: MIT
+    - repository: https://github.com/kriszyp/msgpackr-extract
+ - **[@ngtools/json-schema@1.1.0](https://github.com/angular/angular-cli)**
+    - name: @ngtools/json-schema
+    - version: 1.1.0
+    - licenses: MIT
+    - repository: https://github.com/angular/angular-cli
+ - **[@ngtools/webpack@18.2.14](https://github.com/angular/angular-cli)**
+    - name: @ngtools/webpack
+    - version: 18.2.14
+    - licenses: MIT
+    - repository: https://github.com/angular/angular-cli
+ - **[@ngx-translate/core@15.0.0](Repository)**
+    - name: @ngx-translate/core
+    - version: 15.0.0
+    - licenses: Custom: LICENSE
+    - repository: Repository
+ - **[@ngx-translate/http-loader@8.0.0](Repository)**
+    - name: @ngx-translate/http-loader
+    - version: 8.0.0
+    - licenses: Custom: LICENSE
+    - repository: Repository
+ - **[@nodelib/fs.scandir@2.1.5](https://github.com/nodelib/nodelib/tree/master/packages/fs/fs.scandir)**
+    - name: @nodelib/fs.scandir
+    - version: 2.1.5
+    - licenses: MIT
+    - repository: https://github.com/nodelib/nodelib/tree/master/packages/fs/fs.scandir
+ - **[@nodelib/fs.stat@2.0.5](https://github.com/nodelib/nodelib/tree/master/packages/fs/fs.stat)**
+    - name: @nodelib/fs.stat
+    - version: 2.0.5
+    - licenses: MIT
+    - repository: https://github.com/nodelib/nodelib/tree/master/packages/fs/fs.stat
+ - **[@nodelib/fs.walk@1.2.8](https://github.com/nodelib/nodelib/tree/master/packages/fs/fs.walk)**
+    - name: @nodelib/fs.walk
+    - version: 1.2.8
+    - licenses: MIT
+    - repository: https://github.com/nodelib/nodelib/tree/master/packages/fs/fs.walk
+ - **[@npmcli/agent@2.2.2](https://github.com/npm/agent)**
+    - name: @npmcli/agent
+    - version: 2.2.2
+    - licenses: ISC
+    - repository: https://github.com/npm/agent
+ - **[@npmcli/fs@3.1.1](https://github.com/npm/fs)**
+    - name: @npmcli/fs
+    - version: 3.1.1
+    - licenses: ISC
+    - repository: https://github.com/npm/fs
+ - **[@npmcli/git@5.0.8](https://github.com/npm/git)**
+    - name: @npmcli/git
+    - version: 5.0.8
+    - licenses: ISC
+    - repository: https://github.com/npm/git
+ - **[@npmcli/installed-package-contents@2.1.0](https://github.com/npm/installed-package-contents)**
+    - name: @npmcli/installed-package-contents
+    - version: 2.1.0
+    - licenses: ISC
+    - repository: https://github.com/npm/installed-package-contents
+ - **[@npmcli/node-gyp@3.0.0](https://github.com/npm/node-gyp)**
+    - name: @npmcli/node-gyp
+    - version: 3.0.0
+    - licenses: ISC
+    - repository: https://github.com/npm/node-gyp
+ - **[@npmcli/package-json@5.2.1](https://github.com/npm/package-json)**
+    - name: @npmcli/package-json
+    - version: 5.2.1
+    - licenses: ISC
+    - repository: https://github.com/npm/package-json
+ - **[@npmcli/promise-spawn@7.0.2](https://github.com/npm/promise-spawn)**
+    - name: @npmcli/promise-spawn
+    - version: 7.0.2
+    - licenses: ISC
+    - repository: https://github.com/npm/promise-spawn
+ - **[@npmcli/redact@2.0.1](https://github.com/npm/redact)**
+    - name: @npmcli/redact
+    - version: 2.0.1
+    - licenses: ISC
+    - repository: https://github.com/npm/redact
+ - **[@npmcli/run-script@8.1.0](https://github.com/npm/run-script)**
+    - name: @npmcli/run-script
+    - version: 8.1.0
+    - licenses: ISC
+    - repository: https://github.com/npm/run-script
+ - **[@oblique/oblique@12.2.3](https://github.com/oblique-bit/oblique)**
+    - name: @oblique/oblique
+    - version: 12.2.3
+    - licenses: MIT
+    - repository: https://github.com/oblique-bit/oblique
+ - **[@parcel/watcher-linux-x64-glibc@2.5.1](https://github.com/parcel-bundler/watcher)**
+    - name: @parcel/watcher-linux-x64-glibc
+    - version: 2.5.1
+    - licenses: MIT
+    - repository: https://github.com/parcel-bundler/watcher
+ - **[@parcel/watcher-linux-x64-musl@2.5.1](https://github.com/parcel-bundler/watcher)**
+    - name: @parcel/watcher-linux-x64-musl
+    - version: 2.5.1
+    - licenses: MIT
+    - repository: https://github.com/parcel-bundler/watcher
+ - **[@parcel/watcher@2.5.1](https://github.com/parcel-bundler/watcher)**
+    - name: @parcel/watcher
+    - version: 2.5.1
+    - licenses: MIT
+    - repository: https://github.com/parcel-bundler/watcher
+ - **[@pkgjs/parseargs@0.11.0](https://github.com/pkgjs/parseargs)**
+    - name: @pkgjs/parseargs
+    - version: 0.11.0
+    - licenses: MIT
+    - repository: https://github.com/pkgjs/parseargs
+ - **[@popperjs/core@2.11.8](https://github.com/popperjs/popper-core)**
+    - name: @popperjs/core
+    - version: 2.11.8
+    - licenses: MIT
+    - repository: https://github.com/popperjs/popper-core
+ - **[@quadrel-services/qd-auth@16.1.10](Repository)**
+    - name: @quadrel-services/qd-auth
+    - version: 16.1.10
+    - licenses: License
+    - repository: Repository
+ - **[@rollup/rollup-linux-x64-gnu@4.22.4](https://github.com/rollup/rollup)**
+    - name: @rollup/rollup-linux-x64-gnu
+    - version: 4.22.4
+    - licenses: MIT
+    - repository: https://github.com/rollup/rollup
+ - **[@rollup/rollup-linux-x64-musl@4.22.4](https://github.com/rollup/rollup)**
+    - name: @rollup/rollup-linux-x64-musl
+    - version: 4.22.4
+    - licenses: MIT
+    - repository: https://github.com/rollup/rollup
+ - **[@schematics/angular@18.2.14](https://github.com/angular/angular-cli)**
+    - name: @schematics/angular
+    - version: 18.2.14
+    - licenses: MIT
+    - repository: https://github.com/angular/angular-cli
+ - **[@sigstore/bundle@2.3.2](https://github.com/sigstore/sigstore-js)**
+    - name: @sigstore/bundle
+    - version: 2.3.2
+    - licenses: Apache-2.0
+    - repository: https://github.com/sigstore/sigstore-js
+ - **[@sigstore/core@1.1.0](https://github.com/sigstore/sigstore-js)**
+    - name: @sigstore/core
+    - version: 1.1.0
+    - licenses: Apache-2.0
+    - repository: https://github.com/sigstore/sigstore-js
+ - **[@sigstore/protobuf-specs@0.3.3](https://github.com/sigstore/protobuf-specs)**
+    - name: @sigstore/protobuf-specs
+    - version: 0.3.3
+    - licenses: Apache-2.0
+    - repository: https://github.com/sigstore/protobuf-specs
+ - **[@sigstore/sign@2.3.2](https://github.com/sigstore/sigstore-js)**
+    - name: @sigstore/sign
+    - version: 2.3.2
+    - licenses: Apache-2.0
+    - repository: https://github.com/sigstore/sigstore-js
+ - **[@sigstore/tuf@2.3.4](https://github.com/sigstore/sigstore-js)**
+    - name: @sigstore/tuf
+    - version: 2.3.4
+    - licenses: Apache-2.0
+    - repository: https://github.com/sigstore/sigstore-js
+ - **[@sigstore/verify@1.2.1](https://github.com/sigstore/sigstore-js)**
+    - name: @sigstore/verify
+    - version: 1.2.1
+    - licenses: Apache-2.0
+    - repository: https://github.com/sigstore/sigstore-js
+ - **[@sinclair/typebox@0.24.51](https://github.com/sinclairzx81/typebox)**
+    - name: @sinclair/typebox
+    - version: 0.24.51
+    - licenses: MIT
+    - repository: https://github.com/sinclairzx81/typebox
+ - **[@sinclair/typebox@0.27.8](https://github.com/sinclairzx81/typebox)**
+    - name: @sinclair/typebox
+    - version: 0.27.8
+    - licenses: MIT
+    - repository: https://github.com/sinclairzx81/typebox
+ - **[@sindresorhus/merge-streams@2.3.0](https://github.com/sindresorhus/merge-streams)**
+    - name: @sindresorhus/merge-streams
+    - version: 2.3.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/merge-streams
+ - **[@sinonjs/commons@1.8.6](https://github.com/sinonjs/commons)**
+    - name: @sinonjs/commons
+    - version: 1.8.6
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/sinonjs/commons
+ - **[@sinonjs/commons@3.0.1](https://github.com/sinonjs/commons)**
+    - name: @sinonjs/commons
+    - version: 3.0.1
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/sinonjs/commons
+ - **[@sinonjs/fake-timers@10.3.0](https://github.com/sinonjs/fake-timers)**
+    - name: @sinonjs/fake-timers
+    - version: 10.3.0
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/sinonjs/fake-timers
+ - **[@sinonjs/fake-timers@9.1.2](https://github.com/sinonjs/fake-timers)**
+    - name: @sinonjs/fake-timers
+    - version: 9.1.2
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/sinonjs/fake-timers
+ - **[@tootallnate/once@2.0.0](https://github.com/TooTallNate/once)**
+    - name: @tootallnate/once
+    - version: 2.0.0
+    - licenses: MIT
+    - repository: https://github.com/TooTallNate/once
+ - **[@tsconfig/node10@1.0.11](https://github.com/tsconfig/bases)**
+    - name: @tsconfig/node10
+    - version: 1.0.11
+    - licenses: MIT
+    - repository: https://github.com/tsconfig/bases
+ - **[@tsconfig/node12@1.0.11](https://github.com/tsconfig/bases)**
+    - name: @tsconfig/node12
+    - version: 1.0.11
+    - licenses: MIT
+    - repository: https://github.com/tsconfig/bases
+ - **[@tsconfig/node14@1.0.3](https://github.com/tsconfig/bases)**
+    - name: @tsconfig/node14
+    - version: 1.0.3
+    - licenses: MIT
+    - repository: https://github.com/tsconfig/bases
+ - **[@tsconfig/node16@1.0.4](https://github.com/tsconfig/bases)**
+    - name: @tsconfig/node16
+    - version: 1.0.4
+    - licenses: MIT
+    - repository: https://github.com/tsconfig/bases
+ - **[@tufjs/canonical-json@2.0.0](https://github.com/theupdateframework/tuf-js)**
+    - name: @tufjs/canonical-json
+    - version: 2.0.0
+    - licenses: MIT
+    - repository: https://github.com/theupdateframework/tuf-js
+ - **[@tufjs/models@2.0.1](https://github.com/theupdateframework/tuf-js)**
+    - name: @tufjs/models
+    - version: 2.0.1
+    - licenses: MIT
+    - repository: https://github.com/theupdateframework/tuf-js
+ - **[@types/babel__core@7.20.5](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/babel__core
+    - version: 7.20.5
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/babel__generator@7.6.8](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/babel__generator
+    - version: 7.6.8
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/babel__template@7.4.4](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/babel__template
+    - version: 7.4.4
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/babel__traverse@7.20.6](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/babel__traverse
+    - version: 7.20.6
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/body-parser@1.19.5](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/body-parser
+    - version: 1.19.5
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/bonjour@3.5.13](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/bonjour
+    - version: 3.5.13
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/connect-history-api-fallback@1.5.4](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/connect-history-api-fallback
+    - version: 1.5.4
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/connect@3.4.38](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/connect
+    - version: 3.4.38
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/estree@1.0.5](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/estree
+    - version: 1.0.5
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/express-serve-static-core@4.19.6](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/express-serve-static-core
+    - version: 4.19.6
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/express-serve-static-core@5.0.6](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/express-serve-static-core
+    - version: 5.0.6
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/express@4.17.21](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/express
+    - version: 4.17.21
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/graceful-fs@4.1.9](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/graceful-fs
+    - version: 4.1.9
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/http-errors@2.0.4](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/http-errors
+    - version: 2.0.4
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/http-proxy@1.17.15](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/http-proxy
+    - version: 1.17.15
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/istanbul-lib-coverage@2.0.6](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/istanbul-lib-coverage
+    - version: 2.0.6
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/istanbul-lib-report@3.0.3](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/istanbul-lib-report
+    - version: 3.0.3
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/istanbul-reports@3.0.4](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/istanbul-reports
+    - version: 3.0.4
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/jest@29.5.14](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/jest
+    - version: 29.5.14
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/jsdom@16.2.15](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/jsdom
+    - version: 16.2.15
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/jsdom@20.0.1](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/jsdom
+    - version: 20.0.1
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/json-schema@7.0.15](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/json-schema
+    - version: 7.0.15
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/mime@1.3.5](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/mime
+    - version: 1.3.5
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/mute-stream@0.0.4](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/mute-stream
+    - version: 0.0.4
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/node-forge@1.3.11](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/node-forge
+    - version: 1.3.11
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/node@22.12.0](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/node
+    - version: 22.12.0
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/normalize-package-data@2.4.4](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/normalize-package-data
+    - version: 2.4.4
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/parse5@6.0.3](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/parse5
+    - version: 6.0.3
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/q@0.0.32](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/q
+    - version: 0.0.32
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/qs@6.9.18](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/qs
+    - version: 6.9.18
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/range-parser@1.2.7](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/range-parser
+    - version: 1.2.7
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/retry@0.12.2](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/retry
+    - version: 0.12.2
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/selenium-webdriver@3.0.26](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/selenium-webdriver
+    - version: 3.0.26
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/semver@7.5.8](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/semver
+    - version: 7.5.8
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/send@0.17.4](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/send
+    - version: 0.17.4
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/serve-index@1.9.4](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/serve-index
+    - version: 1.9.4
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/serve-static@1.15.7](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/serve-static
+    - version: 1.15.7
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/sockjs@0.3.36](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/sockjs
+    - version: 0.3.36
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/stack-utils@2.0.3](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/stack-utils
+    - version: 2.0.3
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/tough-cookie@4.0.5](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/tough-cookie
+    - version: 4.0.5
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/wrap-ansi@3.0.0](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/wrap-ansi
+    - version: 3.0.0
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/ws@8.5.14](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/ws
+    - version: 8.5.14
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/yargs-parser@21.0.3](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/yargs-parser
+    - version: 21.0.3
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@types/yargs@17.0.33](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/yargs
+    - version: 17.0.33
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[@vitejs/plugin-basic-ssl@1.1.0](https://github.com/vitejs/vite-plugin-basic-ssl)**
+    - name: @vitejs/plugin-basic-ssl
+    - version: 1.1.0
+    - licenses: MIT
+    - repository: https://github.com/vitejs/vite-plugin-basic-ssl
+ - **[@webassemblyjs/ast@1.14.1](https://github.com/xtuc/webassemblyjs)**
+    - name: @webassemblyjs/ast
+    - version: 1.14.1
+    - licenses: MIT
+    - repository: https://github.com/xtuc/webassemblyjs
+ - **[@webassemblyjs/floating-point-hex-parser@1.13.2](https://github.com/xtuc/webassemblyjs)**
+    - name: @webassemblyjs/floating-point-hex-parser
+    - version: 1.13.2
+    - licenses: MIT
+    - repository: https://github.com/xtuc/webassemblyjs
+ - **[@webassemblyjs/helper-api-error@1.13.2](https://github.com/xtuc/webassemblyjs)**
+    - name: @webassemblyjs/helper-api-error
+    - version: 1.13.2
+    - licenses: MIT
+    - repository: https://github.com/xtuc/webassemblyjs
+ - **[@webassemblyjs/helper-buffer@1.14.1](https://github.com/xtuc/webassemblyjs)**
+    - name: @webassemblyjs/helper-buffer
+    - version: 1.14.1
+    - licenses: MIT
+    - repository: https://github.com/xtuc/webassemblyjs
+ - **[@webassemblyjs/helper-numbers@1.13.2](https://github.com/xtuc/webassemblyjs)**
+    - name: @webassemblyjs/helper-numbers
+    - version: 1.13.2
+    - licenses: MIT
+    - repository: https://github.com/xtuc/webassemblyjs
+ - **[@webassemblyjs/helper-wasm-bytecode@1.13.2](https://github.com/xtuc/webassemblyjs)**
+    - name: @webassemblyjs/helper-wasm-bytecode
+    - version: 1.13.2
+    - licenses: MIT
+    - repository: https://github.com/xtuc/webassemblyjs
+ - **[@webassemblyjs/helper-wasm-section@1.14.1](https://github.com/xtuc/webassemblyjs)**
+    - name: @webassemblyjs/helper-wasm-section
+    - version: 1.14.1
+    - licenses: MIT
+    - repository: https://github.com/xtuc/webassemblyjs
+ - **[@webassemblyjs/ieee754@1.13.2](https://github.com/xtuc/webassemblyjs)**
+    - name: @webassemblyjs/ieee754
+    - version: 1.13.2
+    - licenses: MIT
+    - repository: https://github.com/xtuc/webassemblyjs
+ - **[@webassemblyjs/leb128@1.13.2](https://github.com/xtuc/webassemblyjs)**
+    - name: @webassemblyjs/leb128
+    - version: 1.13.2
+    - licenses: Apache-2.0
+    - repository: https://github.com/xtuc/webassemblyjs
+ - **[@webassemblyjs/utf8@1.13.2](https://github.com/xtuc/webassemblyjs)**
+    - name: @webassemblyjs/utf8
+    - version: 1.13.2
+    - licenses: MIT
+    - repository: https://github.com/xtuc/webassemblyjs
+ - **[@webassemblyjs/wasm-edit@1.14.1](https://github.com/xtuc/webassemblyjs)**
+    - name: @webassemblyjs/wasm-edit
+    - version: 1.14.1
+    - licenses: MIT
+    - repository: https://github.com/xtuc/webassemblyjs
+ - **[@webassemblyjs/wasm-gen@1.14.1](https://github.com/xtuc/webassemblyjs)**
+    - name: @webassemblyjs/wasm-gen
+    - version: 1.14.1
+    - licenses: MIT
+    - repository: https://github.com/xtuc/webassemblyjs
+ - **[@webassemblyjs/wasm-opt@1.14.1](https://github.com/xtuc/webassemblyjs)**
+    - name: @webassemblyjs/wasm-opt
+    - version: 1.14.1
+    - licenses: MIT
+    - repository: https://github.com/xtuc/webassemblyjs
+ - **[@webassemblyjs/wasm-parser@1.14.1](https://github.com/xtuc/webassemblyjs)**
+    - name: @webassemblyjs/wasm-parser
+    - version: 1.14.1
+    - licenses: MIT
+    - repository: https://github.com/xtuc/webassemblyjs
+ - **[@webassemblyjs/wast-printer@1.14.1](https://github.com/xtuc/webassemblyjs)**
+    - name: @webassemblyjs/wast-printer
+    - version: 1.14.1
+    - licenses: MIT
+    - repository: https://github.com/xtuc/webassemblyjs
+ - **[@xtuc/ieee754@1.2.0](https://github.com/feross/ieee754)**
+    - name: @xtuc/ieee754
+    - version: 1.2.0
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/feross/ieee754
+ - **[@xtuc/long@4.2.2](https://github.com/dcodeIO/long.js)**
+    - name: @xtuc/long
+    - version: 4.2.2
+    - licenses: Apache-2.0
+    - repository: https://github.com/dcodeIO/long.js
+ - **[@yarnpkg/lockfile@1.1.0](https://github.com/yarnpkg/yarn/blob/master/packages/lockfile)**
+    - name: @yarnpkg/lockfile
+    - version: 1.1.0
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/yarnpkg/yarn/blob/master/packages/lockfile
+ - **[abab@2.0.6](https://github.com/jsdom/abab)**
+    - name: abab
+    - version: 2.0.6
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/jsdom/abab
+ - **[abbrev@1.1.1](https://github.com/isaacs/abbrev-js)**
+    - name: abbrev
+    - version: 1.1.1
+    - licenses: ISC
+    - repository: https://github.com/isaacs/abbrev-js
+ - **[abbrev@2.0.0](https://github.com/npm/abbrev-js)**
+    - name: abbrev
+    - version: 2.0.0
+    - licenses: ISC
+    - repository: https://github.com/npm/abbrev-js
+ - **[accepts@1.3.8](https://github.com/jshttp/accepts)**
+    - name: accepts
+    - version: 1.3.8
+    - licenses: MIT
+    - repository: https://github.com/jshttp/accepts
+ - **[acorn-globals@6.0.0](https://github.com/ForbesLindesay/acorn-globals)**
+    - name: acorn-globals
+    - version: 6.0.0
+    - licenses: MIT
+    - repository: https://github.com/ForbesLindesay/acorn-globals
+ - **[acorn-globals@7.0.1](https://github.com/ForbesLindesay/acorn-globals)**
+    - name: acorn-globals
+    - version: 7.0.1
+    - licenses: MIT
+    - repository: https://github.com/ForbesLindesay/acorn-globals
+ - **[acorn-import-attributes@1.9.5](https://github.com/xtuc/acorn-import-attributes)**
+    - name: acorn-import-attributes
+    - version: 1.9.5
+    - licenses: MIT
+    - repository: https://github.com/xtuc/acorn-import-attributes
+ - **[acorn-walk@7.2.0](https://github.com/acornjs/acorn)**
+    - name: acorn-walk
+    - version: 7.2.0
+    - licenses: MIT
+    - repository: https://github.com/acornjs/acorn
+ - **[acorn-walk@8.3.4](https://github.com/acornjs/acorn)**
+    - name: acorn-walk
+    - version: 8.3.4
+    - licenses: MIT
+    - repository: https://github.com/acornjs/acorn
+ - **[acorn@7.4.1](https://github.com/acornjs/acorn)**
+    - name: acorn
+    - version: 7.4.1
+    - licenses: MIT
+    - repository: https://github.com/acornjs/acorn
+ - **[acorn@8.14.0](https://github.com/acornjs/acorn)**
+    - name: acorn
+    - version: 8.14.0
+    - licenses: MIT
+    - repository: https://github.com/acornjs/acorn
+ - **[add-stream@1.0.0](https://github.com/wilsonjackson/add-stream)**
+    - name: add-stream
+    - version: 1.0.0
+    - licenses: MIT
+    - repository: https://github.com/wilsonjackson/add-stream
+ - **[adjust-sourcemap-loader@4.0.0](https://github.com/bholloway/adjust-sourcemap-loader)**
+    - name: adjust-sourcemap-loader
+    - version: 4.0.0
+    - licenses: MIT
+    - repository: https://github.com/bholloway/adjust-sourcemap-loader
+ - **[adm-zip@0.5.16](https://github.com/cthackers/adm-zip)**
+    - name: adm-zip
+    - version: 0.5.16
+    - licenses: MIT
+    - repository: https://github.com/cthackers/adm-zip
+ - **[agent-base@4.3.0](https://github.com/TooTallNate/node-agent-base)**
+    - name: agent-base
+    - version: 4.3.0
+    - licenses: MIT
+    - repository: https://github.com/TooTallNate/node-agent-base
+ - **[agent-base@6.0.2](https://github.com/TooTallNate/node-agent-base)**
+    - name: agent-base
+    - version: 6.0.2
+    - licenses: MIT
+    - repository: https://github.com/TooTallNate/node-agent-base
+ - **[agent-base@7.1.3](https://github.com/TooTallNate/proxy-agents)**
+    - name: agent-base
+    - version: 7.1.3
+    - licenses: MIT
+    - repository: https://github.com/TooTallNate/proxy-agents
+ - **[aggregate-error@3.1.0](https://github.com/sindresorhus/aggregate-error)**
+    - name: aggregate-error
+    - version: 3.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/aggregate-error
+ - **[ajv-formats@2.1.1](https://github.com/ajv-validator/ajv-formats)**
+    - name: ajv-formats
+    - version: 2.1.1
+    - licenses: MIT
+    - repository: https://github.com/ajv-validator/ajv-formats
+ - **[ajv-formats@3.0.1](https://github.com/ajv-validator/ajv-formats)**
+    - name: ajv-formats
+    - version: 3.0.1
+    - licenses: MIT
+    - repository: https://github.com/ajv-validator/ajv-formats
+ - **[ajv-keywords@3.5.2](https://github.com/epoberezkin/ajv-keywords)**
+    - name: ajv-keywords
+    - version: 3.5.2
+    - licenses: MIT
+    - repository: https://github.com/epoberezkin/ajv-keywords
+ - **[ajv-keywords@5.1.0](https://github.com/epoberezkin/ajv-keywords)**
+    - name: ajv-keywords
+    - version: 5.1.0
+    - licenses: MIT
+    - repository: https://github.com/epoberezkin/ajv-keywords
+ - **[ajv@6.12.6](https://github.com/ajv-validator/ajv)**
+    - name: ajv
+    - version: 6.12.6
+    - licenses: MIT
+    - repository: https://github.com/ajv-validator/ajv
+ - **[ajv@8.12.0](https://github.com/ajv-validator/ajv)**
+    - name: ajv
+    - version: 8.12.0
+    - licenses: MIT
+    - repository: https://github.com/ajv-validator/ajv
+ - **[ajv@8.17.1](https://github.com/ajv-validator/ajv)**
+    - name: ajv
+    - version: 8.17.1
+    - licenses: MIT
+    - repository: https://github.com/ajv-validator/ajv
+ - **[angular-auth-oidc-client@16.0.2](https://github.com/damienbod/angular-auth-oidc-client)**
+    - name: angular-auth-oidc-client
+    - version: 16.0.2
+    - licenses: MIT
+    - repository: https://github.com/damienbod/angular-auth-oidc-client
+ - **[angular-oauth2-oidc@17.0.2](https://github.com/manfredsteyer/angular-oauth2-oidc)**
+    - name: angular-oauth2-oidc
+    - version: 17.0.2
+    - licenses: MIT
+    - repository: https://github.com/manfredsteyer/angular-oauth2-oidc
+ - **[ansi-colors@4.1.3](https://github.com/doowb/ansi-colors)**
+    - name: ansi-colors
+    - version: 4.1.3
+    - licenses: MIT
+    - repository: https://github.com/doowb/ansi-colors
+ - **[ansi-escapes@4.3.2](https://github.com/sindresorhus/ansi-escapes)**
+    - name: ansi-escapes
+    - version: 4.3.2
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/ansi-escapes
+ - **[ansi-escapes@7.0.0](https://github.com/sindresorhus/ansi-escapes)**
+    - name: ansi-escapes
+    - version: 7.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/ansi-escapes
+ - **[ansi-html-community@0.0.8](https://github.com/mahdyar/ansi-html-community)**
+    - name: ansi-html-community
+    - version: 0.0.8
+    - licenses: Apache-2.0
+    - repository: https://github.com/mahdyar/ansi-html-community
+ - **[ansi-regex@0.2.1](https://github.com/sindresorhus/ansi-regex)**
+    - name: ansi-regex
+    - version: 0.2.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/ansi-regex
+ - **[ansi-regex@2.1.1](https://github.com/chalk/ansi-regex)**
+    - name: ansi-regex
+    - version: 2.1.1
+    - licenses: MIT
+    - repository: https://github.com/chalk/ansi-regex
+ - **[ansi-regex@5.0.1](https://github.com/chalk/ansi-regex)**
+    - name: ansi-regex
+    - version: 5.0.1
+    - licenses: MIT
+    - repository: https://github.com/chalk/ansi-regex
+ - **[ansi-regex@6.1.0](https://github.com/chalk/ansi-regex)**
+    - name: ansi-regex
+    - version: 6.1.0
+    - licenses: MIT
+    - repository: https://github.com/chalk/ansi-regex
+ - **[ansi-styles@1.1.0](https://github.com/sindresorhus/ansi-styles)**
+    - name: ansi-styles
+    - version: 1.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/ansi-styles
+ - **[ansi-styles@2.2.1](https://github.com/chalk/ansi-styles)**
+    - name: ansi-styles
+    - version: 2.2.1
+    - licenses: MIT
+    - repository: https://github.com/chalk/ansi-styles
+ - **[ansi-styles@3.2.1](https://github.com/chalk/ansi-styles)**
+    - name: ansi-styles
+    - version: 3.2.1
+    - licenses: MIT
+    - repository: https://github.com/chalk/ansi-styles
+ - **[ansi-styles@4.3.0](https://github.com/chalk/ansi-styles)**
+    - name: ansi-styles
+    - version: 4.3.0
+    - licenses: MIT
+    - repository: https://github.com/chalk/ansi-styles
+ - **[ansi-styles@5.2.0](https://github.com/chalk/ansi-styles)**
+    - name: ansi-styles
+    - version: 5.2.0
+    - licenses: MIT
+    - repository: https://github.com/chalk/ansi-styles
+ - **[ansi-styles@6.2.1](https://github.com/chalk/ansi-styles)**
+    - name: ansi-styles
+    - version: 6.2.1
+    - licenses: MIT
+    - repository: https://github.com/chalk/ansi-styles
+ - **[anymatch@3.1.3](https://github.com/micromatch/anymatch)**
+    - name: anymatch
+    - version: 3.1.3
+    - licenses: ISC
+    - repository: https://github.com/micromatch/anymatch
+ - **[app-root-path@3.1.0](https://github.com/inxilpro/node-app-root-path)**
+    - name: app-root-path
+    - version: 3.1.0
+    - licenses: MIT
+    - repository: https://github.com/inxilpro/node-app-root-path
+ - **[arg@4.1.3](https://github.com/zeit/arg)**
+    - name: arg
+    - version: 4.1.3
+    - licenses: MIT
+    - repository: https://github.com/zeit/arg
+ - **[argparse@1.0.10](https://github.com/nodeca/argparse)**
+    - name: argparse
+    - version: 1.0.10
+    - licenses: MIT
+    - repository: https://github.com/nodeca/argparse
+ - **[argparse@2.0.1](https://github.com/nodeca/argparse)**
+    - name: argparse
+    - version: 2.0.1
+    - licenses: Python-2.0
+    - repository: https://github.com/nodeca/argparse
+ - **[aria-query@3.0.0](https://github.com/A11yance/aria-query)**
+    - name: aria-query
+    - version: 3.0.0
+    - licenses: Apache-2.0
+    - repository: https://github.com/A11yance/aria-query
+ - **[aria-query@5.3.2](https://github.com/A11yance/aria-query)**
+    - name: aria-query
+    - version: 5.3.2
+    - licenses: Apache-2.0
+    - repository: https://github.com/A11yance/aria-query
+ - **[array-find-index@1.0.2](https://github.com/sindresorhus/array-find-index)**
+    - name: array-find-index
+    - version: 1.0.2
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/array-find-index
+ - **[array-flatten@1.1.1](https://github.com/blakeembrey/array-flatten)**
+    - name: array-flatten
+    - version: 1.1.1
+    - licenses: MIT
+    - repository: https://github.com/blakeembrey/array-flatten
+ - **[array-ify@1.0.0](https://github.com/stevemao/array-ify)**
+    - name: array-ify
+    - version: 1.0.0
+    - licenses: MIT
+    - repository: https://github.com/stevemao/array-ify
+ - **[array-union@1.0.2](https://github.com/sindresorhus/array-union)**
+    - name: array-union
+    - version: 1.0.2
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/array-union
+ - **[array-uniq@1.0.3](https://github.com/sindresorhus/array-uniq)**
+    - name: array-uniq
+    - version: 1.0.3
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/array-uniq
+ - **[arrify@1.0.1](https://github.com/sindresorhus/arrify)**
+    - name: arrify
+    - version: 1.0.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/arrify
+ - **[asap@2.0.6](https://github.com/kriskowal/asap)**
+    - name: asap
+    - version: 2.0.6
+    - licenses: MIT
+    - repository: https://github.com/kriskowal/asap
+ - **[asn1@0.2.6](https://github.com/joyent/node-asn1)**
+    - name: asn1
+    - version: 0.2.6
+    - licenses: MIT
+    - repository: https://github.com/joyent/node-asn1
+ - **[assert-plus@1.0.0](https://github.com/mcavage/node-assert-plus)**
+    - name: assert-plus
+    - version: 1.0.0
+    - licenses: MIT
+    - repository: https://github.com/mcavage/node-assert-plus
+ - **[ast-types-flow@0.0.7](https://github.com/kyldvs/ast-types-flow)**
+    - name: ast-types-flow
+    - version: 0.0.7
+    - licenses: ISC
+    - repository: https://github.com/kyldvs/ast-types-flow
+ - **[asynckit@0.4.0](https://github.com/alexindigo/asynckit)**
+    - name: asynckit
+    - version: 0.4.0
+    - licenses: MIT
+    - repository: https://github.com/alexindigo/asynckit
+ - **[autoprefixer@10.4.20](https://github.com/postcss/autoprefixer)**
+    - name: autoprefixer
+    - version: 10.4.20
+    - licenses: MIT
+    - repository: https://github.com/postcss/autoprefixer
+ - **[aws-sign2@0.7.0](https://github.com/mikeal/aws-sign)**
+    - name: aws-sign2
+    - version: 0.7.0
+    - licenses: Apache-2.0
+    - repository: https://github.com/mikeal/aws-sign
+ - **[aws4@1.13.2](https://github.com/mhart/aws4)**
+    - name: aws4
+    - version: 1.13.2
+    - licenses: MIT
+    - repository: https://github.com/mhart/aws4
+ - **[axobject-query@2.0.2](https://github.com/A11yance/axobject-query)**
+    - name: axobject-query
+    - version: 2.0.2
+    - licenses: Apache-2.0
+    - repository: https://github.com/A11yance/axobject-query
+ - **[axobject-query@4.1.0](https://github.com/A11yance/axobject-query)**
+    - name: axobject-query
+    - version: 4.1.0
+    - licenses: Apache-2.0
+    - repository: https://github.com/A11yance/axobject-query
+ - **[babel-jest@29.7.0](https://github.com/jestjs/jest)**
+    - name: babel-jest
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[babel-loader@9.1.3](https://github.com/babel/babel-loader)**
+    - name: babel-loader
+    - version: 9.1.3
+    - licenses: MIT
+    - repository: https://github.com/babel/babel-loader
+ - **[babel-plugin-istanbul@6.1.1](https://github.com/istanbuljs/babel-plugin-istanbul)**
+    - name: babel-plugin-istanbul
+    - version: 6.1.1
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/istanbuljs/babel-plugin-istanbul
+ - **[babel-plugin-jest-hoist@29.6.3](https://github.com/jestjs/jest)**
+    - name: babel-plugin-jest-hoist
+    - version: 29.6.3
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[babel-plugin-polyfill-corejs2@0.4.12](https://github.com/babel/babel-polyfills)**
+    - name: babel-plugin-polyfill-corejs2
+    - version: 0.4.12
+    - licenses: MIT
+    - repository: https://github.com/babel/babel-polyfills
+ - **[babel-plugin-polyfill-corejs3@0.10.6](https://github.com/babel/babel-polyfills)**
+    - name: babel-plugin-polyfill-corejs3
+    - version: 0.10.6
+    - licenses: MIT
+    - repository: https://github.com/babel/babel-polyfills
+ - **[babel-plugin-polyfill-regenerator@0.6.3](https://github.com/babel/babel-polyfills)**
+    - name: babel-plugin-polyfill-regenerator
+    - version: 0.6.3
+    - licenses: MIT
+    - repository: https://github.com/babel/babel-polyfills
+ - **[babel-preset-current-node-syntax@1.1.0](https://github.com/nicolo-ribaudo/babel-preset-current-node-syntax)**
+    - name: babel-preset-current-node-syntax
+    - version: 1.1.0
+    - licenses: MIT
+    - repository: https://github.com/nicolo-ribaudo/babel-preset-current-node-syntax
+ - **[babel-preset-jest@29.6.3](https://github.com/jestjs/jest)**
+    - name: babel-preset-jest
+    - version: 29.6.3
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[balanced-match@1.0.2](https://github.com/juliangruber/balanced-match)**
+    - name: balanced-match
+    - version: 1.0.2
+    - licenses: MIT
+    - repository: https://github.com/juliangruber/balanced-match
+ - **[base64-js@1.5.1](https://github.com/beatgammit/base64-js)**
+    - name: base64-js
+    - version: 1.5.1
+    - licenses: MIT
+    - repository: https://github.com/beatgammit/base64-js
+ - **[batch@0.6.1](https://github.com/visionmedia/batch)**
+    - name: batch
+    - version: 0.6.1
+    - licenses: MIT
+    - repository: https://github.com/visionmedia/batch
+ - **[bcrypt-pbkdf@1.0.2](https://github.com/joyent/node-bcrypt-pbkdf)**
+    - name: bcrypt-pbkdf
+    - version: 1.0.2
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/joyent/node-bcrypt-pbkdf
+ - **[big.js@5.2.2](https://github.com/MikeMcl/big.js)**
+    - name: big.js
+    - version: 5.2.2
+    - licenses: MIT
+    - repository: https://github.com/MikeMcl/big.js
+ - **[binary-extensions@2.3.0](https://github.com/sindresorhus/binary-extensions)**
+    - name: binary-extensions
+    - version: 2.3.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/binary-extensions
+ - **[bl@4.1.0](https://github.com/rvagg/bl)**
+    - name: bl
+    - version: 4.1.0
+    - licenses: MIT
+    - repository: https://github.com/rvagg/bl
+ - **[blocking-proxy@1.0.1](https://github.com/angular/jasminewd)**
+    - name: blocking-proxy
+    - version: 1.0.1
+    - licenses: MIT
+    - repository: https://github.com/angular/jasminewd
+ - **[body-parser@1.20.3](https://github.com/expressjs/body-parser)**
+    - name: body-parser
+    - version: 1.20.3
+    - licenses: MIT
+    - repository: https://github.com/expressjs/body-parser
+ - **[bonjour-service@1.3.0](https://github.com/onlxltd/bonjour-service)**
+    - name: bonjour-service
+    - version: 1.3.0
+    - licenses: MIT
+    - repository: https://github.com/onlxltd/bonjour-service
+ - **[boolbase@1.0.0](https://github.com/fb55/boolbase)**
+    - name: boolbase
+    - version: 1.0.0
+    - licenses: ISC
+    - repository: https://github.com/fb55/boolbase
+ - **[brace-expansion@1.1.11](https://github.com/juliangruber/brace-expansion)**
+    - name: brace-expansion
+    - version: 1.1.11
+    - licenses: MIT
+    - repository: https://github.com/juliangruber/brace-expansion
+ - **[brace-expansion@2.0.1](https://github.com/juliangruber/brace-expansion)**
+    - name: brace-expansion
+    - version: 2.0.1
+    - licenses: MIT
+    - repository: https://github.com/juliangruber/brace-expansion
+ - **[braces@3.0.3](https://github.com/micromatch/braces)**
+    - name: braces
+    - version: 3.0.3
+    - licenses: MIT
+    - repository: https://github.com/micromatch/braces
+ - **[browser-process-hrtime@1.0.0](https://github.com/kumavis/browser-process-hrtime)**
+    - name: browser-process-hrtime
+    - version: 1.0.0
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/kumavis/browser-process-hrtime
+ - **[browserslist@4.24.4](https://github.com/browserslist/browserslist)**
+    - name: browserslist
+    - version: 4.24.4
+    - licenses: MIT
+    - repository: https://github.com/browserslist/browserslist
+ - **[browserstack@1.6.1](https://github.com/scottgonzalez/node-browserstack)**
+    - name: browserstack
+    - version: 1.6.1
+    - licenses: MIT
+    - repository: https://github.com/scottgonzalez/node-browserstack
+ - **[bs-logger@0.2.6](https://github.com/huafu/bs-logger)**
+    - name: bs-logger
+    - version: 0.2.6
+    - licenses: MIT
+    - repository: https://github.com/huafu/bs-logger
+ - **[bser@2.1.1](https://github.com/facebook/watchman)**
+    - name: bser
+    - version: 2.1.1
+    - licenses: Apache-2.0
+    - repository: https://github.com/facebook/watchman
+ - **[buffer-from@1.1.2](https://github.com/LinusU/buffer-from)**
+    - name: buffer-from
+    - version: 1.1.2
+    - licenses: MIT
+    - repository: https://github.com/LinusU/buffer-from
+ - **[buffer@5.7.1](https://github.com/feross/buffer)**
+    - name: buffer
+    - version: 5.7.1
+    - licenses: MIT
+    - repository: https://github.com/feross/buffer
+ - **[builtin-modules@1.1.1](https://github.com/sindresorhus/builtin-modules)**
+    - name: builtin-modules
+    - version: 1.1.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/builtin-modules
+ - **[bundle-name@4.1.0](https://github.com/sindresorhus/bundle-name)**
+    - name: bundle-name
+    - version: 4.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/bundle-name
+ - **[bytes@3.1.2](https://github.com/visionmedia/bytes.js)**
+    - name: bytes
+    - version: 3.1.2
+    - licenses: MIT
+    - repository: https://github.com/visionmedia/bytes.js
+ - **[cacache@18.0.4](https://github.com/npm/cacache)**
+    - name: cacache
+    - version: 18.0.4
+    - licenses: ISC
+    - repository: https://github.com/npm/cacache
+ - **[call-bind-apply-helpers@1.0.1](https://github.com/ljharb/call-bind-apply-helpers)**
+    - name: call-bind-apply-helpers
+    - version: 1.0.1
+    - licenses: MIT
+    - repository: https://github.com/ljharb/call-bind-apply-helpers
+ - **[call-bound@1.0.3](https://github.com/ljharb/call-bound)**
+    - name: call-bound
+    - version: 1.0.3
+    - licenses: MIT
+    - repository: https://github.com/ljharb/call-bound
+ - **[callsites@3.1.0](https://github.com/sindresorhus/callsites)**
+    - name: callsites
+    - version: 3.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/callsites
+ - **[camelcase@5.3.1](https://github.com/sindresorhus/camelcase)**
+    - name: camelcase
+    - version: 5.3.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/camelcase
+ - **[camelcase@6.3.0](https://github.com/sindresorhus/camelcase)**
+    - name: camelcase
+    - version: 6.3.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/camelcase
+ - **[caniuse-lite@1.0.30001696](https://github.com/browserslist/caniuse-lite)**
+    - name: caniuse-lite
+    - version: 1.0.30001696
+    - licenses: CC-BY-4.0
+    - repository: https://github.com/browserslist/caniuse-lite
+ - **[caseless@0.12.0](https://github.com/mikeal/caseless)**
+    - name: caseless
+    - version: 0.12.0
+    - licenses: Apache-2.0
+    - repository: https://github.com/mikeal/caseless
+ - **[chalk@0.5.1](https://github.com/sindresorhus/chalk)**
+    - name: chalk
+    - version: 0.5.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/chalk
+ - **[chalk@1.1.3](https://github.com/chalk/chalk)**
+    - name: chalk
+    - version: 1.1.3
+    - licenses: MIT
+    - repository: https://github.com/chalk/chalk
+ - **[chalk@2.4.2](https://github.com/chalk/chalk)**
+    - name: chalk
+    - version: 2.4.2
+    - licenses: MIT
+    - repository: https://github.com/chalk/chalk
+ - **[chalk@4.1.2](https://github.com/chalk/chalk)**
+    - name: chalk
+    - version: 4.1.2
+    - licenses: MIT
+    - repository: https://github.com/chalk/chalk
+ - **[char-regex@1.0.2](https://github.com/Richienb/char-regex)**
+    - name: char-regex
+    - version: 1.0.2
+    - licenses: MIT
+    - repository: https://github.com/Richienb/char-regex
+ - **[chardet@0.7.0](https://github.com/runk/node-chardet)**
+    - name: chardet
+    - version: 0.7.0
+    - licenses: MIT
+    - repository: https://github.com/runk/node-chardet
+ - **[chokidar@3.6.0](https://github.com/paulmillr/chokidar)**
+    - name: chokidar
+    - version: 3.6.0
+    - licenses: MIT
+    - repository: https://github.com/paulmillr/chokidar
+ - **[chokidar@4.0.3](https://github.com/paulmillr/chokidar)**
+    - name: chokidar
+    - version: 4.0.3
+    - licenses: MIT
+    - repository: https://github.com/paulmillr/chokidar
+ - **[chownr@2.0.0](https://github.com/isaacs/chownr)**
+    - name: chownr
+    - version: 2.0.0
+    - licenses: ISC
+    - repository: https://github.com/isaacs/chownr
+ - **[chrome-trace-event@1.0.4](https://github.com/samccone/chrome-trace-event)**
+    - name: chrome-trace-event
+    - version: 1.0.4
+    - licenses: MIT
+    - repository: https://github.com/samccone/chrome-trace-event
+ - **[ci-info@3.9.0](https://github.com/watson/ci-info)**
+    - name: ci-info
+    - version: 3.9.0
+    - licenses: MIT
+    - repository: https://github.com/watson/ci-info
+ - **[cjs-module-lexer@1.4.3](https://github.com/nodejs/cjs-module-lexer)**
+    - name: cjs-module-lexer
+    - version: 1.4.3
+    - licenses: MIT
+    - repository: https://github.com/nodejs/cjs-module-lexer
+ - **[clean-stack@2.2.0](https://github.com/sindresorhus/clean-stack)**
+    - name: clean-stack
+    - version: 2.2.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/clean-stack
+ - **[cli-cursor@3.1.0](https://github.com/sindresorhus/cli-cursor)**
+    - name: cli-cursor
+    - version: 3.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/cli-cursor
+ - **[cli-cursor@5.0.0](https://github.com/sindresorhus/cli-cursor)**
+    - name: cli-cursor
+    - version: 5.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/cli-cursor
+ - **[cli-spinners@2.9.2](https://github.com/sindresorhus/cli-spinners)**
+    - name: cli-spinners
+    - version: 2.9.2
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/cli-spinners
+ - **[cli-truncate@4.0.0](https://github.com/sindresorhus/cli-truncate)**
+    - name: cli-truncate
+    - version: 4.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/cli-truncate
+ - **[cli-width@4.1.0](https://github.com/knownasilya/cli-width)**
+    - name: cli-width
+    - version: 4.1.0
+    - licenses: ISC
+    - repository: https://github.com/knownasilya/cli-width
+ - **[cliui@6.0.0](https://github.com/yargs/cliui)**
+    - name: cliui
+    - version: 6.0.0
+    - licenses: ISC
+    - repository: https://github.com/yargs/cliui
+ - **[cliui@8.0.1](https://github.com/yargs/cliui)**
+    - name: cliui
+    - version: 8.0.1
+    - licenses: ISC
+    - repository: https://github.com/yargs/cliui
+ - **[clone-deep@4.0.1](https://github.com/jonschlinkert/clone-deep)**
+    - name: clone-deep
+    - version: 4.0.1
+    - licenses: MIT
+    - repository: https://github.com/jonschlinkert/clone-deep
+ - **[clone@1.0.4](https://github.com/pvorb/node-clone)**
+    - name: clone
+    - version: 1.0.4
+    - licenses: MIT
+    - repository: https://github.com/pvorb/node-clone
+ - **[co@4.6.0](https://github.com/tj/co)**
+    - name: co
+    - version: 4.6.0
+    - licenses: MIT
+    - repository: https://github.com/tj/co
+ - **[codelyzer@6.0.2](https://github.com/mgechev/codelyzer)**
+    - name: codelyzer
+    - version: 6.0.2
+    - licenses: MIT
+    - repository: https://github.com/mgechev/codelyzer
+ - **[collect-v8-coverage@1.0.2](https://github.com/SimenB/collect-v8-coverage)**
+    - name: collect-v8-coverage
+    - version: 1.0.2
+    - licenses: MIT
+    - repository: https://github.com/SimenB/collect-v8-coverage
+ - **[color-convert@1.9.3](https://github.com/Qix-/color-convert)**
+    - name: color-convert
+    - version: 1.9.3
+    - licenses: MIT
+    - repository: https://github.com/Qix-/color-convert
+ - **[color-convert@2.0.1](https://github.com/Qix-/color-convert)**
+    - name: color-convert
+    - version: 2.0.1
+    - licenses: MIT
+    - repository: https://github.com/Qix-/color-convert
+ - **[color-name@1.1.3](https://github.com/dfcreative/color-name)**
+    - name: color-name
+    - version: 1.1.3
+    - licenses: MIT
+    - repository: https://github.com/dfcreative/color-name
+ - **[color-name@1.1.4](https://github.com/colorjs/color-name)**
+    - name: color-name
+    - version: 1.1.4
+    - licenses: MIT
+    - repository: https://github.com/colorjs/color-name
+ - **[colorette@2.0.20](https://github.com/jorgebucaran/colorette)**
+    - name: colorette
+    - version: 2.0.20
+    - licenses: MIT
+    - repository: https://github.com/jorgebucaran/colorette
+ - **[colors@1.4.0](https://github.com/Marak/colors.js)**
+    - name: colors
+    - version: 1.4.0
+    - licenses: MIT
+    - repository: https://github.com/Marak/colors.js
+ - **[combined-stream@1.0.8](https://github.com/felixge/node-combined-stream)**
+    - name: combined-stream
+    - version: 1.0.8
+    - licenses: MIT
+    - repository: https://github.com/felixge/node-combined-stream
+ - **[commander@13.1.0](https://github.com/tj/commander.js)**
+    - name: commander
+    - version: 13.1.0
+    - licenses: MIT
+    - repository: https://github.com/tj/commander.js
+ - **[commander@2.20.3](https://github.com/tj/commander.js)**
+    - name: commander
+    - version: 2.20.3
+    - licenses: MIT
+    - repository: https://github.com/tj/commander.js
+ - **[common-path-prefix@3.0.0](https://github.com/novemberborn/common-path-prefix)**
+    - name: common-path-prefix
+    - version: 3.0.0
+    - licenses: ISC
+    - repository: https://github.com/novemberborn/common-path-prefix
+ - **[compare-func@2.0.0](https://github.com/stevemao/compare-func)**
+    - name: compare-func
+    - version: 2.0.0
+    - licenses: MIT
+    - repository: https://github.com/stevemao/compare-func
+ - **[compressible@2.0.18](https://github.com/jshttp/compressible)**
+    - name: compressible
+    - version: 2.0.18
+    - licenses: MIT
+    - repository: https://github.com/jshttp/compressible
+ - **[compression@1.7.5](https://github.com/expressjs/compression)**
+    - name: compression
+    - version: 1.7.5
+    - licenses: MIT
+    - repository: https://github.com/expressjs/compression
+ - **[concat-map@0.0.1](https://github.com/substack/node-concat-map)**
+    - name: concat-map
+    - version: 0.0.1
+    - licenses: MIT
+    - repository: https://github.com/substack/node-concat-map
+ - **[connect-history-api-fallback@2.0.0](https://github.com/bripkens/connect-history-api-fallback)**
+    - name: connect-history-api-fallback
+    - version: 2.0.0
+    - licenses: MIT
+    - repository: https://github.com/bripkens/connect-history-api-fallback
+ - **[content-disposition@0.5.4](https://github.com/jshttp/content-disposition)**
+    - name: content-disposition
+    - version: 0.5.4
+    - licenses: MIT
+    - repository: https://github.com/jshttp/content-disposition
+ - **[content-type@1.0.5](https://github.com/jshttp/content-type)**
+    - name: content-type
+    - version: 1.0.5
+    - licenses: MIT
+    - repository: https://github.com/jshttp/content-type
+ - **[conventional-changelog-angular@8.0.0](https://github.com/conventional-changelog/conventional-changelog)**
+    - name: conventional-changelog-angular
+    - version: 8.0.0
+    - licenses: ISC
+    - repository: https://github.com/conventional-changelog/conventional-changelog
+ - **[conventional-changelog-atom@5.0.0](https://github.com/conventional-changelog/conventional-changelog)**
+    - name: conventional-changelog-atom
+    - version: 5.0.0
+    - licenses: ISC
+    - repository: https://github.com/conventional-changelog/conventional-changelog
+ - **[conventional-changelog-codemirror@5.0.0](https://github.com/conventional-changelog/conventional-changelog)**
+    - name: conventional-changelog-codemirror
+    - version: 5.0.0
+    - licenses: ISC
+    - repository: https://github.com/conventional-changelog/conventional-changelog
+ - **[conventional-changelog-conventionalcommits@8.0.0](https://github.com/conventional-changelog/conventional-changelog)**
+    - name: conventional-changelog-conventionalcommits
+    - version: 8.0.0
+    - licenses: ISC
+    - repository: https://github.com/conventional-changelog/conventional-changelog
+ - **[conventional-changelog-core@8.0.0](https://github.com/conventional-changelog/conventional-changelog)**
+    - name: conventional-changelog-core
+    - version: 8.0.0
+    - licenses: MIT
+    - repository: https://github.com/conventional-changelog/conventional-changelog
+ - **[conventional-changelog-ember@5.0.0](https://github.com/conventional-changelog/conventional-changelog)**
+    - name: conventional-changelog-ember
+    - version: 5.0.0
+    - licenses: ISC
+    - repository: https://github.com/conventional-changelog/conventional-changelog
+ - **[conventional-changelog-eslint@6.0.0](https://github.com/conventional-changelog/conventional-changelog)**
+    - name: conventional-changelog-eslint
+    - version: 6.0.0
+    - licenses: ISC
+    - repository: https://github.com/conventional-changelog/conventional-changelog
+ - **[conventional-changelog-express@5.0.0](https://github.com/conventional-changelog/conventional-changelog)**
+    - name: conventional-changelog-express
+    - version: 5.0.0
+    - licenses: ISC
+    - repository: https://github.com/conventional-changelog/conventional-changelog
+ - **[conventional-changelog-jquery@6.0.0](https://github.com/conventional-changelog/conventional-changelog)**
+    - name: conventional-changelog-jquery
+    - version: 6.0.0
+    - licenses: ISC
+    - repository: https://github.com/conventional-changelog/conventional-changelog
+ - **[conventional-changelog-jshint@5.0.0](https://github.com/conventional-changelog/conventional-changelog)**
+    - name: conventional-changelog-jshint
+    - version: 5.0.0
+    - licenses: ISC
+    - repository: https://github.com/conventional-changelog/conventional-changelog
+ - **[conventional-changelog-preset-loader@5.0.0](https://github.com/conventional-changelog/conventional-changelog)**
+    - name: conventional-changelog-preset-loader
+    - version: 5.0.0
+    - licenses: MIT
+    - repository: https://github.com/conventional-changelog/conventional-changelog
+ - **[conventional-changelog-writer@8.0.0](https://github.com/conventional-changelog/conventional-changelog)**
+    - name: conventional-changelog-writer
+    - version: 8.0.0
+    - licenses: MIT
+    - repository: https://github.com/conventional-changelog/conventional-changelog
+ - **[conventional-changelog@6.0.0](https://github.com/conventional-changelog/conventional-changelog)**
+    - name: conventional-changelog
+    - version: 6.0.0
+    - licenses: MIT
+    - repository: https://github.com/conventional-changelog/conventional-changelog
+ - **[conventional-commits-filter@5.0.0](https://github.com/conventional-changelog/conventional-changelog)**
+    - name: conventional-commits-filter
+    - version: 5.0.0
+    - licenses: MIT
+    - repository: https://github.com/conventional-changelog/conventional-changelog
+ - **[conventional-commits-parser@6.0.0](https://github.com/conventional-changelog/conventional-changelog)**
+    - name: conventional-commits-parser
+    - version: 6.0.0
+    - licenses: MIT
+    - repository: https://github.com/conventional-changelog/conventional-changelog
+ - **[convert-source-map@1.9.0](https://github.com/thlorenz/convert-source-map)**
+    - name: convert-source-map
+    - version: 1.9.0
+    - licenses: MIT
+    - repository: https://github.com/thlorenz/convert-source-map
+ - **[convert-source-map@2.0.0](https://github.com/thlorenz/convert-source-map)**
+    - name: convert-source-map
+    - version: 2.0.0
+    - licenses: MIT
+    - repository: https://github.com/thlorenz/convert-source-map
+ - **[cookie-signature@1.0.6](https://github.com/visionmedia/node-cookie-signature)**
+    - name: cookie-signature
+    - version: 1.0.6
+    - licenses: MIT
+    - repository: https://github.com/visionmedia/node-cookie-signature
+ - **[cookie@0.7.1](https://github.com/jshttp/cookie)**
+    - name: cookie
+    - version: 0.7.1
+    - licenses: MIT
+    - repository: https://github.com/jshttp/cookie
+ - **[copy-anything@2.0.6](https://github.com/mesqueeb/copy-anything)**
+    - name: copy-anything
+    - version: 2.0.6
+    - licenses: MIT
+    - repository: https://github.com/mesqueeb/copy-anything
+ - **[copy-webpack-plugin@12.0.2](https://github.com/webpack-contrib/copy-webpack-plugin)**
+    - name: copy-webpack-plugin
+    - version: 12.0.2
+    - licenses: MIT
+    - repository: https://github.com/webpack-contrib/copy-webpack-plugin
+ - **[core-js-compat@3.40.0](https://github.com/zloirock/core-js)**
+    - name: core-js-compat
+    - version: 3.40.0
+    - licenses: MIT
+    - repository: https://github.com/zloirock/core-js
+ - **[core-util-is@1.0.2](https://github.com/isaacs/core-util-is)**
+    - name: core-util-is
+    - version: 1.0.2
+    - licenses: MIT
+    - repository: https://github.com/isaacs/core-util-is
+ - **[cosmiconfig@9.0.0](https://github.com/cosmiconfig/cosmiconfig)**
+    - name: cosmiconfig
+    - version: 9.0.0
+    - licenses: MIT
+    - repository: https://github.com/cosmiconfig/cosmiconfig
+ - **[create-jest@29.7.0](https://github.com/jestjs/jest)**
+    - name: create-jest
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[create-require@1.1.1](https://github.com/nuxt-contrib/create-require)**
+    - name: create-require
+    - version: 1.1.1
+    - licenses: MIT
+    - repository: https://github.com/nuxt-contrib/create-require
+ - **[critters@0.0.24](https://github.com/GoogleChromeLabs/critters)**
+    - name: critters
+    - version: 0.0.24
+    - licenses: Apache-2.0
+    - repository: https://github.com/GoogleChromeLabs/critters
+ - **[cross-spawn@7.0.6](https://github.com/moxystudio/node-cross-spawn)**
+    - name: cross-spawn
+    - version: 7.0.6
+    - licenses: MIT
+    - repository: https://github.com/moxystudio/node-cross-spawn
+ - **[css-loader@7.1.2](https://github.com/webpack-contrib/css-loader)**
+    - name: css-loader
+    - version: 7.1.2
+    - licenses: MIT
+    - repository: https://github.com/webpack-contrib/css-loader
+ - **[css-select@5.1.0](https://github.com/fb55/css-select)**
+    - name: css-select
+    - version: 5.1.0
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/fb55/css-select
+ - **[css-selector-tokenizer@0.7.3](https://github.com/css-modules/css-selector-tokenizer)**
+    - name: css-selector-tokenizer
+    - version: 0.7.3
+    - licenses: MIT
+    - repository: https://github.com/css-modules/css-selector-tokenizer
+ - **[css-what@6.1.0](https://github.com/fb55/css-what)**
+    - name: css-what
+    - version: 6.1.0
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/fb55/css-what
+ - **[cssauron@1.4.0](https://github.com/chrisdickinson/cssauron)**
+    - name: cssauron
+    - version: 1.4.0
+    - licenses: MIT
+    - repository: https://github.com/chrisdickinson/cssauron
+ - **[cssesc@3.0.0](https://github.com/mathiasbynens/cssesc)**
+    - name: cssesc
+    - version: 3.0.0
+    - licenses: MIT
+    - repository: https://github.com/mathiasbynens/cssesc
+ - **[cssom@0.3.8](https://github.com/NV/CSSOM)**
+    - name: cssom
+    - version: 0.3.8
+    - licenses: MIT
+    - repository: https://github.com/NV/CSSOM
+ - **[cssom@0.5.0](https://github.com/NV/CSSOM)**
+    - name: cssom
+    - version: 0.5.0
+    - licenses: MIT
+    - repository: https://github.com/NV/CSSOM
+ - **[cssstyle@2.3.0](https://github.com/jsdom/cssstyle)**
+    - name: cssstyle
+    - version: 2.3.0
+    - licenses: MIT
+    - repository: https://github.com/jsdom/cssstyle
+ - **[damerau-levenshtein@1.0.8](https://github.com/tad-lispy/node-damerau-levenshtein)**
+    - name: damerau-levenshtein
+    - version: 1.0.8
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/tad-lispy/node-damerau-levenshtein
+ - **[dashdash@1.14.1](https://github.com/trentm/node-dashdash)**
+    - name: dashdash
+    - version: 1.14.1
+    - licenses: MIT
+    - repository: https://github.com/trentm/node-dashdash
+ - **[data-urls@3.0.2](https://github.com/jsdom/data-urls)**
+    - name: data-urls
+    - version: 3.0.2
+    - licenses: MIT
+    - repository: https://github.com/jsdom/data-urls
+ - **[date-fns@3.6.0](https://github.com/date-fns/date-fns)**
+    - name: date-fns
+    - version: 3.6.0
+    - licenses: MIT
+    - repository: https://github.com/date-fns/date-fns
+ - **[debug@2.6.9](https://github.com/visionmedia/debug)**
+    - name: debug
+    - version: 2.6.9
+    - licenses: MIT
+    - repository: https://github.com/visionmedia/debug
+ - **[debug@3.2.7](https://github.com/visionmedia/debug)**
+    - name: debug
+    - version: 3.2.7
+    - licenses: MIT
+    - repository: https://github.com/visionmedia/debug
+ - **[debug@4.4.0](https://github.com/debug-js/debug)**
+    - name: debug
+    - version: 4.4.0
+    - licenses: MIT
+    - repository: https://github.com/debug-js/debug
+ - **[debuglog@1.0.1](https://github.com/sam-github/node-debuglog)**
+    - name: debuglog
+    - version: 1.0.1
+    - licenses: MIT
+    - repository: https://github.com/sam-github/node-debuglog
+ - **[decamelize@1.2.0](https://github.com/sindresorhus/decamelize)**
+    - name: decamelize
+    - version: 1.2.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/decamelize
+ - **[decimal.js@10.5.0](https://github.com/MikeMcl/decimal.js)**
+    - name: decimal.js
+    - version: 10.5.0
+    - licenses: MIT
+    - repository: https://github.com/MikeMcl/decimal.js
+ - **[dedent@1.5.3](https://github.com/dmnd/dedent)**
+    - name: dedent
+    - version: 1.5.3
+    - licenses: MIT
+    - repository: https://github.com/dmnd/dedent
+ - **[deepmerge@4.3.1](https://github.com/TehShrike/deepmerge)**
+    - name: deepmerge
+    - version: 4.3.1
+    - licenses: MIT
+    - repository: https://github.com/TehShrike/deepmerge
+ - **[default-browser-id@5.0.0](https://github.com/sindresorhus/default-browser-id)**
+    - name: default-browser-id
+    - version: 5.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/default-browser-id
+ - **[default-browser@5.2.1](https://github.com/sindresorhus/default-browser)**
+    - name: default-browser
+    - version: 5.2.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/default-browser
+ - **[default-gateway@6.0.3](https://github.com/silverwind/default-gateway)**
+    - name: default-gateway
+    - version: 6.0.3
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/silverwind/default-gateway
+ - **[defaults@1.0.4](https://github.com/sindresorhus/node-defaults)**
+    - name: defaults
+    - version: 1.0.4
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/node-defaults
+ - **[define-lazy-prop@3.0.0](https://github.com/sindresorhus/define-lazy-prop)**
+    - name: define-lazy-prop
+    - version: 3.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/define-lazy-prop
+ - **[del@2.2.2](https://github.com/sindresorhus/del)**
+    - name: del
+    - version: 2.2.2
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/del
+ - **[delayed-stream@1.0.0](https://github.com/felixge/node-delayed-stream)**
+    - name: delayed-stream
+    - version: 1.0.0
+    - licenses: MIT
+    - repository: https://github.com/felixge/node-delayed-stream
+ - **[depd@1.1.2](https://github.com/dougwilson/nodejs-depd)**
+    - name: depd
+    - version: 1.1.2
+    - licenses: MIT
+    - repository: https://github.com/dougwilson/nodejs-depd
+ - **[depd@2.0.0](https://github.com/dougwilson/nodejs-depd)**
+    - name: depd
+    - version: 2.0.0
+    - licenses: MIT
+    - repository: https://github.com/dougwilson/nodejs-depd
+ - **[destroy@1.2.0](https://github.com/stream-utils/destroy)**
+    - name: destroy
+    - version: 1.2.0
+    - licenses: MIT
+    - repository: https://github.com/stream-utils/destroy
+ - **[detect-libc@1.0.3](https://github.com/lovell/detect-libc)**
+    - name: detect-libc
+    - version: 1.0.3
+    - licenses: Apache-2.0
+    - repository: https://github.com/lovell/detect-libc
+ - **[detect-libc@2.0.3](https://github.com/lovell/detect-libc)**
+    - name: detect-libc
+    - version: 2.0.3
+    - licenses: Apache-2.0
+    - repository: https://github.com/lovell/detect-libc
+ - **[detect-newline@3.1.0](https://github.com/sindresorhus/detect-newline)**
+    - name: detect-newline
+    - version: 3.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/detect-newline
+ - **[detect-node@2.1.0](https://github.com/iliakan/detect-node)**
+    - name: detect-node
+    - version: 2.1.0
+    - licenses: MIT
+    - repository: https://github.com/iliakan/detect-node
+ - **[dezalgo@1.0.4](https://github.com/npm/dezalgo)**
+    - name: dezalgo
+    - version: 1.0.4
+    - licenses: ISC
+    - repository: https://github.com/npm/dezalgo
+ - **[diff-sequences@29.6.3](https://github.com/jestjs/jest)**
+    - name: diff-sequences
+    - version: 29.6.3
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[diff@4.0.2](https://github.com/kpdecker/jsdiff)**
+    - name: diff
+    - version: 4.0.2
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/kpdecker/jsdiff
+ - **[dns-packet@5.6.1](https://github.com/mafintosh/dns-packet)**
+    - name: dns-packet
+    - version: 5.6.1
+    - licenses: MIT
+    - repository: https://github.com/mafintosh/dns-packet
+ - **[dom-serializer@2.0.0](https://github.com/cheeriojs/dom-serializer)**
+    - name: dom-serializer
+    - version: 2.0.0
+    - licenses: MIT
+    - repository: https://github.com/cheeriojs/dom-serializer
+ - **[domelementtype@2.3.0](https://github.com/fb55/domelementtype)**
+    - name: domelementtype
+    - version: 2.3.0
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/fb55/domelementtype
+ - **[domexception@4.0.0](https://github.com/jsdom/domexception)**
+    - name: domexception
+    - version: 4.0.0
+    - licenses: MIT
+    - repository: https://github.com/jsdom/domexception
+ - **[domhandler@5.0.3](https://github.com/fb55/domhandler)**
+    - name: domhandler
+    - version: 5.0.3
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/fb55/domhandler
+ - **[domutils@3.2.2](https://github.com/fb55/domutils)**
+    - name: domutils
+    - version: 3.2.2
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/fb55/domutils
+ - **[dot-prop@5.3.0](https://github.com/sindresorhus/dot-prop)**
+    - name: dot-prop
+    - version: 5.3.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/dot-prop
+ - **[dunder-proto@1.0.1](https://github.com/es-shims/dunder-proto)**
+    - name: dunder-proto
+    - version: 1.0.1
+    - licenses: MIT
+    - repository: https://github.com/es-shims/dunder-proto
+ - **[eastasianwidth@0.2.0](https://github.com/komagata/eastasianwidth)**
+    - name: eastasianwidth
+    - version: 0.2.0
+    - licenses: MIT
+    - repository: https://github.com/komagata/eastasianwidth
+ - **[ecc-jsbn@0.1.2](https://github.com/quartzjer/ecc-jsbn)**
+    - name: ecc-jsbn
+    - version: 0.1.2
+    - licenses: MIT
+    - repository: https://github.com/quartzjer/ecc-jsbn
+ - **[ee-first@1.1.1](https://github.com/jonathanong/ee-first)**
+    - name: ee-first
+    - version: 1.1.1
+    - licenses: MIT
+    - repository: https://github.com/jonathanong/ee-first
+ - **[electron-to-chromium@1.5.90](https://github.com/kilian/electron-to-chromium)**
+    - name: electron-to-chromium
+    - version: 1.5.90
+    - licenses: ISC
+    - repository: https://github.com/kilian/electron-to-chromium
+ - **[emittery@0.13.1](https://github.com/sindresorhus/emittery)**
+    - name: emittery
+    - version: 0.13.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/emittery
+ - **[emoji-regex@10.4.0](https://github.com/mathiasbynens/emoji-regex)**
+    - name: emoji-regex
+    - version: 10.4.0
+    - licenses: MIT
+    - repository: https://github.com/mathiasbynens/emoji-regex
+ - **[emoji-regex@8.0.0](https://github.com/mathiasbynens/emoji-regex)**
+    - name: emoji-regex
+    - version: 8.0.0
+    - licenses: MIT
+    - repository: https://github.com/mathiasbynens/emoji-regex
+ - **[emoji-regex@9.2.2](https://github.com/mathiasbynens/emoji-regex)**
+    - name: emoji-regex
+    - version: 9.2.2
+    - licenses: MIT
+    - repository: https://github.com/mathiasbynens/emoji-regex
+ - **[emojis-list@3.0.0](https://github.com/kikobeats/emojis-list)**
+    - name: emojis-list
+    - version: 3.0.0
+    - licenses: MIT
+    - repository: https://github.com/kikobeats/emojis-list
+ - **[encodeurl@1.0.2](https://github.com/pillarjs/encodeurl)**
+    - name: encodeurl
+    - version: 1.0.2
+    - licenses: MIT
+    - repository: https://github.com/pillarjs/encodeurl
+ - **[encodeurl@2.0.0](https://github.com/pillarjs/encodeurl)**
+    - name: encodeurl
+    - version: 2.0.0
+    - licenses: MIT
+    - repository: https://github.com/pillarjs/encodeurl
+ - **[encoding@0.1.13](https://github.com/andris9/encoding)**
+    - name: encoding
+    - version: 0.1.13
+    - licenses: MIT
+    - repository: https://github.com/andris9/encoding
+ - **[enhanced-resolve@5.18.0](https://github.com/webpack/enhanced-resolve)**
+    - name: enhanced-resolve
+    - version: 5.18.0
+    - licenses: MIT
+    - repository: https://github.com/webpack/enhanced-resolve
+ - **[entities@4.5.0](https://github.com/fb55/entities)**
+    - name: entities
+    - version: 4.5.0
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/fb55/entities
+ - **[env-paths@2.2.1](https://github.com/sindresorhus/env-paths)**
+    - name: env-paths
+    - version: 2.2.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/env-paths
+ - **[environment@1.1.0](https://github.com/sindresorhus/environment)**
+    - name: environment
+    - version: 1.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/environment
+ - **[err-code@2.0.3](https://github.com/IndigoUnited/js-err-code)**
+    - name: err-code
+    - version: 2.0.3
+    - licenses: MIT
+    - repository: https://github.com/IndigoUnited/js-err-code
+ - **[errno@0.1.8](https://github.com/rvagg/node-errno)**
+    - name: errno
+    - version: 0.1.8
+    - licenses: MIT
+    - repository: https://github.com/rvagg/node-errno
+ - **[error-ex@1.3.2](https://github.com/qix-/node-error-ex)**
+    - name: error-ex
+    - version: 1.3.2
+    - licenses: MIT
+    - repository: https://github.com/qix-/node-error-ex
+ - **[es-define-property@1.0.1](https://github.com/ljharb/es-define-property)**
+    - name: es-define-property
+    - version: 1.0.1
+    - licenses: MIT
+    - repository: https://github.com/ljharb/es-define-property
+ - **[es-errors@1.3.0](https://github.com/ljharb/es-errors)**
+    - name: es-errors
+    - version: 1.3.0
+    - licenses: MIT
+    - repository: https://github.com/ljharb/es-errors
+ - **[es-module-lexer@1.6.0](https://github.com/guybedford/es-module-lexer)**
+    - name: es-module-lexer
+    - version: 1.6.0
+    - licenses: MIT
+    - repository: https://github.com/guybedford/es-module-lexer
+ - **[es-object-atoms@1.1.1](https://github.com/ljharb/es-object-atoms)**
+    - name: es-object-atoms
+    - version: 1.1.1
+    - licenses: MIT
+    - repository: https://github.com/ljharb/es-object-atoms
+ - **[es6-promise@4.2.8](https://github.com/stefanpenner/es6-promise)**
+    - name: es6-promise
+    - version: 4.2.8
+    - licenses: MIT
+    - repository: https://github.com/stefanpenner/es6-promise
+ - **[es6-promisify@5.0.0](https://github.com/digitaldesignlabs/es6-promisify)**
+    - name: es6-promisify
+    - version: 5.0.0
+    - licenses: MIT
+    - repository: https://github.com/digitaldesignlabs/es6-promisify
+ - **[esbuild-wasm@0.23.0](https://github.com/evanw/esbuild)**
+    - name: esbuild-wasm
+    - version: 0.23.0
+    - licenses: MIT
+    - repository: https://github.com/evanw/esbuild
+ - **[esbuild@0.21.5](https://github.com/evanw/esbuild)**
+    - name: esbuild
+    - version: 0.21.5
+    - licenses: MIT
+    - repository: https://github.com/evanw/esbuild
+ - **[esbuild@0.23.0](https://github.com/evanw/esbuild)**
+    - name: esbuild
+    - version: 0.23.0
+    - licenses: MIT
+    - repository: https://github.com/evanw/esbuild
+ - **[escalade@3.2.0](https://github.com/lukeed/escalade)**
+    - name: escalade
+    - version: 3.2.0
+    - licenses: MIT
+    - repository: https://github.com/lukeed/escalade
+ - **[escape-html@1.0.3](https://github.com/component/escape-html)**
+    - name: escape-html
+    - version: 1.0.3
+    - licenses: MIT
+    - repository: https://github.com/component/escape-html
+ - **[escape-string-regexp@1.0.5](https://github.com/sindresorhus/escape-string-regexp)**
+    - name: escape-string-regexp
+    - version: 1.0.5
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/escape-string-regexp
+ - **[escape-string-regexp@2.0.0](https://github.com/sindresorhus/escape-string-regexp)**
+    - name: escape-string-regexp
+    - version: 2.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/escape-string-regexp
+ - **[escodegen@2.1.0](https://github.com/estools/escodegen)**
+    - name: escodegen
+    - version: 2.1.0
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/estools/escodegen
+ - **[eslint-scope@5.1.1](https://github.com/eslint/eslint-scope)**
+    - name: eslint-scope
+    - version: 5.1.1
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/eslint/eslint-scope
+ - **[esprima@4.0.1](https://github.com/jquery/esprima)**
+    - name: esprima
+    - version: 4.0.1
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/jquery/esprima
+ - **[esrecurse@4.3.0](https://github.com/estools/esrecurse)**
+    - name: esrecurse
+    - version: 4.3.0
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/estools/esrecurse
+ - **[estraverse@4.3.0](https://github.com/estools/estraverse)**
+    - name: estraverse
+    - version: 4.3.0
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/estools/estraverse
+ - **[estraverse@5.3.0](https://github.com/estools/estraverse)**
+    - name: estraverse
+    - version: 5.3.0
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/estools/estraverse
+ - **[esutils@2.0.3](https://github.com/estools/esutils)**
+    - name: esutils
+    - version: 2.0.3
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/estools/esutils
+ - **[etag@1.8.1](https://github.com/jshttp/etag)**
+    - name: etag
+    - version: 1.8.1
+    - licenses: MIT
+    - repository: https://github.com/jshttp/etag
+ - **[eventemitter3@4.0.7](https://github.com/primus/eventemitter3)**
+    - name: eventemitter3
+    - version: 4.0.7
+    - licenses: MIT
+    - repository: https://github.com/primus/eventemitter3
+ - **[eventemitter3@5.0.1](https://github.com/primus/eventemitter3)**
+    - name: eventemitter3
+    - version: 5.0.1
+    - licenses: MIT
+    - repository: https://github.com/primus/eventemitter3
+ - **[events@3.3.0](https://github.com/Gozala/events)**
+    - name: events
+    - version: 3.3.0
+    - licenses: MIT
+    - repository: https://github.com/Gozala/events
+ - **[execa@5.1.1](https://github.com/sindresorhus/execa)**
+    - name: execa
+    - version: 5.1.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/execa
+ - **[exit@0.1.2](https://github.com/cowboy/node-exit)**
+    - name: exit
+    - version: 0.1.2
+    - licenses: MIT
+    - repository: https://github.com/cowboy/node-exit
+ - **[expect@29.7.0](https://github.com/jestjs/jest)**
+    - name: expect
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[exponential-backoff@3.1.1](https://github.com/coveo/exponential-backoff)**
+    - name: exponential-backoff
+    - version: 3.1.1
+    - licenses: Apache-2.0
+    - repository: https://github.com/coveo/exponential-backoff
+ - **[express@4.21.2](https://github.com/expressjs/express)**
+    - name: express
+    - version: 4.21.2
+    - licenses: MIT
+    - repository: https://github.com/expressjs/express
+ - **[extend@3.0.2](https://github.com/justmoon/node-extend)**
+    - name: extend
+    - version: 3.0.2
+    - licenses: MIT
+    - repository: https://github.com/justmoon/node-extend
+ - **[external-editor@3.1.0](https://github.com/mrkmg/node-external-editor)**
+    - name: external-editor
+    - version: 3.1.0
+    - licenses: MIT
+    - repository: https://github.com/mrkmg/node-external-editor
+ - **[extsprintf@1.3.0](https://github.com/davepacheco/node-extsprintf)**
+    - name: extsprintf
+    - version: 1.3.0
+    - licenses: MIT
+    - repository: https://github.com/davepacheco/node-extsprintf
+ - **[fast-deep-equal@3.1.3](https://github.com/epoberezkin/fast-deep-equal)**
+    - name: fast-deep-equal
+    - version: 3.1.3
+    - licenses: MIT
+    - repository: https://github.com/epoberezkin/fast-deep-equal
+ - **[fast-glob@3.3.2](https://github.com/mrmlnc/fast-glob)**
+    - name: fast-glob
+    - version: 3.3.2
+    - licenses: MIT
+    - repository: https://github.com/mrmlnc/fast-glob
+ - **[fast-json-stable-stringify@2.1.0](https://github.com/epoberezkin/fast-json-stable-stringify)**
+    - name: fast-json-stable-stringify
+    - version: 2.1.0
+    - licenses: MIT
+    - repository: https://github.com/epoberezkin/fast-json-stable-stringify
+ - **[fast-uri@3.0.6](https://github.com/fastify/fast-uri)**
+    - name: fast-uri
+    - version: 3.0.6
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/fastify/fast-uri
+ - **[fastparse@1.1.2](https://github.com/webpack/fastparse)**
+    - name: fastparse
+    - version: 1.1.2
+    - licenses: MIT
+    - repository: https://github.com/webpack/fastparse
+ - **[fastq@1.19.0](https://github.com/mcollina/fastq)**
+    - name: fastq
+    - version: 1.19.0
+    - licenses: ISC
+    - repository: https://github.com/mcollina/fastq
+ - **[faye-websocket@0.11.4](https://github.com/faye/faye-websocket-node)**
+    - name: faye-websocket
+    - version: 0.11.4
+    - licenses: Apache-2.0
+    - repository: https://github.com/faye/faye-websocket-node
+ - **[fb-watchman@2.0.2](https://github.com/facebook/watchman)**
+    - name: fb-watchman
+    - version: 2.0.2
+    - licenses: Apache-2.0
+    - repository: https://github.com/facebook/watchman
+ - **[fill-range@7.1.1](https://github.com/jonschlinkert/fill-range)**
+    - name: fill-range
+    - version: 7.1.1
+    - licenses: MIT
+    - repository: https://github.com/jonschlinkert/fill-range
+ - **[finalhandler@1.3.1](https://github.com/pillarjs/finalhandler)**
+    - name: finalhandler
+    - version: 1.3.1
+    - licenses: MIT
+    - repository: https://github.com/pillarjs/finalhandler
+ - **[find-cache-dir@4.0.0](https://github.com/sindresorhus/find-cache-dir)**
+    - name: find-cache-dir
+    - version: 4.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/find-cache-dir
+ - **[find-up-simple@1.0.0](https://github.com/sindresorhus/find-up-simple)**
+    - name: find-up-simple
+    - version: 1.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/find-up-simple
+ - **[find-up@4.1.0](https://github.com/sindresorhus/find-up)**
+    - name: find-up
+    - version: 4.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/find-up
+ - **[find-up@6.3.0](https://github.com/sindresorhus/find-up)**
+    - name: find-up
+    - version: 6.3.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/find-up
+ - **[flat@5.0.2](https://github.com/hughsk/flat)**
+    - name: flat
+    - version: 5.0.2
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/hughsk/flat
+ - **[follow-redirects@1.15.9](https://github.com/follow-redirects/follow-redirects)**
+    - name: follow-redirects
+    - version: 1.15.9
+    - licenses: MIT
+    - repository: https://github.com/follow-redirects/follow-redirects
+ - **[foreground-child@3.3.0](https://github.com/tapjs/foreground-child)**
+    - name: foreground-child
+    - version: 3.3.0
+    - licenses: ISC
+    - repository: https://github.com/tapjs/foreground-child
+ - **[forever-agent@0.6.1](https://github.com/mikeal/forever-agent)**
+    - name: forever-agent
+    - version: 0.6.1
+    - licenses: Apache-2.0
+    - repository: https://github.com/mikeal/forever-agent
+ - **[form-data@2.3.3](https://github.com/form-data/form-data)**
+    - name: form-data
+    - version: 2.3.3
+    - licenses: MIT
+    - repository: https://github.com/form-data/form-data
+ - **[form-data@4.0.1](https://github.com/form-data/form-data)**
+    - name: form-data
+    - version: 4.0.1
+    - licenses: MIT
+    - repository: https://github.com/form-data/form-data
+ - **[forwarded@0.2.0](https://github.com/jshttp/forwarded)**
+    - name: forwarded
+    - version: 0.2.0
+    - licenses: MIT
+    - repository: https://github.com/jshttp/forwarded
+ - **[fraction.js@4.3.7](https://github.com/rawify/Fraction.js)**
+    - name: fraction.js
+    - version: 4.3.7
+    - licenses: MIT
+    - repository: https://github.com/rawify/Fraction.js
+ - **[fresh@0.5.2](https://github.com/jshttp/fresh)**
+    - name: fresh
+    - version: 0.5.2
+    - licenses: MIT
+    - repository: https://github.com/jshttp/fresh
+ - **[fs-minipass@2.1.0](https://github.com/npm/fs-minipass)**
+    - name: fs-minipass
+    - version: 2.1.0
+    - licenses: ISC
+    - repository: https://github.com/npm/fs-minipass
+ - **[fs-minipass@3.0.3](https://github.com/npm/fs-minipass)**
+    - name: fs-minipass
+    - version: 3.0.3
+    - licenses: ISC
+    - repository: https://github.com/npm/fs-minipass
+ - **[fs.realpath@1.0.0](https://github.com/isaacs/fs.realpath)**
+    - name: fs.realpath
+    - version: 1.0.0
+    - licenses: ISC
+    - repository: https://github.com/isaacs/fs.realpath
+ - **[function-bind@1.1.2](https://github.com/Raynos/function-bind)**
+    - name: function-bind
+    - version: 1.1.2
+    - licenses: MIT
+    - repository: https://github.com/Raynos/function-bind
+ - **[gensync@1.0.0-beta.2](https://github.com/loganfsmyth/gensync)**
+    - name: gensync
+    - version: 1.0.0-beta.2
+    - licenses: MIT
+    - repository: https://github.com/loganfsmyth/gensync
+ - **[get-caller-file@2.0.5](https://github.com/stefanpenner/get-caller-file)**
+    - name: get-caller-file
+    - version: 2.0.5
+    - licenses: ISC
+    - repository: https://github.com/stefanpenner/get-caller-file
+ - **[get-east-asian-width@1.3.0](https://github.com/sindresorhus/get-east-asian-width)**
+    - name: get-east-asian-width
+    - version: 1.3.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/get-east-asian-width
+ - **[get-intrinsic@1.2.7](https://github.com/ljharb/get-intrinsic)**
+    - name: get-intrinsic
+    - version: 1.2.7
+    - licenses: MIT
+    - repository: https://github.com/ljharb/get-intrinsic
+ - **[get-package-type@0.1.0](https://github.com/cfware/get-package-type)**
+    - name: get-package-type
+    - version: 0.1.0
+    - licenses: MIT
+    - repository: https://github.com/cfware/get-package-type
+ - **[get-proto@1.0.1](https://github.com/ljharb/get-proto)**
+    - name: get-proto
+    - version: 1.0.1
+    - licenses: MIT
+    - repository: https://github.com/ljharb/get-proto
+ - **[get-stream@6.0.1](https://github.com/sindresorhus/get-stream)**
+    - name: get-stream
+    - version: 6.0.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/get-stream
+ - **[getpass@0.1.7](https://github.com/arekinath/node-getpass)**
+    - name: getpass
+    - version: 0.1.7
+    - licenses: MIT
+    - repository: https://github.com/arekinath/node-getpass
+ - **[git-raw-commits@5.0.0](https://github.com/conventional-changelog/conventional-changelog)**
+    - name: git-raw-commits
+    - version: 5.0.0
+    - licenses: MIT
+    - repository: https://github.com/conventional-changelog/conventional-changelog
+ - **[git-semver-tags@8.0.0](https://github.com/conventional-changelog/conventional-changelog)**
+    - name: git-semver-tags
+    - version: 8.0.0
+    - licenses: MIT
+    - repository: https://github.com/conventional-changelog/conventional-changelog
+ - **[glob-parent@5.1.2](https://github.com/gulpjs/glob-parent)**
+    - name: glob-parent
+    - version: 5.1.2
+    - licenses: ISC
+    - repository: https://github.com/gulpjs/glob-parent
+ - **[glob-parent@6.0.2](https://github.com/gulpjs/glob-parent)**
+    - name: glob-parent
+    - version: 6.0.2
+    - licenses: ISC
+    - repository: https://github.com/gulpjs/glob-parent
+ - **[glob-to-regexp@0.4.1](https://github.com/fitzgen/glob-to-regexp)**
+    - name: glob-to-regexp
+    - version: 0.4.1
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/fitzgen/glob-to-regexp
+ - **[glob@10.4.5](https://github.com/isaacs/node-glob)**
+    - name: glob
+    - version: 10.4.5
+    - licenses: ISC
+    - repository: https://github.com/isaacs/node-glob
+ - **[glob@7.2.3](https://github.com/isaacs/node-glob)**
+    - name: glob
+    - version: 7.2.3
+    - licenses: ISC
+    - repository: https://github.com/isaacs/node-glob
+ - **[globals@11.12.0](https://github.com/sindresorhus/globals)**
+    - name: globals
+    - version: 11.12.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/globals
+ - **[globby@14.0.2](https://github.com/sindresorhus/globby)**
+    - name: globby
+    - version: 14.0.2
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/globby
+ - **[globby@5.0.0](https://github.com/sindresorhus/globby)**
+    - name: globby
+    - version: 5.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/globby
+ - **[gopd@1.2.0](https://github.com/ljharb/gopd)**
+    - name: gopd
+    - version: 1.2.0
+    - licenses: MIT
+    - repository: https://github.com/ljharb/gopd
+ - **[graceful-fs@4.2.11](https://github.com/isaacs/node-graceful-fs)**
+    - name: graceful-fs
+    - version: 4.2.11
+    - licenses: ISC
+    - repository: https://github.com/isaacs/node-graceful-fs
+ - **[handle-thing@2.0.1](https://github.com/indutny/handle-thing)**
+    - name: handle-thing
+    - version: 2.0.1
+    - licenses: MIT
+    - repository: https://github.com/indutny/handle-thing
+ - **[handlebars@4.7.8](https://github.com/handlebars-lang/handlebars.js)**
+    - name: handlebars
+    - version: 4.7.8
+    - licenses: MIT
+    - repository: https://github.com/handlebars-lang/handlebars.js
+ - **[har-schema@2.0.0](https://github.com/ahmadnassri/har-schema)**
+    - name: har-schema
+    - version: 2.0.0
+    - licenses: ISC
+    - repository: https://github.com/ahmadnassri/har-schema
+ - **[har-validator@5.1.5](https://github.com/ahmadnassri/node-har-validator)**
+    - name: har-validator
+    - version: 5.1.5
+    - licenses: MIT
+    - repository: https://github.com/ahmadnassri/node-har-validator
+ - **[has-ansi@0.1.0](https://github.com/sindresorhus/has-ansi)**
+    - name: has-ansi
+    - version: 0.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/has-ansi
+ - **[has-ansi@2.0.0](https://github.com/sindresorhus/has-ansi)**
+    - name: has-ansi
+    - version: 2.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/has-ansi
+ - **[has-flag@3.0.0](https://github.com/sindresorhus/has-flag)**
+    - name: has-flag
+    - version: 3.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/has-flag
+ - **[has-flag@4.0.0](https://github.com/sindresorhus/has-flag)**
+    - name: has-flag
+    - version: 4.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/has-flag
+ - **[has-symbols@1.1.0](https://github.com/inspect-js/has-symbols)**
+    - name: has-symbols
+    - version: 1.1.0
+    - licenses: MIT
+    - repository: https://github.com/inspect-js/has-symbols
+ - **[hasown@2.0.2](https://github.com/inspect-js/hasOwn)**
+    - name: hasown
+    - version: 2.0.2
+    - licenses: MIT
+    - repository: https://github.com/inspect-js/hasOwn
+ - **[hosted-git-info@2.8.9](https://github.com/npm/hosted-git-info)**
+    - name: hosted-git-info
+    - version: 2.8.9
+    - licenses: ISC
+    - repository: https://github.com/npm/hosted-git-info
+ - **[hosted-git-info@7.0.2](https://github.com/npm/hosted-git-info)**
+    - name: hosted-git-info
+    - version: 7.0.2
+    - licenses: ISC
+    - repository: https://github.com/npm/hosted-git-info
+ - **[hpack.js@2.1.6](https://github.com/indutny/hpack.js)**
+    - name: hpack.js
+    - version: 2.1.6
+    - licenses: MIT
+    - repository: https://github.com/indutny/hpack.js
+ - **[html-encoding-sniffer@3.0.0](https://github.com/jsdom/html-encoding-sniffer)**
+    - name: html-encoding-sniffer
+    - version: 3.0.0
+    - licenses: MIT
+    - repository: https://github.com/jsdom/html-encoding-sniffer
+ - **[html-entities@2.5.2](https://github.com/mdevils/html-entities)**
+    - name: html-entities
+    - version: 2.5.2
+    - licenses: MIT
+    - repository: https://github.com/mdevils/html-entities
+ - **[html-escaper@2.0.2](https://github.com/WebReflection/html-escaper)**
+    - name: html-escaper
+    - version: 2.0.2
+    - licenses: MIT
+    - repository: https://github.com/WebReflection/html-escaper
+ - **[htmlparser2@8.0.2](https://github.com/fb55/htmlparser2)**
+    - name: htmlparser2
+    - version: 8.0.2
+    - licenses: MIT
+    - repository: https://github.com/fb55/htmlparser2
+ - **[http-cache-semantics@4.1.1](https://github.com/kornelski/http-cache-semantics)**
+    - name: http-cache-semantics
+    - version: 4.1.1
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/kornelski/http-cache-semantics
+ - **[http-deceiver@1.2.7](https://github.com/indutny/http-deceiver)**
+    - name: http-deceiver
+    - version: 1.2.7
+    - licenses: MIT
+    - repository: https://github.com/indutny/http-deceiver
+ - **[http-errors@1.6.3](https://github.com/jshttp/http-errors)**
+    - name: http-errors
+    - version: 1.6.3
+    - licenses: MIT
+    - repository: https://github.com/jshttp/http-errors
+ - **[http-errors@2.0.0](https://github.com/jshttp/http-errors)**
+    - name: http-errors
+    - version: 2.0.0
+    - licenses: MIT
+    - repository: https://github.com/jshttp/http-errors
+ - **[http-parser-js@0.5.9](https://github.com/creationix/http-parser-js)**
+    - name: http-parser-js
+    - version: 0.5.9
+    - licenses: MIT
+    - repository: https://github.com/creationix/http-parser-js
+ - **[http-proxy-agent@5.0.0](https://github.com/TooTallNate/node-http-proxy-agent)**
+    - name: http-proxy-agent
+    - version: 5.0.0
+    - licenses: MIT
+    - repository: https://github.com/TooTallNate/node-http-proxy-agent
+ - **[http-proxy-agent@7.0.2](https://github.com/TooTallNate/proxy-agents)**
+    - name: http-proxy-agent
+    - version: 7.0.2
+    - licenses: MIT
+    - repository: https://github.com/TooTallNate/proxy-agents
+ - **[http-proxy-middleware@2.0.7](https://github.com/chimurai/http-proxy-middleware)**
+    - name: http-proxy-middleware
+    - version: 2.0.7
+    - licenses: MIT
+    - repository: https://github.com/chimurai/http-proxy-middleware
+ - **[http-proxy-middleware@3.0.3](https://github.com/chimurai/http-proxy-middleware)**
+    - name: http-proxy-middleware
+    - version: 3.0.3
+    - licenses: MIT
+    - repository: https://github.com/chimurai/http-proxy-middleware
+ - **[http-proxy@1.18.1](https://github.com/http-party/node-http-proxy)**
+    - name: http-proxy
+    - version: 1.18.1
+    - licenses: MIT
+    - repository: https://github.com/http-party/node-http-proxy
+ - **[http-signature@1.2.0](https://github.com/joyent/node-http-signature)**
+    - name: http-signature
+    - version: 1.2.0
+    - licenses: MIT
+    - repository: https://github.com/joyent/node-http-signature
+ - **[https-proxy-agent@2.2.4](https://github.com/TooTallNate/node-https-proxy-agent)**
+    - name: https-proxy-agent
+    - version: 2.2.4
+    - licenses: MIT
+    - repository: https://github.com/TooTallNate/node-https-proxy-agent
+ - **[https-proxy-agent@5.0.1](https://github.com/TooTallNate/node-https-proxy-agent)**
+    - name: https-proxy-agent
+    - version: 5.0.1
+    - licenses: MIT
+    - repository: https://github.com/TooTallNate/node-https-proxy-agent
+ - **[https-proxy-agent@7.0.5](https://github.com/TooTallNate/proxy-agents)**
+    - name: https-proxy-agent
+    - version: 7.0.5
+    - licenses: MIT
+    - repository: https://github.com/TooTallNate/proxy-agents
+ - **[human-signals@2.1.0](https://github.com/ehmicky/human-signals)**
+    - name: human-signals
+    - version: 2.1.0
+    - licenses: Apache-2.0
+    - repository: https://github.com/ehmicky/human-signals
+ - **[hyperdyperid@1.2.0](https://github.com/streamich/hyperdyperid)**
+    - name: hyperdyperid
+    - version: 1.2.0
+    - licenses: MIT
+    - repository: https://github.com/streamich/hyperdyperid
+ - **[iconv-lite@0.4.24](https://github.com/ashtuchkin/iconv-lite)**
+    - name: iconv-lite
+    - version: 0.4.24
+    - licenses: MIT
+    - repository: https://github.com/ashtuchkin/iconv-lite
+ - **[iconv-lite@0.6.3](https://github.com/ashtuchkin/iconv-lite)**
+    - name: iconv-lite
+    - version: 0.6.3
+    - licenses: MIT
+    - repository: https://github.com/ashtuchkin/iconv-lite
+ - **[icss-utils@5.1.0](https://github.com/css-modules/icss-utils)**
+    - name: icss-utils
+    - version: 5.1.0
+    - licenses: ISC
+    - repository: https://github.com/css-modules/icss-utils
+ - **[ieee754@1.2.1](https://github.com/feross/ieee754)**
+    - name: ieee754
+    - version: 1.2.1
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/feross/ieee754
+ - **[ignore-walk@6.0.5](https://github.com/npm/ignore-walk)**
+    - name: ignore-walk
+    - version: 6.0.5
+    - licenses: ISC
+    - repository: https://github.com/npm/ignore-walk
+ - **[ignore@5.3.2](https://github.com/kaelzhang/node-ignore)**
+    - name: ignore
+    - version: 5.3.2
+    - licenses: MIT
+    - repository: https://github.com/kaelzhang/node-ignore
+ - **[ignore@6.0.2](https://github.com/kaelzhang/node-ignore)**
+    - name: ignore
+    - version: 6.0.2
+    - licenses: MIT
+    - repository: https://github.com/kaelzhang/node-ignore
+ - **[image-size@0.5.5](https://github.com/image-size/image-size)**
+    - name: image-size
+    - version: 0.5.5
+    - licenses: MIT
+    - repository: https://github.com/image-size/image-size
+ - **[immediate@3.0.6](https://github.com/calvinmetcalf/immediate)**
+    - name: immediate
+    - version: 3.0.6
+    - licenses: MIT
+    - repository: https://github.com/calvinmetcalf/immediate
+ - **[immutable@4.3.7](https://github.com/immutable-js/immutable-js)**
+    - name: immutable
+    - version: 4.3.7
+    - licenses: MIT
+    - repository: https://github.com/immutable-js/immutable-js
+ - **[immutable@5.0.3](https://github.com/immutable-js/immutable-js)**
+    - name: immutable
+    - version: 5.0.3
+    - licenses: MIT
+    - repository: https://github.com/immutable-js/immutable-js
+ - **[import-fresh@3.3.0](https://github.com/sindresorhus/import-fresh)**
+    - name: import-fresh
+    - version: 3.3.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/import-fresh
+ - **[import-local@3.2.0](https://github.com/sindresorhus/import-local)**
+    - name: import-local
+    - version: 3.2.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/import-local
+ - **[imurmurhash@0.1.4](https://github.com/jensyt/imurmurhash-js)**
+    - name: imurmurhash
+    - version: 0.1.4
+    - licenses: MIT
+    - repository: https://github.com/jensyt/imurmurhash-js
+ - **[indent-string@4.0.0](https://github.com/sindresorhus/indent-string)**
+    - name: indent-string
+    - version: 4.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/indent-string
+ - **[index-to-position@0.1.2](https://github.com/sindresorhus/index-to-position)**
+    - name: index-to-position
+    - version: 0.1.2
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/index-to-position
+ - **[inflight@1.0.6](https://github.com/npm/inflight)**
+    - name: inflight
+    - version: 1.0.6
+    - licenses: ISC
+    - repository: https://github.com/npm/inflight
+ - **[inherits@2.0.3](https://github.com/isaacs/inherits)**
+    - name: inherits
+    - version: 2.0.3
+    - licenses: ISC
+    - repository: https://github.com/isaacs/inherits
+ - **[inherits@2.0.4](https://github.com/isaacs/inherits)**
+    - name: inherits
+    - version: 2.0.4
+    - licenses: ISC
+    - repository: https://github.com/isaacs/inherits
+ - **[ini@1.3.8](https://github.com/isaacs/ini)**
+    - name: ini
+    - version: 1.3.8
+    - licenses: ISC
+    - repository: https://github.com/isaacs/ini
+ - **[ini@4.1.3](https://github.com/npm/ini)**
+    - name: ini
+    - version: 4.1.3
+    - licenses: ISC
+    - repository: https://github.com/npm/ini
+ - **[ip-address@9.0.5](https://github.com/beaugunderson/ip-address)**
+    - name: ip-address
+    - version: 9.0.5
+    - licenses: MIT
+    - repository: https://github.com/beaugunderson/ip-address
+ - **[ipaddr.js@1.9.1](https://github.com/whitequark/ipaddr.js)**
+    - name: ipaddr.js
+    - version: 1.9.1
+    - licenses: MIT
+    - repository: https://github.com/whitequark/ipaddr.js
+ - **[ipaddr.js@2.2.0](https://github.com/whitequark/ipaddr.js)**
+    - name: ipaddr.js
+    - version: 2.2.0
+    - licenses: MIT
+    - repository: https://github.com/whitequark/ipaddr.js
+ - **[is-arrayish@0.2.1](https://github.com/qix-/node-is-arrayish)**
+    - name: is-arrayish
+    - version: 0.2.1
+    - licenses: MIT
+    - repository: https://github.com/qix-/node-is-arrayish
+ - **[is-binary-path@2.1.0](https://github.com/sindresorhus/is-binary-path)**
+    - name: is-binary-path
+    - version: 2.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/is-binary-path
+ - **[is-core-module@2.16.1](https://github.com/inspect-js/is-core-module)**
+    - name: is-core-module
+    - version: 2.16.1
+    - licenses: MIT
+    - repository: https://github.com/inspect-js/is-core-module
+ - **[is-docker@3.0.0](https://github.com/sindresorhus/is-docker)**
+    - name: is-docker
+    - version: 3.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/is-docker
+ - **[is-extglob@2.1.1](https://github.com/jonschlinkert/is-extglob)**
+    - name: is-extglob
+    - version: 2.1.1
+    - licenses: MIT
+    - repository: https://github.com/jonschlinkert/is-extglob
+ - **[is-fullwidth-code-point@3.0.0](https://github.com/sindresorhus/is-fullwidth-code-point)**
+    - name: is-fullwidth-code-point
+    - version: 3.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/is-fullwidth-code-point
+ - **[is-fullwidth-code-point@4.0.0](https://github.com/sindresorhus/is-fullwidth-code-point)**
+    - name: is-fullwidth-code-point
+    - version: 4.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/is-fullwidth-code-point
+ - **[is-fullwidth-code-point@5.0.0](https://github.com/sindresorhus/is-fullwidth-code-point)**
+    - name: is-fullwidth-code-point
+    - version: 5.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/is-fullwidth-code-point
+ - **[is-generator-fn@2.1.0](https://github.com/sindresorhus/is-generator-fn)**
+    - name: is-generator-fn
+    - version: 2.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/is-generator-fn
+ - **[is-glob@4.0.3](https://github.com/micromatch/is-glob)**
+    - name: is-glob
+    - version: 4.0.3
+    - licenses: MIT
+    - repository: https://github.com/micromatch/is-glob
+ - **[is-inside-container@1.0.0](https://github.com/sindresorhus/is-inside-container)**
+    - name: is-inside-container
+    - version: 1.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/is-inside-container
+ - **[is-interactive@1.0.0](https://github.com/sindresorhus/is-interactive)**
+    - name: is-interactive
+    - version: 1.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/is-interactive
+ - **[is-lambda@1.0.1](https://github.com/watson/is-lambda)**
+    - name: is-lambda
+    - version: 1.0.1
+    - licenses: MIT
+    - repository: https://github.com/watson/is-lambda
+ - **[is-network-error@1.1.0](https://github.com/sindresorhus/is-network-error)**
+    - name: is-network-error
+    - version: 1.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/is-network-error
+ - **[is-number@7.0.0](https://github.com/jonschlinkert/is-number)**
+    - name: is-number
+    - version: 7.0.0
+    - licenses: MIT
+    - repository: https://github.com/jonschlinkert/is-number
+ - **[is-obj@2.0.0](https://github.com/sindresorhus/is-obj)**
+    - name: is-obj
+    - version: 2.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/is-obj
+ - **[is-path-cwd@1.0.0](https://github.com/sindresorhus/is-path-cwd)**
+    - name: is-path-cwd
+    - version: 1.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/is-path-cwd
+ - **[is-path-in-cwd@1.0.1](https://github.com/sindresorhus/is-path-in-cwd)**
+    - name: is-path-in-cwd
+    - version: 1.0.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/is-path-in-cwd
+ - **[is-path-inside@1.0.1](https://github.com/sindresorhus/is-path-inside)**
+    - name: is-path-inside
+    - version: 1.0.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/is-path-inside
+ - **[is-plain-obj@3.0.0](https://github.com/sindresorhus/is-plain-obj)**
+    - name: is-plain-obj
+    - version: 3.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/is-plain-obj
+ - **[is-plain-object@2.0.4](https://github.com/jonschlinkert/is-plain-object)**
+    - name: is-plain-object
+    - version: 2.0.4
+    - licenses: MIT
+    - repository: https://github.com/jonschlinkert/is-plain-object
+ - **[is-plain-object@5.0.0](https://github.com/jonschlinkert/is-plain-object)**
+    - name: is-plain-object
+    - version: 5.0.0
+    - licenses: MIT
+    - repository: https://github.com/jonschlinkert/is-plain-object
+ - **[is-potential-custom-element-name@1.0.1](https://github.com/mathiasbynens/is-potential-custom-element-name)**
+    - name: is-potential-custom-element-name
+    - version: 1.0.1
+    - licenses: MIT
+    - repository: https://github.com/mathiasbynens/is-potential-custom-element-name
+ - **[is-stream@2.0.1](https://github.com/sindresorhus/is-stream)**
+    - name: is-stream
+    - version: 2.0.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/is-stream
+ - **[is-typedarray@1.0.0](https://github.com/hughsk/is-typedarray)**
+    - name: is-typedarray
+    - version: 1.0.0
+    - licenses: MIT
+    - repository: https://github.com/hughsk/is-typedarray
+ - **[is-unicode-supported@0.1.0](https://github.com/sindresorhus/is-unicode-supported)**
+    - name: is-unicode-supported
+    - version: 0.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/is-unicode-supported
+ - **[is-what@3.14.1](https://github.com/mesqueeb/is-what)**
+    - name: is-what
+    - version: 3.14.1
+    - licenses: MIT
+    - repository: https://github.com/mesqueeb/is-what
+ - **[is-wsl@3.1.0](https://github.com/sindresorhus/is-wsl)**
+    - name: is-wsl
+    - version: 3.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/is-wsl
+ - **[isarray@1.0.0](https://github.com/juliangruber/isarray)**
+    - name: isarray
+    - version: 1.0.0
+    - licenses: MIT
+    - repository: https://github.com/juliangruber/isarray
+ - **[isexe@2.0.0](https://github.com/isaacs/isexe)**
+    - name: isexe
+    - version: 2.0.0
+    - licenses: ISC
+    - repository: https://github.com/isaacs/isexe
+ - **[isexe@3.1.1](https://github.com/isaacs/isexe)**
+    - name: isexe
+    - version: 3.1.1
+    - licenses: ISC
+    - repository: https://github.com/isaacs/isexe
+ - **[isobject@3.0.1](https://github.com/jonschlinkert/isobject)**
+    - name: isobject
+    - version: 3.0.1
+    - licenses: MIT
+    - repository: https://github.com/jonschlinkert/isobject
+ - **[isstream@0.1.2](https://github.com/rvagg/isstream)**
+    - name: isstream
+    - version: 0.1.2
+    - licenses: MIT
+    - repository: https://github.com/rvagg/isstream
+ - **[istanbul-lib-coverage@3.2.2](https://github.com/istanbuljs/istanbuljs)**
+    - name: istanbul-lib-coverage
+    - version: 3.2.2
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/istanbuljs/istanbuljs
+ - **[istanbul-lib-instrument@5.2.1](https://github.com/istanbuljs/istanbuljs)**
+    - name: istanbul-lib-instrument
+    - version: 5.2.1
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/istanbuljs/istanbuljs
+ - **[istanbul-lib-instrument@6.0.3](https://github.com/istanbuljs/istanbuljs)**
+    - name: istanbul-lib-instrument
+    - version: 6.0.3
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/istanbuljs/istanbuljs
+ - **[istanbul-lib-report@3.0.1](https://github.com/istanbuljs/istanbuljs)**
+    - name: istanbul-lib-report
+    - version: 3.0.1
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/istanbuljs/istanbuljs
+ - **[istanbul-lib-source-maps@4.0.1](https://github.com/istanbuljs/istanbuljs)**
+    - name: istanbul-lib-source-maps
+    - version: 4.0.1
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/istanbuljs/istanbuljs
+ - **[istanbul-reports@3.1.7](https://github.com/istanbuljs/istanbuljs)**
+    - name: istanbul-reports
+    - version: 3.1.7
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/istanbuljs/istanbuljs
+ - **[jackspeak@3.4.3](https://github.com/isaacs/jackspeak)**
+    - name: jackspeak
+    - version: 3.4.3
+    - licenses: BlueOak-1.0.0
+    - repository: https://github.com/isaacs/jackspeak
+ - **[jasmine-core@2.8.0](https://github.com/jasmine/jasmine)**
+    - name: jasmine-core
+    - version: 2.8.0
+    - licenses: MIT
+    - repository: https://github.com/jasmine/jasmine
+ - **[jasmine@2.8.0](https://github.com/jasmine/jasmine-npm)**
+    - name: jasmine
+    - version: 2.8.0
+    - licenses: MIT
+    - repository: https://github.com/jasmine/jasmine-npm
+ - **[jasminewd2@2.2.0](https://github.com/angular/jasminewd)**
+    - name: jasminewd2
+    - version: 2.2.0
+    - licenses: MIT
+    - repository: https://github.com/angular/jasminewd
+ - **[jeap-error-handling-ui@1.0.0](Repository)**
+    - name: jeap-error-handling-ui
+    - version: 1.0.0
+    - licenses: UNLICENSED
+    - repository: Repository
+ - **[jest-changed-files@29.7.0](https://github.com/jestjs/jest)**
+    - name: jest-changed-files
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest-circus@29.7.0](https://github.com/jestjs/jest)**
+    - name: jest-circus
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest-cli@29.7.0](https://github.com/jestjs/jest)**
+    - name: jest-cli
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest-config@29.7.0](https://github.com/jestjs/jest)**
+    - name: jest-config
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest-diff@29.7.0](https://github.com/jestjs/jest)**
+    - name: jest-diff
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest-docblock@29.7.0](https://github.com/jestjs/jest)**
+    - name: jest-docblock
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest-each@29.7.0](https://github.com/jestjs/jest)**
+    - name: jest-each
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest-environment-jsdom@28.1.3](https://github.com/facebook/jest)**
+    - name: jest-environment-jsdom
+    - version: 28.1.3
+    - licenses: MIT
+    - repository: https://github.com/facebook/jest
+ - **[jest-environment-jsdom@29.7.0](https://github.com/jestjs/jest)**
+    - name: jest-environment-jsdom
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest-environment-node@29.7.0](https://github.com/jestjs/jest)**
+    - name: jest-environment-node
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest-get-type@29.6.3](https://github.com/jestjs/jest)**
+    - name: jest-get-type
+    - version: 29.6.3
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest-haste-map@29.7.0](https://github.com/jestjs/jest)**
+    - name: jest-haste-map
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest-leak-detector@29.7.0](https://github.com/jestjs/jest)**
+    - name: jest-leak-detector
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest-matcher-utils@29.7.0](https://github.com/jestjs/jest)**
+    - name: jest-matcher-utils
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest-message-util@28.1.3](https://github.com/facebook/jest)**
+    - name: jest-message-util
+    - version: 28.1.3
+    - licenses: MIT
+    - repository: https://github.com/facebook/jest
+ - **[jest-message-util@29.7.0](https://github.com/jestjs/jest)**
+    - name: jest-message-util
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest-mock@28.1.3](https://github.com/facebook/jest)**
+    - name: jest-mock
+    - version: 28.1.3
+    - licenses: MIT
+    - repository: https://github.com/facebook/jest
+ - **[jest-mock@29.7.0](https://github.com/jestjs/jest)**
+    - name: jest-mock
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest-pnp-resolver@1.2.3](https://github.com/arcanis/jest-pnp-resolver)**
+    - name: jest-pnp-resolver
+    - version: 1.2.3
+    - licenses: MIT
+    - repository: https://github.com/arcanis/jest-pnp-resolver
+ - **[jest-preset-angular@12.2.6](https://github.com/thymikee/jest-preset-angular)**
+    - name: jest-preset-angular
+    - version: 12.2.6
+    - licenses: MIT
+    - repository: https://github.com/thymikee/jest-preset-angular
+ - **[jest-preset-angular@14.0.3](https://github.com/thymikee/jest-preset-angular)**
+    - name: jest-preset-angular
+    - version: 14.0.3
+    - licenses: MIT
+    - repository: https://github.com/thymikee/jest-preset-angular
+ - **[jest-regex-util@29.6.3](https://github.com/jestjs/jest)**
+    - name: jest-regex-util
+    - version: 29.6.3
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest-resolve-dependencies@29.7.0](https://github.com/jestjs/jest)**
+    - name: jest-resolve-dependencies
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest-resolve@29.7.0](https://github.com/jestjs/jest)**
+    - name: jest-resolve
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest-runner@29.7.0](https://github.com/jestjs/jest)**
+    - name: jest-runner
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest-runtime@29.7.0](https://github.com/jestjs/jest)**
+    - name: jest-runtime
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest-snapshot@29.7.0](https://github.com/jestjs/jest)**
+    - name: jest-snapshot
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest-sonar-reporter@2.0.0](https://github.com/3dmind/jest-sonar-reporter)**
+    - name: jest-sonar-reporter
+    - version: 2.0.0
+    - licenses: MIT
+    - repository: https://github.com/3dmind/jest-sonar-reporter
+ - **[jest-util@28.1.3](https://github.com/facebook/jest)**
+    - name: jest-util
+    - version: 28.1.3
+    - licenses: MIT
+    - repository: https://github.com/facebook/jest
+ - **[jest-util@29.7.0](https://github.com/jestjs/jest)**
+    - name: jest-util
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest-validate@29.7.0](https://github.com/jestjs/jest)**
+    - name: jest-validate
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest-watcher@29.7.0](https://github.com/jestjs/jest)**
+    - name: jest-watcher
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest-worker@27.5.1](https://github.com/facebook/jest)**
+    - name: jest-worker
+    - version: 27.5.1
+    - licenses: MIT
+    - repository: https://github.com/facebook/jest
+ - **[jest-worker@29.7.0](https://github.com/jestjs/jest)**
+    - name: jest-worker
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jest@29.7.0](https://github.com/jestjs/jest)**
+    - name: jest
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[jiti@1.21.7](https://github.com/unjs/jiti)**
+    - name: jiti
+    - version: 1.21.7
+    - licenses: MIT
+    - repository: https://github.com/unjs/jiti
+ - **[js-cookie@3.0.5](https://github.com/js-cookie/js-cookie)**
+    - name: js-cookie
+    - version: 3.0.5
+    - licenses: MIT
+    - repository: https://github.com/js-cookie/js-cookie
+ - **[js-tokens@4.0.0](https://github.com/lydell/js-tokens)**
+    - name: js-tokens
+    - version: 4.0.0
+    - licenses: MIT
+    - repository: https://github.com/lydell/js-tokens
+ - **[js-yaml@3.14.1](https://github.com/nodeca/js-yaml)**
+    - name: js-yaml
+    - version: 3.14.1
+    - licenses: MIT
+    - repository: https://github.com/nodeca/js-yaml
+ - **[js-yaml@4.1.0](https://github.com/nodeca/js-yaml)**
+    - name: js-yaml
+    - version: 4.1.0
+    - licenses: MIT
+    - repository: https://github.com/nodeca/js-yaml
+ - **[jsbn@0.1.1](https://github.com/andyperlitch/jsbn)**
+    - name: jsbn
+    - version: 0.1.1
+    - licenses: MIT
+    - repository: https://github.com/andyperlitch/jsbn
+ - **[jsbn@1.1.0](https://github.com/andyperlitch/jsbn)**
+    - name: jsbn
+    - version: 1.1.0
+    - licenses: MIT
+    - repository: https://github.com/andyperlitch/jsbn
+ - **[jsdom@19.0.0](https://github.com/jsdom/jsdom)**
+    - name: jsdom
+    - version: 19.0.0
+    - licenses: MIT
+    - repository: https://github.com/jsdom/jsdom
+ - **[jsdom@20.0.3](https://github.com/jsdom/jsdom)**
+    - name: jsdom
+    - version: 20.0.3
+    - licenses: MIT
+    - repository: https://github.com/jsdom/jsdom
+ - **[jsesc@2.5.2](https://github.com/mathiasbynens/jsesc)**
+    - name: jsesc
+    - version: 2.5.2
+    - licenses: MIT
+    - repository: https://github.com/mathiasbynens/jsesc
+ - **[jsesc@3.0.2](https://github.com/mathiasbynens/jsesc)**
+    - name: jsesc
+    - version: 3.0.2
+    - licenses: MIT
+    - repository: https://github.com/mathiasbynens/jsesc
+ - **[jsesc@3.1.0](https://github.com/mathiasbynens/jsesc)**
+    - name: jsesc
+    - version: 3.1.0
+    - licenses: MIT
+    - repository: https://github.com/mathiasbynens/jsesc
+ - **[json-parse-even-better-errors@2.3.1](https://github.com/npm/json-parse-even-better-errors)**
+    - name: json-parse-even-better-errors
+    - version: 2.3.1
+    - licenses: MIT
+    - repository: https://github.com/npm/json-parse-even-better-errors
+ - **[json-parse-even-better-errors@3.0.2](https://github.com/npm/json-parse-even-better-errors)**
+    - name: json-parse-even-better-errors
+    - version: 3.0.2
+    - licenses: MIT
+    - repository: https://github.com/npm/json-parse-even-better-errors
+ - **[json-schema-traverse@0.4.1](https://github.com/epoberezkin/json-schema-traverse)**
+    - name: json-schema-traverse
+    - version: 0.4.1
+    - licenses: MIT
+    - repository: https://github.com/epoberezkin/json-schema-traverse
+ - **[json-schema-traverse@1.0.0](https://github.com/epoberezkin/json-schema-traverse)**
+    - name: json-schema-traverse
+    - version: 1.0.0
+    - licenses: MIT
+    - repository: https://github.com/epoberezkin/json-schema-traverse
+ - **[json-schema@0.4.0](https://github.com/kriszyp/json-schema)**
+    - name: json-schema
+    - version: 0.4.0
+    - licenses: (AFL-2.1 OR BSD-3-Clause)
+    - repository: https://github.com/kriszyp/json-schema
+ - **[json-stringify-safe@5.0.1](https://github.com/isaacs/json-stringify-safe)**
+    - name: json-stringify-safe
+    - version: 5.0.1
+    - licenses: ISC
+    - repository: https://github.com/isaacs/json-stringify-safe
+ - **[json5@2.2.3](https://github.com/json5/json5)**
+    - name: json5
+    - version: 2.2.3
+    - licenses: MIT
+    - repository: https://github.com/json5/json5
+ - **[jsonc-parser@3.2.1](https://github.com/microsoft/node-jsonc-parser)**
+    - name: jsonc-parser
+    - version: 3.2.1
+    - licenses: MIT
+    - repository: https://github.com/microsoft/node-jsonc-parser
+ - **[jsonc-parser@3.3.1](https://github.com/microsoft/node-jsonc-parser)**
+    - name: jsonc-parser
+    - version: 3.3.1
+    - licenses: MIT
+    - repository: https://github.com/microsoft/node-jsonc-parser
+ - **[jsonparse@1.3.1](https://github.com/creationix/jsonparse)**
+    - name: jsonparse
+    - version: 1.3.1
+    - licenses: MIT
+    - repository: https://github.com/creationix/jsonparse
+ - **[jsprim@1.4.2](https://github.com/joyent/node-jsprim)**
+    - name: jsprim
+    - version: 1.4.2
+    - licenses: MIT
+    - repository: https://github.com/joyent/node-jsprim
+ - **[jszip@3.10.1](https://github.com/Stuk/jszip)**
+    - name: jszip
+    - version: 3.10.1
+    - licenses: (MIT OR GPL-3.0-or-later)
+    - repository: https://github.com/Stuk/jszip
+ - **[jwt-decode@4.0.0](https://github.com/auth0/jwt-decode)**
+    - name: jwt-decode
+    - version: 4.0.0
+    - licenses: MIT
+    - repository: https://github.com/auth0/jwt-decode
+ - **[karma-source-map-support@1.4.0](https://github.com/tschaub/karma-source-map-support)**
+    - name: karma-source-map-support
+    - version: 1.4.0
+    - licenses: MIT
+    - repository: https://github.com/tschaub/karma-source-map-support
+ - **[kind-of@6.0.3](https://github.com/jonschlinkert/kind-of)**
+    - name: kind-of
+    - version: 6.0.3
+    - licenses: MIT
+    - repository: https://github.com/jonschlinkert/kind-of
+ - **[kleur@3.0.3](https://github.com/lukeed/kleur)**
+    - name: kleur
+    - version: 3.0.3
+    - licenses: MIT
+    - repository: https://github.com/lukeed/kleur
+ - **[launch-editor@2.9.1](https://github.com/yyx990803/launch-editor)**
+    - name: launch-editor
+    - version: 2.9.1
+    - licenses: MIT
+    - repository: https://github.com/yyx990803/launch-editor
+ - **[less-loader@12.2.0](https://github.com/webpack-contrib/less-loader)**
+    - name: less-loader
+    - version: 12.2.0
+    - licenses: MIT
+    - repository: https://github.com/webpack-contrib/less-loader
+ - **[less@4.2.0](https://github.com/less/less.js)**
+    - name: less
+    - version: 4.2.0
+    - licenses: Apache-2.0
+    - repository: https://github.com/less/less.js
+ - **[leven@3.1.0](https://github.com/sindresorhus/leven)**
+    - name: leven
+    - version: 3.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/leven
+ - **[license-checker@25.0.1](https://github.com/davglass/license-checker)**
+    - name: license-checker
+    - version: 25.0.1
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/davglass/license-checker
+ - **[license-checker@8.0.4](https://github.com/davglass/license-checker)**
+    - name: license-checker
+    - version: 8.0.4
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/davglass/license-checker
+ - **[license-webpack-plugin@4.0.2](https://github.com/xz64/license-webpack-plugin)**
+    - name: license-webpack-plugin
+    - version: 4.0.2
+    - licenses: ISC
+    - repository: https://github.com/xz64/license-webpack-plugin
+ - **[lie@3.3.0](https://github.com/calvinmetcalf/lie)**
+    - name: lie
+    - version: 3.3.0
+    - licenses: MIT
+    - repository: https://github.com/calvinmetcalf/lie
+ - **[lines-and-columns@1.2.4](https://github.com/eventualbuddha/lines-and-columns)**
+    - name: lines-and-columns
+    - version: 1.2.4
+    - licenses: MIT
+    - repository: https://github.com/eventualbuddha/lines-and-columns
+ - **[listr2@8.2.4](https://github.com/listr2/listr2)**
+    - name: listr2
+    - version: 8.2.4
+    - licenses: MIT
+    - repository: https://github.com/listr2/listr2
+ - **[lmdb@3.0.13](https://github.com/kriszyp/lmdb-js)**
+    - name: lmdb
+    - version: 3.0.13
+    - licenses: MIT
+    - repository: https://github.com/kriszyp/lmdb-js
+ - **[loader-runner@4.3.0](https://github.com/webpack/loader-runner)**
+    - name: loader-runner
+    - version: 4.3.0
+    - licenses: MIT
+    - repository: https://github.com/webpack/loader-runner
+ - **[loader-utils@2.0.4](https://github.com/webpack/loader-utils)**
+    - name: loader-utils
+    - version: 2.0.4
+    - licenses: MIT
+    - repository: https://github.com/webpack/loader-utils
+ - **[loader-utils@3.3.1](https://github.com/webpack/loader-utils)**
+    - name: loader-utils
+    - version: 3.3.1
+    - licenses: MIT
+    - repository: https://github.com/webpack/loader-utils
+ - **[locate-path@5.0.0](https://github.com/sindresorhus/locate-path)**
+    - name: locate-path
+    - version: 5.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/locate-path
+ - **[locate-path@7.2.0](https://github.com/sindresorhus/locate-path)**
+    - name: locate-path
+    - version: 7.2.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/locate-path
+ - **[lodash.debounce@4.0.8](https://github.com/lodash/lodash)**
+    - name: lodash.debounce
+    - version: 4.0.8
+    - licenses: MIT
+    - repository: https://github.com/lodash/lodash
+ - **[lodash.memoize@4.1.2](https://github.com/lodash/lodash)**
+    - name: lodash.memoize
+    - version: 4.1.2
+    - licenses: MIT
+    - repository: https://github.com/lodash/lodash
+ - **[lodash@4.17.21](https://github.com/lodash/lodash)**
+    - name: lodash
+    - version: 4.17.21
+    - licenses: MIT
+    - repository: https://github.com/lodash/lodash
+ - **[log-symbols@4.1.0](https://github.com/sindresorhus/log-symbols)**
+    - name: log-symbols
+    - version: 4.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/log-symbols
+ - **[log-update@6.1.0](https://github.com/sindresorhus/log-update)**
+    - name: log-update
+    - version: 6.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/log-update
+ - **[lru-cache@10.4.3](https://github.com/isaacs/node-lru-cache)**
+    - name: lru-cache
+    - version: 10.4.3
+    - licenses: ISC
+    - repository: https://github.com/isaacs/node-lru-cache
+ - **[lru-cache@5.1.1](https://github.com/isaacs/node-lru-cache)**
+    - name: lru-cache
+    - version: 5.1.1
+    - licenses: ISC
+    - repository: https://github.com/isaacs/node-lru-cache
+ - **[magic-string@0.30.11](https://github.com/rich-harris/magic-string)**
+    - name: magic-string
+    - version: 0.30.11
+    - licenses: MIT
+    - repository: https://github.com/rich-harris/magic-string
+ - **[make-dir@2.1.0](https://github.com/sindresorhus/make-dir)**
+    - name: make-dir
+    - version: 2.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/make-dir
+ - **[make-dir@4.0.0](https://github.com/sindresorhus/make-dir)**
+    - name: make-dir
+    - version: 4.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/make-dir
+ - **[make-error@1.3.6](https://github.com/JsCommunity/make-error)**
+    - name: make-error
+    - version: 1.3.6
+    - licenses: ISC
+    - repository: https://github.com/JsCommunity/make-error
+ - **[make-fetch-happen@13.0.1](https://github.com/npm/make-fetch-happen)**
+    - name: make-fetch-happen
+    - version: 13.0.1
+    - licenses: ISC
+    - repository: https://github.com/npm/make-fetch-happen
+ - **[makeerror@1.0.12](https://github.com/daaku/nodejs-makeerror)**
+    - name: makeerror
+    - version: 1.0.12
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/daaku/nodejs-makeerror
+ - **[math-intrinsics@1.1.0](https://github.com/es-shims/math-intrinsics)**
+    - name: math-intrinsics
+    - version: 1.1.0
+    - licenses: MIT
+    - repository: https://github.com/es-shims/math-intrinsics
+ - **[media-typer@0.3.0](https://github.com/jshttp/media-typer)**
+    - name: media-typer
+    - version: 0.3.0
+    - licenses: MIT
+    - repository: https://github.com/jshttp/media-typer
+ - **[memfs@4.17.0](https://github.com/streamich/memfs)**
+    - name: memfs
+    - version: 4.17.0
+    - licenses: Apache-2.0
+    - repository: https://github.com/streamich/memfs
+ - **[meow@13.2.0](https://github.com/sindresorhus/meow)**
+    - name: meow
+    - version: 13.2.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/meow
+ - **[merge-descriptors@1.0.3](https://github.com/sindresorhus/merge-descriptors)**
+    - name: merge-descriptors
+    - version: 1.0.3
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/merge-descriptors
+ - **[merge-stream@2.0.0](https://github.com/grncdr/merge-stream)**
+    - name: merge-stream
+    - version: 2.0.0
+    - licenses: MIT
+    - repository: https://github.com/grncdr/merge-stream
+ - **[merge2@1.4.1](https://github.com/teambition/merge2)**
+    - name: merge2
+    - version: 1.4.1
+    - licenses: MIT
+    - repository: https://github.com/teambition/merge2
+ - **[methods@1.1.2](https://github.com/jshttp/methods)**
+    - name: methods
+    - version: 1.1.2
+    - licenses: MIT
+    - repository: https://github.com/jshttp/methods
+ - **[micromatch@4.0.8](https://github.com/micromatch/micromatch)**
+    - name: micromatch
+    - version: 4.0.8
+    - licenses: MIT
+    - repository: https://github.com/micromatch/micromatch
+ - **[mime-db@1.52.0](https://github.com/jshttp/mime-db)**
+    - name: mime-db
+    - version: 1.52.0
+    - licenses: MIT
+    - repository: https://github.com/jshttp/mime-db
+ - **[mime-types@2.1.35](https://github.com/jshttp/mime-types)**
+    - name: mime-types
+    - version: 2.1.35
+    - licenses: MIT
+    - repository: https://github.com/jshttp/mime-types
+ - **[mime@1.6.0](https://github.com/broofa/node-mime)**
+    - name: mime
+    - version: 1.6.0
+    - licenses: MIT
+    - repository: https://github.com/broofa/node-mime
+ - **[mimic-fn@2.1.0](https://github.com/sindresorhus/mimic-fn)**
+    - name: mimic-fn
+    - version: 2.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/mimic-fn
+ - **[mimic-function@5.0.1](https://github.com/sindresorhus/mimic-function)**
+    - name: mimic-function
+    - version: 5.0.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/mimic-function
+ - **[mini-css-extract-plugin@2.9.0](https://github.com/webpack-contrib/mini-css-extract-plugin)**
+    - name: mini-css-extract-plugin
+    - version: 2.9.0
+    - licenses: MIT
+    - repository: https://github.com/webpack-contrib/mini-css-extract-plugin
+ - **[minimalistic-assert@1.0.1](https://github.com/calvinmetcalf/minimalistic-assert)**
+    - name: minimalistic-assert
+    - version: 1.0.1
+    - licenses: ISC
+    - repository: https://github.com/calvinmetcalf/minimalistic-assert
+ - **[minimatch@3.1.2](https://github.com/isaacs/minimatch)**
+    - name: minimatch
+    - version: 3.1.2
+    - licenses: ISC
+    - repository: https://github.com/isaacs/minimatch
+ - **[minimatch@9.0.5](https://github.com/isaacs/minimatch)**
+    - name: minimatch
+    - version: 9.0.5
+    - licenses: ISC
+    - repository: https://github.com/isaacs/minimatch
+ - **[minimist@1.2.8](https://github.com/minimistjs/minimist)**
+    - name: minimist
+    - version: 1.2.8
+    - licenses: MIT
+    - repository: https://github.com/minimistjs/minimist
+ - **[minipass-collect@2.0.1](https://github.com/isaacs/minipass-collect)**
+    - name: minipass-collect
+    - version: 2.0.1
+    - licenses: ISC
+    - repository: https://github.com/isaacs/minipass-collect
+ - **[minipass-fetch@3.0.5](https://github.com/npm/minipass-fetch)**
+    - name: minipass-fetch
+    - version: 3.0.5
+    - licenses: MIT
+    - repository: https://github.com/npm/minipass-fetch
+ - **[minipass-flush@1.0.5](https://github.com/isaacs/minipass-flush)**
+    - name: minipass-flush
+    - version: 1.0.5
+    - licenses: ISC
+    - repository: https://github.com/isaacs/minipass-flush
+ - **[minipass-pipeline@1.2.4](Repository)**
+    - name: minipass-pipeline
+    - version: 1.2.4
+    - licenses: ISC
+    - repository: Repository
+ - **[minipass-sized@1.0.3](https://github.com/isaacs/minipass-sized)**
+    - name: minipass-sized
+    - version: 1.0.3
+    - licenses: ISC
+    - repository: https://github.com/isaacs/minipass-sized
+ - **[minipass@3.3.6](https://github.com/isaacs/minipass)**
+    - name: minipass
+    - version: 3.3.6
+    - licenses: ISC
+    - repository: https://github.com/isaacs/minipass
+ - **[minipass@5.0.0](https://github.com/isaacs/minipass)**
+    - name: minipass
+    - version: 5.0.0
+    - licenses: ISC
+    - repository: https://github.com/isaacs/minipass
+ - **[minipass@7.1.2](https://github.com/isaacs/minipass)**
+    - name: minipass
+    - version: 7.1.2
+    - licenses: ISC
+    - repository: https://github.com/isaacs/minipass
+ - **[minizlib@2.1.2](https://github.com/isaacs/minizlib)**
+    - name: minizlib
+    - version: 2.1.2
+    - licenses: MIT
+    - repository: https://github.com/isaacs/minizlib
+ - **[mkdirp@0.3.5](https://github.com/substack/node-mkdirp)**
+    - name: mkdirp
+    - version: 0.3.5
+    - licenses: MIT
+    - repository: https://github.com/substack/node-mkdirp
+ - **[mkdirp@0.5.6](https://github.com/substack/node-mkdirp)**
+    - name: mkdirp
+    - version: 0.5.6
+    - licenses: MIT
+    - repository: https://github.com/substack/node-mkdirp
+ - **[mkdirp@1.0.4](https://github.com/isaacs/node-mkdirp)**
+    - name: mkdirp
+    - version: 1.0.4
+    - licenses: MIT
+    - repository: https://github.com/isaacs/node-mkdirp
+ - **[mrmime@2.0.0](https://github.com/lukeed/mrmime)**
+    - name: mrmime
+    - version: 2.0.0
+    - licenses: MIT
+    - repository: https://github.com/lukeed/mrmime
+ - **[ms@2.0.0](https://github.com/zeit/ms)**
+    - name: ms
+    - version: 2.0.0
+    - licenses: MIT
+    - repository: https://github.com/zeit/ms
+ - **[ms@2.1.3](https://github.com/vercel/ms)**
+    - name: ms
+    - version: 2.1.3
+    - licenses: MIT
+    - repository: https://github.com/vercel/ms
+ - **[msgpackr-extract@3.0.3](https://github.com/kriszyp/msgpackr-extract)**
+    - name: msgpackr-extract
+    - version: 3.0.3
+    - licenses: MIT
+    - repository: https://github.com/kriszyp/msgpackr-extract
+ - **[msgpackr@1.11.2](https://github.com/kriszyp/msgpackr)**
+    - name: msgpackr
+    - version: 1.11.2
+    - licenses: MIT
+    - repository: https://github.com/kriszyp/msgpackr
+ - **[multicast-dns@7.2.5](https://github.com/mafintosh/multicast-dns)**
+    - name: multicast-dns
+    - version: 7.2.5
+    - licenses: MIT
+    - repository: https://github.com/mafintosh/multicast-dns
+ - **[mute-stream@1.0.0](https://github.com/npm/mute-stream)**
+    - name: mute-stream
+    - version: 1.0.0
+    - licenses: ISC
+    - repository: https://github.com/npm/mute-stream
+ - **[nanoid@3.3.8](https://github.com/ai/nanoid)**
+    - name: nanoid
+    - version: 3.3.8
+    - licenses: MIT
+    - repository: https://github.com/ai/nanoid
+ - **[natural-compare@1.4.0](https://github.com/litejs/natural-compare-lite)**
+    - name: natural-compare
+    - version: 1.4.0
+    - licenses: MIT
+    - repository: https://github.com/litejs/natural-compare-lite
+ - **[needle@3.3.1](https://github.com/tomas/needle)**
+    - name: needle
+    - version: 3.3.1
+    - licenses: MIT
+    - repository: https://github.com/tomas/needle
+ - **[negotiator@0.6.3](https://github.com/jshttp/negotiator)**
+    - name: negotiator
+    - version: 0.6.3
+    - licenses: MIT
+    - repository: https://github.com/jshttp/negotiator
+ - **[negotiator@0.6.4](https://github.com/jshttp/negotiator)**
+    - name: negotiator
+    - version: 0.6.4
+    - licenses: MIT
+    - repository: https://github.com/jshttp/negotiator
+ - **[neo-async@2.6.2](https://github.com/suguru03/neo-async)**
+    - name: neo-async
+    - version: 2.6.2
+    - licenses: MIT
+    - repository: https://github.com/suguru03/neo-async
+ - **[nice-napi@1.0.2](https://github.com/addaleax/nice-napi)**
+    - name: nice-napi
+    - version: 1.0.2
+    - licenses: MIT
+    - repository: https://github.com/addaleax/nice-napi
+ - **[node-addon-api@3.2.1](https://github.com/nodejs/node-addon-api)**
+    - name: node-addon-api
+    - version: 3.2.1
+    - licenses: MIT
+    - repository: https://github.com/nodejs/node-addon-api
+ - **[node-addon-api@6.1.0](https://github.com/nodejs/node-addon-api)**
+    - name: node-addon-api
+    - version: 6.1.0
+    - licenses: MIT
+    - repository: https://github.com/nodejs/node-addon-api
+ - **[node-addon-api@7.1.1](https://github.com/nodejs/node-addon-api)**
+    - name: node-addon-api
+    - version: 7.1.1
+    - licenses: MIT
+    - repository: https://github.com/nodejs/node-addon-api
+ - **[node-forge@1.3.1](https://github.com/digitalbazaar/forge)**
+    - name: node-forge
+    - version: 1.3.1
+    - licenses: (BSD-3-Clause OR GPL-2.0)
+    - repository: https://github.com/digitalbazaar/forge
+ - **[node-gyp-build-optional-packages@5.2.2](https://github.com/prebuild/node-gyp-build)**
+    - name: node-gyp-build-optional-packages
+    - version: 5.2.2
+    - licenses: MIT
+    - repository: https://github.com/prebuild/node-gyp-build
+ - **[node-gyp-build@4.8.4](https://github.com/prebuild/node-gyp-build)**
+    - name: node-gyp-build
+    - version: 4.8.4
+    - licenses: MIT
+    - repository: https://github.com/prebuild/node-gyp-build
+ - **[node-gyp@10.3.1](https://github.com/nodejs/node-gyp)**
+    - name: node-gyp
+    - version: 10.3.1
+    - licenses: MIT
+    - repository: https://github.com/nodejs/node-gyp
+ - **[node-int64@0.4.0](https://github.com/broofa/node-int64)**
+    - name: node-int64
+    - version: 0.4.0
+    - licenses: MIT
+    - repository: https://github.com/broofa/node-int64
+ - **[node-releases@2.0.19](https://github.com/chicoxyzzy/node-releases)**
+    - name: node-releases
+    - version: 2.0.19
+    - licenses: MIT
+    - repository: https://github.com/chicoxyzzy/node-releases
+ - **[nopt@2.2.1](https://github.com/isaacs/nopt)**
+    - name: nopt
+    - version: 2.2.1
+    - licenses: MIT
+    - repository: https://github.com/isaacs/nopt
+ - **[nopt@4.0.3](https://github.com/npm/nopt)**
+    - name: nopt
+    - version: 4.0.3
+    - licenses: ISC
+    - repository: https://github.com/npm/nopt
+ - **[nopt@7.2.1](https://github.com/npm/nopt)**
+    - name: nopt
+    - version: 7.2.1
+    - licenses: ISC
+    - repository: https://github.com/npm/nopt
+ - **[normalize-package-data@2.5.0](https://github.com/npm/normalize-package-data)**
+    - name: normalize-package-data
+    - version: 2.5.0
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/npm/normalize-package-data
+ - **[normalize-package-data@6.0.2](https://github.com/npm/normalize-package-data)**
+    - name: normalize-package-data
+    - version: 6.0.2
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/npm/normalize-package-data
+ - **[normalize-path@3.0.0](https://github.com/jonschlinkert/normalize-path)**
+    - name: normalize-path
+    - version: 3.0.0
+    - licenses: MIT
+    - repository: https://github.com/jonschlinkert/normalize-path
+ - **[normalize-range@0.1.2](https://github.com/jamestalmage/normalize-range)**
+    - name: normalize-range
+    - version: 0.1.2
+    - licenses: MIT
+    - repository: https://github.com/jamestalmage/normalize-range
+ - **[npm-bundled@3.0.1](https://github.com/npm/npm-bundled)**
+    - name: npm-bundled
+    - version: 3.0.1
+    - licenses: ISC
+    - repository: https://github.com/npm/npm-bundled
+ - **[npm-install-checks@6.3.0](https://github.com/npm/npm-install-checks)**
+    - name: npm-install-checks
+    - version: 6.3.0
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/npm/npm-install-checks
+ - **[npm-normalize-package-bin@1.0.1](https://github.com/npm/npm-normalize-package-bin)**
+    - name: npm-normalize-package-bin
+    - version: 1.0.1
+    - licenses: ISC
+    - repository: https://github.com/npm/npm-normalize-package-bin
+ - **[npm-normalize-package-bin@3.0.1](https://github.com/npm/npm-normalize-package-bin)**
+    - name: npm-normalize-package-bin
+    - version: 3.0.1
+    - licenses: ISC
+    - repository: https://github.com/npm/npm-normalize-package-bin
+ - **[npm-package-arg@11.0.3](https://github.com/npm/npm-package-arg)**
+    - name: npm-package-arg
+    - version: 11.0.3
+    - licenses: ISC
+    - repository: https://github.com/npm/npm-package-arg
+ - **[npm-packlist@8.0.2](https://github.com/npm/npm-packlist)**
+    - name: npm-packlist
+    - version: 8.0.2
+    - licenses: ISC
+    - repository: https://github.com/npm/npm-packlist
+ - **[npm-pick-manifest@9.1.0](https://github.com/npm/npm-pick-manifest)**
+    - name: npm-pick-manifest
+    - version: 9.1.0
+    - licenses: ISC
+    - repository: https://github.com/npm/npm-pick-manifest
+ - **[npm-registry-fetch@17.1.0](https://github.com/npm/npm-registry-fetch)**
+    - name: npm-registry-fetch
+    - version: 17.1.0
+    - licenses: ISC
+    - repository: https://github.com/npm/npm-registry-fetch
+ - **[npm-run-path@4.0.1](https://github.com/sindresorhus/npm-run-path)**
+    - name: npm-run-path
+    - version: 4.0.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/npm-run-path
+ - **[nth-check@2.1.1](https://github.com/fb55/nth-check)**
+    - name: nth-check
+    - version: 2.1.1
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/fb55/nth-check
+ - **[nwsapi@2.2.16](https://github.com/dperini/nwsapi)**
+    - name: nwsapi
+    - version: 2.2.16
+    - licenses: MIT
+    - repository: https://github.com/dperini/nwsapi
+ - **[oauth-sign@0.9.0](https://github.com/mikeal/oauth-sign)**
+    - name: oauth-sign
+    - version: 0.9.0
+    - licenses: Apache-2.0
+    - repository: https://github.com/mikeal/oauth-sign
+ - **[object-assign@4.1.1](https://github.com/sindresorhus/object-assign)**
+    - name: object-assign
+    - version: 4.1.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/object-assign
+ - **[object-inspect@1.13.3](https://github.com/inspect-js/object-inspect)**
+    - name: object-inspect
+    - version: 1.13.3
+    - licenses: MIT
+    - repository: https://github.com/inspect-js/object-inspect
+ - **[obuf@1.1.2](https://github.com/indutny/offset-buffer)**
+    - name: obuf
+    - version: 1.1.2
+    - licenses: MIT
+    - repository: https://github.com/indutny/offset-buffer
+ - **[on-finished@2.4.1](https://github.com/jshttp/on-finished)**
+    - name: on-finished
+    - version: 2.4.1
+    - licenses: MIT
+    - repository: https://github.com/jshttp/on-finished
+ - **[on-headers@1.0.2](https://github.com/jshttp/on-headers)**
+    - name: on-headers
+    - version: 1.0.2
+    - licenses: MIT
+    - repository: https://github.com/jshttp/on-headers
+ - **[once@1.4.0](https://github.com/isaacs/once)**
+    - name: once
+    - version: 1.4.0
+    - licenses: ISC
+    - repository: https://github.com/isaacs/once
+ - **[onetime@5.1.2](https://github.com/sindresorhus/onetime)**
+    - name: onetime
+    - version: 5.1.2
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/onetime
+ - **[onetime@7.0.0](https://github.com/sindresorhus/onetime)**
+    - name: onetime
+    - version: 7.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/onetime
+ - **[open@10.1.0](https://github.com/sindresorhus/open)**
+    - name: open
+    - version: 10.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/open
+ - **[ora@5.4.1](https://github.com/sindresorhus/ora)**
+    - name: ora
+    - version: 5.4.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/ora
+ - **[ordered-binary@1.5.3](https://github.com/kriszyp/ordered-binary)**
+    - name: ordered-binary
+    - version: 1.5.3
+    - licenses: MIT
+    - repository: https://github.com/kriszyp/ordered-binary
+ - **[os-homedir@1.0.2](https://github.com/sindresorhus/os-homedir)**
+    - name: os-homedir
+    - version: 1.0.2
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/os-homedir
+ - **[os-tmpdir@1.0.2](https://github.com/sindresorhus/os-tmpdir)**
+    - name: os-tmpdir
+    - version: 1.0.2
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/os-tmpdir
+ - **[osenv@0.1.5](https://github.com/npm/osenv)**
+    - name: osenv
+    - version: 0.1.5
+    - licenses: ISC
+    - repository: https://github.com/npm/osenv
+ - **[p-limit@2.3.0](https://github.com/sindresorhus/p-limit)**
+    - name: p-limit
+    - version: 2.3.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/p-limit
+ - **[p-limit@3.1.0](https://github.com/sindresorhus/p-limit)**
+    - name: p-limit
+    - version: 3.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/p-limit
+ - **[p-limit@4.0.0](https://github.com/sindresorhus/p-limit)**
+    - name: p-limit
+    - version: 4.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/p-limit
+ - **[p-locate@4.1.0](https://github.com/sindresorhus/p-locate)**
+    - name: p-locate
+    - version: 4.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/p-locate
+ - **[p-locate@6.0.0](https://github.com/sindresorhus/p-locate)**
+    - name: p-locate
+    - version: 6.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/p-locate
+ - **[p-map@4.0.0](https://github.com/sindresorhus/p-map)**
+    - name: p-map
+    - version: 4.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/p-map
+ - **[p-retry@6.2.1](https://github.com/sindresorhus/p-retry)**
+    - name: p-retry
+    - version: 6.2.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/p-retry
+ - **[p-try@2.2.0](https://github.com/sindresorhus/p-try)**
+    - name: p-try
+    - version: 2.2.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/p-try
+ - **[package-json-from-dist@1.0.1](https://github.com/isaacs/package-json-from-dist)**
+    - name: package-json-from-dist
+    - version: 1.0.1
+    - licenses: BlueOak-1.0.0
+    - repository: https://github.com/isaacs/package-json-from-dist
+ - **[pacote@18.0.6](https://github.com/npm/pacote)**
+    - name: pacote
+    - version: 18.0.6
+    - licenses: ISC
+    - repository: https://github.com/npm/pacote
+ - **[pako@1.0.11](https://github.com/nodeca/pako)**
+    - name: pako
+    - version: 1.0.11
+    - licenses: (MIT AND Zlib)
+    - repository: https://github.com/nodeca/pako
+ - **[parent-module@1.0.1](https://github.com/sindresorhus/parent-module)**
+    - name: parent-module
+    - version: 1.0.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/parent-module
+ - **[parse-json@5.2.0](https://github.com/sindresorhus/parse-json)**
+    - name: parse-json
+    - version: 5.2.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/parse-json
+ - **[parse-json@8.1.0](https://github.com/sindresorhus/parse-json)**
+    - name: parse-json
+    - version: 8.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/parse-json
+ - **[parse-node-version@1.0.1](https://github.com/gulpjs/parse-node-version)**
+    - name: parse-node-version
+    - version: 1.0.1
+    - licenses: MIT
+    - repository: https://github.com/gulpjs/parse-node-version
+ - **[parse5-html-rewriting-stream@7.0.0](https://github.com/inikulin/parse5)**
+    - name: parse5-html-rewriting-stream
+    - version: 7.0.0
+    - licenses: MIT
+    - repository: https://github.com/inikulin/parse5
+ - **[parse5-sax-parser@7.0.0](https://github.com/inikulin/parse5)**
+    - name: parse5-sax-parser
+    - version: 7.0.0
+    - licenses: MIT
+    - repository: https://github.com/inikulin/parse5
+ - **[parse5@6.0.1](https://github.com/inikulin/parse5)**
+    - name: parse5
+    - version: 6.0.1
+    - licenses: MIT
+    - repository: https://github.com/inikulin/parse5
+ - **[parse5@7.2.1](https://github.com/inikulin/parse5)**
+    - name: parse5
+    - version: 7.2.1
+    - licenses: MIT
+    - repository: https://github.com/inikulin/parse5
+ - **[parseurl@1.3.3](https://github.com/pillarjs/parseurl)**
+    - name: parseurl
+    - version: 1.3.3
+    - licenses: MIT
+    - repository: https://github.com/pillarjs/parseurl
+ - **[path-exists@4.0.0](https://github.com/sindresorhus/path-exists)**
+    - name: path-exists
+    - version: 4.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/path-exists
+ - **[path-exists@5.0.0](https://github.com/sindresorhus/path-exists)**
+    - name: path-exists
+    - version: 5.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/path-exists
+ - **[path-is-absolute@1.0.1](https://github.com/sindresorhus/path-is-absolute)**
+    - name: path-is-absolute
+    - version: 1.0.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/path-is-absolute
+ - **[path-is-inside@1.0.2](https://github.com/domenic/path-is-inside)**
+    - name: path-is-inside
+    - version: 1.0.2
+    - licenses: (WTFPL OR MIT)
+    - repository: https://github.com/domenic/path-is-inside
+ - **[path-key@3.1.1](https://github.com/sindresorhus/path-key)**
+    - name: path-key
+    - version: 3.1.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/path-key
+ - **[path-parse@1.0.7](https://github.com/jbgutierrez/path-parse)**
+    - name: path-parse
+    - version: 1.0.7
+    - licenses: MIT
+    - repository: https://github.com/jbgutierrez/path-parse
+ - **[path-scurry@1.11.1](https://github.com/isaacs/path-scurry)**
+    - name: path-scurry
+    - version: 1.11.1
+    - licenses: BlueOak-1.0.0
+    - repository: https://github.com/isaacs/path-scurry
+ - **[path-to-regexp@0.1.12](https://github.com/pillarjs/path-to-regexp)**
+    - name: path-to-regexp
+    - version: 0.1.12
+    - licenses: MIT
+    - repository: https://github.com/pillarjs/path-to-regexp
+ - **[path-type@5.0.0](https://github.com/sindresorhus/path-type)**
+    - name: path-type
+    - version: 5.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/path-type
+ - **[performance-now@2.1.0](https://github.com/braveg1rl/performance-now)**
+    - name: performance-now
+    - version: 2.1.0
+    - licenses: MIT
+    - repository: https://github.com/braveg1rl/performance-now
+ - **[picocolors@1.1.1](https://github.com/alexeyraspopov/picocolors)**
+    - name: picocolors
+    - version: 1.1.1
+    - licenses: ISC
+    - repository: https://github.com/alexeyraspopov/picocolors
+ - **[picomatch@2.3.1](https://github.com/micromatch/picomatch)**
+    - name: picomatch
+    - version: 2.3.1
+    - licenses: MIT
+    - repository: https://github.com/micromatch/picomatch
+ - **[picomatch@4.0.1](https://github.com/micromatch/picomatch)**
+    - name: picomatch
+    - version: 4.0.1
+    - licenses: MIT
+    - repository: https://github.com/micromatch/picomatch
+ - **[picomatch@4.0.2](https://github.com/micromatch/picomatch)**
+    - name: picomatch
+    - version: 4.0.2
+    - licenses: MIT
+    - repository: https://github.com/micromatch/picomatch
+ - **[pify@2.3.0](https://github.com/sindresorhus/pify)**
+    - name: pify
+    - version: 2.3.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/pify
+ - **[pify@4.0.1](https://github.com/sindresorhus/pify)**
+    - name: pify
+    - version: 4.0.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/pify
+ - **[pinkie-promise@2.0.1](https://github.com/floatdrop/pinkie-promise)**
+    - name: pinkie-promise
+    - version: 2.0.1
+    - licenses: MIT
+    - repository: https://github.com/floatdrop/pinkie-promise
+ - **[pinkie@2.0.4](https://github.com/floatdrop/pinkie)**
+    - name: pinkie
+    - version: 2.0.4
+    - licenses: MIT
+    - repository: https://github.com/floatdrop/pinkie
+ - **[pirates@4.0.6](https://github.com/danez/pirates)**
+    - name: pirates
+    - version: 4.0.6
+    - licenses: MIT
+    - repository: https://github.com/danez/pirates
+ - **[piscina@4.6.1](https://github.com/piscinajs/piscina)**
+    - name: piscina
+    - version: 4.6.1
+    - licenses: MIT
+    - repository: https://github.com/piscinajs/piscina
+ - **[pkg-dir@4.2.0](https://github.com/sindresorhus/pkg-dir)**
+    - name: pkg-dir
+    - version: 4.2.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/pkg-dir
+ - **[pkg-dir@7.0.0](https://github.com/sindresorhus/pkg-dir)**
+    - name: pkg-dir
+    - version: 7.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/pkg-dir
+ - **[postcss-loader@8.1.1](https://github.com/webpack-contrib/postcss-loader)**
+    - name: postcss-loader
+    - version: 8.1.1
+    - licenses: MIT
+    - repository: https://github.com/webpack-contrib/postcss-loader
+ - **[postcss-media-query-parser@0.2.3](https://github.com/dryoma/postcss-media-query-parser)**
+    - name: postcss-media-query-parser
+    - version: 0.2.3
+    - licenses: MIT
+    - repository: https://github.com/dryoma/postcss-media-query-parser
+ - **[postcss-modules-extract-imports@3.1.0](https://github.com/css-modules/postcss-modules-extract-imports)**
+    - name: postcss-modules-extract-imports
+    - version: 3.1.0
+    - licenses: ISC
+    - repository: https://github.com/css-modules/postcss-modules-extract-imports
+ - **[postcss-modules-local-by-default@4.2.0](https://github.com/css-modules/postcss-modules-local-by-default)**
+    - name: postcss-modules-local-by-default
+    - version: 4.2.0
+    - licenses: MIT
+    - repository: https://github.com/css-modules/postcss-modules-local-by-default
+ - **[postcss-modules-scope@3.2.1](https://github.com/css-modules/postcss-modules-scope)**
+    - name: postcss-modules-scope
+    - version: 3.2.1
+    - licenses: ISC
+    - repository: https://github.com/css-modules/postcss-modules-scope
+ - **[postcss-modules-values@4.0.0](https://github.com/css-modules/postcss-modules-values)**
+    - name: postcss-modules-values
+    - version: 4.0.0
+    - licenses: ISC
+    - repository: https://github.com/css-modules/postcss-modules-values
+ - **[postcss-selector-parser@7.0.0](https://github.com/postcss/postcss-selector-parser)**
+    - name: postcss-selector-parser
+    - version: 7.0.0
+    - licenses: MIT
+    - repository: https://github.com/postcss/postcss-selector-parser
+ - **[postcss-value-parser@4.2.0](https://github.com/TrySound/postcss-value-parser)**
+    - name: postcss-value-parser
+    - version: 4.2.0
+    - licenses: MIT
+    - repository: https://github.com/TrySound/postcss-value-parser
+ - **[postcss@8.4.41](https://github.com/postcss/postcss)**
+    - name: postcss
+    - version: 8.4.41
+    - licenses: MIT
+    - repository: https://github.com/postcss/postcss
+ - **[postcss@8.5.1](https://github.com/postcss/postcss)**
+    - name: postcss
+    - version: 8.5.1
+    - licenses: MIT
+    - repository: https://github.com/postcss/postcss
+ - **[pretty-format@28.1.3](https://github.com/facebook/jest)**
+    - name: pretty-format
+    - version: 28.1.3
+    - licenses: MIT
+    - repository: https://github.com/facebook/jest
+ - **[pretty-format@29.7.0](https://github.com/jestjs/jest)**
+    - name: pretty-format
+    - version: 29.7.0
+    - licenses: MIT
+    - repository: https://github.com/jestjs/jest
+ - **[proc-log@4.2.0](https://github.com/npm/proc-log)**
+    - name: proc-log
+    - version: 4.2.0
+    - licenses: ISC
+    - repository: https://github.com/npm/proc-log
+ - **[process-nextick-args@2.0.1](https://github.com/calvinmetcalf/process-nextick-args)**
+    - name: process-nextick-args
+    - version: 2.0.1
+    - licenses: MIT
+    - repository: https://github.com/calvinmetcalf/process-nextick-args
+ - **[promise-inflight@1.0.1](https://github.com/iarna/promise-inflight)**
+    - name: promise-inflight
+    - version: 1.0.1
+    - licenses: ISC
+    - repository: https://github.com/iarna/promise-inflight
+ - **[promise-retry@2.0.1](https://github.com/IndigoUnited/node-promise-retry)**
+    - name: promise-retry
+    - version: 2.0.1
+    - licenses: MIT
+    - repository: https://github.com/IndigoUnited/node-promise-retry
+ - **[prompts@2.4.2](https://github.com/terkelg/prompts)**
+    - name: prompts
+    - version: 2.4.2
+    - licenses: MIT
+    - repository: https://github.com/terkelg/prompts
+ - **[protractor@7.0.0](https://github.com/angular/protractor)**
+    - name: protractor
+    - version: 7.0.0
+    - licenses: MIT
+    - repository: https://github.com/angular/protractor
+ - **[proxy-addr@2.0.7](https://github.com/jshttp/proxy-addr)**
+    - name: proxy-addr
+    - version: 2.0.7
+    - licenses: MIT
+    - repository: https://github.com/jshttp/proxy-addr
+ - **[prr@1.0.1](https://github.com/rvagg/prr)**
+    - name: prr
+    - version: 1.0.1
+    - licenses: MIT
+    - repository: https://github.com/rvagg/prr
+ - **[psl@1.15.0](https://github.com/lupomontero/psl)**
+    - name: psl
+    - version: 1.15.0
+    - licenses: MIT
+    - repository: https://github.com/lupomontero/psl
+ - **[punycode@2.3.1](https://github.com/mathiasbynens/punycode.js)**
+    - name: punycode
+    - version: 2.3.1
+    - licenses: MIT
+    - repository: https://github.com/mathiasbynens/punycode.js
+ - **[pure-rand@6.1.0](https://github.com/dubzzz/pure-rand)**
+    - name: pure-rand
+    - version: 6.1.0
+    - licenses: MIT
+    - repository: https://github.com/dubzzz/pure-rand
+ - **[q@1.4.1](https://github.com/kriskowal/q)**
+    - name: q
+    - version: 1.4.1
+    - licenses: MIT
+    - repository: https://github.com/kriskowal/q
+ - **[qs@6.13.0](https://github.com/ljharb/qs)**
+    - name: qs
+    - version: 6.13.0
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/ljharb/qs
+ - **[qs@6.5.3](https://github.com/ljharb/qs)**
+    - name: qs
+    - version: 6.5.3
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/ljharb/qs
+ - **[querystringify@2.2.0](https://github.com/unshiftio/querystringify)**
+    - name: querystringify
+    - version: 2.2.0
+    - licenses: MIT
+    - repository: https://github.com/unshiftio/querystringify
+ - **[queue-microtask@1.2.3](https://github.com/feross/queue-microtask)**
+    - name: queue-microtask
+    - version: 1.2.3
+    - licenses: MIT
+    - repository: https://github.com/feross/queue-microtask
+ - **[randombytes@2.1.0](https://github.com/crypto-browserify/randombytes)**
+    - name: randombytes
+    - version: 2.1.0
+    - licenses: MIT
+    - repository: https://github.com/crypto-browserify/randombytes
+ - **[range-parser@1.2.1](https://github.com/jshttp/range-parser)**
+    - name: range-parser
+    - version: 1.2.1
+    - licenses: MIT
+    - repository: https://github.com/jshttp/range-parser
+ - **[raw-body@2.5.2](https://github.com/stream-utils/raw-body)**
+    - name: raw-body
+    - version: 2.5.2
+    - licenses: MIT
+    - repository: https://github.com/stream-utils/raw-body
+ - **[react-is@18.3.1](https://github.com/facebook/react)**
+    - name: react-is
+    - version: 18.3.1
+    - licenses: MIT
+    - repository: https://github.com/facebook/react
+ - **[read-installed@4.0.3](https://github.com/isaacs/read-installed)**
+    - name: read-installed
+    - version: 4.0.3
+    - licenses: ISC
+    - repository: https://github.com/isaacs/read-installed
+ - **[read-package-json@2.1.2](https://github.com/npm/read-package-json)**
+    - name: read-package-json
+    - version: 2.1.2
+    - licenses: ISC
+    - repository: https://github.com/npm/read-package-json
+ - **[read-package-up@11.0.0](https://github.com/sindresorhus/read-package-up)**
+    - name: read-package-up
+    - version: 11.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/read-package-up
+ - **[read-pkg@9.0.1](https://github.com/sindresorhus/read-pkg)**
+    - name: read-pkg
+    - version: 9.0.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/read-pkg
+ - **[readable-stream@2.3.8](https://github.com/nodejs/readable-stream)**
+    - name: readable-stream
+    - version: 2.3.8
+    - licenses: MIT
+    - repository: https://github.com/nodejs/readable-stream
+ - **[readable-stream@3.6.2](https://github.com/nodejs/readable-stream)**
+    - name: readable-stream
+    - version: 3.6.2
+    - licenses: MIT
+    - repository: https://github.com/nodejs/readable-stream
+ - **[readdir-scoped-modules@1.1.0](https://github.com/npm/readdir-scoped-modules)**
+    - name: readdir-scoped-modules
+    - version: 1.1.0
+    - licenses: ISC
+    - repository: https://github.com/npm/readdir-scoped-modules
+ - **[readdirp@3.6.0](https://github.com/paulmillr/readdirp)**
+    - name: readdirp
+    - version: 3.6.0
+    - licenses: MIT
+    - repository: https://github.com/paulmillr/readdirp
+ - **[readdirp@4.1.1](https://github.com/paulmillr/readdirp)**
+    - name: readdirp
+    - version: 4.1.1
+    - licenses: MIT
+    - repository: https://github.com/paulmillr/readdirp
+ - **[reflect-metadata@0.2.2](https://github.com/rbuckton/reflect-metadata)**
+    - name: reflect-metadata
+    - version: 0.2.2
+    - licenses: Apache-2.0
+    - repository: https://github.com/rbuckton/reflect-metadata
+ - **[regenerate-unicode-properties@10.2.0](https://github.com/mathiasbynens/regenerate-unicode-properties)**
+    - name: regenerate-unicode-properties
+    - version: 10.2.0
+    - licenses: MIT
+    - repository: https://github.com/mathiasbynens/regenerate-unicode-properties
+ - **[regenerate@1.4.2](https://github.com/mathiasbynens/regenerate)**
+    - name: regenerate
+    - version: 1.4.2
+    - licenses: MIT
+    - repository: https://github.com/mathiasbynens/regenerate
+ - **[regenerator-runtime@0.14.1](https://github.com/facebook/regenerator/tree/main/packages/runtime)**
+    - name: regenerator-runtime
+    - version: 0.14.1
+    - licenses: MIT
+    - repository: https://github.com/facebook/regenerator/tree/main/packages/runtime
+ - **[regenerator-transform@0.15.2](https://github.com/facebook/regenerator/tree/main/packages/transform)**
+    - name: regenerator-transform
+    - version: 0.15.2
+    - licenses: MIT
+    - repository: https://github.com/facebook/regenerator/tree/main/packages/transform
+ - **[regex-parser@2.3.0](https://github.com/IonicaBizau/regex-parser.js)**
+    - name: regex-parser
+    - version: 2.3.0
+    - licenses: MIT
+    - repository: https://github.com/IonicaBizau/regex-parser.js
+ - **[regexpu-core@6.2.0](https://github.com/mathiasbynens/regexpu-core)**
+    - name: regexpu-core
+    - version: 6.2.0
+    - licenses: MIT
+    - repository: https://github.com/mathiasbynens/regexpu-core
+ - **[regjsgen@0.8.0](https://github.com/bnjmnt4n/regjsgen)**
+    - name: regjsgen
+    - version: 0.8.0
+    - licenses: MIT
+    - repository: https://github.com/bnjmnt4n/regjsgen
+ - **[regjsparser@0.12.0](https://github.com/jviereck/regjsparser)**
+    - name: regjsparser
+    - version: 0.12.0
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/jviereck/regjsparser
+ - **[request@2.88.2](https://github.com/request/request)**
+    - name: request
+    - version: 2.88.2
+    - licenses: Apache-2.0
+    - repository: https://github.com/request/request
+ - **[require-directory@2.1.1](https://github.com/troygoode/node-require-directory)**
+    - name: require-directory
+    - version: 2.1.1
+    - licenses: MIT
+    - repository: https://github.com/troygoode/node-require-directory
+ - **[require-from-string@2.0.2](https://github.com/floatdrop/require-from-string)**
+    - name: require-from-string
+    - version: 2.0.2
+    - licenses: MIT
+    - repository: https://github.com/floatdrop/require-from-string
+ - **[require-main-filename@2.0.0](https://github.com/yargs/require-main-filename)**
+    - name: require-main-filename
+    - version: 2.0.0
+    - licenses: ISC
+    - repository: https://github.com/yargs/require-main-filename
+ - **[requires-port@1.0.0](https://github.com/unshiftio/requires-port)**
+    - name: requires-port
+    - version: 1.0.0
+    - licenses: MIT
+    - repository: https://github.com/unshiftio/requires-port
+ - **[resolve-cwd@3.0.0](https://github.com/sindresorhus/resolve-cwd)**
+    - name: resolve-cwd
+    - version: 3.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/resolve-cwd
+ - **[resolve-from@4.0.0](https://github.com/sindresorhus/resolve-from)**
+    - name: resolve-from
+    - version: 4.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/resolve-from
+ - **[resolve-from@5.0.0](https://github.com/sindresorhus/resolve-from)**
+    - name: resolve-from
+    - version: 5.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/resolve-from
+ - **[resolve-url-loader@5.0.0](https://github.com/bholloway/resolve-url-loader)**
+    - name: resolve-url-loader
+    - version: 5.0.0
+    - licenses: MIT
+    - repository: https://github.com/bholloway/resolve-url-loader
+ - **[resolve.exports@2.0.3](https://github.com/lukeed/resolve.exports)**
+    - name: resolve.exports
+    - version: 2.0.3
+    - licenses: MIT
+    - repository: https://github.com/lukeed/resolve.exports
+ - **[resolve@1.22.8](https://github.com/browserify/resolve)**
+    - name: resolve
+    - version: 1.22.8
+    - licenses: MIT
+    - repository: https://github.com/browserify/resolve
+ - **[restore-cursor@3.1.0](https://github.com/sindresorhus/restore-cursor)**
+    - name: restore-cursor
+    - version: 3.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/restore-cursor
+ - **[restore-cursor@5.1.0](https://github.com/sindresorhus/restore-cursor)**
+    - name: restore-cursor
+    - version: 5.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/restore-cursor
+ - **[retry@0.12.0](https://github.com/tim-kos/node-retry)**
+    - name: retry
+    - version: 0.12.0
+    - licenses: MIT
+    - repository: https://github.com/tim-kos/node-retry
+ - **[retry@0.13.1](https://github.com/tim-kos/node-retry)**
+    - name: retry
+    - version: 0.13.1
+    - licenses: MIT
+    - repository: https://github.com/tim-kos/node-retry
+ - **[reusify@1.0.4](https://github.com/mcollina/reusify)**
+    - name: reusify
+    - version: 1.0.4
+    - licenses: MIT
+    - repository: https://github.com/mcollina/reusify
+ - **[rfc4648@1.5.4](https://github.com/swansontec/rfc4648.js)**
+    - name: rfc4648
+    - version: 1.5.4
+    - licenses: MIT
+    - repository: https://github.com/swansontec/rfc4648.js
+ - **[rfdc@1.4.1](https://github.com/davidmarkclements/rfdc)**
+    - name: rfdc
+    - version: 1.4.1
+    - licenses: MIT
+    - repository: https://github.com/davidmarkclements/rfdc
+ - **[rimraf@2.7.1](https://github.com/isaacs/rimraf)**
+    - name: rimraf
+    - version: 2.7.1
+    - licenses: ISC
+    - repository: https://github.com/isaacs/rimraf
+ - **[rimraf@5.0.10](https://github.com/isaacs/rimraf)**
+    - name: rimraf
+    - version: 5.0.10
+    - licenses: ISC
+    - repository: https://github.com/isaacs/rimraf
+ - **[rollup@4.22.4](https://github.com/rollup/rollup)**
+    - name: rollup
+    - version: 4.22.4
+    - licenses: MIT
+    - repository: https://github.com/rollup/rollup
+ - **[run-applescript@7.0.0](https://github.com/sindresorhus/run-applescript)**
+    - name: run-applescript
+    - version: 7.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/run-applescript
+ - **[run-parallel@1.2.0](https://github.com/feross/run-parallel)**
+    - name: run-parallel
+    - version: 1.2.0
+    - licenses: MIT
+    - repository: https://github.com/feross/run-parallel
+ - **[rxjs@6.6.7](https://github.com/reactivex/rxjs)**
+    - name: rxjs
+    - version: 6.6.7
+    - licenses: Apache-2.0
+    - repository: https://github.com/reactivex/rxjs
+ - **[rxjs@7.8.1](https://github.com/reactivex/rxjs)**
+    - name: rxjs
+    - version: 7.8.1
+    - licenses: Apache-2.0
+    - repository: https://github.com/reactivex/rxjs
+ - **[safe-buffer@5.1.2](https://github.com/feross/safe-buffer)**
+    - name: safe-buffer
+    - version: 5.1.2
+    - licenses: MIT
+    - repository: https://github.com/feross/safe-buffer
+ - **[safe-buffer@5.2.1](https://github.com/feross/safe-buffer)**
+    - name: safe-buffer
+    - version: 5.2.1
+    - licenses: MIT
+    - repository: https://github.com/feross/safe-buffer
+ - **[safer-buffer@2.1.2](https://github.com/ChALkeR/safer-buffer)**
+    - name: safer-buffer
+    - version: 2.1.2
+    - licenses: MIT
+    - repository: https://github.com/ChALkeR/safer-buffer
+ - **[sass-loader@16.0.0](https://github.com/webpack-contrib/sass-loader)**
+    - name: sass-loader
+    - version: 16.0.0
+    - licenses: MIT
+    - repository: https://github.com/webpack-contrib/sass-loader
+ - **[sass@1.77.6](https://github.com/sass/dart-sass)**
+    - name: sass
+    - version: 1.77.6
+    - licenses: MIT
+    - repository: https://github.com/sass/dart-sass
+ - **[sass@1.83.4](https://github.com/sass/dart-sass)**
+    - name: sass
+    - version: 1.83.4
+    - licenses: MIT
+    - repository: https://github.com/sass/dart-sass
+ - **[saucelabs@1.5.0](https://github.com/holidayextras/node-saucelabs)**
+    - name: saucelabs
+    - version: 1.5.0
+    - licenses: MIT*
+    - repository: https://github.com/holidayextras/node-saucelabs
+ - **[sax@1.4.1](https://github.com/isaacs/sax-js)**
+    - name: sax
+    - version: 1.4.1
+    - licenses: ISC
+    - repository: https://github.com/isaacs/sax-js
+ - **[saxes@5.0.1](https://github.com/lddubeau/saxes)**
+    - name: saxes
+    - version: 5.0.1
+    - licenses: ISC
+    - repository: https://github.com/lddubeau/saxes
+ - **[saxes@6.0.0](https://github.com/lddubeau/saxes)**
+    - name: saxes
+    - version: 6.0.0
+    - licenses: ISC
+    - repository: https://github.com/lddubeau/saxes
+ - **[schema-utils@3.3.0](https://github.com/webpack/schema-utils)**
+    - name: schema-utils
+    - version: 3.3.0
+    - licenses: MIT
+    - repository: https://github.com/webpack/schema-utils
+ - **[schema-utils@4.3.0](https://github.com/webpack/schema-utils)**
+    - name: schema-utils
+    - version: 4.3.0
+    - licenses: MIT
+    - repository: https://github.com/webpack/schema-utils
+ - **[select-hose@2.0.0](https://github.com/indutny/select-hose)**
+    - name: select-hose
+    - version: 2.0.0
+    - licenses: MIT
+    - repository: https://github.com/indutny/select-hose
+ - **[selenium-webdriver@3.6.0](https://github.com/SeleniumHQ/selenium)**
+    - name: selenium-webdriver
+    - version: 3.6.0
+    - licenses: Apache-2.0
+    - repository: https://github.com/SeleniumHQ/selenium
+ - **[selfsigned@2.4.1](https://github.com/jfromaniello/selfsigned)**
+    - name: selfsigned
+    - version: 2.4.1
+    - licenses: MIT
+    - repository: https://github.com/jfromaniello/selfsigned
+ - **[semver-dsl@1.0.1](https://github.com/mgechev/semver-dsl)**
+    - name: semver-dsl
+    - version: 1.0.1
+    - licenses: MIT
+    - repository: https://github.com/mgechev/semver-dsl
+ - **[semver@5.7.2](https://github.com/npm/node-semver)**
+    - name: semver
+    - version: 5.7.2
+    - licenses: ISC
+    - repository: https://github.com/npm/node-semver
+ - **[semver@6.3.1](https://github.com/npm/node-semver)**
+    - name: semver
+    - version: 6.3.1
+    - licenses: ISC
+    - repository: https://github.com/npm/node-semver
+ - **[semver@7.6.3](https://github.com/npm/node-semver)**
+    - name: semver
+    - version: 7.6.3
+    - licenses: ISC
+    - repository: https://github.com/npm/node-semver
+ - **[send@0.19.0](https://github.com/pillarjs/send)**
+    - name: send
+    - version: 0.19.0
+    - licenses: MIT
+    - repository: https://github.com/pillarjs/send
+ - **[serialize-javascript@6.0.2](https://github.com/yahoo/serialize-javascript)**
+    - name: serialize-javascript
+    - version: 6.0.2
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/yahoo/serialize-javascript
+ - **[serve-index@1.9.1](https://github.com/expressjs/serve-index)**
+    - name: serve-index
+    - version: 1.9.1
+    - licenses: MIT
+    - repository: https://github.com/expressjs/serve-index
+ - **[serve-static@1.16.2](https://github.com/expressjs/serve-static)**
+    - name: serve-static
+    - version: 1.16.2
+    - licenses: MIT
+    - repository: https://github.com/expressjs/serve-static
+ - **[set-blocking@2.0.0](https://github.com/yargs/set-blocking)**
+    - name: set-blocking
+    - version: 2.0.0
+    - licenses: ISC
+    - repository: https://github.com/yargs/set-blocking
+ - **[setimmediate@1.0.5](https://github.com/YuzuJS/setImmediate)**
+    - name: setimmediate
+    - version: 1.0.5
+    - licenses: MIT
+    - repository: https://github.com/YuzuJS/setImmediate
+ - **[setprototypeof@1.1.0](https://github.com/wesleytodd/setprototypeof)**
+    - name: setprototypeof
+    - version: 1.1.0
+    - licenses: ISC
+    - repository: https://github.com/wesleytodd/setprototypeof
+ - **[setprototypeof@1.2.0](https://github.com/wesleytodd/setprototypeof)**
+    - name: setprototypeof
+    - version: 1.2.0
+    - licenses: ISC
+    - repository: https://github.com/wesleytodd/setprototypeof
+ - **[shallow-clone@3.0.1](https://github.com/jonschlinkert/shallow-clone)**
+    - name: shallow-clone
+    - version: 3.0.1
+    - licenses: MIT
+    - repository: https://github.com/jonschlinkert/shallow-clone
+ - **[shebang-command@2.0.0](https://github.com/kevva/shebang-command)**
+    - name: shebang-command
+    - version: 2.0.0
+    - licenses: MIT
+    - repository: https://github.com/kevva/shebang-command
+ - **[shebang-regex@3.0.0](https://github.com/sindresorhus/shebang-regex)**
+    - name: shebang-regex
+    - version: 3.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/shebang-regex
+ - **[shell-quote@1.8.2](https://github.com/ljharb/shell-quote)**
+    - name: shell-quote
+    - version: 1.8.2
+    - licenses: MIT
+    - repository: https://github.com/ljharb/shell-quote
+ - **[side-channel-list@1.0.0](https://github.com/ljharb/side-channel-list)**
+    - name: side-channel-list
+    - version: 1.0.0
+    - licenses: MIT
+    - repository: https://github.com/ljharb/side-channel-list
+ - **[side-channel-map@1.0.1](https://github.com/ljharb/side-channel-map)**
+    - name: side-channel-map
+    - version: 1.0.1
+    - licenses: MIT
+    - repository: https://github.com/ljharb/side-channel-map
+ - **[side-channel-weakmap@1.0.2](https://github.com/ljharb/side-channel-weakmap)**
+    - name: side-channel-weakmap
+    - version: 1.0.2
+    - licenses: MIT
+    - repository: https://github.com/ljharb/side-channel-weakmap
+ - **[side-channel@1.1.0](https://github.com/ljharb/side-channel)**
+    - name: side-channel
+    - version: 1.1.0
+    - licenses: MIT
+    - repository: https://github.com/ljharb/side-channel
+ - **[signal-exit@3.0.7](https://github.com/tapjs/signal-exit)**
+    - name: signal-exit
+    - version: 3.0.7
+    - licenses: ISC
+    - repository: https://github.com/tapjs/signal-exit
+ - **[signal-exit@4.1.0](https://github.com/tapjs/signal-exit)**
+    - name: signal-exit
+    - version: 4.1.0
+    - licenses: ISC
+    - repository: https://github.com/tapjs/signal-exit
+ - **[sigstore@2.3.1](https://github.com/sigstore/sigstore-js)**
+    - name: sigstore
+    - version: 2.3.1
+    - licenses: Apache-2.0
+    - repository: https://github.com/sigstore/sigstore-js
+ - **[simple-git@3.24.0](https://github.com/steveukx/git-js)**
+    - name: simple-git
+    - version: 3.24.0
+    - licenses: MIT
+    - repository: https://github.com/steveukx/git-js
+ - **[sisteransi@1.0.5](https://github.com/terkelg/sisteransi)**
+    - name: sisteransi
+    - version: 1.0.5
+    - licenses: MIT
+    - repository: https://github.com/terkelg/sisteransi
+ - **[slash@3.0.0](https://github.com/sindresorhus/slash)**
+    - name: slash
+    - version: 3.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/slash
+ - **[slash@5.1.0](https://github.com/sindresorhus/slash)**
+    - name: slash
+    - version: 5.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/slash
+ - **[slice-ansi@5.0.0](https://github.com/chalk/slice-ansi)**
+    - name: slice-ansi
+    - version: 5.0.0
+    - licenses: MIT
+    - repository: https://github.com/chalk/slice-ansi
+ - **[slice-ansi@7.1.0](https://github.com/chalk/slice-ansi)**
+    - name: slice-ansi
+    - version: 7.1.0
+    - licenses: MIT
+    - repository: https://github.com/chalk/slice-ansi
+ - **[slide@1.1.6](https://github.com/isaacs/slide-flow-control)**
+    - name: slide
+    - version: 1.1.6
+    - licenses: ISC
+    - repository: https://github.com/isaacs/slide-flow-control
+ - **[smart-buffer@4.2.0](https://github.com/JoshGlazebrook/smart-buffer)**
+    - name: smart-buffer
+    - version: 4.2.0
+    - licenses: MIT
+    - repository: https://github.com/JoshGlazebrook/smart-buffer
+ - **[sockjs@0.3.24](https://github.com/sockjs/sockjs-node)**
+    - name: sockjs
+    - version: 0.3.24
+    - licenses: MIT
+    - repository: https://github.com/sockjs/sockjs-node
+ - **[socks-proxy-agent@8.0.5](https://github.com/TooTallNate/proxy-agents)**
+    - name: socks-proxy-agent
+    - version: 8.0.5
+    - licenses: MIT
+    - repository: https://github.com/TooTallNate/proxy-agents
+ - **[socks@2.8.3](https://github.com/JoshGlazebrook/socks)**
+    - name: socks
+    - version: 2.8.3
+    - licenses: MIT
+    - repository: https://github.com/JoshGlazebrook/socks
+ - **[source-map-js@1.2.1](https://github.com/7rulnik/source-map-js)**
+    - name: source-map-js
+    - version: 1.2.1
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/7rulnik/source-map-js
+ - **[source-map-loader@5.0.0](https://github.com/webpack-contrib/source-map-loader)**
+    - name: source-map-loader
+    - version: 5.0.0
+    - licenses: MIT
+    - repository: https://github.com/webpack-contrib/source-map-loader
+ - **[source-map-support@0.4.18](https://github.com/evanw/node-source-map-support)**
+    - name: source-map-support
+    - version: 0.4.18
+    - licenses: MIT
+    - repository: https://github.com/evanw/node-source-map-support
+ - **[source-map-support@0.5.13](https://github.com/evanw/node-source-map-support)**
+    - name: source-map-support
+    - version: 0.5.13
+    - licenses: MIT
+    - repository: https://github.com/evanw/node-source-map-support
+ - **[source-map-support@0.5.21](https://github.com/evanw/node-source-map-support)**
+    - name: source-map-support
+    - version: 0.5.21
+    - licenses: MIT
+    - repository: https://github.com/evanw/node-source-map-support
+ - **[source-map@0.5.7](https://github.com/mozilla/source-map)**
+    - name: source-map
+    - version: 0.5.7
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/mozilla/source-map
+ - **[source-map@0.6.1](https://github.com/mozilla/source-map)**
+    - name: source-map
+    - version: 0.6.1
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/mozilla/source-map
+ - **[source-map@0.7.4](https://github.com/mozilla/source-map)**
+    - name: source-map
+    - version: 0.7.4
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/mozilla/source-map
+ - **[spdx-compare@1.0.0](https://github.com/kemitchell/spdx-compare.js)**
+    - name: spdx-compare
+    - version: 1.0.0
+    - licenses: MIT
+    - repository: https://github.com/kemitchell/spdx-compare.js
+ - **[spdx-correct@3.2.0](https://github.com/jslicense/spdx-correct.js)**
+    - name: spdx-correct
+    - version: 3.2.0
+    - licenses: Apache-2.0
+    - repository: https://github.com/jslicense/spdx-correct.js
+ - **[spdx-exceptions@2.5.0](https://github.com/kemitchell/spdx-exceptions.json)**
+    - name: spdx-exceptions
+    - version: 2.5.0
+    - licenses: CC-BY-3.0
+    - repository: https://github.com/kemitchell/spdx-exceptions.json
+ - **[spdx-expression-parse@3.0.1](https://github.com/jslicense/spdx-expression-parse.js)**
+    - name: spdx-expression-parse
+    - version: 3.0.1
+    - licenses: MIT
+    - repository: https://github.com/jslicense/spdx-expression-parse.js
+ - **[spdx-license-ids@3.0.21](https://github.com/jslicense/spdx-license-ids)**
+    - name: spdx-license-ids
+    - version: 3.0.21
+    - licenses: CC0-1.0
+    - repository: https://github.com/jslicense/spdx-license-ids
+ - **[spdx-ranges@2.1.1](https://github.com/kemitchell/spdx-ranges.js)**
+    - name: spdx-ranges
+    - version: 2.1.1
+    - licenses: (MIT AND CC-BY-3.0)
+    - repository: https://github.com/kemitchell/spdx-ranges.js
+ - **[spdx-satisfies@4.0.1](https://github.com/kemitchell/spdx-satisfies.js)**
+    - name: spdx-satisfies
+    - version: 4.0.1
+    - licenses: MIT
+    - repository: https://github.com/kemitchell/spdx-satisfies.js
+ - **[spdy-transport@3.0.0](https://github.com/spdy-http2/spdy-transport)**
+    - name: spdy-transport
+    - version: 3.0.0
+    - licenses: MIT
+    - repository: https://github.com/spdy-http2/spdy-transport
+ - **[spdy@4.0.2](https://github.com/indutny/node-spdy)**
+    - name: spdy
+    - version: 4.0.2
+    - licenses: MIT
+    - repository: https://github.com/indutny/node-spdy
+ - **[sprintf-js@1.0.3](https://github.com/alexei/sprintf.js)**
+    - name: sprintf-js
+    - version: 1.0.3
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/alexei/sprintf.js
+ - **[sprintf-js@1.1.3](https://github.com/alexei/sprintf.js)**
+    - name: sprintf-js
+    - version: 1.1.3
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/alexei/sprintf.js
+ - **[sshpk@1.18.0](https://github.com/joyent/node-sshpk)**
+    - name: sshpk
+    - version: 1.18.0
+    - licenses: MIT
+    - repository: https://github.com/joyent/node-sshpk
+ - **[ssri@10.0.6](https://github.com/npm/ssri)**
+    - name: ssri
+    - version: 10.0.6
+    - licenses: ISC
+    - repository: https://github.com/npm/ssri
+ - **[stack-utils@2.0.6](https://github.com/tapjs/stack-utils)**
+    - name: stack-utils
+    - version: 2.0.6
+    - licenses: MIT
+    - repository: https://github.com/tapjs/stack-utils
+ - **[statuses@1.5.0](https://github.com/jshttp/statuses)**
+    - name: statuses
+    - version: 1.5.0
+    - licenses: MIT
+    - repository: https://github.com/jshttp/statuses
+ - **[statuses@2.0.1](https://github.com/jshttp/statuses)**
+    - name: statuses
+    - version: 2.0.1
+    - licenses: MIT
+    - repository: https://github.com/jshttp/statuses
+ - **[string-length@4.0.2](https://github.com/sindresorhus/string-length)**
+    - name: string-length
+    - version: 4.0.2
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/string-length
+ - **[string-width@4.2.3](https://github.com/sindresorhus/string-width)**
+    - name: string-width
+    - version: 4.2.3
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/string-width
+ - **[string-width@5.1.2](https://github.com/sindresorhus/string-width)**
+    - name: string-width
+    - version: 5.1.2
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/string-width
+ - **[string-width@7.2.0](https://github.com/sindresorhus/string-width)**
+    - name: string-width
+    - version: 7.2.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/string-width
+ - **[string_decoder@1.1.1](https://github.com/nodejs/string_decoder)**
+    - name: string_decoder
+    - version: 1.1.1
+    - licenses: MIT
+    - repository: https://github.com/nodejs/string_decoder
+ - **[string_decoder@1.3.0](https://github.com/nodejs/string_decoder)**
+    - name: string_decoder
+    - version: 1.3.0
+    - licenses: MIT
+    - repository: https://github.com/nodejs/string_decoder
+ - **[strip-ansi@0.3.0](https://github.com/sindresorhus/strip-ansi)**
+    - name: strip-ansi
+    - version: 0.3.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/strip-ansi
+ - **[strip-ansi@3.0.1](https://github.com/chalk/strip-ansi)**
+    - name: strip-ansi
+    - version: 3.0.1
+    - licenses: MIT
+    - repository: https://github.com/chalk/strip-ansi
+ - **[strip-ansi@6.0.1](https://github.com/chalk/strip-ansi)**
+    - name: strip-ansi
+    - version: 6.0.1
+    - licenses: MIT
+    - repository: https://github.com/chalk/strip-ansi
+ - **[strip-ansi@7.1.0](https://github.com/chalk/strip-ansi)**
+    - name: strip-ansi
+    - version: 7.1.0
+    - licenses: MIT
+    - repository: https://github.com/chalk/strip-ansi
+ - **[strip-bom@3.0.0](https://github.com/sindresorhus/strip-bom)**
+    - name: strip-bom
+    - version: 3.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/strip-bom
+ - **[strip-bom@4.0.0](https://github.com/sindresorhus/strip-bom)**
+    - name: strip-bom
+    - version: 4.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/strip-bom
+ - **[strip-final-newline@2.0.0](https://github.com/sindresorhus/strip-final-newline)**
+    - name: strip-final-newline
+    - version: 2.0.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/strip-final-newline
+ - **[strip-json-comments@3.1.1](https://github.com/sindresorhus/strip-json-comments)**
+    - name: strip-json-comments
+    - version: 3.1.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/strip-json-comments
+ - **[supports-color@0.2.0](https://github.com/sindresorhus/supports-color)**
+    - name: supports-color
+    - version: 0.2.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/supports-color
+ - **[supports-color@2.0.0](https://github.com/chalk/supports-color)**
+    - name: supports-color
+    - version: 2.0.0
+    - licenses: MIT
+    - repository: https://github.com/chalk/supports-color
+ - **[supports-color@5.5.0](https://github.com/chalk/supports-color)**
+    - name: supports-color
+    - version: 5.5.0
+    - licenses: MIT
+    - repository: https://github.com/chalk/supports-color
+ - **[supports-color@7.2.0](https://github.com/chalk/supports-color)**
+    - name: supports-color
+    - version: 7.2.0
+    - licenses: MIT
+    - repository: https://github.com/chalk/supports-color
+ - **[supports-color@8.1.1](https://github.com/chalk/supports-color)**
+    - name: supports-color
+    - version: 8.1.1
+    - licenses: MIT
+    - repository: https://github.com/chalk/supports-color
+ - **[supports-preserve-symlinks-flag@1.0.0](https://github.com/inspect-js/node-supports-preserve-symlinks-flag)**
+    - name: supports-preserve-symlinks-flag
+    - version: 1.0.0
+    - licenses: MIT
+    - repository: https://github.com/inspect-js/node-supports-preserve-symlinks-flag
+ - **[symbol-observable@4.0.0](https://github.com/blesh/symbol-observable)**
+    - name: symbol-observable
+    - version: 4.0.0
+    - licenses: MIT
+    - repository: https://github.com/blesh/symbol-observable
+ - **[symbol-tree@3.2.4](https://github.com/jsdom/js-symbol-tree)**
+    - name: symbol-tree
+    - version: 3.2.4
+    - licenses: MIT
+    - repository: https://github.com/jsdom/js-symbol-tree
+ - **[tapable@2.2.1](https://github.com/webpack/tapable)**
+    - name: tapable
+    - version: 2.2.1
+    - licenses: MIT
+    - repository: https://github.com/webpack/tapable
+ - **[tar@6.2.1](https://github.com/isaacs/node-tar)**
+    - name: tar
+    - version: 6.2.1
+    - licenses: ISC
+    - repository: https://github.com/isaacs/node-tar
+ - **[terser-webpack-plugin@5.3.11](https://github.com/webpack-contrib/terser-webpack-plugin)**
+    - name: terser-webpack-plugin
+    - version: 5.3.11
+    - licenses: MIT
+    - repository: https://github.com/webpack-contrib/terser-webpack-plugin
+ - **[terser@5.31.6](https://github.com/terser/terser)**
+    - name: terser
+    - version: 5.31.6
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/terser/terser
+ - **[test-exclude@6.0.0](https://github.com/istanbuljs/test-exclude)**
+    - name: test-exclude
+    - version: 6.0.0
+    - licenses: ISC
+    - repository: https://github.com/istanbuljs/test-exclude
+ - **[thingies@1.21.0](https://github.com/streamich/thingies)**
+    - name: thingies
+    - version: 1.21.0
+    - licenses: Unlicense
+    - repository: https://github.com/streamich/thingies
+ - **[through@2.3.8](https://github.com/dominictarr/through)**
+    - name: through
+    - version: 2.3.8
+    - licenses: MIT
+    - repository: https://github.com/dominictarr/through
+ - **[thunky@1.1.0](https://github.com/mafintosh/thunky)**
+    - name: thunky
+    - version: 1.1.0
+    - licenses: MIT
+    - repository: https://github.com/mafintosh/thunky
+ - **[tmp@0.0.30](https://github.com/raszi/node-tmp)**
+    - name: tmp
+    - version: 0.0.30
+    - licenses: MIT
+    - repository: https://github.com/raszi/node-tmp
+ - **[tmp@0.0.33](https://github.com/raszi/node-tmp)**
+    - name: tmp
+    - version: 0.0.33
+    - licenses: MIT
+    - repository: https://github.com/raszi/node-tmp
+ - **[tmpl@1.0.5](https://github.com/daaku/nodejs-tmpl)**
+    - name: tmpl
+    - version: 1.0.5
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/daaku/nodejs-tmpl
+ - **[to-regex-range@5.0.1](https://github.com/micromatch/to-regex-range)**
+    - name: to-regex-range
+    - version: 5.0.1
+    - licenses: MIT
+    - repository: https://github.com/micromatch/to-regex-range
+ - **[toidentifier@1.0.1](https://github.com/component/toidentifier)**
+    - name: toidentifier
+    - version: 1.0.1
+    - licenses: MIT
+    - repository: https://github.com/component/toidentifier
+ - **[tough-cookie@2.5.0](https://github.com/salesforce/tough-cookie)**
+    - name: tough-cookie
+    - version: 2.5.0
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/salesforce/tough-cookie
+ - **[tough-cookie@4.1.4](https://github.com/salesforce/tough-cookie)**
+    - name: tough-cookie
+    - version: 4.1.4
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/salesforce/tough-cookie
+ - **[tr46@3.0.0](https://github.com/jsdom/tr46)**
+    - name: tr46
+    - version: 3.0.0
+    - licenses: MIT
+    - repository: https://github.com/jsdom/tr46
+ - **[tree-dump@1.0.2](https://github.com/streamich/tree-dump)**
+    - name: tree-dump
+    - version: 1.0.2
+    - licenses: Apache-2.0
+    - repository: https://github.com/streamich/tree-dump
+ - **[tree-kill@1.2.2](https://github.com/pkrumins/node-tree-kill)**
+    - name: tree-kill
+    - version: 1.2.2
+    - licenses: MIT
+    - repository: https://github.com/pkrumins/node-tree-kill
+ - **[treeify@1.1.0](https://github.com/notatestuser/treeify)**
+    - name: treeify
+    - version: 1.1.0
+    - licenses: MIT
+    - repository: https://github.com/notatestuser/treeify
+ - **[ts-jest@28.0.8](https://github.com/kulshekhar/ts-jest)**
+    - name: ts-jest
+    - version: 28.0.8
+    - licenses: MIT
+    - repository: https://github.com/kulshekhar/ts-jest
+ - **[ts-jest@29.1.3](https://github.com/kulshekhar/ts-jest)**
+    - name: ts-jest
+    - version: 29.1.3
+    - licenses: MIT
+    - repository: https://github.com/kulshekhar/ts-jest
+ - **[ts-node@10.9.2](https://github.com/TypeStrong/ts-node)**
+    - name: ts-node
+    - version: 10.9.2
+    - licenses: MIT
+    - repository: https://github.com/TypeStrong/ts-node
+ - **[tsconfig-paths@4.2.0](https://github.com/dividab/tsconfig-paths)**
+    - name: tsconfig-paths
+    - version: 4.2.0
+    - licenses: MIT
+    - repository: https://github.com/dividab/tsconfig-paths
+ - **[tslib@1.14.1](https://github.com/Microsoft/tslib)**
+    - name: tslib
+    - version: 1.14.1
+    - licenses: 0BSD
+    - repository: https://github.com/Microsoft/tslib
+ - **[tslib@2.6.3](https://github.com/Microsoft/tslib)**
+    - name: tslib
+    - version: 2.6.3
+    - licenses: 0BSD
+    - repository: https://github.com/Microsoft/tslib
+ - **[tslib@2.8.1](https://github.com/Microsoft/tslib)**
+    - name: tslib
+    - version: 2.8.1
+    - licenses: 0BSD
+    - repository: https://github.com/Microsoft/tslib
+ - **[tslint@6.1.3](https://github.com/palantir/tslint)**
+    - name: tslint
+    - version: 6.1.3
+    - licenses: Apache-2.0
+    - repository: https://github.com/palantir/tslint
+ - **[tsutils@2.29.0](https://github.com/ajafff/tsutils)**
+    - name: tsutils
+    - version: 2.29.0
+    - licenses: MIT
+    - repository: https://github.com/ajafff/tsutils
+ - **[tuf-js@2.2.1](https://github.com/theupdateframework/tuf-js)**
+    - name: tuf-js
+    - version: 2.2.1
+    - licenses: MIT
+    - repository: https://github.com/theupdateframework/tuf-js
+ - **[tunnel-agent@0.6.0](https://github.com/mikeal/tunnel-agent)**
+    - name: tunnel-agent
+    - version: 0.6.0
+    - licenses: Apache-2.0
+    - repository: https://github.com/mikeal/tunnel-agent
+ - **[tweetnacl@0.14.5](https://github.com/dchest/tweetnacl-js)**
+    - name: tweetnacl
+    - version: 0.14.5
+    - licenses: Unlicense
+    - repository: https://github.com/dchest/tweetnacl-js
+ - **[type-detect@4.0.8](https://github.com/chaijs/type-detect)**
+    - name: type-detect
+    - version: 4.0.8
+    - licenses: MIT
+    - repository: https://github.com/chaijs/type-detect
+ - **[type-fest@0.21.3](https://github.com/sindresorhus/type-fest)**
+    - name: type-fest
+    - version: 0.21.3
+    - licenses: (MIT OR CC0-1.0)
+    - repository: https://github.com/sindresorhus/type-fest
+ - **[type-fest@4.33.0](https://github.com/sindresorhus/type-fest)**
+    - name: type-fest
+    - version: 4.33.0
+    - licenses: (MIT OR CC0-1.0)
+    - repository: https://github.com/sindresorhus/type-fest
+ - **[type-is@1.6.18](https://github.com/jshttp/type-is)**
+    - name: type-is
+    - version: 1.6.18
+    - licenses: MIT
+    - repository: https://github.com/jshttp/type-is
+ - **[typed-assert@1.0.9](https://github.com/elierotenberg/typed-assert)**
+    - name: typed-assert
+    - version: 1.0.9
+    - licenses: MIT
+    - repository: https://github.com/elierotenberg/typed-assert
+ - **[typescript@5.4.5](https://github.com/Microsoft/TypeScript)**
+    - name: typescript
+    - version: 5.4.5
+    - licenses: Apache-2.0
+    - repository: https://github.com/Microsoft/TypeScript
+ - **[uglify-js@3.19.3](https://github.com/mishoo/UglifyJS)**
+    - name: uglify-js
+    - version: 3.19.3
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/mishoo/UglifyJS
+ - **[undici-types@6.20.0](https://github.com/nodejs/undici)**
+    - name: undici-types
+    - version: 6.20.0
+    - licenses: MIT
+    - repository: https://github.com/nodejs/undici
+ - **[unicode-canonical-property-names-ecmascript@2.0.1](https://github.com/mathiasbynens/unicode-canonical-property-names-ecmascript)**
+    - name: unicode-canonical-property-names-ecmascript
+    - version: 2.0.1
+    - licenses: MIT
+    - repository: https://github.com/mathiasbynens/unicode-canonical-property-names-ecmascript
+ - **[unicode-match-property-ecmascript@2.0.0](https://github.com/mathiasbynens/unicode-match-property-ecmascript)**
+    - name: unicode-match-property-ecmascript
+    - version: 2.0.0
+    - licenses: MIT
+    - repository: https://github.com/mathiasbynens/unicode-match-property-ecmascript
+ - **[unicode-match-property-value-ecmascript@2.2.0](https://github.com/mathiasbynens/unicode-match-property-value-ecmascript)**
+    - name: unicode-match-property-value-ecmascript
+    - version: 2.2.0
+    - licenses: MIT
+    - repository: https://github.com/mathiasbynens/unicode-match-property-value-ecmascript
+ - **[unicode-property-aliases-ecmascript@2.1.0](https://github.com/mathiasbynens/unicode-property-aliases-ecmascript)**
+    - name: unicode-property-aliases-ecmascript
+    - version: 2.1.0
+    - licenses: MIT
+    - repository: https://github.com/mathiasbynens/unicode-property-aliases-ecmascript
+ - **[unicorn-magic@0.1.0](https://github.com/sindresorhus/unicorn-magic)**
+    - name: unicorn-magic
+    - version: 0.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/unicorn-magic
+ - **[unique-filename@3.0.0](https://github.com/npm/unique-filename)**
+    - name: unique-filename
+    - version: 3.0.0
+    - licenses: ISC
+    - repository: https://github.com/npm/unique-filename
+ - **[unique-slug@4.0.0](https://github.com/npm/unique-slug)**
+    - name: unique-slug
+    - version: 4.0.0
+    - licenses: ISC
+    - repository: https://github.com/npm/unique-slug
+ - **[universalify@0.2.0](https://github.com/RyanZim/universalify)**
+    - name: universalify
+    - version: 0.2.0
+    - licenses: MIT
+    - repository: https://github.com/RyanZim/universalify
+ - **[unpipe@1.0.0](https://github.com/stream-utils/unpipe)**
+    - name: unpipe
+    - version: 1.0.0
+    - licenses: MIT
+    - repository: https://github.com/stream-utils/unpipe
+ - **[update-browserslist-db@1.1.2](https://github.com/browserslist/update-db)**
+    - name: update-browserslist-db
+    - version: 1.1.2
+    - licenses: MIT
+    - repository: https://github.com/browserslist/update-db
+ - **[uri-js@4.4.1](https://github.com/garycourt/uri-js)**
+    - name: uri-js
+    - version: 4.4.1
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/garycourt/uri-js
+ - **[url-parse@1.5.10](https://github.com/unshiftio/url-parse)**
+    - name: url-parse
+    - version: 1.5.10
+    - licenses: MIT
+    - repository: https://github.com/unshiftio/url-parse
+ - **[util-deprecate@1.0.2](https://github.com/TooTallNate/util-deprecate)**
+    - name: util-deprecate
+    - version: 1.0.2
+    - licenses: MIT
+    - repository: https://github.com/TooTallNate/util-deprecate
+ - **[util-extend@1.0.3](https://github.com/isaacs/util-extend)**
+    - name: util-extend
+    - version: 1.0.3
+    - licenses: MIT
+    - repository: https://github.com/isaacs/util-extend
+ - **[utils-merge@1.0.1](https://github.com/jaredhanson/utils-merge)**
+    - name: utils-merge
+    - version: 1.0.1
+    - licenses: MIT
+    - repository: https://github.com/jaredhanson/utils-merge
+ - **[uuid@3.4.0](https://github.com/uuidjs/uuid)**
+    - name: uuid
+    - version: 3.4.0
+    - licenses: MIT
+    - repository: https://github.com/uuidjs/uuid
+ - **[uuid@8.3.2](https://github.com/uuidjs/uuid)**
+    - name: uuid
+    - version: 8.3.2
+    - licenses: MIT
+    - repository: https://github.com/uuidjs/uuid
+ - **[v8-compile-cache-lib@3.0.1](https://github.com/cspotcode/v8-compile-cache-lib)**
+    - name: v8-compile-cache-lib
+    - version: 3.0.1
+    - licenses: MIT
+    - repository: https://github.com/cspotcode/v8-compile-cache-lib
+ - **[v8-to-istanbul@9.3.0](https://github.com/istanbuljs/v8-to-istanbul)**
+    - name: v8-to-istanbul
+    - version: 9.3.0
+    - licenses: ISC
+    - repository: https://github.com/istanbuljs/v8-to-istanbul
+ - **[validate-npm-package-license@3.0.4](https://github.com/kemitchell/validate-npm-package-license.js)**
+    - name: validate-npm-package-license
+    - version: 3.0.4
+    - licenses: Apache-2.0
+    - repository: https://github.com/kemitchell/validate-npm-package-license.js
+ - **[validate-npm-package-name@5.0.1](https://github.com/npm/validate-npm-package-name)**
+    - name: validate-npm-package-name
+    - version: 5.0.1
+    - licenses: ISC
+    - repository: https://github.com/npm/validate-npm-package-name
+ - **[vary@1.1.2](https://github.com/jshttp/vary)**
+    - name: vary
+    - version: 1.1.2
+    - licenses: MIT
+    - repository: https://github.com/jshttp/vary
+ - **[verror@1.10.0](https://github.com/davepacheco/node-verror)**
+    - name: verror
+    - version: 1.10.0
+    - licenses: MIT
+    - repository: https://github.com/davepacheco/node-verror
+ - **[vite@5.4.14](https://github.com/vitejs/vite)**
+    - name: vite
+    - version: 5.4.14
+    - licenses: MIT
+    - repository: https://github.com/vitejs/vite
+ - **[w3c-hr-time@1.0.2](https://github.com/jsdom/w3c-hr-time)**
+    - name: w3c-hr-time
+    - version: 1.0.2
+    - licenses: MIT
+    - repository: https://github.com/jsdom/w3c-hr-time
+ - **[w3c-xmlserializer@3.0.0](https://github.com/jsdom/w3c-xmlserializer)**
+    - name: w3c-xmlserializer
+    - version: 3.0.0
+    - licenses: MIT
+    - repository: https://github.com/jsdom/w3c-xmlserializer
+ - **[w3c-xmlserializer@4.0.0](https://github.com/jsdom/w3c-xmlserializer)**
+    - name: w3c-xmlserializer
+    - version: 4.0.0
+    - licenses: MIT
+    - repository: https://github.com/jsdom/w3c-xmlserializer
+ - **[walker@1.0.8](https://github.com/daaku/nodejs-walker)**
+    - name: walker
+    - version: 1.0.8
+    - licenses: Apache-2.0
+    - repository: https://github.com/daaku/nodejs-walker
+ - **[watchpack@2.4.1](https://github.com/webpack/watchpack)**
+    - name: watchpack
+    - version: 2.4.1
+    - licenses: MIT
+    - repository: https://github.com/webpack/watchpack
+ - **[wbuf@1.7.3](https://github.com/indutny/wbuf)**
+    - name: wbuf
+    - version: 1.7.3
+    - licenses: MIT
+    - repository: https://github.com/indutny/wbuf
+ - **[wcwidth@1.0.1](https://github.com/timoxley/wcwidth)**
+    - name: wcwidth
+    - version: 1.0.1
+    - licenses: MIT
+    - repository: https://github.com/timoxley/wcwidth
+ - **[weak-lru-cache@1.2.2](https://github.com/kriszyp/weak-lru-cache)**
+    - name: weak-lru-cache
+    - version: 1.2.2
+    - licenses: MIT
+    - repository: https://github.com/kriszyp/weak-lru-cache
+ - **[webdriver-js-extender@2.1.0](https://github.com/angular/webdriver-js-extender)**
+    - name: webdriver-js-extender
+    - version: 2.1.0
+    - licenses: MIT
+    - repository: https://github.com/angular/webdriver-js-extender
+ - **[webdriver-manager@12.1.9](https://github.com/angular/webdriver-manager)**
+    - name: webdriver-manager
+    - version: 12.1.9
+    - licenses: MIT
+    - repository: https://github.com/angular/webdriver-manager
+ - **[webidl-conversions@7.0.0](https://github.com/jsdom/webidl-conversions)**
+    - name: webidl-conversions
+    - version: 7.0.0
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/jsdom/webidl-conversions
+ - **[webpack-dev-middleware@7.4.2](https://github.com/webpack/webpack-dev-middleware)**
+    - name: webpack-dev-middleware
+    - version: 7.4.2
+    - licenses: MIT
+    - repository: https://github.com/webpack/webpack-dev-middleware
+ - **[webpack-dev-server@5.0.4](https://github.com/webpack/webpack-dev-server)**
+    - name: webpack-dev-server
+    - version: 5.0.4
+    - licenses: MIT
+    - repository: https://github.com/webpack/webpack-dev-server
+ - **[webpack-merge@6.0.1](https://github.com/survivejs/webpack-merge)**
+    - name: webpack-merge
+    - version: 6.0.1
+    - licenses: MIT
+    - repository: https://github.com/survivejs/webpack-merge
+ - **[webpack-sources@3.2.3](https://github.com/webpack/webpack-sources)**
+    - name: webpack-sources
+    - version: 3.2.3
+    - licenses: MIT
+    - repository: https://github.com/webpack/webpack-sources
+ - **[webpack-subresource-integrity@5.1.0](https://github.com/waysact/webpack-subresource-integrity)**
+    - name: webpack-subresource-integrity
+    - version: 5.1.0
+    - licenses: MIT
+    - repository: https://github.com/waysact/webpack-subresource-integrity
+ - **[webpack@5.94.0](https://github.com/webpack/webpack)**
+    - name: webpack
+    - version: 5.94.0
+    - licenses: MIT
+    - repository: https://github.com/webpack/webpack
+ - **[websocket-driver@0.7.4](https://github.com/faye/websocket-driver-node)**
+    - name: websocket-driver
+    - version: 0.7.4
+    - licenses: Apache-2.0
+    - repository: https://github.com/faye/websocket-driver-node
+ - **[websocket-extensions@0.1.4](https://github.com/faye/websocket-extensions-node)**
+    - name: websocket-extensions
+    - version: 0.1.4
+    - licenses: Apache-2.0
+    - repository: https://github.com/faye/websocket-extensions-node
+ - **[whatwg-encoding@2.0.0](https://github.com/jsdom/whatwg-encoding)**
+    - name: whatwg-encoding
+    - version: 2.0.0
+    - licenses: MIT
+    - repository: https://github.com/jsdom/whatwg-encoding
+ - **[whatwg-mimetype@3.0.0](https://github.com/jsdom/whatwg-mimetype)**
+    - name: whatwg-mimetype
+    - version: 3.0.0
+    - licenses: MIT
+    - repository: https://github.com/jsdom/whatwg-mimetype
+ - **[whatwg-url@10.0.0](https://github.com/jsdom/whatwg-url)**
+    - name: whatwg-url
+    - version: 10.0.0
+    - licenses: MIT
+    - repository: https://github.com/jsdom/whatwg-url
+ - **[whatwg-url@11.0.0](https://github.com/jsdom/whatwg-url)**
+    - name: whatwg-url
+    - version: 11.0.0
+    - licenses: MIT
+    - repository: https://github.com/jsdom/whatwg-url
+ - **[which-module@2.0.1](https://github.com/nexdrew/which-module)**
+    - name: which-module
+    - version: 2.0.1
+    - licenses: ISC
+    - repository: https://github.com/nexdrew/which-module
+ - **[which@2.0.2](https://github.com/isaacs/node-which)**
+    - name: which
+    - version: 2.0.2
+    - licenses: ISC
+    - repository: https://github.com/isaacs/node-which
+ - **[which@4.0.0](https://github.com/npm/node-which)**
+    - name: which
+    - version: 4.0.0
+    - licenses: ISC
+    - repository: https://github.com/npm/node-which
+ - **[wildcard@2.0.1](https://github.com/DamonOehlman/wildcard)**
+    - name: wildcard
+    - version: 2.0.1
+    - licenses: MIT
+    - repository: https://github.com/DamonOehlman/wildcard
+ - **[wordwrap@1.0.0](https://github.com/substack/node-wordwrap)**
+    - name: wordwrap
+    - version: 1.0.0
+    - licenses: MIT
+    - repository: https://github.com/substack/node-wordwrap
+ - **[wrap-ansi@6.2.0](https://github.com/chalk/wrap-ansi)**
+    - name: wrap-ansi
+    - version: 6.2.0
+    - licenses: MIT
+    - repository: https://github.com/chalk/wrap-ansi
+ - **[wrap-ansi@7.0.0](https://github.com/chalk/wrap-ansi)**
+    - name: wrap-ansi
+    - version: 7.0.0
+    - licenses: MIT
+    - repository: https://github.com/chalk/wrap-ansi
+ - **[wrap-ansi@8.1.0](https://github.com/chalk/wrap-ansi)**
+    - name: wrap-ansi
+    - version: 8.1.0
+    - licenses: MIT
+    - repository: https://github.com/chalk/wrap-ansi
+ - **[wrap-ansi@9.0.0](https://github.com/chalk/wrap-ansi)**
+    - name: wrap-ansi
+    - version: 9.0.0
+    - licenses: MIT
+    - repository: https://github.com/chalk/wrap-ansi
+ - **[wrappy@1.0.2](https://github.com/npm/wrappy)**
+    - name: wrappy
+    - version: 1.0.2
+    - licenses: ISC
+    - repository: https://github.com/npm/wrappy
+ - **[write-file-atomic@4.0.2](https://github.com/npm/write-file-atomic)**
+    - name: write-file-atomic
+    - version: 4.0.2
+    - licenses: ISC
+    - repository: https://github.com/npm/write-file-atomic
+ - **[ws@8.18.0](https://github.com/websockets/ws)**
+    - name: ws
+    - version: 8.18.0
+    - licenses: MIT
+    - repository: https://github.com/websockets/ws
+ - **[xml-name-validator@4.0.0](https://github.com/jsdom/xml-name-validator)**
+    - name: xml-name-validator
+    - version: 4.0.0
+    - licenses: Apache-2.0
+    - repository: https://github.com/jsdom/xml-name-validator
+ - **[xml2js@0.4.23](https://github.com/Leonidas-from-XIV/node-xml2js)**
+    - name: xml2js
+    - version: 0.4.23
+    - licenses: MIT
+    - repository: https://github.com/Leonidas-from-XIV/node-xml2js
+ - **[xml@1.0.1](https://github.com/dylang/node-xml)**
+    - name: xml
+    - version: 1.0.1
+    - licenses: MIT
+    - repository: https://github.com/dylang/node-xml
+ - **[xmlbuilder@11.0.1](https://github.com/oozcitak/xmlbuilder-js)**
+    - name: xmlbuilder
+    - version: 11.0.1
+    - licenses: MIT
+    - repository: https://github.com/oozcitak/xmlbuilder-js
+ - **[xmlchars@2.2.0](https://github.com/lddubeau/xmlchars)**
+    - name: xmlchars
+    - version: 2.2.0
+    - licenses: MIT
+    - repository: https://github.com/lddubeau/xmlchars
+ - **[y18n@4.0.3](https://github.com/yargs/y18n)**
+    - name: y18n
+    - version: 4.0.3
+    - licenses: ISC
+    - repository: https://github.com/yargs/y18n
+ - **[y18n@5.0.8](https://github.com/yargs/y18n)**
+    - name: y18n
+    - version: 5.0.8
+    - licenses: ISC
+    - repository: https://github.com/yargs/y18n
+ - **[yallist@3.1.1](https://github.com/isaacs/yallist)**
+    - name: yallist
+    - version: 3.1.1
+    - licenses: ISC
+    - repository: https://github.com/isaacs/yallist
+ - **[yallist@4.0.0](https://github.com/isaacs/yallist)**
+    - name: yallist
+    - version: 4.0.0
+    - licenses: ISC
+    - repository: https://github.com/isaacs/yallist
+ - **[yargs-parser@18.1.3](https://github.com/yargs/yargs-parser)**
+    - name: yargs-parser
+    - version: 18.1.3
+    - licenses: ISC
+    - repository: https://github.com/yargs/yargs-parser
+ - **[yargs-parser@21.1.1](https://github.com/yargs/yargs-parser)**
+    - name: yargs-parser
+    - version: 21.1.1
+    - licenses: ISC
+    - repository: https://github.com/yargs/yargs-parser
+ - **[yargs@15.4.1](https://github.com/yargs/yargs)**
+    - name: yargs
+    - version: 15.4.1
+    - licenses: MIT
+    - repository: https://github.com/yargs/yargs
+ - **[yargs@17.7.2](https://github.com/yargs/yargs)**
+    - name: yargs
+    - version: 17.7.2
+    - licenses: MIT
+    - repository: https://github.com/yargs/yargs
+ - **[yn@3.1.1](https://github.com/sindresorhus/yn)**
+    - name: yn
+    - version: 3.1.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/yn
+ - **[yocto-queue@0.1.0](https://github.com/sindresorhus/yocto-queue)**
+    - name: yocto-queue
+    - version: 0.1.0
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/yocto-queue
+ - **[yocto-queue@1.1.1](https://github.com/sindresorhus/yocto-queue)**
+    - name: yocto-queue
+    - version: 1.1.1
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/yocto-queue
+ - **[yoctocolors-cjs@2.1.2](https://github.com/sindresorhus/yoctocolors)**
+    - name: yoctocolors-cjs
+    - version: 2.1.2
+    - licenses: MIT
+    - repository: https://github.com/sindresorhus/yoctocolors
+ - **[zone.js@0.10.3](https://github.com/angular/angular)**
+    - name: zone.js
+    - version: 0.10.3
+    - licenses: MIT
+    - repository: https://github.com/angular/angular
+ - **[zone.js@0.14.10](https://github.com/angular/angular)**
+    - name: zone.js
+    - version: 0.14.10
+    - licenses: MIT
+    - repository: https://github.com/angular/angular
 
-The following npm package may be included in this product:
-
- - exponential-backoff@3.1.1
-
-This package contains the following license:
-
-Apache License
-                           Version 2.0, January 2004
-                        http://www.apache.org/licenses/
-
-   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
-
-   1. Definitions.
-
-      "License" shall mean the terms and conditions for use, reproduction,
-      and distribution as defined by Sections 1 through 9 of this document.
-
-      "Licensor" shall mean the copyright owner or entity authorized by
-      the copyright owner that is granting the License.
-
-      "Legal Entity" shall mean the union of the acting entity and all
-      other entities that control, are controlled by, or are under common
-      control with that entity. For the purposes of this definition,
-      "control" means (i) the power, direct or indirect, to cause the
-      direction or management of such entity, whether by contract or
-      otherwise, or (ii) ownership of fifty percent (50%) or more of the
-      outstanding shares, or (iii) beneficial ownership of such entity.
-
-      "You" (or "Your") shall mean an individual or Legal Entity
-      exercising permissions granted by this License.
-
-      "Source" form shall mean the preferred form for making modifications,
-      including but not limited to software source code, documentation
-      source, and configuration files.
-
-      "Object" form shall mean any form resulting from mechanical
-      transformation or translation of a Source form, including but
-      not limited to compiled object code, generated documentation,
-      and conversions to other media types.
-
-      "Work" shall mean the work of authorship, whether in Source or
-      Object form, made available under the License, as indicated by a
-      copyright notice that is included in or attached to the work
-      (an example is provided in the Appendix below).
-
-      "Derivative Works" shall mean any work, whether in Source or Object
-      form, that is based on (or derived from) the Work and for which the
-      editorial revisions, annotations, elaborations, or other modifications
-      represent, as a whole, an original work of authorship. For the purposes
-      of this License, Derivative Works shall not include works that remain
-      separable from, or merely link (or bind by name) to the interfaces of,
-      the Work and Derivative Works thereof.
-
-      "Contribution" shall mean any work of authorship, including
-      the original version of the Work and any modifications or additions
-      to that Work or Derivative Works thereof, that is intentionally
-      submitted to Licensor for inclusion in the Work by the copyright owner
-      or by an individual or Legal Entity authorized to submit on behalf of
-      the copyright owner. For the purposes of this definition, "submitted"
-      means any form of electronic, verbal, or written communication sent
-      to the Licensor or its representatives, including but not limited to
-      communication on electronic mailing lists, source code control systems,
-      and issue tracking systems that are managed by, or on behalf of, the
-      Licensor for the purpose of discussing and improving the Work, but
-      excluding communication that is conspicuously marked or otherwise
-      designated in writing by the copyright owner as "Not a Contribution."
-
-      "Contributor" shall mean Licensor and any individual or Legal Entity
-      on behalf of whom a Contribution has been received by Licensor and
-      subsequently incorporated within the Work.
-
-   2. Grant of Copyright License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      copyright license to reproduce, prepare Derivative Works of,
-      publicly display, publicly perform, sublicense, and distribute the
-      Work and such Derivative Works in Source or Object form.
-
-   3. Grant of Patent License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      (except as stated in this section) patent license to make, have made,
-      use, offer to sell, sell, import, and otherwise transfer the Work,
-      where such license applies only to those patent claims licensable
-      by such Contributor that are necessarily infringed by their
-      Contribution(s) alone or by combination of their Contribution(s)
-      with the Work to which such Contribution(s) was submitted. If You
-      institute patent litigation against any entity (including a
-      cross-claim or counterclaim in a lawsuit) alleging that the Work
-      or a Contribution incorporated within the Work constitutes direct
-      or contributory patent infringement, then any patent licenses
-      granted to You under this License for that Work shall terminate
-      as of the date such litigation is filed.
-
-   4. Redistribution. You may reproduce and distribute copies of the
-      Work or Derivative Works thereof in any medium, with or without
-      modifications, and in Source or Object form, provided that You
-      meet the following conditions:
-
-      (a) You must give any other recipients of the Work or
-          Derivative Works a copy of this License; and
-
-      (b) You must cause any modified files to carry prominent notices
-          stating that You changed the files; and
-
-      (c) You must retain, in the Source form of any Derivative Works
-          that You distribute, all copyright, patent, trademark, and
-          attribution notices from the Source form of the Work,
-          excluding those notices that do not pertain to any part of
-          the Derivative Works; and
-
-      (d) If the Work includes a "NOTICE" text file as part of its
-          distribution, then any Derivative Works that You distribute must
-          include a readable copy of the attribution notices contained
-          within such NOTICE file, excluding those notices that do not
-          pertain to any part of the Derivative Works, in at least one
-          of the following places: within a NOTICE text file distributed
-          as part of the Derivative Works; within the Source form or
-          documentation, if provided along with the Derivative Works; or,
-          within a display generated by the Derivative Works, if and
-          wherever such third-party notices normally appear. The contents
-          of the NOTICE file are for informational purposes only and
-          do not modify the License. You may add Your own attribution
-          notices within Derivative Works that You distribute, alongside
-          or as an addendum to the NOTICE text from the Work, provided
-          that such additional attribution notices cannot be construed
-          as modifying the License.
-
-      You may add Your own copyright statement to Your modifications and
-      may provide additional or different license terms and conditions
-      for use, reproduction, or distribution of Your modifications, or
-      for any such Derivative Works as a whole, provided Your use,
-      reproduction, and distribution of the Work otherwise complies with
-      the conditions stated in this License.
-
-   5. Submission of Contributions. Unless You explicitly state otherwise,
-      any Contribution intentionally submitted for inclusion in the Work
-      by You to the Licensor shall be under the terms and conditions of
-      this License, without any additional terms or conditions.
-      Notwithstanding the above, nothing herein shall supersede or modify
-      the terms of any separate license agreement you may have executed
-      with Licensor regarding such Contributions.
-
-   6. Trademarks. This License does not grant permission to use the trade
-      names, trademarks, service marks, or product names of the Licensor,
-      except as required for reasonable and customary use in describing the
-      origin of the Work and reproducing the content of the NOTICE file.
-
-   7. Disclaimer of Warranty. Unless required by applicable law or
-      agreed to in writing, Licensor provides the Work (and each
-      Contributor provides its Contributions) on an "AS IS" BASIS,
-      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-      implied, including, without limitation, any warranties or conditions
-      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
-      PARTICULAR PURPOSE. You are solely responsible for determining the
-      appropriateness of using or redistributing the Work and assume any
-      risks associated with Your exercise of permissions under this License.
-
-   8. Limitation of Liability. In no event and under no legal theory,
-      whether in tort (including negligence), contract, or otherwise,
-      unless required by applicable law (such as deliberate and grossly
-      negligent acts) or agreed to in writing, shall any Contributor be
-      liable to You for damages, including any direct, indirect, special,
-      incidental, or consequential damages of any character arising as a
-      result of this License or out of the use or inability to use the
-      Work (including but not limited to damages for loss of goodwill,
-      work stoppage, computer failure or malfunction, or any and all
-      other commercial damages or losses), even if such Contributor
-      has been advised of the possibility of such damages.
-
-   9. Accepting Warranty or Additional Liability. While redistributing
-      the Work or Derivative Works thereof, You may choose to offer,
-      and charge a fee for, acceptance of support, warranty, indemnity,
-      or other liability obligations and/or rights consistent with this
-      License. However, in accepting such obligations, You may act only
-      on Your own behalf and on Your sole responsibility, not on behalf
-      of any other Contributor, and only if You agree to indemnify,
-      defend, and hold each Contributor harmless for any liability
-      incurred by, or claims asserted against, such Contributor by reason
-      of your accepting any such warranty or additional liability.
-
-   END OF TERMS AND CONDITIONS
-
-   APPENDIX: How to apply the Apache License to your work.
-
-      To apply the Apache License to your work, attach the following
-      boilerplate notice, with the fields enclosed by brackets "[]"
-      replaced with your own identifying information. (Don't include
-      the brackets!)  The text should be enclosed in the appropriate
-      comment syntax for the file format. We also recommend that a
-      file or class name and description of purpose be included on the
-      same "printed page" as the copyright notice for easier
-      identification within third-party archives.
-
-   Copyright [yyyy] [name of copyright owner]
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-
------------
-
-The following npm package may be included in this product:
-
- - @ampproject/remapping@2.3.0
-
-This package contains the following license:
-
-Apache License
-                           Version 2.0, January 2004
-                        http://www.apache.org/licenses/
-
-   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
-
-   1. Definitions.
-
-      "License" shall mean the terms and conditions for use, reproduction,
-      and distribution as defined by Sections 1 through 9 of this document.
-
-      "Licensor" shall mean the copyright owner or entity authorized by
-      the copyright owner that is granting the License.
-
-      "Legal Entity" shall mean the union of the acting entity and all
-      other entities that control, are controlled by, or are under common
-      control with that entity. For the purposes of this definition,
-      "control" means (i) the power, direct or indirect, to cause the
-      direction or management of such entity, whether by contract or
-      otherwise, or (ii) ownership of fifty percent (50%) or more of the
-      outstanding shares, or (iii) beneficial ownership of such entity.
-
-      "You" (or "Your") shall mean an individual or Legal Entity
-      exercising permissions granted by this License.
-
-      "Source" form shall mean the preferred form for making modifications,
-      including but not limited to software source code, documentation
-      source, and configuration files.
-
-      "Object" form shall mean any form resulting from mechanical
-      transformation or translation of a Source form, including but
-      not limited to compiled object code, generated documentation,
-      and conversions to other media types.
-
-      "Work" shall mean the work of authorship, whether in Source or
-      Object form, made available under the License, as indicated by a
-      copyright notice that is included in or attached to the work
-      (an example is provided in the Appendix below).
-
-      "Derivative Works" shall mean any work, whether in Source or Object
-      form, that is based on (or derived from) the Work and for which the
-      editorial revisions, annotations, elaborations, or other modifications
-      represent, as a whole, an original work of authorship. For the purposes
-      of this License, Derivative Works shall not include works that remain
-      separable from, or merely link (or bind by name) to the interfaces of,
-      the Work and Derivative Works thereof.
-
-      "Contribution" shall mean any work of authorship, including
-      the original version of the Work and any modifications or additions
-      to that Work or Derivative Works thereof, that is intentionally
-      submitted to Licensor for inclusion in the Work by the copyright owner
-      or by an individual or Legal Entity authorized to submit on behalf of
-      the copyright owner. For the purposes of this definition, "submitted"
-      means any form of electronic, verbal, or written communication sent
-      to the Licensor or its representatives, including but not limited to
-      communication on electronic mailing lists, source code control systems,
-      and issue tracking systems that are managed by, or on behalf of, the
-      Licensor for the purpose of discussing and improving the Work, but
-      excluding communication that is conspicuously marked or otherwise
-      designated in writing by the copyright owner as "Not a Contribution."
-
-      "Contributor" shall mean Licensor and any individual or Legal Entity
-      on behalf of whom a Contribution has been received by Licensor and
-      subsequently incorporated within the Work.
-
-   2. Grant of Copyright License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      copyright license to reproduce, prepare Derivative Works of,
-      publicly display, publicly perform, sublicense, and distribute the
-      Work and such Derivative Works in Source or Object form.
-
-   3. Grant of Patent License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      (except as stated in this section) patent license to make, have made,
-      use, offer to sell, sell, import, and otherwise transfer the Work,
-      where such license applies only to those patent claims licensable
-      by such Contributor that are necessarily infringed by their
-      Contribution(s) alone or by combination of their Contribution(s)
-      with the Work to which such Contribution(s) was submitted. If You
-      institute patent litigation against any entity (including a
-      cross-claim or counterclaim in a lawsuit) alleging that the Work
-      or a Contribution incorporated within the Work constitutes direct
-      or contributory patent infringement, then any patent licenses
-      granted to You under this License for that Work shall terminate
-      as of the date such litigation is filed.
-
-   4. Redistribution. You may reproduce and distribute copies of the
-      Work or Derivative Works thereof in any medium, with or without
-      modifications, and in Source or Object form, provided that You
-      meet the following conditions:
-
-      (a) You must give any other recipients of the Work or
-          Derivative Works a copy of this License; and
-
-      (b) You must cause any modified files to carry prominent notices
-          stating that You changed the files; and
-
-      (c) You must retain, in the Source form of any Derivative Works
-          that You distribute, all copyright, patent, trademark, and
-          attribution notices from the Source form of the Work,
-          excluding those notices that do not pertain to any part of
-          the Derivative Works; and
-
-      (d) If the Work includes a "NOTICE" text file as part of its
-          distribution, then any Derivative Works that You distribute must
-          include a readable copy of the attribution notices contained
-          within such NOTICE file, excluding those notices that do not
-          pertain to any part of the Derivative Works, in at least one
-          of the following places: within a NOTICE text file distributed
-          as part of the Derivative Works; within the Source form or
-          documentation, if provided along with the Derivative Works; or,
-          within a display generated by the Derivative Works, if and
-          wherever such third-party notices normally appear. The contents
-          of the NOTICE file are for informational purposes only and
-          do not modify the License. You may add Your own attribution
-          notices within Derivative Works that You distribute, alongside
-          or as an addendum to the NOTICE text from the Work, provided
-          that such additional attribution notices cannot be construed
-          as modifying the License.
-
-      You may add Your own copyright statement to Your modifications and
-      may provide additional or different license terms and conditions
-      for use, reproduction, or distribution of Your modifications, or
-      for any such Derivative Works as a whole, provided Your use,
-      reproduction, and distribution of the Work otherwise complies with
-      the conditions stated in this License.
-
-   5. Submission of Contributions. Unless You explicitly state otherwise,
-      any Contribution intentionally submitted for inclusion in the Work
-      by You to the Licensor shall be under the terms and conditions of
-      this License, without any additional terms or conditions.
-      Notwithstanding the above, nothing herein shall supersede or modify
-      the terms of any separate license agreement you may have executed
-      with Licensor regarding such Contributions.
-
-   6. Trademarks. This License does not grant permission to use the trade
-      names, trademarks, service marks, or product names of the Licensor,
-      except as required for reasonable and customary use in describing the
-      origin of the Work and reproducing the content of the NOTICE file.
-
-   7. Disclaimer of Warranty. Unless required by applicable law or
-      agreed to in writing, Licensor provides the Work (and each
-      Contributor provides its Contributions) on an "AS IS" BASIS,
-      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-      implied, including, without limitation, any warranties or conditions
-      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
-      PARTICULAR PURPOSE. You are solely responsible for determining the
-      appropriateness of using or redistributing the Work and assume any
-      risks associated with Your exercise of permissions under this License.
-
-   8. Limitation of Liability. In no event and under no legal theory,
-      whether in tort (including negligence), contract, or otherwise,
-      unless required by applicable law (such as deliberate and grossly
-      negligent acts) or agreed to in writing, shall any Contributor be
-      liable to You for damages, including any direct, indirect, special,
-      incidental, or consequential damages of any character arising as a
-      result of this License or out of the use or inability to use the
-      Work (including but not limited to damages for loss of goodwill,
-      work stoppage, computer failure or malfunction, or any and all
-      other commercial damages or losses), even if such Contributor
-      has been advised of the possibility of such damages.
-
-   9. Accepting Warranty or Additional Liability. While redistributing
-      the Work or Derivative Works thereof, You may choose to offer,
-      and charge a fee for, acceptance of support, warranty, indemnity,
-      or other liability obligations and/or rights consistent with this
-      License. However, in accepting such obligations, You may act only
-      on Your own behalf and on Your sole responsibility, not on behalf
-      of any other Contributor, and only if You agree to indemnify,
-      defend, and hold each Contributor harmless for any liability
-      incurred by, or claims asserted against, such Contributor by reason
-      of your accepting any such warranty or additional liability.
-
-   END OF TERMS AND CONDITIONS
-
-   APPENDIX: How to apply the Apache License to your work.
-
-      To apply the Apache License to your work, attach the following
-      boilerplate notice, with the fields enclosed by brackets "[]"
-      replaced with your own identifying information. (Don't include
-      the brackets!)  The text should be enclosed in the appropriate
-      comment syntax for the file format. We also recommend that a
-      file or class name and description of purpose be included on the
-      same "printed page" as the copyright notice for easier
-      identification within third-party archives.
-
-   Copyright [yyyy] [name of copyright owner]
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-
------------
-
-The following npm packages may be included in this product:
-
- - source-map-js@1.2.1
- - source-map@0.7.4
-
-These packages each contain the following license:
-
-Copyright (c) 2009-2011, Mozilla Foundation and contributors
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-
-* Redistributions of source code must retain the above copyright notice, this
-  list of conditions and the following disclaimer.
-
-* Redistributions in binary form must reproduce the above copyright notice,
-  this list of conditions and the following disclaimer in the documentation
-  and/or other materials provided with the distribution.
-
-* Neither the names of the Mozilla Foundation nor the names of project
-  contributors may be used to endorse or promote products derived from this
-  software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
------------
-
-The following npm package may be included in this product:
-
- - @pkgjs/parseargs@0.11.0
-
-This package contains the following license:
-
-Apache License
-                           Version 2.0, January 2004
-                        http://www.apache.org/licenses/
-
-   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
-
-   1. Definitions.
-
-      "License" shall mean the terms and conditions for use, reproduction,
-      and distribution as defined by Sections 1 through 9 of this document.
-
-      "Licensor" shall mean the copyright owner or entity authorized by
-      the copyright owner that is granting the License.
-
-      "Legal Entity" shall mean the union of the acting entity and all
-      other entities that control, are controlled by, or are under common
-      control with that entity. For the purposes of this definition,
-      "control" means (i) the power, direct or indirect, to cause the
-      direction or management of such entity, whether by contract or
-      otherwise, or (ii) ownership of fifty percent (50%) or more of the
-      outstanding shares, or (iii) beneficial ownership of such entity.
-
-      "You" (or "Your") shall mean an individual or Legal Entity
-      exercising permissions granted by this License.
-
-      "Source" form shall mean the preferred form for making modifications,
-      including but not limited to software source code, documentation
-      source, and configuration files.
-
-      "Object" form shall mean any form resulting from mechanical
-      transformation or translation of a Source form, including but
-      not limited to compiled object code, generated documentation,
-      and conversions to other media types.
-
-      "Work" shall mean the work of authorship, whether in Source or
-      Object form, made available under the License, as indicated by a
-      copyright notice that is included in or attached to the work
-      (an example is provided in the Appendix below).
-
-      "Derivative Works" shall mean any work, whether in Source or Object
-      form, that is based on (or derived from) the Work and for which the
-      editorial revisions, annotations, elaborations, or other modifications
-      represent, as a whole, an original work of authorship. For the purposes
-      of this License, Derivative Works shall not include works that remain
-      separable from, or merely link (or bind by name) to the interfaces of,
-      the Work and Derivative Works thereof.
-
-      "Contribution" shall mean any work of authorship, including
-      the original version of the Work and any modifications or additions
-      to that Work or Derivative Works thereof, that is intentionally
-      submitted to Licensor for inclusion in the Work by the copyright owner
-      or by an individual or Legal Entity authorized to submit on behalf of
-      the copyright owner. For the purposes of this definition, "submitted"
-      means any form of electronic, verbal, or written communication sent
-      to the Licensor or its representatives, including but not limited to
-      communication on electronic mailing lists, source code control systems,
-      and issue tracking systems that are managed by, or on behalf of, the
-      Licensor for the purpose of discussing and improving the Work, but
-      excluding communication that is conspicuously marked or otherwise
-      designated in writing by the copyright owner as "Not a Contribution."
-
-      "Contributor" shall mean Licensor and any individual or Legal Entity
-      on behalf of whom a Contribution has been received by Licensor and
-      subsequently incorporated within the Work.
-
-   2. Grant of Copyright License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      copyright license to reproduce, prepare Derivative Works of,
-      publicly display, publicly perform, sublicense, and distribute the
-      Work and such Derivative Works in Source or Object form.
-
-   3. Grant of Patent License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      (except as stated in this section) patent license to make, have made,
-      use, offer to sell, sell, import, and otherwise transfer the Work,
-      where such license applies only to those patent claims licensable
-      by such Contributor that are necessarily infringed by their
-      Contribution(s) alone or by combination of their Contribution(s)
-      with the Work to which such Contribution(s) was submitted. If You
-      institute patent litigation against any entity (including a
-      cross-claim or counterclaim in a lawsuit) alleging that the Work
-      or a Contribution incorporated within the Work constitutes direct
-      or contributory patent infringement, then any patent licenses
-      granted to You under this License for that Work shall terminate
-      as of the date such litigation is filed.
-
-   4. Redistribution. You may reproduce and distribute copies of the
-      Work or Derivative Works thereof in any medium, with or without
-      modifications, and in Source or Object form, provided that You
-      meet the following conditions:
-
-      (a) You must give any other recipients of the Work or
-          Derivative Works a copy of this License; and
-
-      (b) You must cause any modified files to carry prominent notices
-          stating that You changed the files; and
-
-      (c) You must retain, in the Source form of any Derivative Works
-          that You distribute, all copyright, patent, trademark, and
-          attribution notices from the Source form of the Work,
-          excluding those notices that do not pertain to any part of
-          the Derivative Works; and
-
-      (d) If the Work includes a "NOTICE" text file as part of its
-          distribution, then any Derivative Works that You distribute must
-          include a readable copy of the attribution notices contained
-          within such NOTICE file, excluding those notices that do not
-          pertain to any part of the Derivative Works, in at least one
-          of the following places: within a NOTICE text file distributed
-          as part of the Derivative Works; within the Source form or
-          documentation, if provided along with the Derivative Works; or,
-          within a display generated by the Derivative Works, if and
-          wherever such third-party notices normally appear. The contents
-          of the NOTICE file are for informational purposes only and
-          do not modify the License. You may add Your own attribution
-          notices within Derivative Works that You distribute, alongside
-          or as an addendum to the NOTICE text from the Work, provided
-          that such additional attribution notices cannot be construed
-          as modifying the License.
-
-      You may add Your own copyright statement to Your modifications and
-      may provide additional or different license terms and conditions
-      for use, reproduction, or distribution of Your modifications, or
-      for any such Derivative Works as a whole, provided Your use,
-      reproduction, and distribution of the Work otherwise complies with
-      the conditions stated in this License.
-
-   5. Submission of Contributions. Unless You explicitly state otherwise,
-      any Contribution intentionally submitted for inclusion in the Work
-      by You to the Licensor shall be under the terms and conditions of
-      this License, without any additional terms or conditions.
-      Notwithstanding the above, nothing herein shall supersede or modify
-      the terms of any separate license agreement you may have executed
-      with Licensor regarding such Contributions.
-
-   6. Trademarks. This License does not grant permission to use the trade
-      names, trademarks, service marks, or product names of the Licensor,
-      except as required for reasonable and customary use in describing the
-      origin of the Work and reproducing the content of the NOTICE file.
-
-   7. Disclaimer of Warranty. Unless required by applicable law or
-      agreed to in writing, Licensor provides the Work (and each
-      Contributor provides its Contributions) on an "AS IS" BASIS,
-      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-      implied, including, without limitation, any warranties or conditions
-      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
-      PARTICULAR PURPOSE. You are solely responsible for determining the
-      appropriateness of using or redistributing the Work and assume any
-      risks associated with Your exercise of permissions under this License.
-
-   8. Limitation of Liability. In no event and under no legal theory,
-      whether in tort (including negligence), contract, or otherwise,
-      unless required by applicable law (such as deliberate and grossly
-      negligent acts) or agreed to in writing, shall any Contributor be
-      liable to You for damages, including any direct, indirect, special,
-      incidental, or consequential damages of any character arising as a
-      result of this License or out of the use or inability to use the
-      Work (including but not limited to damages for loss of goodwill,
-      work stoppage, computer failure or malfunction, or any and all
-      other commercial damages or losses), even if such Contributor
-      has been advised of the possibility of such damages.
-
-   9. Accepting Warranty or Additional Liability. While redistributing
-      the Work or Derivative Works thereof, You may choose to offer,
-      and charge a fee for, acceptance of support, warranty, indemnity,
-      or other liability obligations and/or rights consistent with this
-      License. However, in accepting such obligations, You may act only
-      on Your own behalf and on Your sole responsibility, not on behalf
-      of any other Contributor, and only if You agree to indemnify,
-      defend, and hold each Contributor harmless for any liability
-      incurred by, or claims asserted against, such Contributor by reason
-      of your accepting any such warranty or additional liability.
-
-   END OF TERMS AND CONDITIONS
-
-   APPENDIX: How to apply the Apache License to your work.
-
-      To apply the Apache License to your work, attach the following
-      boilerplate notice, with the fields enclosed by brackets "[]"
-      replaced with your own identifying information. (Don't include
-      the brackets!)  The text should be enclosed in the appropriate
-      comment syntax for the file format. We also recommend that a
-      file or class name and description of purpose be included on the
-      same "printed page" as the copyright notice for easier
-      identification within third-party archives.
-
-   Copyright [yyyy] [name of copyright owner]
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-
------------
-
-The following npm package may be included in this product:
-
- - detect-libc@1.0.3
-
-This package contains the following license:
-
-Apache License
-                           Version 2.0, January 2004
-                        http://www.apache.org/licenses/
-
-   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
-
-   1. Definitions.
-
-      "License" shall mean the terms and conditions for use, reproduction,
-      and distribution as defined by Sections 1 through 9 of this document.
-
-      "Licensor" shall mean the copyright owner or entity authorized by
-      the copyright owner that is granting the License.
-
-      "Legal Entity" shall mean the union of the acting entity and all
-      other entities that control, are controlled by, or are under common
-      control with that entity. For the purposes of this definition,
-      "control" means (i) the power, direct or indirect, to cause the
-      direction or management of such entity, whether by contract or
-      otherwise, or (ii) ownership of fifty percent (50%) or more of the
-      outstanding shares, or (iii) beneficial ownership of such entity.
-
-      "You" (or "Your") shall mean an individual or Legal Entity
-      exercising permissions granted by this License.
-
-      "Source" form shall mean the preferred form for making modifications,
-      including but not limited to software source code, documentation
-      source, and configuration files.
-
-      "Object" form shall mean any form resulting from mechanical
-      transformation or translation of a Source form, including but
-      not limited to compiled object code, generated documentation,
-      and conversions to other media types.
-
-      "Work" shall mean the work of authorship, whether in Source or
-      Object form, made available under the License, as indicated by a
-      copyright notice that is included in or attached to the work
-      (an example is provided in the Appendix below).
-
-      "Derivative Works" shall mean any work, whether in Source or Object
-      form, that is based on (or derived from) the Work and for which the
-      editorial revisions, annotations, elaborations, or other modifications
-      represent, as a whole, an original work of authorship. For the purposes
-      of this License, Derivative Works shall not include works that remain
-      separable from, or merely link (or bind by name) to the interfaces of,
-      the Work and Derivative Works thereof.
-
-      "Contribution" shall mean any work of authorship, including
-      the original version of the Work and any modifications or additions
-      to that Work or Derivative Works thereof, that is intentionally
-      submitted to Licensor for inclusion in the Work by the copyright owner
-      or by an individual or Legal Entity authorized to submit on behalf of
-      the copyright owner. For the purposes of this definition, "submitted"
-      means any form of electronic, verbal, or written communication sent
-      to the Licensor or its representatives, including but not limited to
-      communication on electronic mailing lists, source code control systems,
-      and issue tracking systems that are managed by, or on behalf of, the
-      Licensor for the purpose of discussing and improving the Work, but
-      excluding communication that is conspicuously marked or otherwise
-      designated in writing by the copyright owner as "Not a Contribution."
-
-      "Contributor" shall mean Licensor and any individual or Legal Entity
-      on behalf of whom a Contribution has been received by Licensor and
-      subsequently incorporated within the Work.
-
-   2. Grant of Copyright License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      copyright license to reproduce, prepare Derivative Works of,
-      publicly display, publicly perform, sublicense, and distribute the
-      Work and such Derivative Works in Source or Object form.
-
-   3. Grant of Patent License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      (except as stated in this section) patent license to make, have made,
-      use, offer to sell, sell, import, and otherwise transfer the Work,
-      where such license applies only to those patent claims licensable
-      by such Contributor that are necessarily infringed by their
-      Contribution(s) alone or by combination of their Contribution(s)
-      with the Work to which such Contribution(s) was submitted. If You
-      institute patent litigation against any entity (including a
-      cross-claim or counterclaim in a lawsuit) alleging that the Work
-      or a Contribution incorporated within the Work constitutes direct
-      or contributory patent infringement, then any patent licenses
-      granted to You under this License for that Work shall terminate
-      as of the date such litigation is filed.
-
-   4. Redistribution. You may reproduce and distribute copies of the
-      Work or Derivative Works thereof in any medium, with or without
-      modifications, and in Source or Object form, provided that You
-      meet the following conditions:
-
-      (a) You must give any other recipients of the Work or
-          Derivative Works a copy of this License; and
-
-      (b) You must cause any modified files to carry prominent notices
-          stating that You changed the files; and
-
-      (c) You must retain, in the Source form of any Derivative Works
-          that You distribute, all copyright, patent, trademark, and
-          attribution notices from the Source form of the Work,
-          excluding those notices that do not pertain to any part of
-          the Derivative Works; and
-
-      (d) If the Work includes a "NOTICE" text file as part of its
-          distribution, then any Derivative Works that You distribute must
-          include a readable copy of the attribution notices contained
-          within such NOTICE file, excluding those notices that do not
-          pertain to any part of the Derivative Works, in at least one
-          of the following places: within a NOTICE text file distributed
-          as part of the Derivative Works; within the Source form or
-          documentation, if provided along with the Derivative Works; or,
-          within a display generated by the Derivative Works, if and
-          wherever such third-party notices normally appear. The contents
-          of the NOTICE file are for informational purposes only and
-          do not modify the License. You may add Your own attribution
-          notices within Derivative Works that You distribute, alongside
-          or as an addendum to the NOTICE text from the Work, provided
-          that such additional attribution notices cannot be construed
-          as modifying the License.
-
-      You may add Your own copyright statement to Your modifications and
-      may provide additional or different license terms and conditions
-      for use, reproduction, or distribution of Your modifications, or
-      for any such Derivative Works as a whole, provided Your use,
-      reproduction, and distribution of the Work otherwise complies with
-      the conditions stated in this License.
-
-   5. Submission of Contributions. Unless You explicitly state otherwise,
-      any Contribution intentionally submitted for inclusion in the Work
-      by You to the Licensor shall be under the terms and conditions of
-      this License, without any additional terms or conditions.
-      Notwithstanding the above, nothing herein shall supersede or modify
-      the terms of any separate license agreement you may have executed
-      with Licensor regarding such Contributions.
-
-   6. Trademarks. This License does not grant permission to use the trade
-      names, trademarks, service marks, or product names of the Licensor,
-      except as required for reasonable and customary use in describing the
-      origin of the Work and reproducing the content of the NOTICE file.
-
-   7. Disclaimer of Warranty. Unless required by applicable law or
-      agreed to in writing, Licensor provides the Work (and each
-      Contributor provides its Contributions) on an "AS IS" BASIS,
-      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-      implied, including, without limitation, any warranties or conditions
-      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
-      PARTICULAR PURPOSE. You are solely responsible for determining the
-      appropriateness of using or redistributing the Work and assume any
-      risks associated with Your exercise of permissions under this License.
-
-   8. Limitation of Liability. In no event and under no legal theory,
-      whether in tort (including negligence), contract, or otherwise,
-      unless required by applicable law (such as deliberate and grossly
-      negligent acts) or agreed to in writing, shall any Contributor be
-      liable to You for damages, including any direct, indirect, special,
-      incidental, or consequential damages of any character arising as a
-      result of this License or out of the use or inability to use the
-      Work (including but not limited to damages for loss of goodwill,
-      work stoppage, computer failure or malfunction, or any and all
-      other commercial damages or losses), even if such Contributor
-      has been advised of the possibility of such damages.
-
-   9. Accepting Warranty or Additional Liability. While redistributing
-      the Work or Derivative Works thereof, You may choose to offer,
-      and charge a fee for, acceptance of support, warranty, indemnity,
-      or other liability obligations and/or rights consistent with this
-      License. However, in accepting such obligations, You may act only
-      on Your own behalf and on Your sole responsibility, not on behalf
-      of any other Contributor, and only if You agree to indemnify,
-      defend, and hold each Contributor harmless for any liability
-      incurred by, or claims asserted against, such Contributor by reason
-      of your accepting any such warranty or additional liability.
-
-   END OF TERMS AND CONDITIONS
-
-   APPENDIX: How to apply the Apache License to your work.
-
-      To apply the Apache License to your work, attach the following
-      boilerplate notice, with the fields enclosed by brackets "{}"
-      replaced with your own identifying information. (Don't include
-      the brackets!)  The text should be enclosed in the appropriate
-      comment syntax for the file format. We also recommend that a
-      file or class name and description of purpose be included on the
-      same "printed page" as the copyright notice for easier
-      identification within third-party archives.
-
-   Copyright {yyyy} {name of copyright owner}
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-
------------
-
-The following npm package may be included in this product:
-
- - rxjs@7.8.1
-
-This package contains the following license:
-
-Apache License
-                         Version 2.0, January 2004
-                      http://www.apache.org/licenses/
-
- TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
-
- 1. Definitions.
-
-    "License" shall mean the terms and conditions for use, reproduction,
-    and distribution as defined by Sections 1 through 9 of this document.
-
-    "Licensor" shall mean the copyright owner or entity authorized by
-    the copyright owner that is granting the License.
-
-    "Legal Entity" shall mean the union of the acting entity and all
-    other entities that control, are controlled by, or are under common
-    control with that entity. For the purposes of this definition,
-    "control" means (i) the power, direct or indirect, to cause the
-    direction or management of such entity, whether by contract or
-    otherwise, or (ii) ownership of fifty percent (50%) or more of the
-    outstanding shares, or (iii) beneficial ownership of such entity.
-
-    "You" (or "Your") shall mean an individual or Legal Entity
-    exercising permissions granted by this License.
-
-    "Source" form shall mean the preferred form for making modifications,
-    including but not limited to software source code, documentation
-    source, and configuration files.
-
-    "Object" form shall mean any form resulting from mechanical
-    transformation or translation of a Source form, including but
-    not limited to compiled object code, generated documentation,
-    and conversions to other media types.
-
-    "Work" shall mean the work of authorship, whether in Source or
-    Object form, made available under the License, as indicated by a
-    copyright notice that is included in or attached to the work
-    (an example is provided in the Appendix below).
-
-    "Derivative Works" shall mean any work, whether in Source or Object
-    form, that is based on (or derived from) the Work and for which the
-    editorial revisions, annotations, elaborations, or other modifications
-    represent, as a whole, an original work of authorship. For the purposes
-    of this License, Derivative Works shall not include works that remain
-    separable from, or merely link (or bind by name) to the interfaces of,
-    the Work and Derivative Works thereof.
-
-    "Contribution" shall mean any work of authorship, including
-    the original version of the Work and any modifications or additions
-    to that Work or Derivative Works thereof, that is intentionally
-    submitted to Licensor for inclusion in the Work by the copyright owner
-    or by an individual or Legal Entity authorized to submit on behalf of
-    the copyright owner. For the purposes of this definition, "submitted"
-    means any form of electronic, verbal, or written communication sent
-    to the Licensor or its representatives, including but not limited to
-    communication on electronic mailing lists, source code control systems,
-    and issue tracking systems that are managed by, or on behalf of, the
-    Licensor for the purpose of discussing and improving the Work, but
-    excluding communication that is conspicuously marked or otherwise
-    designated in writing by the copyright owner as "Not a Contribution."
-
-    "Contributor" shall mean Licensor and any individual or Legal Entity
-    on behalf of whom a Contribution has been received by Licensor and
-    subsequently incorporated within the Work.
-
- 2. Grant of Copyright License. Subject to the terms and conditions of
-    this License, each Contributor hereby grants to You a perpetual,
-    worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-    copyright license to reproduce, prepare Derivative Works of,
-    publicly display, publicly perform, sublicense, and distribute the
-    Work and such Derivative Works in Source or Object form.
-
- 3. Grant of Patent License. Subject to the terms and conditions of
-    this License, each Contributor hereby grants to You a perpetual,
-    worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-    (except as stated in this section) patent license to make, have made,
-    use, offer to sell, sell, import, and otherwise transfer the Work,
-    where such license applies only to those patent claims licensable
-    by such Contributor that are necessarily infringed by their
-    Contribution(s) alone or by combination of their Contribution(s)
-    with the Work to which such Contribution(s) was submitted. If You
-    institute patent litigation against any entity (including a
-    cross-claim or counterclaim in a lawsuit) alleging that the Work
-    or a Contribution incorporated within the Work constitutes direct
-    or contributory patent infringement, then any patent licenses
-    granted to You under this License for that Work shall terminate
-    as of the date such litigation is filed.
-
- 4. Redistribution. You may reproduce and distribute copies of the
-    Work or Derivative Works thereof in any medium, with or without
-    modifications, and in Source or Object form, provided that You
-    meet the following conditions:
-
-    (a) You must give any other recipients of the Work or
-        Derivative Works a copy of this License; and
-
-    (b) You must cause any modified files to carry prominent notices
-        stating that You changed the files; and
-
-    (c) You must retain, in the Source form of any Derivative Works
-        that You distribute, all copyright, patent, trademark, and
-        attribution notices from the Source form of the Work,
-        excluding those notices that do not pertain to any part of
-        the Derivative Works; and
-
-    (d) If the Work includes a "NOTICE" text file as part of its
-        distribution, then any Derivative Works that You distribute must
-        include a readable copy of the attribution notices contained
-        within such NOTICE file, excluding those notices that do not
-        pertain to any part of the Derivative Works, in at least one
-        of the following places: within a NOTICE text file distributed
-        as part of the Derivative Works; within the Source form or
-        documentation, if provided along with the Derivative Works; or,
-        within a display generated by the Derivative Works, if and
-        wherever such third-party notices normally appear. The contents
-        of the NOTICE file are for informational purposes only and
-        do not modify the License. You may add Your own attribution
-        notices within Derivative Works that You distribute, alongside
-        or as an addendum to the NOTICE text from the Work, provided
-        that such additional attribution notices cannot be construed
-        as modifying the License.
-
-    You may add Your own copyright statement to Your modifications and
-    may provide additional or different license terms and conditions
-    for use, reproduction, or distribution of Your modifications, or
-    for any such Derivative Works as a whole, provided Your use,
-    reproduction, and distribution of the Work otherwise complies with
-    the conditions stated in this License.
-
- 5. Submission of Contributions. Unless You explicitly state otherwise,
-    any Contribution intentionally submitted for inclusion in the Work
-    by You to the Licensor shall be under the terms and conditions of
-    this License, without any additional terms or conditions.
-    Notwithstanding the above, nothing herein shall supersede or modify
-    the terms of any separate license agreement you may have executed
-    with Licensor regarding such Contributions.
-
- 6. Trademarks. This License does not grant permission to use the trade
-    names, trademarks, service marks, or product names of the Licensor,
-    except as required for reasonable and customary use in describing the
-    origin of the Work and reproducing the content of the NOTICE file.
-
- 7. Disclaimer of Warranty. Unless required by applicable law or
-    agreed to in writing, Licensor provides the Work (and each
-    Contributor provides its Contributions) on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-    implied, including, without limitation, any warranties or conditions
-    of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
-    PARTICULAR PURPOSE. You are solely responsible for determining the
-    appropriateness of using or redistributing the Work and assume any
-    risks associated with Your exercise of permissions under this License.
-
- 8. Limitation of Liability. In no event and under no legal theory,
-    whether in tort (including negligence), contract, or otherwise,
-    unless required by applicable law (such as deliberate and grossly
-    negligent acts) or agreed to in writing, shall any Contributor be
-    liable to You for damages, including any direct, indirect, special,
-    incidental, or consequential damages of any character arising as a
-    result of this License or out of the use or inability to use the
-    Work (including but not limited to damages for loss of goodwill,
-    work stoppage, computer failure or malfunction, or any and all
-    other commercial damages or losses), even if such Contributor
-    has been advised of the possibility of such damages.
-
- 9. Accepting Warranty or Additional Liability. While redistributing
-    the Work or Derivative Works thereof, You may choose to offer,
-    and charge a fee for, acceptance of support, warranty, indemnity,
-    or other liability obligations and/or rights consistent with this
-    License. However, in accepting such obligations, You may act only
-    on Your own behalf and on Your sole responsibility, not on behalf
-    of any other Contributor, and only if You agree to indemnify,
-    defend, and hold each Contributor harmless for any liability
-    incurred by, or claims asserted against, such Contributor by reason
-    of your accepting any such warranty or additional liability.
-
- END OF TERMS AND CONDITIONS
-
- APPENDIX: How to apply the Apache License to your work.
-
-    To apply the Apache License to your work, attach the following
-    boilerplate notice, with the fields enclosed by brackets "[]"
-    replaced with your own identifying information. (Don't include
-    the brackets!)  The text should be enclosed in the appropriate
-    comment syntax for the file format. We also recommend that a
-    file or class name and description of purpose be included on the
-    same "printed page" as the copyright notice for easier
-    identification within third-party archives.
-
- Copyright (c) 2015-2018 Google, Inc., Netflix, Inc., Microsoft Corp. and contributors
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
-     http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
-
------------
-
-The following npm packages may be included in this product:
-
- - @types/babel__core@7.20.5
- - @types/babel__generator@7.6.8
- - @types/babel__template@7.4.4
- - @types/babel__traverse@7.20.6
- - @types/istanbul-lib-coverage@2.0.6
- - @types/istanbul-lib-report@3.0.3
- - @types/istanbul-reports@3.0.4
- - @types/node@22.12.0
- - @types/ws@8.5.14
-
-These packages each contain the following license:
-
-MIT License
-
-    Copyright (c) Microsoft Corporation.
-
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the "Software"), to deal
-    in the Software without restriction, including without limitation the rights
-    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in all
-    copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE
-
------------
-
-The following npm package may be included in this product:
-
- - balanced-match@1.0.2
-
-This package contains the following license:
-
-(MIT)
-
-Copyright (c) 2013 Julian Gruber &lt;julian@juliangruber.com&gt;
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
-of the Software, and to permit persons to whom the Software is furnished to do
-so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - node-gyp@10.3.1
-
-This package contains the following license:
-
-(The MIT License)
-
-Copyright (c) 2012 Nathan Rajlich <nathan@tootallnate.net>
-
-Permission is hereby granted, free of charge, to any person
-obtaining a copy of this software and associated documentation
-files (the "Software"), to deal in the Software without
-restriction, including without limitation the rights to use,
-copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following
-conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - negotiator@0.6.4
-
-This package contains the following license:
-
-(The MIT License)
-
-Copyright (c) 2012-2014 Federico Romero
-Copyright (c) 2012-2014 Isaac Z. Schlueter
-Copyright (c) 2014-2015 Douglas Christopher Wilson
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm packages may be included in this product:
-
- - agent-base@7.1.3
- - https-proxy-agent@7.0.5
- - socks-proxy-agent@8.0.5
-
-These packages each contain the following license:
-
-(The MIT License)
-
-Copyright (c) 2013 Nathan Rajlich <nathan@tootallnate.net>
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - http-proxy-agent@7.0.2
-
-This package contains the following license:
-
-(The MIT License)
-
-Copyright (c) 2013 Nathan Rajlich <nathan@tootallnate.net>
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - util-deprecate@1.0.2
-
-This package contains the following license:
-
-(The MIT License)
-
-Copyright (c) 2014 Nathan Rajlich <nathan@tootallnate.net>
-
-Permission is hereby granted, free of charge, to any person
-obtaining a copy of this software and associated documentation
-files (the "Software"), to deal in the Software without
-restriction, including without limitation the rights to use,
-copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following
-conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - debug@4.4.0
-
-This package contains the following license:
-
-(The MIT License)
-
-Copyright (c) 2014-2017 TJ Holowaychuk <tj@vision-media.ca>
-Copyright (c) 2018-2021 Josh Junon
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software
-and associated documentation files (the 'Software'), to deal in the Software without restriction,
-including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
-and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial
-portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
-LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - zone.js@0.14.10
-
-This package contains the following license:
-
-/**
- @license
-The MIT License
-
-Copyright (c) 2010-2024 Google LLC. https://angular.io/license
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-*/
-
------------
-
-The following npm package may be included in this product:
-
- - path-scurry@1.11.1
-
-This package contains the following license:
-
-# Blue Oak Model License
-
-Version 1.0.0
-
-## Purpose
-
-This license gives everyone as much permission to work with
-this software as possible, while protecting contributors
-from liability.
-
-## Acceptance
-
-In order to receive this license, you must agree to its
-rules.  The rules of this license are both obligations
-under that agreement and conditions to your license.
-You must not do anything with this software that triggers
-a rule that you cannot or will not follow.
-
-## Copyright
-
-Each contributor licenses you to do everything with this
-software that would otherwise infringe that contributor's
-copyright in it.
-
-## Notices
-
-You must ensure that everyone who gets a copy of
-any part of this software from you, with or without
-changes, also gets the text of this license or a link to
-<https://blueoakcouncil.org/license/1.0.0>.
-
-## Excuse
-
-If anyone notifies you in writing that you have not
-complied with [Notices](#notices), you can keep your
-license by taking all practical steps to comply within 30
-days after the notice.  If you do not do so, your license
-ends immediately.
-
-## Patent
-
-Each contributor licenses you to do everything with this
-software that would otherwise infringe any patent claims
-they can license or become able to license.
-
-## Reliability
-
-No contributor can revoke this license.
-
-## No Liability
-
-***As far as the law allows, this software comes as is,
-without any warranty or condition, and no contributor
-will be liable to anyone for any damages related to this
-software or this license, under any kind of legal claim.***
-
------------
-
-The following npm package may be included in this product:
-
- - jackspeak@3.4.3
-
-This package contains the following license:
-
-# Blue Oak Model License
-
-Version 1.0.0
-
-## Purpose
-
-This license gives everyone as much permission to work with
-this software as possible, while protecting contributors
-from liability.
-
-## Acceptance
-
-In order to receive this license, you must agree to its
-rules. The rules of this license are both obligations
-under that agreement and conditions to your license.
-You must not do anything with this software that triggers
-a rule that you cannot or will not follow.
-
-## Copyright
-
-Each contributor licenses you to do everything with this
-software that would otherwise infringe that contributor's
-copyright in it.
-
-## Notices
-
-You must ensure that everyone who gets a copy of
-any part of this software from you, with or without
-changes, also gets the text of this license or a link to
-<https://blueoakcouncil.org/license/1.0.0>.
-
-## Excuse
-
-If anyone notifies you in writing that you have not
-complied with [Notices](#notices), you can keep your
-license by taking all practical steps to comply within 30
-days after the notice. If you do not do so, your license
-ends immediately.
-
-## Patent
-
-Each contributor licenses you to do everything with this
-software that would otherwise infringe any patent claims
-they can license or become able to license.
-
-## Reliability
-
-No contributor can revoke this license.
-
-## No Liability
-
-**_As far as the law allows, this software comes as is,
-without any warranty or condition, and no contributor
-will be liable to anyone for any damages related to this
-software or this license, under any kind of legal claim._**
-
------------
-
-The following npm package may be included in this product:
-
- - @npmcli/fs@3.1.1
-
-This package contains the following license:
-
-<!-- This file is automatically added by @npmcli/template-oss. Do not edit. -->
-
-ISC License
-
-Copyright npm, Inc.
-
-Permission to use, copy, modify, and/or distribute this
-software for any purpose with or without fee is hereby
-granted, provided that the above copyright notice and this
-permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND NPM DISCLAIMS ALL
-WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO
-EVENT SHALL NPM BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
-WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
-TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE
-USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - package-json-from-dist@1.0.1
-
-This package contains the following license:
-
-All packages under `src/` are licensed according to the terms in
-their respective `LICENSE` or `LICENSE.md` files.
-
-The remainder of this project is licensed under the Blue Oak
-Model License, as follows:
-
------
-
-# Blue Oak Model License
-
-Version 1.0.0
-
-## Purpose
-
-This license gives everyone as much permission to work with
-this software as possible, while protecting contributors
-from liability.
-
-## Acceptance
-
-In order to receive this license, you must agree to its
-rules.  The rules of this license are both obligations
-under that agreement and conditions to your license.
-You must not do anything with this software that triggers
-a rule that you cannot or will not follow.
-
-## Copyright
-
-Each contributor licenses you to do everything with this
-software that would otherwise infringe that contributor's
-copyright in it.
-
-## Notices
-
-You must ensure that everyone who gets a copy of
-any part of this software from you, with or without
-changes, also gets the text of this license or a link to
-<https://blueoakcouncil.org/license/1.0.0>.
-
-## Excuse
-
-If anyone notifies you in writing that you have not
-complied with [Notices](#notices), you can keep your
-license by taking all practical steps to comply within 30
-days after the notice.  If you do not do so, your license
-ends immediately.
-
-## Patent
-
-Each contributor licenses you to do everything with this
-software that would otherwise infringe any patent claims
-they can license or become able to license.
-
-## Reliability
-
-No contributor can revoke this license.
-
-## No Liability
-
-***As far as the law allows, this software comes as is,
-without any warranty or condition, and no contributor
-will be liable to anyone for any damages related to this
-software or this license, under any kind of legal claim.***
-
------------
-
-The following npm package may be included in this product:
-
- - reflect-metadata@0.2.2
-
-This package contains the following license:
-
-Apache License
-
-Version 2.0, January 2004
-
-http://www.apache.org/licenses/ 
-
-TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
-
-1. Definitions.
-
-"License" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document.
-
-"Licensor" shall mean the copyright owner or entity authorized by the copyright owner that is granting the License.
-
-"Legal Entity" shall mean the union of the acting entity and all other entities that control, are controlled by, or are under common control with that entity. For the purposes of this definition, "control" means (i) the power, direct or indirect, to cause the direction or management of such entity, whether by contract or otherwise, or (ii) ownership of fifty percent (50%) or more of the outstanding shares, or (iii) beneficial ownership of such entity.
-
-"You" (or "Your") shall mean an individual or Legal Entity exercising permissions granted by this License.
-
-"Source" form shall mean the preferred form for making modifications, including but not limited to software source code, documentation source, and configuration files.
-
-"Object" form shall mean any form resulting from mechanical transformation or translation of a Source form, including but not limited to compiled object code, generated documentation, and conversions to other media types.
-
-"Work" shall mean the work of authorship, whether in Source or Object form, made available under the License, as indicated by a copyright notice that is included in or attached to the work (an example is provided in the Appendix below).
-
-"Derivative Works" shall mean any work, whether in Source or Object form, that is based on (or derived from) the Work and for which the editorial revisions, annotations, elaborations, or other modifications represent, as a whole, an original work of authorship. For the purposes of this License, Derivative Works shall not include works that remain separable from, or merely link (or bind by name) to the interfaces of, the Work and Derivative Works thereof.
-
-"Contribution" shall mean any work of authorship, including the original version of the Work and any modifications or additions to that Work or Derivative Works thereof, that is intentionally submitted to Licensor for inclusion in the Work by the copyright owner or by an individual or Legal Entity authorized to submit on behalf of the copyright owner. For the purposes of this definition, "submitted" means any form of electronic, verbal, or written communication sent to the Licensor or its representatives, including but not limited to communication on electronic mailing lists, source code control systems, and issue tracking systems that are managed by, or on behalf of, the Licensor for the purpose of discussing and improving the Work, but excluding communication that is conspicuously marked or otherwise designated in writing by the copyright owner as "Not a Contribution."
-
-"Contributor" shall mean Licensor and any individual or Legal Entity on behalf of whom a Contribution has been received by Licensor and subsequently incorporated within the Work.
-
-2. Grant of Copyright License. Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable copyright license to reproduce, prepare Derivative Works of, publicly display, publicly perform, sublicense, and distribute the Work and such Derivative Works in Source or Object form.
-
-3. Grant of Patent License. Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable (except as stated in this section) patent license to make, have made, use, offer to sell, sell, import, and otherwise transfer the Work, where such license applies only to those patent claims licensable by such Contributor that are necessarily infringed by their Contribution(s) alone or by combination of their Contribution(s) with the Work to which such Contribution(s) was submitted. If You institute patent litigation against any entity (including a cross-claim or counterclaim in a lawsuit) alleging that the Work or a Contribution incorporated within the Work constitutes direct or contributory patent infringement, then any patent licenses granted to You under this License for that Work shall terminate as of the date such litigation is filed.
-
-4. Redistribution. You may reproduce and distribute copies of the Work or Derivative Works thereof in any medium, with or without modifications, and in Source or Object form, provided that You meet the following conditions:
-
-You must give any other recipients of the Work or Derivative Works a copy of this License; and
-
-You must cause any modified files to carry prominent notices stating that You changed the files; and
-
-You must retain, in the Source form of any Derivative Works that You distribute, all copyright, patent, trademark, and attribution notices from the Source form of the Work, excluding those notices that do not pertain to any part of the Derivative Works; and
-
-If the Work includes a "NOTICE" text file as part of its distribution, then any Derivative Works that You distribute must include a readable copy of the attribution notices contained within such NOTICE file, excluding those notices that do not pertain to any part of the Derivative Works, in at least one of the following places: within a NOTICE text file distributed as part of the Derivative Works; within the Source form or documentation, if provided along with the Derivative Works; or, within a display generated by the Derivative Works, if and wherever such third-party notices normally appear. The contents of the NOTICE file are for informational purposes only and do not modify the License. You may add Your own attribution notices within Derivative Works that You distribute, alongside or as an addendum to the NOTICE text from the Work, provided that such additional attribution notices cannot be construed as modifying the License. You may add Your own copyright statement to Your modifications and may provide additional or different license terms and conditions for use, reproduction, or distribution of Your modifications, or for any such Derivative Works as a whole, provided Your use, reproduction, and distribution of the Work otherwise complies with the conditions stated in this License.
-
-5. Submission of Contributions. Unless You explicitly state otherwise, any Contribution intentionally submitted for inclusion in the Work by You to the Licensor shall be under the terms and conditions of this License, without any additional terms or conditions. Notwithstanding the above, nothing herein shall supersede or modify the terms of any separate license agreement you may have executed with Licensor regarding such Contributions.
-
-6. Trademarks. This License does not grant permission to use the trade names, trademarks, service marks, or product names of the Licensor, except as required for reasonable and customary use in describing the origin of the Work and reproducing the content of the NOTICE file.
-
-7. Disclaimer of Warranty. Unless required by applicable law or agreed to in writing, Licensor provides the Work (and each Contributor provides its Contributions) on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. You are solely responsible for determining the appropriateness of using or redistributing the Work and assume any risks associated with Your exercise of permissions under this License.
-
-8. Limitation of Liability. In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall any Contributor be liable to You for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising as a result of this License or out of the use or inability to use the Work (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if such Contributor has been advised of the possibility of such damages.
-
-9. Accepting Warranty or Additional Liability. While redistributing the Work or Derivative Works thereof, You may choose to offer, and charge a fee for, acceptance of support, warranty, indemnity, or other liability obligations and/or rights consistent with this License. However, in accepting such obligations, You may act only on Your own behalf and on Your sole responsibility, not on behalf of any other Contributor, and only if You agree to indemnify, defend, and hold each Contributor harmless for any liability incurred by, or claims asserted against, such Contributor by reason of your accepting any such warranty or additional liability.
-
-END OF TERMS AND CONDITIONS
-
------------
-
-The following npm packages may be included in this product:
-
- - aria-query@5.3.2
- - axobject-query@4.1.0
-
-These packages each contain the following license:
-
-Apache License
-Version 2.0, January 2004
-http://www.apache.org/licenses/
-
-TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
-
-1. Definitions.
-
-"License" shall mean the terms and conditions for use, reproduction,
-and distribution as defined by Sections 1 through 9 of this document.
-
-"Licensor" shall mean the copyright owner or entity authorized by
-the copyright owner that is granting the License.
-
-"Legal Entity" shall mean the union of the acting entity and all
-other entities that control, are controlled by, or are under common
-control with that entity. For the purposes of this definition,
-"control" means (i) the power, direct or indirect, to cause the
-direction or management of such entity, whether by contract or
-otherwise, or (ii) ownership of fifty percent (50%) or more of the
-outstanding shares, or (iii) beneficial ownership of such entity.
-
-"You" (or "Your") shall mean an individual or Legal Entity
-exercising permissions granted by this License.
-
-"Source" form shall mean the preferred form for making modifications,
-including but not limited to software source code, documentation
-source, and configuration files.
-
-"Object" form shall mean any form resulting from mechanical
-transformation or translation of a Source form, including but
-not limited to compiled object code, generated documentation,
-and conversions to other media types.
-
-"Work" shall mean the work of authorship, whether in Source or
-Object form, made available under the License, as indicated by a
-copyright notice that is included in or attached to the work
-(an example is provided in the Appendix below).
-
-"Derivative Works" shall mean any work, whether in Source or Object
-form, that is based on (or derived from) the Work and for which the
-editorial revisions, annotations, elaborations, or other modifications
-represent, as a whole, an original work of authorship. For the purposes
-of this License, Derivative Works shall not include works that remain
-separable from, or merely link (or bind by name) to the interfaces of,
-the Work and Derivative Works thereof.
-
-"Contribution" shall mean any work of authorship, including
-the original version of the Work and any modifications or additions
-to that Work or Derivative Works thereof, that is intentionally
-submitted to Licensor for inclusion in the Work by the copyright owner
-or by an individual or Legal Entity authorized to submit on behalf of
-the copyright owner. For the purposes of this definition, "submitted"
-means any form of electronic, verbal, or written communication sent
-to the Licensor or its representatives, including but not limited to
-communication on electronic mailing lists, source code control systems,
-and issue tracking systems that are managed by, or on behalf of, the
-Licensor for the purpose of discussing and improving the Work, but
-excluding communication that is conspicuously marked or otherwise
-designated in writing by the copyright owner as "Not a Contribution."
-
-"Contributor" shall mean Licensor and any individual or Legal Entity
-on behalf of whom a Contribution has been received by Licensor and
-subsequently incorporated within the Work.
-
-2. Grant of Copyright License. Subject to the terms and conditions of
-this License, each Contributor hereby grants to You a perpetual,
-worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-copyright license to reproduce, prepare Derivative Works of,
-publicly display, publicly perform, sublicense, and distribute the
-Work and such Derivative Works in Source or Object form.
-
-3. Grant of Patent License. Subject to the terms and conditions of
-this License, each Contributor hereby grants to You a perpetual,
-worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-(except as stated in this section) patent license to make, have made,
-use, offer to sell, sell, import, and otherwise transfer the Work,
-where such license applies only to those patent claims licensable
-by such Contributor that are necessarily infringed by their
-Contribution(s) alone or by combination of their Contribution(s)
-with the Work to which such Contribution(s) was submitted. If You
-institute patent litigation against any entity (including a
-cross-claim or counterclaim in a lawsuit) alleging that the Work
-or a Contribution incorporated within the Work constitutes direct
-or contributory patent infringement, then any patent licenses
-granted to You under this License for that Work shall terminate
-as of the date such litigation is filed.
-
-4. Redistribution. You may reproduce and distribute copies of the
-Work or Derivative Works thereof in any medium, with or without
-modifications, and in Source or Object form, provided that You
-meet the following conditions:
-
-(a) You must give any other recipients of the Work or
-Derivative Works a copy of this License; and
-
-(b) You must cause any modified files to carry prominent notices
-stating that You changed the files; and
-
-(c) You must retain, in the Source form of any Derivative Works
-that You distribute, all copyright, patent, trademark, and
-attribution notices from the Source form of the Work,
-excluding those notices that do not pertain to any part of
-the Derivative Works; and
-
-(d) If the Work includes a "NOTICE" text file as part of its
-distribution, then any Derivative Works that You distribute must
-include a readable copy of the attribution notices contained
-within such NOTICE file, excluding those notices that do not
-pertain to any part of the Derivative Works, in at least one
-of the following places: within a NOTICE text file distributed
-as part of the Derivative Works; within the Source form or
-documentation, if provided along with the Derivative Works; or,
-within a display generated by the Derivative Works, if and
-wherever such third-party notices normally appear. The contents
-of the NOTICE file are for informational purposes only and
-do not modify the License. You may add Your own attribution
-notices within Derivative Works that You distribute, alongside
-or as an addendum to the NOTICE text from the Work, provided
-that such additional attribution notices cannot be construed
-as modifying the License.
-
-You may add Your own copyright statement to Your modifications and
-may provide additional or different license terms and conditions
-for use, reproduction, or distribution of Your modifications, or
-for any such Derivative Works as a whole, provided Your use,
-reproduction, and distribution of the Work otherwise complies with
-the conditions stated in this License.
-
-5. Submission of Contributions. Unless You explicitly state otherwise,
-any Contribution intentionally submitted for inclusion in the Work
-by You to the Licensor shall be under the terms and conditions of
-this License, without any additional terms or conditions.
-Notwithstanding the above, nothing herein shall supersede or modify
-the terms of any separate license agreement you may have executed
-with Licensor regarding such Contributions.
-
-6. Trademarks. This License does not grant permission to use the trade
-names, trademarks, service marks, or product names of the Licensor,
-except as required for reasonable and customary use in describing the
-origin of the Work and reproducing the content of the NOTICE file.
-
-7. Disclaimer of Warranty. Unless required by applicable law or
-agreed to in writing, Licensor provides the Work (and each
-Contributor provides its Contributions) on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-implied, including, without limitation, any warranties or conditions
-of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
-PARTICULAR PURPOSE. You are solely responsible for determining the
-appropriateness of using or redistributing the Work and assume any
-risks associated with Your exercise of permissions under this License.
-
-8. Limitation of Liability. In no event and under no legal theory,
-whether in tort (including negligence), contract, or otherwise,
-unless required by applicable law (such as deliberate and grossly
-negligent acts) or agreed to in writing, shall any Contributor be
-liable to You for damages, including any direct, indirect, special,
-incidental, or consequential damages of any character arising as a
-result of this License or out of the use or inability to use the
-Work (including but not limited to damages for loss of goodwill,
-work stoppage, computer failure or malfunction, or any and all
-other commercial damages or losses), even if such Contributor
-has been advised of the possibility of such damages.
-
-9. Accepting Warranty or Additional Liability. While redistributing
-the Work or Derivative Works thereof, You may choose to offer,
-and charge a fee for, acceptance of support, warranty, indemnity,
-or other liability obligations and/or rights consistent with this
-License. However, in accepting such obligations, You may act only
-on Your own behalf and on Your sole responsibility, not on behalf
-of any other Contributor, and only if You agree to indemnify,
-defend, and hold each Contributor harmless for any liability
-incurred by, or claims asserted against, such Contributor by reason
-of your accepting any such warranty or additional liability.
-
-END OF TERMS AND CONDITIONS
-
-APPENDIX: How to apply the Apache License to your work.
-
-To apply the Apache License to your work, attach the following
-boilerplate notice, with the fields enclosed by brackets "{}"
-replaced with your own identifying information. (Don't include
-the brackets!)  The text should be enclosed in the appropriate
-comment syntax for the file format. We also recommend that a
-file or class name and description of purpose be included on the
-same "printed page" as the copyright notice for easier
-identification within third-party archives.
-
-Copyright 2020 A11yance
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
------------
-
-The following npm package may be included in this product:
-
- - typescript@5.4.5
-
-This package contains the following license:
-
-Apache License
-
-Version 2.0, January 2004
-
-http://www.apache.org/licenses/ 
-
-TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
-
-1. Definitions.
-
-"License" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document.
-
-"Licensor" shall mean the copyright owner or entity authorized by the copyright owner that is granting the License.
-
-"Legal Entity" shall mean the union of the acting entity and all other entities that control, are controlled by, or are under common control with that entity. For the purposes of this definition, "control" means (i) the power, direct or indirect, to cause the direction or management of such entity, whether by contract or otherwise, or (ii) ownership of fifty percent (50%) or more of the outstanding shares, or (iii) beneficial ownership of such entity.
-
-"You" (or "Your") shall mean an individual or Legal Entity exercising permissions granted by this License.
-
-"Source" form shall mean the preferred form for making modifications, including but not limited to software source code, documentation source, and configuration files.
-
-"Object" form shall mean any form resulting from mechanical transformation or translation of a Source form, including but not limited to compiled object code, generated documentation, and conversions to other media types.
-
-"Work" shall mean the work of authorship, whether in Source or Object form, made available under the License, as indicated by a copyright notice that is included in or attached to the work (an example is provided in the Appendix below).
-
-"Derivative Works" shall mean any work, whether in Source or Object form, that is based on (or derived from) the Work and for which the editorial revisions, annotations, elaborations, or other modifications represent, as a whole, an original work of authorship. For the purposes of this License, Derivative Works shall not include works that remain separable from, or merely link (or bind by name) to the interfaces of, the Work and Derivative Works thereof.
-
-"Contribution" shall mean any work of authorship, including the original version of the Work and any modifications or additions to that Work or Derivative Works thereof, that is intentionally submitted to Licensor for inclusion in the Work by the copyright owner or by an individual or Legal Entity authorized to submit on behalf of the copyright owner. For the purposes of this definition, "submitted" means any form of electronic, verbal, or written communication sent to the Licensor or its representatives, including but not limited to communication on electronic mailing lists, source code control systems, and issue tracking systems that are managed by, or on behalf of, the Licensor for the purpose of discussing and improving the Work, but excluding communication that is conspicuously marked or otherwise designated in writing by the copyright owner as "Not a Contribution."
-
-"Contributor" shall mean Licensor and any individual or Legal Entity on behalf of whom a Contribution has been received by Licensor and subsequently incorporated within the Work.
-
-2. Grant of Copyright License. Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable copyright license to reproduce, prepare Derivative Works of, publicly display, publicly perform, sublicense, and distribute the Work and such Derivative Works in Source or Object form.
-
-3. Grant of Patent License. Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable (except as stated in this section) patent license to make, have made, use, offer to sell, sell, import, and otherwise transfer the Work, where such license applies only to those patent claims licensable by such Contributor that are necessarily infringed by their Contribution(s) alone or by combination of their Contribution(s) with the Work to which such Contribution(s) was submitted. If You institute patent litigation against any entity (including a cross-claim or counterclaim in a lawsuit) alleging that the Work or a Contribution incorporated within the Work constitutes direct or contributory patent infringement, then any patent licenses granted to You under this License for that Work shall terminate as of the date such litigation is filed.
-
-4. Redistribution. You may reproduce and distribute copies of the Work or Derivative Works thereof in any medium, with or without modifications, and in Source or Object form, provided that You meet the following conditions:
-
-You must give any other recipients of the Work or Derivative Works a copy of this License; and
-
-You must cause any modified files to carry prominent notices stating that You changed the files; and
-
-You must retain, in the Source form of any Derivative Works that You distribute, all copyright, patent, trademark, and attribution notices from the Source form of the Work, excluding those notices that do not pertain to any part of the Derivative Works; and
-
-If the Work includes a "NOTICE" text file as part of its distribution, then any Derivative Works that You distribute must include a readable copy of the attribution notices contained within such NOTICE file, excluding those notices that do not pertain to any part of the Derivative Works, in at least one of the following places: within a NOTICE text file distributed as part of the Derivative Works; within the Source form or documentation, if provided along with the Derivative Works; or, within a display generated by the Derivative Works, if and wherever such third-party notices normally appear. The contents of the NOTICE file are for informational purposes only and do not modify the License. You may add Your own attribution notices within Derivative Works that You distribute, alongside or as an addendum to the NOTICE text from the Work, provided that such additional attribution notices cannot be construed as modifying the License. You may add Your own copyright statement to Your modifications and may provide additional or different license terms and conditions for use, reproduction, or distribution of Your modifications, or for any such Derivative Works as a whole, provided Your use, reproduction, and distribution of the Work otherwise complies with the conditions stated in this License.
-
-5. Submission of Contributions. Unless You explicitly state otherwise, any Contribution intentionally submitted for inclusion in the Work by You to the Licensor shall be under the terms and conditions of this License, without any additional terms or conditions. Notwithstanding the above, nothing herein shall supersede or modify the terms of any separate license agreement you may have executed with Licensor regarding such Contributions.
-
-6. Trademarks. This License does not grant permission to use the trade names, trademarks, service marks, or product names of the Licensor, except as required for reasonable and customary use in describing the origin of the Work and reproducing the content of the NOTICE file.
-
-7. Disclaimer of Warranty. Unless required by applicable law or agreed to in writing, Licensor provides the Work (and each Contributor provides its Contributions) on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. You are solely responsible for determining the appropriateness of using or redistributing the Work and assume any risks associated with Your exercise of permissions under this License.
-
-8. Limitation of Liability. In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall any Contributor be liable to You for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising as a result of this License or out of the use or inability to use the Work (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if such Contributor has been advised of the possibility of such damages.
-
-9. Accepting Warranty or Additional Liability. While redistributing the Work or Derivative Works thereof, You may choose to offer, and charge a fee for, acceptance of support, warranty, indemnity, or other liability obligations and/or rights consistent with this License. However, in accepting such obligations, You may act only on Your own behalf and on Your sole responsibility, not on behalf of any other Contributor, and only if You agree to indemnify, defend, and hold each Contributor harmless for any liability incurred by, or claims asserted against, such Contributor by reason of your accepting any such warranty or additional liability.
-
-END OF TERMS AND CONDITIONS
-
------------
-
-The following npm package may be included in this product:
-
- - caniuse-lite@1.0.30001696
-
-This package contains the following license:
-
-Attribution 4.0 International
-
-=======================================================================
-
-Creative Commons Corporation ("Creative Commons") is not a law firm and
-does not provide legal services or legal advice. Distribution of
-Creative Commons public licenses does not create a lawyer-client or
-other relationship. Creative Commons makes its licenses and related
-information available on an "as-is" basis. Creative Commons gives no
-warranties regarding its licenses, any material licensed under their
-terms and conditions, or any related information. Creative Commons
-disclaims all liability for damages resulting from their use to the
-fullest extent possible.
-
-Using Creative Commons Public Licenses
-
-Creative Commons public licenses provide a standard set of terms and
-conditions that creators and other rights holders may use to share
-original works of authorship and other material subject to copyright
-and certain other rights specified in the public license below. The
-following considerations are for informational purposes only, are not
-exhaustive, and do not form part of our licenses.
-
-     Considerations for licensors: Our public licenses are
-     intended for use by those authorized to give the public
-     permission to use material in ways otherwise restricted by
-     copyright and certain other rights. Our licenses are
-     irrevocable. Licensors should read and understand the terms
-     and conditions of the license they choose before applying it.
-     Licensors should also secure all rights necessary before
-     applying our licenses so that the public can reuse the
-     material as expected. Licensors should clearly mark any
-     material not subject to the license. This includes other CC-
-     licensed material, or material used under an exception or
-     limitation to copyright. More considerations for licensors:
-	wiki.creativecommons.org/Considerations_for_licensors
-
-     Considerations for the public: By using one of our public
-     licenses, a licensor grants the public permission to use the
-     licensed material under specified terms and conditions. If
-     the licensor's permission is not necessary for any reason--for
-     example, because of any applicable exception or limitation to
-     copyright--then that use is not regulated by the license. Our
-     licenses grant only permissions under copyright and certain
-     other rights that a licensor has authority to grant. Use of
-     the licensed material may still be restricted for other
-     reasons, including because others have copyright or other
-     rights in the material. A licensor may make special requests,
-     such as asking that all changes be marked or described.
-     Although not required by our licenses, you are encouraged to
-     respect those requests where reasonable. More_considerations
-     for the public: 
-	wiki.creativecommons.org/Considerations_for_licensees
-
-=======================================================================
-
-Creative Commons Attribution 4.0 International Public License
-
-By exercising the Licensed Rights (defined below), You accept and agree
-to be bound by the terms and conditions of this Creative Commons
-Attribution 4.0 International Public License ("Public License"). To the
-extent this Public License may be interpreted as a contract, You are
-granted the Licensed Rights in consideration of Your acceptance of
-these terms and conditions, and the Licensor grants You such rights in
-consideration of benefits the Licensor receives from making the
-Licensed Material available under these terms and conditions.
-
-
-Section 1 -- Definitions.
-
-  a. Adapted Material means material subject to Copyright and Similar
-     Rights that is derived from or based upon the Licensed Material
-     and in which the Licensed Material is translated, altered,
-     arranged, transformed, or otherwise modified in a manner requiring
-     permission under the Copyright and Similar Rights held by the
-     Licensor. For purposes of this Public License, where the Licensed
-     Material is a musical work, performance, or sound recording,
-     Adapted Material is always produced where the Licensed Material is
-     synched in timed relation with a moving image.
-
-  b. Adapter's License means the license You apply to Your Copyright
-     and Similar Rights in Your contributions to Adapted Material in
-     accordance with the terms and conditions of this Public License.
-
-  c. Copyright and Similar Rights means copyright and/or similar rights
-     closely related to copyright including, without limitation,
-     performance, broadcast, sound recording, and Sui Generis Database
-     Rights, without regard to how the rights are labeled or
-     categorized. For purposes of this Public License, the rights
-     specified in Section 2(b)(1)-(2) are not Copyright and Similar
-     Rights.
-
-  d. Effective Technological Measures means those measures that, in the
-     absence of proper authority, may not be circumvented under laws
-     fulfilling obligations under Article 11 of the WIPO Copyright
-     Treaty adopted on December 20, 1996, and/or similar international
-     agreements.
-
-  e. Exceptions and Limitations means fair use, fair dealing, and/or
-     any other exception or limitation to Copyright and Similar Rights
-     that applies to Your use of the Licensed Material.
-
-  f. Licensed Material means the artistic or literary work, database,
-     or other material to which the Licensor applied this Public
-     License.
-
-  g. Licensed Rights means the rights granted to You subject to the
-     terms and conditions of this Public License, which are limited to
-     all Copyright and Similar Rights that apply to Your use of the
-     Licensed Material and that the Licensor has authority to license.
-
-  h. Licensor means the individual(s) or entity(ies) granting rights
-     under this Public License.
-
-  i. Share means to provide material to the public by any means or
-     process that requires permission under the Licensed Rights, such
-     as reproduction, public display, public performance, distribution,
-     dissemination, communication, or importation, and to make material
-     available to the public including in ways that members of the
-     public may access the material from a place and at a time
-     individually chosen by them.
-
-  j. Sui Generis Database Rights means rights other than copyright
-     resulting from Directive 96/9/EC of the European Parliament and of
-     the Council of 11 March 1996 on the legal protection of databases,
-     as amended and/or succeeded, as well as other essentially
-     equivalent rights anywhere in the world.
-
-  k. You means the individual or entity exercising the Licensed Rights
-     under this Public License. Your has a corresponding meaning.
-
-
-Section 2 -- Scope.
-
-  a. License grant.
-
-       1. Subject to the terms and conditions of this Public License,
-          the Licensor hereby grants You a worldwide, royalty-free,
-          non-sublicensable, non-exclusive, irrevocable license to
-          exercise the Licensed Rights in the Licensed Material to:
-
-            a. reproduce and Share the Licensed Material, in whole or
-               in part; and
-
-            b. produce, reproduce, and Share Adapted Material.
-
-       2. Exceptions and Limitations. For the avoidance of doubt, where
-          Exceptions and Limitations apply to Your use, this Public
-          License does not apply, and You do not need to comply with
-          its terms and conditions.
-
-       3. Term. The term of this Public License is specified in Section
-          6(a).
-
-       4. Media and formats; technical modifications allowed. The
-          Licensor authorizes You to exercise the Licensed Rights in
-          all media and formats whether now known or hereafter created,
-          and to make technical modifications necessary to do so. The
-          Licensor waives and/or agrees not to assert any right or
-          authority to forbid You from making technical modifications
-          necessary to exercise the Licensed Rights, including
-          technical modifications necessary to circumvent Effective
-          Technological Measures. For purposes of this Public License,
-          simply making modifications authorized by this Section 2(a)
-          (4) never produces Adapted Material.
-
-       5. Downstream recipients.
-
-            a. Offer from the Licensor -- Licensed Material. Every
-               recipient of the Licensed Material automatically
-               receives an offer from the Licensor to exercise the
-               Licensed Rights under the terms and conditions of this
-               Public License.
-
-            b. No downstream restrictions. You may not offer or impose
-               any additional or different terms or conditions on, or
-               apply any Effective Technological Measures to, the
-               Licensed Material if doing so restricts exercise of the
-               Licensed Rights by any recipient of the Licensed
-               Material.
-
-       6. No endorsement. Nothing in this Public License constitutes or
-          may be construed as permission to assert or imply that You
-          are, or that Your use of the Licensed Material is, connected
-          with, or sponsored, endorsed, or granted official status by,
-          the Licensor or others designated to receive attribution as
-          provided in Section 3(a)(1)(A)(i).
-
-  b. Other rights.
-
-       1. Moral rights, such as the right of integrity, are not
-          licensed under this Public License, nor are publicity,
-          privacy, and/or other similar personality rights; however, to
-          the extent possible, the Licensor waives and/or agrees not to
-          assert any such rights held by the Licensor to the limited
-          extent necessary to allow You to exercise the Licensed
-          Rights, but not otherwise.
-
-       2. Patent and trademark rights are not licensed under this
-          Public License.
-
-       3. To the extent possible, the Licensor waives any right to
-          collect royalties from You for the exercise of the Licensed
-          Rights, whether directly or through a collecting society
-          under any voluntary or waivable statutory or compulsory
-          licensing scheme. In all other cases the Licensor expressly
-          reserves any right to collect such royalties.
-
-
-Section 3 -- License Conditions.
-
-Your exercise of the Licensed Rights is expressly made subject to the
-following conditions.
-
-  a. Attribution.
-
-       1. If You Share the Licensed Material (including in modified
-          form), You must:
-
-            a. retain the following if it is supplied by the Licensor
-               with the Licensed Material:
-
-                 i. identification of the creator(s) of the Licensed
-                    Material and any others designated to receive
-                    attribution, in any reasonable manner requested by
-                    the Licensor (including by pseudonym if
-                    designated);
-
-                ii. a copyright notice;
-
-               iii. a notice that refers to this Public License;
-
-                iv. a notice that refers to the disclaimer of
-                    warranties;
-
-                 v. a URI or hyperlink to the Licensed Material to the
-                    extent reasonably practicable;
-
-            b. indicate if You modified the Licensed Material and
-               retain an indication of any previous modifications; and
-
-            c. indicate the Licensed Material is licensed under this
-               Public License, and include the text of, or the URI or
-               hyperlink to, this Public License.
-
-       2. You may satisfy the conditions in Section 3(a)(1) in any
-          reasonable manner based on the medium, means, and context in
-          which You Share the Licensed Material. For example, it may be
-          reasonable to satisfy the conditions by providing a URI or
-          hyperlink to a resource that includes the required
-          information.
-
-       3. If requested by the Licensor, You must remove any of the
-          information required by Section 3(a)(1)(A) to the extent
-          reasonably practicable.
-
-       4. If You Share Adapted Material You produce, the Adapter's
-          License You apply must not prevent recipients of the Adapted
-          Material from complying with this Public License.
-
-
-Section 4 -- Sui Generis Database Rights.
-
-Where the Licensed Rights include Sui Generis Database Rights that
-apply to Your use of the Licensed Material:
-
-  a. for the avoidance of doubt, Section 2(a)(1) grants You the right
-     to extract, reuse, reproduce, and Share all or a substantial
-     portion of the contents of the database;
-
-  b. if You include all or a substantial portion of the database
-     contents in a database in which You have Sui Generis Database
-     Rights, then the database in which You have Sui Generis Database
-     Rights (but not its individual contents) is Adapted Material; and
-
-  c. You must comply with the conditions in Section 3(a) if You Share
-     all or a substantial portion of the contents of the database.
-
-For the avoidance of doubt, this Section 4 supplements and does not
-replace Your obligations under this Public License where the Licensed
-Rights include other Copyright and Similar Rights.
-
-
-Section 5 -- Disclaimer of Warranties and Limitation of Liability.
-
-  a. UNLESS OTHERWISE SEPARATELY UNDERTAKEN BY THE LICENSOR, TO THE
-     EXTENT POSSIBLE, THE LICENSOR OFFERS THE LICENSED MATERIAL AS-IS
-     AND AS-AVAILABLE, AND MAKES NO REPRESENTATIONS OR WARRANTIES OF
-     ANY KIND CONCERNING THE LICENSED MATERIAL, WHETHER EXPRESS,
-     IMPLIED, STATUTORY, OR OTHER. THIS INCLUDES, WITHOUT LIMITATION,
-     WARRANTIES OF TITLE, MERCHANTABILITY, FITNESS FOR A PARTICULAR
-     PURPOSE, NON-INFRINGEMENT, ABSENCE OF LATENT OR OTHER DEFECTS,
-     ACCURACY, OR THE PRESENCE OR ABSENCE OF ERRORS, WHETHER OR NOT
-     KNOWN OR DISCOVERABLE. WHERE DISCLAIMERS OF WARRANTIES ARE NOT
-     ALLOWED IN FULL OR IN PART, THIS DISCLAIMER MAY NOT APPLY TO YOU.
-
-  b. TO THE EXTENT POSSIBLE, IN NO EVENT WILL THE LICENSOR BE LIABLE
-     TO YOU ON ANY LEGAL THEORY (INCLUDING, WITHOUT LIMITATION,
-     NEGLIGENCE) OR OTHERWISE FOR ANY DIRECT, SPECIAL, INDIRECT,
-     INCIDENTAL, CONSEQUENTIAL, PUNITIVE, EXEMPLARY, OR OTHER LOSSES,
-     COSTS, EXPENSES, OR DAMAGES ARISING OUT OF THIS PUBLIC LICENSE OR
-     USE OF THE LICENSED MATERIAL, EVEN IF THE LICENSOR HAS BEEN
-     ADVISED OF THE POSSIBILITY OF SUCH LOSSES, COSTS, EXPENSES, OR
-     DAMAGES. WHERE A LIMITATION OF LIABILITY IS NOT ALLOWED IN FULL OR
-     IN PART, THIS LIMITATION MAY NOT APPLY TO YOU.
-
-  c. The disclaimer of warranties and limitation of liability provided
-     above shall be interpreted in a manner that, to the extent
-     possible, most closely approximates an absolute disclaimer and
-     waiver of all liability.
-
-
-Section 6 -- Term and Termination.
-
-  a. This Public License applies for the term of the Copyright and
-     Similar Rights licensed here. However, if You fail to comply with
-     this Public License, then Your rights under this Public License
-     terminate automatically.
-
-  b. Where Your right to use the Licensed Material has terminated under
-     Section 6(a), it reinstates:
-
-       1. automatically as of the date the violation is cured, provided
-          it is cured within 30 days of Your discovery of the
-          violation; or
-
-       2. upon express reinstatement by the Licensor.
-
-     For the avoidance of doubt, this Section 6(b) does not affect any
-     right the Licensor may have to seek remedies for Your violations
-     of this Public License.
-
-  c. For the avoidance of doubt, the Licensor may also offer the
-     Licensed Material under separate terms or conditions or stop
-     distributing the Licensed Material at any time; however, doing so
-     will not terminate this Public License.
-
-  d. Sections 1, 5, 6, 7, and 8 survive termination of this Public
-     License.
-
-
-Section 7 -- Other Terms and Conditions.
-
-  a. The Licensor shall not be bound by any additional or different
-     terms or conditions communicated by You unless expressly agreed.
-
-  b. Any arrangements, understandings, or agreements regarding the
-     Licensed Material not stated herein are separate from and
-     independent of the terms and conditions of this Public License.
-
-
-Section 8 -- Interpretation.
-
-  a. For the avoidance of doubt, this Public License does not, and
-     shall not be interpreted to, reduce, limit, restrict, or impose
-     conditions on any use of the Licensed Material that could lawfully
-     be made without permission under this Public License.
-
-  b. To the extent possible, if any provision of this Public License is
-     deemed unenforceable, it shall be automatically reformed to the
-     minimum extent necessary to make it enforceable. If the provision
-     cannot be reformed, it shall be severed from this Public License
-     without affecting the enforceability of the remaining terms and
-     conditions.
-
-  c. No term or condition of this Public License will be waived and no
-     failure to comply consented to unless expressly agreed to by the
-     Licensor.
-
-  d. Nothing in this Public License constitutes or may be interpreted
-     as a limitation upon, or waiver of, any privileges and immunities
-     that apply to the Licensor or You, including from the legal
-     processes of any jurisdiction or authority.
-
-
-=======================================================================
-
-Creative Commons is not a party to its public
-licenses. Notwithstanding, Creative Commons may elect to apply one of
-its public licenses to material it publishes and in those instances
-will be considered the “Licensor.” The text of the Creative Commons
-public licenses is dedicated to the public domain under the CC0 Public
-Domain Dedication. Except for the limited purpose of indicating that
-material is shared under a Creative Commons public license or as
-otherwise permitted by the Creative Commons policies published at
-creativecommons.org/policies, Creative Commons does not authorize the
-use of the trademark "Creative Commons" or any other trademark or logo
-of Creative Commons without its prior written consent including,
-without limitation, in connection with any unauthorized modifications
-to any of its public licenses or any other arrangements,
-understandings, or agreements concerning use of licensed material. For
-the avoidance of doubt, this paragraph does not form part of the
-public licenses.
-
-Creative Commons may be contacted at creativecommons.org.
-
------------
-
-The following npm package may be included in this product:
-
- - sprintf-js@1.1.3
-
-This package contains the following license:
-
-Copyright (c) 2007-present, Alexandru Mărășteanu <hello@alexei.ro>
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-* Redistributions of source code must retain the above copyright
-  notice, this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright
-  notice, this list of conditions and the following disclaimer in the
-  documentation and/or other materials provided with the distribution.
-* Neither the name of this software nor the names of its contributors may be
-  used to endorse or promote products derived from this software without
-  specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR
-ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
------------
-
-The following npm package may be included in this product:
-
- - iconv-lite@0.6.3
-
-This package contains the following license:
-
-Copyright (c) 2011 Alexander Shtuchkin
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - ip-address@9.0.5
-
-This package contains the following license:
-
-Copyright (C) 2011 by Beau Gunderson
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - color-convert@2.0.1
-
-This package contains the following license:
-
-Copyright (c) 2011-2016 Heather Arthur <fayearthur@gmail.com>
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - retry@0.12.0
-
-This package contains the following license:
-
-Copyright (c) 2011:
-Tim Koschützki (tim@debuggable.com)
-Felix Geisendörfer (felix@debuggable.com)
-
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to deal
- in the Software without restriction, including without limitation the rights
- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
-
- The above copyright notice and this permission notice shall be included in
- all copies or substantial portions of the Software.
-
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - encoding@0.1.13
-
-This package contains the following license:
-
-Copyright (c) 2012-2014 Andris Reinman
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - @babel/parser@7.26.7
-
-This package contains the following license:
-
-Copyright (C) 2012-2014 by various contributors (see AUTHORS)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - ignore@6.0.2
-
-This package contains the following license:
-
-Copyright (c) 2013 Kael Zhang <i@kael.me>, contributors
-http://kael.me/
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - parse5@7.2.1
-
-This package contains the following license:
-
-Copyright (c) 2013-2019 Ivan Nikulin (ifaaan@gmail.com, https://github.com/inikulin)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - promise-retry@2.0.1
-
-This package contains the following license:
-
-Copyright (c) 2014 IndigoUnited
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is furnished
-to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - fastq@1.19.0
-
-This package contains the following license:
-
-Copyright (c) 2015-2020, Matteo Collina <matteo.collina@gmail.com>
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm packages may be included in this product:
-
- - @isaacs/cliui@8.0.2
- - cliui@8.0.1
-
-These packages each contain the following license:
-
-Copyright (c) 2015, Contributors
-
-Permission to use, copy, modify, and/or distribute this software
-for any purpose with or without fee is hereby granted, provided
-that the above copyright notice and this permission notice
-appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES
-OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE
-LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES
-OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
-WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
-ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - y18n@5.0.8
-
-This package contains the following license:
-
-Copyright (c) 2015, Contributors
-
-Permission to use, copy, modify, and/or distribute this software for any purpose
-with or without fee is hereby granted, provided that the above copyright notice
-and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
-FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
-OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
-TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
-THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - yargs-parser@21.1.1
-
-This package contains the following license:
-
-Copyright (c) 2016, Contributors
-
-Permission to use, copy, modify, and/or distribute this software
-for any purpose with or without fee is hereby granted, provided
-that the above copyright notice and this permission notice
-appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES
-OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE
-LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES
-OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
-WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
-ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - angular-oauth2-oidc@17.0.2
-
-This package contains the following license:
-
-Copyright (c) 2017 Manfred Steyer
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - fast-uri@3.0.6
-
-This package contains the following license:
-
-Copyright (c) 2021 The Fastify Team
-Copyright (c) 2011-2021, Gary Court until https://github.com/garycourt/uri-js/commit/a1acf730b4bba3f1097c9f52e7d9d3aba8cdcaae
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above copyright
-      notice, this list of conditions and the following disclaimer in the
-      documentation and/or other materials provided with the distribution.
-    * The names of any contributors may not be used to endorse or promote
-      products derived from this software without specific prior written
-      permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS AND CONTRIBUTORS BE LIABLE FOR ANY
-DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-                                  *   *   *
-
-The complete list of contributors can be found at:
-- https://github.com/garycourt/uri-js/graphs/contributors
-
------------
-
-The following npm package may be included in this product:
-
- - entities@4.5.0
-
-This package contains the following license:
-
-Copyright (c) Felix Böhm
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-
-Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-
-Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-
-THIS IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS,
-EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
------------
-
-The following npm package may be included in this product:
-
- - tslib@2.8.1
-
-This package contains the following license:
-
-Copyright (c) Microsoft Corporation.
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - clone@1.0.4
-
-This package contains the following license:
-
-Copyright © 2011-2015 Paul Vorbach <paul@vorba.ch>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the “Software”), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - ieee754@1.2.1
-
-This package contains the following license:
-
-Copyright 2008 Fair Oaks Labs, Inc.
-
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-
-1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-
-2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-
-3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
------------
-
-The following npm packages may be included in this product:
-
- - convert-source-map@1.9.0
- - convert-source-map@2.0.0
-
-These packages each contain the following license:
-
-Copyright 2013 Thorsten Lorenz. 
-All rights reserved.
-
-Permission is hereby granted, free of charge, to any person
-obtaining a copy of this software and associated documentation
-files (the "Software"), to deal in the Software without
-restriction, including without limitation the rights to use,
-copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following
-conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - http-cache-semantics@4.1.1
-
-This package contains the following license:
-
-Copyright 2016-2018 Kornel Lesiński
-
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-
-1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-
-2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
------------
-
-The following npm package may be included in this product:
-
- - electron-to-chromium@1.5.90
-
-This package contains the following license:
-
-Copyright 2018 Kilian Valkhof
-
-Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - gensync@1.0.0-beta.2
-
-This package contains the following license:
-
-Copyright 2018 Logan Smyth <loganfsmyth@gmail.com>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - magic-string@0.30.11
-
-This package contains the following license:
-
-Copyright 2018 Rich Harris
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - @jridgewell/resolve-uri@3.1.2
-
-This package contains the following license:
-
-Copyright 2019 Justin Ridgewell <jridgewell@google.com>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm packages may be included in this product:
-
- - @jridgewell/gen-mapping@0.3.8
- - @jridgewell/set-array@1.2.1
-
-These packages each contain the following license:
-
-Copyright 2022 Justin Ridgewell <jridgewell@google.com>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - @jridgewell/trace-mapping@0.3.25
-
-This package contains the following license:
-
-Copyright 2022 Justin Ridgewell <justin@ridgewell.name>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - mkdirp@1.0.4
-
-This package contains the following license:
-
-Copyright James Halliday (mail@substack.net) and Isaac Z. Schlueter (i@izs.me)
-
-This project is free software released under the MIT license:
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following npm packages may be included in this product:
-
- - emoji-regex@8.0.0
- - emoji-regex@9.2.2
- - jsesc@2.5.2
- - jsesc@3.1.0
-
-These packages each contain the following license:
-
-Copyright Mathias Bynens <https://mathiasbynens.be/>
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - unique-filename@3.0.0
-
-This package contains the following license:
-
-Copyright npm, Inc
-
-Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - lodash@4.17.21
-
-This package contains the following license:
-
-Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
-
-Based on Underscore.js, copyright Jeremy Ashkenas,
-DocumentCloud and Investigative Reporters & Editors <http://underscorejs.org/>
-
-This software consists of voluntary contributions made by many
-individuals. For exact contribution history, see the revision history
-available at https://github.com/lodash/lodash
-
-The following license applies to all parts of this software except as
-documented below:
-
-====
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-====
-
-Copyright and related rights for sample code are waived via CC0. Sample
-code is defined as all source code displayed within the prose of the
-documentation.
-
-CC0: http://creativecommons.org/publicdomain/zero/1.0/
-
-====
-
-Files located in the node_modules and vendor directories are externally
-maintained libraries used by this software which have their own
-licenses; we recommend you read them, as their terms may differ from the
-terms above.
-
------------
-
-The following npm package may be included in this product:
-
- - sass@1.83.4
-
-This package contains the following license:
-
-Dart Sass license:
-
-Copyright (c) 2016, Google Inc.
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
---------------------------------------------------------------------------------
-
-Dart SDK license:
-
-Copyright 2012, the Dart project authors.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-_fe_analyzer_shared license:
-
-Copyright 2019, the Dart project authors.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-_macros and macros license:
-
-Copyright 2024, the Dart project authors.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-analyzer, protobuf and protoc_plugin license:
-
-Copyright 2013, the Dart project authors.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-archive license:
-
-The MIT License
-
-Copyright (c) 2013-2021 Brendan Duncan.
-All rights reserved.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
---------------------------------------------------------------------------------
-
-args, csslib and logging license:
-
-Copyright 2013, the Dart project authors. 
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-async, cli_util, collection, mime, stream_channel and typed_data license:
-
-Copyright 2015, the Dart project authors. 
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-boolean_selector, meta and shelf_packages_handler license:
-
-Copyright 2016, the Dart project authors.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-charcode license:
-
-Copyright 2014, the Dart project authors. All rights reserved.
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google Inc. nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-checked_yaml license:
-
-Copyright 2019, the Dart project authors. All rights reserved.
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google Inc. nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-cli_pkg license:
-
-                                 Apache License
-                           Version 2.0, January 2004
-                        http://www.apache.org/licenses/
-
-   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
-
-   1. Definitions.
-
-      "License" shall mean the terms and conditions for use, reproduction,
-      and distribution as defined by Sections 1 through 9 of this document.
-
-      "Licensor" shall mean the copyright owner or entity authorized by
-      the copyright owner that is granting the License.
-
-      "Legal Entity" shall mean the union of the acting entity and all
-      other entities that control, are controlled by, or are under common
-      control with that entity. For the purposes of this definition,
-      "control" means (i) the power, direct or indirect, to cause the
-      direction or management of such entity, whether by contract or
-      otherwise, or (ii) ownership of fifty percent (50%) or more of the
-      outstanding shares, or (iii) beneficial ownership of such entity.
-
-      "You" (or "Your") shall mean an individual or Legal Entity
-      exercising permissions granted by this License.
-
-      "Source" form shall mean the preferred form for making modifications,
-      including but not limited to software source code, documentation
-      source, and configuration files.
-
-      "Object" form shall mean any form resulting from mechanical
-      transformation or translation of a Source form, including but
-      not limited to compiled object code, generated documentation,
-      and conversions to other media types.
-
-      "Work" shall mean the work of authorship, whether in Source or
-      Object form, made available under the License, as indicated by a
-      copyright notice that is included in or attached to the work
-      (an example is provided in the Appendix below).
-
-      "Derivative Works" shall mean any work, whether in Source or Object
-      form, that is based on (or derived from) the Work and for which the
-      editorial revisions, annotations, elaborations, or other modifications
-      represent, as a whole, an original work of authorship. For the purposes
-      of this License, Derivative Works shall not include works that remain
-      separable from, or merely link (or bind by name) to the interfaces of,
-      the Work and Derivative Works thereof.
-
-      "Contribution" shall mean any work of authorship, including
-      the original version of the Work and any modifications or additions
-      to that Work or Derivative Works thereof, that is intentionally
-      submitted to Licensor for inclusion in the Work by the copyright owner
-      or by an individual or Legal Entity authorized to submit on behalf of
-      the copyright owner. For the purposes of this definition, "submitted"
-      means any form of electronic, verbal, or written communication sent
-      to the Licensor or its representatives, including but not limited to
-      communication on electronic mailing lists, source code control systems,
-      and issue tracking systems that are managed by, or on behalf of, the
-      Licensor for the purpose of discussing and improving the Work, but
-      excluding communication that is conspicuously marked or otherwise
-      designated in writing by the copyright owner as "Not a Contribution."
-
-      "Contributor" shall mean Licensor and any individual or Legal Entity
-      on behalf of whom a Contribution has been received by Licensor and
-      subsequently incorporated within the Work.
-
-   2. Grant of Copyright License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      copyright license to reproduce, prepare Derivative Works of,
-      publicly display, publicly perform, sublicense, and distribute the
-      Work and such Derivative Works in Source or Object form.
-
-   3. Grant of Patent License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      (except as stated in this section) patent license to make, have made,
-      use, offer to sell, sell, import, and otherwise transfer the Work,
-      where such license applies only to those patent claims licensable
-      by such Contributor that are necessarily infringed by their
-      Contribution(s) alone or by combination of their Contribution(s)
-      with the Work to which such Contribution(s) was submitted. If You
-      institute patent litigation against any entity (including a
-      cross-claim or counterclaim in a lawsuit) alleging that the Work
-      or a Contribution incorporated within the Work constitutes direct
-      or contributory patent infringement, then any patent licenses
-      granted to You under this License for that Work shall terminate
-      as of the date such litigation is filed.
-
-   4. Redistribution. You may reproduce and distribute copies of the
-      Work or Derivative Works thereof in any medium, with or without
-      modifications, and in Source or Object form, provided that You
-      meet the following conditions:
-
-      (a) You must give any other recipients of the Work or
-          Derivative Works a copy of this License; and
-
-      (b) You must cause any modified files to carry prominent notices
-          stating that You changed the files; and
-
-      (c) You must retain, in the Source form of any Derivative Works
-          that You distribute, all copyright, patent, trademark, and
-          attribution notices from the Source form of the Work,
-          excluding those notices that do not pertain to any part of
-          the Derivative Works; and
-
-      (d) If the Work includes a "NOTICE" text file as part of its
-          distribution, then any Derivative Works that You distribute must
-          include a readable copy of the attribution notices contained
-          within such NOTICE file, excluding those notices that do not
-          pertain to any part of the Derivative Works, in at least one
-          of the following places: within a NOTICE text file distributed
-          as part of the Derivative Works; within the Source form or
-          documentation, if provided along with the Derivative Works; or,
-          within a display generated by the Derivative Works, if and
-          wherever such third-party notices normally appear. The contents
-          of the NOTICE file are for informational purposes only and
-          do not modify the License. You may add Your own attribution
-          notices within Derivative Works that You distribute, alongside
-          or as an addendum to the NOTICE text from the Work, provided
-          that such additional attribution notices cannot be construed
-          as modifying the License.
-
-      You may add Your own copyright statement to Your modifications and
-      may provide additional or different license terms and conditions
-      for use, reproduction, or distribution of Your modifications, or
-      for any such Derivative Works as a whole, provided Your use,
-      reproduction, and distribution of the Work otherwise complies with
-      the conditions stated in this License.
-
-   5. Submission of Contributions. Unless You explicitly state otherwise,
-      any Contribution intentionally submitted for inclusion in the Work
-      by You to the Licensor shall be under the terms and conditions of
-      this License, without any additional terms or conditions.
-      Notwithstanding the above, nothing herein shall supersede or modify
-      the terms of any separate license agreement you may have executed
-      with Licensor regarding such Contributions.
-
-   6. Trademarks. This License does not grant permission to use the trade
-      names, trademarks, service marks, or product names of the Licensor,
-      except as required for reasonable and customary use in describing the
-      origin of the Work and reproducing the content of the NOTICE file.
-
-   7. Disclaimer of Warranty. Unless required by applicable law or
-      agreed to in writing, Licensor provides the Work (and each
-      Contributor provides its Contributions) on an "AS IS" BASIS,
-      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-      implied, including, without limitation, any warranties or conditions
-      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
-      PARTICULAR PURPOSE. You are solely responsible for determining the
-      appropriateness of using or redistributing the Work and assume any
-      risks associated with Your exercise of permissions under this License.
-
-   8. Limitation of Liability. In no event and under no legal theory,
-      whether in tort (including negligence), contract, or otherwise,
-      unless required by applicable law (such as deliberate and grossly
-      negligent acts) or agreed to in writing, shall any Contributor be
-      liable to You for damages, including any direct, indirect, special,
-      incidental, or consequential damages of any character arising as a
-      result of this License or out of the use or inability to use the
-      Work (including but not limited to damages for loss of goodwill,
-      work stoppage, computer failure or malfunction, or any and all
-      other commercial damages or losses), even if such Contributor
-      has been advised of the possibility of such damages.
-
-   9. Accepting Warranty or Additional Liability. While redistributing
-      the Work or Derivative Works thereof, You may choose to offer,
-      and charge a fee for, acceptance of support, warranty, indemnity,
-      or other liability obligations and/or rights consistent with this
-      License. However, in accepting such obligations, You may act only
-      on Your own behalf and on Your sole responsibility, not on behalf
-      of any other Contributor, and only if You agree to indemnify,
-      defend, and hold each Contributor harmless for any liability
-      incurred by, or claims asserted against, such Contributor by reason
-      of your accepting any such warranty or additional liability.
-
-   END OF TERMS AND CONDITIONS
-
-   APPENDIX: How to apply the Apache License to your work.
-
-      To apply the Apache License to your work, attach the following
-      boilerplate notice, with the fields enclosed by brackets "[]"
-      replaced with your own identifying information. (Don't include
-      the brackets!)  The text should be enclosed in the appropriate
-      comment syntax for the file format. We also recommend that a
-      file or class name and description of purpose be included on the
-      same "printed page" as the copyright notice for easier
-      identification within third-party archives.
-
-   Copyright [yyyy] [name of copyright owner]
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-
-
---------------------------------------------------------------------------------
-
-cli_repl license:
-
-Copyright (c) 2018, Jennifer Thakar.
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above copyright
-      notice, this list of conditions and the following disclaimer in the
-      documentation and/or other materials provided with the distribution.
-    * Neither the name of the project nor the names of its contributors may be
-      used to endorse or promote products derived from this software without
-      specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
-ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-convert, crypto, shelf_static, source_map_stack_trace and vm_service license:
-
-Copyright 2015, the Dart project authors.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-coverage, dartdoc, glob, http, http_parser, matcher, path, pool, pub_semver,
-source_span, string_scanner, test and watcher license:
-
-Copyright 2014, the Dart project authors. 
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-dart_mappable and type_plus license:
-
-MIT License
-
-Copyright (c) 2021 Kilian Schulte
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
---------------------------------------------------------------------------------
-
-ffi and package_config license:
-
-Copyright 2019, the Dart project authors. 
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-file license:
-
-Copyright 2017, the Dart project authors. All rights reserved.
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google Inc. nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
---------------------------------------------------------------------------------
-
-fixnum, http_multi_server, oauth2, shelf, shelf_web_socket, source_maps and
-stack_trace license:
-
-Copyright 2014, the Dart project authors.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-frontend_server_client license:
-
-Copyright 2020, the Dart project authors. 
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-grinder and webkit_inspection_protocol license:
-
-Copyright 2013, Google Inc.
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-copyright notice, this list of conditions and the following disclaimer
-in the documentation and/or other materials provided with the
-distribution.
-    * Neither the name of Google Inc. nor the names of its
-contributors may be used to endorse or promote products derived from
-this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-html license:
-
-Copyright (c) 2006-2012 The Authors
-
-Contributors:
-James Graham - jg307@cam.ac.uk
-Anne van Kesteren - annevankesteren@gmail.com
-Lachlan Hunt - lachlan.hunt@lachy.id.au
-Matt McDonald - kanashii@kanashii.ca
-Sam Ruby - rubys@intertwingly.net
-Ian Hickson (Google) - ian@hixie.ch
-Thomas Broyer - t.broyer@ltgt.net
-Jacques Distler - distler@golem.ph.utexas.edu
-Henri Sivonen - hsivonen@iki.fi
-Adam Barth - abarth@webkit.org
-Eric Seidel - eric@webkit.org
-The Mozilla Foundation (contributions from Henri Sivonen since 2008)
-David Flanagan (Mozilla) - dflanagan@mozilla.com
-Google LLC (contributed the Dart port) - misc@dartlang.org
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
---------------------------------------------------------------------------------
-
-io, stream_transform and term_glyph license:
-
-Copyright 2017, the Dart project authors. 
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-js license:
-
-Copyright 2012, the Dart project authors.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-json_annotation license:
-
-Copyright 2017, the Dart project authors. All rights reserved.
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google Inc. nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-lints license:
-
-Copyright 2021, the Dart project authors.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-markdown license:
-
-Copyright 2012, the Dart project authors. 
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-native_stack_traces license:
-
-Copyright 2020, the Dart project authors.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-native_synchronization license:
-
-Copyright 2023, the Dart project authors.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-node_interop license:
-
-Copyright (c) 2017, Anatoly Pulyaevskiy.
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above copyright
-      notice, this list of conditions and the following disclaimer in the
-      documentation and/or other materials provided with the distribution.
-    * Neither the name of the <organization> nor the
-      names of its contributors may be used to endorse or promote products
-      derived from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
-DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-node_preamble license:
-
-The MIT License (MIT)
-
-Copyright (c) 2015 Michael Bullington
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-===
-
-Copyright 2012, the Dart project authors. All rights reserved.
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google Inc. nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-petitparser license:
-
-The MIT License
-
-Copyright (c) 2006-2025 Lukas Renggli.
-All rights reserved.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
-
---------------------------------------------------------------------------------
-
-pub_api_client license:
-
-MIT License
-
-Copyright (c) 2020 Leo Farias
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-
---------------------------------------------------------------------------------
-
-pubspec_parse license:
-
-Copyright 2018, the Dart project authors.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-retry license:
-
-
-                                 Apache License
-                           Version 2.0, January 2004
-                        http://www.apache.org/licenses/
-
-   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
-
-   1. Definitions.
-
-      "License" shall mean the terms and conditions for use, reproduction,
-      and distribution as defined by Sections 1 through 9 of this document.
-
-      "Licensor" shall mean the copyright owner or entity authorized by
-      the copyright owner that is granting the License.
-
-      "Legal Entity" shall mean the union of the acting entity and all
-      other entities that control, are controlled by, or are under common
-      control with that entity. For the purposes of this definition,
-      "control" means (i) the power, direct or indirect, to cause the
-      direction or management of such entity, whether by contract or
-      otherwise, or (ii) ownership of fifty percent (50%) or more of the
-      outstanding shares, or (iii) beneficial ownership of such entity.
-
-      "You" (or "Your") shall mean an individual or Legal Entity
-      exercising permissions granted by this License.
-
-      "Source" form shall mean the preferred form for making modifications,
-      including but not limited to software source code, documentation
-      source, and configuration files.
-
-      "Object" form shall mean any form resulting from mechanical
-      transformation or translation of a Source form, including but
-      not limited to compiled object code, generated documentation,
-      and conversions to other media types.
-
-      "Work" shall mean the work of authorship, whether in Source or
-      Object form, made available under the License, as indicated by a
-      copyright notice that is included in or attached to the work
-      (an example is provided in the Appendix below).
-
-      "Derivative Works" shall mean any work, whether in Source or Object
-      form, that is based on (or derived from) the Work and for which the
-      editorial revisions, annotations, elaborations, or other modifications
-      represent, as a whole, an original work of authorship. For the purposes
-      of this License, Derivative Works shall not include works that remain
-      separable from, or merely link (or bind by name) to the interfaces of,
-      the Work and Derivative Works thereof.
-
-      "Contribution" shall mean any work of authorship, including
-      the original version of the Work and any modifications or additions
-      to that Work or Derivative Works thereof, that is intentionally
-      submitted to Licensor for inclusion in the Work by the copyright owner
-      or by an individual or Legal Entity authorized to submit on behalf of
-      the copyright owner. For the purposes of this definition, "submitted"
-      means any form of electronic, verbal, or written communication sent
-      to the Licensor or its representatives, including but not limited to
-      communication on electronic mailing lists, source code control systems,
-      and issue tracking systems that are managed by, or on behalf of, the
-      Licensor for the purpose of discussing and improving the Work, but
-      excluding communication that is conspicuously marked or otherwise
-      designated in writing by the copyright owner as "Not a Contribution."
-
-      "Contributor" shall mean Licensor and any individual or Legal Entity
-      on behalf of whom a Contribution has been received by Licensor and
-      subsequently incorporated within the Work.
-
-   2. Grant of Copyright License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      copyright license to reproduce, prepare Derivative Works of,
-      publicly display, publicly perform, sublicense, and distribute the
-      Work and such Derivative Works in Source or Object form.
-
-   3. Grant of Patent License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      (except as stated in this section) patent license to make, have made,
-      use, offer to sell, sell, import, and otherwise transfer the Work,
-      where such license applies only to those patent claims licensable
-      by such Contributor that are necessarily infringed by their
-      Contribution(s) alone or by combination of their Contribution(s)
-      with the Work to which such Contribution(s) was submitted. If You
-      institute patent litigation against any entity (including a
-      cross-claim or counterclaim in a lawsuit) alleging that the Work
-      or a Contribution incorporated within the Work constitutes direct
-      or contributory patent infringement, then any patent licenses
-      granted to You under this License for that Work shall terminate
-      as of the date such litigation is filed.
-
-   4. Redistribution. You may reproduce and distribute copies of the
-      Work or Derivative Works thereof in any medium, with or without
-      modifications, and in Source or Object form, provided that You
-      meet the following conditions:
-
-      (a) You must give any other recipients of the Work or
-          Derivative Works a copy of this License; and
-
-      (b) You must cause any modified files to carry prominent notices
-          stating that You changed the files; and
-
-      (c) You must retain, in the Source form of any Derivative Works
-          that You distribute, all copyright, patent, trademark, and
-          attribution notices from the Source form of the Work,
-          excluding those notices that do not pertain to any part of
-          the Derivative Works; and
-
-      (d) If the Work includes a "NOTICE" text file as part of its
-          distribution, then any Derivative Works that You distribute must
-          include a readable copy of the attribution notices contained
-          within such NOTICE file, excluding those notices that do not
-          pertain to any part of the Derivative Works, in at least one
-          of the following places: within a NOTICE text file distributed
-          as part of the Derivative Works; within the Source form or
-          documentation, if provided along with the Derivative Works; or,
-          within a display generated by the Derivative Works, if and
-          wherever such third-party notices normally appear. The contents
-          of the NOTICE file are for informational purposes only and
-          do not modify the License. You may add Your own attribution
-          notices within Derivative Works that You distribute, alongside
-          or as an addendum to the NOTICE text from the Work, provided
-          that such additional attribution notices cannot be construed
-          as modifying the License.
-
-      You may add Your own copyright statement to Your modifications and
-      may provide additional or different license terms and conditions
-      for use, reproduction, or distribution of Your modifications, or
-      for any such Derivative Works as a whole, provided Your use,
-      reproduction, and distribution of the Work otherwise complies with
-      the conditions stated in this License.
-
-   5. Submission of Contributions. Unless You explicitly state otherwise,
-      any Contribution intentionally submitted for inclusion in the Work
-      by You to the Licensor shall be under the terms and conditions of
-      this License, without any additional terms or conditions.
-      Notwithstanding the above, nothing herein shall supersede or modify
-      the terms of any separate license agreement you may have executed
-      with Licensor regarding such Contributions.
-
-   6. Trademarks. This License does not grant permission to use the trade
-      names, trademarks, service marks, or product names of the Licensor,
-      except as required for reasonable and customary use in describing the
-      origin of the Work and reproducing the content of the NOTICE file.
-
-   7. Disclaimer of Warranty. Unless required by applicable law or
-      agreed to in writing, Licensor provides the Work (and each
-      Contributor provides its Contributions) on an "AS IS" BASIS,
-      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-      implied, including, without limitation, any warranties or conditions
-      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
-      PARTICULAR PURPOSE. You are solely responsible for determining the
-      appropriateness of using or redistributing the Work and assume any
-      risks associated with Your exercise of permissions under this License.
-
-   8. Limitation of Liability. In no event and under no legal theory,
-      whether in tort (including negligence), contract, or otherwise,
-      unless required by applicable law (such as deliberate and grossly
-      negligent acts) or agreed to in writing, shall any Contributor be
-      liable to You for damages, including any direct, indirect, special,
-      incidental, or consequential damages of any character arising as a
-      result of this License or out of the use or inability to use the
-      Work (including but not limited to damages for loss of goodwill,
-      work stoppage, computer failure or malfunction, or any and all
-      other commercial damages or losses), even if such Contributor
-      has been advised of the possibility of such damages.
-
-   9. Accepting Warranty or Additional Liability. While redistributing
-      the Work or Derivative Works thereof, You may choose to offer,
-      and charge a fee for, acceptance of support, warranty, indemnity,
-      or other liability obligations and/or rights consistent with this
-      License. However, in accepting such obligations, You may act only
-      on Your own behalf and on Your sole responsibility, not on behalf
-      of any other Contributor, and only if You agree to indemnify,
-      defend, and hold each Contributor harmless for any liability
-      incurred by, or claims asserted against, such Contributor by reason
-      of your accepting any such warranty or additional liability.
-
-   END OF TERMS AND CONDITIONS
-
-   APPENDIX: How to apply the Apache License to your work.
-
-      To apply the Apache License to your work, attach the following
-      boilerplate notice, with the fields enclosed by brackets "[]"
-      replaced with your own identifying information. (Don't include
-      the brackets!)  The text should be enclosed in the appropriate
-      comment syntax for the file format. We also recommend that a
-      file or class name and description of purpose be included on the
-      same "printed page" as the copyright notice for easier
-      identification within third-party archives.
-
-   Copyright [yyyy] [name of copyright owner]
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-
---------------------------------------------------------------------------------
-
-test_api and test_core license:
-
-Copyright 2018, the Dart project authors. 
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-test_descriptor and web_socket_channel license:
-
-Copyright 2016, the Dart project authors. 
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-test_process license:
-
-Copyright 2017, the Dart project authors.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-web license:
-
-Copyright 2023, the Dart project authors.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-web_socket license:
-
-Copyright 2024, the Dart project authors. 
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
---------------------------------------------------------------------------------
-
-xml license:
-
-The MIT License
-
-Copyright (c) 2006-2023 Lukas Renggli.
-All rights reserved.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
-
---------------------------------------------------------------------------------
-
-yaml license:
-
-Copyright (c) 2014, the Dart project authors.
-Copyright (c) 2006, Kirill Simonov.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
-of the Software, and to permit persons to whom the Software is furnished to do
-so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - @npmcli/agent@2.2.2
-
-This package contains the following license:
-
-ISC
-
------------
-
-The following npm package may be included in this product:
-
- - picocolors@1.1.1
-
-This package contains the following license:
-
-ISC License
-
-Copyright (c) 2021-2024 Oleksii Raspopov, Kostiantyn Denysov, Anton Verinov
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - cacache@18.0.4
-
-This package contains the following license:
-
-ISC License
-
-Copyright (c) npm, Inc.
-
-Permission to use, copy, modify, and/or distribute this software for
-any purpose with or without fee is hereby granted, provided that the
-above copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE COPYRIGHT HOLDER DISCLAIMS
-ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE
-COPYRIGHT HOLDER BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR
-CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
-OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE
-OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE
-USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - make-fetch-happen@13.0.1
-
-This package contains the following license:
-
-ISC License
-
-Copyright 2017-2022 (c) npm, Inc.
-
-Permission to use, copy, modify, and/or distribute this software for
-any purpose with or without fee is hereby granted, provided that the
-above copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE COPYRIGHT HOLDER DISCLAIMS
-ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE
-COPYRIGHT HOLDER BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR
-CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
-OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE
-OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE
-USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - ssri@10.0.6
-
-This package contains the following license:
-
-ISC License
-
-Copyright 2021 (c) npm, Inc.
-
-Permission to use, copy, modify, and/or distribute this software for
-any purpose with or without fee is hereby granted, provided that the
-above copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE COPYRIGHT HOLDER DISCLAIMS
-ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE
-COPYRIGHT HOLDER BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR
-CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
-OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE
-OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE
-USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - get-caller-file@2.0.5
-
-This package contains the following license:
-
-ISC License (ISC)
-Copyright 2018 Stefan Penner
-
-Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - jsbn@1.1.0
-
-This package contains the following license:
-
-Licensing
----------
-
-This software is covered under the following copyright:
-
-/*
- * Copyright (c) 2003-2005  Tom Wu
- * All Rights Reserved.
- *
- * Permission is hereby granted, free of charge, to any person obtaining
- * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish,
- * distribute, sublicense, and/or sell copies of the Software, and to
- * permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- *
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND, 
- * EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY 
- * WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.  
- *
- * IN NO EVENT SHALL TOM WU BE LIABLE FOR ANY SPECIAL, INCIDENTAL,
- * INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND, OR ANY DAMAGES WHATSOEVER
- * RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER OR NOT ADVISED OF
- * THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF LIABILITY, ARISING OUT
- * OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- *
- * In addition, the following condition applies:
- *
- * All redistributions must retain an intact copy of this copyright notice
- * and disclaimer.
- */
-
-Address all questions regarding this license to:
-
-  Tom Wu
-  tjw@cs.Stanford.EDU
-
------------
-
-The following npm package may be included in this product:
-
- - minizlib@2.1.2
-
-This package contains the following license:
-
-Minizlib was created by Isaac Z. Schlueter.
-It is a derivative work of the Node.js project.
-
-"""
-Copyright Isaac Z. Schlueter and Contributors
-Copyright Node.js contributors. All rights reserved.
-Copyright Joyent, Inc. and other Node contributors. All rights reserved.
-
-Permission is hereby granted, free of charge, to any person obtaining a
-copy of this software and associated documentation files (the "Software"),
-to deal in the Software without restriction, including without limitation
-the rights to use, copy, modify, merge, publish, distribute, sublicense,
-and/or sell copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-"""
-
------------
-
-The following npm packages may be included in this product:
-
- - @angular/compiler-cli@18.2.13
- - eastasianwidth@0.2.0
- - err-code@2.0.3
- - imurmurhash@0.1.4
-
-These packages each contain the following license:
-
-MIT
-
------------
-
-The following npm package may be included in this product:
-
- - json5@2.2.3
-
-This package contains the following license:
-
-MIT License
-
-Copyright (c) 2012-2018 Aseem Kishore, and [others].
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-[others]: https://github.com/json5/json5/contributors
-
------------
-
-The following npm package may be included in this product:
-
- - readdirp@4.1.1
-
-This package contains the following license:
-
-MIT License
-
-Copyright (c) 2012-2019 Thorsten Lorenz, Paul Miller (https://paulmillr.com)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - brace-expansion@2.0.1
-
-This package contains the following license:
-
-MIT License
-
-Copyright (c) 2013 Julian Gruber <julian@juliangruber.com>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm packages may be included in this product:
-
- - @babel/code-frame@7.26.2
- - @babel/compat-data@7.26.5
- - @babel/core@7.25.2
- - @babel/core@7.26.7
- - @babel/generator@7.25.0
- - @babel/generator@7.26.5
- - @babel/helper-compilation-targets@7.26.5
- - @babel/helper-module-imports@7.25.9
- - @babel/helper-module-transforms@7.26.0
- - @babel/helper-string-parser@7.25.9
- - @babel/helper-validator-identifier@7.25.9
- - @babel/helper-validator-option@7.25.9
- - @babel/helpers@7.26.7
- - @babel/template@7.25.9
- - @babel/traverse@7.26.7
- - @babel/types@7.26.7
-
-These packages each contain the following license:
-
-MIT License
-
-Copyright (c) 2014-present Sebastian McKenzie and other contributors
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - immutable@5.0.3
-
-This package contains the following license:
-
-MIT License
-
-Copyright (c) 2014-present, Lee Byron and other contributors.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm packages may be included in this product:
-
- - fast-deep-equal@3.1.3
- - json-schema-traverse@1.0.0
-
-These packages each contain the following license:
-
-MIT License
-
-Copyright (c) 2017 Evgeny Poberezkin
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm packages may be included in this product:
-
- - @parcel/watcher-linux-x64-glibc@2.5.1
- - @parcel/watcher-linux-x64-musl@2.5.1
- - @parcel/watcher@2.5.1
-
-These packages each contain the following license:
-
-MIT License
-
-Copyright (c) 2017-present Devon Govett
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - js-cookie@3.0.5
-
-This package contains the following license:
-
-MIT License
-
-Copyright (c) 2018 Copyright 2018 Klaus Hartl, Fagner Brack, GitHub Contributors
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - safer-buffer@2.1.2
-
-This package contains the following license:
-
-MIT License
-
-Copyright (c) 2018 Nikita Skovoroda <chalkerx@gmail.com>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - angular-auth-oidc-client@16.0.2
-
-This package contains the following license:
-
-MIT License
-
-Copyright (c) 2020 damienbod
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm packages may be included in this product:
-
- - ajv-formats@2.1.1
- - ajv-formats@3.0.1
-
-These packages each contain the following license:
-
-MIT License
-
-Copyright (c) 2020 Evgeny Poberezkin
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm packages may be included in this product:
-
- - @angular-eslint/bundled-angular-compiler@18.4.3
- - @angular-eslint/eslint-plugin-template@18.4.3
- - @angular-eslint/eslint-plugin@18.4.3
- - @angular-eslint/schematics@18.4.3
- - @angular-eslint/utils@18.4.3
-
-These packages each contain the following license:
-
-MIT License
-
-Copyright (c) 2020 James Henry
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - date-fns@3.6.0
-
-This package contains the following license:
-
-MIT License
-
-Copyright (c) 2021 Sasha Koss and Lesha Koss https://kossnocorp.mit-license.org
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - shebang-command@2.0.0
-
-This package contains the following license:
-
-MIT License
-
-Copyright (c) Kevin Mårtensson <kevinmartensson@gmail.com> (github.com/kevva)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - escalade@3.2.0
-
-This package contains the following license:
-
-MIT License
-
-Copyright (c) Luke Edwards <luke.edwards05@gmail.com> (lukeed.com)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - undici-types@6.20.0
-
-This package contains the following license:
-
-MIT License
-
-Copyright (c) Matteo Collina and Undici contributors
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm packages may be included in this product:
-
- - ansi-regex@6.1.0
- - ansi-styles@6.2.1
- - cli-spinners@2.9.2
- - is-unicode-supported@0.1.0
- - log-symbols@4.1.0
- - onetime@5.1.2
- - ora@5.4.1
- - p-map@4.0.0
- - string-width@5.1.2
- - strip-ansi@7.1.0
- - strip-json-comments@3.1.1
- - wrap-ansi@7.0.0
- - wrap-ansi@8.1.0
-
-These packages each contain the following license:
-
-MIT License
-
-Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm packages may be included in this product:
-
- - aggregate-error@3.1.0
- - ansi-regex@5.0.1
- - ansi-styles@4.3.0
- - chalk@4.1.2
- - clean-stack@2.2.0
- - cli-cursor@3.1.0
- - env-paths@2.2.1
- - globals@11.12.0
- - has-flag@4.0.0
- - indent-string@4.0.0
- - is-fullwidth-code-point@3.0.0
- - is-interactive@1.0.0
- - mimic-fn@2.1.0
- - path-key@3.1.1
- - restore-cursor@3.1.0
- - shebang-regex@3.0.0
- - string-width@4.2.3
- - strip-ansi@6.0.1
- - supports-color@7.2.0
-
-These packages each contain the following license:
-
-MIT License
-
-Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - yargs@17.7.2
-
-This package contains the following license:
-
-MIT License
-
-Copyright 2010 James Halliday (mail@substack.net); Modified work Copyright 2014 Contributors (ben@npmjs.com)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - readable-stream@3.6.2
-
-This package contains the following license:
-
-Node.js is licensed for use as follows:
-
-"""
-Copyright Node.js contributors. All rights reserved.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to
-deal in the Software without restriction, including without limitation the
-rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-sell copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-IN THE SOFTWARE.
-"""
-
-This license applies to parts of Node.js originating from the
-https://github.com/joyent/node repository:
-
-"""
-Copyright Joyent, Inc. and other Node contributors. All rights reserved.
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to
-deal in the Software without restriction, including without limitation the
-rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-sell copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-IN THE SOFTWARE.
-"""
-
------------
-
-The following npm package may be included in this product:
-
- - string_decoder@1.3.0
-
-This package contains the following license:
-
-Node.js is licensed for use as follows:
-
-"""
-Copyright Node.js contributors. All rights reserved.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to
-deal in the Software without restriction, including without limitation the
-rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-sell copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-IN THE SOFTWARE.
-"""
-
-This license applies to parts of Node.js originating from the
-https://github.com/joyent/node repository:
-
-"""
-Copyright Joyent, Inc. and other Node contributors. All rights reserved.
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to
-deal in the Software without restriction, including without limitation the
-rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-sell copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-IN THE SOFTWARE.
-"""
-
------------
-
-The following npm packages may be included in this product:
-
- - @ngx-translate/core@15.0.0
- - @ngx-translate/http-loader@8.0.0
-
-These packages each contain the following license:
-
-SEE LICENSE IN LICENSE
-
------------
-
-The following npm package may be included in this product:
-
- - glob@10.4.5
-
-This package contains the following license:
-
-The ISC License
-
-Copyright (c) 2009-2023 Isaac Z. Schlueter and Contributors
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
-IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - lru-cache@10.4.3
-
-This package contains the following license:
-
-The ISC License
-
-Copyright (c) 2010-2023 Isaac Z. Schlueter and Contributors
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
-IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - graceful-fs@4.2.11
-
-This package contains the following license:
-
-The ISC License
-
-Copyright (c) 2011-2022 Isaac Z. Schlueter, Ben Noordhuis, and Contributors
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
-IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - minimatch@9.0.5
-
-This package contains the following license:
-
-The ISC License
-
-Copyright (c) 2011-2023 Isaac Z. Schlueter and Contributors
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
-IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - signal-exit@4.1.0
-
-This package contains the following license:
-
-The ISC License
-
-Copyright (c) 2015-2023 Benjamin Coe, Isaac Z. Schlueter, and Contributors
-
-Permission to use, copy, modify, and/or distribute this software
-for any purpose with or without fee is hereby granted, provided
-that the above copyright notice and this permission notice
-appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES
-OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE
-LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES
-OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
-WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
-ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - foreground-child@3.3.0
-
-This package contains the following license:
-
-The ISC License
-
-Copyright (c) 2015-2023 Isaac Z. Schlueter and Contributors
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
-IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - glob-parent@5.1.2
-
-This package contains the following license:
-
-The ISC License
-
-Copyright (c) 2015, 2019 Elan Shanker
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
-IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - signal-exit@3.0.7
-
-This package contains the following license:
-
-The ISC License
-
-Copyright (c) 2015, Contributors
-
-Permission to use, copy, modify, and/or distribute this software
-for any purpose with or without fee is hereby granted, provided
-that the above copyright notice and this permission notice
-appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES
-OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE
-LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES
-OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
-WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
-ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - isexe@3.1.1
-
-This package contains the following license:
-
-The ISC License
-
-Copyright (c) 2016-2022 Isaac Z. Schlueter and Contributors
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
-IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - minipass@3.3.6
-
-This package contains the following license:
-
-The ISC License
-
-Copyright (c) 2017-2022 npm, Inc., Isaac Z. Schlueter, and Contributors
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
-IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm packages may be included in this product:
-
- - minipass@5.0.0
- - minipass@7.1.2
-
-These packages each contain the following license:
-
-The ISC License
-
-Copyright (c) 2017-2023 npm, Inc., Isaac Z. Schlueter, and Contributors
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
-IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - minipass-collect@2.0.1
-
-This package contains the following license:
-
-The ISC License
-
-Copyright (c) 2019-2023 Isaac Z. Schlueter and Contributors
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
-IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - proc-log@4.2.0
-
-This package contains the following license:
-
-The ISC License
-
-Copyright (c) GitHub, Inc.
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
-IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - inherits@2.0.4
-
-This package contains the following license:
-
-The ISC License
-
-Copyright (c) Isaac Z. Schlueter
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
-FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm packages may be included in this product:
-
- - chownr@2.0.0
- - fs-minipass@2.1.0
- - fs-minipass@3.0.3
- - isexe@2.0.0
- - lru-cache@5.1.1
- - minipass-flush@1.0.5
- - minipass-pipeline@1.2.4
- - minipass-sized@1.0.3
- - nopt@7.2.1
- - semver@6.3.1
- - semver@7.6.3
- - tar@6.2.1
- - which@2.0.2
- - which@4.0.0
- - yallist@3.1.1
- - yallist@4.0.0
-
-These packages each contain the following license:
-
-The ISC License
-
-Copyright (c) Isaac Z. Schlueter and Contributors
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
-IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - unique-slug@4.0.0
-
-This package contains the following license:
-
-The ISC License
-
-Copyright npm, Inc
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
-IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
------------
-
-The following npm packages may be included in this product:
-
- - @angular-devkit/core@18.2.14
- - @angular-devkit/schematics@18.2.14
- - @angular/animations@18.2.13
- - @angular/common@18.2.13
- - @angular/compiler@18.2.13
- - @angular/core@18.2.13
- - @angular/forms@18.2.13
- - @angular/localize@18.2.13
- - @angular/platform-browser-dynamic@18.2.13
- - @angular/platform-browser@18.2.13
- - @angular/router@18.2.13
- - @schematics/angular@18.2.14
-
-These packages each contain the following license:
-
-The MIT License
-
-Copyright (c) 2010-2024 Google LLC. https://angular.dev/license
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - @jridgewell/sourcemap-codec@1.5.0
-
-This package contains the following license:
-
-The MIT License
-
-Copyright (c) 2015 Rich Harris
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - node-releases@2.0.19
-
-This package contains the following license:
-
-The MIT License
-
-Copyright (c) 2017 Sergey Rubanov (https://github.com/chicoxyzzy)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - @oblique/oblique@12.2.3
-
-This package contains the following license:
-
-The MIT License
-
-Copyright (c) 2020-2025 The Swiss Confederation, represented by the Federal Office of Information Technology, Systems and Telecommunication FOITT
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:</p>
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.</p>
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE</p>
-
------------
-
-The following npm packages may be included in this product:
-
- - @angular/cdk@18.2.14
- - @angular/material@18.2.14
-
-These packages each contain the following license:
-
-The MIT License
-
-Copyright (c) 2024 Google LLC.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - require-directory@2.1.1
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright (c) 2011 Troy Goode <troygoode@gmail.com>
-
-Permission is hereby granted, free of charge, to any person obtaining a
-copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be included
-in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - chokidar@4.0.3
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright (c) 2012 Paul Miller (https://paulmillr.com), Elan Shanker
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the “Software”), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - socks@2.8.3
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright (c) 2013 Josh Glazebrook
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - smart-buffer@4.2.0
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright (c) 2013-2017 Josh Glazebrook
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - base64-js@1.5.1
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright (c) 2014 Jameson Little
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - is-extglob@2.1.1
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright (c) 2014-2016, Jon Schlinkert
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - is-glob@4.0.3
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright (c) 2014-2017, Jon Schlinkert.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - merge2@1.4.1
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright (c) 2014-2020 Teambition
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm packages may be included in this product:
-
- - braces@3.0.3
- - fill-range@7.1.1
- - is-number@7.0.0
- - micromatch@4.0.8
-
-These packages each contain the following license:
-
-The MIT License (MIT)
-
-Copyright (c) 2014-present, Jon Schlinkert.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - js-tokens@4.0.0
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright (c) 2014, 2015, 2016, 2017, 2018 Simon Lydell
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - reusify@1.0.4
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright (c) 2015 Matteo Collina
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - ajv@8.17.1
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright (c) 2015-2021 Evgeny Poberezkin
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - ansi-colors@4.1.3
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright (c) 2015-present, Brian Woodward.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - to-regex-range@5.0.1
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright (c) 2015-present, Jon Schlinkert.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - is-lambda@1.0.1
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright (c) 2016-2017 Thomas Watson Steen
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - node-addon-api@7.1.1
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright (c) 2017 [Node.js API collaborators](https://github.com/nodejs/node-addon-api#collaborators)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm packages may be included in this product:
-
- - picomatch@2.3.1
- - picomatch@4.0.2
-
-These packages each contain the following license:
-
-The MIT License (MIT)
-
-Copyright (c) 2017-present, Jon Schlinkert.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - cross-spawn@7.0.6
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright (c) 2018 Made With MOXY Lda <hello@moxy.studio>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - @popperjs/core@2.11.8
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright (c) 2019 Federico Zivolo
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - ms@2.1.3
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright (c) 2020 Vercel, Inc.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - defaults@1.0.4
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright (c) 2022 Sindre Sorhus
-Copyright (c) 2015 Elijah Insua
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following npm packages may be included in this product:
-
- - @nodelib/fs.scandir@2.1.5
- - @nodelib/fs.stat@2.0.5
- - @nodelib/fs.walk@1.2.8
- - fast-glob@3.3.2
-
-These packages each contain the following license:
-
-The MIT License (MIT)
-
-Copyright (c) Denis Malinochkin
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - safe-buffer@5.2.1
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright (c) Feross Aboukhadijeh
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following npm packages may be included in this product:
-
- - queue-microtask@1.2.3
- - run-parallel@1.2.0
-
-These packages each contain the following license:
-
-The MIT License (MIT)
-
-Copyright (c) Feross Aboukhadijeh
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - buffer@5.7.1
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright (c) Feross Aboukhadijeh, and other contributors.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - minipass-fetch@3.0.5
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright (c) Isaac Z. Schlueter and Contributors
-Copyright (c) 2016 David Frank
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
----
-
-Note: This is a derivative work based on "node-fetch" by David Frank,
-modified and distributed under the terms of the MIT license above.
-https://github.com/bitinn/node-fetch
-
------------
-
-The following npm package may be included in this product:
-
- - require-from-string@2.0.2
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright (c) Vsevolod Strukchinsky <floatdrop@gmail.com> (github.com/floatdrop)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - rfc4648@1.5.4
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright © 2022 William R Swanson
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - browserslist@4.24.4
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright 2014 Andrey Sitnik <andrey@sitnik.ru> and other contributors
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - update-browserslist-db@1.1.2
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright 2022 Andrey Sitnik <andrey@sitnik.ru> and other contributors
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - jwt-decode@4.0.0
-
-This package contains the following license:
-
-The MIT License (MIT)
- 
-Copyright (c) 2015 Auth0, Inc. <support@auth0.com> (http://auth0.com)
- 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
- 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
- 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - bl@4.1.0
-
-This package contains the following license:
-
-The MIT License (MIT)
-=====================
-
-Copyright (c) 2013-2019 bl contributors
-----------------------------------
-
-*bl contributors listed at <https://github.com/rvagg/bl#contributors>*
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - jsonc-parser@3.3.1
-
-This package contains the following license:
-
-The MIT License (MIT)
-
-Copyright (c) Microsoft
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - color-name@1.1.4
-
-This package contains the following license:
-
-The MIT License (MIT)
-Copyright (c) 2015 Dmitry Ivanov
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - abbrev@2.0.0
-
-This package contains the following license:
-
-This software is dual-licensed under the ISC and MIT licenses.
-You may use this software under EITHER of the following licenses.
-
-----------
-
-The ISC License
-
-Copyright (c) Isaac Z. Schlueter and Contributors
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
-IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
-----------
-
-Copyright Isaac Z. Schlueter and Contributors
-All rights reserved.
-
-Permission is hereby granted, free of charge, to any person
-obtaining a copy of this software and associated documentation
-files (the "Software"), to deal in the Software without
-restriction, including without limitation the rights to use,
-copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following
-conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - wcwidth@1.0.1
-
-This package contains the following license:
-
-wcwidth.js: JavaScript Portng of Markus Kuhn's wcwidth() Implementation
-=======================================================================
-
-Copyright (C) 2012 by Jun Woong.
-
-This package is a JavaScript porting of `wcwidth()` implementation
-[by Markus Kuhn](http://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c).
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
-of the Software, and to permit persons to whom the Software is furnished to do
-so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-
-THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES,
-INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR
-OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
-BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
-IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-POSSIBILITY OF SUCH DAMAGE.
-
------------
-
-This file was generated with the generate-license-file npm package!
-https://www.npmjs.com/package/generate-license-file
