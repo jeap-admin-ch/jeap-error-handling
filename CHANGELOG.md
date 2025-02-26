@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [10.0.0] - 2025-02-26
+
+### Changed
+- **BREAKING** - Removed default values for the following Spring properties:
+  - `jeap.errorhandling.frontend.ticketingSystemUrl`
+  - `log.deep-link.base-url`
+
+### Instructions
+To ensure your application continues to function correctly, if the default values were used, add the following properties to your `application.properties` or `application.yml` file:
+```properties
+jeap.errorhandling.frontend.ticketingSystemUrl=https://jira.bit.admin.ch/browse/{ticketNumber}
+log.deep-link.base-url=https://lem-center.bit.admin.ch/en-GB/app/bv_app_caasp/search?q=search%20msg.traceId%3D{traceId}%20earliest%3D-1mon
+```
+
 ## [9.10.0] - 2025-02-25
 
 ### Added
