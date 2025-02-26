@@ -139,6 +139,7 @@ export class AppModule {
 		// Oblique's MasterLayoutComponent configuration
 		masterLayoutConfig.locale.locales = ['de', 'fr', 'it', 'en'];
 		masterLayoutConfig.locale.defaultLanguage = 'de';
+		masterLayoutConfig.header.serviceNavigation.pamsAppId = 'notUsed';
 		masterLayoutConfig.header.serviceNavigation.displayInfo = false;
 		masterLayoutConfig.header.serviceNavigation.displayLanguages = true;
 		masterLayoutConfig.header.serviceNavigation.displayMessage = true;
