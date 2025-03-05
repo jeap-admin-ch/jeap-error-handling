@@ -151,7 +151,7 @@ class ErrorHandlingIT extends ErrorHandlingITBase {
                 .eventHandleException(eventHandleException)
                 .serviceName("service")
                 .systemName("system")
-                .originalMessage(originalMessage)
+                .originalMessage(originalMessage, avroMessage)
                 .stackTraceHash("test-stack-trace-hash")
                 .build();
     }

@@ -185,7 +185,7 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
                 .eventHandleException(eventHandleException)
                 .serviceName("service")
                 .systemName("system")
-                .originalMessage(record)
+                .originalMessage(record, null)
                 .build();
     }
 

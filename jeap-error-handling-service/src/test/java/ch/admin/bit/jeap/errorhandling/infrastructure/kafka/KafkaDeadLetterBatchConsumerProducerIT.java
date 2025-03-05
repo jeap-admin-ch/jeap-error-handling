@@ -110,7 +110,7 @@ class KafkaDeadLetterBatchConsumerProducerIT extends ErrorHandlingITBase {
                     .eventHandleException(eventHandleException)
                     .serviceName("service")
                     .systemName("system")
-                    .originalMessage(originalMessage)
+                    .originalMessage(originalMessage, null)
                     .build();
         }
     }

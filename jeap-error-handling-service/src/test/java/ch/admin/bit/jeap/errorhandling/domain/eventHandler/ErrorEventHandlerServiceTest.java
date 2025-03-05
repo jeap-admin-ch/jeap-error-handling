@@ -71,7 +71,7 @@ class ErrorEventHandlerServiceTest {
                 .eventHandleException(eventHandleException)
                 .serviceName("service")
                 .systemName("system")
-                .originalMessage(record)
+                .originalMessage(record, null)
                 .build();
     }
 
