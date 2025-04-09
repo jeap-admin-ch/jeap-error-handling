@@ -31,12 +31,12 @@ class ConfigurationController {
                 .applicationUrl(frontendConfigProperties.getApplicationUrl())
                 .pamsEnvironment(frontendConfigProperties.getPamsEnvironment())
                 .logoutRedirectUri(frontendConfigProperties.getLogoutRedirectUri())
-                .mockPams(frontendConfigProperties.isMockPams())
+                .mockPams(frontendConfigProperties.getMockPams())
                 .tokenAwarePatterns(frontendConfigProperties.getTokenAwarePattern())
                 .appVersion(getVersion())
                 .authority(authority)
                 .clientId(frontendConfigProperties.getClientId())
-                .useAutoLogin(frontendConfigProperties.isAutoLogin())
+                .useAutoLogin(frontendConfigProperties.getAutoLogin())
                 .redirectUrl(frontendConfigProperties.getRedirectUrl())
                 .build();
     }

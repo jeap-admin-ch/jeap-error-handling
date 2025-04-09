@@ -28,7 +28,7 @@ class FrontendWebConfig implements WebMvcConfigurer {
 
     String getOrigin() {
         UriComponents uriComponents = UriComponentsBuilder
-                .fromHttpUrl(frontendConfigProperties.getApplicationUrl()).build();
+                .fromUriString(frontendConfigProperties.getApplicationUrl()).build();
         String origin = "%s://%s".formatted(uriComponents.getScheme(), uriComponents.getHost());
         if (uriComponents.getPort() != -1) {
             origin += ":" + uriComponents.getPort();

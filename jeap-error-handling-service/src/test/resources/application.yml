@@ -18,6 +18,17 @@ jeap:
         max-retries: 3
     frontend:
       application-url: "http://localhost:8080"
+      ticketing-system-url: "http://anywhere.ch:8080"
+      system-name: "jme"
+      logout-redirect-uri: "/jeap-frontend/logout"
+      mock-pams: true
+      pams-environment: none
+      client-id: my-client-id
+      auto-login: false
+      renew-user-info-after-token-renew: true
+      silent-renew: true
+
+
 
   security:
     oauth2:

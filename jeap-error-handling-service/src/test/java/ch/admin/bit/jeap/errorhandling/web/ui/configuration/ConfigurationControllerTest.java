@@ -18,6 +18,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.Arrays;
+
 @WebMvcTest(ConfigurationController.class)
 @ActiveProfiles("error-controller-test")
 @ExtendWith(SpringExtension.class)
@@ -50,6 +52,38 @@ class ConfigurationControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/configuration/ticket-number"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.ticketingSystemUrl").value(jiraUrl));
+    }
+
+    @Test
+    void getAuthConfiguration() throws Exception {
+        String applicationUrl = "https://example.com";
+        String pamsEnvironment = "dev";
+        String logoutRedirectUri = "/logout";
+        boolean mockPams = false;
+        String tokenAwarePattern = "xy/api/*";
+        String clientId = "myClientId";
+        Boolean autoLogin = true;
+        String redirectUrl = "/jeap-frontend/redirect";
+        Mockito.when(frontendConfigProperties.getApplicationUrl()).thenReturn(applicationUrl);
+        Mockito.when(frontendConfigProperties.getPamsEnvironment()).thenReturn(pamsEnvironment);
+        Mockito.when(frontendConfigProperties.getLogoutRedirectUri()).thenReturn(logoutRedirectUri);
+        Mockito.when(frontendConfigProperties.getMockPams()).thenReturn(mockPams);
+        Mockito.when(frontendConfigProperties.getTokenAwarePattern()).thenReturn(Arrays.asList(tokenAwarePattern));
+        Mockito.when(frontendConfigProperties.getClientId()).thenReturn(clientId);
+        Mockito.when(frontendConfigProperties.getAutoLogin()).thenReturn(autoLogin);
+        Mockito.when(frontendConfigProperties.getRedirectUrl()).thenReturn(redirectUrl);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/configuration"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.pamsEnvironment").value(pamsEnvironment))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.logoutRedirectUri").value(logoutRedirectUri))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.tokenAwarePatterns").value(tokenAwarePattern))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.appVersion").value("??"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.authority").value("http://localhost:8080/test"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.clientId").value(clientId))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.useAutoLogin").value(autoLogin))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.redirectUrl").value(redirectUrl))
+                ;
     }
 
     @Profile(PROFILE) // prevent other tests using class path scanning picking up this configuration

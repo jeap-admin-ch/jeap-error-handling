@@ -1,9 +1,13 @@
 package ch.admin.bit.jeap.errorhandling.web.ui.configuration;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.validation.annotation.Validated;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,57 +16,70 @@ import java.util.List;
 @Configuration
 @ConfigurationProperties(prefix = "jeap.errorhandling.frontend")
 @Data
+@Validated
 public class FrontendConfigProperties {
     /**
      * Authentication server to be used.
      */
+    @NotEmpty
     private String stsServer;
     /**
      * URL of the application for the redirect URI after a login.
      */
+    @NotEmpty
     private String applicationUrl;
     /**
      * URL to go to after a logout.
      */
+    @NotEmpty
     private String logoutRedirectUri;
     /**
      * Should PAMS mock be used.
      */
-    private boolean mockPams;
+    @NotNull
+    private Boolean mockPams;
     /**
      * Pams Environment to be used.
      */
+    @NotEmpty
     private String pamsEnvironment;
     /**
      * List of backends where to a token shall be send.
      */
-    private List<String> tokenAwarePattern;
+    private List<String> tokenAwarePattern = new ArrayList<>();
     /**
      * Oidc client id
      */
+    @NotEmpty
     private String clientId;
     /**
      * Should silent renew be used (currently only >= REF)
      */
-    private boolean silentRenew;
+    @NotNull
+    private Boolean silentRenew;
     /**
      * Default system name for authorization filter
      */
+    @NotEmpty
     private String systemName;
     /**
      * Should automatically login, when PAMS session is not active
      */
-    private boolean autoLogin;
+    @NotNull
+    private Boolean autoLogin;
     /**
      * Should new claim be submitted after token was renewed (e.g. silent renew)
      */
-    private boolean renewUserInfoAfterTokenRenew;
+    @NotNull
+    private Boolean renewUserInfoAfterTokenRenew;
     /**
      * URL to redirect user after login
      */
+    @NotEmpty
     private String redirectUrl;
     /**
      * URL to display ticker number
      */
+    @NotEmpty
     private String ticketingSystemUrl;
 }
