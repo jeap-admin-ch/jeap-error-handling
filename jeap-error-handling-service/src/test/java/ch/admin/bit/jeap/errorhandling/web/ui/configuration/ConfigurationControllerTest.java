@@ -78,7 +78,7 @@ class ConfigurationControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.pamsEnvironment").value(pamsEnvironment))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.logoutRedirectUri").value(logoutRedirectUri))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.tokenAwarePatterns").value(tokenAwarePattern))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.appVersion").value("??"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.appVersion").isNotEmpty())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.authority").value("http://localhost:8080/test"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.clientId").value(clientId))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.useAutoLogin").value(autoLogin))

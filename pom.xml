@@ -25,7 +25,7 @@
     </licenses>
 
     <artifactId>jeap-error-handling-parent</artifactId>
-    <version>11.0.0-SNAPSHOT</version>
+    <version>11.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
     <description>JEAP Error Handling Parent</description>
@@ -33,7 +33,7 @@
     <parent>
         <groupId>ch.admin.bit.jeap</groupId>
         <artifactId>jeap-spring-boot-parent</artifactId>
-        <version>26.43.1</version>
+        <version>26.43.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -63,17 +63,17 @@
             <dependency>
                 <groupId>ch.admin.bit.jeap</groupId>
                 <artifactId>jeap-error-handling-ui</artifactId>
-                <version>11.0.0-SNAPSHOT</version>
+                <version>11.1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>ch.admin.bit.jeap</groupId>
                 <artifactId>jeap-error-handling-service</artifactId>
-                <version>11.0.0-SNAPSHOT</version>
+                <version>11.1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>ch.admin.bit.jeap</groupId>
                 <artifactId>jeap-error-handling-service-instance</artifactId>
-                <version>11.0.0-SNAPSHOT</version>
+                <version>11.1.0-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
