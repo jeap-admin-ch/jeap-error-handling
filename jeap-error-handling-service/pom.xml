@@ -4,6 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>jeap-error-handling-service</artifactId>
+    <name>${project.groupId}:${project.artifactId}</name>
     <description>jEAP Error Handling Self Contained System</description>
 
     <parent>
