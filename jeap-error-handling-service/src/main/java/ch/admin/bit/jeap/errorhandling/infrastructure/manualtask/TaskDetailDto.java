@@ -6,7 +6,7 @@ import lombok.*;
 @Value
 @Builder
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
-class TaskDetailDto {
+public class TaskDetailDto {
 
     @NonNull
     String name;
