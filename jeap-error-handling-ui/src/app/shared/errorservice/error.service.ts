@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {ErrorDTO, ErrorListDTO, ErrorSearchFormDto} from './error.model';
@@ -72,31 +72,23 @@ export class ErrorService {
 		);
 	}
 
-	massRetry(errors: ErrorDTO[]) {
+	massRetry(errorIds: string[]) {
 		const requestUrl = `${ErrorService.url}/event/retry`;
-		const errorListDto: ErrorListDTO = {
-			totalErrorCount: errors.length,
-			errors: errors
-		};
-		return this.http.post(requestUrl, errorListDto).pipe(
+		return this.http.post(requestUrl, errorIds).pipe(
 			catchError(ErrorService.errorHandler)
 		);
 	}
 
-	public delete(errorId: string, reason?: string): Observable<any> {
+	delete(errorId: string, reason?: string): Observable<any> {
 		const requestUrl = `${ErrorService.url}/${errorId}?reason=${reason}`;
 		return this.http.delete(requestUrl).pipe(
 			catchError(ErrorService.errorHandler)
 		);
 	}
 
-	massDelete(errors: ErrorDTO[], reason: string) {
+	massDelete(errorIds: string[], reason: string) {
 		const requestUrl = `${ErrorService.url}/delete?reason=${reason}`;
-		const errorListDto: ErrorListDTO = {
-			totalErrorCount: errors.length,
-			errors: errors
-		};
-		return this.http.post(requestUrl, errorListDto).pipe(
+		return this.http.post(requestUrl, errorIds).pipe(
 			catchError(ErrorService.errorHandler)
 		);
 	}

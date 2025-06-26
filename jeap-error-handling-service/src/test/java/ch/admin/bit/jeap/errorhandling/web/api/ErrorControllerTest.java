@@ -302,42 +302,28 @@ class ErrorControllerTest {
     @Test
     @WithAuthentication("retryRoleToken")
     void testRetryEventList() {
-        ErrorDTO error1 = new ErrorDTO();
-        String errorId1 = UUID.randomUUID().toString();
-        error1.setId(errorId1);
-        ErrorDTO error2 = new ErrorDTO();
-        String errorId2 = UUID.randomUUID().toString();
-        error2.setId(errorId2);
+        UUID errorId1 = UUID.randomUUID();
+        UUID errorId2 = UUID.randomUUID();
+        List<UUID> errorIds = Arrays.asList(errorId1, errorId2);
 
-        List<ErrorDTO> errors = Arrays.asList(error1, error2);
-        ErrorListDTO errorList = new ErrorListDTO(errors.size(), errors);
+        errorController.retryEventList(errorIds);
 
-        errorController.retryEventList(errorList);
-
-        // assert that manualResend was called with the expected arguments
-        verify(errorService).manualResend(UUID.fromString(errorId1));
-        verify(errorService).manualResend(UUID.fromString(errorId2));
+        verify(errorService).manualResend(errorId1);
+        verify(errorService).manualResend(errorId2);
     }
 
     @Test
     @WithAuthentication("deleteRoleToken")
     void testDeleteErrorList() {
-        ErrorDTO error1 = new ErrorDTO();
-        String errorId1 = UUID.randomUUID().toString();
-        error1.setId(errorId1);
-        ErrorDTO error2 = new ErrorDTO();
-        String errorId2 = UUID.randomUUID().toString();
-        error2.setId(errorId2);
-
-        List<ErrorDTO> errors = Arrays.asList(error1, error2);
-        ErrorListDTO errorList = new ErrorListDTO(errors.size(), errors);
-
+        UUID errorId1 = UUID.randomUUID();
+        UUID errorId2 = UUID.randomUUID();
+        List<UUID> errorIds = Arrays.asList(errorId1, errorId2);
         String reason = "because this is a test";
 
-        errorController.deleteErrorList(errorList, reason);
+        errorController.deleteErrorList(errorIds, reason);
 
-        verify(errorService).delete(UUID.fromString(errorId1), reason);
-        verify(errorService).delete(UUID.fromString(errorId2), reason);
+        verify(errorService).delete(errorId1, reason);
+        verify(errorService).delete(errorId2, reason);
     }
 
     @Test

@@ -6,11 +6,8 @@ import ch.admin.bit.jeap.errorhandling.domain.error.ErrorSearchService;
 import ch.admin.bit.jeap.errorhandling.domain.error.ErrorService;
 import ch.admin.bit.jeap.errorhandling.domain.resend.scheduler.ScheduledResendService;
 import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.DomainEventDeserializer;
-import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.AuditLog;
+import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.*;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
-import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.EventMessage;
-import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.MessageHeader;
-import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.User;
 import ch.admin.bit.jeap.messaging.kafka.properties.KafkaProperties;
 import ch.admin.bit.jeap.messaging.kafka.signature.SignatureHeaders;
 import ch.admin.bit.jeap.security.resource.semanticAuthentication.ServletSemanticAuthorization;
@@ -23,7 +20,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.charset.StandardCharsets;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HexFormat;
@@ -207,8 +203,8 @@ public class ErrorController {
     @Schema(description = "Republishes a list of events which caused an error back to the original consumer of the events")
     @PostMapping(value = "/event/retry")
     @PreAuthorize("hasRole('error','retry')")
-    public void retryEventList(@RequestBody ErrorListDTO errors) {
-        errors.getErrors().forEach(e -> errorService.manualResend(UUID.fromString(e.getId())));
+    public void retryEventList(@RequestBody List<UUID> errorIds) {
+        errorIds.forEach(errorService::manualResend);
     }
 
 
@@ -223,8 +219,8 @@ public class ErrorController {
     @Schema(description = "Deletes a list of events")
     @PostMapping("/delete")
     @PreAuthorize("hasRole('error','delete')")
-    public void deleteErrorList(@RequestBody ErrorListDTO errors, @RequestParam(required = false) String reason) {
-        errors.getErrors().forEach(e -> errorService.delete(UUID.fromString(e.getId()), reason));
+    public void deleteErrorList(@RequestBody List<UUID> errorIds, @RequestParam(required = false) String reason) {
+        errorIds.forEach(id -> errorService.delete(id, reason));
     }
 
     private List<ErrorDTO> toErrorDtos(List<Error> errors) {

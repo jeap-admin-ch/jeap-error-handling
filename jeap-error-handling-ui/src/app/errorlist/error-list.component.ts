@@ -1,11 +1,7 @@
 import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {Observable} from 'rxjs';
 import {ErrorService} from '../shared/errorservice/error.service';
-import {
-	ErrorDTO,
-	ErrorListDTO,
-	ErrorSearchFormDto
-} from '../shared/errorservice/error.model';
+import {ErrorDTO, ErrorListDTO, ErrorSearchFormDto} from '../shared/errorservice/error.model';
 import {NotifierService} from '../shared/notifier/notifier.service';
 import {AbstractControl, FormControl, FormGroup, ValidatorFn} from '@angular/forms';
 import {MatSort, Sort} from '@angular/material/sort';
@@ -19,7 +15,7 @@ import {DialogService} from '../shared/dialog/dialog.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ErrorSearchFilter} from './error-list.model';
 import {endOfDay, startOfDay} from 'date-fns';
-import {environment} from "../../environments/environment";
+import {environment} from '../../environments/environment';
 
 interface DropDownElement {
 	value: string;
@@ -233,7 +229,8 @@ export class ErrorListComponent implements AfterViewInit, OnInit {
 
 		this.dialogService.confirm(message).subscribe(confirmed => {
 			if (confirmed) {
-				this.errorService.massRetry(this.selection.selected).subscribe(
+				const errorIds: string[] = this.selection.selected.map(error => error.id);
+				this.errorService.massRetry(errorIds).subscribe(
 					() => {
 						this.reload();
 						this.notifierService.notifySuccess('i18n.errorhandling.action.retry', 'i18n.errorhandling.action.success')();
@@ -253,7 +250,8 @@ export class ErrorListComponent implements AfterViewInit, OnInit {
 		this.dialogService.confirm(message).subscribe(confirmed => {
 			if (confirmed) {
 				this.dialogService.getClosingReason().subscribe(reason => {
-					this.errorService.massDelete(this.selection.selected, reason).subscribe(
+					const errorIds: string[] = this.selection.selected.map(error => error.id);
+					this.errorService.massDelete(errorIds, reason).subscribe(
 						() => {
 							this.reload();
 							this.notifierService.notifySuccess('i18n.errorhandling.action.delete', 'i18n.errorhandling.action.success')();
