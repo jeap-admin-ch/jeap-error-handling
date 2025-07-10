@@ -6,13 +6,10 @@ import ch.admin.bit.jeap.crypto.internal.core.noop.NoopKeyIdCryptoService;
 import ch.admin.bit.jeap.errorhandling.command.test.TestCommand;
 import ch.admin.bit.jeap.errorhandling.event.test.TestEvent;
 import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.KafkaDeadLetterBatchConsumerProducer;
-import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.AuditLogRepository;
-import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.CausingEventRepository;
-import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorGroupRepository;
-import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorRepository;
-import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ScheduledResendRepository;
+import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.*;
 import ch.admin.bit.jeap.messaging.avro.AvroMessage;
 import ch.admin.bit.jeap.messaging.avro.AvroMessageKey;
+import ch.admin.bit.jeap.messaging.avro.errorevent.MessageProcessingFailedEvent;
 import ch.admin.bit.jeap.messaging.kafka.KafkaConfiguration;
 import ch.admin.bit.jeap.messaging.kafka.crypto.JeapKafkaAvroSerdeCryptoConfig;
 import ch.admin.bit.jeap.messaging.kafka.test.KafkaIntegrationTestBase;
@@ -119,7 +116,9 @@ public abstract class ErrorHandlingITBase extends KafkaIntegrationTestBase {
     protected static class TestConsumer {
 
         private final List<TestEvent> consumedEvents = new ArrayList<>();
+        private final List<MessageProcessingFailedEvent> consumedMessageProcessingFailedEvents = new ArrayList<>();
         private final List<ConsumerRecord<AvroMessageKey, TestEvent>> consumedRecords = new ArrayList<>();
+        private final List<ConsumerRecord<AvroMessageKey, MessageProcessingFailedEvent>> consumedMessageProcessingFailedEventRecords = new ArrayList<>();
         private final List<TestCommand> consumedCommands = new ArrayList<>();
         @Getter
         private boolean successfulRetrySimulated;
@@ -133,6 +132,36 @@ public abstract class ErrorHandlingITBase extends KafkaIntegrationTestBase {
             String payloadMessage = testEvent.getPayload().getMessage();
             log.info("Consuming message in TestConsumer: {}", payloadMessage);
             simulateError(payloadMessage);
+        }
+
+
+        @TestKafkaListener(topics = {ERROR_TOPIC}, groupId = "test-error-consumer")
+        public void consumeError(final ConsumerRecord<AvroMessageKey, Object> record) {
+            Object event = record.value();
+
+            if (event instanceof MessageProcessingFailedEvent messageEvent) {
+                consumedMessageProcessingFailedEvents.add(messageEvent);
+
+                // Create new record of the correct type by mapper, to avoid unchecked cast
+                ConsumerRecord<AvroMessageKey, MessageProcessingFailedEvent> typedRecord =
+                        new ConsumerRecord<>(
+                                record.topic(),
+                                record.partition(),
+                                record.offset(),
+                                record.timestamp(),
+                                record.timestampType(),
+                                record.serializedKeySize(),
+                                record.serializedValueSize(),
+                                record.key(),
+                                messageEvent,
+                                record.headers(),
+                                record.leaderEpoch()
+                        );
+                consumedMessageProcessingFailedEventRecords.add(typedRecord);
+            } else {
+                // The event is valid but not of type MessageProcessingFailedEvent, so we ignore it for this test context.
+                log.info("Received event of type {} which is not handled in this test consumer.", event.getClass().getName());
+            }
         }
 
         @TestKafkaListener(topics = {COMMAND_TOPIC}, groupId = "test-command-consumer")
@@ -167,6 +196,8 @@ public abstract class ErrorHandlingITBase extends KafkaIntegrationTestBase {
 
         public void reset() {
             consumedEvents.clear();
+            consumedMessageProcessingFailedEvents.clear();
+            consumedMessageProcessingFailedEventRecords.clear();
             consumedCommands.clear();
             consumedRecords.clear();
             successfulRetrySimulated = false;
@@ -184,9 +215,19 @@ public abstract class ErrorHandlingITBase extends KafkaIntegrationTestBase {
                     .toList();
         }
 
+        public List<MessageProcessingFailedEvent> getConsumedMessageProcessingFailedEvents() {
+            return consumedMessageProcessingFailedEvents.stream()
+                    .toList();
+        }
+
         public List<ConsumerRecord<AvroMessageKey, TestEvent>> getConsumedRecordsByIdempotenceId(String idempotenceId) {
             return consumedRecords.stream()
                     .filter(record -> idempotenceId.equals(record.value().getIdentity().getIdempotenceId()))
+                    .toList();
+        }
+
+        public List<ConsumerRecord<AvroMessageKey, MessageProcessingFailedEvent>> getConsumedMessageProcessingFailedEventRecords() {
+            return consumedMessageProcessingFailedEventRecords.stream()
                     .toList();
 
         }

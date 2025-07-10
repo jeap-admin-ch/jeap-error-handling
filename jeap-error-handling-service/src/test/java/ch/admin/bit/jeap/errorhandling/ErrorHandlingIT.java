@@ -17,11 +17,7 @@ import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorEventData
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorGroup;
 import ch.admin.bit.jeap.errorhandling.util.EventProcessingFailedEventBuilder;
 import ch.admin.bit.jeap.errorhandling.web.api.ErrorDTO;
-import ch.admin.bit.jeap.messaging.avro.AvroMessage;
-import ch.admin.bit.jeap.messaging.avro.AvroMessageIdentity;
-import ch.admin.bit.jeap.messaging.avro.AvroMessageKey;
-import ch.admin.bit.jeap.messaging.avro.AvroMessagePublisher;
-import ch.admin.bit.jeap.messaging.avro.AvroMessageType;
+import ch.admin.bit.jeap.messaging.avro.*;
 import ch.admin.bit.jeap.messaging.avro.errorevent.MessageHandlerExceptionInformation;
 import ch.admin.bit.jeap.messaging.avro.errorevent.MessageProcessingFailedEvent;
 import ch.admin.bit.jeap.messaging.avro.errorevent.MessageProcessingFailedEventBuilder;
@@ -51,10 +47,7 @@ import static ch.admin.bit.jeap.errorhandling.infrastructure.persistence.AuditLo
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.DEFINED_PORT;
 
 @SpringBootTest(webEnvironment = DEFINED_PORT,
@@ -520,14 +513,10 @@ class ErrorHandlingIT extends ErrorHandlingITBase {
         assertEquals(originalEventCausingError, reSentEvent, "Re-sent event equals original event");
         List<ConsumerRecord<AvroMessageKey,TestEvent>> consumedRecords = testConsumer.getConsumedRecordsByIdempotenceId(domainEvent.getIdentity().getIdempotenceId());
         for(ConsumerRecord<AvroMessageKey,TestEvent> record : consumedRecords) {
-            assertTrue(getHeaderValue(JeapKafkaAvroSerdeCryptoConfig.ENCRYPTED_VALUE_HEADER_NAME, record) != null,
-                    "Header value from original message is passed through");
-            assertTrue(getHeaderValue(headerNameCert, record) != null,
-                    "Header value from original message is passed through");
-            assertTrue(getHeaderValue(headerNameSign, record) != null,
-                    "Header value from original message is passed through");
-            assertTrue(getHeaderValue(headerNameSignKey, record) != null,
-                    "Header value from original message is passed through");
+            assertNotNull(getHeaderValue(JeapKafkaAvroSerdeCryptoConfig.ENCRYPTED_VALUE_HEADER_NAME, record),"Header value from original message is passed through");
+            assertNotNull(getHeaderValue(headerNameCert, record),"Header value from original message is passed through");
+            assertNotNull(getHeaderValue(headerNameSign, record),"Header value from original message is passed through");
+            assertNotNull(getHeaderValue(headerNameSignKey, record),"Header value from original message is passed through");
         }
     }
 
