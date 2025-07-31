@@ -159,7 +159,7 @@ export class ErrorListComponent implements AfterViewInit, OnInit {
 		if (this.paginator.pageIndex > 0) {
 			this.paginator.firstPage();
 		} else {
-			this.loadErrors(0, {active: 'created', direction: 'desc'}).subscribe(
+			this.loadErrors(0, this.sort).subscribe(
 				errorList => this.errorListLoaded(errorList),
 				errorMessage => this.notifyFailure(errorMessage));
 		}
