@@ -31,9 +31,10 @@ export class ErrorListComponent implements AfterViewInit, OnInit {
 
 	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 	@ViewChild(MatSort, {static: true}) sort: MatSort;
-	protected readonly environment = environment;
+
 	isLoadingResults = false;
-	displayedColumns: string[] = ['selection', 'timestamp', 'eventName', 'errorPublisher', 'errorState', 'nextResend', 'errorMessage', 'errorCode', 'errorDetails'];
+	displayedColumns: string[] = ['selection', 'timestamp', 'eventName', 'errorPublisher', 'errorState',
+		'nextResend', 'errorMessage', 'errorCode', 'errorDetails'];
 	data: ErrorDTO[] = [];
 	dataSource = new MatTableDataSource<ErrorDTO>([]);
 	selection = new SelectionModel<ErrorDTO>(true, []);
@@ -55,6 +56,8 @@ export class ErrorListComponent implements AfterViewInit, OnInit {
 	logDeepLinkTemplate: string;
 
 	errorSearchFilter = new ErrorSearchFilter();
+
+	protected readonly environment = environment;
 
 	constructor(private readonly errorService: ErrorService,
 				private readonly notifierService: NotifierService,
@@ -143,11 +146,8 @@ export class ErrorListComponent implements AfterViewInit, OnInit {
 	}
 
 	isActionDisabled(action: 'Delete' | 'Retry') {
-		if (this.selection.selected.length === 0 ||
-			this.selection.selected.some(e => e['can' + action] === false)) {
-			return true;
-		}
-		return false;
+		return this.selection.selected.length === 0 ||
+			this.selection.selected.some(e => e['can' + action] === false);
 	}
 
 	hasInput() {
@@ -167,7 +167,7 @@ export class ErrorListComponent implements AfterViewInit, OnInit {
 		this.errorSearchFilter.from = this.retrieveDateValue(this.datePickerFromControl, startOfDay);
 		this.errorSearchFilter.to = this.retrieveDateValue(this.datePickerToControl, endOfDay);
 		this.errorSearchFilter.en = this.retrieveValue(this.eventNameControl);
-		this.errorSearchFilter.traceId = this.retrieveValue(this.traceIdControl)
+		this.errorSearchFilter.traceId = this.retrieveValue(this.traceIdControl);
 		this.errorSearchFilter.eventId = this.retrieveValue(this.eventIdControl);
 		this.errorSearchFilter.st = this.retrieveValue(this.stacktraceControl);
 		this.errorSearchFilter.source = this.retrieveValue(this.dropDownEventSourceControl);
@@ -179,16 +179,6 @@ export class ErrorListComponent implements AfterViewInit, OnInit {
 			queryParams: this.errorSearchFilter,
 			queryParamsHandling: 'merge',
 		});
-	}
-
-	private retrieveDateValue = (formControl: FormControl, dateTransformer: (date: Date) => Date): string =>
-		formControl.value ? dateTransformer(new Date(formControl.value)).toISOString() : null;
-
-	private retrieveValue(formControl: FormControl): string {
-		if (formControl.value) {
-			return formControl.value;
-		}
-		return null;
 	}
 
 	reset(): void {
@@ -250,16 +240,18 @@ export class ErrorListComponent implements AfterViewInit, OnInit {
 		this.dialogService.confirm(message).subscribe(confirmed => {
 			if (confirmed) {
 				this.dialogService.getClosingReason().subscribe(reason => {
-					const errorIds: string[] = this.selection.selected.map(error => error.id);
-					this.errorService.massDelete(errorIds, reason).subscribe(
-						() => {
-							this.reload();
-							this.notifierService.notifySuccess('i18n.errorhandling.action.delete', 'i18n.errorhandling.action.success')();
-						},
-						(error) => {
-							this.notifyFailure(error);
-						}
-					);
+					if (reason != null) {
+						const errorIds: string[] = this.selection.selected.map(error => error.id);
+						this.errorService.massDelete(errorIds, reason).subscribe(
+							() => {
+								this.reload();
+								this.notifierService.notifySuccess('i18n.errorhandling.action.delete', 'i18n.errorhandling.action.success')();
+							},
+							(error) => {
+								this.notifyFailure(error);
+							}
+						);
+					}
 				});
 			}
 		});
@@ -355,6 +347,22 @@ export class ErrorListComponent implements AfterViewInit, OnInit {
 		};
 	}
 
+	traceIdOrEventIdChanged(event: any) {
+		if (event.target.value) {
+			this.dropDownStateControl.reset();
+		}
+	}
+
+	private retrieveDateValue = (formControl: FormControl, dateTransformer: (date: Date) => Date): string =>
+		formControl.value ? dateTransformer(new Date(formControl.value)).toISOString() : null
+
+	private retrieveValue(formControl: FormControl): string {
+		if (formControl.value) {
+			return formControl.value;
+		}
+		return null;
+	}
+
 	private retrieveStates(state: string): string[] {
 		switch (state) {
 			case 'PERMANENT': {
@@ -389,11 +397,6 @@ export class ErrorListComponent implements AfterViewInit, OnInit {
 			'i18n.errorhandling.failure', 'i18n.errorhandling.list.load');
 	}
 
-	traceIdOrEventIdChanged(event: any) {
-		if (event.target.value) {
-			this.dropDownStateControl.reset();
-		}
-	}
 
 	private resetFormGroup() {
 		this.searchFilterFormGroup = new FormGroup({

@@ -9,7 +9,7 @@ import {Location} from '@angular/common';
 import {LogDeepLinkService} from '../shared/logdeeplink/logdeeplink.service';
 import { DialogService } from '../shared/dialog/dialog.service';
 import {TranslateService} from '@ngx-translate/core';
-import {environment} from "../../environments/environment";
+import {environment} from '../../environments/environment';
 
 @Component({
 	selector: 'error-details',
@@ -75,11 +75,16 @@ export class ErrorDetailsComponent implements OnInit {
 	delete(errorId: string) {
 		this.actionsDisabled = true;
 		this.dialogService.getClosingReason().subscribe(reason => {
-			this.errorService.delete(errorId, reason).subscribe(
-				this.notifierService.notifySuccess('i18n.errorhandling.action.delete', 'i18n.errorhandling.action.success'),
-				this.notifierService.notifyFailure('i18n.errorhandling.action.delete', 'i18n.errorhandling.failure'));
+			if (reason != null) {
+				this.errorService.delete(errorId, reason).subscribe(
+					this.notifierService.notifySuccess('i18n.errorhandling.action.delete', 'i18n.errorhandling.action.success'),
+					this.notifierService.notifyFailure('i18n.errorhandling.action.delete', 'i18n.errorhandling.failure'));
+			} else {
+				this.actionsDisabled = false;
+			}
 		});
 	}
+
 
 	back() {
 		this.location.back();
