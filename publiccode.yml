@@ -14,11 +14,15 @@ softwareType: library
 description:
   en:
     localisedName: jeap-error-handling
-    shortDescription: TODO (Max. 150 characters)
+    shortDescription: Error Handling Service for applications based on jEAP messaging
     longDescription: >
-      TODO (Min. 150 characters)
+      The Error Handling Service supports error handling patterns for errors, i.e. retry for temporary issues, persistence
+      and retry/handling for permanent errors. It is designed to be used with applications based on the jEAP messaging
+      framework.
     features:
-      - TODO
+      - Error handling patterns for applications based on jEAP messaging
+      - Automated retry for temporary issues
+      - A UI for operators to manage errors
 legal:
   license: Apache-2.0
 maintenance:
