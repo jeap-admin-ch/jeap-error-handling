@@ -33,6 +33,6 @@ public class DomainEventDeserializerProvider implements BeanFactoryAware {
         JeapKafkaBeanNames jeapKafkaBeanNames = new JeapKafkaBeanNames(kafkaProperties.getDefaultClusterName());
         KafkaAvroSerdeProvider kafkaAvroSerdeProvider = (KafkaAvroSerdeProvider)
                 beanFactory.getBean(jeapKafkaBeanNames.getKafkaAvroSerdeProviderBeanName(clusterName));
-        return kafkaAvroSerdeProvider.getGenericDataRecordDeserializer();
+        return kafkaAvroSerdeProvider.getGenericDataRecordDeserializerWithoutSignatureCheck();
     }
 }
