@@ -82,7 +82,7 @@ public class Error {
         RESOLVE_ON_MANUALTASK(),
         PERMANENT_RETRIED(),
         DELETE_ON_MANUALTASK(false, true),
-        DELETED(false, true);
+        DELETED(false, false);
 
         private final boolean deleteAllowed;
         private final boolean retryAllowed;
