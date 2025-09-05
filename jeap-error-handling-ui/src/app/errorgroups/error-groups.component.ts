@@ -146,13 +146,6 @@ export class ErrorGroupsComponent implements AfterViewInit, OnInit, OnDestroy {
 			});
 	}
 
-	toErrorDetails(ticketNumber: string) {
-		this.router.navigate(['/error-list'], {
-			queryParams: {ticketNumber},
-			queryParamsHandling: 'merge'
-		});
-	}
-
 	private errorGroupListLoaded(errorGroupResponse: ErrorGroupResponse): void {
 		this.isLoadingResults = false;
 		this.resultsLength = errorGroupResponse.totalErrorGroupCount;

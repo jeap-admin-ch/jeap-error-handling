@@ -24,6 +24,10 @@ export class ErrorGroupService {
 		return this.http.post<ErrorGroupResponse>(requestUrl, errorGroupSearchFormDto, {params});
 	}
 
+	getDetailsByGroupId(errorGroupId: string): Observable<ErrorGroupDTO> {
+		return this.http.get<ErrorGroupDTO>(`${ErrorGroupService.groupUrl}/${errorGroupId}`);
+	}
+
 	updateTicketNumber(errorGroupId: string, ticketNumber: string): Observable<ErrorGroupDTO> {
 		return this.http.post<ErrorGroupDTO>(`${ErrorGroupService.groupUrl}/update-ticket-number`, {
 			errorGroupId,

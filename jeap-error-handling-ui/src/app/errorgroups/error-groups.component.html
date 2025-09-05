@@ -134,13 +134,9 @@
 					</th>
 					<td *matCellDef="let row" id="actions-row" mat-cell>
 						<div class="actions-wrapper">
-							<a (click)="toErrorDetails(row.ticketNumber)"
-							   [class.disabled]="!row.ticketNumber"
-							   [disabled]="!row.ticketNumber"
-							   [matTooltip]="'i18n.errorhandling.details' | translate"
-							   [routerLink]="['/error-list', row.id]"
-							   mat-icon-button
-							   obButton="secondary">
+							<a mat-icon-button obButton="secondary"
+							   [routerLink]="['/error-group-details', row.errorGroupId]"
+							   [matTooltip]="'i18n.errorhandling.details' | translate">
 								<mat-icon svgIcon="eye"></mat-icon>
 							</a>
 						</div>

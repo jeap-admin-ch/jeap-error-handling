@@ -473,4 +473,34 @@ class ErrorGroupControllerIT extends ErrorHandlingITBase {
                 .created(created)
                 .build();
     }
+
+    @Test
+    void shouldReturnGroupById_WhenGroupExists() {
+        // given
+        ErrorGroup errorGroup = createErrorGroup("111", "eventName1", "source1", "nullpointer1", "stackTraceHash1");
+        ErrorGroup savedGroup = errorGroupRepository.save(errorGroup);
+        errorRepository.save(createError(errorGroup));
+
+        // when
+        ErrorGroupDTO response = given()
+                .spec(apiSpec)
+                .auth().oauth2(createAuthTokenForUserRoles(VIEW_ROLE))
+                .contentType("application/json")
+                .when()
+                .get(ALL_GROUP_URL + "/" + savedGroup.getId())
+                .then()
+                .statusCode(HttpStatus.OK.value())
+                .extract()
+                .as(ErrorGroupDTO.class);
+
+        // then
+        Assertions.assertThat(response.errorGroupId()).isEqualTo(savedGroup.getId().toString());
+        Assertions.assertThat(response.errorCode()).isEqualTo("111");
+        Assertions.assertThat(response.errorEvent()).isEqualTo("eventName1");
+        Assertions.assertThat(response.errorPublisher()).isEqualTo("source1");
+        Assertions.assertThat(response.errorMessage()).isEqualTo("nullpointer1");
+        Assertions.assertThat(response.stackTraceHash()).isEqualTo("stackTraceHash1");
+    }
+
+
 }

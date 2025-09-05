@@ -55,6 +55,23 @@ public class ErrorGroupController {
         return new ErrorGroupResponse(errorGroups.totalElements(), errorGroupDTOS);
     }
 
+    @GetMapping("/{errorGroupId}")
+    @PreAuthorize("hasRole('errorgroup','view')")
+    public ResponseEntity<ErrorGroupDTO> getErrorGroupById(@PathVariable String errorGroupId) {
+        UUID uuid;
+        try {
+            uuid = UUID.fromString(errorGroupId);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
+        ErrorGroupAggregatedData data = errorGroupService.getErrorGroupAggregatedData(uuid);
+        if (data == null) {
+            return ResponseEntity.notFound().build();
+        }
+        ErrorGroupDTO dto = mapToDTO(data);
+        return ResponseEntity.ok(dto);
+    }
+
     @PostMapping("/update-ticket-number")
     @PreAuthorize("hasRole('errorgroup','edit')")
     public ResponseEntity<ErrorGroupDTO> updateTicketNumber(@RequestBody @Valid UpdateTicketNumberRequest ticketNumberRequest) {

@@ -12,6 +12,7 @@ import {
 import {ErrorGroupPageComponent} from './pages/error-group-page/error-group-page.component';
 import {ForbiddenPageComponent} from './pages/error-pages/forbidden-page/forbidden-page.component';
 import {ReactivateDeadLetterPageComponent} from './pages/reactivate-dead-letter-page/reactivate-dead-letter-page.component';
+import {ErrorGroupDetailsComponent} from "./error-group-details/error-group-details.component";
 
 
 const roleFilter_view = QdApplicationRoleFilter.hasRole(
@@ -70,6 +71,14 @@ const appRoutes: Routes = [
 	},
 	{
 		path: 'error-group', component: ErrorGroupPageComponent,
+		canLoad: [QdAuthorizationGuard],
+		canActivate: [QdAuthorizationGuard],
+		data: {
+			roleFilter: [roleFilter_errorgroup_view]
+		}
+	},
+	{
+		path: 'error-group-details/:errorGroupId', component: ErrorGroupDetailsComponent,
 		canLoad: [QdAuthorizationGuard],
 		canActivate: [QdAuthorizationGuard],
 		data: {

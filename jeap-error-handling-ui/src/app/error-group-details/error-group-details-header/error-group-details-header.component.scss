@@ -1,0 +1,22 @@
+/* jeap-error-handling-ui/src/app/error-group-details/error-group-details-header/error-group-details-header.component.css */
+.header-columns {
+	display: flex;
+	gap: 1rem;
+}
+.column {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+.row {
+	//display: flex;
+	//align-items: center;
+	//gap: 1rem;
+}
+mat-label {
+	width: 200px;
+}
+input {
+	flex: 1;
+}
