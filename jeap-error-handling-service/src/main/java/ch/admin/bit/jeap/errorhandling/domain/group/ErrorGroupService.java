@@ -5,17 +5,18 @@ import ch.admin.bit.jeap.errorhandling.domain.exceptions.TicketNumberAlreadyExis
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorGroup;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorGroupRepository;
+import ch.admin.bit.jeap.errorhandling.web.api.ErrorGroupSearchCriteria;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionException;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -26,6 +27,9 @@ import static org.springframework.util.StringUtils.hasText;
 @Transactional
 @RequiredArgsConstructor
 public class ErrorGroupService {
+
+    public static final String A_LONG_LONG_TIME_AGO = "1971-03-11T00:00:00Z";
+    public static final String FAR_FAR_IN_THE_FUTURE = "2999-12-31T00:00:00Z";
 
     private final ErrorGroupConfigProperties errorGroupConfigProperties;
     private final ErrorGroupRepository errorGroupRepository;
@@ -63,11 +67,36 @@ public class ErrorGroupService {
                 orElseThrow(() -> new ErrorGroupNotFoundException(errorGroupId));
     }
 
-    public ErrorGroupAggregatedDataList findErrorGroupAggregatedData(Pageable pageable) {
-        Page<ErrorGroupAggregatedData> groupAggregatedData = errorGroupRepository.findErrorGroupAggregatedData(pageable);
-        return new ErrorGroupAggregatedDataList(groupAggregatedData.getTotalElements(), groupAggregatedData.getContent());
-    }
+    /**
+     * Finds aggregated error group data based on the provided search criteria.
+     *
+     * @param criteria the search criteria for error groups
+     * @return a list containing aggregated data of error groups matching the criteria
+     */
+    public ErrorGroupAggregatedDataList findErrorGroupAggregatedData(ErrorGroupSearchCriteria criteria) {
+        Boolean noTicket = criteria.getNoTicket().orElse(false);
 
+        // Use extreme date values if not provided to avoid null checks in the query
+        ZonedDateTime dateFrom = criteria.getDateFrom().orElse(ZonedDateTime.parse(A_LONG_LONG_TIME_AGO));
+        ZonedDateTime dateTo = criteria.getDateTo().orElse(ZonedDateTime.parse(FAR_FAR_IN_THE_FUTURE));
+
+        String source = criteria.getSource().orElse(null);
+        String messageType = criteria.getMessageType().orElse(null);
+        String errorCode = criteria.getErrorCode().orElse(null);
+        String jiraTicket = criteria.getJiraTicket().orElse(null);
+
+        Page<ErrorGroupAggregatedData> groupAggregatedData = errorGroupRepository.findErrorGroupAggregatedData(
+                noTicket,
+                dateFrom,
+                dateTo,
+                source,
+                messageType,
+                errorCode,
+                jiraTicket,
+                criteria.getPageable());
+        return new ErrorGroupAggregatedDataList(groupAggregatedData.getTotalElements(), groupAggregatedData.getContent());
+
+    }
 
     private ErrorGroup findOrCreateMatchingErrorGroup(Error error) {
         ErrorGroup errorGroup = ErrorGroup.from(error);
@@ -108,5 +137,7 @@ public class ErrorGroupService {
                 errorGroup.getErrorPublisher(), errorGroup.getErrorCode(), errorGroup.getEventName(),
                 errorGroup.getErrorStackTraceHash());
     }
+
+
 
 }

@@ -19,56 +19,64 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Import;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 
 import java.util.UUID;
 
 import static org.mockito.Mockito.*;
 
-@ExtendWith({SpringExtension.class})
+
 @ExtendWith({MockitoExtension.class})
-@Import(ErrorService.class)
+@MockitoSettings(strictness = Strictness.LENIENT)
 class DeleteTest {
     private final static UUID errorId = UUID.randomUUID();
     private final static UUID taskId = UUID.randomUUID();
-    @MockBean
+    @Mock
     private ErrorGroupConfigProperties errorGroupConfigProperties;
-    @MockBean
+    @Mock
     private ErrorRepository errorRepository;
-    @MockBean
+    @Mock
     private ErrorGroupService errorGroupService;
-    @MockBean
+    @Mock
     private ErrorHandlingMetricsService errorHandlingMetricsService;
-    @MockBean
+    @Mock
     private ScheduledResendService scheduledResendService;
-    @MockBean
+    @Mock
     private KafkaFailedEventResender failedEventResender;
-    @MockBean
+    @Mock
     private TaskManagementClient taskManagementClient;
-    @MockBean
+    @Mock
     private ResendingStrategy resendingStrategy;
-    @MockBean
+    @Mock
     private ErrorFactory errorFactory;
-    @MockBean
+    @Mock
     private TaskFactory taskFactory;
-    @MockBean
+    @Mock
     private AuditLogService auditLogService;
-    @Mock(lenient = true)
+    @Mock
     private Error error;
     private ErrorState state;
-    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
-    @Autowired
     private ErrorService target;
+
 
     @BeforeEach
     void setup() {
+        target = new ErrorService(errorRepository,
+                scheduledResendService,
+                failedEventResender,
+                taskManagementClient,
+                taskFactory,
+                resendingStrategy,
+                errorFactory,
+                errorHandlingMetricsService,
+                auditLogService,
+                errorGroupService);
+
         when(errorRepository.getReferenceById(errorId)).thenReturn(error);
         when(error.getState()).then(a -> state);
         doAnswer(a -> state = a.getArgument(0)).when(error).setState(any());
-        when(error.getManualTaskId()).thenReturn(taskId);
+        lenient().when(error.getManualTaskId()).thenReturn(taskId);
     }
 
     @Test
@@ -111,7 +119,7 @@ class DeleteTest {
     @Test
     void deleteSendToManualTaskService() throws TaskManagementException {
         state = ErrorState.SEND_TO_MANUALTASK;
-        doThrow(mock(TaskManagementException.class)).when(taskManagementClient).closeTask(taskId);
+        lenient().doThrow(mock(TaskManagementException.class)).when(taskManagementClient).closeTask(taskId);
 
         target.delete(errorId, "");
 

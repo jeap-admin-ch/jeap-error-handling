@@ -15,7 +15,7 @@ export const appSetup: QdAppSetup = {
 
 export const authConfig: QdAuthConfigServerSide = {
 	configPathSegment: '/configuration',
-	logLevel: QdLogLevel.Debug,
+	logLevel: QdLogLevel.Error,
 	renewUserInfoAfterTokenRenew: true,
 	silentRenew: true,
 	silentRenewUrl: `${window.location.origin}/error-handling/assets/auth/silent-renew.html`,

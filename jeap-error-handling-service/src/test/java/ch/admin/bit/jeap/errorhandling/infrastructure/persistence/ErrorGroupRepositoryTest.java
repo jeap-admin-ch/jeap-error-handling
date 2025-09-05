@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -62,11 +63,20 @@ class ErrorGroupRepositoryTest {
         // Given
         Pageable pageable = PageRequest.of(0, 10);
         // When
-        Page<ErrorGroupAggregatedData> result = errorGroupRepository.findErrorGroupAggregatedData(pageable);
+        Page<ErrorGroupAggregatedData> result = errorGroupRepository.findErrorGroupAggregatedData(
+                false,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                pageable);
         // Then
         Assertions.assertThat(result).isNotNull().isNotEmpty();
         Assertions.assertThat(result.getContent().getLast().getGroupId()).isNotNull(); // UUID could be read
         Assertions.assertThat(result.getContent().getLast().getFirstErrorAt()).isNotNull(); // ZonedDateTime could be read
+        Assertions.assertThat(result.getContent()).hasSize(2);
     }
 
     @Test
@@ -76,8 +86,144 @@ class ErrorGroupRepositoryTest {
         Optional<ErrorGroupAggregatedData> errorGroupOptional = errorGroupRepository.findErrorGroupAggregatedData(groupId);
 
         Assertions.assertThat(errorGroupOptional).isNotEmpty();
+
         Assertions.assertThat(errorGroupOptional.get().getGroupId()).isNotNull(); // UUID could be read
         Assertions.assertThat(errorGroupOptional.get().getFirstErrorAt()).isNotNull(); // ZonedDateTime could be read
+
+    }
+
+    @Test
+    void testFindErrorGroupAggregatedData_noTicketsIsTrue() {
+        // Given
+        Pageable pageable = PageRequest.of(0, 10);
+        // When
+        Page<ErrorGroupAggregatedData> result = errorGroupRepository.findErrorGroupAggregatedData(
+                true,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                pageable);
+        // Then
+        Assertions.assertThat(result).isNotNull().isNotEmpty();
+        Assertions.assertThat(result.getContent()).hasSize(1);
+        Assertions.assertThat(result.getContent().getFirst().getTicketNumber()).isEqualTo("");
+
+    }
+
+    @Test
+    void testFindErrorGroupAggregatedData_NoTicketsNotSet() {
+        // Given
+        Pageable pageable = PageRequest.of(0, 10);
+        // When
+        Page<ErrorGroupAggregatedData> result = errorGroupRepository.findErrorGroupAggregatedData(
+                false,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                pageable);
+        // Then
+        Assertions.assertThat(result).isNotNull().isNotEmpty();
+        Assertions.assertThat(result.getContent()).hasSize(2);
+    }
+
+    @Test
+    void testFindErrorGroupAggregatedData_DateInRange() {
+        // Given
+        Pageable pageable = PageRequest.of(0, 10);
+
+        // When
+        Page<ErrorGroupAggregatedData> result = errorGroupRepository.findErrorGroupAggregatedData(
+                false,
+                ZonedDateTime.parse("2023-01-01T00:00:00Z"),
+                ZonedDateTime.parse("2027-01-01T00:00:00Z"),
+                null,
+                null,
+                null,
+                null,
+                pageable);
+        // Then
+        Assertions.assertThat(result).isNotNull().isNotEmpty();
+        Assertions.assertThat(result.getContent()).hasSize(2);
+    }
+
+    @Test
+    void testFindErrorGroupAggregatedData_DateOutOfRange() {
+        // Given
+        Pageable pageable = PageRequest.of(0, 10);
+        // When
+        Page<ErrorGroupAggregatedData> result = errorGroupRepository.findErrorGroupAggregatedData(
+                false,
+                ZonedDateTime.parse("2000-01-01T00:00:00Z"),
+                ZonedDateTime.parse("2001-01-01T00:00:00Z"),
+                null,
+                null,
+                null,
+                null,
+                pageable);
+        // Then
+        Assertions.assertThat(result).isNotNull().isEmpty();
+    }
+
+    @Test
+    void testFindErrorGroupAggregatedData_withSource() {
+        // Given
+        Pageable pageable = PageRequest.of(0, 10);
+        // When
+        Page<ErrorGroupAggregatedData> result = errorGroupRepository.findErrorGroupAggregatedData(
+                false,
+                null,
+                null,
+                "wvs-communication-service",
+                null,
+                null,
+                null,
+                pageable);
+        // Then
+        Assertions.assertThat(result).isNotNull().isNotEmpty();
+        Assertions.assertThat(result.getContent()).hasSize(2);
+    }
+
+    @Test
+    void testFindErrorGroupAggregatedData_notExistingSource() {
+        // Given
+        Pageable pageable = PageRequest.of(0, 10);
+        // When
+        Page<ErrorGroupAggregatedData> result = errorGroupRepository.findErrorGroupAggregatedData(
+                false,
+                null,
+                null,
+                "not-existing-source",
+                null,
+                null,
+                null,
+                pageable);
+        // Then
+        Assertions.assertThat(result).isNotNull().isEmpty();
+    }
+
+    @Test
+    void testFindErrorGroupAggregatedData_EventName() {
+        // Given
+        Pageable pageable = PageRequest.of(0, 10);
+        // When
+        Page<ErrorGroupAggregatedData> result = errorGroupRepository.findErrorGroupAggregatedData(
+                false,
+                null,
+                null,
+                null,
+                "MessageProcessingFailedEvent",
+                null,
+                null,
+                pageable);
+        // Then
+        Assertions.assertThat(result).isNotNull().isNotEmpty();
+        Assertions.assertThat(result.getContent()).hasSize(2);
     }
 
     @Test

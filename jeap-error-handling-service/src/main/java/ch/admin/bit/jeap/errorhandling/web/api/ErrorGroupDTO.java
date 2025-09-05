@@ -10,6 +10,7 @@ public record ErrorGroupDTO(
         String firstErrorAt,
         String latestErrorAt,
         String ticketNumber,
-        String freeText
+        String freeText,
+        String stackTraceHash
 ) {
 }

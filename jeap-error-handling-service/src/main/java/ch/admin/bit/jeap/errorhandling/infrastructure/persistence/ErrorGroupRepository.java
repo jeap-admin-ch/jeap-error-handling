@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -17,7 +18,9 @@ public interface ErrorGroupRepository extends JpaRepository<ErrorGroup, UUID> {
     String ERROR_GROUP_AGGREGATED_DATA_SELECTOR = """
                 SELECT eg.id as groupId, count(e.id) as errorCount,
                     eg.eventName as errorEvent, eg.errorPublisher as errorPublisher,
-                    eg.errorCode as errorCode, eg.errorMessage as errorMessage,
+                    eg.errorCode as errorCode,
+                    eg.errorStackTraceHash as stackTraceHash,
+                    eg.errorMessage as errorMessage,
                     min(e.created) as firstErrorAt,
                     max(e.created) as latestErrorAt,
                     eg.ticketNumber as ticketNumber, eg.freeText as freeText
@@ -28,12 +31,29 @@ public interface ErrorGroupRepository extends JpaRepository<ErrorGroup, UUID> {
     String ERROR_GROUP_AGGREGATED_DATA_GROUPING =
             " GROUP BY eg.id, eg.eventName, eg.errorPublisher, eg.errorCode, eg.errorMessage, eg.freeText, eg.ticketNumber ";
 
-    @Query(value = ERROR_GROUP_AGGREGATED_DATA_SELECTOR + ERROR_GROUP_AGGREGATED_DATA_GROUPING + """
-                order by errorCount desc
-                offset :#{#pageable.offset} rows
-                fetch next :#{#pageable.pageSize} rows only""",
+    @Query(value = ERROR_GROUP_AGGREGATED_DATA_SELECTOR +
+            " " +
+            "AND (:noTicket = true AND (eg.ticketNumber IS NULL OR eg.ticketNumber = '') OR :noTicket = false) " +
+            "AND (CAST(:dateFrom AS TIMESTAMP) IS NULL OR e.created >= CAST(:dateFrom AS TIMESTAMP)) " +
+            "AND (CAST(:dateTo AS TIMESTAMP) IS NULL OR e.created <= CAST(:dateTo AS TIMESTAMP)) " +
+            "AND ((:source IS NULL OR :source = '') OR eg.errorPublisher = :source) " +
+            "AND ((:messageType IS NULL OR :messageType = '') OR eg.eventName = :messageType) " +
+            "AND ((:errorCode IS NULL OR :errorCode = '') OR eg.errorCode = :errorCode) " +
+            "AND ((:jiraTicket IS NULL OR :jiraTicket = '') OR eg.ticketNumber = :jiraTicket) " +
+            ERROR_GROUP_AGGREGATED_DATA_GROUPING +
+            " order by errorCount desc " +
+            " offset :#{#pageable.offset} rows " +
+            " fetch next :#{#pageable.pageSize} rows only",
             countQuery = "select count(*) from ErrorGroup")
-    Page<ErrorGroupAggregatedData> findErrorGroupAggregatedData(Pageable pageable);
+    Page<ErrorGroupAggregatedData> findErrorGroupAggregatedData(
+            @Param("noTicket") Boolean noTicket,
+            @Param("dateFrom") ZonedDateTime dateFrom,
+            @Param("dateTo") ZonedDateTime dateTo,
+            @Param("source") String source,
+            @Param("messageType") String messageType,
+            @Param("errorCode") String errorCode,
+            @Param("jiraTicket") String jiraTicket,
+            Pageable pageable);
 
     @Query(ERROR_GROUP_AGGREGATED_DATA_SELECTOR + " AND eg.id = :id " + ERROR_GROUP_AGGREGATED_DATA_GROUPING)
     Optional<ErrorGroupAggregatedData> findErrorGroupAggregatedData(@Param("id") UUID errorGroupId);

@@ -32,6 +32,7 @@
   "i18n.errorhandling.form.date-from": "Datum von",
   "i18n.errorhandling.form.date-to": "Datum bis",
   "i18n.errorhandling.form.eventname": "Event Name",
+  "i18n.errorhandling.form.messagetype": "Message Typ",
   "i18n.errorhandling.form.traceid": "Trace ID",
   "i18n.errorhandling.form.eventid": "Event ID",
   "i18n.errorhandling.form.source": "Quelle",
@@ -105,5 +106,7 @@
   "i18n.deadLetter.reactivate": "Reaktiviere",
   "i18n.deadLetter.dead-letter-messages": "Dead-Letter Messages",
   "i18n.deadLetter.error-message": "Fehler: Messages aus der Dead-Letter Topic konnten nicht reaktiviert werden.",
-  "i18n.deadLetter.success-message": "Messages von der Dead-Letter Topic wurden wieder hergestellt."
+  "i18n.deadLetter.success-message": "Messages von der Dead-Letter Topic wurden wieder hergestellt.",
+  "i18n.noTicket": "Kein Jira-Ticket (unbekannt)",
+  "i18n.jiraTicket": "Jira Ticket"
 }

@@ -1,29 +1,16 @@
 @import '@oblique/oblique/styles/scss/core/variables';
 
-/* Write your custom styles here. */
-
-.ob-has-layout.ob-master-layout .ob-main-layout {
-	padding: 0 1rem !important;
-	padding-right: 0 !important;
+// Styling for the container holding form buttons.
+// Ensures the container takes up the full width of its parent.
+.ehs-form-buttons {
+	width: 100%;
 }
 
-.ob-column-content {
-	padding-top: 1rem;
+// Styling for buttons within the `.ehs-form-buttons` container.
+// Sets the width of each button to 48% of the container's width.
+// This allows two buttons to be displayed side by side with some spacing.
+.ehs-form-buttons button {
+	width: 48%;
+	margin-right: 5px;
 }
 
-.default-layout, .ob-column-layout {
-	height: 100%
-}
-
-div.ob-column-main {
-	background-color: #f5f5f5;
-}
-
-div[column-main-content] {
-	margin-right: 1rem;
-	background: white;
-}
-
-a.ob-master-layout-navigation-toggle.mat-tooltip-trigger.ob-master-layout-navigation-link:focus {
-	background-color: #fff !important;
-}

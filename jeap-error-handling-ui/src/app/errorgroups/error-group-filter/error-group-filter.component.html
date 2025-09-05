@@ -1,0 +1,85 @@
+<form [formGroup]="searchFilterFormGroup" (ngSubmit)="search()">
+
+	<!-- No Ticket Checkbox -->
+	<mat-checkbox formControlName="noTicket" color="primary">{{ "i18n.noTicket" | translate}}</mat-checkbox>
+
+	<!-- Date from -->
+	<mat-form-field>
+		<input matInput formControlName="dateFrom" [matDatepicker]="pickerFrom" placeholder="{{'i18n.errorhandling.form.date-from' | translate}}"/>
+		<mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+		<mat-datepicker #pickerFrom></mat-datepicker>
+	</mat-form-field>
+
+	<!-- Date to -->
+	<mat-form-field>
+		<input matInput formControlName="dateTo" [matDatepicker]="pickerTo" placeholder="{{'i18n.errorhandling.form.date-to' | translate}}"/>
+		<mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+		<mat-datepicker #pickerTo></mat-datepicker>
+	</mat-form-field>
+
+	<!-- Source -->
+	<mat-form-field>
+		<mat-label>{{'i18n.errorhandling.form.source' | translate}}</mat-label>
+		<mat-select formControlName="source">
+			<mat-option *ngFor="let dropDownElement of dropDownSources()" [value]="dropDownElement.value">
+				{{dropDownElement.viewValue}}
+			</mat-option>
+		</mat-select>
+		<button *ngIf="formControlSource.value" matSuffix mat-icon-button (click)="formControlSource.reset()">
+			<mat-icon svgIcon="cancel-circle"></mat-icon>
+		</button>
+	</mat-form-field>
+
+	<!--Message Type -->
+	<mat-form-field>
+		<mat-label>{{'i18n.errorhandling.form.messagetype' | translate}}</mat-label>
+		<input type="text"
+			   formControlName="messageType"
+			   matInput
+			   placeholder="{{'i18n.errorhandling.form.messagetype' | translate}}"
+			   [matAutocomplete]="auto"/>
+		<mat-autocomplete #auto="matAutocomplete">
+			<mat-option *ngFor="let name of filteredMessageTypes()" [value]="name">
+				{{name}}
+			</mat-option>
+		</mat-autocomplete>
+		<mat-error></mat-error>
+		<button *ngIf="messageTypeControl.value" matSuffix mat-icon-button (click)="messageTypeControl.reset()">
+			<mat-icon svgIcon="cancel-circle"></mat-icon>
+		</button>
+	</mat-form-field>
+
+	<!-- ErrorCode -->
+	<mat-form-field>
+		<mat-label>{{ 'i18n.errorhandling.form.errorcode' | translate }}</mat-label>
+		<mat-select formControlName="dropDownErrorCode">
+			<mat-option *ngFor="let errorCode of dropDownErrorCodes()" [value]="errorCode.value">
+				{{ errorCode.viewValue }}
+			</mat-option>
+		</mat-select>
+		<button *ngIf="formControlDropDownErrorCode.value" matSuffix mat-icon-button
+				(click)="formControlDropDownErrorCode.reset()">
+			<mat-icon svgIcon="cancel-circle"></mat-icon>
+		</button>
+	</mat-form-field>
+
+	<!-- Jira Ticket -->
+	<mat-form-field>
+		<input matInput formControlName="jiraTicket" placeholder="{{ 'i18n.jiraTicket' | translate}}"/>
+		<button *ngIf="formControlJiraTicket.value" matSuffix mat-icon-button (click)="formControlJiraTicket.reset()">
+			<mat-icon svgIcon="cancel-circle"></mat-icon>
+		</button>
+	</mat-form-field>
+
+	<!-- Buttons -->
+	<div class="ehs-form-buttons">
+		<button mat-button obButton="primary" type="submit" [disabled]="!!searchFilterFormGroup.invalid || isLoadingResults">
+			{{ 'i18n.errorhandling.search' | translate }}
+		</button>
+		<button mat-button obButton="secondary" type="reset"  [disabled]="isLoadingResults">
+			{{ 'i18n.errorhandling.reset' | translate }}
+		</button>
+	</div>
+</form>
+
+

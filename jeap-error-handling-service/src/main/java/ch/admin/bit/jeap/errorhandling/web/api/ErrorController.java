@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import static ch.admin.bit.jeap.errorhandling.web.api.DateTimeUtils.parseDate;
 import static java.util.stream.Collectors.toList;
 
 @Tag(name = "Errors")
@@ -322,9 +323,5 @@ public class ErrorController {
     private List<Error.ErrorState> convertErrorStates(List<String> states) {
         if (states == null) return null;
         return states.stream().map(Error.ErrorState::valueOf).toList();
-    }
-
-    private ZonedDateTime parseDate(String date) {
-        return StringUtils.isBlank(date) ? null : ZonedDateTime.parse(date);
     }
 }

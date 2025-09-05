@@ -29,7 +29,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
@@ -43,7 +42,6 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -124,6 +122,7 @@ class ErrorGroupControllerTest {
                 latestErrorAt(DATE_TIME).
                 ticketNumber("TAPAS-745").
                 freeText("some-text").
+                stackTraceHash("some-hash").
                 build();
         errorGroupAggregatedDataList = new ErrorGroupAggregatedDataList(1, List.of(errorGroupAggregatedData));
     }
@@ -132,9 +131,11 @@ class ErrorGroupControllerTest {
     @WithAuthentication("viewRoleToken")
     void getGroups_shouldReturnErrorGroupResponse() {
         // Arrange
-        Mockito.doReturn(errorGroupAggregatedDataList).when(errorGroupService).findErrorGroupAggregatedData(PageRequest.of(0, 10));
+        Mockito.doReturn(errorGroupAggregatedDataList)
+                .when(errorGroupService)
+                .findErrorGroupAggregatedData(Mockito.any(ErrorGroupSearchCriteria.class));
         // Act
-        ErrorGroupResponse response = errorGroupController.getGroups(0, 10);
+        ErrorGroupResponse response = errorGroupController.getGroups( 0, 10, null);
         // Assert
         assertThat(response).isNotNull();
         assertThat(response.totalErrorGroupCount()).isEqualTo(1);
@@ -145,11 +146,14 @@ class ErrorGroupControllerTest {
     @WithAuthentication("viewRoleToken")
     void getGroups_shouldMapErrorGroupInfoToDTO() {
         // Arrange
-        Mockito.doReturn(errorGroupAggregatedDataList).when(errorGroupService).findErrorGroupAggregatedData(PageRequest.of(0, 10));
+        Mockito.doReturn(errorGroupAggregatedDataList)
+                .when(errorGroupService)
+                .findErrorGroupAggregatedData(Mockito.any(ErrorGroupSearchCriteria.class));
+
         // Act
-        ErrorGroupResponse response = errorGroupController.getGroups(0, 10);
+        ErrorGroupResponse response = errorGroupController.getGroups(0, 10, null);
         // Assert
-        ErrorGroupDTO dto = response.groups().get(0);
+        ErrorGroupDTO dto = response.groups().getFirst();
         assertThat(dto).isNotNull();
         assertThat(dto.errorGroupId()).isEqualTo(errorGroupAggregatedData.getGroupId().toString());
         assertThat(dto.errorCount()).isEqualTo(errorGroupAggregatedData.getErrorCount());
@@ -164,9 +168,11 @@ class ErrorGroupControllerTest {
     @WithAuthentication("viewRoleToken")
     void getGroups_shouldUseDefaultPageIndexAndSize() {
         // Arrange
-        Mockito.doReturn(errorGroupAggregatedDataList).when(errorGroupService).findErrorGroupAggregatedData(PageRequest.of(0, 10));
+        Mockito.doReturn(errorGroupAggregatedDataList)
+                .when(errorGroupService)
+                .findErrorGroupAggregatedData(Mockito.any(ErrorGroupSearchCriteria.class));
         // Act
-        ErrorGroupResponse response = errorGroupController.getGroups(0, 10);
+        ErrorGroupResponse response = errorGroupController.getGroups( 0,10, null);
         // Assert
         assertThat(response.totalErrorGroupCount()).isEqualTo(1);
         assertThat(response.groups()).hasSize(1);
@@ -176,9 +182,11 @@ class ErrorGroupControllerTest {
     @WithAuthentication("viewRoleToken")
     void getGroups_shouldUseProvidedPageIndexAndSize() {
         // Arrange
-        Mockito.doReturn(errorGroupAggregatedDataList).when(errorGroupService).findErrorGroupAggregatedData(PageRequest.of(2, 20));
+        Mockito.doReturn(errorGroupAggregatedDataList)
+                .when(errorGroupService)
+                .findErrorGroupAggregatedData(Mockito.any(ErrorGroupSearchCriteria.class));
         // Act
-        ErrorGroupResponse response = errorGroupController.getGroups(2, 20);
+        ErrorGroupResponse response = errorGroupController.getGroups( 2, 20, null);
         // Assert
         assertThat(response.totalErrorGroupCount()).isEqualTo(1);
         assertThat(response.groups()).hasSize(1);
@@ -189,9 +197,11 @@ class ErrorGroupControllerTest {
     void getGroups_shouldHandleEmptyResults() {
         // Arrange
         ErrorGroupAggregatedDataList errorGroupAggregatedDataList = new ErrorGroupAggregatedDataList(0L, List.of());
-        Mockito.doReturn(errorGroupAggregatedDataList).when(errorGroupService).findErrorGroupAggregatedData(PageRequest.of(0, 10));
+        Mockito.doReturn(errorGroupAggregatedDataList)
+                .when(errorGroupService)
+                .findErrorGroupAggregatedData(Mockito.any(ErrorGroupSearchCriteria.class));
         // Act
-        ErrorGroupResponse response = errorGroupController.getGroups(0, 10);
+        ErrorGroupResponse response = errorGroupController.getGroups( 0, 10, null);
         // Assert
         assertThat(response.totalErrorGroupCount()).isZero();
         assertThat(response.groups()).isEmpty();
@@ -215,9 +225,11 @@ class ErrorGroupControllerTest {
             build();
 
         ErrorGroupAggregatedDataList multipleList = new ErrorGroupAggregatedDataList(2L, List.of(errorGroupAggregatedData, errorGroupAggregatedDataOther));
-        Mockito.doReturn(multipleList).when(errorGroupService).findErrorGroupAggregatedData(PageRequest.of(0, 10));
+        Mockito.doReturn(multipleList)
+                .when(errorGroupService)
+                .findErrorGroupAggregatedData(Mockito.any(ErrorGroupSearchCriteria.class));
         // Act
-        ErrorGroupResponse response = errorGroupController.getGroups(0, 10);
+        ErrorGroupResponse response = errorGroupController.getGroups(0, 10, null);
         // Assert
         assertThat(response.totalErrorGroupCount()).isEqualTo(2);
         assertThat(response.groups()).hasSize(2);
@@ -249,7 +261,7 @@ class ErrorGroupControllerTest {
         ResponseEntity<ErrorGroupDTO> response = errorGroupController.updateTicketNumber(updateTicketNumberRequest);
 
         // Assert
-        Assertions.assertEquals(200, response.getStatusCodeValue());
+        Assertions.assertEquals(200, response.getStatusCode().value());
         ErrorGroupDTO dto = response.getBody();
         assertThat(dto).isNotNull();
         assertThat(dto.errorGroupId()).isEqualTo(groupId.toString());
@@ -269,7 +281,7 @@ class ErrorGroupControllerTest {
     void testUpdateTicketNumber_InvalidUUID() {
         UpdateTicketNumberRequest request = new UpdateTicketNumberRequest("invalid-uuid", "TAPAS-745");
         ResponseEntity<ErrorGroupDTO> response = errorGroupController.updateTicketNumber(request);
-        Assertions.assertEquals(400, response.getStatusCodeValue());
+        Assertions.assertEquals(400, response.getStatusCode().value());
         Assertions.assertNull(response.getBody());
     }
 
@@ -309,7 +321,7 @@ class ErrorGroupControllerTest {
         ResponseEntity<ErrorGroupDTO> response = errorGroupController.updateFreeText(updateFreeTextRequest);
 
         // Assert
-        Assertions.assertEquals(200, response.getStatusCodeValue());
+        Assertions.assertEquals(200, response.getStatusCode().value());
         ErrorGroupDTO dto = response.getBody();
         assertThat(dto).isNotNull();
         assertThat(dto.errorGroupId()).isEqualTo(groupId.toString());
@@ -329,7 +341,7 @@ class ErrorGroupControllerTest {
     void testUpdateFreeText_InvalidUUID() {
         UpdateFreeTextRequest updateFreeTextRequest = new UpdateFreeTextRequest("invalid-uuid", "known issue");
         ResponseEntity<ErrorGroupDTO> response = errorGroupController.updateFreeText(updateFreeTextRequest);
-        Assertions.assertEquals(400, response.getStatusCodeValue());
+        Assertions.assertEquals(400, response.getStatusCode().value());
         Assertions.assertNull(response.getBody());
     }
 
@@ -347,7 +359,7 @@ class ErrorGroupControllerTest {
     @Test
     @WithAuthentication("invalidRoleToken")
     void testForbiddenView() throws Exception {
-        mockMvc.perform(get("/api/error-group"))
+        mockMvc.perform(post("/api/error-group"))
                 .andExpect(status().isForbidden());
     }
 
@@ -385,6 +397,7 @@ class ErrorGroupControllerTest {
         ZonedDateTime latestErrorAt;
         String ticketNumber;
         String freeText;
+        String stackTraceHash;
     }
 
 }

@@ -9,6 +9,7 @@ export interface ErrorGroupDTO {
 	latestErrorAt: string;
 	ticketNumber: string;
 	freeText: string;
+	stackTraceHash: string;
 }
 
 export interface ErrorGroupResponse {

@@ -16,11 +16,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ErrorSearchFilter} from './error-list.model';
 import {endOfDay, startOfDay} from 'date-fns';
 import {environment} from '../../environments/environment';
-
-interface DropDownElement {
-	value: string;
-	viewValue: string;
-}
+import {DropDownElement} from "../shared/models/drop-down-element.model";
 
 @Component({
 	selector: 'error-list',

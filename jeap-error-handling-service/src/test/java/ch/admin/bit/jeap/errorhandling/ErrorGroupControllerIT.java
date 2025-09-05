@@ -2,10 +2,7 @@ package ch.admin.bit.jeap.errorhandling;
 
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.*;
-import ch.admin.bit.jeap.errorhandling.web.api.ErrorGroupDTO;
-import ch.admin.bit.jeap.errorhandling.web.api.ErrorGroupResponse;
-import ch.admin.bit.jeap.errorhandling.web.api.UpdateFreeTextRequest;
-import ch.admin.bit.jeap.errorhandling.web.api.UpdateTicketNumberRequest;
+import ch.admin.bit.jeap.errorhandling.web.api.*;
 import ch.admin.bit.jeap.security.resource.semanticAuthentication.SemanticApplicationRole;
 import ch.admin.bit.jeap.security.resource.token.JeapAuthenticationContext;
 import io.restassured.builder.RequestSpecBuilder;
@@ -56,8 +53,9 @@ class ErrorGroupControllerIT extends ErrorHandlingITBase {
         ErrorGroupResponse response = given().
                 spec(apiSpec).
                 auth().oauth2(createAuthTokenForUserRoles(VIEW_ROLE)).
+                contentType("application/json").
                 when().
-                get(ALL_GROUP_URL).
+                post(ALL_GROUP_URL).
                 then().
                 statusCode(HttpStatus.OK.value()).extract().as(ErrorGroupResponse.class);
         Assertions.assertThat(response.totalErrorGroupCount()).isZero();
@@ -77,8 +75,9 @@ class ErrorGroupControllerIT extends ErrorHandlingITBase {
         ErrorGroupResponse response = given().
                 spec(apiSpec).
                 auth().oauth2(createAuthTokenForUserRoles(VIEW_ROLE)).
+                contentType("application/json").
                 when().
-                get(ALL_GROUP_URL).
+                post(ALL_GROUP_URL).
                 then().
                 statusCode(HttpStatus.OK.value()).extract().as(ErrorGroupResponse.class);
         Assertions.assertThat(response.totalErrorGroupCount()).isEqualTo(1);
@@ -88,6 +87,8 @@ class ErrorGroupControllerIT extends ErrorHandlingITBase {
         Assertions.assertThat(dto.errorEvent()).isEqualTo("eventName1");
         Assertions.assertThat(dto.errorPublisher()).isEqualTo("source1");
         Assertions.assertThat(dto.errorMessage()).isEqualTo("nullpointer1");
+        Assertions.assertThat(dto.stackTraceHash()).isEqualTo("stackTraceHash1");
+
     }
 
     @Test
@@ -111,12 +112,148 @@ class ErrorGroupControllerIT extends ErrorHandlingITBase {
                 oauth2(createAuthTokenForUserRoles(VIEW_ROLE)).
                 queryParam("pageSize", 2).
                 queryParam("pageIndex", 0).
+                contentType("application/json").
                 when().
-                get(ALL_GROUP_URL).
+                post(ALL_GROUP_URL).
                 then().
                 statusCode(HttpStatus.OK.value()).extract().as(ErrorGroupResponse.class);
         Assertions.assertThat(response.totalErrorGroupCount()).isEqualTo(3);
         Assertions.assertThat(response.groups()).hasSize(2);
+    }
+
+    @Test
+    void shouldReturnGroupsMatchingSearchCriteria_whenNoTicketIsSet() {
+        // given
+        List<ErrorGroup> groups = List.of(
+                createErrorGroup("111", "eventName1", "source1", "nullpointer1", "stackTraceHash1"),
+                createErrorGroup("222", "eventName2", "source2", "nullpointer2", "stackTraceHash2"),
+                createErrorGroup("333", "eventName3", "source3", "nullpointer3", "stackTraceHash3")
+        );
+        errorGroupRepository.saveAll(groups);
+        groups.forEach(errorGroup -> {
+            errorRepository.save(createError(errorGroup));
+            errorRepository.save(createError(errorGroup));
+        });
+
+        ErrorGroupSearchFormDto searchForm = new ErrorGroupSearchFormDto();
+        searchForm.setNoTicket(true);
+
+        // when
+        ErrorGroupResponse response = getAllGroupsWithBody(searchForm);
+
+        //then
+        Assertions.assertThat(response.totalErrorGroupCount()).isEqualTo(3);
+
+        //when
+        groups.getFirst().setTicketNumber("ABC-123");
+        errorGroupRepository.save(groups.getFirst());
+
+        //then
+        response = getAllGroupsWithBody(searchForm);
+        Assertions.assertThat(response.totalErrorGroupCount()).isEqualTo(2);
+    }
+
+    @Test
+    void shouldReturnGroupsMatchingSearchCriteria_whenDateRangeIsSet() {
+        // given
+        List<ErrorGroup> groups = List.of(
+                createErrorGroup("111", "eventName1", "source1", "nullpointer1", "stackTraceHash1"),
+                createErrorGroup("222", "eventName2", "source2", "nullpointer2", "stackTraceHash2"),
+                createErrorGroup("333", "eventName3", "source3", "nullpointer3", "stackTraceHash3")
+        );
+        errorGroupRepository.saveAll(groups);
+        // All error have creation date 3 days ago
+        groups.forEach(errorGroup -> {
+            errorRepository.save(createError(errorGroup));
+            errorRepository.save(createError(errorGroup));
+        });
+
+        ErrorGroupSearchFormDto searchForm = new ErrorGroupSearchFormDto();
+        // when #1 - date range includes all errors
+        searchForm.setDateFrom(ZonedDateTime.now().minusDays(4).toString());
+        ErrorGroupResponse response = getAllGroupsWithBody(searchForm);
+
+        //then #1
+        Assertions.assertThat(response.totalErrorGroupCount()).isEqualTo(3);
+
+        // when #2 - date range excludes all errors
+        searchForm.setDateFrom(ZonedDateTime.now().minusDays(2).toString());
+        response = getAllGroupsWithBody(searchForm);
+
+        // then #2
+        Assertions.assertThat(response.totalErrorGroupCount()).isEqualTo(0);
+
+        // when #3 - date range excludes all errors
+        searchForm.setDateFrom(ZonedDateTime.now().toString());
+        searchForm.setDateTo(ZonedDateTime.now().minusDays(5).toString());
+        response = getAllGroupsWithBody(searchForm);
+
+        // then #3
+        Assertions.assertThat(response.totalErrorGroupCount()).isEqualTo(0);
+    }
+
+    @Test
+    void shouldReturnGroupsMatchingSearchCriteria_whenStringFiltersAreSet() {
+        // given
+        List<ErrorGroup> groups = List.of(
+                createErrorGroup("111", "eventName1", "source1", "nullpointer1", "stackTraceHash1"),
+                createErrorGroup("222", "eventName2", "source2", "nullpointer2", "stackTraceHash2"),
+                createErrorGroup("333", "eventName3", "source3", "nullpointer3", "stackTraceHash3")
+        );
+        errorGroupRepository.saveAll(groups);
+        // All error have creation date 3 days ago
+        groups.forEach(errorGroup -> {
+            errorRepository.save(createError(errorGroup));
+            errorRepository.save(createError(errorGroup));
+        });
+
+        ErrorGroupSearchFormDto searchForm = new ErrorGroupSearchFormDto();
+        // when #1 -
+        searchForm.setMessageType("eventName1");
+        ErrorGroupResponse response = getAllGroupsWithBody(searchForm);
+
+        //then #1
+        Assertions.assertThat(response.totalErrorGroupCount()).isEqualTo(1);
+
+        searchForm.setMessageType(null);
+        searchForm.setSource("source2");
+        response = getAllGroupsWithBody(searchForm);
+        Assertions.assertThat(response.totalErrorGroupCount()).isEqualTo(1);
+
+    }
+
+    @Test
+    void shouldReturnGroupsMatchingSearchCriteria_whenFilterHasEmptyStrings() {
+        // given
+        List<ErrorGroup> groups = List.of(
+                createErrorGroup("111", "eventName1", "source1", "nullpointer1", "stackTraceHash1"),
+                createErrorGroup("222", "eventName2", "source2", "nullpointer2", "stackTraceHash2"),
+                createErrorGroup("333", "eventName3", "source3", "nullpointer3", "stackTraceHash3")
+        );
+        errorGroupRepository.saveAll(groups);
+        groups.forEach(errorGroup -> {
+            errorRepository.save(createError(errorGroup));
+            errorRepository.save(createError(errorGroup));
+        });
+
+        ErrorGroupSearchFormDto searchForm = new ErrorGroupSearchFormDto();
+        searchForm.setMessageType("");
+        searchForm.setSource("");
+        ErrorGroupResponse response = getAllGroupsWithBody(searchForm);
+        Assertions.assertThat(response.totalErrorGroupCount()).isEqualTo(3);
+
+    }
+
+    private ErrorGroupResponse getAllGroupsWithBody(ErrorGroupSearchFormDto searchForm) {
+        return given().
+                spec(apiSpec).
+                auth().oauth2(createAuthTokenForUserRoles(VIEW_ROLE)).
+                contentType("application/json").
+                body(searchForm).
+                when().
+                post(ALL_GROUP_URL).
+                then().
+                statusCode(HttpStatus.OK.value()).extract().as(ErrorGroupResponse.class);
     }
 
     @Test

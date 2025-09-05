@@ -7,7 +7,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
+import static ch.admin.bit.jeap.errorhandling.web.api.DateTimeUtils.parseDate;
 import static ch.admin.bit.jeap.errorhandling.web.api.DateTimeUtils.timestamp;
 
 @Tag(name = "ErrorGroup")
@@ -26,11 +26,29 @@ public class ErrorGroupController {
 
     private final ErrorGroupService errorGroupService;
 
-    @GetMapping
+    @PostMapping()
     @PreAuthorize("hasRole('errorgroup','view')")
     public ErrorGroupResponse getGroups(@RequestParam(name = "pageIndex", required = false, defaultValue = "0") int pageIndex,
-                                        @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
-        ErrorGroupAggregatedDataList errorGroups = errorGroupService.findErrorGroupAggregatedData(PageRequest.of(pageIndex, pageSize));
+                                        @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize,
+                                        @RequestBody(required = false) ErrorGroupSearchFormDto errorGroupSearchFormDto) {
+
+        if (errorGroupSearchFormDto == null) {
+            errorGroupSearchFormDto = new ErrorGroupSearchFormDto();
+        }
+
+        ErrorGroupSearchCriteria errorGroupSearchCriteria = ErrorGroupSearchCriteria.builder()
+                .dateFrom(parseDate(errorGroupSearchFormDto.getDateFrom()))
+                .dateTo(parseDate(errorGroupSearchFormDto.getDateTo()))
+                .noTicket(errorGroupSearchFormDto.getNoTicket())
+                .source(errorGroupSearchFormDto.getSource())
+                .messageType(errorGroupSearchFormDto.getMessageType())
+                .errorCode(errorGroupSearchFormDto.getErrorCode())
+                .jiraTicket(errorGroupSearchFormDto.getJiraTicket())
+                .pageIndex(pageIndex)
+                .pageSize(pageSize)
+                .build();
+
+        ErrorGroupAggregatedDataList errorGroups = errorGroupService.findErrorGroupAggregatedData(errorGroupSearchCriteria);
         List<ErrorGroupDTO> errorGroupDTOS = errorGroups.groups().stream()
                 .map(this::mapToDTO)
                 .toList();
@@ -80,7 +98,8 @@ public class ErrorGroupController {
                 timestamp(groupAggregatedData.getFirstErrorAt()),
                 timestamp(groupAggregatedData.getLatestErrorAt()),
                 groupAggregatedData.getTicketNumber(),
-                groupAggregatedData.getFreeText()
+                groupAggregatedData.getFreeText(),
+                groupAggregatedData.getStackTraceHash()
         );
     }
 }

@@ -23,4 +23,6 @@ public interface ErrorGroupAggregatedData {
     String getTicketNumber();
 
     String getFreeText();
+
+    String getStackTraceHash();
 }

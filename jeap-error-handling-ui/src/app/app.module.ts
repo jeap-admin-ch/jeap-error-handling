@@ -58,6 +58,7 @@ import {ErrorGroupPageComponent} from './pages/error-group-page/error-group-page
 import {ErrorGroupsComponent} from './errorgroups/error-groups.component';
 import {ForbiddenPageComponent} from './pages/error-pages/forbidden-page/forbidden-page.component';
 import {QdShellHeaderWidgetEnvironment} from '@quadrel-services/qd-auth/lib/config/model/config.model';
+import {ErrorGroupFilterComponent} from "./errorgroups/error-group-filter/error-group-filter.component";
 
 @NgModule({ declarations: [
         AppComponent,
@@ -111,7 +112,7 @@ import {QdShellHeaderWidgetEnvironment} from '@quadrel-services/qd-auth/lib/conf
         ReactiveFormsModule,
         ObButtonModule,
         FormsModule,
-        ObNotificationModule], providers: [
+        ObNotificationModule, ErrorGroupFilterComponent], providers: [
         { provide: MAT_DATE_LOCALE, useValue: 'de-CH' },
         {
             provide: OB_PAMS_CONFIGURATION,

@@ -1,8 +1,9 @@
 import {Injectable} from "@angular/core";
 import {environment} from "../../../environments/environment";
-import { HttpClient, HttpParams } from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ErrorGroupDTO, ErrorGroupResponse} from "./error-group.model";
+import {ErrorGroupSearchFormDto} from "../errorservice/error.model";
 
 @Injectable({
 	providedIn: 'root'
@@ -14,12 +15,13 @@ export class ErrorGroupService {
 	constructor(private readonly http: HttpClient) {
 	}
 
-	getGroups(pageIndex: number = 0, pageSize: number = 10): Observable<ErrorGroupResponse> {
+	getGroups(pageIndex: number = 0, pageSize: number = 10, errorGroupSearchFormDto: ErrorGroupSearchFormDto): Observable<ErrorGroupResponse> {
 		let params = new HttpParams()
 			.set('pageIndex', pageIndex.toString())
 			.set('pageSize', pageSize.toString());
+
 		const requestUrl = `${ErrorGroupService.groupUrl}`;
-		return this.http.get<ErrorGroupResponse>(requestUrl, {params});
+		return this.http.post<ErrorGroupResponse>(requestUrl, errorGroupSearchFormDto, {params});
 	}
 
 	updateTicketNumber(errorGroupId: string, ticketNumber: string): Observable<ErrorGroupDTO> {

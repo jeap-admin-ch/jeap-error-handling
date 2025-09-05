@@ -57,6 +57,18 @@ export interface ErrorSearchFormDto {
 	ticketNumber: string;
 }
 
+export interface ErrorGroupSearchFormDto {
+	noTicket: boolean;
+	dateFrom: string;
+	dateTo: string;
+	source: string;
+	messageType: string;
+	errorCode: string;
+	jiraTicket: string;
+	sortField: string;
+	sortOrder: string;
+}
+
 export interface ErrorGroupDTO {
 	errorGroupId: string;
 	errorCount: number;
