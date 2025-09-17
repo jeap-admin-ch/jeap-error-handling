@@ -1,0 +1,3 @@
+# This service is not affected by this because of using @EnableMethodSecurity
+CVE-2025-41248
+CVE-2025-41249
