@@ -11,10 +11,10 @@
 							<div style="display: flex; align-items: baseline; gap: 8px; min-height: 36px;">
 								<mat-form-field>
 									<mat-label>Ticket Number:</mat-label>
-									<input type="text" matInput [value]="errorGroupDetails.ticketNumber"/>
+									<input type="text" matInput [value]="errorGroupDetails.ticketNumber" #ticketInput/>
 								</mat-form-field>
 								<button mat-button obButton="primary" type="button"
-										[disabled]=isCreateButtonDisabled()
+										[disabled]="!ticketInput.value"
 										(click)=createTicket()
 										style="height: 36px; min-width: 150px">Create Ticket
 								</button>
@@ -22,9 +22,11 @@
 							<div style="display: flex; align-items: baseline; gap: 8px; min-height: 36px;">
 								<mat-form-field>
 									<mat-label>Free Text</mat-label>
-									<textarea matInput [value]="errorGroupDetails.freeText"></textarea>
+									<textarea matInput [value]="errorGroupDetails.freeText" #freeTextInput></textarea>
 								</mat-form-field>
 								<button mat-button obButton="primary" type="button"
+                                        [disabled]="!freeTextInput.value"
+                                        (click)="saveFreeText(freeTextInput.value)"
 										style="height: 36px; min-width: 150px">Save Free Text
 								</button>
 							</div>
