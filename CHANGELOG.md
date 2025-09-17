@@ -10,6 +10,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 - Redesign Error Group Search
+- Added Error Group Detail View
 
 ## [11.16.0] - 2025-09-29
 
