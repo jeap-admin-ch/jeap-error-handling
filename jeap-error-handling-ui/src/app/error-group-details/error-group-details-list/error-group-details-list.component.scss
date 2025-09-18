@@ -1,0 +1,25 @@
+
+#actions-column {
+	width: 180px;
+}
+
+button, a {
+	margin-right: 5px;
+}
+
+form button mat-icon {
+	color: grey;
+	max-width: 1rem;
+}
+
+.form-buttons {
+	width: 100%;
+}
+
+.form-buttons button {
+	width: 48%;
+}
+
+.actions-wrapper {
+	display: flex;
+}

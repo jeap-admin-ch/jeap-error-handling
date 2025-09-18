@@ -1,6 +1,6 @@
 <mat-card>
 	<mat-card-header>
-		<h5>Error Group Details</h5>
+		<h5>{{ "i18n.errorGroupDetails" | translate }}</h5>
 	</mat-card-header>
 	<mat-card-content>
 		<form>
@@ -10,36 +10,36 @@
 						<mat-card-content>
 							<div style="display: flex; align-items: baseline; gap: 8px; min-height: 36px;">
 								<mat-form-field>
-									<mat-label>Ticket Number:</mat-label>
+									<mat-label>{{ "i18n.jiraTicket" | translate }}</mat-label>
 									<input type="text" matInput [value]="errorGroupDetails.ticketNumber" #ticketInput/>
 								</mat-form-field>
 								<button mat-button obButton="primary" type="button"
-										[disabled]="!ticketInput.value"
+										[disabled]="!!ticketInput.value"
 										(click)=createTicket()
-										style="height: 36px; min-width: 150px">Create Ticket
+										style="height: 36px; min-width: 150px">{{ "i18n.createJiraTicket" | translate }}
 								</button>
 							</div>
 							<div style="display: flex; align-items: baseline; gap: 8px; min-height: 36px;">
 								<mat-form-field>
-									<mat-label>Free Text</mat-label>
+									<mat-label>{{ "i18n.error.timestamp.freeText" | translate }}</mat-label>
 									<textarea matInput [value]="errorGroupDetails.freeText" #freeTextInput></textarea>
 								</mat-form-field>
 								<button mat-button obButton="primary" type="button"
                                         [disabled]="!freeTextInput.value"
                                         (click)="saveFreeText(freeTextInput.value)"
-										style="height: 36px; min-width: 150px">Save Free Text
+										style="height: 36px; min-width: 150px">{{ "i18n.saveFreeText" | translate }}
 								</button>
 							</div>
 							<mat-form-field>
-								<mat-label>Group ID:</mat-label>
+								<mat-label>{{ "i18n.errorGroupId" | translate }}</mat-label>
 								<input type="text" matInput [value]="errorGroupDetails.errorGroupId" readonly/>
 							</mat-form-field>
 							<mat-form-field>
-								<mat-label>Message Type:</mat-label>
+								<mat-label>{{ "i18n.errorhandling.form.messagetype" | translate }}</mat-label>
 								<input type="text" matInput [value]="errorGroupDetails.errorEvent" readonly/>
 							</mat-form-field>
 							<mat-form-field>
-								<mat-label>Source:</mat-label>
+								<mat-label>{{  "i18n.errorhandling.form.source" | translate }}</mat-label>
 								<input type="text" matInput [value]="errorGroupDetails.errorPublisher" readonly/>
 							</mat-form-field>
 						</mat-card-content>
@@ -49,23 +49,23 @@
 					<mat-card>
 						<mat-card-content>
 							<mat-form-field>
-								<mat-label>Count:</mat-label>
+								<mat-label>{{ "i18n.error.errorCount" | translate }}</mat-label>
 								<input type="text" matInput [value]="errorGroupDetails.errorCount" readonly/>
 							</mat-form-field>
 							<mat-form-field>
-								<mat-label>First:</mat-label>
+								<mat-label>{{ "i18n.error.createdAt" | translate }}</mat-label>
 								<input type="text" matInput [value]="errorGroupDetails.firstErrorAt" readonly/>
 							</mat-form-field>
 							<mat-form-field>
-								<mat-label>Last:</mat-label>
+								<mat-label>{{ "i18n.error.modifiedAt" | translate }}</mat-label>
 								<input type="text" matInput [value]="errorGroupDetails.latestErrorAt" readonly/>
 							</mat-form-field>
 							<mat-form-field>
-								<mat-label>Code:</mat-label>
+								<mat-label>{{ "i18n.errorhandling.form.errorcode" | translate }}</mat-label>
 								<input type="text" matInput [value]="errorGroupDetails.errorCode" readonly/>
 							</mat-form-field>
 							<mat-form-field>
-								<mat-label>Hashcode Stack Trace:</mat-label>
+								<mat-label>Stacktrace Hash</mat-label>
 								<input type="text" matInput [value]="errorGroupDetails.stackTraceHash" readonly/>
 							</mat-form-field>
 						</mat-card-content>

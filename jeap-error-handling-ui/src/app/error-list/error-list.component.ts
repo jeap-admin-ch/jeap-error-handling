@@ -3,7 +3,7 @@ import {Observable} from 'rxjs';
 import {ErrorService} from '../shared/errorservice/error.service';
 import {ErrorDTO, ErrorListDTO, ErrorSearchFormDto} from '../shared/errorservice/error.model';
 import {NotifierService} from '../shared/notifier/notifier.service';
-import {AbstractControl, FormControl, FormGroup, ValidatorFn} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {MatSort, Sort} from '@angular/material/sort';
 import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
@@ -11,19 +11,19 @@ import {map, startWith, switchMap} from 'rxjs/operators';
 import {LogDeepLinkService} from '../shared/logdeeplink/logdeeplink.service';
 import {SelectionModel} from '@angular/cdk/collections';
 import {TranslateService} from '@ngx-translate/core';
-import {DialogService} from '../shared/dialog/dialog.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ErrorSearchFilter} from './error-list.model';
 import {endOfDay, startOfDay} from 'date-fns';
 import {environment} from '../../environments/environment';
 import {DropDownElement} from "../shared/models/drop-down-element.model";
+import {BaseComponent} from "../shared/BaseComponent";
 
 @Component({
 	selector: 'error-list',
 	templateUrl: './error-list.component.html',
 	styleUrls: ['./error-list.component.css']
 })
-export class ErrorListComponent implements AfterViewInit, OnInit {
+export class ErrorListComponent extends BaseComponent implements AfterViewInit, OnInit {
 
 	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 	@ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -59,10 +59,10 @@ export class ErrorListComponent implements AfterViewInit, OnInit {
 				private readonly notifierService: NotifierService,
 				private readonly logDeepLinkService: LogDeepLinkService,
 				protected readonly translateService: TranslateService,
-				private readonly dialogService: DialogService,
 				private readonly router: Router,
 				private readonly activatedRoute: ActivatedRoute,
 				private readonly cdr: ChangeDetectorRef) {
+		super();
 	}
 
 	ngOnInit(): void {
@@ -207,92 +207,38 @@ export class ErrorListComponent implements AfterViewInit, OnInit {
 	}
 
 	resendSelected() {
-		const message = this.selection.selected.some(e => e.errorState.includes('DELETED'))
-			? this.translateService.instant('i18n.errorhandling.confirm.closed-errors')
-			: this.translateService.instant('i18n.errorhandling.confirm', {
-				count: this.selection.selected.length
-			});
-
-		this.dialogService.confirm(message).subscribe(confirmed => {
-			if (confirmed) {
-				const errorIds: string[] = this.selection.selected.map(error => error.id);
-				this.errorService.massRetry(errorIds).subscribe(
-					() => {
-						this.reload();
-						this.notifierService.notifySuccess('i18n.errorhandling.action.retry', 'i18n.errorhandling.action.success')();
-					},
-					(error) => {
-						this.notifyFailure(error);
-					}
-				);
-			}
-		});
+		this.errorService.massRetryWithDialog(
+			this.selection.selected,
+			() => this.reload(),
+			(errorMessage) => this.notifierService.showFailureNotification(
+				errorMessage, 'i18n.errorhandling.failure', 'i18n.errorhandling.list.load'
+			)
+		);
 	}
 
 	deleteSelected() {
-		const count = this.selection.selected.length;
-		const message = this.translateService.instant('i18n.errorhandling.confirm', {count});
-
-		this.dialogService.confirm(message).subscribe(confirmed => {
-			if (confirmed) {
-				this.dialogService.getClosingReason().subscribe(reason => {
-					if (reason != null) {
-						const errorIds: string[] = this.selection.selected.map(error => error.id);
-						this.errorService.massDelete(errorIds, reason).subscribe(
-							() => {
-								this.reload();
-								this.notifierService.notifySuccess('i18n.errorhandling.action.delete', 'i18n.errorhandling.action.success')();
-							},
-							(error) => {
-								this.notifyFailure(error);
-							}
-						);
-					}
-				});
-			}
-		});
+		this.errorService.massDeleteWithDialog(
+			this.selection.selected,
+			() => this.reload(),
+			(errorMessage) => this.notifierService.showFailureNotification(
+				errorMessage, 'i18n.errorhandling.failure', 'i18n.errorhandling.list.load'
+			)
+		);
 	}
 
 	deleteRow(row: ErrorDTO) {
-		this.dialogService.getClosingReason().subscribe(reason => {
-			if (reason != null) {
-				this.errorService.delete(row.id, reason).subscribe(
-					() => {
-						this.reload();
-						this.notifierService.notifySuccess('i18n.errorhandling.action.delete', 'i18n.errorhandling.action.success')();
-					},
-					(error) => {
-						this.notifyFailure(error);
-					}
-				);
-			}
-
-		});
+		this.errorService.deleteRowWithDialog(
+			row,
+			() => this.reload(),
+			(error) => this.notifyFailure(error)
+		);
 	}
 
 	resendRow(row: ErrorDTO) {
-		if (row.errorState.includes('DELETED')) {
-			this.dialogService.confirm(
-				this.translateService.instant('i18n.errorhandling.confirm.closed-error')).subscribe(confirmed => {
-				if (confirmed) {
-					this.resendEntry(row.id);
-				}
-			});
-		} else {
-			this.resendEntry(row.id);
-		}
-	}
-
-	resendEntry(id: string) {
-		this.errorService.retry(id).subscribe(
-			() => {
-				this.reload();
-				this.notifierService.notifySuccess('i18n.errorhandling.action.retry', 'i18n.errorhandling.action.success')();
-			},
-			(error) => {
-				this.notifyFailure(error);
-			}
-		);
+		this.errorService.resendRowWithDialog(
+			row,
+			() => this.reload(),
+			(error) => this.notifyFailure(error));
 	}
 
 	resetStateSection() {
@@ -300,21 +246,6 @@ export class ErrorListComponent implements AfterViewInit, OnInit {
 		this.closingReasonControl.reset();
 	}
 
-	regexValidator(): ValidatorFn {
-		return (control: AbstractControl): { [key: string]: any } | null => {
-			const regexString = control.value;
-			if (!regexString) {
-				return null;
-			}
-			try {
-				// tslint:disable-next-line:no-unused-expression
-				new RegExp(regexString);
-				return null;
-			} catch (e) {
-				return {'invalidRegex': {value: regexString}};
-			}
-		};
-	}
 
 	loadErrors(pageIndex: number, sortState: Sort): Observable<ErrorListDTO> {
 		this.isLoadingResults = true;

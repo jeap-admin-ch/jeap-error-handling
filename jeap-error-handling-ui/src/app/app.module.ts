@@ -45,9 +45,9 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 
 import {ErrorListPageComponent} from './pages/error-list-page/error-list-page.component';
-import {ErrorListComponent} from './errorlist/error-list.component';
+import {ErrorListComponent} from './error-list/error-list.component';
 import {ErrorDetailsPageComponent} from './pages/error-details-page/error-details-page.component';
-import {ErrorDetailsComponent} from './errordetails/error-details.component';
+import {ErrorDetailsComponent} from './error-details/error-details.component';
 import {CommonModule} from '@angular/common';
 import {QdAuthModule, QdConfigService} from '@quadrel-services/qd-auth';
 import {appSetup, authConfig} from '../environments/environment';
@@ -55,10 +55,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ConfirmationDialogComponent} from './shared/dialog/confirmation-dialog/confirmation-dialog.component';
 import {ClosingReasonDialogComponent} from './shared/dialog/closing-reason-dialog/closing-reason-dialog.component';
 import {ErrorGroupPageComponent} from './pages/error-group-page/error-group-page.component';
-import {ErrorGroupsComponent} from './errorgroups/error-groups.component';
+import {ErrorGroupsComponent} from './error-groups/error-groups.component';
 import {ForbiddenPageComponent} from './pages/error-pages/forbidden-page/forbidden-page.component';
 import {QdShellHeaderWidgetEnvironment} from '@quadrel-services/qd-auth/lib/config/model/config.model';
-import {ErrorGroupFilterComponent} from "./errorgroups/error-group-filter/error-group-filter.component";
+import {ErrorGroupFilterComponent} from "./error-groups/error-group-filter/error-group-filter.component";
 
 @NgModule({ declarations: [
         AppComponent,

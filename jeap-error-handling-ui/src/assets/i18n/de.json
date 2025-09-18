@@ -41,7 +41,8 @@
   "i18n.error.timestamp.ticketNumber": "Jira",
   "i18n.error.timestamp.freeText": "Freitext",
   "i18n.errorhandling.form.stacktrace": "Regex Stacktrace Suche",
-  "i18n.errorhandling.form.stacktrace.invalid": "Ungültiger Regex-Ausdruck",
+  "i18n.regex.invalid": "Ungültiger Regex-Ausdruck",
+  "i18n.regex.message": "Regex Message Suche",
   "i18n.errorhandling.form.closing-reason": "Schliessbegründung",
   "i18n.errorhandling.list.multi-resend": "Ausgewählte Fehler wiederversenden",
   "i18n.errorhandling.list.multi-delete": "Ausgewählte Fehler löschen",
@@ -108,5 +109,16 @@
   "i18n.deadLetter.error-message": "Fehler: Messages aus der Dead-Letter Topic konnten nicht reaktiviert werden.",
   "i18n.deadLetter.success-message": "Messages von der Dead-Letter Topic wurden wieder hergestellt.",
   "i18n.noTicket": "Kein Jira-Ticket (unbekannt)",
-  "i18n.jiraTicket": "Jira Ticket"
+  "i18n.jiraTicket": "Jira Ticket",
+  "i18n.errorGroup": "Fehlergruppe",
+  "i18n.errorGroupDetails": "Fehlergruppen Details",
+  "i18n.createJiraTicket": "Jira-Ticket erstellen",
+  "i18n.saveFreeText": "Speichere Freitext",
+  "i18n.errorGroupId": "Error Gruppen ID",
+  "i18n.saveFreeTextSuccess": "Freitext erfolgreich gespeichert",
+  "i18n.saveFreeTextNoSuccess": "Konnte Freitext nicht speichern",
+  "i18n.goToErrorGroup": "Zur Fehlergruppe",
+  "i18n.copyStacktrace": "Stracktrace kopieren",
+  "i18n.copyStacktraceSuccess": "Stacktrace wurde in die Zwischenablage kopiert"
+
 }

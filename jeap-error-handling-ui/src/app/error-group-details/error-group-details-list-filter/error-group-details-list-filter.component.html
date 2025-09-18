@@ -1,2 +1,55 @@
-<p>error-group-details-list-filter works!</p>
-<p>Error-List-Filter wird in Story https://jira.bit.admin.ch/browse/JEAP-5458 umgesetzt</p>
+<mat-card>
+    <mat-card-content>
+		<form [formGroup]="searchFilterFormGroup" (ngSubmit)="search()">
+
+			<!-- Date from -->
+			<mat-form-field>
+				<input matInput formControlName="dateFrom" [matDatepicker]="pickerFrom" placeholder="{{'i18n.errorhandling.form.date-from' | translate}}"/>
+				<mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+				<mat-datepicker #pickerFrom></mat-datepicker>
+			</mat-form-field>
+
+			<!-- Date to -->
+			<mat-form-field>
+				<input matInput formControlName="dateTo" [matDatepicker]="pickerTo" placeholder="{{'i18n.errorhandling.form.date-to' | translate}}"/>
+				<mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+				<mat-datepicker #pickerTo></mat-datepicker>
+			</mat-form-field>
+
+			<!-- Stacktrace -->
+			<mat-form-field>
+				<mat-label>Stacktrace</mat-label>
+				<input type="text" formControlName="stacktracePattern" matInput
+					   placeholder="{{'i18n.errorhandling.form.stacktrace' | translate }}"/>
+				<mat-error *ngIf="stacktraceControl.invalid">{{ 'i18n.regex.invalid' | translate }}
+				</mat-error>
+				<button *ngIf="stacktraceControl.value" matSuffix mat-icon-button (click)="stacktraceControl.reset()">
+					<mat-icon svgIcon="cancel-circle"></mat-icon>
+				</button>
+			</mat-form-field>
+
+			<!-- Message -->
+			<mat-form-field>
+				<mat-label>Message</mat-label>
+				<input type="text" formControlName="messagePattern" matInput
+					   placeholder="{{'i18n.regex.message' | translate }}"/>
+				<mat-error *ngIf="messageControl.invalid">{{ 'i18n.regex.invalid' | translate }}
+				</mat-error>
+				<button *ngIf="messageControl.value" matSuffix mat-icon-button (click)="messageControl.reset()">
+					<mat-icon svgIcon="cancel-circle"></mat-icon>
+				</button>
+			</mat-form-field>
+
+			<!-- Buttons -->
+			<div class="ehs-form-buttons">
+				<button mat-button obButton="primary" type="submit" [disabled]="!!searchFilterFormGroup.invalid || isLoadingResults">
+					{{ 'i18n.errorhandling.search' | translate }}
+				</button>
+				<button mat-button obButton="secondary" type="reset" (click)="resetClicked()"  [disabled]="isLoadingResults">
+					{{ 'i18n.errorhandling.reset' | translate }}
+				</button>
+			</div>
+		</form>
+
+	</mat-card-content>
+</mat-card>

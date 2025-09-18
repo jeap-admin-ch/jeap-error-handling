@@ -2,12 +2,14 @@ package ch.admin.bit.jeap.errorhandling.infrastructure.persistence;
 
 import ch.admin.bit.jeap.errorhandling.domain.housekeeping.RepositoryHousekeeping;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error.ErrorState;
+import ch.admin.bit.jeap.errorhandling.web.api.ErrorGroupListSearchCriteria;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 
@@ -28,6 +30,8 @@ class ErrorRepositoryTest {
     private ErrorRepository errorRepository;
     @Autowired
     private CausingEventRepository causingEventRepository;
+    @Autowired
+    private ErrorGroupRepository errorGroupRepository;
 
     @BeforeEach
     void saveTestData() {
@@ -71,7 +75,7 @@ class ErrorRepositoryTest {
 
     @Test
     void countErrorsByErrorEventIdempotenceId() {
-        Error error = errorRepository.findAll().get(0);
+        Error error = errorRepository.findAll().getFirst();
         int counterNonExisting = errorRepository.countErrorsByErrorEventIdempotenceId("does-not-exist");
         int counterOneError = errorRepository.countErrorsByErrorEventIdempotenceId(error.getErrorEventMetadata().getIdempotenceId());
 
@@ -91,14 +95,85 @@ class ErrorRepositoryTest {
     void getAllEventSources() {
         List<String> eventSources = errorRepository.getAllEventSources();
         assertEquals(1, eventSources.size());
-        assertEquals("service", eventSources.get(0));
+        assertEquals("service", eventSources.getFirst());
     }
 
     @Test
     void getAllErrorCodes() {
         List<String> errorCodes = errorRepository.getAllErrorCodes();
         assertEquals(1, errorCodes.size());
-        assertEquals("errorCode1", errorCodes.get(0));
+        assertEquals("errorCode1", errorCodes.getFirst());
+    }
+
+    @Test
+    void findByGroupId_returnsErrorsWithGivenGroupId() {
+        EventMetadata metadata = getEventMetadata("event-id-group");
+        CausingEvent causingEvent = saveCausingEvent(metadata);
+
+        ErrorGroup errorGroup = new ErrorGroup("group-error-code", "group-event-name", "group-error-publisher", "group-error-message", "group-error-stack-trace-hash");
+        errorGroupRepository.save(errorGroup);
+
+        Error error = Error.builder()
+                .state(Error.ErrorState.PERMANENT)
+                .causingEvent(causingEvent)
+                .errorGroup(errorGroup)
+                .errorEventData(ErrorEventData.builder()
+                        .code("errorCode1")
+                        .temporality(ErrorEventData.Temporality.PERMANENT)
+                        .message("test")
+                        .stackTrace("test-stack-trace")
+                        .stackTraceHash("test-stack-trace-hash")
+                        .build())
+                .errorEventMetadata(getEventMetadata(UUID.randomUUID().toString()))
+                .closingReason("")
+                .created(ZonedDateTime.now())
+                .build();
+        errorRepository.save(error);
+
+        Page<Error> result = errorRepository.findByGroupIdAndCriteria(errorGroup.getId(), null, Pageable.ofSize(10));
+        assertThat(result.getContent()).hasSize(1);
+        assertEquals(errorGroup.getId(), result.getContent().getFirst().getErrorGroup().getId());
+    }
+
+    @Test
+    void findByGroupId_returnsErrorsWithGivenGroupIdAndCriteria() {
+        EventMetadata metadata = getEventMetadata("event-id-group");
+        CausingEvent causingEvent = saveCausingEvent(metadata);
+
+        ErrorGroup errorGroup = new ErrorGroup("group-error-code", "group-event-name", "group-error-publisher", "group-error-message", "group-error-stack-trace-hash");
+        errorGroupRepository.save(errorGroup);
+
+        Error error = Error.builder()
+                .state(Error.ErrorState.PERMANENT)
+                .causingEvent(causingEvent)
+                .errorGroup(errorGroup)
+                .errorEventData(ErrorEventData.builder()
+                        .code("errorCode1")
+                        .temporality(ErrorEventData.Temporality.PERMANENT)
+                        .message("test")
+                        .stackTrace("test-stack-trace")
+                        .stackTraceHash("test-stack-trace-hash")
+                        .build())
+                .errorEventMetadata(getEventMetadata(UUID.randomUUID().toString()))
+                .closingReason("")
+                .created(ZonedDateTime.now())
+                .build();
+        errorRepository.save(error);
+
+        ErrorGroupListSearchCriteria criteria = ErrorGroupListSearchCriteria.builder()
+                .dateFrom(ZonedDateTime.now().minusDays(1))
+                .dateTo(ZonedDateTime.now().plusDays(1))
+                .build();
+
+        Page<Error> result = errorRepository.findByGroupIdAndCriteria(errorGroup.getId(), criteria, Pageable.ofSize(10));
+        assertThat(result.getContent()).hasSize(1);
+        assertEquals(errorGroup.getId(), result.getContent().getFirst().getErrorGroup().getId());
+    }
+
+    @Test
+    void findByGroupIdWithNotExistingGroupId_returnsEmpty() {
+        Page<Error> emptyResult = errorRepository.findByGroupIdAndCriteria(UUID.fromString("123e4567-e89b-12d3-a456-426614174000"), null, Pageable.ofSize(10));
+        assertThat(emptyResult.getContent()).isEmpty();
     }
 
     private void saveMultipleErrorsWithState(ErrorState state, CausingEvent causingEvent) {

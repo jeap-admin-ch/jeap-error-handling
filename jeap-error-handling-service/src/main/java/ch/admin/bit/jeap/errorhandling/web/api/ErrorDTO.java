@@ -39,4 +39,5 @@ class ErrorDTO {
     private String freeText;
     private boolean signed;
     private String jeapCert;
+    private String errorGroupId;
 }

@@ -10,6 +10,7 @@ import {LogDeepLinkService} from '../shared/logdeeplink/logdeeplink.service';
 import { DialogService } from '../shared/dialog/dialog.service';
 import {TranslateService} from '@ngx-translate/core';
 import {environment} from '../../environments/environment';
+import {ObNotificationService} from "@oblique/oblique";
 
 @Component({
 	selector: 'error-details',
@@ -32,7 +33,8 @@ export class ErrorDetailsComponent implements OnInit {
 		private readonly location: Location,
 		private readonly logDeepLinkService: LogDeepLinkService,
 		private readonly dialogService: DialogService,
-		private readonly translateService: TranslateService
+		private readonly translateService: TranslateService,
+		private readonly obNotificationService: ObNotificationService
 	) { }
 
 	ngOnInit() {
@@ -97,5 +99,13 @@ export class ErrorDetailsComponent implements OnInit {
 
 	generateTicketSystemUrl(ticketNumber: string): string {
 		return environment.TICKETING_SYSTEM_URL.replace('{ticketNumber}', ticketNumber);
+	}
+
+	copyStacktrace(stacktrace: string) {
+		if (stacktrace) {
+			navigator.clipboard.writeText(stacktrace).then(
+				() => this.obNotificationService.success({message: 'i18n.copyStacktraceSuccess'})
+			);
+		}
 	}
 }

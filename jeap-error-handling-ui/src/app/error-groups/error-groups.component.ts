@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort, Sort} from "@angular/material/sort";
 import {ErrorGroupDTO, ErrorGroupResponse} from "../shared/errorgroupservice/error-group.model";
@@ -21,14 +21,12 @@ import {ErrorGroupSearchFormDto} from "../shared/errorservice/error.model";
 export class ErrorGroupsComponent implements AfterViewInit, OnInit, OnDestroy {
 	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 	@ViewChild(MatSort, {static: true}) sort: MatSort;
-	@ViewChild('ticketNumberInput') ticketNumberInput: ElementRef;
 
 	isLoading = false;
-	editingElement: ErrorGroupDTO | null = null;
 	isLoadingResults = false;
 
 	displayedColumns: string[];
-	data: ErrorGroupDTO[] = [];
+	// data: ErrorGroupDTO[] = [];
 	dataSource = new MatTableDataSource<ErrorGroupDTO>([]);
 
 	errorGroupSearchFormDto: ErrorGroupSearchFormDto;
@@ -116,34 +114,6 @@ export class ErrorGroupsComponent implements AfterViewInit, OnInit, OnDestroy {
 		this.loadGroupErrors(this.dataSource.paginator.pageIndex, this.errorGroupSearchFormDto).subscribe(
 			errorList => this.errorGroupListLoaded(errorList)
 		);
-	}
-
-	startEdit(element: ErrorGroupDTO) {
-		this.editingElement = element;
-	}
-
-	cancelEdit() {
-		this.editingElement = null;
-	}
-
-	updateTicketNumber(errorGroupId: string, newTicketNumber: string) {
-		this.isLoading = true;
-		this.errorGroupService.updateTicketNumber(errorGroupId, newTicketNumber)
-			.subscribe((updatedElement: ErrorGroupDTO) => {
-				const index = this.data.findIndex(e => e.errorGroupId === updatedElement.errorGroupId);
-				if (index !== -1) {
-					const updateData = [...this.data];
-					updateData[index] = {...updatedElement};
-					this.data = updateData;
-				}
-				this.editingElement = null;
-				this.isLoading = false;
-			}, error => {
-				console.error("Error updating ticket number", error);
-				this.notifierService.showFailureNotification(error.error.message,
-					'i18n.errorhandling.failure', 'i18n.errorhandling.duplicate.ticket');
-				this.isLoading = false;
-			});
 	}
 
 	private errorGroupListLoaded(errorGroupResponse: ErrorGroupResponse): void {

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import {AbstractControl, FormsModule, ReactiveFormsModule, ValidatorFn} from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -17,7 +17,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule, Sort} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {of} from 'rxjs';
+import {async, of} from 'rxjs';
 import {TranslateModule, TranslateService} from '@ngx-translate/core';
 import {RouterModule} from '@angular/router';
 import {ObliqueTestingModule, ObMockTranslateService} from '@oblique/oblique';

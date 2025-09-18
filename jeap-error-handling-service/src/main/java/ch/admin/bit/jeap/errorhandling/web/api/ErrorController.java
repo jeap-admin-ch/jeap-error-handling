@@ -24,6 +24,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HexFormat;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -99,6 +100,36 @@ public class ErrorController {
                 .build();
 
         ErrorList errorList = errorSearchService.search(errorSearchCriteria);
+        return buildErrorList(errorList);
+    }
+
+    @PostMapping("/group")
+    @PreAuthorize("hasRole('error','view')")
+    @Schema(description = "Find Errors by errorGroupId and criterias")
+    @Transactional(readOnly = true)
+    public ErrorListDTO findErrorsByGroupId(
+            @RequestParam(name = "errorGroupId") UUID errorGroupId,
+            @RequestParam(name = "pageIndex", required = false, defaultValue = "0") int pageIndex,
+            @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize,
+            @RequestBody ErrorGroupListSearchFormDto errorGroupListSearchFormDto) {
+
+        if (errorGroupListSearchFormDto == null) {
+            errorGroupListSearchFormDto = new ErrorGroupListSearchFormDto();
+        }
+
+        String[] sort = {errorGroupListSearchFormDto.getSortField(), errorGroupListSearchFormDto.getSortOrder()};
+
+        ErrorGroupListSearchCriteria errorGroupListSearchCriteria = ErrorGroupListSearchCriteria.builder()
+                .dateFrom(parseDate(errorGroupListSearchFormDto.getDateFrom()))
+                .dateTo(parseDate(errorGroupListSearchFormDto.getDateTo()))
+                .stacktracePattern(errorGroupListSearchFormDto.getStacktracePattern())
+                .messagePattern(errorGroupListSearchFormDto.getMessagePattern())
+                .pageIndex(pageIndex)
+                .pageSize(pageSize)
+                .sort(sort)
+                .build();
+
+        ErrorList errorList = errorService.getErrorListByGroupId(errorGroupId, errorGroupListSearchCriteria);
         return buildErrorList(errorList);
     }
 
@@ -297,7 +328,13 @@ public class ErrorController {
                 .signed(jeapCert != null)
                 .jeapCert(jeapCert)
                 .canRetry(error.getState().isRetryAllowed())
-                .canDelete(error.getState().isDeleteAllowed());
+                .canDelete(error.getState().isDeleteAllowed())
+                .errorGroupId(
+                        Optional.ofNullable(error.getErrorGroup())
+                                .map(ErrorGroup::getId)
+                                .map(UUID::toString)
+                                .orElse(null)
+                );
     }
 
     private String extractJeapCert(List<MessageHeader> headers) {

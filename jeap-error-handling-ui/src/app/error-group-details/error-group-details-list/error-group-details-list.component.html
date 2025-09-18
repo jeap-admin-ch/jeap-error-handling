@@ -1,2 +1,87 @@
-<p>error-group-details-list works!</p>
-<p>Error-List wird in Story https://jira.bit.admin.ch/browse/JEAP-5458 umgesetzt</p>
+<mat-card>
+    <mat-card-content>
+        <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="ob-table table-sm">
+            <ng-container matColumnDef="selection">
+                <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                                  [checked]="selection.hasValue() && isAllSelected()"
+                                  [indeterminate]="selection.hasValue() && !isAllSelected()">
+                    </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()"
+                                  (change)="$event ? selection.toggle(row) : null"
+                                  [checked]="selection.isSelected(row)">
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="timestamp">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header="created">{{ "i18n.error.timestamp" | translate }}</th>
+                <th *matCellDef="let element" mat-header-cell scope="row">{{ element.timestamp }}</th>
+            </ng-container>
+
+            <ng-container matColumnDef="errorMessage">
+                <th *matHeaderCellDef mat-header-cell scope="col">{{ "i18n.error.errormessage" | translate }}</th>
+                <td *matCellDef="let element" mat-cell>{{ element.errorMessage }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="errorDetails">
+                <th mat-header-cell *matHeaderCellDef id="actions-column">
+                    <div class="actions-wrapper">
+                        <button
+                                (click)="resendSelected()"
+                                type="button"
+                                [disabled]="isActionDisabled('Retry')"
+                                mat-icon-button
+                                obButton="secondary"
+                                matTooltip="{{'i18n.errorhandling.list.multi-resend' | translate}}">
+                            <mat-icon svgIcon="repeat"></mat-icon>
+                        </button>
+                        <button
+                                (click)="deleteSelected()"
+                                type="button"
+                                [disabled]="isActionDisabled('Delete')"
+                                mat-icon-button
+                                obButton="secondary"
+                                matTooltip="{{'i18n.errorhandling.list.multi-delete' | translate}}">
+                            <mat-icon svgIcon="trash"></mat-icon>
+                        </button>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let row" id="actions-row">
+                    <div class="actions-wrapper">
+                        <a mat-icon-button obButton="secondary"
+                           [routerLink]="['/error-details', row.id]"
+                           [matTooltip]="'i18n.errorhandling.details' | translate">
+                            <mat-icon svgIcon="eye"></mat-icon>
+                        </a>
+                        <a mat-icon-button id="log-deep-link-btn" obButton="secondary"
+                           *ngIf="row.originalTraceIdString"
+                           [href]="logDeepLink" target="_blank" (click)="openDeepLink(row.originalTraceIdString)"
+                           [matTooltip]="'i18n.errorhandling.show-log' | translate">
+                            <mat-icon svgIcon="external"></mat-icon>
+                        </a>
+                        <button mat-icon-button color="primary" (click)="resendRow(row)" [disabled]="!row.canRetry"
+                                obButton="secondary"
+                                [matTooltip]="'i18n.errorhandling.resend' | translate">
+                            <mat-icon svgIcon="repeat"></mat-icon>
+                        </button>
+                        <button mat-icon-button color="primary" (click)="deleteRow(row)" [disabled]="!row.canDelete"
+                                obButton="secondary"
+                                [matTooltip]="'i18n.errorhandling.delete' | translate">
+                            <mat-icon svgIcon="trash"></mat-icon>
+                        </button>
+                    </div>
+                </td>
+            </ng-container>
+
+            <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+			<tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
+        </table>
+        <mat-paginator [length]="resultsLength"
+                       [pageSize]="20"
+                       [pageSizeOptions]="[5,10,20,50,100]"
+                       (page)="announcePaginatorChange($event)"/>
+    </mat-card-content>
+</mat-card>

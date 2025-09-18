@@ -440,6 +440,30 @@ class ErrorControllerTest {
         assertEquals("TAPAS-745", criteria.getTicketNumber().get());
     }
 
+    @Test
+    @WithAuthentication("viewRoleToken")
+    void findErrorsByGroupId_returnsExpectedResults() {
+        // Given
+        UUID groupId = UUID.randomUUID();
+        ErrorGroupListSearchFormDto searchFormDto = ErrorGroupListSearchFormDto.builder().build();
+        Error error = ErrorStubs.createPermanentError();
+        int totalElements = 1;
+        ErrorList errorList = new ErrorList(totalElements, List.of(error));
+        when(errorService.getErrorListByGroupId(eq(groupId), any(ErrorGroupListSearchCriteria.class)))
+                .thenReturn(errorList);
+
+        // When
+        ErrorListDTO result = errorController.findErrorsByGroupId(groupId, 0, 10, searchFormDto);
+
+        // Then
+        assertNotNull(result);
+        assertEquals(totalElements, result.getTotalErrorCount());
+        assertEquals(1, result.getErrors().size());
+        assertEquals(error.getId().toString(), result.getErrors().getFirst().getId());
+        verify(errorService, times(1)).getErrorListByGroupId(eq(groupId), any(ErrorGroupListSearchCriteria.class));
+    }
+
+
 
     private Error mockError() {
         Error permanentError = ErrorStubs.createPermanentError();

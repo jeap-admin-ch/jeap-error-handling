@@ -39,7 +39,8 @@
   "i18n.errorhandling.form.errorcode": "Code d'erreur",
   "i18n.error.timestamp.freeText": "Texte libre",
   "i18n.errorhandling.form.stacktrace": "Recherche de pile Regex",
-  "i18n.errorhandling.form.stacktrace.invalid": "Expression Regex invalide",
+  "i18n.regex.invalid": "Expression Regex invalide",
+  "i18n.regex.message": "Recherche de message Regex",
   "i18n.errorhandling.form.closing-reason": "Raison de fermeture",
   "i18n.errorhandling.list.multi-resend": "Renvoyer les erreurs sélectionnées",
   "i18n.errorhandling.list.multi-delete": "Supprimer les erreurs sélectionnées",
@@ -108,5 +109,15 @@
   "i18n.deadLetter.error-message": "Erreur: Les messages du dead letter topic n'ont pas pu être réactivés.",
   "i18n.deadLetter.success-message": "Les messages du topic dead-letter ont été restaurés.",
   "i18n.noTicket": "Pas de ticket Jira (inconnu)",
-  "i18n.jiraTicket": "Ticket Jira"
+  "i18n.jiraTicket": "Ticket Jira",
+  "i18n.errorGroup": "Groupe d'erreurs",
+  "i18n.errorGroupDetails": "Détails du groupe d'erreurs",
+  "i18n.createJiraTicket": "Créer un ticket Jira",
+  "i18n.saveFreeText": "Enregistrer Text",
+  "i18n.errorGroupId": "ID du groupe d'erreur",
+  "i18n.saveFreeTextSuccess": "Texte libre enregistré avec succès",
+  "i18n.saveFreeTextNoSuccess": "Impossible d'enregistrer le texte libre",
+  "i18n.goToErrorGroup": "Aller au groupe d'erreurs",
+  "i18n.copyStacktrace": "Copier la trace de pile",
+  "i18n.copyStacktraceSuccess": "La trace de pile a été copiée dans le presse-papiers"
 }

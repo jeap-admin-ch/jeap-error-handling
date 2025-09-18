@@ -15,6 +15,7 @@ import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error.ErrorSta
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorEventData;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorRepository;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ScheduledResend;
+import ch.admin.bit.jeap.errorhandling.web.api.ErrorGroupListSearchCriteria;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -97,6 +98,13 @@ public class ErrorService {
     @Transactional(readOnly = true)
     public boolean isEventDuplicate(String errorEventIdempotenceId) {
         return errorRepository.countErrorsByErrorEventIdempotenceId(errorEventIdempotenceId) > 0;
+    }
+
+    @Transactional(readOnly = true)
+    public ErrorList getErrorListByGroupId(UUID errorGroupId, ErrorGroupListSearchCriteria criteria) {
+
+        Page<Error> errors = errorRepository.findByGroupIdAndCriteria(errorGroupId, criteria, criteria.getPageable());
+        return new ErrorList(errors.getTotalElements(), errors.getContent());
     }
 
     public void manualResend(UUID errorId) {

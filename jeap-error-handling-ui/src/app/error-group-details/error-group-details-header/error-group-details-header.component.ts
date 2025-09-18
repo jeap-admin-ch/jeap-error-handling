@@ -39,16 +39,16 @@ export class ErrorGroupDetailsHeaderComponent {
     }
 
     saveFreeText(freeText: string) {
-        this.errorGroupService.updateFreeText(this.errorGroupDetails.errorGroupId, freeText).subscribe(
-            errorGroupDto => {
+        this.errorGroupService.updateFreeText(this.errorGroupDetails.errorGroupId, freeText).subscribe({
+            next: errorGroupDto => {
                 this.errorGroupDetails = errorGroupDto;
-                this.obNotificationService.success("Free text updated successfully.");
-            }),
-            error => {
-            	this.obNotificationService.error({title: 'Upps!', message: 'Error loading details.'});
+                this.obNotificationService.success({message: 'i18n.saveFreeTextSuccess'});
+            },
+            error: error => {
+                this.obNotificationService.error({message: 'i18n.saveFreeTextNoSuccess'});
                 console.error('Error updateFreeText:', error);
-        }
-
+            }
+        })
     }
 
 }

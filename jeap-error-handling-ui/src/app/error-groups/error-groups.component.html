@@ -8,7 +8,7 @@
 		<div style="position: relative; min-height: 200px;">
 			<mat-progress-bar *ngIf="isLoading" mode="query"></mat-progress-bar>
 			<table [dataSource]="dataSource" class="ob-table table-sm" mat-table matSort (matSortChange)="announceSortChange($event)">
-				<caption>Error Group List</caption>
+				<caption>{{ "i18n.errorGroup" | translate }}</caption>
 
 				<!-- Error Count -->
 				<ng-container matColumnDef="anzahl">
@@ -66,67 +66,12 @@
 					<td *matCellDef="let row" mat-cell>{{ row.latestErrorAt }}</td>
 				</ng-container>
 
-				<!-- Ticket Number -->
-				<ng-container class="oblique-input-container" matColumnDef="jira">
+				<!-- Ticket Code -->
+				<ng-container matColumnDef="jira">
 					<th *matHeaderCellDef
 						mat-header-cell mat-sort-header="ticketNumber">{{ 'i18n.jiraTicket' | translate }}
 					</th>
-					<td *matCellDef="let row" mat-cell>
-						<!-- user is allowed to edit-->
-						<div *ngIf="this.hasEditRole">
-							<ng-container *ngIf="editingElement !== row; else editMode">
-								<ng-container *ngIf="row.ticketNumber; else emptyState">
-									<div class="ticket-number-container">
-										<a *ngIf="row.ticketNumber"
-										   [href]="environment.TICKETING_SYSTEM_URL.replace('{ticketNumber}', row.ticketNumber)"
-										   [matTooltip]="'i18n.error.timestamp.ticketNumber' | translate"
-										   class="ticket-number-link"
-										   id="jira-ticket-link-btn"
-										   mat-button
-										   obButton="primary"
-										   target="_blank">
-											{{ row.ticketNumber }}
-											<mat-icon class="arrow-icon">arrow_forward</mat-icon>
-										</a>
-										<mat-icon (click)="startEdit(row)" class="obicon"
-												  svgIcon="pen"></mat-icon>
-									</div>
-								</ng-container>
-								<ng-template #emptyState>
-									<input #inputRef
-										   (keydown.enter)="updateTicketNumber(row.errorGroupId, inputRef.value)"
-										   *ngIf="!row.ticketNumber"
-										   class="oblique-input"
-										   matInput
-										   placeholder="{{ 'i18n.error.timestamp.ticketNumber' | translate }}"
-										   type="text">
-								</ng-template>
-							</ng-container>
-							<ng-template #editMode>
-								<input #ticketNumberInput
-									   (blur)="cancelEdit()"
-									   (keydown.enter)="updateTicketNumber(row.errorGroupId, ticketNumberInput.value)"
-									   (keydown.escape)="cancelEdit()"
-									   [value]="row.ticketNumber">
-							</ng-template>
-						</div>
-						<!-- user is NOT allowed to edit-->
-						<ng-container *ngIf="!this.hasEditRole">
-							<div class="ticket-number-container">
-								<a *ngIf="row.ticketNumber"
-								   [href]="environment.TICKETING_SYSTEM_URL.replace('{ticketNumber}', row.ticketNumber)"
-								   [matTooltip]="'i18n.error.timestamp.ticketNumber' | translate"
-								   class="ticket-number-link"
-								   id="jira-ticket-link-btn-readonly"
-								   mat-button
-								   obButton="primary"
-								   target="_blank">
-									{{ row.ticketNumber }}
-									<mat-icon class="arrow-icon">arrow_forward</mat-icon>
-								</a>
-							</div>
-						</ng-container>
-					</td>
+					<td *matCellDef="let row" mat-cell>{{ row.ticketNumber }}</td>
 				</ng-container>
 
 				<ng-container matColumnDef="errorDetails">

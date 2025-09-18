@@ -37,7 +37,8 @@
   "i18n.errorhandling.form.status": "Status",
   "i18n.errorhandling.form.errorcode": "Error code",
   "i18n.errorhandling.form.stacktrace": "Regex Stacktrace Search",
-  "i18n.errorhandling.form.stacktrace.invalid": "Invalid Regex Expression",
+  "i18n.regex.invalid": "Invalid Regex Expression",
+  "i18n.regex.message": "Regex Message Search",
   "i18n.errorhandling.form.closing-reason": "Closing Reason",
   "i18n.errorhandling.list.multi-resend": "Resend selected errors",
   "i18n.errorhandling.list.multi-delete": "Delete selected errors",
@@ -108,5 +109,15 @@
   "i18n.deadLetter.error-message": "Error: Messages from the dead letter topic could not be reactivated.",
   "i18n.deadLetter.success-message": "Messages from the dead-letter topic have been restored.",
   "i18n.noTicket": "No Jira-Ticket (unknown)",
-  "i18n.jiraTicket": "Jira Ticket"
+  "i18n.jiraTicket": "Jira Ticket",
+  "i18n.errorGroup": "Error Group",
+  "i18n.errorGroupDetails": "Error group details",
+  "i18n.createJiraTicket": "Create Jira Ticket",
+  "i18n.saveFreeText": "Save free text",
+  "i18n.errorGroupId": "Error group id",
+  "i18n.saveFreeTextSuccess": "Free text saved successfully",
+  "i18n.saveFreeTextNoSuccess": "Could not save free text",
+  "i18n.goToErrorGroup": "Go to error group",
+  "i18n.copyStacktrace": "Copy stacktrace",
+  "i18n.copyStacktraceSuccess": "Stacktrace has been copied to the clipboard"
 }

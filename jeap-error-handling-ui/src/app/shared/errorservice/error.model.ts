@@ -24,6 +24,7 @@ export interface ErrorDTO {
 	freeText: string;
 	signed : boolean;
 	jeapCert: string;
+	errorGroupId: string;
 }
 
 export interface AuditLogDTO {
@@ -65,6 +66,15 @@ export interface ErrorGroupSearchFormDto {
 	messageType: string;
 	errorCode: string;
 	jiraTicket: string;
+	sortField: string;
+	sortOrder: string;
+}
+
+export interface ErrorGroupDetailsListSearchFormDto {
+	dateFrom: string;
+	dateTo: string;
+	stacktracePattern: string;
+	messagePattern: string;
 	sortField: string;
 	sortOrder: string;
 }

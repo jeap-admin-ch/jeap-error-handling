@@ -39,7 +39,8 @@
   "i18n.errorhandling.form.errorcode": "Codice errore",
   "i18n.error.timestamp.freeText": "Testo libero",
   "i18n.errorhandling.form.stacktrace": "Ricerca stacktrace Regex",
-  "i18n.errorhandling.form.stacktrace.invalid": "Espressione Regex non valida",
+  "i18n.regex.invalid": "Espressione Regex non valida",
+  "i18n.regex.message": "Ricerca messaggio Regex",
   "i18n.errorhandling.form.closing-reason": "Motivo di chiusura",
   "i18n.errorhandling.list.multi-resend": "Rispedisci gli errori selezionati",
   "i18n.errorhandling.list.multi-delete": "Elimina gli errori selezionati",
@@ -108,5 +109,16 @@
   "i18n.deadLetter.error-message": "Errore: I messaggi dal dead letter topic non possono essere riattivati.",
   "i18n.deadLetter.success-message": "I messaggi dal topic dead-letter sono stati ripristinati.",
   "i18n.noTicket": "Nessun ticket Jira (sconosciuto)",
-  "i18n.jiraTicket": "Ticket Jira"
+  "i18n.jiraTicket": "Ticket Jira",
+  "i18n.errorGroup": "Gruppo di errori",
+  "i18n.errorGroupDetails": "Dettagli del gruppo di errori",
+  "i18n.createJiraTicket": "Crea ticket Jira",
+  "i18n.saveFreeText": "Salva testo libero",
+  "i18n.errorGroupId": "ID gruppo di errore",
+  "i18n.saveFreeTextSuccess": "Testo libero salvato con successo",
+  "i18n.saveFreeTextNoSuccess": "Impossibile salvare il testo libero",
+  "i18n.goToErrorGroup": "Vai al gruppo di errori",
+  "i18n.copyStacktrace": "Copia traccia dello stack",
+  "i18n.copyStacktraceSuccess": "La traccia dello stack è stata copiata negli appunti"
+
 }

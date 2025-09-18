@@ -14,6 +14,7 @@ import {NgForOf, NgIf} from "@angular/common";
 import {Router} from "@angular/router";
 import {MatAutocomplete, MatAutocompleteTrigger} from "@angular/material/autocomplete";
 import {endOfDay, startOfDay} from "date-fns";
+import {BaseComponent} from "../../shared/BaseComponent";
 
 @Component({
   selector: 'app-error-group-filter',
@@ -48,7 +49,7 @@ import {endOfDay, startOfDay} from "date-fns";
   styleUrl: './error-group-filter.component.scss'
 })
 
-export class ErrorGroupFilterComponent implements OnInit {
+export class ErrorGroupFilterComponent extends BaseComponent implements OnInit {
 	@Output() searchClicked = new EventEmitter<void>();
 	searchFilterFormGroup: FormGroup;
 	isLoadingResults: boolean;
@@ -78,6 +79,7 @@ export class ErrorGroupFilterComponent implements OnInit {
 	constructor(private fb: FormBuilder,
 				private router: Router,
 				private readonly errorService: ErrorService) {
+		super();
 		this.searchFilterFormGroup = this.fb.group({
 			noTicket: [false],
 			dateFrom: [null],
@@ -127,9 +129,6 @@ export class ErrorGroupFilterComponent implements OnInit {
 
 		this.searchClicked.emit(formValue);
 	}
-
-	private convertDateFormControl = (formControl: FormControl, dateTransformer: (date: Date) => Date): string =>
-		formControl.value ? dateTransformer(new Date(formControl.value)).toISOString() : null
 
 	// Getters for easy access to form controls
 	get formControlDropDownErrorCode(): FormControl {

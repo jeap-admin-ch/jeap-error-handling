@@ -1,6 +1,7 @@
 package ch.admin.bit.jeap.errorhandling.infrastructure.persistence;
 
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error.ErrorState;
+import ch.admin.bit.jeap.errorhandling.web.api.ErrorGroupListSearchCriteria;
 import ch.admin.bit.jeap.errorhandling.web.api.ErrorSearchCriteria;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +18,11 @@ import java.util.Set;
 import java.util.UUID;
 
 public interface ErrorRepository extends JpaRepository<Error, UUID>, JpaSpecificationExecutor<Error> {
+
+    default Page<Error> findByGroupIdAndCriteria(UUID errorGroupId, ErrorGroupListSearchCriteria criteria, Pageable pageable) {
+        return findAll(ErrorGroupListSearchSpecification.fromCriteria(errorGroupId, criteria), pageable);
+    }
+
     @Query("select e from Error e where (e.state = 'PERMANENT' OR e.state = 'SEND_TO_MANUALTASK') ORDER BY e.created DESC")
     Page<Error> findAllPermanent(Pageable pageable);
 
