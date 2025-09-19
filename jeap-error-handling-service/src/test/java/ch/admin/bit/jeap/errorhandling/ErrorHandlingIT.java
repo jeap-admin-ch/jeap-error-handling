@@ -38,9 +38,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static ch.admin.bit.jeap.errorhandling.infrastructure.persistence.AuditLog.AuditedAction.DELETE_ERROR;
 import static ch.admin.bit.jeap.errorhandling.infrastructure.persistence.AuditLog.AuditedAction.RESEND_CAUSING_EVENT;
@@ -56,7 +59,8 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
                 "jeap.errorhandling.topic=${jeap.messaging.kafka.errorTopicName}",
                 "jeap.security.oauth2.resourceserver.authorization-server.issuer=" + JwsBuilder.DEFAULT_ISSUER,
                 "jeap.security.oauth2.resourceserver.authorization-server.jwk-set-uri=http://localhost:${server.port}/.well-known/jwks.json",
-                "logging.level.ch.admin.bit.jeap.errorhandling=DEBUG"
+                "logging.level.ch.admin.bit.jeap.errorhandling=DEBUG",
+                "jeap.errorhandling.metrics.updateFrequencyMillis=500"
         })
 @DirtiesContext
 class ErrorHandlingIT extends ErrorHandlingITBase {
@@ -558,6 +562,54 @@ class ErrorHandlingIT extends ErrorHandlingITBase {
 
         // Make sure no new error has been created
         awaitSingleErrorInRepository();
+    }
+
+    @Test
+    void testExposesMetrics() {
+        // Create two permanent errors with the same stack trace hash (i.e. belonging to the same error group)
+        // (Makes the test not depend on other tests for creating errors.)
+        TestEvent testEvent1 = createTestEvent("some error");
+        MessageProcessingFailedEvent errorEvent1 = createMessageProcessingFailedEvent(testEvent1);
+        TestEvent testEvent2 = createTestEvent("another error");
+        MessageProcessingFailedEvent errorEvent2 = createMessageProcessingFailedEvent(testEvent2);
+        kafkaTemplate.send(ERROR_TOPIC, errorEvent1);
+        kafkaTemplate.send(ERROR_TOPIC, errorEvent2);
+        awaitErrorsInRepository(2);
+        assertThat(errorGroupRepository.findAll()).hasSize(1);
+
+        awaitNonZeroMetricValue("eh_permanent_open");
+        awaitNonZeroMetricValue("eh_error_groups_with_open_errors");
+    }
+
+    private void awaitNonZeroMetricValue(String metricName) {
+        await("metric " + metricName + " is non-zero")
+                .atMost(Duration.ofSeconds(30))
+                .until(() -> {
+                    String metrics = fetchMetrics();
+                    String value = extractMetricValue(metricName, metrics);
+                    return value != null && !value.equals("0.0");
+                });
+    }
+
+    private String extractMetricValue(String metricName, String metrics) {
+        Pattern pattern = Pattern.compile("^" + metricName + " (\\d+\\.\\d+)$", Pattern.MULTILINE);
+        Matcher matcher = pattern.matcher(metrics);
+        if (matcher.find()) {
+            return matcher.group(1);
+        } else {
+            return null;
+        }
+    }
+
+    private String fetchMetrics() {
+        return given().
+                   spec(apiSpec).
+                    auth().preemptive().basic("prometheus", "test").
+                when().
+                    get("/actuator/prometheus").
+                then().
+                    statusCode(HttpStatus.OK.value()).
+                    extract().asString();
     }
 
     //@formatter:on

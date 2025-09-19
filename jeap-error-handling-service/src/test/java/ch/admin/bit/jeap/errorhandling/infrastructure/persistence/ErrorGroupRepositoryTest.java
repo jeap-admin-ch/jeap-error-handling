@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 @DataJpaTest
@@ -77,6 +78,20 @@ class ErrorGroupRepositoryTest {
         Assertions.assertThat(errorGroupOptional).isNotEmpty();
         Assertions.assertThat(errorGroupOptional.get().getGroupId()).isNotNull(); // UUID could be read
         Assertions.assertThat(errorGroupOptional.get().getFirstErrorAt()).isNotNull(); // ZonedDateTime could be read
+    }
+
+    @Test
+    void countErrorGroupsWithErrorsInStates_whenStateMatches_returnsNumberOfGroups() {
+        int count = errorGroupRepository.countErrorGroupsWithErrorsInStates(Set.of(Error.ErrorState.PERMANENT));
+
+        Assertions.assertThat(count).isEqualTo(2);
+    }
+
+    @Test
+    void countErrorGroupsWithErrorsInStates_whenStateDoesNotMatch_returnsZero() {
+        int count = errorGroupRepository.countErrorGroupsWithErrorsInStates(Set.of(Error.ErrorState.SEND_TO_MANUALTASK));
+
+        Assertions.assertThat(count).isZero();
     }
 
 }

@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 public interface ErrorGroupRepository extends JpaRepository<ErrorGroup, UUID> {
@@ -44,4 +45,12 @@ public interface ErrorGroupRepository extends JpaRepository<ErrorGroup, UUID> {
     Slice<UUID> findUnreferencedErrorGroups(Pageable pageable);
 
     boolean existsByTicketNumber(String ticketNumber);
+
+    @Query("""
+            select count(eg) from ErrorGroup eg where exists (
+                select e from Error e
+                    where e.errorGroup = eg
+                        and e.state in (:states))
+            """)
+    int countErrorGroupsWithErrorsInStates(Set<Error.ErrorState> states);
 }

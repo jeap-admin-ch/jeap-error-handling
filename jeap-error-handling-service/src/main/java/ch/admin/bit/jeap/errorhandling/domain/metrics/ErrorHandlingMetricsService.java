@@ -1,5 +1,7 @@
 package ch.admin.bit.jeap.errorhandling.domain.metrics;
 
+import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
+import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorGroupRepository;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorRepository;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.Gauge;
@@ -10,6 +12,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import jakarta.annotation.PostConstruct;
+
+import java.util.Set;
 
 @Component
 @Slf4j
@@ -26,15 +30,19 @@ public class ErrorHandlingMetricsService {
     private static final String CREATED_TEMPORARY_ERRORS_COUNTER_METRIC = "eh_created_temporary_errors";
     private static final String CREATED_PERMANENT_ERRORS_COUNTER_METRIC = "eh_created_permanent_errors";
     public static final String CAUSING_SERVICE_TAG = "causing_service";
+    private static final String ERROR_GROUPS_WITH_OPEN_ERRORS_GAUGE_METRIC = "eh_error_groups_with_open_errors";
+    private static final Set<Error.ErrorState> OPEN_ERROR_STATES = Set.of(Error.ErrorState.PERMANENT, Error.ErrorState.SEND_TO_MANUALTASK);
 
     private final MeterRegistry meterRegistry;
     private final ErrorRepository errorRepository;
+    private final ErrorGroupRepository errorGroupRepository;
 
     private int temporaryRetryPendingErrorCount = -1;
     private int pendingManualTaskCreationErrorCount = -1;
     private int openPermanentErrorCount = -1;
     private int resolveOnManualTaskErrorCount = -1;
     private int deleteOnManualTaskErrorCount = -1;
+    private int errorGroupsWithOpenErrors = -1;
     private Counter createdTemporaryErrors;
 
     @PostConstruct
@@ -56,6 +64,9 @@ public class ErrorHandlingMetricsService {
         Gauge.builder(PENDING_MANUALTASK_DELETE_ERRORS_GAUGE_METRIC, () -> deleteOnManualTaskErrorCount)
                 .description("Permanent errors with pending manual task deletion")
                 .register(meterRegistry);
+        Gauge.builder(ERROR_GROUPS_WITH_OPEN_ERRORS_GAUGE_METRIC, () -> errorGroupsWithOpenErrors)
+                .description("Error groups with open errors")
+                .register(meterRegistry);
 
         createdTemporaryErrors = Counter.builder(CREATED_TEMPORARY_ERRORS_COUNTER_METRIC)
                 .description("Created temporary errors")
@@ -69,6 +80,7 @@ public class ErrorHandlingMetricsService {
         pendingManualTaskCreationErrorCount = errorRepository.countErrorsInStateSendToManualTask();
         resolveOnManualTaskErrorCount = errorRepository.countErrorsInStateResolveOnManualTask();
         deleteOnManualTaskErrorCount = errorRepository.countErrorsInStateDeleteOnManualTask();
+        errorGroupsWithOpenErrors = errorGroupRepository.countErrorGroupsWithErrorsInStates(OPEN_ERROR_STATES);
     }
 
     public void incrementPermanentCounter(String causingService) {
