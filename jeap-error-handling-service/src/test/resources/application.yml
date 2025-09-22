@@ -27,8 +27,15 @@ jeap:
       auto-login: false
       renew-user-info-after-token-renew: true
       silent-renew: true
-
-
+    error-groups:
+      issue-Tracking:
+        project: "JME"
+        error-handling-service-group-url-template: "http://localhost:8080/jeap-error-handling-service/errors/group/{groupId}"
+    jira:
+#      Dynamically set in tests to wiremock port when needed
+#      baseUrl: "http://localhost:8081/jira"
+      username: "ehs"
+      password: "secret"
 
   security:
     oauth2:

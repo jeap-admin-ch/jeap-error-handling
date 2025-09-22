@@ -1,5 +1,6 @@
 package ch.admin.bit.jeap.errorhandling.web.api;
 
+import ch.admin.bit.jeap.errorhandling.domain.exceptions.InvalidUuidException;
 import ch.admin.bit.jeap.errorhandling.domain.group.ErrorGroupAggregatedData;
 import ch.admin.bit.jeap.errorhandling.domain.group.ErrorGroupAggregatedDataList;
 import ch.admin.bit.jeap.errorhandling.domain.group.ErrorGroupService;
@@ -75,33 +76,45 @@ public class ErrorGroupController {
     @PostMapping("/update-ticket-number")
     @PreAuthorize("hasRole('errorgroup','edit')")
     public ResponseEntity<ErrorGroupDTO> updateTicketNumber(@RequestBody @Valid UpdateTicketNumberRequest ticketNumberRequest) {
-        // convert the String UUID from the request to UUID type
-        UUID groupId;
-        try {
-            groupId = UUID.fromString(ticketNumberRequest.getErrorGroupId());
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(null);
-        }
+        UUID groupId = parseGroupId(ticketNumberRequest.getErrorGroupId());
         errorGroupService.updateTicketNumber(groupId, ticketNumberRequest.getTicketNumber());
-        ErrorGroupAggregatedData errorGroupAggregatedData = errorGroupService.getErrorGroupAggregatedData(groupId);
-        ErrorGroupDTO errorGroupDTO = mapToDTO(errorGroupAggregatedData);
+        ErrorGroupDTO errorGroupDTO = getErrorGroupDTO(groupId);
+        return ResponseEntity.ok(errorGroupDTO);
+    }
+
+    @PostMapping("/{groupId}/issue")
+    @PreAuthorize("hasRole('errorgroup','edit')")
+    public ResponseEntity<ErrorGroupDTO> createIssue(@PathVariable(name = "groupId") UUID groupId) {
+        try {
+            errorGroupService.createIssue(groupId);
+        } catch (Throwable t) {
+            log.error("Issue creation failed: '{}'", t.getMessage(), t);
+            throw t;
+        }
+        ErrorGroupDTO errorGroupDTO = getErrorGroupDTO(groupId);
         return ResponseEntity.ok(errorGroupDTO);
     }
 
     @PostMapping("/update-free-text")
     @PreAuthorize("hasRole('errorgroup','edit')")
     public ResponseEntity<ErrorGroupDTO> updateFreeText(@RequestBody @Valid UpdateFreeTextRequest freeTextRequest) {
-        // convert the String UUID from the request to UUID type
-        UUID groupId;
-        try {
-            groupId = UUID.fromString(freeTextRequest.getErrorGroupId());
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(null);
-        }
+        UUID groupId = parseGroupId(freeTextRequest.getErrorGroupId());
         errorGroupService.updateFreeText(groupId, freeTextRequest.getFreeText());
-        ErrorGroupAggregatedData errorGroupAggregatedData = errorGroupService.getErrorGroupAggregatedData(groupId);
-        ErrorGroupDTO errorGroupDTO = mapToDTO(errorGroupAggregatedData);
+        ErrorGroupDTO errorGroupDTO = getErrorGroupDTO(groupId);
         return ResponseEntity.ok(errorGroupDTO);
+    }
+
+    private ErrorGroupDTO getErrorGroupDTO(UUID groupId) {
+        ErrorGroupAggregatedData errorGroupAggregatedData = errorGroupService.getErrorGroupAggregatedData(groupId);
+        return mapToDTO(errorGroupAggregatedData);
+    }
+
+    private UUID parseGroupId(String groupIdString) {
+        try {
+            return UUID.fromString(groupIdString);
+        } catch (IllegalArgumentException e) {
+            throw new InvalidUuidException(groupIdString);
+        }
     }
 
     private ErrorGroupDTO mapToDTO(ErrorGroupAggregatedData groupAggregatedData) {

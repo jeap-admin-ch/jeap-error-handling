@@ -9,4 +9,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class ErrorGroupConfigurationDTO {
     private String ticketingSystemUrl;
+    private boolean issueTrackingEnabled;
 }

@@ -11,12 +11,22 @@
 							<div style="display: flex; align-items: baseline; gap: 8px; min-height: 36px;">
 								<mat-form-field>
 									<mat-label>{{ "i18n.jiraTicket" | translate }}</mat-label>
-									<input type="text" matInput [value]="errorGroupDetails.ticketNumber" #ticketInput/>
+									<input type="text" matInput
+										   [value]="errorGroupDetails.ticketNumber"
+										   (focus)="onTicketNumberFocus(ticketInput.value)"
+										   (blur)="onTicketNumberChange(ticketInput.value)"
+										   (keyup.enter)="onTicketNumberChange(ticketInput.value)"
+										   #ticketInput/>
 								</mat-form-field>
 								<button mat-button obButton="primary" type="button"
-										[disabled]="!!ticketInput.value"
+										*ngIf="environment.ISSUE_TRACKING_ENABLED && !ticketInput.value"
 										(click)=createTicket()
 										style="height: 36px; min-width: 150px">{{ "i18n.createJiraTicket" | translate }}
+								</button>
+								<button mat-button obButton="primary" type="button"
+										*ngIf="!!ticketInput.value"
+										(click)="viewTicket()"
+										style="height: 36px; min-width: 150px">{{ "i18n.viewJiraTicket" | translate }}
 								</button>
 							</div>
 							<div style="display: flex; align-items: baseline; gap: 8px; min-height: 36px;">

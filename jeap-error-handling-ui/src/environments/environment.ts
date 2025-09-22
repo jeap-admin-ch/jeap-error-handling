@@ -27,6 +27,7 @@ export const environment = {
 	BACKEND_SERVICE_API: appSetup.serviceEndpoint,
 	CONFIGURATION_PATH: authConfig.configPathSegment,
 	TICKETING_SYSTEM_URL: '',
+	ISSUE_TRACKING_ENABLED: false,
 	oidc: {
 		debug: QdLogLevel.None
 	}

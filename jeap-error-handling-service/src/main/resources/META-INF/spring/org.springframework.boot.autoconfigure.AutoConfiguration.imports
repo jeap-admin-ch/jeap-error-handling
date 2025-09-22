@@ -1,1 +1,3 @@
 ch.admin.bit.jeap.errorhandling.ErrorHandlingConfig
+ch.admin.bit.jeap.errorhandling.infrastructure.jira.JiraIssueTrackingConfiguration
+

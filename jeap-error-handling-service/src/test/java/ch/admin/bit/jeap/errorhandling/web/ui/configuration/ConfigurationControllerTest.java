@@ -1,5 +1,6 @@
 package ch.admin.bit.jeap.errorhandling.web.ui.configuration;
 
+import ch.admin.bit.jeap.errorhandling.domain.group.ErrorGroupConfigProperties;
 import ch.admin.bit.jeap.security.test.resource.configuration.ServletJeapAuthorizationConfig;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,7 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.util.Arrays;
+import java.util.List;
 
 @WebMvcTest(ConfigurationController.class)
 @ActiveProfiles("error-controller-test")
@@ -33,6 +34,8 @@ class ConfigurationControllerTest {
     private LogDeepLinkProperties logDeepLinkProperties;
     @MockitoBean
     private FrontendConfigProperties frontendConfigProperties;
+    @MockitoBean
+    private ErrorGroupConfigProperties errorGroupConfigProperties;
 
     @Test
     void getLogDeepLink() throws Exception {
@@ -45,13 +48,15 @@ class ConfigurationControllerTest {
     }
 
     @Test
-    void getTicketNumberLink() throws Exception {
-        String jiraUrl = "https://someJiraUrl/browse/JIRA-007";
+    void getErrorGroupConfiguration() throws Exception {
+        final String jiraUrl = "https://someJiraUrl/browse/JIRA-007";
+        final boolean issueTrackingEnabled = true;
         Mockito.when(frontendConfigProperties.getTicketingSystemUrl()).thenReturn(jiraUrl);
-
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/configuration/ticket-number"))
+        Mockito.when(errorGroupConfigProperties.isIssueTrackingEnabled()).thenReturn(issueTrackingEnabled);
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/configuration/error-group"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.ticketingSystemUrl").value(jiraUrl));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.ticketingSystemUrl").value(jiraUrl))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.issueTrackingEnabled").value(issueTrackingEnabled));
     }
 
     @Test
@@ -68,7 +73,7 @@ class ConfigurationControllerTest {
         Mockito.when(frontendConfigProperties.getPamsEnvironment()).thenReturn(pamsEnvironment);
         Mockito.when(frontendConfigProperties.getLogoutRedirectUri()).thenReturn(logoutRedirectUri);
         Mockito.when(frontendConfigProperties.getMockPams()).thenReturn(mockPams);
-        Mockito.when(frontendConfigProperties.getTokenAwarePattern()).thenReturn(Arrays.asList(tokenAwarePattern));
+        Mockito.when(frontendConfigProperties.getTokenAwarePattern()).thenReturn(List.of(tokenAwarePattern));
         Mockito.when(frontendConfigProperties.getClientId()).thenReturn(clientId);
         Mockito.when(frontendConfigProperties.getAutoLogin()).thenReturn(autoLogin);
         Mockito.when(frontendConfigProperties.getRedirectUrl()).thenReturn(redirectUrl);

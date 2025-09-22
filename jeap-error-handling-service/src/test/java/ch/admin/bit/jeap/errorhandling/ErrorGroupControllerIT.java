@@ -3,21 +3,38 @@ package ch.admin.bit.jeap.errorhandling;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.*;
 import ch.admin.bit.jeap.errorhandling.web.api.*;
+import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
+import ch.admin.bit.jeap.errorhandling.web.api.ErrorGroupDTO;
+import ch.admin.bit.jeap.errorhandling.web.api.ErrorGroupResponse;
+import ch.admin.bit.jeap.errorhandling.web.api.UpdateFreeTextRequest;
+import ch.admin.bit.jeap.errorhandling.web.api.UpdateTicketNumberRequest;
 import ch.admin.bit.jeap.security.resource.semanticAuthentication.SemanticApplicationRole;
 import ch.admin.bit.jeap.security.resource.token.JeapAuthenticationContext;
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
 
 import java.nio.charset.StandardCharsets;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
 
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
+import static com.github.tomakehurst.wiremock.client.WireMock.matchingJsonPath;
+import static com.github.tomakehurst.wiremock.client.WireMock.post;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
+import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 import static io.restassured.RestAssured.given;
 
 class ErrorGroupControllerIT extends ErrorHandlingITBase {
@@ -37,6 +54,21 @@ class ErrorGroupControllerIT extends ErrorHandlingITBase {
     private static final String SUBJECT = "69368608-D736-43C8-5F76-55B7BF168299";
     private static final JeapAuthenticationContext CONTEXT = JeapAuthenticationContext.SYS;
     private final RequestSpecification apiSpec;
+
+    @RegisterExtension
+    static WireMockExtension wireMockServer = WireMockExtension.newInstance()
+            .options(wireMockConfig().dynamicPort())
+            .build();
+
+    @DynamicPropertySource
+    static void registerWireMockProperties(DynamicPropertyRegistry registry) {
+        registry.add("jeap.errorhandling.jira.baseUrl", () -> "http://localhost:%d".formatted(wireMockServer.getPort()));
+    }
+
+    @BeforeEach
+    void setup() {
+        wireMockServer.resetAll();
+    }
 
     public ErrorGroupControllerIT(@Value("${server.port}") int serverPort) {
         apiSpec = new RequestSpecBuilder()
@@ -88,7 +120,6 @@ class ErrorGroupControllerIT extends ErrorHandlingITBase {
         Assertions.assertThat(dto.errorPublisher()).isEqualTo("source1");
         Assertions.assertThat(dto.errorMessage()).isEqualTo("nullpointer1");
         Assertions.assertThat(dto.stackTraceHash()).isEqualTo("stackTraceHash1");
-
     }
 
     @Test
@@ -399,6 +430,48 @@ class ErrorGroupControllerIT extends ErrorHandlingITBase {
                 post(UPDATE_TICKET_URL).
                 then().
                 statusCode(400);
+    }
+
+    @Test
+    void createIssue_WhenAuthorizedValidRequest_ThenIssueCreatedInJiraAndAssignedToErrorGroup() {
+        Error error = createError(Error.ErrorState.PERMANENT, "service", "eventName", ZonedDateTime.now().minusDays(3), "123", "myTraceId");
+        ErrorGroup errorGroup = createErrorGroup("111", "eventName1", "source1", "nullpointer1", "stackTraceHash1");
+        ErrorGroup group = errorGroupRepository.save(errorGroup);
+        error.setErrorGroup(group);
+        errorRepository.save(error);
+        final String createIssuePath = "/api/error-group/{groupId}/issue";
+        wireMockServer.stubFor(post(urlEqualTo("/rest/api/2/issue"))
+                .withBasicAuth("ehs", "secret")
+                .withHeader(HttpHeaders.CONTENT_TYPE, equalTo(MediaType.APPLICATION_JSON_VALUE))
+                .withRequestBody(matchingJsonPath("$.fields.project.key", equalTo("JME")))
+                .withRequestBody(matchingJsonPath("$.fields.issuetype.name", equalTo("Bug")))
+                .willReturn(aResponse()
+                        .withStatus(HttpStatus.CREATED.value())
+                        .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                        .withBody("""
+                                {
+                                  "id": "10000",
+                                  "key": "JME-123",
+                                  "self": "https://localhost/browse/JME-123"
+                                }
+                                """)));
+
+        // formatter:off
+        ErrorGroupDTO response = given().
+                spec(apiSpec).
+                auth().
+                    oauth2(createAuthTokenForUserRoles(EDIT_ROLE)).
+                accept(ContentType.JSON).
+                when().
+                    post(createIssuePath,group.getId().toString()).
+                then().
+                    statusCode(HttpStatus.OK.value()).
+                extract().
+                as(ErrorGroupDTO.class);
+        // formatter:on
+
+        Assertions.assertThat(response.errorGroupId()).isEqualTo(group.getId().toString());
+        Assertions.assertThat(response.ticketNumber()).isEqualTo("JME-123");
     }
 
     private Error createError(ErrorGroup errorGroup) {

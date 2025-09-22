@@ -16,7 +16,7 @@ import java.util.UUID;
 public interface ErrorGroupRepository extends JpaRepository<ErrorGroup, UUID> {
 
     String ERROR_GROUP_AGGREGATED_DATA_SELECTOR = """
-                SELECT eg.id as groupId, count(e.id) as errorCount,
+                SELECT eg.id as groupId, eg.created as groupCreatedAt, count(e.id) as errorCount,
                     eg.eventName as errorEvent, eg.errorPublisher as errorPublisher,
                     eg.errorCode as errorCode,
                     eg.errorStackTraceHash as stackTraceHash,

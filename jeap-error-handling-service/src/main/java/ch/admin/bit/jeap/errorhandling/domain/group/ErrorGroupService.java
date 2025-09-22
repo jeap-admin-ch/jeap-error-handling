@@ -1,13 +1,15 @@
 package ch.admin.bit.jeap.errorhandling.domain.group;
 
+import ch.admin.bit.jeap.errorhandling.domain.exceptions.ErrorGroupAlreadyHasATicketNumberAssignedException;
 import ch.admin.bit.jeap.errorhandling.domain.exceptions.ErrorGroupNotFoundException;
-import ch.admin.bit.jeap.errorhandling.domain.exceptions.TicketNumberAlreadyExistsException;
+import ch.admin.bit.jeap.errorhandling.domain.issue.IssueTracking;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorGroup;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorGroupRepository;
 import ch.admin.bit.jeap.errorhandling.web.api.ErrorGroupSearchCriteria;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -34,6 +36,9 @@ public class ErrorGroupService {
     private final ErrorGroupConfigProperties errorGroupConfigProperties;
     private final ErrorGroupRepository errorGroupRepository;
     private final PlatformTransactionManager transactionManager;
+    private final IssueDescriptionGenerator issueDescriptionGenerator;
+    private final IssueSummaryGenerator issueSummaryGenerator;
+    private final Optional<IssueTracking> issueTracking; // may be not configured
 
     public ErrorGroup assignToErrorGroup(Error error) {
         // error grouping is based on the error's stack trace hash: no hash -> no group
@@ -48,11 +53,7 @@ public class ErrorGroupService {
 
     public ErrorGroup updateTicketNumber(UUID errorGroupId, String ticketNumber) {
         ErrorGroup errorGroup = findErrorGroup(errorGroupId);
-        // check if ticketNumber is already assigned to another group
-        if (errorGroupRepository.existsByTicketNumber(ticketNumber)) {
-            throw new TicketNumberAlreadyExistsException("Ticket number " + ticketNumber + " already exists");
-        }
-        errorGroup.setTicketNumber(ticketNumber);
+        errorGroup.setTicketNumber(StringUtils.isNotBlank(ticketNumber) ? ticketNumber : null);
         return errorGroup;
     }
 
@@ -95,7 +96,29 @@ public class ErrorGroupService {
                 jiraTicket,
                 criteria.getPageable());
         return new ErrorGroupAggregatedDataList(groupAggregatedData.getTotalElements(), groupAggregatedData.getContent());
+    }
 
+    public String createIssue(UUID errorGroupId) {
+        if (issueTracking.isEmpty()) {
+            throw new IllegalStateException("Issue tracking is not configured.");
+        }
+        Optional<ErrorGroupAggregatedData> egDataOptional = errorGroupRepository.findErrorGroupAggregatedData(errorGroupId);
+        if (egDataOptional.isEmpty()) {
+            throw new ErrorGroupNotFoundException(errorGroupId);
+        }
+        ErrorGroupAggregatedData egData = egDataOptional.get();
+        if (StringUtils.isNotBlank(egData.getTicketNumber())) {
+            throw new ErrorGroupAlreadyHasATicketNumberAssignedException(errorGroupId, egData.getTicketNumber());
+        }
+        ErrorGroupIssueTrackingProperties issueTrackingProperties = errorGroupConfigProperties.getIssueTracking();
+        String description = issueDescriptionGenerator.generateDescription(egData);
+        String summary = issueSummaryGenerator.generateIssueSummary(egData);
+        String issueId = issueTracking.get().createIssue(
+                issueTrackingProperties.getIssueType(),
+                issueTrackingProperties.getProject(),
+                summary, description);
+        updateTicketNumber(errorGroupId, issueId);
+        return issueId;
     }
 
     private ErrorGroup findOrCreateMatchingErrorGroup(Error error) {
@@ -137,7 +160,5 @@ public class ErrorGroupService {
                 errorGroup.getErrorPublisher(), errorGroup.getErrorCode(), errorGroup.getEventName(),
                 errorGroup.getErrorStackTraceHash());
     }
-
-
 
 }

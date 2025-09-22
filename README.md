@@ -17,7 +17,7 @@ For UI:
 1. Start the Docker Stuff in jme-messaging-example
 2. Start the Auth (OAuth-Mock Server) in jme-messaging-example under profile 'local'
 3. Start the Error-SCS as Backend in the jme-messaging-example (profile local-ui)
-4. Start the jeap-error-handling-ui as ng server (localhost:4200) in this project
+4. Start the jeap-error-handling-ui as ng serve (localhost:4200) in this project
 
 ### Versioning
 

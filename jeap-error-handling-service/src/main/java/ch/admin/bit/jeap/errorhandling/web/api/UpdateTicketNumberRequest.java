@@ -13,6 +13,6 @@ import lombok.NoArgsConstructor;
 public class UpdateTicketNumberRequest {
     @NotNull(message = "ErrorGroupId number cannot be null")
     private String errorGroupId;
-    @NotNull(message = "Ticket number cannot be null")
+    // null or empty string to remove the ticket number
     private String ticketNumber;
 }

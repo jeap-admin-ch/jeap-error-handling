@@ -1,7 +1,8 @@
 package ch.admin.bit.jeap.errorhandling.domain.group;
 
+import ch.admin.bit.jeap.errorhandling.domain.exceptions.ErrorGroupAlreadyHasATicketNumberAssignedException;
 import ch.admin.bit.jeap.errorhandling.domain.exceptions.ErrorGroupNotFoundException;
-import ch.admin.bit.jeap.errorhandling.domain.exceptions.TicketNumberAlreadyExistsException;
+import ch.admin.bit.jeap.errorhandling.domain.issue.IssueTracking;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorEventData;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorGroup;
@@ -123,6 +124,20 @@ class ErrorGroupServiceTest {
     }
 
     @Test
+    void testUpdateTicketNumberDelete() {
+        Error error = mockError("test-service", "test-event", "test-code", "test-stack-trace-hash", "test-stack-trace", "test-error-message");
+        ErrorGroup errorGroup = ErrorGroup.from(error);
+        ErrorGroupRepository errorGroupRepository = mockErrorGroupRepository();
+        when(errorGroupRepository.findById(errorGroup.getId())).thenReturn(Optional.of(errorGroup));
+        ErrorGroupService errorGroupService = createErrorGroupService(errorGroupRepository, false);
+        final String ticketNumber = "";
+
+        ErrorGroup errorGroupUpdated = errorGroupService.updateTicketNumber(errorGroup.getId(), ticketNumber);
+
+        assertThat(errorGroupUpdated.getTicketNumber()).isNull();
+    }
+
+    @Test
     void testUpdateTicketNumber_ErrorGroupNotFound() {
         ErrorGroupRepository errorGroupRepository = mockErrorGroupRepository();
         when(errorGroupRepository.findById(any())).thenReturn(Optional.empty());
@@ -130,20 +145,6 @@ class ErrorGroupServiceTest {
 
         assertThatThrownBy(() -> errorGroupService.updateTicketNumber(UUID.randomUUID(), "test-ticket-number")).
                 isInstanceOf(ErrorGroupNotFoundException.class);
-    }
-
-    @Test
-    void testUpdateTicketNumber_TicketNumberAlreadyAssigned() {
-        Error error = mockError("test-service", "test-event", "test-code", "test-stack-trace-hash", "test-stack-trace", "test-error-message");
-        ErrorGroup errorGroup = ErrorGroup.from(error);
-        ErrorGroupRepository errorGroupRepository = mockErrorGroupRepository();
-        when(errorGroupRepository.findById(errorGroup.getId())).thenReturn(Optional.of(errorGroup));
-        final String ticketNumber = "test-ticket-number";
-        when(errorGroupRepository.existsByTicketNumber(ticketNumber)).thenReturn(true);
-        ErrorGroupService errorGroupService = createErrorGroupService(errorGroupRepository, false);
-
-        assertThatThrownBy(() -> errorGroupService.updateTicketNumber(errorGroup.getId(), ticketNumber)).
-                isInstanceOf(TicketNumberAlreadyExistsException.class);
     }
 
     @Test
@@ -183,10 +184,94 @@ class ErrorGroupServiceTest {
         assertThat(result).isSameAs(errorGroupAggregatedData);
     }
 
+    @Test
+    void testCreateIssue_Success() {
+        final UUID errorGroupId = UUID.randomUUID();
+        final String expectedIssueId = "TEST-123";
+        ErrorGroupRepository errorGroupRepository = mockErrorGroupRepository();
+        IssueTracking issueTracking = mock(IssueTracking.class);
+        ErrorGroupAggregatedData aggregatedData = mock(ErrorGroupAggregatedData.class);
+        IssueDescriptionGenerator descriptionGenerator = mock(IssueDescriptionGenerator.class);
+        IssueSummaryGenerator summaryGenerator = mock(IssueSummaryGenerator.class);
+
+        when(errorGroupRepository.findErrorGroupAggregatedData(errorGroupId)).thenReturn(Optional.of(aggregatedData));
+        when(aggregatedData.getTicketNumber()).thenReturn(null);
+        when(descriptionGenerator.generateDescription(aggregatedData)).thenReturn("Test description");
+        when(summaryGenerator.generateIssueSummary(aggregatedData)).thenReturn("Test summary");
+        when(issueTracking.createIssue("Bug", "TEST", "Test summary", "Test description")).thenReturn(expectedIssueId);
+
+        ErrorGroup errorGroup = mock(ErrorGroup.class);
+        when(errorGroupRepository.findById(errorGroupId)).thenReturn(Optional.of(errorGroup));
+
+        ErrorGroupService errorGroupService = createErrorGroupServiceWithIssueTracking(errorGroupRepository,
+                Optional.of(issueTracking), descriptionGenerator, summaryGenerator);
+
+        String result = errorGroupService.createIssue(errorGroupId);
+
+        assertThat(result).isEqualTo(expectedIssueId);
+        Mockito.verify(errorGroup).setTicketNumber(expectedIssueId);
+    }
+
+    @Test
+    void testCreateIssue_IssueTrackingNotConfigured() {
+        final UUID errorGroupId = UUID.randomUUID();
+        ErrorGroupRepository errorGroupRepository = mockErrorGroupRepository();
+        ErrorGroupService errorGroupService = createErrorGroupServiceWithIssueTracking(errorGroupRepository,
+                Optional.empty(), null, null);
+
+        assertThatThrownBy(() -> errorGroupService.createIssue(errorGroupId))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage("Issue tracking is not configured.");
+    }
+
+    @Test
+    void testCreateIssue_ErrorGroupNotFound() {
+        final UUID errorGroupId = UUID.randomUUID();
+        ErrorGroupRepository errorGroupRepository = mockErrorGroupRepository();
+        IssueTracking issueTracking = mock(IssueTracking.class);
+        when(errorGroupRepository.findErrorGroupAggregatedData(errorGroupId)).thenReturn(Optional.empty());
+        ErrorGroupService errorGroupService = createErrorGroupServiceWithIssueTracking(errorGroupRepository,
+                Optional.of(issueTracking), null, null);
+
+        assertThatThrownBy(() -> errorGroupService.createIssue(errorGroupId))
+                .isInstanceOf(ErrorGroupNotFoundException.class);
+    }
+
+    @Test
+    void testCreateIssue_ErrorGroupAlreadyHasTicketNumber() {
+        final UUID errorGroupId = UUID.randomUUID();
+        final String existingTicketNumber = "EXISTING-456";
+        ErrorGroupRepository errorGroupRepository = mockErrorGroupRepository();
+        IssueTracking issueTracking = mock(IssueTracking.class);
+        ErrorGroupAggregatedData aggregatedData = mock(ErrorGroupAggregatedData.class);
+        when(errorGroupRepository.findErrorGroupAggregatedData(errorGroupId)).thenReturn(Optional.of(aggregatedData));
+        when(aggregatedData.getTicketNumber()).thenReturn(existingTicketNumber);
+        ErrorGroupService errorGroupService = createErrorGroupServiceWithIssueTracking(errorGroupRepository,
+                Optional.of(issueTracking), null, null);
+
+        assertThatThrownBy(() -> errorGroupService.createIssue(errorGroupId))
+                .isInstanceOf(ErrorGroupAlreadyHasATicketNumberAssignedException.class);
+    }
+
     private ErrorGroupService createErrorGroupService(ErrorGroupRepository errorGroupRepository, boolean errorGroupingEnabled) {
         ErrorGroupConfigProperties errorGroupConfigProperties = new ErrorGroupConfigProperties();
         errorGroupConfigProperties.setErrorGroupingEnabled(errorGroupingEnabled);
-        return new ErrorGroupService(errorGroupConfigProperties, errorGroupRepository, mock(PlatformTransactionManager.class));
+        return new ErrorGroupService(errorGroupConfigProperties, errorGroupRepository, mock(PlatformTransactionManager.class), null, null, null);
+    }
+
+    private ErrorGroupService createErrorGroupServiceWithIssueTracking(ErrorGroupRepository errorGroupRepository,
+                                                                        Optional<IssueTracking> issueTracking,
+                                                                        IssueDescriptionGenerator descriptionGenerator,
+                                                                        IssueSummaryGenerator summaryGenerator) {
+        ErrorGroupConfigProperties errorGroupConfigProperties = new ErrorGroupConfigProperties();
+        errorGroupConfigProperties.setErrorGroupingEnabled(true);
+        ErrorGroupIssueTrackingProperties issueTrackingProperties = new ErrorGroupIssueTrackingProperties();
+        issueTrackingProperties.setProject("TEST");
+        issueTrackingProperties.setIssueType("Bug");
+        issueTrackingProperties.setErrorHandlingServiceGroupUrlTemplate("http://localhost:8080/error-handling-service/error-group/{errorGroupId}");
+        errorGroupConfigProperties.setIssueTracking(issueTrackingProperties);
+        return new ErrorGroupService(errorGroupConfigProperties, errorGroupRepository, mock(PlatformTransactionManager.class),
+                descriptionGenerator, summaryGenerator, issueTracking);
     }
 
     private ErrorGroupRepository mockErrorGroupRepository() {

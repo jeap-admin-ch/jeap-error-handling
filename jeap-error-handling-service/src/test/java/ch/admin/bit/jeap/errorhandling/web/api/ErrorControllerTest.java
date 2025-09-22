@@ -23,7 +23,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -33,6 +32,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.ZonedDateTime;
@@ -56,10 +56,10 @@ import static org.mockito.Mockito.*;
 class ErrorControllerTest {
 
     private static final String PROFILE = "error-controller-test";
-    @MockBean
+    @MockitoBean
     private ErrorRepository errorRepository;
 
-    @MockBean
+    @MockitoBean
     KafkaDeadLetterBatchConsumerProducer kafkaDeadLetterBatchConsumerProducer;
 
     @Profile(PROFILE) // prevent other tests using class path scanning picking up this configuration
@@ -73,28 +73,28 @@ class ErrorControllerTest {
         }
     }
 
-    @MockBean
+    @MockitoBean
     private ErrorService errorService;
 
-    @MockBean
+    @MockitoBean
     private ErrorGroupService errorGroupService;
 
-    @MockBean
+    @MockitoBean
     private ErrorSearchService errorSearchService;
 
-    @MockBean
+    @MockitoBean
     private KafkaProperties kafkaProperties;
 
     @Autowired
     private ErrorController errorController;
 
-    @MockBean
+    @MockitoBean
     private ScheduledResendService scheduledResendService;
 
-    @MockBean
+    @MockitoBean
     private AuditLogService auditLogService;
 
-    @MockBean
+    @MockitoBean
     private DomainEventDeserializer domainEventDeserializer;
 
     private static final SemanticApplicationRole VIEW_ROLE = SemanticApplicationRole.builder()
@@ -142,7 +142,7 @@ class ErrorControllerTest {
         // then
         assertEquals(totalElements, response.getTotalErrorCount());
         assertEquals(1, response.getErrors().size());
-        ErrorDTO errorDTO = response.getErrors().get(0);
+        ErrorDTO errorDTO = response.getErrors().getFirst();
         assertEquals(permanentError.getId().toString(), errorDTO.getId());
         assertEquals(ErrorStubs.ERROR_CODE, errorDTO.getErrorCode());
         assertEquals(ErrorStubs.ERROR_MESSAGE, errorDTO.getErrorMessage());
@@ -175,7 +175,7 @@ class ErrorControllerTest {
         assertEquals("default", response.getEventClusterName());
         assertNotNull(response.getAuditLogDTOs());
         assertEquals(2, response.getAuditLogDTOs().size());
-        assertAuditLogDTO(response.getAuditLogDTOs().get(0), DELETE_ERROR, user);
+        assertAuditLogDTO(response.getAuditLogDTOs().getFirst(), DELETE_ERROR, user);
         assertAuditLogDTO(response.getAuditLogDTOs().get(1), RESEND_CAUSING_EVENT, user);
         assertEquals("some-ticket-number", response.getTicketNumber());
         assertEquals("some-free-text", response.getFreeText());
@@ -207,7 +207,7 @@ class ErrorControllerTest {
         assertNotNull(response.getStacktrace());
         assertNotNull(response.getAuditLogDTOs());
         assertEquals(2, response.getAuditLogDTOs().size());
-        assertAuditLogDTO(response.getAuditLogDTOs().get(0), DELETE_ERROR, user);
+        assertAuditLogDTO(response.getAuditLogDTOs().getFirst(), DELETE_ERROR, user);
         assertAuditLogDTO(response.getAuditLogDTOs().get(1), RESEND_CAUSING_EVENT, user);
     }
 
@@ -415,7 +415,7 @@ class ErrorControllerTest {
         //Then
         assertNotNull(result);
         assertEquals(1, result.getTotalErrorCount());
-        assertEquals("TAPAS-745", result.getErrors().get(0).getTicketNumber());
+        assertEquals("TAPAS-745", result.getErrors().getFirst().getTicketNumber());
     }
 
     @Test
@@ -429,14 +429,15 @@ class ErrorControllerTest {
 
         when(errorSearchService.search(any(ErrorSearchCriteria.class))).thenReturn(errorList);
 
-        assertNotNull(errorList.getErrors().get(0).getErrorGroup().getTicketNumber());
-        assertEquals("TAPAS-745", errorList.getErrors().get(0).getErrorGroup().getTicketNumber());
+        assertNotNull(errorList.getErrors().getFirst().getErrorGroup().getTicketNumber());
+        assertEquals("TAPAS-745", errorList.getErrors().getFirst().getErrorGroup().getTicketNumber());
     }
 
     @Test
     @WithAuthentication("viewRoleToken")
     void testErrorSearchCriteriaBuilder() {
         ErrorSearchCriteria criteria = ErrorSearchCriteria.builder().ticketNumber("TAPAS-745").build();
+        assertTrue(criteria.getTicketNumber().isPresent());
         assertEquals("TAPAS-745", criteria.getTicketNumber().get());
     }
 

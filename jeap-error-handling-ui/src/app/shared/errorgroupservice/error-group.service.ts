@@ -1,16 +1,17 @@
-import {Injectable} from "@angular/core";
-import {environment} from "../../../environments/environment";
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {ErrorGroupDTO, ErrorGroupResponse} from "./error-group.model";
-import {ErrorGroupSearchFormDto} from "../errorservice/error.model";
+import {Injectable} from '@angular/core';
+import {environment} from '../../../environments/environment';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {ErrorGroupDTO, ErrorGroupResponse} from './error-group.model';
+import {ErrorGroupSearchFormDto} from '../errorservice/error.model';
+import {ErrorGroupConfiguration} from './error-group-config.model';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class ErrorGroupService {
 	private static readonly groupUrl: string = environment.BACKEND_SERVICE_API + '/error-group';
-	private static readonly url: string = environment.BACKEND_SERVICE_API + '/configuration/ticket-number';
+	private static readonly url: string = environment.BACKEND_SERVICE_API + '/configuration/error-group';
 
 	constructor(private readonly http: HttpClient) {
 	}
@@ -42,7 +43,11 @@ export class ErrorGroupService {
 		});
 	}
 
-	getTicketNumberLink(): Observable<any> {
-		return this.http.get(ErrorGroupService.url);
+	createIssue(errorGroupId: string): Observable<ErrorGroupDTO> {
+		return this.http.post<ErrorGroupDTO>(`${ErrorGroupService.groupUrl}/${errorGroupId}/issue`, {});
+	}
+
+	getErrorGroupConfiguration(): Observable<ErrorGroupConfiguration> {
+		return this.http.get<ErrorGroupConfiguration>(ErrorGroupService.url);
 	}
 }

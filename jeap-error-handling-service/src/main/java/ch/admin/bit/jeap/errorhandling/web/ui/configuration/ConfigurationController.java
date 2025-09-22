@@ -1,5 +1,6 @@
 package ch.admin.bit.jeap.errorhandling.web.ui.configuration;
 
+import ch.admin.bit.jeap.errorhandling.domain.group.ErrorGroupConfigProperties;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,8 @@ class ConfigurationController {
     private final FrontendConfigProperties frontendConfigProperties;
 
     private final LogDeepLinkProperties logDeepLinkProperties;
+
+    private final ErrorGroupConfigProperties errorGroupConfigProperties;
 
 
     @Value("${jeap.security.oauth2.resourceserver.authorization-server.issuer}")
@@ -54,11 +57,12 @@ class ConfigurationController {
         return logDeepLinkProperties.getBaseUrl();
     }
 
-    @Schema(description = "Returns the base link for jira tickets")
-    @GetMapping("/ticket-number")
-    public ErrorGroupConfigurationDTO getTicketNumber() {
+    @Schema(description = "Returns the error group handling configuration.")
+    @GetMapping("/error-group")
+    public ErrorGroupConfigurationDTO getErrorGroupConfiguration() {
         return ErrorGroupConfigurationDTO.builder()
                 .ticketingSystemUrl(frontendConfigProperties.getTicketingSystemUrl())
+                .issueTrackingEnabled(errorGroupConfigProperties.isIssueTrackingEnabled())
                 .build();
     }
 }

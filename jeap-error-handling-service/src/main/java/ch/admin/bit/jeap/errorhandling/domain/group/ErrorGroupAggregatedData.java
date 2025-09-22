@@ -6,6 +6,8 @@ import java.util.UUID;
 public interface ErrorGroupAggregatedData {
     UUID getGroupId();
 
+    ZonedDateTime getGroupCreatedAt();
+
     Long getErrorCount();
 
     String getErrorEvent();

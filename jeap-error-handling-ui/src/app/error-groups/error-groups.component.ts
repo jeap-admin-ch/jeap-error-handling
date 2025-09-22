@@ -1,17 +1,17 @@
 import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator} from "@angular/material/paginator";
-import {MatSort, Sort} from "@angular/material/sort";
-import {ErrorGroupDTO, ErrorGroupResponse} from "../shared/errorgroupservice/error-group.model";
-import {MatTableDataSource} from "@angular/material/table";
-import {Observable, Subscription} from "rxjs";
-import {ErrorGroupService} from "../shared/errorgroupservice/error-group.service";
-import {environment} from "../../environments/environment";
-import {startWith, switchMap} from "rxjs/operators";
-import {NotifierService} from "../shared/notifier/notifier.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {QdAuthorizationService} from "@quadrel-services/qd-auth";
-import {roleFilter_errorgroup_edit} from "../app-routing.module";
-import {ErrorGroupSearchFormDto} from "../shared/errorservice/error.model";
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort, Sort} from '@angular/material/sort';
+import {ErrorGroupDTO, ErrorGroupResponse} from '../shared/errorgroupservice/error-group.model';
+import {MatTableDataSource} from '@angular/material/table';
+import {Observable, Subscription} from 'rxjs';
+import {ErrorGroupService} from '../shared/errorgroupservice/error-group.service';
+import {environment} from '../../environments/environment';
+import {startWith, switchMap} from 'rxjs/operators';
+import {NotifierService} from '../shared/notifier/notifier.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {QdAuthorizationService} from '@quadrel-services/qd-auth';
+import {roleFilter_errorgroup_edit} from '../app-routing.module';
+import {ErrorGroupSearchFormDto} from '../shared/errorservice/error.model';
 
 @Component({
 	selector: 'app-error-groups',
@@ -45,8 +45,14 @@ export class ErrorGroupsComponent implements AfterViewInit, OnInit, OnDestroy {
 
 	ngOnInit(): void {
 
-		this.errorGroupService.getTicketNumberLink().subscribe(template => {
-			this.environment.TICKETING_SYSTEM_URL = template.ticketingSystemUrl;
+		this.errorGroupService.getErrorGroupConfiguration().subscribe({
+			next: config => {
+				this.environment.TICKETING_SYSTEM_URL = config.ticketingSystemUrl;
+				this.environment.ISSUE_TRACKING_ENABLED = config.issueTrackingEnabled;
+			},
+			error: error => {
+				console.error('Error loading error group configuration:', error);
+			}
 		});
 		this.displayedColumns = ['anzahl', 'messageType', 'quelle', 'fehlerCode', 'stackTraceHash', 'erstAuftreten', 'letztesAuftreten', 'jira', 'errorDetails'];
 
@@ -66,7 +72,7 @@ export class ErrorGroupsComponent implements AfterViewInit, OnInit, OnDestroy {
 				jiraTicket: params['jiraTicket'] ?? '',
 				sortField: this.sort.active ?? 'latestErrorAt',
 				sortOrder: this.sort.direction?.toUpperCase() ?? 'DESC'
-			}
+			};
 
 			const pageIndex = this.paginator.pageIndex;
 			this.loadGroupErrors(pageIndex, this.errorGroupSearchFormDto).subscribe(

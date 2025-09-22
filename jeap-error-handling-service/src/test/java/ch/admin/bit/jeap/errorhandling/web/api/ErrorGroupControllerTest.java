@@ -3,8 +3,10 @@ package ch.admin.bit.jeap.errorhandling.web.api;
 import ch.admin.bit.jeap.errorhandling.domain.audit.AuditLogService;
 import ch.admin.bit.jeap.errorhandling.domain.error.ErrorSearchService;
 import ch.admin.bit.jeap.errorhandling.domain.error.ErrorService;
+import ch.admin.bit.jeap.errorhandling.domain.exceptions.InvalidUuidException;
 import ch.admin.bit.jeap.errorhandling.domain.group.ErrorGroupAggregatedData;
 import ch.admin.bit.jeap.errorhandling.domain.group.ErrorGroupAggregatedDataList;
+import ch.admin.bit.jeap.errorhandling.domain.group.ErrorGroupAggregatedDataRecord;
 import ch.admin.bit.jeap.errorhandling.domain.group.ErrorGroupService;
 import ch.admin.bit.jeap.errorhandling.domain.resend.scheduler.ScheduledResendService;
 import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.DomainEventDeserializer;
@@ -15,8 +17,6 @@ import ch.admin.bit.jeap.security.resource.token.JeapAuthenticationToken;
 import ch.admin.bit.jeap.security.test.resource.JeapAuthenticationTestTokenBuilder;
 import ch.admin.bit.jeap.security.test.resource.configuration.ServletJeapAuthorizationConfig;
 import ch.admin.bit.jeap.security.test.resource.extension.WithAuthentication;
-import lombok.Builder;
-import lombok.Data;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,15 +24,16 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -72,25 +73,25 @@ class ErrorGroupControllerTest {
             .build();
     @Autowired
     MockMvc mockMvc;
-    @MockBean
+    @MockitoBean
     private ErrorGroupService errorGroupService;
-    @MockBean
+    @MockitoBean
     private ErrorService errorService;
-    @MockBean
+    @MockitoBean
     private ErrorSearchService errorSearchService;
-    @MockBean
+    @MockitoBean
     private KafkaProperties kafkaProperties;
     @Autowired
     private ErrorGroupController errorGroupController;
-    @MockBean
+    @MockitoBean
     private ScheduledResendService scheduledResendService;
-    @MockBean
+    @MockitoBean
     private AuditLogService auditLogService;
-    @MockBean
+    @MockitoBean
     KafkaDeadLetterBatchConsumerProducer kafkaDeadLetterBatchConsumerProducer;
-    @MockBean
+    @MockitoBean
     private DomainEventDeserializer domainEventDeserializer;
-    private ErrorGroupAggregatedData errorGroupAggregatedData;
+    private ErrorGroupAggregatedDataRecord errorGroupAggregatedData;
     private ErrorGroupAggregatedDataList errorGroupAggregatedDataList;
 
     private JeapAuthenticationToken viewRoleToken() {
@@ -261,7 +262,7 @@ class ErrorGroupControllerTest {
         ResponseEntity<ErrorGroupDTO> response = errorGroupController.updateTicketNumber(updateTicketNumberRequest);
 
         // Assert
-        Assertions.assertEquals(200, response.getStatusCode().value());
+        Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
         ErrorGroupDTO dto = response.getBody();
         assertThat(dto).isNotNull();
         assertThat(dto.errorGroupId()).isEqualTo(groupId.toString());
@@ -280,9 +281,7 @@ class ErrorGroupControllerTest {
     @WithAuthentication("editRoleToken")
     void testUpdateTicketNumber_InvalidUUID() {
         UpdateTicketNumberRequest request = new UpdateTicketNumberRequest("invalid-uuid", "TAPAS-745");
-        ResponseEntity<ErrorGroupDTO> response = errorGroupController.updateTicketNumber(request);
-        Assertions.assertEquals(400, response.getStatusCode().value());
-        Assertions.assertNull(response.getBody());
+        Assertions.assertThrows(InvalidUuidException.class, ()-> errorGroupController.updateTicketNumber(request));
     }
 
     @Test
@@ -321,7 +320,7 @@ class ErrorGroupControllerTest {
         ResponseEntity<ErrorGroupDTO> response = errorGroupController.updateFreeText(updateFreeTextRequest);
 
         // Assert
-        Assertions.assertEquals(200, response.getStatusCode().value());
+        Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
         ErrorGroupDTO dto = response.getBody();
         assertThat(dto).isNotNull();
         assertThat(dto.errorGroupId()).isEqualTo(groupId.toString());
@@ -340,9 +339,7 @@ class ErrorGroupControllerTest {
     @WithAuthentication("editRoleToken")
     void testUpdateFreeText_InvalidUUID() {
         UpdateFreeTextRequest updateFreeTextRequest = new UpdateFreeTextRequest("invalid-uuid", "known issue");
-        ResponseEntity<ErrorGroupDTO> response = errorGroupController.updateFreeText(updateFreeTextRequest);
-        Assertions.assertEquals(400, response.getStatusCode().value());
-        Assertions.assertNull(response.getBody());
+        Assertions.assertThrows(InvalidUuidException.class, ()-> errorGroupController.updateFreeText(updateFreeTextRequest));
     }
 
     @Test
@@ -354,6 +351,36 @@ class ErrorGroupControllerTest {
         Mockito.when(errorGroupService.updateFreeText(uuid, "known issue")).thenThrow(new RuntimeException("Unexpected exception"));
         // Act and Assert
         Assertions.assertThrows(RuntimeException.class, () -> errorGroupController.updateFreeText(updateFreeTextRequest));
+    }
+
+    @Test
+    @WithAuthentication("editRoleToken")
+    void testCreateIssueSuccess() {
+        final String expectedIssueId = errorGroupAggregatedData.getTicketNumber();
+        final UUID groupId = errorGroupAggregatedData.getGroupId();
+        Mockito.when(errorGroupService.createIssue(groupId)).thenReturn(expectedIssueId);
+        Mockito.when(errorGroupService.getErrorGroupAggregatedData(groupId)).thenReturn(errorGroupAggregatedData);
+
+        ResponseEntity<ErrorGroupDTO> response = errorGroupController.createIssue(groupId);
+
+        Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
+        ErrorGroupDTO dto = response.getBody();
+        assertThat(dto).isNotNull();
+        assertThat(dto.errorGroupId()).isEqualTo(groupId.toString());
+        assertThat(dto.ticketNumber()).isEqualTo(expectedIssueId);
+        Mockito.verify(errorGroupService, Mockito.times(1)).createIssue(groupId);
+        Mockito.verify(errorGroupService, Mockito.times(1)).getErrorGroupAggregatedData(groupId);
+    }
+
+    @Test
+    @WithAuthentication("editRoleToken")
+    void testCreateIssue_ExceptionHandling() {
+        UUID groupId = UUID.randomUUID();
+        Mockito.when(errorGroupService.createIssue(groupId)).thenThrow(new RuntimeException("Issue creation failed"));
+
+        Assertions.assertThrows(RuntimeException.class, () -> errorGroupController.createIssue(groupId));
+        Mockito.verify(errorGroupService, Mockito.times(1)).createIssue(groupId);
+        Mockito.verify(errorGroupService, Mockito.never()).getErrorGroupAggregatedData(groupId);
     }
 
     @Test
@@ -372,6 +399,14 @@ class ErrorGroupControllerTest {
         ).andExpect(status().isForbidden());
     }
 
+    @Test
+    @WithAuthentication("viewRoleToken")
+    void testForbiddenCreateIssue() throws Exception {
+        UUID groupId = UUID.randomUUID();
+        mockMvc.perform(post("/api/error-group/" + groupId + "/issue"))
+                .andExpect(status().isForbidden());
+    }
+
 
     @Profile(PROFILE) // prevent other tests using class path scanning picking up this configuration
     @Configuration
@@ -382,22 +417,6 @@ class ErrorGroupControllerTest {
         TestConfiguration(ApplicationContext applicationContext) {
             super("jme", applicationContext);
         }
-    }
-
-    @Data
-    @Builder
-    static class ErrorGroupAggregatedDataRecord implements ErrorGroupAggregatedData {
-        UUID groupId;
-        Long errorCount;
-        String errorEvent;
-        String errorPublisher;
-        String errorCode;
-        String errorMessage;
-        ZonedDateTime firstErrorAt;
-        ZonedDateTime latestErrorAt;
-        String ticketNumber;
-        String freeText;
-        String stackTraceHash;
     }
 
 }
