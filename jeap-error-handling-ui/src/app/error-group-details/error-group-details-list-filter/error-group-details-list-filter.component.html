@@ -30,7 +30,7 @@
 
 			<!-- Message -->
 			<mat-form-field>
-				<mat-label>Message</mat-label>
+				<mat-label>{{ "i18n.error.errormessage" | translate }}</mat-label>
 				<input type="text" formControlName="messagePattern" matInput
 					   placeholder="{{'i18n.regex.message' | translate }}"/>
 				<mat-error *ngIf="messageControl.invalid">{{ 'i18n.regex.invalid' | translate }}

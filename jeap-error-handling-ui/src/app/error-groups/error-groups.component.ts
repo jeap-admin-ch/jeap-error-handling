@@ -26,7 +26,6 @@ export class ErrorGroupsComponent implements AfterViewInit, OnInit, OnDestroy {
 	isLoadingResults = false;
 
 	displayedColumns: string[];
-	// data: ErrorGroupDTO[] = [];
 	dataSource = new MatTableDataSource<ErrorGroupDTO>([]);
 
 	errorGroupSearchFormDto: ErrorGroupSearchFormDto;
