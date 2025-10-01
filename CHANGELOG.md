@@ -11,6 +11,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Redesign Error Group Search
 - Added Error Group Detail View
+- Added Jira Integration
+- Updated parent from 27.2.0 to 27.3.0
 
 ## [11.16.0] - 2025-09-29
 
