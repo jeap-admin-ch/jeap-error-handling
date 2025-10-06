@@ -1,11 +1,8 @@
 package ch.admin.bit.jeap.errorhandling.infrastructure.kafka;
 
-import ch.admin.bit.jeap.domainevent.avro.error.EventProcessingFailedEvent;
-import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.converters.ProcessingFailedEventConverter;
 import ch.admin.bit.jeap.messaging.avro.errorevent.MessageProcessingFailedEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.avro.specific.SpecificRecordBase;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.dao.DataAccessException;
 import org.springframework.kafka.listener.AcknowledgingMessageListener;
@@ -15,7 +12,7 @@ import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
-class MessageProcessingFailedEventListener implements AcknowledgingMessageListener<Object, SpecificRecordBase> {
+class MessageProcessingFailedEventListener implements AcknowledgingMessageListener<Object, MessageProcessingFailedEvent> {
 
     private static final List<Class<? extends Throwable>> RECOVERABLE_EXCEPTIONS = List.of(
             org.springframework.dao.DataAccessResourceFailureException.class,
@@ -27,12 +24,11 @@ class MessageProcessingFailedEventListener implements AcknowledgingMessageListen
             java.sql.SQLTransientException.class,
             java.sql.SQLTransientConnectionException.class);
 
-    private final ProcessingFailedEventConverter processingFailedEventConverter;
     private final ErrorEventHandler errorEventHandler;
     private final String clusterName;
 
     @Override
-    public void onMessage(ConsumerRecord<Object, SpecificRecordBase> data, Acknowledgment acknowledgment) {
+    public void onMessage(ConsumerRecord<Object, MessageProcessingFailedEvent> data, Acknowledgment acknowledgment) {
         try {
             consume(data.value());
         } catch (Exception e) {
@@ -44,19 +40,10 @@ class MessageProcessingFailedEventListener implements AcknowledgingMessageListen
     }
 
     /**
-     * Due Backward-Compatibility the KafkaListener has to deal with the 'old' EventProcessingFailedEvent from
-     * jeap-domain-library and the new MessageProcessingFailedEvent for jeap-messaging-Library.
-     * <p>
      * In case of an error, the event will be published in the DLT, which is configured using the property
      * jeap.errorhandling.deadLetterTopicName
      */
-    private void consume(SpecificRecordBase errorEvent) {
-        MessageProcessingFailedEvent messageProcessingFailedEvent;
-        if (errorEvent instanceof EventProcessingFailedEvent) {
-            messageProcessingFailedEvent = processingFailedEventConverter.convert((EventProcessingFailedEvent) errorEvent);
-        } else {
-            messageProcessingFailedEvent = (MessageProcessingFailedEvent) errorEvent;
-        }
+    private void consume(MessageProcessingFailedEvent messageProcessingFailedEvent) {
         errorEventHandler.handle(clusterName, messageProcessingFailedEvent);
     }
 

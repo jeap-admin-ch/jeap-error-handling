@@ -3,7 +3,6 @@ package ch.admin.bit.jeap.errorhandling;
 import ch.admin.bit.jeap.domainevent.avro.AvroDomainEventIdentity;
 import ch.admin.bit.jeap.domainevent.avro.AvroDomainEventPublisher;
 import ch.admin.bit.jeap.domainevent.avro.AvroDomainEventType;
-import ch.admin.bit.jeap.domainevent.avro.error.EventProcessingFailedEvent;
 import ch.admin.bit.jeap.errorhandling.command.test.TestCommand;
 import ch.admin.bit.jeap.errorhandling.command.test.TestCommandPayload;
 import ch.admin.bit.jeap.errorhandling.command.test.TestCommandReferences;
@@ -15,7 +14,6 @@ import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error.ErrorState;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorEventData.Temporality;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorGroup;
-import ch.admin.bit.jeap.errorhandling.util.EventProcessingFailedEventBuilder;
 import ch.admin.bit.jeap.errorhandling.web.api.ErrorDTO;
 import ch.admin.bit.jeap.messaging.avro.*;
 import ch.admin.bit.jeap.messaging.avro.errorevent.MessageHandlerExceptionInformation;
@@ -153,23 +151,6 @@ class ErrorHandlingIT extends ErrorHandlingITBase {
                 .build();
     }
 
-    private EventProcessingFailedEvent createEventProcessingFailedEvent() {
-        CustomKafkaAvroSerializer avroSerializer = new CustomKafkaAvroSerializer();
-        avroSerializer.configure(kafkaConfiguration.consumerConfig(KafkaProperties.DEFAULT_CLUSTER), false);
-        TestEvent domainEvent = createTestEvent("unexpected error");
-        domainEvent.setSerializedMessage(avroSerializer.serialize("Topic", domainEvent));
-        ConsumerRecord<?, ?> originalMessage = new ConsumerRecord<>("Topic", 1, 1, null, domainEvent);
-
-        TestMessageProcessingException eventHandleException = new TestMessageProcessingException(MessageHandlerExceptionInformation.Temporality.PERMANENT, "500", "Payload");
-
-        return EventProcessingFailedEventBuilder.create()
-                .eventHandleException(eventHandleException)
-                .serviceName("service")
-                .systemName("system")
-                .originalMessage(originalMessage)
-                .build();
-    }
-
     public ErrorHandlingIT(@Value("${server.port}") int serverPort) {
         apiSpec = new RequestSpecBuilder()
                 .setPort(serverPort).build();
@@ -255,20 +236,6 @@ class ErrorHandlingIT extends ErrorHandlingITBase {
     }
 
     @Test
-    void testCanConsumeEventProcessingFailedEvent() {
-        // given
-        EventProcessingFailedEvent errorEvent = createEventProcessingFailedEvent();
-
-        // when
-        kafkaTemplate.send(ERROR_TOPIC, errorEvent);
-
-        // then
-        Error error = awaitSingleErrorInRepository();
-        assertSame(Temporality.PERMANENT, error.getErrorEventData().getTemporality());
-        assertEquals(errorEvent.getIdentity().getEventId(), error.getErrorEventMetadata().getId());
-    }
-
-    @Test
     void testUnknownTemporalityFailure_expectStoredInRepositoryWithoutRetry() {
         // given
         TestEvent domainEvent = createTestEvent("unexpected error");
@@ -347,7 +314,7 @@ class ErrorHandlingIT extends ErrorHandlingITBase {
         // then error deletion has been registered in the audit log
         List<AuditLog> auditLogsErrorDeleted = auditLogRepository.findAllByErrorId(error.getId());
         assertEquals(1, auditLogsErrorDeleted.size());
-        AuditLog auditLogErrorDeleted = auditLogsErrorDeleted.get(0);
+        AuditLog auditLogErrorDeleted = auditLogsErrorDeleted.getFirst();
         assertEquals(DELETE_ERROR, auditLogErrorDeleted.getAction());
         assertEquals(SUBJECT, auditLogErrorDeleted.getUser().getSubject());
         assertEquals(CONTEXT.name(), auditLogErrorDeleted.getUser().getAuthContext());
@@ -466,7 +433,7 @@ class ErrorHandlingIT extends ErrorHandlingITBase {
         // Check that the resend of the causing event has been registered in the audit log
         List<AuditLog> auditLogsErrorRetried = auditLogRepository.findAllByErrorId(errorRetried.getId());
         assertEquals(1, auditLogsErrorRetried.size());
-        AuditLog auditLogErrorRetry = auditLogsErrorRetried.get(0);
+        AuditLog auditLogErrorRetry = auditLogsErrorRetried.getFirst();
         assertEquals(RESEND_CAUSING_EVENT, auditLogErrorRetry.getAction());
         assertEquals(SUBJECT, auditLogErrorRetry.getUser().getSubject());
         assertEquals(CONTEXT.name(), auditLogErrorRetry.getUser().getAuthContext());

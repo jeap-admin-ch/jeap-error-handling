@@ -32,8 +32,8 @@ class KafkaDeadLetterBatchConsumerProducerIT extends ErrorHandlingITBase {
     @Test
     void consumeAndProduce_fetchOneMessage_oneMessageResent() {
         //given
-        sendSync(DEAD_LETTER_TOPIC, createEventProcessingFailedEvent());
-        sendSync(DEAD_LETTER_TOPIC, createEventProcessingFailedEvent());
+        sendSync(DEAD_LETTER_TOPIC, createMessageProcessingFailedEvent());
+        sendSync(DEAD_LETTER_TOPIC, createMessageProcessingFailedEvent());
         assertThat(errorRepository.findAll()).isEmpty();
 
         //when
@@ -52,9 +52,9 @@ class KafkaDeadLetterBatchConsumerProducerIT extends ErrorHandlingITBase {
     @Test
     void consumeAndProduce_fetchMessages_messagesResent() {
         //given
-        sendSync(DEAD_LETTER_TOPIC, createEventProcessingFailedEvent());
-        sendSync(DEAD_LETTER_TOPIC, createEventProcessingFailedEvent());
-        sendSync(DEAD_LETTER_TOPIC, createEventProcessingFailedEvent());
+        sendSync(DEAD_LETTER_TOPIC, createMessageProcessingFailedEvent());
+        sendSync(DEAD_LETTER_TOPIC, createMessageProcessingFailedEvent());
+        sendSync(DEAD_LETTER_TOPIC, createMessageProcessingFailedEvent());
         assertThat(errorRepository.findAll()).isEmpty();
 
         //when
@@ -67,8 +67,8 @@ class KafkaDeadLetterBatchConsumerProducerIT extends ErrorHandlingITBase {
     @Test
     void consumeAndProduce_fetchMessagesAndWait_messagesResent() {
         //given
-        sendSync(DEAD_LETTER_TOPIC, createEventProcessingFailedEvent());
-        sendSync(DEAD_LETTER_TOPIC, createEventProcessingFailedEvent());
+        sendSync(DEAD_LETTER_TOPIC, createMessageProcessingFailedEvent());
+        sendSync(DEAD_LETTER_TOPIC, createMessageProcessingFailedEvent());
         assertThat(errorRepository.findAll()).isEmpty();
 
         //when
@@ -85,7 +85,7 @@ class KafkaDeadLetterBatchConsumerProducerIT extends ErrorHandlingITBase {
 
 
 
-    private MessageProcessingFailedEvent createEventProcessingFailedEvent() {
+    private MessageProcessingFailedEvent createMessageProcessingFailedEvent() {
         try (CustomKafkaAvroSerializer avroSerializer = new CustomKafkaAvroSerializer()) {
             avroSerializer.configure(kafkaConfiguration.consumerConfig(KafkaProperties.DEFAULT_CLUSTER), false);
             TestEvent domainEvent = createTestEvent();
@@ -134,7 +134,7 @@ class KafkaDeadLetterBatchConsumerProducerIT extends ErrorHandlingITBase {
     void consumeAndProduce_shouldPreserveKafkaHeaders() {
 
         // given
-        MessageProcessingFailedEvent event = createEventProcessingFailedEvent();
+        MessageProcessingFailedEvent event = createMessageProcessingFailedEvent();
 
         // Set header
         ProducerRecord<AvroMessageKey, AvroMessage> producerRecord =

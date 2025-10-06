@@ -1,8 +1,6 @@
 package ch.admin.bit.jeap.errorhandling.infrastructure.kafka;
 
-import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.converters.ProcessingFailedEventConverter;
 import ch.admin.bit.jeap.messaging.avro.errorevent.MessageProcessingFailedEvent;
-import org.apache.avro.specific.SpecificRecordBase;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,9 +22,6 @@ import static org.mockito.Mockito.*;
 class MessageProcessingFailedEventListenerTest {
 
     @Mock
-    private ProcessingFailedEventConverter processingFailedEventConverter;
-
-    @Mock
     private ErrorEventHandler errorEventHandler;
 
     @Mock
@@ -41,16 +36,12 @@ class MessageProcessingFailedEventListenerTest {
 
     @BeforeEach
     void setUp() {
-        listener = new MessageProcessingFailedEventListener(
-                processingFailedEventConverter,
-                errorEventHandler,
-                CLUSTER_NAME
-        );
+        listener = new MessageProcessingFailedEventListener(errorEventHandler, CLUSTER_NAME);
     }
 
     @Test
     void onMessage_shouldProcessMessageAndAcknowledgeWhenSuccessful() {
-        ConsumerRecord<Object, SpecificRecordBase> consumerRecord = createConsumerRecord(messageProcessingFailedEvent);
+        ConsumerRecord<Object, MessageProcessingFailedEvent> consumerRecord = createConsumerRecord(messageProcessingFailedEvent);
 
         listener.onMessage(consumerRecord, acknowledgment);
 
@@ -60,7 +51,7 @@ class MessageProcessingFailedEventListenerTest {
 
     @Test
     void onMessage_shouldThrowRecoverableExceptionForExceptionFromListOfRecoverableExceptions() {
-        ConsumerRecord<Object, SpecificRecordBase> consumerRecord = createConsumerRecord(messageProcessingFailedEvent);
+        ConsumerRecord<Object, MessageProcessingFailedEvent> consumerRecord = createConsumerRecord(messageProcessingFailedEvent);
         doThrow(new DataAccessResourceFailureException("DB connection failed"))
                 .when(errorEventHandler).handle(anyString(), eq(messageProcessingFailedEvent));
 
@@ -74,7 +65,7 @@ class MessageProcessingFailedEventListenerTest {
 
     @Test
     void onMessage_shouldThrowRecoverableExceptionWhenRecoverableExceptionNestedInChain() {
-        ConsumerRecord<Object, SpecificRecordBase> consumerRecord = createConsumerRecord(messageProcessingFailedEvent);
+        ConsumerRecord<Object, MessageProcessingFailedEvent> consumerRecord = createConsumerRecord(messageProcessingFailedEvent);
         DataAccessResourceFailureException cause = new DataAccessResourceFailureException("DB error");
         RuntimeException wrappedException = new RuntimeException("Wrapper", cause);
         doThrow(wrappedException)
@@ -90,7 +81,7 @@ class MessageProcessingFailedEventListenerTest {
 
     @Test
     void onMessage_shouldThrowRecoverableExceptionForReadOnlyTransactionException() {
-        ConsumerRecord<Object, SpecificRecordBase> consumerRecord = createConsumerRecord(messageProcessingFailedEvent);
+        ConsumerRecord<Object, MessageProcessingFailedEvent> consumerRecord = createConsumerRecord(messageProcessingFailedEvent);
         SQLException readOnlySqlException = new SQLException("Transaction is read-only", "25006");
         DataAccessException dataAccessException = new DataAccessResourceFailureException("Read-only transaction", readOnlySqlException);
         doThrow(dataAccessException)
@@ -106,7 +97,7 @@ class MessageProcessingFailedEventListenerTest {
 
     @Test
     void onMessage_shouldThrowFatalExceptionForNonRecoverableException() {
-        ConsumerRecord<Object, SpecificRecordBase> consumerRecord = createConsumerRecord(messageProcessingFailedEvent);
+        ConsumerRecord<Object, MessageProcessingFailedEvent> consumerRecord = createConsumerRecord(messageProcessingFailedEvent);
         doThrow(new NullPointerException("Null value"))
                 .when(errorEventHandler).handle(anyString(), eq(messageProcessingFailedEvent));
 
@@ -120,7 +111,7 @@ class MessageProcessingFailedEventListenerTest {
 
     @Test
     void onMessage_shouldThrowFatalExceptionWhenNoRecoverableNestedInChain() {
-        ConsumerRecord<Object, SpecificRecordBase> consumerRecord = createConsumerRecord(messageProcessingFailedEvent);
+        ConsumerRecord<Object, MessageProcessingFailedEvent> consumerRecord = createConsumerRecord(messageProcessingFailedEvent);
         IllegalStateException cause = new IllegalStateException("Invalid state");
         RuntimeException wrappedException = new RuntimeException("Wrapper", cause);
         doThrow(wrappedException)
@@ -134,7 +125,7 @@ class MessageProcessingFailedEventListenerTest {
         verify(acknowledgment, never()).acknowledge();
     }
 
-    private ConsumerRecord<Object, SpecificRecordBase> createConsumerRecord(SpecificRecordBase event) {
+    private ConsumerRecord<Object, MessageProcessingFailedEvent> createConsumerRecord(MessageProcessingFailedEvent event) {
         return new ConsumerRecord<>("test-topic", 0, 0L, null, event);
     }
 

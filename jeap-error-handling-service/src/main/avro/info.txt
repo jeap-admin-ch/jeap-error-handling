@@ -1,0 +1,2 @@
+Currently, only test events are created directly from avro during the build.
+See src/test/avro for details.

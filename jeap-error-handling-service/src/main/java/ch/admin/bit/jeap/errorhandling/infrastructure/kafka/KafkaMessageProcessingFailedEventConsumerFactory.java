@@ -1,6 +1,5 @@
 package ch.admin.bit.jeap.errorhandling.infrastructure.kafka;
 
-import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.converters.ProcessingFailedEventConverter;
 import ch.admin.bit.jeap.messaging.kafka.properties.KafkaProperties;
 import ch.admin.bit.jeap.messaging.kafka.spring.JeapKafkaBeanNames;
 import ch.admin.bit.jeap.messaging.kafka.spring.JeapKafkaPropertyFactory;
@@ -59,9 +58,7 @@ class KafkaMessageProcessingFailedEventConsumerFactory implements BeanDefinition
         TopicConfiguration topicConfiguration = beanFactory.getBean(TopicConfiguration.class);
         ConcurrentMessageListenerContainer<?, ?> container = getContainerFactory(clusterName).createContainer(topicConfiguration.getTopicName());
         ErrorEventHandler errorEventHandler = beanFactory.getBean(ErrorEventHandler.class);
-        ProcessingFailedEventConverter processingFailedEventConverter = beanFactory.getBean(ProcessingFailedEventConverter.class);
-        MessageProcessingFailedEventListener listener = new MessageProcessingFailedEventListener(
-                processingFailedEventConverter, errorEventHandler, clusterName);
+        MessageProcessingFailedEventListener listener = new MessageProcessingFailedEventListener(errorEventHandler, clusterName);
         container.setupMessageListener(listener);
         return container;
     }
