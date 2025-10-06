@@ -31,7 +31,6 @@ export class ErrorListComponent extends BaseComponent implements AfterViewInit, 
 	isLoadingResults = false;
 	displayedColumns: string[] = ['selection', 'timestamp', 'eventName', 'errorPublisher', 'errorState',
 		'nextResend', 'errorMessage', 'errorCode', 'errorDetails'];
-	data: ErrorDTO[] = [];
 	dataSource = new MatTableDataSource<ErrorDTO>([]);
 	selection = new SelectionModel<ErrorDTO>(true, []);
 
@@ -130,14 +129,14 @@ export class ErrorListComponent extends BaseComponent implements AfterViewInit, 
 
 	isAllSelected() {
 		const numSelected = this.selection.selected.length;
-		const numRows = this.data.length;
+		const numRows = this.dataSource.data.length;
 		return numSelected === numRows;
 	}
 
 	masterToggle() {
 		this.isAllSelected() ?
 			this.selection.clear() :
-			this.data.forEach(row => this.selection.select(row));
+			this.dataSource.data.forEach(row => this.selection.select(row));
 	}
 
 	isActionDisabled(action: 'Delete' | 'Retry') {
@@ -178,7 +177,7 @@ export class ErrorListComponent extends BaseComponent implements AfterViewInit, 
 
 	reset(): void {
 		this.resetFormGroup();
-		this.data = [];
+		this.dataSource.data = [];
 		this.dropDownStateControl.setValue('PERMANENT');
 	}
 
@@ -312,13 +311,13 @@ export class ErrorListComponent extends BaseComponent implements AfterViewInit, 
 	private errorListLoaded(errorList: ErrorListDTO): void {
 		this.isLoadingResults = false;
 		this.resultsLength = errorList.totalErrorCount;
-		this.data = errorList.errors;
+		this.dataSource.data = errorList.errors;
 	}
 
 	private notifyFailure(errorMessage: string): void {
 		this.isLoadingResults = false;
 		this.resultsLength = 0;
-		this.data = [];
+		this.dataSource.data = [];
 		this.notifierService.showFailureNotification(errorMessage,
 			'i18n.errorhandling.failure', 'i18n.errorhandling.list.load');
 	}

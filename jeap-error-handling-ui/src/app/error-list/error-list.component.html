@@ -154,7 +154,7 @@
 
 	<div column-main-content>
 		<div style="position: relative; min-height: 200px;">
-			<table mat-table [dataSource]="data" matSort (matSortChange)="announceSortChange($event)"
+			<table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
 				   class="ob-table table-sm">
 				<caption>Error List</caption>
 				<ng-container matColumnDef="selection">
