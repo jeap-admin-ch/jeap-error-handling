@@ -29,12 +29,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.actuate.observability.AutoConfigureObservability;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Profile;
 import org.springframework.kafka.config.KafkaListenerEndpointRegistry;
 import org.springframework.kafka.core.KafkaAdmin;
 import org.springframework.kafka.listener.MessageListenerContainer;
 import org.springframework.kafka.test.utils.ContainerTestUtils;
 import org.springframework.messaging.support.GenericMessage;
 import org.springframework.stereotype.Component;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import java.nio.charset.StandardCharsets;
@@ -50,11 +52,11 @@ import static ch.admin.bit.jeap.errorhandling.ErrorHandlingErrorHandlerIT.DLT_TO
 import static ch.admin.bit.jeap.errorhandling.ErrorHandlingErrorHandlerIT.ERROR_HANDLING_SERVICE_TOPIC;
 import static ch.admin.bit.jeap.messaging.avro.errorevent.MessageHandlerExceptionInformation.Temporality.PERMANENT;
 import static org.awaitility.Awaitility.await;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 @Slf4j
+@ActiveProfiles("error-handler-it")
 @SpringBootTest(webEnvironment = RANDOM_PORT, properties = {
         "jeap.errorhandling.topic=" + ERROR_HANDLING_SERVICE_TOPIC,
         "jeap.errorhandling.deadLetterTopicName=" + DLT_TOPIC})
@@ -113,8 +115,8 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
         // then
         await("event is sent to DLT 1 time").atMost(THIRTY_SECONDS).until(() -> dltConsumer.getConsumedMessages().size() == 1);
 
-        GenericMessage<?> genericMessage = dltConsumer.getConsumedMessages().get(0);
-        assertTrue(genericMessage.getPayload() instanceof MessageProcessingFailedEvent);
+        GenericMessage<?> genericMessage = dltConsumer.getConsumedMessages().getFirst();
+        assertInstanceOf(MessageProcessingFailedEvent.class, genericMessage.getPayload());
         assertEquals("java.lang.Exception: Could not deserialize value", ((MessageProcessingFailedEvent) genericMessage.getPayload()).getPayload().getErrorMessage());
         assertEquals("fake Event", StandardCharsets.UTF_8.decode(((MessageProcessingFailedEvent) genericMessage.getPayload()).getPayload().getOriginalMessage()).toString());
         producer.close();
@@ -132,9 +134,9 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
         // then
         await("event is sent to DLT 1 time").atMost(THIRTY_SECONDS).until(() -> dltConsumer.getConsumedMessages().size() == 1);
 
-        GenericMessage<?> genericMessage = dltConsumer.getConsumedMessages().get(0);
-        assertTrue(genericMessage.getPayload() instanceof MessageProcessingFailedEvent);
-        assertTrue(((MessageProcessingFailedEvent) genericMessage.getPayload()).getPayload().getErrorMessage().startsWith("java.lang.ClassCastException"));
+        GenericMessage<?> genericMessage = dltConsumer.getConsumedMessages().getFirst();
+        assertInstanceOf(MessageProcessingFailedEvent.class, genericMessage.getPayload());
+        assertTrue(((MessageProcessingFailedEvent) genericMessage.getPayload()).getPayload().getErrorMessage().contains("TestEvent cannot be cast to class"));
         assertTrue(StandardCharsets.UTF_8.decode(((MessageProcessingFailedEvent) genericMessage.getPayload()).getPayload().getOriginalMessage()).toString().contains("Content Test Event"));
         producer.close();
     }
@@ -152,10 +154,10 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
         await("event is sent to DLT 1 time").atMost(THIRTY_SECONDS)
                 .until(() -> dltConsumer.getConsumedMessages().size() == 1);
 
-        GenericMessage<?> genericMessage = dltConsumer.getConsumedMessages().get(0);
-        assertTrue(genericMessage.getPayload() instanceof MessageProcessingFailedEvent);
+        GenericMessage<?> genericMessage = dltConsumer.getConsumedMessages().getFirst();
+        assertInstanceOf(MessageProcessingFailedEvent.class, genericMessage.getPayload());
         assertTrue(((MessageProcessingFailedEvent) genericMessage.getPayload()).getPayload().getErrorMessage()
-                .contains("NonAvroMessageException"));
+                .contains("Not an Avro message"));
         producer.close();
     }
 
@@ -203,8 +205,9 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
         dltConsumer.reset();
     }
 
-    @Component
     @Getter
+    @Component
+    @Profile("error-handler-it")
     static class DLTConsumer {
 
         private final List<GenericMessage<?>> consumedMessages = new ArrayList<>();

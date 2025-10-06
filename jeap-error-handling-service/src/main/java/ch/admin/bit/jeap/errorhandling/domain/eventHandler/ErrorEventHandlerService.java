@@ -26,7 +26,7 @@ public class ErrorEventHandlerService implements ErrorEventHandler {
     private final PlatformTransactionManager transactionManager;
 
     /**
-     * Do whatever needs to be done for a failed event reported to the error handler by a micro service.
+     * Do whatever needs to be done for a failed event reported to the error handler by a microservice.
      *
      * @param errorEvent The error for the event which failed to be processed successfully and thus was reported to the error handler.
      */
