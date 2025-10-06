@@ -15,8 +15,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ErrorSearchFilter} from './error-list.model';
 import {endOfDay, startOfDay} from 'date-fns';
 import {environment} from '../../environments/environment';
-import {DropDownElement} from "../shared/models/drop-down-element.model";
-import {BaseComponent} from "../shared/BaseComponent";
+import {DropDownElement} from '../shared/models/drop-down-element.model';
+import {BaseComponent} from '../shared/BaseComponent';
 
 @Component({
 	selector: 'error-list',
@@ -109,12 +109,11 @@ export class ErrorListComponent extends BaseComponent implements AfterViewInit, 
 			this.eventIdControl.setValue(params.eventId);
 			this.stacktraceControl.setValue(params.st);
 			this.dropDownEventSourceControl.setValue(params.source);
-			this.dropDownStateControl.setValue(params.es);
+			this.dropDownStateControl.setValue(params.es ?? 'PERMANENT');
 			this.dropDownErrorCodeControl.setValue(params.ec);
 			this.ticketNumberControl.setValue(params.ticketNumber);
 		});
 
-		this.dropDownStateControl.setValue('PERMANENT');
 	}
 
 	ngAfterViewInit(): void {
