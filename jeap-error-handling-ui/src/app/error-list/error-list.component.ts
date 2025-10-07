@@ -1,13 +1,11 @@
-import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
-import {Observable} from 'rxjs';
+import {AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Observable, merge, Subject, tap} from 'rxjs';
 import {ErrorService} from '../shared/errorservice/error.service';
 import {ErrorDTO, ErrorListDTO, ErrorSearchFormDto} from '../shared/errorservice/error.model';
 import {NotifierService} from '../shared/notifier/notifier.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {MatSort, Sort} from '@angular/material/sort';
-import {MatPaginator, PageEvent} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
-import {map, startWith, switchMap} from 'rxjs/operators';
+import {map, startWith, switchMap, takeUntil} from 'rxjs/operators';
 import {LogDeepLinkService} from '../shared/logdeeplink/logdeeplink.service';
 import {SelectionModel} from '@angular/cdk/collections';
 import {TranslateService} from '@ngx-translate/core';
@@ -17,21 +15,24 @@ import {endOfDay, startOfDay} from 'date-fns';
 import {environment} from '../../environments/environment';
 import {DropDownElement} from '../shared/models/drop-down-element.model';
 import {BaseComponent} from '../shared/BaseComponent';
+import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
 	selector: 'error-list',
 	templateUrl: './error-list.component.html',
 	styleUrls: ['./error-list.component.css']
 })
-export class ErrorListComponent extends BaseComponent implements AfterViewInit, OnInit {
+export class ErrorListComponent extends BaseComponent implements AfterViewInit, OnInit, OnDestroy {
 
-	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-	@ViewChild(MatSort, {static: true}) sort: MatSort;
+	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+	@ViewChild(MatSort, {static: false}) sort: MatSort;
+
+	private destroy$ = new Subject<void>();
 
 	isLoadingResults = false;
 	displayedColumns: string[] = ['selection', 'timestamp', 'eventName', 'errorPublisher', 'errorState',
 		'nextResend', 'errorMessage', 'errorCode', 'errorDetails'];
-	dataSource = new MatTableDataSource<ErrorDTO>([]);
+	data: ErrorDTO[] = [];
 	selection = new SelectionModel<ErrorDTO>(true, []);
 
 	resultsLength = 0;
@@ -65,8 +66,6 @@ export class ErrorListComponent extends BaseComponent implements AfterViewInit, 
 	}
 
 	ngOnInit(): void {
-		this.dataSource.sort = this.sort;
-		this.dataSource.paginator = this.paginator;
 		this.errorService.getAllEventSources().subscribe(eventSources => {
 			eventSources.forEach(eventSource => {
 				const element: DropDownElement = {value: eventSource.valueOf(), viewValue: eventSource.valueOf()};
@@ -116,27 +115,38 @@ export class ErrorListComponent extends BaseComponent implements AfterViewInit, 
 	}
 
 	ngAfterViewInit(): void {
-		this.paginator.page.pipe(
+		// Merge pagination and sort events
+		merge(
+			this.sort.sortChange.pipe(tap(() => this.paginator.firstPage())),
+			this.paginator.page
+		).pipe(
 			startWith({}),
-			switchMap(() => {
-				return this.loadErrors(this.paginator.pageIndex, this.sort);
-			})
-		).subscribe(
-			errorList => this.errorListLoaded(errorList),
-			errorMessage => this.notifyFailure(errorMessage));
+			tap(() => this.isLoadingResults = true),
+			switchMap(() => this.loadErrors(this.paginator.pageIndex, this.sort)),
+			takeUntil(this.destroy$)
+		).subscribe({
+			next: errorList => this.errorListLoaded(errorList),
+			error: err => this.notifyFailure(err)
+		});
+
 		this.cdr.detectChanges();
+	}
+
+	ngOnDestroy(): void {
+		this.destroy$.next();
+		this.destroy$.complete();
 	}
 
 	isAllSelected() {
 		const numSelected = this.selection.selected.length;
-		const numRows = this.dataSource.data.length;
+		const numRows = this.data.length;
 		return numSelected === numRows;
 	}
 
 	masterToggle() {
 		this.isAllSelected() ?
 			this.selection.clear() :
-			this.dataSource.data.forEach(row => this.selection.select(row));
+			this.data.forEach(row => this.selection.select(row));
 	}
 
 	isActionDisabled(action: 'Delete' | 'Retry') {
@@ -150,14 +160,8 @@ export class ErrorListComponent extends BaseComponent implements AfterViewInit, 
 
 	reload(): void {
 		this.selection.clear();
-		if (this.paginator.pageIndex > 0) {
-			this.paginator.firstPage();
-		} else {
-			this.loadErrors(0, this.sort).subscribe(
-				errorList => this.errorListLoaded(errorList),
-				errorMessage => this.notifyFailure(errorMessage));
-		}
 
+		// Update query params
 		this.errorSearchFilter.from = this.retrieveDateValue(this.datePickerFromControl, startOfDay);
 		this.errorSearchFilter.to = this.retrieveDateValue(this.datePickerToControl, endOfDay);
 		this.errorSearchFilter.en = this.retrieveValue(this.eventNameControl);
@@ -173,31 +177,31 @@ export class ErrorListComponent extends BaseComponent implements AfterViewInit, 
 			queryParams: this.errorSearchFilter,
 			queryParamsHandling: 'merge',
 		});
+
+		// Reset to first page and trigger reload
+		if (this.paginator.pageIndex > 0) {
+			this.paginator.firstPage();
+		} else {
+			this.isLoadingResults = true;
+			this.loadErrors(0, this.sort)
+				.pipe(takeUntil(this.destroy$))
+				.subscribe({
+					next: (errorList) => this.errorListLoaded(errorList),
+					error: (err) => this.notifyFailure(err)
+				});
+		}
 	}
 
 	reset(): void {
 		this.resetFormGroup();
-		this.dataSource.data = [];
+		this.data = [];
+		this.resultsLength = 0;
 		this.dropDownStateControl.setValue('PERMANENT');
 	}
 
 	filterOptions(val: string): string[] {
 		const filterValue = val.toLowerCase();
 		return this.eventNames.filter(event => event.toLowerCase().includes(filterValue));
-	}
-
-	announcePaginatorChange(event: PageEvent) {
-		this.selection.clear();
-		this.loadErrors(this.dataSource.paginator.pageIndex, this.sort).subscribe(
-			errorList => this.errorListLoaded(errorList)
-		);
-	}
-
-	announceSortChange(sortState: Sort) {
-		this.selection.clear();
-		this.loadErrors(this.dataSource.paginator.pageIndex, sortState).subscribe(
-			errorList => this.errorListLoaded(errorList)
-		);
 	}
 
 	openDeepLink(traceId: string) {
@@ -246,8 +250,7 @@ export class ErrorListComponent extends BaseComponent implements AfterViewInit, 
 
 
 	loadErrors(pageIndex: number, sortState: Sort): Observable<ErrorListDTO> {
-		this.isLoadingResults = true;
-		const pageSize = this.dataSource.paginator.pageSize;
+		const pageSize = this.paginator.pageSize;
 		return this.errorService.findErrorsByFilter(pageIndex, pageSize, this.createErrorSearchCriteriaDto(sortState));
 	}
 
@@ -311,13 +314,13 @@ export class ErrorListComponent extends BaseComponent implements AfterViewInit, 
 	private errorListLoaded(errorList: ErrorListDTO): void {
 		this.isLoadingResults = false;
 		this.resultsLength = errorList.totalErrorCount;
-		this.dataSource.data = errorList.errors;
+		this.data = errorList.errors;
 	}
 
 	private notifyFailure(errorMessage: string): void {
 		this.isLoadingResults = false;
 		this.resultsLength = 0;
-		this.dataSource.data = [];
+		this.data = [];
 		this.notifierService.showFailureNotification(errorMessage,
 			'i18n.errorhandling.failure', 'i18n.errorhandling.list.load');
 	}
