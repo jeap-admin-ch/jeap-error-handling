@@ -3,13 +3,15 @@ package ch.admin.bit.jeap.errorhandling.infrastructure.jira;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import lombok.Data;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 
 @Data
 @Validated
 @ConfigurationProperties(prefix = "jeap.errorhandling.jira")
-public class JiraConfigurationProperties {
+public class JiraConfigurationProperties implements InitializingBean {
 
     /**
      * Base URL of the Jira instance.
@@ -24,10 +26,15 @@ public class JiraConfigurationProperties {
     private String username;
 
     /**
-     * Password credential for the Jira instance.
+     * Password credential for the Jira instance. Alternative to token.
      */
-    @NotBlank
+
     private String password;
+
+    /**
+     * API token for the Jira instance. Alternative to password.
+     */
+    private String token;
 
     /**
      * Timeout for connecting to the Jira instance.
@@ -40,5 +47,13 @@ public class JiraConfigurationProperties {
      */
     @Positive
     private int readTimeoutMs = 20000;
+
+
+    @Override
+    public void afterPropertiesSet() {
+        if (!StringUtils.hasText(password) && !StringUtils.hasText(token)) {
+            throw new IllegalStateException("Either password or token must be set to use Jira.");
+        }
+    }
 
 }

@@ -1,5 +1,6 @@
 package ch.admin.bit.jeap.errorhandling.infrastructure.jira;
 
+import com.github.tomakehurst.wiremock.client.MappingBuilder;
 import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import org.junit.jupiter.api.Test;
@@ -7,6 +8,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestClient;
+
+import java.util.function.Consumer;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
@@ -23,35 +26,14 @@ class JiraClientTest {
     private static final String ISSUE_API_CONTEXT_PATH = "/rest/api/2/issue";
     private static final String USERNAME = "jira-user";
     private static final String PASSWORD = "secure-password";
+    private static final String TOKEN = "test-bearer-token";
 
     @Test
-    void createIssueReturnsIssueKeyWhenSuccessful(WireMockRuntimeInfo runtimeInfo) {
-        JiraClient jiraClient = createJiraClient(runtimeInfo.getHttpBaseUrl());
+    void createIssueReturnsIssueKeyWhenSuccessfulWithBasicAuth(WireMockRuntimeInfo runtimeInfo) {
+        JiraClient jiraClient = createJiraClientWithBasicAuth(runtimeInfo.getHttpBaseUrl());
 
-        stubFor(post(urlEqualTo(ISSUE_API_CONTEXT_PATH))
-                .withBasicAuth(USERNAME, PASSWORD)
-                .withHeader(HttpHeaders.CONTENT_TYPE, equalTo(MediaType.APPLICATION_JSON_VALUE))
-                .withRequestBody(equalToJson("""
-                        {
-                          "fields": {
-                            "project": {"key": "PROJ"},
-                            "issuetype": {"name": "Bug"},
-                            "summary": "the summary",
-                            "description": "the description",
-                            "reporter": {"name": "reporter-user"}
-                          }
-                        }
-                        """, true, true))
-                .willReturn(aResponse()
-                        .withStatus(HttpStatus.CREATED.value())
-                        .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                        .withBody("""
-                                {
-                                  "id": "10000",
-                                  "key": "PROJ-123",
-                                  "self": "https://jira.example.com/browse/PROJ-123"
-                                }
-                                """)));
+        stubSuccessfulCreateIssue("PROJ-123", mappingBuilder ->
+                mappingBuilder.withBasicAuth(USERNAME, PASSWORD));
 
         String issueKey = jiraClient.createIssue("PROJ", "Bug", "the summary", "the description", "reporter-user");
 
@@ -59,8 +41,20 @@ class JiraClientTest {
     }
 
     @Test
-    void createIssueThrowsResponseExceptionForUnauthorized(WireMockRuntimeInfo runtimeInfo) {
-        JiraClient jiraClient = createJiraClient(runtimeInfo.getHttpBaseUrl());
+    void createIssueReturnsIssueKeyWhenSuccessfulWithBearerAuth(WireMockRuntimeInfo runtimeInfo) {
+        JiraClient jiraClient = createJiraClientWithBearerAuth(runtimeInfo.getHttpBaseUrl());
+
+        stubSuccessfulCreateIssue("PROJ-456", mappingBuilder ->
+                mappingBuilder.withHeader(HttpHeaders.AUTHORIZATION, equalTo("Bearer " + TOKEN)));
+
+        String issueKey = jiraClient.createIssue("PROJ", "Bug", "the summary", "the description", "reporter-user");
+
+        assertThat(issueKey).isEqualTo("PROJ-456");
+    }
+
+    @Test
+    void createIssueThrowsResponseExceptionForUnauthorizedWithBasicAuth(WireMockRuntimeInfo runtimeInfo) {
+        JiraClient jiraClient = createJiraClientWithBasicAuth(runtimeInfo.getHttpBaseUrl());
 
         stubFor(post(urlEqualTo(ISSUE_API_CONTEXT_PATH))
                 .willReturn(aResponse()
@@ -78,6 +72,30 @@ class JiraClientTest {
                 .isInstanceOfSatisfying(JiraResponseException.class, ex -> {
                     assertThat(ex.getStatusCode().value()).isEqualTo(HttpStatus.UNAUTHORIZED.value());
                     assertThat(ex.getResponse()).contains("Invalid credentials");
+                })
+                .hasMessageContaining("Jira response indicates an error");
+    }
+
+    @Test
+    void createIssueThrowsResponseExceptionForUnauthorizedWithBearerAuth(WireMockRuntimeInfo runtimeInfo) {
+        JiraClient jiraClient = createJiraClientWithBearerAuth(runtimeInfo.getHttpBaseUrl());
+
+        stubFor(post(urlEqualTo(ISSUE_API_CONTEXT_PATH))
+                .willReturn(aResponse()
+                        .withStatus(HttpStatus.UNAUTHORIZED.value())
+                        .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                        .withBody("""
+                                {
+                                  "errorMessages": ["Invalid token"],
+                                  "errors": {}
+                                }
+                                """)));
+
+        assertThatThrownBy(
+                () -> jiraClient.createIssue("PROJ", "Bug", "summary", "description", "reporter"))
+                .isInstanceOfSatisfying(JiraResponseException.class, ex -> {
+                    assertThat(ex.getStatusCode().value()).isEqualTo(HttpStatus.UNAUTHORIZED.value());
+                    assertThat(ex.getResponse()).contains("Invalid token");
                 })
                 .hasMessageContaining("Jira response indicates an error");
     }
@@ -150,11 +168,53 @@ class JiraClientTest {
                 .hasMessageContaining("Unexpected response from Jira");
     }
 
+    private void stubSuccessfulCreateIssue(String issueKey, Consumer<MappingBuilder> authConfigurer) {
+        MappingBuilder mappingBuilder = post(urlEqualTo(ISSUE_API_CONTEXT_PATH));
+        authConfigurer.accept(mappingBuilder);
+
+        stubFor(mappingBuilder
+                .withHeader(HttpHeaders.CONTENT_TYPE, equalTo(MediaType.APPLICATION_JSON_VALUE))
+                .withRequestBody(equalToJson("""
+                        {
+                          "fields": {
+                            "project": {"key": "PROJ"},
+                            "issuetype": {"name": "Bug"},
+                            "summary": "the summary",
+                            "description": "the description",
+                            "reporter": {"name": "reporter-user"}
+                          }
+                        }
+                        """, true, true))
+                .willReturn(aResponse()
+                        .withStatus(HttpStatus.CREATED.value())
+                        .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                        .withBody("""
+                                {
+                                  "id": "10000",
+                                  "key": "%s",
+                                  "self": "https://jira.example.com/browse/%s"
+                                }
+                                """.formatted(issueKey, issueKey))));
+    }
+
     private JiraClient createJiraClient(String baseUrl) {
+        return createJiraClientWithBearerAuth(baseUrl);
+    }
+
+    private JiraClient createJiraClientWithBasicAuth(String baseUrl) {
         JiraConfigurationProperties properties = new JiraConfigurationProperties();
         properties.setBaseUrl(baseUrl);
         properties.setUsername(USERNAME);
         properties.setPassword(PASSWORD);
+
+        return new JiraClient(properties, RestClient.builder());
+    }
+
+    private JiraClient createJiraClientWithBearerAuth(String baseUrl) {
+        JiraConfigurationProperties properties = new JiraConfigurationProperties();
+        properties.setBaseUrl(baseUrl);
+        properties.setUsername(USERNAME);
+        properties.setToken(TOKEN);
 
         return new JiraClient(properties, RestClient.builder());
     }

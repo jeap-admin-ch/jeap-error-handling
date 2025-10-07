@@ -441,7 +441,7 @@ class ErrorGroupControllerIT extends ErrorHandlingITBase {
         errorRepository.save(error);
         final String createIssuePath = "/api/error-group/{groupId}/issue";
         wireMockServer.stubFor(post(urlEqualTo("/rest/api/2/issue"))
-                .withBasicAuth("ehs", "secret")
+                .withHeader(HttpHeaders.AUTHORIZATION, equalTo("Bearer test-jira-token"))
                 .withHeader(HttpHeaders.CONTENT_TYPE, equalTo(MediaType.APPLICATION_JSON_VALUE))
                 .withRequestBody(matchingJsonPath("$.fields.project.key", equalTo("JME")))
                 .withRequestBody(matchingJsonPath("$.fields.issuetype.name", equalTo("Bug")))

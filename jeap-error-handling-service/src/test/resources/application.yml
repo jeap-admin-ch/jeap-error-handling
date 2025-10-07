@@ -33,9 +33,9 @@ jeap:
         error-handling-service-group-url-template: "http://localhost:8080/jeap-error-handling-service/errors/group/{groupId}"
     jira:
 #      Dynamically set in tests to wiremock port when needed
-#      baseUrl: "http://localhost:8081/jira"
+#      base-url: "http://localhost:8081/jira"
       username: "ehs"
-      password: "secret"
+      token: "test-jira-token"
 
   security:
     oauth2:
