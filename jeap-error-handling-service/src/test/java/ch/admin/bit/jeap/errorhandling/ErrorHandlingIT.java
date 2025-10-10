@@ -483,19 +483,19 @@ class ErrorHandlingIT extends ErrorHandlingITBase {
         TestEvent reSentEvent = consumedEvents.get(1);
         assertEquals(originalEventCausingError, reSentEvent, "Re-sent event equals original event");
         List<ConsumerRecord<AvroMessageKey,TestEvent>> consumedRecords = testConsumer.getConsumedRecordsByIdempotenceId(domainEvent.getIdentity().getIdempotenceId());
-        for(ConsumerRecord<AvroMessageKey,TestEvent> record : consumedRecords) {
-            assertNotNull(getHeaderValue(JeapKafkaAvroSerdeCryptoConfig.ENCRYPTED_VALUE_HEADER_NAME, record),"Header value from original message is passed through");
-            assertNotNull(getHeaderValue(headerNameCert, record),"Header value from original message is passed through");
-            assertNotNull(getHeaderValue(headerNameSign, record),"Header value from original message is passed through");
-            assertNotNull(getHeaderValue(headerNameSignKey, record),"Header value from original message is passed through");
+        for(ConsumerRecord<AvroMessageKey,TestEvent> consumerRecord : consumedRecords) {
+            assertNotNull(getHeaderValue(JeapKafkaAvroSerdeCryptoConfig.ENCRYPTED_VALUE_HEADER_NAME, consumerRecord),"Header value from original message is passed through");
+            assertNotNull(getHeaderValue(headerNameCert, consumerRecord),"Header value from original message is passed through");
+            assertNotNull(getHeaderValue(headerNameSign, consumerRecord),"Header value from original message is passed through");
+            assertNotNull(getHeaderValue(headerNameSignKey, consumerRecord),"Header value from original message is passed through");
         }
     }
 
-    private Object getHeaderValue(String headerName, ConsumerRecord<AvroMessageKey,TestEvent> record) {
-        if(record.headers() == null)        {
+    private Object getHeaderValue(String headerName, ConsumerRecord<AvroMessageKey,TestEvent> consumerRecord) {
+        if(consumerRecord.headers() == null)        {
             return null;}
 
-        return record.headers().lastHeader(headerName);
+        return consumerRecord.headers().lastHeader(headerName);
     }
 
     @Test

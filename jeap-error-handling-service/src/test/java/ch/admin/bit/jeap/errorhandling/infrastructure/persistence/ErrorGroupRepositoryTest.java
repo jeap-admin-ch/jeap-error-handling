@@ -109,7 +109,7 @@ class ErrorGroupRepositoryTest {
         // Then
         Assertions.assertThat(result).isNotNull().isNotEmpty();
         Assertions.assertThat(result.getContent()).hasSize(1);
-        Assertions.assertThat(result.getContent().getFirst().getTicketNumber()).isEqualTo("");
+        Assertions.assertThat(result.getContent().getFirst().getTicketNumber()).isEmpty();
 
     }
 

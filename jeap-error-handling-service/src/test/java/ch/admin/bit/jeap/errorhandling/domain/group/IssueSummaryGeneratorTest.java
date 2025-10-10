@@ -15,7 +15,7 @@ class IssueSummaryGeneratorTest {
     void generateIssueSummary_ReplacesAllPlaceholders() {
         final String template = "Ticket for '{group-id}' created at {group-created-datetime} from '{source}' as '{message-type}' with '{error-code}' occurred {error-count} times";
         for (var parameter : IssueSummaryGenerator.IssueSummaryParameters.values()) {
-            assertThat(template.contains(parameter.parameterName())).isTrue();
+            assertThat(template).contains(parameter.parameterName());
         }
         final ErrorGroupConfigProperties ehgConfigProperties = createErrorGroupConfigProperties(template);
         final IssueSummaryGenerator issueSummaryGenerator = new IssueSummaryGenerator(ehgConfigProperties);

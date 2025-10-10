@@ -136,8 +136,8 @@ public abstract class ErrorHandlingITBase extends KafkaIntegrationTestBase {
 
 
         @TestKafkaListener(topics = {ERROR_TOPIC}, groupId = "test-error-consumer")
-        public void consumeError(final ConsumerRecord<AvroMessageKey, Object> record) {
-            Object event = record.value();
+        public void consumeError(final ConsumerRecord<AvroMessageKey, Object> consumerRecord) {
+            Object event = consumerRecord.value();
 
             if (event instanceof MessageProcessingFailedEvent messageEvent) {
                 consumedMessageProcessingFailedEvents.add(messageEvent);
@@ -145,17 +145,17 @@ public abstract class ErrorHandlingITBase extends KafkaIntegrationTestBase {
                 // Create new record of the correct type by mapper, to avoid unchecked cast
                 ConsumerRecord<AvroMessageKey, MessageProcessingFailedEvent> typedRecord =
                         new ConsumerRecord<>(
-                                record.topic(),
-                                record.partition(),
-                                record.offset(),
-                                record.timestamp(),
-                                record.timestampType(),
-                                record.serializedKeySize(),
-                                record.serializedValueSize(),
-                                record.key(),
+                                consumerRecord.topic(),
+                                consumerRecord.partition(),
+                                consumerRecord.offset(),
+                                consumerRecord.timestamp(),
+                                consumerRecord.timestampType(),
+                                consumerRecord.serializedKeySize(),
+                                consumerRecord.serializedValueSize(),
+                                consumerRecord.key(),
                                 messageEvent,
-                                record.headers(),
-                                record.leaderEpoch()
+                                consumerRecord.headers(),
+                                consumerRecord.leaderEpoch()
                         );
                 consumedMessageProcessingFailedEventRecords.add(typedRecord);
             } else {
@@ -222,7 +222,7 @@ public abstract class ErrorHandlingITBase extends KafkaIntegrationTestBase {
 
         public List<ConsumerRecord<AvroMessageKey, TestEvent>> getConsumedRecordsByIdempotenceId(String idempotenceId) {
             return consumedRecords.stream()
-                    .filter(record -> idempotenceId.equals(record.value().getIdentity().getIdempotenceId()))
+                    .filter(consumerRecord -> idempotenceId.equals(consumerRecord.value().getIdentity().getIdempotenceId()))
                     .toList();
         }
 

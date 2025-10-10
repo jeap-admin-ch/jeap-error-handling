@@ -65,18 +65,18 @@ class ErrorEventHandlerServiceTest {
     }
 
     private MessageProcessingFailedEvent createMessageProcessingFailedEvent() {
-        ConsumerRecord<?, ?> record = new ConsumerRecord<>("Topic", 1, 1, null, "payload");
+        ConsumerRecord<?, ?> consumerRecord = new ConsumerRecord<>("Topic", 1, 1, null, "payload");
         TestMessageProcessingException eventHandleException = new TestMessageProcessingException(PERMANENT, "500", "Payload");
         return MessageProcessingFailedEventBuilder.create()
                 .eventHandleException(eventHandleException)
                 .serviceName("service")
                 .systemName("system")
-                .originalMessage(record, null)
+                .originalMessage(consumerRecord, null)
                 .build();
     }
 
     private CausingEvent createCausingEvent(EventMetadata metadata) {
-        CausingEvent causingEvent = CausingEvent.builder()
+        return CausingEvent.builder()
                 .message(EventMessage.builder()
                         .offset(1)
                         .payload("test".getBytes(StandardCharsets.UTF_8))
@@ -85,7 +85,6 @@ class ErrorEventHandlerServiceTest {
                         .build())
                 .metadata(metadata)
                 .build();
-        return causingEvent;
     }
 
     private EventMetadata createEventMetadata() {

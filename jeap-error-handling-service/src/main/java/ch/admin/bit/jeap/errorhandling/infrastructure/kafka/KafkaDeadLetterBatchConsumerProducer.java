@@ -90,13 +90,13 @@ public class KafkaDeadLetterBatchConsumerProducer {
             for (ConsumerRecord<byte[], byte[]> data : records) {
                 log.debug("Received message from partition {} with offset {}", data.partition(), data.offset());
 
-                ProducerRecord<byte[], byte[]> record =
+                ProducerRecord<byte[], byte[]> producerRecord =
                         (data.key() != null)
                                 ? new ProducerRecord<>(errorTopicName, data.key(), data.value())
                                 : new ProducerRecord<>(errorTopicName, data.value());
 
-                data.headers().forEach(header -> record.headers().add(header));
-                producer.send(record);
+                data.headers().forEach(header -> producerRecord.headers().add(header));
+                producer.send(producerRecord);
             }
 
             log.info("Consumed and produced {} records.", received);

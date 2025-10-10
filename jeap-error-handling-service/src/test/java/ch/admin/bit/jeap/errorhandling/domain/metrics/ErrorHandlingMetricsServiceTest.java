@@ -83,7 +83,7 @@ class ErrorHandlingMetricsServiceTest {
         Assertions.assertThat(meterRegistry.get("eh_permanent_open").gauge().value()).isEqualTo(8);
         Assertions.assertThat(meterRegistry.get("eh_permanent_pending_manualtask_create").gauge().value()).isEqualTo(4);
         Assertions.assertThat(meterRegistry.get("eh_permanent_pending_manualtask_resolve").gauge().value()).isEqualTo(1);
-        Assertions.assertThat(meterRegistry.get("eh_permanent_pending_manualtask_delete").gauge().value()).isEqualTo(0);
+        Assertions.assertThat(meterRegistry.get("eh_permanent_pending_manualtask_delete").gauge().value()).isZero();
         Assertions.assertThat(meterRegistry.get("eh_error_groups_with_open_errors").gauge().value()).isEqualTo(7);
     }
 

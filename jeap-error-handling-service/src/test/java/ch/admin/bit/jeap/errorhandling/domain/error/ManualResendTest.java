@@ -21,8 +21,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.UUID;
@@ -33,31 +33,31 @@ import static org.mockito.Mockito.*;
 @ExtendWith({MockitoExtension.class})
 @Import(ErrorService.class)
 class ManualResendTest {
-    private final static UUID errorId = UUID.randomUUID();
-    private final static UUID taskId = UUID.randomUUID();
-    @MockBean
+    private static final UUID errorId = UUID.randomUUID();
+    private static final UUID taskId = UUID.randomUUID();
+    @MockitoBean
     private ErrorGroupConfigProperties errorGroupConfigProperties;
-    @MockBean
+    @MockitoBean
     private ErrorRepository errorRepository;
-    @MockBean
+    @MockitoBean
     private ErrorGroupRepository errorGroupRepository;
-    @MockBean
+    @MockitoBean
     private ErrorGroupService errorGroupService;
-    @MockBean
+    @MockitoBean
     private ErrorHandlingMetricsService errorHandlingMetricsService;
-    @MockBean
+    @MockitoBean
     private ScheduledResendService scheduledResendService;
-    @MockBean
+    @MockitoBean
     private KafkaFailedEventResender failedEventResender;
-    @MockBean
+    @MockitoBean
     private TaskManagementClient taskManagementClient;
-    @MockBean
+    @MockitoBean
     private ErrorFactory errorFactory;
-    @MockBean
+    @MockitoBean
     private ResendingStrategy resendingStrategy;
-    @MockBean
+    @MockitoBean
     private TaskFactory taskFactory;
-    @MockBean
+    @MockitoBean
     private AuditLogService auditLogService;
     @Mock(lenient = true)
     private Error error;

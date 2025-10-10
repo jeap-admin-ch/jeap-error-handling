@@ -7,7 +7,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import java.time.ZonedDateTime;
@@ -86,7 +85,7 @@ class CausingEventRepositoryTest {
         Number headerCount = (Number) testEntityManager.getEntityManager()
                 .createNativeQuery("select count(*) from message_header").getSingleResult();
         assertThat(headerCount.intValue())
-                .isEqualTo(0);
+                .isZero();
     }
 
     @Test

@@ -30,8 +30,8 @@ import static org.mockito.Mockito.*;
 @ExtendWith({MockitoExtension.class})
 @MockitoSettings(strictness = Strictness.LENIENT)
 class DeleteTest {
-    private final static UUID errorId = UUID.randomUUID();
-    private final static UUID taskId = UUID.randomUUID();
+    private static final UUID errorId = UUID.randomUUID();
+    private static final UUID taskId = UUID.randomUUID();
     @Mock
     private ErrorGroupConfigProperties errorGroupConfigProperties;
     @Mock

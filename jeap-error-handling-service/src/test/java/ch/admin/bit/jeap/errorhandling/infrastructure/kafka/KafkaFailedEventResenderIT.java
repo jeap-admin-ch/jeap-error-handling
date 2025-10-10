@@ -128,8 +128,8 @@ class KafkaFailedEventResenderIT extends ErrorHandlingITBase {
 
     private String retrieveHeaderFromConsumedMessage(long traceIdHigh) {
         return Streams.stream(consumeAllEvents())
-                .filter(record -> record.headers().lastHeader("traceparent").value() != null)
-                .map(record -> new String(record.headers().lastHeader("traceparent").value()))
+                .filter(consumerRecord -> consumerRecord.headers().lastHeader("traceparent").value() != null)
+                .map(consumerRecord -> new String(consumerRecord.headers().lastHeader("traceparent").value()))
                 .filter(traceparent -> traceparent.startsWith("00-" + HexCodec.toLowerHex(traceIdHigh)))
                 .findFirst().orElseThrow()
                 .split("-")[1];
@@ -138,7 +138,7 @@ class KafkaFailedEventResenderIT extends ErrorHandlingITBase {
     private boolean hasEventBeenResent(CausingEvent causingEvent) {
         return Streams.stream(consumeAllEvents()).
                 map(ConsumerRecord::value).
-                filter(v -> v instanceof byte[]).
+                filter(byte[].class::isInstance).
                 map(v -> (byte[]) v).
                 anyMatch(value -> Arrays.equals(value, causingEvent.getMessage().getPayload()));
     }

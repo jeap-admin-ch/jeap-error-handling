@@ -34,7 +34,6 @@ import org.springframework.kafka.config.KafkaListenerEndpointRegistry;
 import org.springframework.kafka.core.KafkaAdmin;
 import org.springframework.kafka.listener.MessageListenerContainer;
 import org.springframework.kafka.test.utils.ContainerTestUtils;
-import org.springframework.messaging.support.GenericMessage;
 import org.springframework.stereotype.Component;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -52,7 +51,8 @@ import static ch.admin.bit.jeap.errorhandling.ErrorHandlingErrorHandlerIT.DLT_TO
 import static ch.admin.bit.jeap.errorhandling.ErrorHandlingErrorHandlerIT.ERROR_HANDLING_SERVICE_TOPIC;
 import static ch.admin.bit.jeap.messaging.avro.errorevent.MessageHandlerExceptionInformation.Temporality.PERMANENT;
 import static org.awaitility.Awaitility.await;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 @Slf4j
@@ -107,37 +107,37 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
     void testCanConsumeInvalidEvent() throws ExecutionException, InterruptedException {
         // given
         final Producer<String, String> producer = createStringMessageProducer();
-        final ProducerRecord<String, String> record = new ProducerRecord<>(ERROR_HANDLING_SERVICE_TOPIC, "fake Event");
+        final ProducerRecord<String, String> producerRecord = new ProducerRecord<>(ERROR_HANDLING_SERVICE_TOPIC, "fake Event");
 
         // when
-        producer.send(record).get();
+        producer.send(producerRecord).get();
 
         // then
         await("event is sent to DLT 1 time").atMost(THIRTY_SECONDS).until(() -> dltConsumer.getConsumedMessages().size() == 1);
 
-        GenericMessage<?> genericMessage = dltConsumer.getConsumedMessages().getFirst();
-        assertInstanceOf(MessageProcessingFailedEvent.class, genericMessage.getPayload());
-        assertEquals("java.lang.Exception: Could not deserialize value", ((MessageProcessingFailedEvent) genericMessage.getPayload()).getPayload().getErrorMessage());
-        assertEquals("fake Event", StandardCharsets.UTF_8.decode(((MessageProcessingFailedEvent) genericMessage.getPayload()).getPayload().getOriginalMessage()).toString());
+        MessageProcessingFailedEvent genericMessage = dltConsumer.getConsumedMessages().getFirst();
+        assertEquals("java.lang.Exception: Could not deserialize value", genericMessage.getPayload().getErrorMessage());
+        assertEquals("fake Event", StandardCharsets.UTF_8.decode(genericMessage.getPayload().getOriginalMessage()).toString());
         producer.close();
     }
 
     @Test
     void testCanConsumeInvalidAvroMessageEvent() throws ExecutionException, InterruptedException {
         // given
+        final TestEvent testEvent = createTestEvent("Content Test Event");
+        final String testEventIdempotenceId = testEvent.getIdentity().getIdempotenceId();
         final Producer<String, AvroMessage> producer = createAvroMessageProducer();
-        final ProducerRecord<String, AvroMessage> record = new ProducerRecord<>(ERROR_HANDLING_SERVICE_TOPIC, createTestEvent("Content Test Event"));
+        final ProducerRecord<String, AvroMessage> producerRecord = new ProducerRecord<>(ERROR_HANDLING_SERVICE_TOPIC, testEvent);
 
         // when
-        producer.send(record).get();
+        producer.send(producerRecord).get();
 
         // then
-        await("event is sent to DLT 1 time").atMost(THIRTY_SECONDS).until(() -> dltConsumer.getConsumedMessages().size() == 1);
+        await("event is sent to DLT 1 time").atMost(THIRTY_SECONDS).until(() -> dltConsumer.hasMessageWithIdempotenceId(testEventIdempotenceId));
 
-        GenericMessage<?> genericMessage = dltConsumer.getConsumedMessages().getFirst();
-        assertInstanceOf(MessageProcessingFailedEvent.class, genericMessage.getPayload());
-        assertTrue(((MessageProcessingFailedEvent) genericMessage.getPayload()).getPayload().getErrorMessage().contains("TestEvent cannot be cast to class"));
-        assertTrue(StandardCharsets.UTF_8.decode(((MessageProcessingFailedEvent) genericMessage.getPayload()).getPayload().getOriginalMessage()).toString().contains("Content Test Event"));
+        MessageProcessingFailedEvent genericMessage = dltConsumer.getMessageWithIdempotenceId(testEventIdempotenceId);
+        assertTrue(genericMessage.getPayload().getErrorMessage().contains("TestEvent cannot be cast to class"));
+        assertTrue(StandardCharsets.UTF_8.decode(genericMessage.getPayload().getOriginalMessage()).toString().contains("Content Test Event"));
         producer.close();
     }
 
@@ -145,19 +145,18 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
     void testCanConsumeValidMessage_nonAvroOriginalEvent_isPublishedToDlt() throws ExecutionException, InterruptedException {
         // given
         final Producer<String, AvroMessage> producer = createAvroMessageProducer();
-        final ProducerRecord<String, AvroMessage> record = new ProducerRecord<>(ERROR_HANDLING_SERVICE_TOPIC, createMessageProcessingFailedEventWithOriginalMessageStringPayload());
+        final MessageProcessingFailedEvent message = createMessageProcessingFailedEventWithOriginalMessageStringPayload();
+        final String testEventIdempotenceId = message.getIdentity().getIdempotenceId();
+        final ProducerRecord<String, AvroMessage> producerRecord = new ProducerRecord<>(ERROR_HANDLING_SERVICE_TOPIC, message);
 
         // when
-        producer.send(record).get();
+        producer.send(producerRecord).get();
 
         // then
-        await("event is sent to DLT 1 time").atMost(THIRTY_SECONDS)
-                .until(() -> dltConsumer.getConsumedMessages().size() == 1);
+        await("event is sent to DLT 1 time").atMost(THIRTY_SECONDS).until(() -> dltConsumer.hasMessageWithIdempotenceId(testEventIdempotenceId));
 
-        GenericMessage<?> genericMessage = dltConsumer.getConsumedMessages().getFirst();
-        assertInstanceOf(MessageProcessingFailedEvent.class, genericMessage.getPayload());
-        assertTrue(((MessageProcessingFailedEvent) genericMessage.getPayload()).getPayload().getErrorMessage()
-                .contains("Not an Avro message"));
+        MessageProcessingFailedEvent genericMessage = dltConsumer.getMessageWithIdempotenceId(testEventIdempotenceId);
+        assertTrue(genericMessage.getPayload().getErrorMessage().contains("Not an Avro message"));
         producer.close();
     }
 
@@ -181,13 +180,13 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
     }
 
     private MessageProcessingFailedEvent createMessageProcessingFailedEventWithOriginalMessageStringPayload() {
-        ConsumerRecord<?, ?> record = new ConsumerRecord<>("Topic", 1, 1, null, "original non-avro payload");
+        ConsumerRecord<?, ?> consumerRecord = new ConsumerRecord<>("Topic", 1, 1, null, "original non-avro payload");
         TestMessageProcessingException eventHandleException = new TestMessageProcessingException(PERMANENT, "500", "Payload");
         return MessageProcessingFailedEventBuilder.create()
                 .eventHandleException(eventHandleException)
                 .serviceName("service")
                 .systemName("system")
-                .originalMessage(record, null)
+                .originalMessage(consumerRecord, null)
                 .build();
     }
 
@@ -210,13 +209,21 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
     @Profile("error-handler-it")
     static class DLTConsumer {
 
-        private final List<GenericMessage<?>> consumedMessages = new ArrayList<>();
+        private final List<MessageProcessingFailedEvent> consumedMessages = new ArrayList<>();
 
         @TestKafkaListener(topics = {DLT_TOPIC}, groupId = "dlt-consumer")
-        public void consume(final GenericMessage<?> message) {
+        public void consume(final MessageProcessingFailedEvent message) {
             consumedMessages.add(message);
 
             log.info("Consuming message in DLTConsumer: {}", message);
+        }
+
+        boolean hasMessageWithIdempotenceId(String idempotenceId) {
+            return consumedMessages.stream().anyMatch(message -> message.getPayload().getFailedMessageMetadata().getIdempotenceId().equals(idempotenceId));
+        }
+
+        MessageProcessingFailedEvent getMessageWithIdempotenceId(String idempotenceId) {
+            return consumedMessages.stream().filter(message -> message.getPayload().getFailedMessageMetadata().getIdempotenceId().equals(idempotenceId)).findFirst().orElse(null);
         }
 
         private void reset() {

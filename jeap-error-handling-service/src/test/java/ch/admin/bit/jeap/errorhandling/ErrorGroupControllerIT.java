@@ -76,7 +76,7 @@ class ErrorGroupControllerIT extends ErrorHandlingITBase {
     }
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         errorGroupRepository.deleteAll();
     }
 
@@ -212,7 +212,7 @@ class ErrorGroupControllerIT extends ErrorHandlingITBase {
         response = getAllGroupsWithBody(searchForm);
 
         // then #2
-        Assertions.assertThat(response.totalErrorGroupCount()).isEqualTo(0);
+        Assertions.assertThat(response.totalErrorGroupCount()).isZero();
 
         // when #3 - date range excludes all errors
         searchForm.setDateFrom(ZonedDateTime.now().toString());
@@ -220,7 +220,7 @@ class ErrorGroupControllerIT extends ErrorHandlingITBase {
         response = getAllGroupsWithBody(searchForm);
 
         // then #3
-        Assertions.assertThat(response.totalErrorGroupCount()).isEqualTo(0);
+        Assertions.assertThat(response.totalErrorGroupCount()).isZero();
     }
 
     @Test

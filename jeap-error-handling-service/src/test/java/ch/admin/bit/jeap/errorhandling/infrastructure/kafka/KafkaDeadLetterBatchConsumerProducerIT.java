@@ -166,19 +166,19 @@ class KafkaDeadLetterBatchConsumerProducerIT extends ErrorHandlingITBase {
         assertThat(messageProcessingFailedEvents).hasSize(1);
         List<ConsumerRecord<AvroMessageKey, MessageProcessingFailedEvent>> consumedRecords = testConsumer.getConsumedMessageProcessingFailedEventRecords();
         assertThat(consumedRecords).hasSize(1);
-        for (ConsumerRecord<AvroMessageKey, MessageProcessingFailedEvent> record : consumedRecords) {
-            assertNotNull(getHeaderValue(JeapKafkaAvroSerdeCryptoConfig.ENCRYPTED_VALUE_HEADER_NAME, record), "Header value from original message is passed through");
-            assertNotNull(getHeaderValue(headerNameCert, record), "Header value from original message is passed through");
-            assertNotNull(getHeaderValue(headerNameSign, record), "Header value from original message is passed through");
-            assertNotNull(getHeaderValue(headerNameSignKey, record), "Header value from original message is passed through");
+        for (ConsumerRecord<AvroMessageKey, MessageProcessingFailedEvent> consumerRecord : consumedRecords) {
+            assertNotNull(getHeaderValue(JeapKafkaAvroSerdeCryptoConfig.ENCRYPTED_VALUE_HEADER_NAME, consumerRecord), "Header value from original message is passed through");
+            assertNotNull(getHeaderValue(headerNameCert, consumerRecord), "Header value from original message is passed through");
+            assertNotNull(getHeaderValue(headerNameSign, consumerRecord), "Header value from original message is passed through");
+            assertNotNull(getHeaderValue(headerNameSignKey, consumerRecord), "Header value from original message is passed through");
         }
     }
 
-    private Object getHeaderValue(String headerName, ConsumerRecord<AvroMessageKey, MessageProcessingFailedEvent> record) {
-        if (record.headers() == null) {
+    private Object getHeaderValue(String headerName, ConsumerRecord<AvroMessageKey, MessageProcessingFailedEvent> consumerRecord) {
+        if (consumerRecord.headers() == null) {
             return null;
         }
 
-        return record.headers().lastHeader(headerName);
+        return consumerRecord.headers().lastHeader(headerName);
     }
 }
