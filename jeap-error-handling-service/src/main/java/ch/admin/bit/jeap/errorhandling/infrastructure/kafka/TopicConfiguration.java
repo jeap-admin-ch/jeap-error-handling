@@ -13,6 +13,7 @@ import org.springframework.kafka.core.KafkaAdmin;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 @Configuration
@@ -33,6 +34,9 @@ class TopicConfiguration {
 
     @Value(ERROR_TOPIC_NAME)
     private String errorTopicName;
+
+    @Value("#{${jeap.messaging.kafka.cluster:{}}}")
+    private Map<String, Map<String, String>> multiClusterConfiguration = Map.of();
 
     @Configuration
     @Profile("cloud")
@@ -60,5 +64,11 @@ class TopicConfiguration {
         if (!deadLetterTopicName.equals(errorTopicName)) {
             throw new IllegalArgumentException("A configuration was found for " + ERROR_TOPIC_NAME + " (" + errorTopicName + "). This parameter must not be configured for the error handling service.");
         }
+        multiClusterConfiguration.keySet().forEach(clusterName -> {
+            String multiClusterErrorTopicName = multiClusterConfiguration.get(clusterName).get("errorTopicName");
+            if (StringUtils.hasText(multiClusterErrorTopicName) && !deadLetterTopicName.equals(multiClusterErrorTopicName)) {
+                throw new IllegalArgumentException("A configuration was found for errorTopicName for cluster '" + clusterName + "': '" + multiClusterErrorTopicName + "'. This parameter cannot be different to the value of " + DEAD_LETTER_TOPIC_NAME + ", which is '" + deadLetterTopicName + "'.");
+            }
+        });
     }
 }
