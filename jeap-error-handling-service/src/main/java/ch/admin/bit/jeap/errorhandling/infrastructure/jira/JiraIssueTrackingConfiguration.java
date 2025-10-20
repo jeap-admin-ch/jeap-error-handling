@@ -12,8 +12,8 @@ import org.springframework.web.client.RestClient;
 public class JiraIssueTrackingConfiguration {
 
     @Bean
-    public JiraIssueTracking jiraIssueTracking(JiraConfigurationProperties jiraConfigurationProperties, JiraClient jiraClient) {
-        return new JiraIssueTracking(jiraConfigurationProperties, jiraClient);
+    public JiraIssueTracking jiraIssueTracking(JiraClient jiraClient) {
+        return new JiraIssueTracking(jiraClient);
     }
 
     @Bean

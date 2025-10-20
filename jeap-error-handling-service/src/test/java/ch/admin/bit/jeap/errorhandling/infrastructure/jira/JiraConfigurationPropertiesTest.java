@@ -1,6 +1,8 @@
 package ch.admin.bit.jeap.errorhandling.infrastructure.jira;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -22,7 +24,6 @@ class JiraConfigurationPropertiesTest {
     void afterPropertiesSetSucceedsWhenTokenIsSet() {
         JiraConfigurationProperties properties = new JiraConfigurationProperties();
         properties.setBaseUrl("https://jira.example.com");
-        properties.setUsername("user");
         properties.setToken("token");
 
         assertThatCode(properties::afterPropertiesSet)
@@ -30,50 +31,31 @@ class JiraConfigurationPropertiesTest {
     }
 
     @Test
-    void afterPropertiesSetFailsWhenNeitherPasswordNorTokenIsSet() {
+    void afterPropertiesSetFailsWhenNeitherUsernamePasswordNorTokenIsSet() {
         JiraConfigurationProperties properties = new JiraConfigurationProperties();
         properties.setBaseUrl("https://jira.example.com");
-        properties.setUsername("user");
 
         assertThatThrownBy(properties::afterPropertiesSet)
                 .isInstanceOf(IllegalStateException.class)
-                .hasMessage("Either password or token must be set to use Jira.");
+                .hasMessage("Either username/password or token must be set to use Jira.");
     }
 
-    @Test
-    void afterPropertiesSetFailsWhenPasswordIsEmpty() {
+    @ParameterizedTest(name = "username=''{0}'', password=''{1}''")
+    @CsvSource({
+            "user, ''",
+            "'', password",
+            "user, '   '",
+            "'   ', password"
+    })
+    void afterPropertiesSetFailsWhenUsernameOrPasswordIsEmptyOrBlank(String username, String password) {
         JiraConfigurationProperties properties = new JiraConfigurationProperties();
         properties.setBaseUrl("https://jira.example.com");
-        properties.setUsername("user");
-        properties.setPassword("");
+        properties.setUsername(username);
+        properties.setPassword(password);
 
         assertThatThrownBy(properties::afterPropertiesSet)
                 .isInstanceOf(IllegalStateException.class)
-                .hasMessage("Either password or token must be set to use Jira.");
-    }
-
-    @Test
-    void afterPropertiesSetFailsWhenTokenIsEmpty() {
-        JiraConfigurationProperties properties = new JiraConfigurationProperties();
-        properties.setBaseUrl("https://jira.example.com");
-        properties.setUsername("user");
-        properties.setToken("");
-
-        assertThatThrownBy(properties::afterPropertiesSet)
-                .isInstanceOf(IllegalStateException.class)
-                .hasMessage("Either password or token must be set to use Jira.");
-    }
-
-    @Test
-    void afterPropertiesSetFailsWhenPasswordIsBlank() {
-        JiraConfigurationProperties properties = new JiraConfigurationProperties();
-        properties.setBaseUrl("https://jira.example.com");
-        properties.setUsername("user");
-        properties.setPassword("   ");
-
-        assertThatThrownBy(properties::afterPropertiesSet)
-                .isInstanceOf(IllegalStateException.class)
-                .hasMessage("Either password or token must be set to use Jira.");
+                .hasMessage("Either username/password or token must be set to use Jira.");
     }
 
     @Test
@@ -85,6 +67,6 @@ class JiraConfigurationPropertiesTest {
 
         assertThatThrownBy(properties::afterPropertiesSet)
                 .isInstanceOf(IllegalStateException.class)
-                .hasMessage("Either password or token must be set to use Jira.");
+                .hasMessage("Either username/password or token must be set to use Jira.");
     }
 }

@@ -20,19 +20,17 @@ public class JiraConfigurationProperties implements InitializingBean {
     private String baseUrl;
 
     /**
-     * Username credential for the Jira instance.
+     * Username credential for the Jira instance. Alternative to token.
      */
-    @NotBlank
     private String username;
 
     /**
      * Password credential for the Jira instance. Alternative to token.
      */
-
     private String password;
 
     /**
-     * API token for the Jira instance. Alternative to password.
+     * API token for the Jira instance. Alternative to username and password.
      */
     private String token;
 
@@ -51,9 +49,17 @@ public class JiraConfigurationProperties implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() {
-        if (!StringUtils.hasText(password) && !StringUtils.hasText(token)) {
-            throw new IllegalStateException("Either password or token must be set to use Jira.");
+        if (!hasUsernameAndPassword() && !hasToken()) {
+            throw new IllegalStateException("Either username/password or token must be set to use Jira.");
         }
+    }
+
+    public boolean hasUsernameAndPassword() {
+        return StringUtils.hasText(username) && StringUtils.hasText(password);
+    }
+
+    public boolean hasToken() {
+        return StringUtils.hasText(token);
     }
 
 }

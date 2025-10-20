@@ -35,7 +35,7 @@ class JiraClientTest {
         stubSuccessfulCreateIssue("PROJ-123", mappingBuilder ->
                 mappingBuilder.withBasicAuth(USERNAME, PASSWORD));
 
-        String issueKey = jiraClient.createIssue("PROJ", "Bug", "the summary", "the description", "reporter-user");
+        String issueKey = jiraClient.createIssue("PROJ", "Bug", "the summary", "the description");
 
         assertThat(issueKey).isEqualTo("PROJ-123");
     }
@@ -47,7 +47,7 @@ class JiraClientTest {
         stubSuccessfulCreateIssue("PROJ-456", mappingBuilder ->
                 mappingBuilder.withHeader(HttpHeaders.AUTHORIZATION, equalTo("Bearer " + TOKEN)));
 
-        String issueKey = jiraClient.createIssue("PROJ", "Bug", "the summary", "the description", "reporter-user");
+        String issueKey = jiraClient.createIssue("PROJ", "Bug", "the summary", "the description");
 
         assertThat(issueKey).isEqualTo("PROJ-456");
     }
@@ -68,7 +68,7 @@ class JiraClientTest {
                                 """)));
 
         assertThatThrownBy(
-                () -> jiraClient.createIssue("PROJ", "Bug", "summary", "description", "reporter"))
+                () -> jiraClient.createIssue("PROJ", "Bug", "summary", "description"))
                 .isInstanceOfSatisfying(JiraResponseException.class, ex -> {
                     assertThat(ex.getStatusCode().value()).isEqualTo(HttpStatus.UNAUTHORIZED.value());
                     assertThat(ex.getResponse()).contains("Invalid credentials");
@@ -92,7 +92,7 @@ class JiraClientTest {
                                 """)));
 
         assertThatThrownBy(
-                () -> jiraClient.createIssue("PROJ", "Bug", "summary", "description", "reporter"))
+                () -> jiraClient.createIssue("PROJ", "Bug", "summary", "description"))
                 .isInstanceOfSatisfying(JiraResponseException.class, ex -> {
                     assertThat(ex.getStatusCode().value()).isEqualTo(HttpStatus.UNAUTHORIZED.value());
                     assertThat(ex.getResponse()).contains("Invalid token");
@@ -115,7 +115,7 @@ class JiraClientTest {
                                 }
                                 """)));
 
-        assertThatThrownBy(() -> jiraClient.createIssue("PROJ", "Bug", "summary", "description", "reporter"))
+        assertThatThrownBy(() -> jiraClient.createIssue("PROJ", "Bug", "summary", "description"))
                 .isInstanceOfSatisfying(JiraResponseException.class, ex -> {
                     assertThat(ex.getStatusCode().value()).isEqualTo(HttpStatus.BAD_REQUEST.value());
                     assertThat(ex.getResponse()).contains("Project does not exist");
@@ -133,7 +133,7 @@ class JiraClientTest {
                         .withStatus(HttpStatus.SERVICE_UNAVAILABLE.value())
                         .withBody("Service unavailable")));
 
-        assertThatThrownBy(() -> jiraClient.createIssue("PROJ", "Bug", "summary", "description", "reporter"))
+        assertThatThrownBy(() -> jiraClient.createIssue("PROJ", "Bug", "summary", "description"))
                 .isInstanceOfSatisfying(JiraResponseException.class, ex -> {
                     assertThat(ex.getStatusCode().value()).isEqualTo(HttpStatus.SERVICE_UNAVAILABLE.value());
                     assertThat(ex.getResponse()).contains("Service unavailable");
@@ -145,7 +145,7 @@ class JiraClientTest {
     void createIssueThrowsCommunicationExceptionWhenJiraIsNotReachable() {
         JiraClient jiraClient = createJiraClient("http://localhost:65530");
 
-        assertThatThrownBy(() -> jiraClient.createIssue("PROJ", "Bug", "summary", "description", "reporter"))
+        assertThatThrownBy(() -> jiraClient.createIssue("PROJ", "Bug", "summary", "description"))
                 .isInstanceOf(JiraCommunicationException.class);
     }
 
@@ -163,7 +163,7 @@ class JiraClientTest {
                                 }
                                 """)));
 
-        assertThatThrownBy(() -> jiraClient.createIssue("PROJ", "Bug", "summary", "description", "reporter"))
+        assertThatThrownBy(() -> jiraClient.createIssue("PROJ", "Bug", "summary", "description"))
                 .isInstanceOf(JiraUnexpectedResponseException.class)
                 .hasMessageContaining("Unexpected response from Jira");
     }
@@ -180,8 +180,7 @@ class JiraClientTest {
                             "project": {"key": "PROJ"},
                             "issuetype": {"name": "Bug"},
                             "summary": "the summary",
-                            "description": "the description",
-                            "reporter": {"name": "reporter-user"}
+                            "description": "the description"
                           }
                         }
                         """, true, true))

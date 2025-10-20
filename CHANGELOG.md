@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [13.0.3] - 2025-10-20
+
+### Changed
+
+- Jira integration no longer sets the reporter field when creating an issue, the field defaults to the user creating the issue.
+- Shortening the i18n texts for the "Create Jira Issue" button in the error detail view.
+
 ## [13.0.2] - 2025-10-14
 
 ### Changed

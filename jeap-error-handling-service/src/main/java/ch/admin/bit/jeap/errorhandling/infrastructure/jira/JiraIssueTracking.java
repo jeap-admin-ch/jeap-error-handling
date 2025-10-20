@@ -10,13 +10,12 @@ import org.springframework.web.client.RestClientResponseException;
 @RequiredArgsConstructor
 public class JiraIssueTracking implements IssueTracking {
 
-    private final JiraConfigurationProperties jiraConfigurationProperties;
     private final JiraClient jiraClient;
 
     @Override
     public String createIssue(String type, String project, String summary, String description) {
         try {
-            return jiraClient.createIssue(project, type, summary, description, jiraConfigurationProperties.getUsername());
+            return jiraClient.createIssue(project, type, summary, description);
         } catch (RestClientResponseException rcre) {
             if (rcre.getStatusCode().is4xxClientError()) {
                 throw new IssueTrackingBadRequest("Bad 'create issue request' reported by Jira.", rcre);

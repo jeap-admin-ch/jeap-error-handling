@@ -24,10 +24,7 @@ class JiraIssueTrackingTest {
     private static final String ISSUE_TYPE = "Bug";
     private static final String SUMMARY = "the summary";
     private static final String DESCRIPTION = "the description";
-    private static final String REPORTER = "jira-user";
 
-    @Mock
-    private JiraConfigurationProperties jiraConfigurationProperties;
     @Mock
     private JiraClient jiraClient;
 
@@ -35,18 +32,17 @@ class JiraIssueTrackingTest {
 
     @BeforeEach
     void setUp() {
-        when(jiraConfigurationProperties.getUsername()).thenReturn(REPORTER);
-        jiraIssueTracking = new JiraIssueTracking(jiraConfigurationProperties, jiraClient);
+        jiraIssueTracking = new JiraIssueTracking(jiraClient);
     }
 
     @Test
     void createIssueReturnsIssueKeyWhenClientSucceeds() {
-        when(jiraClient.createIssue(PROJECT, ISSUE_TYPE, SUMMARY, DESCRIPTION, REPORTER)).thenReturn("PROJ-123");
+        when(jiraClient.createIssue(PROJECT, ISSUE_TYPE, SUMMARY, DESCRIPTION)).thenReturn("PROJ-123");
 
         String issueKey = jiraIssueTracking.createIssue(ISSUE_TYPE, PROJECT, SUMMARY, DESCRIPTION);
 
         assertThat(issueKey).isEqualTo("PROJ-123");
-        verify(jiraClient).createIssue(PROJECT, ISSUE_TYPE, SUMMARY, DESCRIPTION, REPORTER);
+        verify(jiraClient).createIssue(PROJECT, ISSUE_TYPE, SUMMARY, DESCRIPTION);
     }
 
     @Test
@@ -58,7 +54,7 @@ class JiraIssueTrackingTest {
                 null,
                 null,
                 null);
-        doThrow(exception).when(jiraClient).createIssue(PROJECT, ISSUE_TYPE, SUMMARY, DESCRIPTION, REPORTER);
+        doThrow(exception).when(jiraClient).createIssue(PROJECT, ISSUE_TYPE, SUMMARY, DESCRIPTION);
 
         assertThatThrownBy(() -> jiraIssueTracking.createIssue(ISSUE_TYPE, PROJECT, SUMMARY, DESCRIPTION))
                 .isInstanceOf(IssueTrackingBadRequest.class)
@@ -75,7 +71,7 @@ class JiraIssueTrackingTest {
                 null,
                 null,
                 null);
-        doThrow(exception).when(jiraClient).createIssue(PROJECT, ISSUE_TYPE, SUMMARY, DESCRIPTION, REPORTER);
+        doThrow(exception).when(jiraClient).createIssue(PROJECT, ISSUE_TYPE, SUMMARY, DESCRIPTION);
 
         assertThatThrownBy(() -> jiraIssueTracking.createIssue(ISSUE_TYPE, PROJECT, SUMMARY, DESCRIPTION))
                 .isInstanceOf(IssueTrackingServerError.class)
@@ -92,7 +88,7 @@ class JiraIssueTrackingTest {
                 null,
                 null,
                 null);
-        doThrow(exception).when(jiraClient).createIssue(PROJECT, ISSUE_TYPE, SUMMARY, DESCRIPTION, REPORTER);
+        doThrow(exception).when(jiraClient).createIssue(PROJECT, ISSUE_TYPE, SUMMARY, DESCRIPTION);
 
         assertThatThrownBy(() -> jiraIssueTracking.createIssue(ISSUE_TYPE, PROJECT, SUMMARY, DESCRIPTION))
                 .isSameAs(exception);
@@ -101,7 +97,7 @@ class JiraIssueTrackingTest {
     @Test
     void createIssueTransformsUnexpectedResponseIntoServerError() {
         JiraUnexpectedResponseException exception = new JiraUnexpectedResponseException("missing key");
-        doThrow(exception).when(jiraClient).createIssue(PROJECT, ISSUE_TYPE, SUMMARY, DESCRIPTION, REPORTER);
+        doThrow(exception).when(jiraClient).createIssue(PROJECT, ISSUE_TYPE, SUMMARY, DESCRIPTION);
 
         assertThatThrownBy(() -> jiraIssueTracking.createIssue(ISSUE_TYPE, PROJECT, SUMMARY, DESCRIPTION))
                 .isInstanceOf(IssueTrackingServerError.class)
@@ -112,7 +108,7 @@ class JiraIssueTrackingTest {
     @Test
     void createIssueTransformsCommunicationFailuresIntoCommunicationError() {
         JiraCommunicationException exception = new JiraCommunicationException(new RuntimeException("connection reset"));
-        doThrow(exception).when(jiraClient).createIssue(PROJECT, ISSUE_TYPE, SUMMARY, DESCRIPTION, REPORTER);
+        doThrow(exception).when(jiraClient).createIssue(PROJECT, ISSUE_TYPE, SUMMARY, DESCRIPTION);
 
         assertThatThrownBy(() -> jiraIssueTracking.createIssue(ISSUE_TYPE, PROJECT, SUMMARY, DESCRIPTION))
                 .isInstanceOf(IssueTrackingCommunicationError.class)

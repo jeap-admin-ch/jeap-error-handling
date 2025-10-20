@@ -52,8 +52,8 @@ public class JiraClient {
         }
     }
 
-    public String createIssue(String projectKey, String issueType, String summary, String description, String reporterName) {
-        var payload = JiraCreateIssueRequest.from(projectKey, issueType, summary, description, reporterName);
+    public String createIssue(String projectKey, String issueType, String summary, String description) {
+        var payload = JiraCreateIssueRequest.from(projectKey, issueType, summary, description);
         try {
             var response = jiraRestClient.createIssue(payload);
             if (response == null || !StringUtils.hasText(response.key())) {
