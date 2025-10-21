@@ -16,7 +16,8 @@ import {ErrorGroupSearchFormDto} from '../shared/errorservice/error.model';
 @Component({
 	selector: 'app-error-groups',
 	templateUrl: './error-groups.component.html',
-	styleUrl: './error-groups.component.scss'
+	styleUrls: ['./error-groups.component.scss'],
+	standalone: false
 })
 export class ErrorGroupsComponent implements AfterViewInit, OnInit, OnDestroy {
 	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -31,10 +32,9 @@ export class ErrorGroupsComponent implements AfterViewInit, OnInit, OnDestroy {
 	errorGroupSearchFormDto: ErrorGroupSearchFormDto;
 
 	resultsLength = 0;
-	protected readonly environment = environment;
-
 	hasEditRoleSubscrition$?: Subscription;
 	hasEditRole: boolean = false;
+	protected readonly environment = environment;
 
 	constructor(private readonly errorGroupService: ErrorGroupService,
 				private readonly notifierService: NotifierService,
@@ -109,7 +109,7 @@ export class ErrorGroupsComponent implements AfterViewInit, OnInit, OnDestroy {
 	loadGroupErrors(pageIndex: number, errorGroupSearchFormDto: ErrorGroupSearchFormDto): Observable<ErrorGroupResponse> {
 		errorGroupSearchFormDto.sortField = this.sort.active ?? 'latestErrorAt';
 		errorGroupSearchFormDto.sortOrder = this.sort.direction?.toUpperCase() ?? 'DESC';
-		console.log("Loading Error Groups with: ", pageIndex, this.dataSource.paginator.pageSize, errorGroupSearchFormDto);
+		console.log('Loading Error Groups with: ', pageIndex, this.dataSource.paginator.pageSize, errorGroupSearchFormDto);
 		this.isLoadingResults = true;
 		const pageSize = this.dataSource.paginator.pageSize;
 		return this.errorGroupService.getGroups(pageIndex, pageSize, errorGroupSearchFormDto);
@@ -119,6 +119,13 @@ export class ErrorGroupsComponent implements AfterViewInit, OnInit, OnDestroy {
 		this.loadGroupErrors(this.dataSource.paginator.pageIndex, this.errorGroupSearchFormDto).subscribe(
 			errorList => this.errorGroupListLoaded(errorList)
 		);
+	}
+
+	onSearch(filterValues: any) {
+		this.router.navigate([], {
+			queryParams: filterValues,
+			queryParamsHandling: 'merge',
+		});
 	}
 
 	private errorGroupListLoaded(errorGroupResponse: ErrorGroupResponse): void {
@@ -133,12 +140,5 @@ export class ErrorGroupsComponent implements AfterViewInit, OnInit, OnDestroy {
 		this.dataSource.data = [];
 		this.notifierService.showFailureNotification(errorMessage,
 			'i18n.errorhandling.failure', 'i18n.errorhandling.list.load');
-	}
-
-	onSearch(filterValues: any) {
-		this.router.navigate([], {
-			queryParams: filterValues,
-			queryParamsHandling: 'merge',
-		 });
 	}
 }

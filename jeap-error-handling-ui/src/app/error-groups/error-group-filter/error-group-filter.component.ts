@@ -1,27 +1,25 @@
 import {Component, computed, EventEmitter, OnInit, Output, signal} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
-import {ObButtonDirective, ObCheckboxDirective, ObFormFieldDirective, ObSelectDirective} from "@oblique/oblique";
-import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from "@angular/material/datepicker";
-import {MatCheckbox} from "@angular/material/checkbox";
-import {MatError, MatFormField, MatInput, MatLabel, MatSuffix} from "@angular/material/input";
-import {MatOption, MatSelect} from "@angular/material/select";
-import {MatIcon} from "@angular/material/icon";
-import {TranslateModule} from "@ngx-translate/core";
-import {MatButton, MatIconButton} from "@angular/material/button";
-import {DropDownElement} from "../../shared/models/drop-down-element.model";
-import {ErrorService} from "../../shared/errorservice/error.service";
-import {NgForOf, NgIf} from "@angular/common";
-import {Router} from "@angular/router";
-import {MatAutocomplete, MatAutocompleteTrigger} from "@angular/material/autocomplete";
-import {endOfDay, startOfDay} from "date-fns";
-import {BaseComponent} from "../../shared/BaseComponent";
+import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {ObButtonDirective} from '@oblique/oblique';
+import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from '@angular/material/datepicker';
+import {MatCheckbox} from '@angular/material/checkbox';
+import {MatError, MatFormField, MatInput, MatLabel, MatSuffix} from '@angular/material/input';
+import {MatOption, MatSelect} from '@angular/material/select';
+import {MatIcon} from '@angular/material/icon';
+import {TranslateModule} from '@ngx-translate/core';
+import {MatButton, MatIconButton} from '@angular/material/button';
+import {DropDownElement} from '../../shared/models/drop-down-element.model';
+import {ErrorService} from '../../shared/errorservice/error.service';
+import {NgForOf, NgIf} from '@angular/common';
+import {Router} from '@angular/router';
+import {MatAutocomplete, MatAutocompleteTrigger} from '@angular/material/autocomplete';
+import {endOfDay, startOfDay} from 'date-fns';
+import {BaseComponent} from '../../shared/BaseComponent';
 
 @Component({
-  selector: 'app-error-group-filter',
-  standalone: true,
+	selector: 'app-error-group-filter',
+	standalone: true,
 	imports: [
-		ObCheckboxDirective,
-		ObFormFieldDirective,
 		MatFormField,
 		MatDatepickerToggle,
 		MatDatepicker,
@@ -38,15 +36,14 @@ import {BaseComponent} from "../../shared/BaseComponent";
 		MatIconButton,
 		NgForOf,
 		NgIf,
-		ObSelectDirective,
 		MatButton,
 		ObButtonDirective,
 		MatAutocomplete,
 		MatAutocompleteTrigger,
 		MatError
 	],
-  templateUrl: './error-group-filter.component.html',
-  styleUrl: './error-group-filter.component.scss'
+	templateUrl: './error-group-filter.component.html',
+	styleUrls: ['./error-group-filter.component.scss']
 })
 
 export class ErrorGroupFilterComponent extends BaseComponent implements OnInit {
@@ -58,7 +55,7 @@ export class ErrorGroupFilterComponent extends BaseComponent implements OnInit {
 	 * Signal holding the list of error codes for the dropdown.
 	 * Populated asynchronously from the error service.
 	 */
-	dropDownErrorCodes= signal<DropDownElement[]>([]);
+	dropDownErrorCodes = signal<DropDownElement[]>([]);
 	dropDownSources = signal<DropDownElement[]>([]);
 
 	/**
@@ -99,8 +96,25 @@ export class ErrorGroupFilterComponent extends BaseComponent implements OnInit {
 		}>;
 	}
 
+	// Getters for easy access to form controls
+	get formControlDropDownErrorCode(): FormControl {
+		return this.searchFilterFormGroup.get('dropDownErrorCode') as FormControl<string | null>;
+	}
+
+	get formControlSource(): FormControl {
+		return this.searchFilterFormGroup.get('source') as FormControl<string | null>;
+	}
+
+	get formControlJiraTicket(): FormControl {
+		return this.searchFilterFormGroup.get('jiraTicket') as FormControl<string | null>;
+	}
+
+	get messageTypeControl(): FormControl {
+		return this.searchFilterFormGroup.get('messageType') as FormControl<string | null>;
+	}
+
 	ngOnInit(): void {
-        this.errorService.getAllErrorCodes().subscribe(errorCodes => {
+		this.errorService.getAllErrorCodes().subscribe(errorCodes => {
 			const elements = errorCodes.map(errorCode => ({
 				value: errorCode.valueOf(),
 				viewValue: errorCode.valueOf()
@@ -118,32 +132,15 @@ export class ErrorGroupFilterComponent extends BaseComponent implements OnInit {
 				viewValue: source.valueOf()
 			}));
 			this.dropDownSources.set(sources);
-		})
+		});
 
-    }
+	}
 
 	search(): void {
-		const formValue = { ...this.searchFilterFormGroup.value };
+		const formValue = {...this.searchFilterFormGroup.value};
 		formValue.dateFrom = this.convertDateFormControl(this.searchFilterFormGroup.get('dateFrom') as FormControl, startOfDay);
 		formValue.dateTo = this.convertDateFormControl(this.searchFilterFormGroup.get('dateTo') as FormControl, endOfDay);
 
 		this.searchClicked.emit(formValue);
-	}
-
-	// Getters for easy access to form controls
-	get formControlDropDownErrorCode(): FormControl {
-		return this.searchFilterFormGroup.get('dropDownErrorCode') as FormControl<string | null>;
-	}
-
-	get formControlSource(): FormControl {
-		return this.searchFilterFormGroup.get('source') as FormControl<string | null>;
-	}
-
-	get formControlJiraTicket(): FormControl {
-		return this.searchFilterFormGroup.get('jiraTicket') as FormControl<string | null>;
-	}
-
-	get messageTypeControl(): FormControl {
-		return this.searchFilterFormGroup.get('messageType') as FormControl<string | null>;
 	}
 }

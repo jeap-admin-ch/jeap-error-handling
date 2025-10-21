@@ -24,7 +24,7 @@
 				<mat-error *ngIf="stacktraceControl.invalid">{{ 'i18n.regex.invalid' | translate }}
 				</mat-error>
 				<button *ngIf="stacktraceControl.value" matSuffix mat-icon-button (click)="stacktraceControl.reset()">
-					<mat-icon svgIcon="cancel-circle"></mat-icon>
+					<mat-icon svgIcon="xmark_circle"></mat-icon>
 				</button>
 			</mat-form-field>
 
@@ -36,7 +36,7 @@
 				<mat-error *ngIf="messageControl.invalid">{{ 'i18n.regex.invalid' | translate }}
 				</mat-error>
 				<button *ngIf="messageControl.value" matSuffix mat-icon-button (click)="messageControl.reset()">
-					<mat-icon svgIcon="cancel-circle"></mat-icon>
+					<mat-icon svgIcon="xmark_circle"></mat-icon>
 				</button>
 			</mat-form-field>
 

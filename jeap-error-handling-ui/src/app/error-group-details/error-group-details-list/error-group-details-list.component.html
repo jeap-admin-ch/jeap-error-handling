@@ -36,7 +36,7 @@
                                 mat-icon-button
                                 obButton="secondary"
                                 matTooltip="{{'i18n.errorhandling.list.multi-resend' | translate}}">
-                            <mat-icon svgIcon="repeat"></mat-icon>
+                            <mat-icon svgIcon="arrow_clockwise"></mat-icon>
                         </button>
                         <button
                                 (click)="deleteSelected()"
@@ -45,7 +45,7 @@
                                 mat-icon-button
                                 obButton="secondary"
                                 matTooltip="{{'i18n.errorhandling.list.multi-delete' | translate}}">
-                            <mat-icon svgIcon="trash"></mat-icon>
+                            <mat-icon svgIcon="delete"></mat-icon>
                         </button>
                     </div>
                 </th>
@@ -60,17 +60,17 @@
                            *ngIf="row.originalTraceIdString"
                            [href]="logDeepLink" target="_blank" (click)="openDeepLink(row.originalTraceIdString)"
                            [matTooltip]="'i18n.errorhandling.show-log' | translate">
-                            <mat-icon svgIcon="external"></mat-icon>
+                            <mat-icon svgIcon="link_external"></mat-icon>
                         </a>
                         <button mat-icon-button color="primary" (click)="resendRow(row)" [disabled]="!row.canRetry"
                                 obButton="secondary"
                                 [matTooltip]="'i18n.errorhandling.resend' | translate">
-                            <mat-icon svgIcon="repeat"></mat-icon>
+                            <mat-icon svgIcon="arrow_clockwise"></mat-icon>
                         </button>
                         <button mat-icon-button color="primary" (click)="deleteRow(row)" [disabled]="!row.canDelete"
                                 obButton="secondary"
                                 [matTooltip]="'i18n.errorhandling.delete' | translate">
-                            <mat-icon svgIcon="trash"></mat-icon>
+                            <mat-icon svgIcon="delete"></mat-icon>
                         </button>
                     </div>
                 </td>

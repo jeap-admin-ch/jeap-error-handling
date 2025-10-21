@@ -1,4 +1,4 @@
-<ob-column-layout [left]="true" [right]="false">
+<ob-column-layout left="OPENED" right="NONE">
 	<div column-left-content class="default-layout" style="height: 100%">
 		<form [formGroup]="searchFilterFormGroup">
 
@@ -33,7 +33,7 @@
 				</mat-autocomplete>
 				<mat-error></mat-error>
 				<button *ngIf="eventNameControl.value" matSuffix mat-icon-button (click)="eventNameControl.reset()">
-					<mat-icon svgIcon="cancel-circle"></mat-icon>
+					<mat-icon svgIcon="xmark_circle"></mat-icon>
 				</button>
 			</mat-form-field>
 
@@ -45,7 +45,7 @@
 					   (change)="traceIdOrEventIdChanged($event)"/>
 				<mat-error></mat-error>
 				<button *ngIf="traceIdControl.value" matSuffix mat-icon-button (click)="traceIdControl.reset()">
-					<mat-icon svgIcon="cancel-circle"></mat-icon>
+					<mat-icon svgIcon="xmark_circle"></mat-icon>
 				</button>
 			</mat-form-field>
 
@@ -57,7 +57,7 @@
 					   (change)="traceIdOrEventIdChanged($event)"/>
 				<mat-error></mat-error>
 				<button *ngIf="eventIdControl.value" matSuffix mat-icon-button (click)="eventIdControl.reset()">
-					<mat-icon svgIcon="cancel-circle"></mat-icon>
+					<mat-icon svgIcon="xmark_circle"></mat-icon>
 				</button>
 			</mat-form-field>
 
@@ -70,7 +70,7 @@
 					*ngIf="stacktraceControl.invalid">{{ 'i18n.regex.invalid' | translate }}
 				</mat-error>
 				<button *ngIf="stacktraceControl.value" matSuffix mat-icon-button (click)="stacktraceControl.reset()">
-					<mat-icon svgIcon="cancel-circle"></mat-icon>
+					<mat-icon svgIcon="xmark_circle"></mat-icon>
 				</button>
 			</mat-form-field>
 
@@ -84,7 +84,7 @@
 				</mat-select>
 				<button *ngIf="dropDownEventSourceControl.value" matSuffix mat-icon-button
 						(click)="dropDownEventSourceControl.reset()">
-					<mat-icon svgIcon="cancel-circle"></mat-icon>
+					<mat-icon svgIcon="xmark_circle"></mat-icon>
 				</button>
 			</mat-form-field>
 
@@ -97,7 +97,7 @@
 					</mat-option>
 				</mat-select>
 				<button *ngIf="dropDownStateControl.value" matSuffix mat-icon-button (click)="resetStateSection()">
-					<mat-icon svgIcon="cancel-circle"></mat-icon>
+					<mat-icon svgIcon="xmark_circle"></mat-icon>
 				</button>
 			</mat-form-field>
 
@@ -109,7 +109,7 @@
 				<mat-error></mat-error>
 				<button *ngIf="closingReasonControl.value" matSuffix mat-icon-button
 						(click)="closingReasonControl.reset()">
-					<mat-icon svgIcon="cancel-circle"></mat-icon>
+					<mat-icon svgIcon="xmark_circle"></mat-icon>
 				</button>
 			</mat-form-field>
 
@@ -123,7 +123,7 @@
 				</mat-select>
 				<button *ngIf="dropDownErrorCodeControl.value" matSuffix mat-icon-button
 						(click)="dropDownErrorCodeControl.reset()">
-					<mat-icon svgIcon="cancel-circle"></mat-icon>
+					<mat-icon svgIcon="xmark_circle"></mat-icon>
 				</button>
 			</mat-form-field>
 
@@ -136,7 +136,7 @@
 				<mat-error></mat-error>
 				<button *ngIf="ticketNumberControl.value" matSuffix mat-icon-button
 						(click)="ticketNumberControl.reset()">
-					<mat-icon svgIcon="cancel-circle"></mat-icon>
+					<mat-icon svgIcon="xmark_circle"></mat-icon>
 				</button>
 			</mat-form-field>
 
@@ -233,7 +233,7 @@
 								mat-icon-button
 								obButton="secondary"
 								matTooltip="{{'i18n.errorhandling.list.multi-resend' | translate}}">
-								<mat-icon svgIcon="repeat"></mat-icon>
+								<mat-icon svgIcon="arrow_clockwise"></mat-icon>
 							</button>
 							<button
 								(click)="deleteSelected()"
@@ -242,7 +242,7 @@
 								mat-icon-button
 								obButton="secondary"
 								matTooltip="{{'i18n.errorhandling.list.multi-delete' | translate}}">
-								<mat-icon svgIcon="trash"></mat-icon>
+								<mat-icon svgIcon="delete"></mat-icon>
 							</button>
 						</div>
 					</th>
@@ -257,17 +257,17 @@
 							   *ngIf="row.originalTraceIdString"
 							   [href]="logDeepLink" target="_blank" (click)="openDeepLink(row.originalTraceIdString)"
 							   [matTooltip]="'i18n.errorhandling.show-log' | translate">
-								<mat-icon svgIcon="external"></mat-icon>
+								<mat-icon svgIcon="link_external"></mat-icon>
 							</a>
 							<button mat-icon-button color="primary" (click)="resendRow(row)" [disabled]="!row.canRetry"
 									obButton="secondary"
 									[matTooltip]="'i18n.errorhandling.resend' | translate">
-								<mat-icon svgIcon="repeat"></mat-icon>
+								<mat-icon svgIcon="arrow_clockwise"></mat-icon>
 							</button>
 							<button mat-icon-button color="primary" (click)="deleteRow(row)" [disabled]="!row.canDelete"
 									obButton="secondary"
 									[matTooltip]="'i18n.errorhandling.delete' | translate">
-								<mat-icon svgIcon="trash"></mat-icon>
+								<mat-icon svgIcon="delete"></mat-icon>
 							</button>
 							<button mat-icon-button color="primary" [routerLink]="['/error-group-details', row.errorGroupId]" [disabled]="!row.errorGroupId"
 									obButton="secondary"

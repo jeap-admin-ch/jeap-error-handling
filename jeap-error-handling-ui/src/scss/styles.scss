@@ -1,4 +1,4 @@
-@import '@oblique/oblique/styles/scss/core/variables';
+@use '@oblique/oblique/styles/scss/core/variables' as oblique;
 
 // Styling for the container holding form buttons.
 // Ensures the container takes up the full width of its parent.

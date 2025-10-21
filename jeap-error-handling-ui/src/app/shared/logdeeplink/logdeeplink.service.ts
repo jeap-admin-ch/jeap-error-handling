@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
 	providedIn: 'root'
@@ -17,6 +17,7 @@ export class LogDeepLinkService {
 	}
 
 	replaceTraceId(encodedUrl: string, traceId: string): string {
-		return encodedUrl.replace("{traceId}", encodeURIComponent(traceId));
+		const decoded = decodeURIComponent(encodedUrl);
+		return decoded.replace('{traceId}', traceId);
 	}
 }

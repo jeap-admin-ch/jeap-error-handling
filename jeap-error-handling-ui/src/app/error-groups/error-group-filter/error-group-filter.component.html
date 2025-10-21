@@ -26,7 +26,7 @@
 			</mat-option>
 		</mat-select>
 		<button *ngIf="formControlSource.value" matSuffix mat-icon-button (click)="formControlSource.reset()">
-			<mat-icon svgIcon="cancel-circle"></mat-icon>
+			<mat-icon svgIcon="xmark_circle"></mat-icon>
 		</button>
 	</mat-form-field>
 
@@ -45,7 +45,7 @@
 		</mat-autocomplete>
 		<mat-error></mat-error>
 		<button *ngIf="messageTypeControl.value" matSuffix mat-icon-button (click)="messageTypeControl.reset()">
-			<mat-icon svgIcon="cancel-circle"></mat-icon>
+			<mat-icon svgIcon="xmark_circle"></mat-icon>
 		</button>
 	</mat-form-field>
 
@@ -59,7 +59,7 @@
 		</mat-select>
 		<button *ngIf="formControlDropDownErrorCode.value" matSuffix mat-icon-button
 				(click)="formControlDropDownErrorCode.reset()">
-			<mat-icon svgIcon="cancel-circle"></mat-icon>
+			<mat-icon svgIcon="xmark_circle"></mat-icon>
 		</button>
 	</mat-form-field>
 
@@ -67,7 +67,7 @@
 	<mat-form-field>
 		<input matInput formControlName="jiraTicket" placeholder="{{ 'i18n.jiraTicket' | translate}}"/>
 		<button *ngIf="formControlJiraTicket.value" matSuffix mat-icon-button (click)="formControlJiraTicket.reset()">
-			<mat-icon svgIcon="cancel-circle"></mat-icon>
+			<mat-icon svgIcon="xmark_circle"></mat-icon>
 		</button>
 	</mat-form-field>
 

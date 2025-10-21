@@ -1,20 +1,17 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import {TranslateModule} from '@ngx-translate/core';
 import {
-	multiTranslateLoader,
 	OB_PAMS_CONFIGURATION,
 	ObButtonModule,
 	ObColumnLayoutModule,
 	ObDocumentMetaService,
 	ObEPamsEnvironment,
-	ObIconModule,
 	ObMasterLayoutConfig,
 	ObMasterLayoutModule,
-	ObNotificationModule,
-	ObPaginatorDirective
+	ObNotificationModule, provideObliqueConfiguration
 } from '@oblique/oblique';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatBadgeModule} from '@angular/material/badge';
@@ -57,70 +54,87 @@ import {ClosingReasonDialogComponent} from './shared/dialog/closing-reason-dialo
 import {ErrorGroupPageComponent} from './pages/error-group-page/error-group-page.component';
 import {ErrorGroupsComponent} from './error-groups/error-groups.component';
 import {ForbiddenPageComponent} from './pages/error-pages/forbidden-page/forbidden-page.component';
-import {QdShellHeaderWidgetEnvironment} from '@quadrel-services/qd-auth/lib/config/model/config.model';
-import {ErrorGroupFilterComponent} from "./error-groups/error-group-filter/error-group-filter.component";
+import {ErrorGroupFilterComponent} from './error-groups/error-group-filter/error-group-filter.component';
+// import {QdShellHeaderWidgetEnvironment} from '@quadrel-services/qd-auth/lib/config/model/config.model';
 
-@NgModule({ declarations: [
-        AppComponent,
-        ErrorListPageComponent,
-        ErrorListComponent,
-        ErrorDetailsPageComponent,
-        ErrorDetailsComponent,
-        ConfirmationDialogComponent,
-        ClosingReasonDialogComponent,
-        ErrorGroupPageComponent,
-        ErrorGroupsComponent,
-        ClosingReasonDialogComponent,
-        ForbiddenPageComponent
-    ],
-    bootstrap: [AppComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA], imports: [BrowserModule,
-        BrowserAnimationsModule,
-        MatIconModule,
-        MatBadgeModule,
-        MatButtonModule,
-        MatCardModule,
-        MatDatepickerModule,
-        MatFormFieldModule,
-        MatNativeDateModule,
-        MatInputModule,
-        MatSelectModule,
-        MatDialogModule,
-        MatPaginatorModule,
-        MatProgressBarModule,
-        MatRadioModule,
-        MatTabsModule,
-        MatTableModule,
-        MatProgressSpinnerModule,
-        MatSortModule,
-        MatTooltipModule,
-        MatAutocompleteModule,
-        MatSliderModule,
-        MatSlideToggleModule,
-        MatListModule,
-        MatCheckboxModule,
-        MatMenuModule,
-        MatButtonToggleModule,
-        CommonModule,
-        ObMasterLayoutModule,
-        ObPaginatorDirective,
-        ObIconModule.forRoot(),
-        TranslateModule.forRoot(multiTranslateLoader()),
-        AppRoutingModule,
-        QdAuthModule.forRoot(appSetup, authConfig),
-        ObColumnLayoutModule,
-        ReactiveFormsModule,
-        ObButtonModule,
-        FormsModule,
-        ObNotificationModule, ErrorGroupFilterComponent], providers: [
-        { provide: MAT_DATE_LOCALE, useValue: 'de-CH' },
-        {
-            provide: OB_PAMS_CONFIGURATION,
-            useFactory: (appModule: AppModule) => appModule.getObPamsEnvironment(),
-            deps: [AppModule]
-        },
-        provideHttpClient(withInterceptorsFromDi())
-    ] })
+export type QdShellHeaderWidgetEnvironment = 'DEV' | 'TEST' | 'REF' | 'ABN' | 'PROD';
+
+@NgModule({
+	declarations: [
+		AppComponent,
+		ErrorListPageComponent,
+		ErrorListComponent,
+		ErrorDetailsPageComponent,
+		ErrorDetailsComponent,
+		ConfirmationDialogComponent,
+		ClosingReasonDialogComponent,
+		ErrorGroupPageComponent,
+		ErrorGroupsComponent,
+		ClosingReasonDialogComponent,
+		ForbiddenPageComponent
+	],
+	bootstrap: [AppComponent],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA],
+	imports: [
+		BrowserModule,
+		BrowserAnimationsModule,
+		MatIconModule,
+		MatBadgeModule,
+		MatButtonModule,
+		MatCardModule,
+		MatDatepickerModule,
+		MatFormFieldModule,
+		MatNativeDateModule,
+		MatInputModule,
+		MatSelectModule,
+		MatDialogModule,
+		MatPaginatorModule,
+		MatProgressBarModule,
+		MatRadioModule,
+		MatTabsModule,
+		MatTableModule,
+		MatProgressSpinnerModule,
+		MatSortModule,
+		MatTooltipModule,
+		MatAutocompleteModule,
+		MatSliderModule,
+		MatSlideToggleModule,
+		MatListModule,
+		MatCheckboxModule,
+		MatMenuModule,
+		MatButtonToggleModule,
+		CommonModule,
+		ObMasterLayoutModule,
+		TranslateModule,
+		AppRoutingModule,
+		QdAuthModule.forRoot(appSetup, authConfig),
+		ObColumnLayoutModule,
+		ReactiveFormsModule,
+		ObButtonModule,
+		FormsModule,
+		ObNotificationModule,
+		ErrorGroupFilterComponent
+	],
+	providers: [provideObliqueConfiguration({
+		accessibilityStatement: {
+			createdOn: new Date('2025-10-21'),
+			applicationName: 'jeap-error-handling',
+			conformity: 'none',
+			applicationOperator: 'Bundesamt für Informatik und Telekommunikation (BIT)',
+			contact: [{email: 'jeap@bit.admin.ch'}]
+		}
+	}),
+
+		{provide: MAT_DATE_LOCALE, useValue: 'de-CH'},
+		{
+			provide: OB_PAMS_CONFIGURATION,
+			useFactory: (appModule: AppModule) => appModule.getObPamsEnvironment(),
+			deps: [AppModule]
+		},
+		provideHttpClient(withInterceptorsFromDi())
+	]
+})
+
 export class AppModule {
 
 	obEPamsEnvironment: ObEPamsEnvironment;

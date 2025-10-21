@@ -70,9 +70,9 @@ describe('ErrorListComponent', () => {
 	beforeEach(() => {
 		fixture = TestBed.createComponent(ErrorListComponent);
 		component = fixture.componentInstance;
-		errorService = TestBed.get(ErrorService);
-		notifierService = TestBed.get(NotifierService);
-		logDeepLinkService = TestBed.get(LogDeepLinkService);
+		errorService = TestBed.inject(ErrorService);
+		notifierService = TestBed.inject(NotifierService);
+		logDeepLinkService = TestBed.inject(LogDeepLinkService);
 		searchFilterFormGroup = new FormGroup({
 				datePickerFrom: new FormControl(''),
 				datePickerTo: new FormControl(''),
@@ -207,7 +207,7 @@ describe('ErrorListComponent', () => {
 				sortOrder: 'desc',
 				closingReason: 'Reason',
 				states: null,
-				ticketNumber: ""
+				ticketNumber: ''
 			});
 		});
 

@@ -4,7 +4,7 @@ import {MatButton, MatIconButton} from "@angular/material/button";
 import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from "@angular/material/datepicker";
 import {MatError, MatFormField, MatLabel, MatSuffix} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
-import {ObButtonDirective, ObFormFieldDirective} from "@oblique/oblique";
+import {ObButtonDirective} from "@oblique/oblique";
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {TranslateModule} from "@ngx-translate/core";
 import {endOfDay, startOfDay} from "date-fns";
@@ -13,8 +13,8 @@ import {MatIcon} from "@angular/material/icon";
 import {NgIf} from "@angular/common";
 
 @Component({
-  selector: 'app-error-group-details-list-filter',
-  standalone: true,
+	selector: 'app-error-group-details-list-filter',
+	standalone: true,
 	imports: [
 		MatCard,
 		MatCardContent,
@@ -26,7 +26,6 @@ import {NgIf} from "@angular/common";
 		MatInput,
 		MatSuffix,
 		ObButtonDirective,
-		ObFormFieldDirective,
 		ReactiveFormsModule,
 		TranslateModule,
 		MatError,
@@ -35,8 +34,8 @@ import {NgIf} from "@angular/common";
 		MatLabel,
 		NgIf
 	],
-  templateUrl: './error-group-details-list-filter.component.html',
-  styleUrl: './error-group-details-list-filter.component.scss'
+	templateUrl: './error-group-details-list-filter.component.html',
+	styleUrls: ['./error-group-details-list-filter.component.scss']
 })
 export class ErrorGroupDetailsListFilterComponent extends BaseComponent {
 	@Output() searchClicked = new EventEmitter<void>();
@@ -51,7 +50,7 @@ export class ErrorGroupDetailsListFilterComponent extends BaseComponent {
 			dateFrom: [null],
 			dateTo: [null],
 			stacktracePattern: [null, this.regexValidator()],
-			messagePattern: [null,  this.regexValidator()]
+			messagePattern: [null, this.regexValidator()]
 		}) as FormGroup<{
 			dateFrom: FormControl<string | null>;
 			dateTo: FormControl<string | null>;
@@ -60,8 +59,16 @@ export class ErrorGroupDetailsListFilterComponent extends BaseComponent {
 		}>;
 	}
 
+	get stacktraceControl(): FormControl {
+		return this.searchFilterFormGroup.get('stacktracePattern') as FormControl<string | null>;
+	}
+
+	get messageControl(): FormControl {
+		return this.searchFilterFormGroup.get('messagePattern') as FormControl<string | null>;
+	}
+
 	search(): void {
-		const formValue = { ...this.searchFilterFormGroup.value };
+		const formValue = {...this.searchFilterFormGroup.value};
 		formValue.dateFrom = this.convertDateFormControl(this.searchFilterFormGroup.get('dateFrom') as FormControl, startOfDay);
 		formValue.dateTo = this.convertDateFormControl(this.searchFilterFormGroup.get('dateTo') as FormControl, endOfDay);
 		this.searchClicked.emit(formValue);
@@ -69,14 +76,6 @@ export class ErrorGroupDetailsListFilterComponent extends BaseComponent {
 
 	resetClicked() {
 		this.reset.emit();
-	}
-
-	get stacktraceControl(): FormControl {
-		return this.searchFilterFormGroup.get('stacktracePattern') as FormControl<string | null>;
-	}
-
-	get messageControl(): FormControl {
-		return this.searchFilterFormGroup.get('messagePattern') as FormControl<string | null>;
 	}
 
 

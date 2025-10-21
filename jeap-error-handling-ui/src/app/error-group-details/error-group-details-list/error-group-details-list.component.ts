@@ -9,25 +9,25 @@ import {
 	SimpleChanges,
 	ViewChild
 } from '@angular/core';
-import {ErrorService} from "../../shared/errorservice/error.service";
-import {ObButtonDirective, ObCheckboxDirective, ObPaginatorModule} from "@oblique/oblique";
-import {ErrorDTO, ErrorGroupDetailsListSearchFormDto, ErrorListDTO} from "../../shared/errorservice/error.model";
-import {NgIf} from "@angular/common";
+import {ErrorService} from '../../shared/errorservice/error.service';
+import {ObButtonDirective} from '@oblique/oblique';
+import {ErrorDTO, ErrorGroupDetailsListSearchFormDto, ErrorListDTO} from '../../shared/errorservice/error.model';
+import {NgIf} from '@angular/common';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatCard, MatCardContent} from "@angular/material/card";
-import {MatCheckbox} from "@angular/material/checkbox";
-import {SelectionModel} from "@angular/cdk/collections";
-import {MatSort, MatSortHeader, Sort} from "@angular/material/sort";
-import {MatIcon} from "@angular/material/icon";
-import {MatIconAnchor, MatIconButton} from "@angular/material/button";
-import {MatTooltip} from "@angular/material/tooltip";
-import {TranslateModule} from "@ngx-translate/core";
-import {RouterLink} from "@angular/router";
-import {NotifierService} from "../../shared/notifier/notifier.service";
-import {MatPaginator, PageEvent} from "@angular/material/paginator";
-import {Observable} from "rxjs";
-import {startWith, switchMap} from "rxjs/operators";
-import {LogDeepLinkService} from "../../shared/logdeeplink/logdeeplink.service";
+import {MatCard, MatCardContent} from '@angular/material/card';
+import {MatCheckbox} from '@angular/material/checkbox';
+import {SelectionModel} from '@angular/cdk/collections';
+import {MatSort, MatSortHeader, Sort} from '@angular/material/sort';
+import {MatIcon} from '@angular/material/icon';
+import {MatIconAnchor, MatIconButton} from '@angular/material/button';
+import {MatTooltip} from '@angular/material/tooltip';
+import {TranslateModule} from '@ngx-translate/core';
+import {RouterLink} from '@angular/router';
+import {NotifierService} from '../../shared/notifier/notifier.service';
+import {MatPaginator, MatPaginatorModule, PageEvent} from '@angular/material/paginator';
+import {Observable} from 'rxjs';
+import {startWith, switchMap} from 'rxjs/operators';
+import {LogDeepLinkService} from '../../shared/logdeeplink/logdeeplink.service';
 
 
 @Component({
@@ -38,7 +38,6 @@ import {LogDeepLinkService} from "../../shared/logdeeplink/logdeeplink.service";
 		MatCard,
 		MatCardContent,
 		MatCheckbox,
-		ObCheckboxDirective,
 		MatSort,
 		MatIcon,
 		MatIconAnchor,
@@ -49,35 +48,29 @@ import {LogDeepLinkService} from "../../shared/logdeeplink/logdeeplink.service";
 		TranslateModule,
 		RouterLink,
 		MatPaginator,
-		ObPaginatorModule,
+		MatPaginatorModule,
 		MatSortHeader
 	],
 	templateUrl: './error-group-details-list.component.html',
-	styleUrl: './error-group-details-list.component.scss'
+	styleUrls: ['./error-group-details-list.component.scss']
 })
 export class ErrorGroupDetailsListComponent implements OnInit, AfterViewInit, OnChanges {
 
+	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+	@ViewChild(MatSort, {static: true}) sort: MatSort;
+	@Input() errorGroupId: string;
+	@Input() searchCriteria: ErrorGroupDetailsListSearchFormDto;
+	isLoadingResults = false;
+	resultsLength = 0;
+	displayedColumns: string[] = ['selection', 'timestamp', 'errorMessage', 'errorDetails'];
+	dataSource = new MatTableDataSource<ErrorDTO>([]);
+	selection = new SelectionModel<ErrorDTO>(true, []);
+	logDeepLink: string;
+	logDeepLinkTemplate: string;
 	private readonly errorService = inject(ErrorService);
 	private readonly notifierService = inject(NotifierService);
 	private readonly logDeepLinkService = inject(LogDeepLinkService);
 	private readonly cdr = inject(ChangeDetectorRef);
-
-	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-	@ViewChild(MatSort, {static: true}) sort: MatSort;
-
-	@Input() errorGroupId: string;
-	@Input() searchCriteria: ErrorGroupDetailsListSearchFormDto;
-
-	isLoadingResults = false;
-	resultsLength = 0;
-
-	displayedColumns: string[] = ['selection', 'timestamp', 'errorMessage', 'errorDetails'];
-
-	dataSource = new MatTableDataSource<ErrorDTO>([]);
-	selection = new SelectionModel<ErrorDTO>(true, []);
-
-	logDeepLink: string;
-	logDeepLinkTemplate: string;
 
 	ngOnInit(): void {
 		this.logDeepLinkService.getLogDeepLink().subscribe(template => {
@@ -86,8 +79,8 @@ export class ErrorGroupDetailsListComponent implements OnInit, AfterViewInit, On
 	}
 
 	ngAfterViewInit(): void {
-		console.log("### Error Group ID:", this.errorGroupId);
-		console.log("### Search Criteria:", this.searchCriteria);
+		console.log('### Error Group ID:', this.errorGroupId);
+		console.log('### Search Criteria:', this.searchCriteria);
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
 		this.paginator.page.pipe(
@@ -103,7 +96,7 @@ export class ErrorGroupDetailsListComponent implements OnInit, AfterViewInit, On
 	}
 
 	ngOnChanges(changes: SimpleChanges): void {
-		console.log("### Changes detected in ErrorGroupDetailsListComponent:", changes);
+		console.log('### Changes detected in ErrorGroupDetailsListComponent:', changes);
 		if (changes['searchCriteria'] && !changes['searchCriteria'].firstChange) {
 			this.reload(); // Reload data when search criteria changes
 		}
@@ -124,24 +117,10 @@ export class ErrorGroupDetailsListComponent implements OnInit, AfterViewInit, On
 			(error) => this.notifyFailure(error));
 	}
 
-	private errorListLoaded(errorList: ErrorListDTO): void {
-		this.isLoadingResults = false;
-		this.resultsLength = errorList.totalErrorCount;
-		this.dataSource.data = errorList.errors;
-	}
-
-	private notifyFailure(errorMessage: string): void {
-		this.isLoadingResults = false;
-		this.resultsLength = 0;
-		this.dataSource.data = [];
-		this.notifierService.showFailureNotification(errorMessage,
-			'i18n.errorhandling.failure', 'i18n.errorhandling.list.load');
-	}
-
 	loadErrors(errorGroupId: string,
-			   errorGroupDetailsListSearchFormDto: ErrorGroupDetailsListSearchFormDto,
-			   pageIndex: number,
-			   sortState: Sort): Observable<ErrorListDTO> {
+		errorGroupDetailsListSearchFormDto: ErrorGroupDetailsListSearchFormDto,
+		pageIndex: number,
+		sortState: Sort): Observable<ErrorListDTO> {
 
 		this.isLoadingResults = true;
 
@@ -173,7 +152,7 @@ export class ErrorGroupDetailsListComponent implements OnInit, AfterViewInit, On
 	}
 
 	announceSortChange(sortState: Sort) {
-		console.log("Sort changed:", sortState);
+		console.log('Sort changed:', sortState);
 		this.loadErrors(this.errorGroupId, this.searchCriteria, this.dataSource.paginator.pageIndex, sortState).subscribe({
 			next: errorList => this.errorListLoaded(errorList)
 		});
@@ -215,5 +194,19 @@ export class ErrorGroupDetailsListComponent implements OnInit, AfterViewInit, On
 				errorMessage, 'i18n.errorhandling.failure', 'i18n.errorhandling.list.load'
 			)
 		);
+	}
+
+	private errorListLoaded(errorList: ErrorListDTO): void {
+		this.isLoadingResults = false;
+		this.resultsLength = errorList.totalErrorCount;
+		this.dataSource.data = errorList.errors;
+	}
+
+	private notifyFailure(errorMessage: string): void {
+		this.isLoadingResults = false;
+		this.resultsLength = 0;
+		this.dataSource.data = [];
+		this.notifierService.showFailureNotification(errorMessage,
+			'i18n.errorhandling.failure', 'i18n.errorhandling.list.load');
 	}
 }

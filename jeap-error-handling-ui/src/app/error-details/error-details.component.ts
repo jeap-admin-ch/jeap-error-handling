@@ -15,7 +15,8 @@ import {ObNotificationService} from "@oblique/oblique";
 @Component({
 	selector: 'error-details',
 	templateUrl: './error-details.component.html',
-	styleUrls: ['./error-details.component.css']
+	styleUrls: ['./error-details.component.css'],
+	standalone: false
 })
 export class ErrorDetailsComponent implements OnInit {
 

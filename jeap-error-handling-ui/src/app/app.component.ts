@@ -6,7 +6,8 @@ import {VersionDetectorService} from './shared/version-detector.service';
 
 @Component({
 	selector: 'app-root',
-	templateUrl: './app.component.html'
+	templateUrl: './app.component.html',
+	standalone : false
 })
 export class AppComponent {
 
@@ -16,15 +17,12 @@ export class AppComponent {
 		{url: 'reactivate-dead-letter', label: 'i18n.routes.reactivate-dead-letter.title'}
 	];
 
-	private readonly translateService = inject(TranslateService);
-
 	private readonly masterLayoutService = inject(ObMasterLayoutService);
 
 	constructor(private readonly authenticationService: QdAuthenticationService,
 				private readonly translate: TranslateService,
 				private readonly versionDetectorService: VersionDetectorService) {
 
-		this.translateService.onLangChange.subscribe(({lang}: LangChangeEvent) => this.languageChange(lang));
 		this.masterLayoutService.header.loginState$.subscribe($event => this.loginStatus($event));
 	}
 

@@ -20,7 +20,8 @@ import {MatPaginator} from '@angular/material/paginator';
 @Component({
 	selector: 'error-list',
 	templateUrl: './error-list.component.html',
-	styleUrls: ['./error-list.component.css']
+	styleUrls: ['./error-list.component.css'],
+	standalone: false
 })
 export class ErrorListComponent extends BaseComponent implements AfterViewInit, OnInit, OnDestroy {
 
