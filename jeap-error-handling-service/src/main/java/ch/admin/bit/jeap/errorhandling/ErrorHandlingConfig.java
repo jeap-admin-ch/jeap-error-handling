@@ -3,6 +3,7 @@ package ch.admin.bit.jeap.errorhandling;
 import ch.admin.bit.jeap.errorhandling.domain.manualtask.taskFactory.DefaultTaskFactory;
 import ch.admin.bit.jeap.errorhandling.domain.manualtask.taskFactory.DefaultTaskFactoryProperties;
 import ch.admin.bit.jeap.errorhandling.domain.manualtask.taskFactory.TaskFactory;
+import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.KafkaErrorHandlingConfiguration;
 import ch.admin.bit.jeap.errorhandling.infrastructure.manualtask.TaskManagementClient;
 import ch.admin.bit.jeap.errorhandling.infrastructure.manualtask.TaskManagementServiceProperties;
 import net.javacrumbs.shedlock.core.LockProvider;
@@ -14,6 +15,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -29,7 +31,9 @@ import javax.sql.DataSource;
 @EnableScheduling
 @EnableSchedulerLock(defaultLockAtMostFor = "30m")
 @EnableConfigurationProperties
-@ComponentScan(basePackages = {"ch.admin.bit.jeap.errorhandling"})
+@ComponentScan(basePackages = {"ch.admin.bit.jeap.errorhandling"},
+        excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE,
+        classes = KafkaErrorHandlingConfiguration.class))
 @EntityScan(basePackages = "ch.admin.bit.jeap.errorhandling")
 @PropertySource("classpath:errorhandlerDefaultProperties.properties")
 class ErrorHandlingConfig {

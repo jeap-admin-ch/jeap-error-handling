@@ -2,10 +2,10 @@ package ch.admin.bit.jeap.errorhandling.infrastructure.kafka;
 
 import ch.admin.bit.jeap.messaging.kafka.errorhandling.ErrorServiceSender;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.listener.CommonErrorHandler;
 import org.springframework.kafka.listener.DefaultErrorHandler;
 import org.springframework.util.backoff.BackOff;
@@ -13,7 +13,7 @@ import org.springframework.util.backoff.FixedBackOff;
 
 import static org.springframework.util.backoff.FixedBackOff.UNLIMITED_ATTEMPTS;
 
-@Configuration
+@AutoConfiguration
 @EnableConfigurationProperties(KafkaErrorHandlingConfigProperties.class)
 public class KafkaErrorHandlingConfiguration {
 
