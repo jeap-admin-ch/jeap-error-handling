@@ -49,6 +49,9 @@ public interface ErrorRepository extends JpaRepository<Error, UUID>, JpaSpecific
     @Query("select count(e) from Error e where e.state = 'DELETE_ON_MANUALTASK'")
     int countErrorsInStateDeleteOnManualTask();
 
+    @Query("select new ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorCountByClusterNameResult(e.causingEvent.message.clusterName, count(e)) from Error e where e.state in ('PERMANENT', 'TEMPORARY_RETRY_PENDING', 'SEND_TO_MANUALTASK') group by e.causingEvent.message.clusterName")
+    List<ErrorCountByClusterNameResult> countOpenErrorsByStateAndClusterName();
+
     Slice<ErrorQueryResult> findIdByStateInAndCreatedBefore(List<ErrorState> state, ZonedDateTime created, Pageable pageable);
 
     default Page<Error> search(ErrorSearchCriteria criteria, Pageable pageable) {

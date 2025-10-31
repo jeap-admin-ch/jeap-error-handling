@@ -176,6 +176,81 @@ class ErrorRepositoryTest {
         assertThat(emptyResult.getContent()).isEmpty();
     }
 
+    @Test
+    void countOpenErrorsByStateAndClusterName() {
+        errorRepository.deleteAll();
+
+        // Setup: Create errors with different cluster names and states
+        EventMetadata metadata1 = getEventMetadata("event-cluster-test-1");
+        EventMetadata metadata2 = getEventMetadata("event-cluster-test-2");
+        EventMetadata metadata3 = getEventMetadata("event-cluster-test-3");
+
+        CausingEvent causingEventClusterA = saveCausingEventWithCluster(metadata1, "cluster-a");
+        CausingEvent causingEventClusterB = saveCausingEventWithCluster(metadata2, "cluster-b");
+        CausingEvent causingEventClusterC = saveCausingEventWithCluster(metadata3, null); // Test null cluster
+
+        // cluster-a: 2 PERMANENT, 1 TEMPORARY_RETRY_PENDING, 1 SEND_TO_MANUALTASK = 4 total
+        saveError(ErrorState.PERMANENT, causingEventClusterA);
+        saveError(ErrorState.PERMANENT, causingEventClusterA);
+        saveError(ErrorState.TEMPORARY_RETRY_PENDING, causingEventClusterA);
+        saveError(ErrorState.SEND_TO_MANUALTASK, causingEventClusterA);
+        // These should NOT be counted:
+        saveError(ErrorState.DELETED, causingEventClusterA);
+        saveError(ErrorState.TEMPORARY_RETRIED, causingEventClusterA);
+
+        // cluster-b: 3 PERMANENT, 2 SEND_TO_MANUALTASK = 5 total
+        saveError(ErrorState.PERMANENT, causingEventClusterB);
+        saveError(ErrorState.PERMANENT, causingEventClusterB);
+        saveError(ErrorState.PERMANENT, causingEventClusterB);
+        saveError(ErrorState.SEND_TO_MANUALTASK, causingEventClusterB);
+        saveError(ErrorState.SEND_TO_MANUALTASK, causingEventClusterB);
+        // These should NOT be counted:
+        saveError(ErrorState.RESOLVE_ON_MANUALTASK, causingEventClusterB);
+
+        // null cluster: 1 TEMPORARY_RETRY_PENDING = 1 total
+        saveError(ErrorState.TEMPORARY_RETRY_PENDING, causingEventClusterC);
+        saveError(ErrorState.DELETE_ON_MANUALTASK, causingEventClusterC); // should NOT be counted
+
+        // Execute
+        List<ErrorCountByClusterNameResult> results = errorRepository.countOpenErrorsByStateAndClusterName();
+
+        // Verify
+        assertThat(results).hasSize(3);
+
+        ErrorCountByClusterNameResult clusterAResult = results.stream()
+                .filter(r -> "cluster-a".equals(r.clusterName()))
+                .findFirst()
+                .orElseThrow();
+        assertThat(clusterAResult.errorCount()).isEqualTo(4L);
+
+        ErrorCountByClusterNameResult clusterBResult = results.stream()
+                .filter(r -> "cluster-b".equals(r.clusterName()))
+                .findFirst()
+                .orElseThrow();
+        assertThat(clusterBResult.errorCount()).isEqualTo(5L);
+
+        ErrorCountByClusterNameResult nullClusterResult = results.stream()
+                .filter(r -> r.clusterName() == null)
+                .findFirst()
+                .orElseThrow();
+        assertThat(nullClusterResult.errorCount()).isEqualTo(1L);
+    }
+
+    @NotNull
+    private CausingEvent saveCausingEventWithCluster(EventMetadata metadata, String clusterName) {
+        CausingEvent causingEvent = CausingEvent.builder()
+                .message(EventMessage.builder()
+                        .offset(1)
+                        .payload("test".getBytes(StandardCharsets.UTF_8))
+                        .topic("topic")
+                        .clusterName(clusterName)
+                        .build())
+                .metadata(metadata)
+                .build();
+        causingEventRepository.save(causingEvent);
+        return causingEvent;
+    }
+
     private void saveMultipleErrorsWithState(ErrorState state, CausingEvent causingEvent) {
         int errorCounter = state.ordinal() + 1;
         for (int i = 0; i < errorCounter; i++) {

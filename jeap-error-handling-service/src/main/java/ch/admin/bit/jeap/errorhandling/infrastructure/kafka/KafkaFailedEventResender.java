@@ -91,7 +91,7 @@ public class KafkaFailedEventResender {
             String causingEventId = causingEvent.getMetadata().getId();
             EventMessage causingEventMessage = causingEvent.getMessage();
             log.debug("Unknown resend target cluster name '{}' found on message originally sent as {} with message id '{}'. " +
-                      "Using the default producer cluster '{}' instead.",
+                            "Using the default producer cluster '{}' instead.",
                     clusterName, causingEventMessage, causingEventId, defaultProducerClusterName);
             clusterName = defaultProducerClusterName;
         }

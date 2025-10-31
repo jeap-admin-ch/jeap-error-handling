@@ -1,5 +1,6 @@
 package ch.admin.bit.jeap.errorhandling.domain.metrics;
 
+import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorCountByClusterNameResult;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorGroupRepository;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorRepository;
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
@@ -12,6 +13,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
 import java.util.Set;
 
 import static ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error.ErrorState;
@@ -50,6 +52,10 @@ class ErrorHandlingMetricsServiceTest {
         when(errorRepository.countErrorsInStateResolveOnManualTask()).thenReturn(2);
         when(errorRepository.countErrorsInStateDeleteOnManualTask()).thenReturn(1);
         when(errorGroupRepository.countErrorGroupsWithErrorsInStates(any())).thenReturn(5);
+        when(errorRepository.countOpenErrorsByStateAndClusterName()).thenReturn(List.of(
+                new ErrorCountByClusterNameResult("cluster-a", 10L),
+                new ErrorCountByClusterNameResult("cluster-b", 5L)
+        ));
 
         metricsService.initialize();
 
@@ -59,6 +65,8 @@ class ErrorHandlingMetricsServiceTest {
         Assertions.assertThat(meterRegistry.get("eh_permanent_pending_manualtask_resolve").gauge().value()).isEqualTo(2);
         Assertions.assertThat(meterRegistry.get("eh_permanent_pending_manualtask_delete").gauge().value()).isEqualTo(1);
         Assertions.assertThat(meterRegistry.get("eh_error_groups_with_open_errors").gauge().value()).isEqualTo(5);
+        Assertions.assertThat(meterRegistry.get("eh_open_errors_by_cluster").tag("cluster", "cluster-a").gauge().value()).isEqualTo(10);
+        Assertions.assertThat(meterRegistry.get("eh_open_errors_by_cluster").tag("cluster", "cluster-b").gauge().value()).isEqualTo(5);
 
         @SuppressWarnings("unchecked")
         ArgumentCaptor<Set<ErrorState>> statesCaptor = ArgumentCaptor.forClass(Set.class);
@@ -75,6 +83,17 @@ class ErrorHandlingMetricsServiceTest {
         when(errorRepository.countErrorsInStateResolveOnManualTask()).thenReturn(4, 1);
         when(errorRepository.countErrorsInStateDeleteOnManualTask()).thenReturn(5, 0);
         when(errorGroupRepository.countErrorGroupsWithErrorsInStates(any())).thenReturn(2, 7);
+        when(errorRepository.countOpenErrorsByStateAndClusterName()).thenReturn(
+                List.of(
+                        new ErrorCountByClusterNameResult("cluster-a", 10L),
+                        new ErrorCountByClusterNameResult("cluster-b", 5L)
+                ),
+                List.of(
+                        new ErrorCountByClusterNameResult("cluster-a", 15L),
+                        new ErrorCountByClusterNameResult("cluster-c", 3L)
+                )
+        );
+
         metricsService.initialize();
 
         metricsService.updateGauges();
@@ -85,6 +104,26 @@ class ErrorHandlingMetricsServiceTest {
         Assertions.assertThat(meterRegistry.get("eh_permanent_pending_manualtask_resolve").gauge().value()).isEqualTo(1);
         Assertions.assertThat(meterRegistry.get("eh_permanent_pending_manualtask_delete").gauge().value()).isZero();
         Assertions.assertThat(meterRegistry.get("eh_error_groups_with_open_errors").gauge().value()).isEqualTo(7);
+        Assertions.assertThat(meterRegistry.get("eh_open_errors_by_cluster").tag("cluster", "cluster-a").gauge().value()).isEqualTo(15);
+        Assertions.assertThat(meterRegistry.get("eh_open_errors_by_cluster").tag("cluster", "cluster-c").gauge().value()).isEqualTo(3);
+        // cluster-b should be removed since it's not in the second result set (MultiGauge with overwrite=true)
+    }
+
+    @Test
+    void updateClusterMetricsHandlesNullClusterName() {
+        when(errorRepository.countErrorsInStateTemporaryRetryPending()).thenReturn(1);
+        when(errorRepository.countErrorsInStatesPermanentOrSendToManualTask()).thenReturn(1);
+        when(errorRepository.countErrorsInStateSendToManualTask()).thenReturn(1);
+        when(errorRepository.countErrorsInStateResolveOnManualTask()).thenReturn(1);
+        when(errorRepository.countErrorsInStateDeleteOnManualTask()).thenReturn(1);
+        when(errorGroupRepository.countErrorGroupsWithErrorsInStates(any())).thenReturn(1);
+        when(errorRepository.countOpenErrorsByStateAndClusterName()).thenReturn(List.of(
+                new ErrorCountByClusterNameResult(null, 7L)
+        ));
+
+        metricsService.initialize();
+
+        Assertions.assertThat(meterRegistry.get("eh_open_errors_by_cluster").tag("cluster", "unknown").gauge().value()).isEqualTo(7);
     }
 
     @Test

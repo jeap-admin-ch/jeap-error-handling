@@ -30,15 +30,13 @@ class KafkaMessageProcessingFailedEventConsumerFactory implements BeanDefinition
     private Environment environment;
     @Setter
     private BeanFactory beanFactory;
-    private String defaultClusterName;
 
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
         KafkaProperties kafkaProperties = JeapKafkaPropertyFactory.createJeapKafkaProperties(environment);
-        defaultClusterName = kafkaProperties.getDefaultClusterName();
-        kafkaProperties
-                .clusterNames()
-                .forEach(clusterName -> registerConsumerContainerBeanDefinition(registry, clusterName));
+        String defaultClusterName = kafkaProperties.getDefaultClusterName();
+        log.info("Registering MessageProcessingFailedEventListener container for default cluster '{}'", defaultClusterName);
+        registerConsumerContainerBeanDefinition(registry, defaultClusterName);
     }
 
     private void registerConsumerContainerBeanDefinition(BeanDefinitionRegistry registry, String clusterName) {
@@ -49,11 +47,6 @@ class KafkaMessageProcessingFailedEventConsumerFactory implements BeanDefinition
         registry.registerBeanDefinition("message-processing-failed-container-" + clusterName, beanDefinition);
     }
 
-    private ConcurrentKafkaListenerContainerFactory<?, ?> getContainerFactory(String clusterName) {
-        String listenerContainerFactoryBeanName = new JeapKafkaBeanNames(defaultClusterName).getListenerContainerFactoryBeanName(clusterName);
-        return (ConcurrentKafkaListenerContainerFactory<?, ?>) beanFactory.getBean(listenerContainerFactoryBeanName);
-    }
-
     private ConcurrentMessageListenerContainer<?, ?> createContainer(String clusterName) {
         TopicConfiguration topicConfiguration = beanFactory.getBean(TopicConfiguration.class);
         ConcurrentMessageListenerContainer<?, ?> container = getContainerFactory(clusterName).createContainer(topicConfiguration.getTopicName());
@@ -61,6 +54,11 @@ class KafkaMessageProcessingFailedEventConsumerFactory implements BeanDefinition
         MessageProcessingFailedEventListener listener = new MessageProcessingFailedEventListener(errorEventHandler, clusterName);
         container.setupMessageListener(listener);
         return container;
+    }
+
+    private ConcurrentKafkaListenerContainerFactory<?, ?> getContainerFactory(String clusterName) {
+        String listenerContainerFactoryBeanName = new JeapKafkaBeanNames(clusterName).getListenerContainerFactoryBeanName(clusterName);
+        return (ConcurrentKafkaListenerContainerFactory<?, ?>) beanFactory.getBean(listenerContainerFactoryBeanName);
     }
 
     @Override
