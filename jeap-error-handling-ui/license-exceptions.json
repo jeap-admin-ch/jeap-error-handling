@@ -3,6 +3,9 @@
     "caniuse-lite@*": {
       "reason": "CC-BY-4.0; see: https://github.com/browserslist/caniuse-lite"
     },
+    "minimatch@10.1.1": {
+      "reason": "BlueOak-1.0.0; Dev dependency, see: https://github.com/isaacs/minimatch"
+    },
     "chownr@*": {
       "reason": "BlueOak-1.0.0; Dev dependency, see: https://github.com/isaacs/chownr"
     },
@@ -39,7 +42,7 @@
     "jeap-error-handling-ui@1.0.0": {
       "reason": "Apache 2.0; LICENSE file is out of search scope (see package.json). BIT internal package"
     },
-    "@quadrel-services/qd-auth@16.1.10": {
+    "@quadrel-services/qd-auth@19.0.12": {
       "reason": "UNKNOWN; BIT internal package"
     },
     "@ngx-translate/core@15.0.0": {
