@@ -55,7 +55,6 @@ import {ErrorGroupPageComponent} from './pages/error-group-page/error-group-page
 import {ErrorGroupsComponent} from './error-groups/error-groups.component';
 import {ForbiddenPageComponent} from './pages/error-pages/forbidden-page/forbidden-page.component';
 import {ErrorGroupFilterComponent} from './error-groups/error-group-filter/error-group-filter.component';
-// import {QdShellHeaderWidgetEnvironment} from '@quadrel-services/qd-auth/lib/config/model/config.model';
 
 export type QdShellHeaderWidgetEnvironment = 'DEV' | 'TEST' | 'REF' | 'ABN' | 'PROD';
 
