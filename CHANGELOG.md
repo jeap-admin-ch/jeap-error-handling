@@ -9,9 +9,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- Determine target cluster for retries based on the format of the original event
-- If the original event is not in a format the cluster where the FailedEvent was consumed supports, the cluster
-  with a serialization format that matches the original event format will be chosen as target cluster for the retry.
+- Determine target cluster for retries based on the format of the original message
+- If the original message is not in a format the cluster where the FailedEvent was consumed supports, a cluster
+  with a serialization format that matches the original message format will be chosen
 
 ## [14.1.1] - 2025-11-04
 
