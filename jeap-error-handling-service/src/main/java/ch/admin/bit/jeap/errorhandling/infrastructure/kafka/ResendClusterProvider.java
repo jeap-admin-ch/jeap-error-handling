@@ -53,8 +53,8 @@ public class ResendClusterProvider {
         for (String clusterName : allClusterNames) {
             RecordBinaryFormat recordBinaryFormatOfAlternativeCluster = getClusterRecordBinaryFormat(clusterName);
             if (recordBinaryFormatOfMessage == recordBinaryFormatOfAlternativeCluster) {
-                log.info("Resending event '{}' to alternative cluster '{}' because record format '{}' does not match with original cluster '{}' which is using '{}'",
-                        causingEvent.getId(), clusterName, recordBinaryFormatOfMessage, clusterNameWhereFailedEventWasConsumed,
+                log.info("Using alternative cluster '{}' for event '{}' because record format '{}' does not match with original cluster '{}' which is using '{}'",
+                        clusterName, causingEvent.getId(), recordBinaryFormatOfMessage, clusterNameWhereFailedEventWasConsumed,
                         recordBinaryFormatOfOriginatingCluster.map(RecordBinaryFormat::name).orElse("<unknown>"));
                 return clusterName;
             }
