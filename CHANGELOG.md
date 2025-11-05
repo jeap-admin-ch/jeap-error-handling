@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [14.2.0] - 2025-11-05
+
+### Changed
+
+- Determine target cluster for retries based on the format of the original event
+- If the original event is not in a format the cluster where the FailedEvent was consumed supports, the cluster
+  with a serialization format that matches the original event format will be chosen as target cluster for the retry.
 
 ## [14.1.1] - 2025-11-04
 
