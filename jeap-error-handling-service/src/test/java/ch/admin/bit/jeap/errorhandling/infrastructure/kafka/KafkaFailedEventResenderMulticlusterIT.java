@@ -1,21 +1,13 @@
 package ch.admin.bit.jeap.errorhandling.infrastructure.kafka;
 
 import ch.admin.bit.jeap.errorhandling.ErrorStubs;
-import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.AuditLogRepository;
-import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.CausingEvent;
-import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.CausingEventRepository;
+import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.*;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
-import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorRepository;
-import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ScheduledResendRepository;
 import ch.admin.bit.jeap.messaging.kafka.KafkaConfiguration;
 import ch.admin.bit.jeap.messaging.kafka.properties.KafkaProperties;
 import ch.admin.bit.jeap.messaging.kafka.test.EmbeddedKafkaMultiClusterExtension;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.consumer.Consumer;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 import org.assertj.core.util.Streams;
@@ -29,7 +21,6 @@ import org.springframework.kafka.config.KafkaListenerEndpointRegistry;
 import org.springframework.kafka.test.utils.ContainerTestUtils;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
-
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -98,7 +89,7 @@ class KafkaFailedEventResenderMulticlusterIT {
 
     @Test
     void testResend_WhenStoredForFirstCluster_ThenResentToFirstCluster() {
-        final Error error = ErrorStubs.createTemporaryErrorWithRandomPayload(FIRST_CLUSTER_NAME);
+        final Error error = ErrorStubs.createTemporaryErrorWithAvroMagicBytePayload(FIRST_CLUSTER_NAME);
         assertThat(error.getCausingEvent().getMessage().getClusterName()).isEqualTo(FIRST_CLUSTER_NAME);
 
         kafkaFailedEventResender.resend(error);
@@ -109,7 +100,7 @@ class KafkaFailedEventResenderMulticlusterIT {
 
     @Test
     void testResend_WhenStoredForSecondCluster_ThenResentToSecondCluster() {
-        final Error error = ErrorStubs.createTemporaryErrorWithRandomPayload(SECOND_CLUSTER_NAME);
+        final Error error = ErrorStubs.createTemporaryErrorWithAvroMagicBytePayload(SECOND_CLUSTER_NAME);
         assertThat(error.getCausingEvent().getMessage().getClusterName()).isEqualTo(SECOND_CLUSTER_NAME);
 
         kafkaFailedEventResender.resend(error);
@@ -121,7 +112,7 @@ class KafkaFailedEventResenderMulticlusterIT {
     @Test
     void testResend_WhenStoredForUnknownCluster_ThenResentToDefaultProducerCluster() {
         final String unknownClusterName = "unknownCluster";
-        final Error error = ErrorStubs.createTemporaryErrorWithRandomPayload(unknownClusterName);
+        final Error error = ErrorStubs.createTemporaryErrorWithAvroMagicBytePayload(unknownClusterName);
         assertThat(error.getCausingEvent().getMessage().getClusterName()).isEqualTo(unknownClusterName);
         final String defaultProducerClusterName = kafkaProperties.getDefaultProducerClusterName();
         assertThat(unknownClusterName).isNotEqualTo(defaultProducerClusterName);
@@ -135,7 +126,7 @@ class KafkaFailedEventResenderMulticlusterIT {
     @Test
     void testResend_WhenStoredForDefaultCluster_ThenResentToDefaultProducerCluster() {
         final String defaultClusterName = KafkaProperties.DEFAULT_CLUSTER;
-        final Error error = ErrorStubs.createTemporaryErrorWithRandomPayload(defaultClusterName);
+        final Error error = ErrorStubs.createTemporaryErrorWithAvroMagicBytePayload(defaultClusterName);
         assertThat(error.getCausingEvent().getMessage().getClusterName()).isEqualTo(defaultClusterName);
         final String defaultProducerClusterName = kafkaProperties.getDefaultProducerClusterName();
         assertThat(defaultClusterName).isNotEqualTo(defaultProducerClusterName);
@@ -149,7 +140,7 @@ class KafkaFailedEventResenderMulticlusterIT {
     @Test
     void testHasEventBeenSentToCluster() {
         // send an event to the first cluster
-        final Error error = ErrorStubs.createTemporaryErrorWithRandomPayload(FIRST_CLUSTER_NAME);
+        final Error error = ErrorStubs.createTemporaryErrorWithAvroMagicBytePayload(FIRST_CLUSTER_NAME);
         assertThat(error.getCausingEvent().getMessage().getClusterName()).isEqualTo(FIRST_CLUSTER_NAME);
         kafkaFailedEventResender.resend(error);
 

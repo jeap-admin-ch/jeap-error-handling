@@ -10,11 +10,7 @@ import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.OriginalTraceContext;
 import ch.admin.bit.jeap.messaging.kafka.KafkaConfiguration;
 import ch.admin.bit.jeap.messaging.kafka.properties.KafkaProperties;
-import org.apache.kafka.clients.consumer.Consumer;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 import org.assertj.core.util.Streams;
@@ -24,11 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.time.Duration;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -111,7 +103,7 @@ class KafkaFailedEventResenderIT extends ErrorHandlingITBase {
     void testResend_WhenEventStoredForUnknownClusterName_ThenEventWillBeSentToTheSingleConfiguredClusterAutomatically() {
         final String unknownClusterName = "unknown";
         assertThat(unknownClusterName).isNotEqualTo(kafkaProperties.getDefaultProducerClusterName());
-        final Error error = ErrorStubs.createTemporaryErrorWithRandomPayload(unknownClusterName);
+        final Error error = ErrorStubs.createTemporaryErrorWithAvroMagicBytePayload(unknownClusterName);
 
         kafkaFailedEventResender.resend(error);
 

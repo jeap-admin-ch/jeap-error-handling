@@ -1,11 +1,13 @@
 package ch.admin.bit.jeap.errorhandling;
 
-import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.*;
+import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error.ErrorState;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorEventData.Temporality;
 import ch.admin.bit.jeap.messaging.kafka.properties.KafkaProperties;
+import lombok.SneakyThrows;
 
+import java.security.SecureRandom;
 import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.UUID;
@@ -31,16 +33,13 @@ public class ErrorStubs {
         return createError(Temporality.TEMPORARY, ErrorState.TEMPORARY_RETRY_PENDING, DATE_TIME);
     }
 
-    public static Error createTemporaryErrorWithRandomPayload(String clusterName) {
-        return createError(Temporality.TEMPORARY, ErrorState.TEMPORARY_RETRY_PENDING, DATE_TIME, clusterName, UUID.randomUUID().toString().getBytes());
-    }
-
-    public static Error createTemporaryRetriedError() {
-        return createError(Temporality.TEMPORARY, ErrorState.TEMPORARY_RETRIED, DATE_TIME);
-    }
-
-    public static Error createPermanentRetriedError() {
-        return createError(Temporality.PERMANENT, ErrorState.PERMANENT_RETRIED, DATE_TIME);
+    @SneakyThrows
+    public static Error createTemporaryErrorWithAvroMagicBytePayload(String clusterName) {
+        byte[] payload = new byte[100];
+        SecureRandom.getInstanceStrong().nextBytes(payload);
+        // Byte 0 is the confluent avro magic byte
+        payload[0] = 0;
+        return createError(Temporality.TEMPORARY, ErrorState.TEMPORARY_RETRY_PENDING, DATE_TIME, clusterName, payload);
     }
 
     private static Error createError(Temporality temporality, ErrorState errorState, ZonedDateTime createdTimestamp) {

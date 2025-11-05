@@ -6,9 +6,9 @@ import ch.admin.bit.jeap.errorhandling.domain.error.ErrorSearchService;
 import ch.admin.bit.jeap.errorhandling.domain.error.ErrorService;
 import ch.admin.bit.jeap.errorhandling.domain.resend.scheduler.ScheduledResendService;
 import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.DomainEventDeserializer;
+import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.ResendClusterProvider;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.*;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
-import ch.admin.bit.jeap.messaging.kafka.properties.KafkaProperties;
 import ch.admin.bit.jeap.messaging.kafka.signature.SignatureHeaders;
 import ch.admin.bit.jeap.security.resource.semanticAuthentication.ServletSemanticAuthorization;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -45,20 +45,20 @@ public class ErrorController {
     private final ScheduledResendService scheduledResendService;
     private final AuditLogService auditLogService;
     private final DomainEventDeserializer domainEventDeserializer;
+    private final ResendClusterProvider resendClusterProvider;
     private final ServletSemanticAuthorization jeapSemanticAuthorization;
-    private final String defaultClusterName;
 
     public ErrorController(ErrorService errorService, ErrorSearchService errorSearchService,
                            ScheduledResendService scheduledResendService, AuditLogService auditLogService,
-                           DomainEventDeserializer domainEventDeserializer,
-                           ServletSemanticAuthorization jeapSemanticAuthorization, KafkaProperties kafkaProperties) {
+                           DomainEventDeserializer domainEventDeserializer, ResendClusterProvider resendClusterProvider,
+                           ServletSemanticAuthorization jeapSemanticAuthorization) {
         this.errorService = errorService;
         this.errorSearchService = errorSearchService;
         this.scheduledResendService = scheduledResendService;
         this.auditLogService = auditLogService;
         this.domainEventDeserializer = domainEventDeserializer;
+        this.resendClusterProvider = resendClusterProvider;
         this.jeapSemanticAuthorization = jeapSemanticAuthorization;
-        this.defaultClusterName = kafkaProperties.getDefaultClusterName();
     }
 
     private static String longStringEllipis(String message) {
@@ -209,7 +209,7 @@ public class ErrorController {
     @Transactional(readOnly = true)
     public String getCausingEventPayload(@PathVariable("errorId") UUID errorId) {
         Error error = errorService.getError(errorId);
-        String clusterName = error.getCausingEventMessage().getClusterNameOrDefault(defaultClusterName);
+        String clusterName = resendClusterProvider.getResendClusterNameFor(error.getCausingEvent());
         EventMessage causingEventMessage = error.getCausingEventMessage();
         try {
             return domainEventDeserializer.toJsonString(clusterName,
@@ -276,7 +276,7 @@ public class ErrorController {
                 .errorTemporality(error.getErrorEventData().getTemporality().name())
                 .stacktrace(error.getErrorEventData().getStackTrace())
                 .eventTopicDetails(topicDetails(error.getCausingEventMessage()))
-                .eventClusterName(error.getCausingEventMessage().getClusterNameOrDefault(defaultClusterName))
+                .eventClusterName(resendClusterProvider.getResendClusterNameFor(error.getCausingEvent()))
                 .auditLogDTOs(getAuditLogDtos(error))
                 .build();
     }

@@ -1,9 +1,7 @@
 package ch.admin.bit.jeap.errorhandling.infrastructure.kafka;
 
 import brave.kafka.clients.KafkaTracing;
-import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.CausingEvent;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
-import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.EventMessage;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.MessageHeader;
 import ch.admin.bit.jeap.messaging.kafka.KafkaConfiguration;
 import ch.admin.bit.jeap.messaging.kafka.properties.KafkaProperties;
@@ -30,20 +28,21 @@ import static java.util.stream.Collectors.toMap;
 @Component
 @Slf4j
 public class KafkaFailedEventResender {
+    private final ResendClusterProvider resendClusterProvider;
     private final TraceContextUpdater traceContextUpdater;
 
     private final Map<String, KafkaTemplate<Object, Object>> kafkaTemplateByClusterName;
-    private final String defaultProducerClusterName;
 
     @Value("${jeap.errorhandling.timeout-seconds:60}")
     private int timeoutSeconds;
 
-    public KafkaFailedEventResender(KafkaProperties kafkaProperties,
+    public KafkaFailedEventResender(ResendClusterProvider resendClusterProvider,
+                                    KafkaProperties kafkaProperties,
                                     KafkaConfiguration kafkaConfiguration,
                                     KafkaTracing kafkaTracing,
                                     TraceContextUpdater traceContextUpdater) {
+        this.resendClusterProvider = resendClusterProvider;
         this.traceContextUpdater = traceContextUpdater;
-        this.defaultProducerClusterName = kafkaProperties.getDefaultProducerClusterName();
         this.kafkaTemplateByClusterName = kafkaProperties.clusterNames().stream()
                 .collect(toMap(clusterName -> clusterName,
                         clusterName -> createKafkaTemplate(kafkaConfiguration, kafkaTracing, clusterName)));
@@ -57,7 +56,7 @@ public class KafkaFailedEventResender {
         final byte[] message = error.getCausingEventMessage().getPayload();
         final byte[] key = error.getCausingEventMessage().getKey();
         final String topic = error.getCausingEventMessage().getTopic();
-        final String clusterName = getResendClusterNameFor(error.getCausingEvent());
+        final String clusterName = resendClusterProvider.getResendClusterNameFor(error.getCausingEvent());
         final CompletableFuture<SendResult<Object, Object>> sendResult;
         log.info("Resending event {} for error {} to topic '{}' on cluster '{}'.",
                 error.getCausingEventMetadata().getId(), error.getId(), topic, clusterName);
@@ -83,19 +82,6 @@ public class KafkaFailedEventResender {
         }
         log.info("Resent event {} for error {} to topic '{}' on cluster '{}'.",
                 error.getCausingEventMetadata().getId(), error.getId(), topic, clusterName);
-    }
-
-    private String getResendClusterNameFor(CausingEvent causingEvent) {
-        String clusterName = causingEvent.getMessage().getClusterNameOrDefault(defaultProducerClusterName);
-        if (!kafkaTemplateByClusterName.containsKey(clusterName)) {
-            String causingEventId = causingEvent.getMetadata().getId();
-            EventMessage causingEventMessage = causingEvent.getMessage();
-            log.debug("Unknown resend target cluster name '{}' found on message originally sent as {} with message id '{}'. " +
-                            "Using the default producer cluster '{}' instead.",
-                    clusterName, causingEventMessage, causingEventId, defaultProducerClusterName);
-            clusterName = defaultProducerClusterName;
-        }
-        return clusterName;
     }
 
     private static void addHeadersFromCausingEvent(Error error, ProducerRecord<Object, Object> producerRecord) {

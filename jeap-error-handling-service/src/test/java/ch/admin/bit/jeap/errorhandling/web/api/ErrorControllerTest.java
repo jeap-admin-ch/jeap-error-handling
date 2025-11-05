@@ -9,6 +9,7 @@ import ch.admin.bit.jeap.errorhandling.domain.group.ErrorGroupService;
 import ch.admin.bit.jeap.errorhandling.domain.resend.scheduler.ScheduledResendService;
 import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.DomainEventDeserializer;
 import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.KafkaDeadLetterBatchConsumerProducer;
+import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.ResendClusterProvider;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.*;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.AuditLog.AuditedAction;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
@@ -19,6 +20,7 @@ import ch.admin.bit.jeap.security.resource.token.JeapAuthenticationToken;
 import ch.admin.bit.jeap.security.test.resource.JeapAuthenticationTestTokenBuilder;
 import ch.admin.bit.jeap.security.test.resource.configuration.ServletJeapAuthorizationConfig;
 import ch.admin.bit.jeap.security.test.resource.extension.WithAuthentication;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,6 +99,9 @@ class ErrorControllerTest {
     @MockitoBean
     private DomainEventDeserializer domainEventDeserializer;
 
+    @MockitoBean
+    private ResendClusterProvider resendClusterProvider;
+
     private static final SemanticApplicationRole VIEW_ROLE = SemanticApplicationRole.builder()
             .system("jme")
             .resource("error")
@@ -114,6 +119,11 @@ class ErrorControllerTest {
             .resource("error")
             .operation("retry")
             .build();
+
+    @BeforeEach
+    void setUp() {
+        doReturn("default").when(resendClusterProvider).getResendClusterNameFor(any());
+    }
 
     @Test
     @WithAuthentication("viewRoleToken")
@@ -463,7 +473,6 @@ class ErrorControllerTest {
         assertEquals(error.getId().toString(), result.getErrors().getFirst().getId());
         verify(errorService, times(1)).getErrorListByGroupId(eq(groupId), any(ErrorGroupListSearchCriteria.class));
     }
-
 
 
     private Error mockError() {

@@ -11,6 +11,7 @@ import ch.admin.bit.jeap.errorhandling.domain.group.ErrorGroupService;
 import ch.admin.bit.jeap.errorhandling.domain.resend.scheduler.ScheduledResendService;
 import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.DomainEventDeserializer;
 import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.KafkaDeadLetterBatchConsumerProducer;
+import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.ResendClusterProvider;
 import ch.admin.bit.jeap.messaging.kafka.properties.KafkaProperties;
 import ch.admin.bit.jeap.security.resource.semanticAuthentication.SemanticApplicationRole;
 import ch.admin.bit.jeap.security.resource.token.JeapAuthenticationToken;
@@ -43,6 +44,8 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doReturn;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -91,6 +94,8 @@ class ErrorGroupControllerTest {
     KafkaDeadLetterBatchConsumerProducer kafkaDeadLetterBatchConsumerProducer;
     @MockitoBean
     private DomainEventDeserializer domainEventDeserializer;
+    @MockitoBean
+    private ResendClusterProvider resendClusterProvider;
     private ErrorGroupAggregatedDataRecord errorGroupAggregatedData;
     private ErrorGroupAggregatedDataList errorGroupAggregatedDataList;
 
@@ -126,13 +131,14 @@ class ErrorGroupControllerTest {
                 stackTraceHash("some-hash").
                 build();
         errorGroupAggregatedDataList = new ErrorGroupAggregatedDataList(1, List.of(errorGroupAggregatedData));
+        doReturn("default").when(resendClusterProvider).getResendClusterNameFor(any());
     }
 
     @Test
     @WithAuthentication("viewRoleToken")
     void getGroups_shouldReturnErrorGroupResponse() {
         // Arrange
-        Mockito.doReturn(errorGroupAggregatedDataList)
+        doReturn(errorGroupAggregatedDataList)
                 .when(errorGroupService)
                 .findErrorGroupAggregatedData(Mockito.any(ErrorGroupSearchCriteria.class));
         // Act
@@ -147,7 +153,7 @@ class ErrorGroupControllerTest {
     @WithAuthentication("viewRoleToken")
     void getGroups_shouldMapErrorGroupInfoToDTO() {
         // Arrange
-        Mockito.doReturn(errorGroupAggregatedDataList)
+        doReturn(errorGroupAggregatedDataList)
                 .when(errorGroupService)
                 .findErrorGroupAggregatedData(Mockito.any(ErrorGroupSearchCriteria.class));
 
@@ -169,7 +175,7 @@ class ErrorGroupControllerTest {
     @WithAuthentication("viewRoleToken")
     void getGroups_shouldUseDefaultPageIndexAndSize() {
         // Arrange
-        Mockito.doReturn(errorGroupAggregatedDataList)
+        doReturn(errorGroupAggregatedDataList)
                 .when(errorGroupService)
                 .findErrorGroupAggregatedData(Mockito.any(ErrorGroupSearchCriteria.class));
         // Act
@@ -183,7 +189,7 @@ class ErrorGroupControllerTest {
     @WithAuthentication("viewRoleToken")
     void getGroups_shouldUseProvidedPageIndexAndSize() {
         // Arrange
-        Mockito.doReturn(errorGroupAggregatedDataList)
+        doReturn(errorGroupAggregatedDataList)
                 .when(errorGroupService)
                 .findErrorGroupAggregatedData(Mockito.any(ErrorGroupSearchCriteria.class));
         // Act
@@ -198,7 +204,7 @@ class ErrorGroupControllerTest {
     void getGroups_shouldHandleEmptyResults() {
         // Arrange
         ErrorGroupAggregatedDataList errorGroupAggregatedDataList = new ErrorGroupAggregatedDataList(0L, List.of());
-        Mockito.doReturn(errorGroupAggregatedDataList)
+        doReturn(errorGroupAggregatedDataList)
                 .when(errorGroupService)
                 .findErrorGroupAggregatedData(Mockito.any(ErrorGroupSearchCriteria.class));
         // Act
@@ -226,7 +232,7 @@ class ErrorGroupControllerTest {
             build();
 
         ErrorGroupAggregatedDataList multipleList = new ErrorGroupAggregatedDataList(2L, List.of(errorGroupAggregatedData, errorGroupAggregatedDataOther));
-        Mockito.doReturn(multipleList)
+        doReturn(multipleList)
                 .when(errorGroupService)
                 .findErrorGroupAggregatedData(Mockito.any(ErrorGroupSearchCriteria.class));
         // Act
