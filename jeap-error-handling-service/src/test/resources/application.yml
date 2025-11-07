@@ -70,7 +70,6 @@ spring:
     # Starting with migration version 1.2.0, the scripts will be the same for both integration tests and productive code
     # Separating the scripts into postgres-specific folders would have impact on client applications as they would have
     # to change their flyway location configuration property, which is a breaking change we strive to avoid.
-    locations: classpath:db/migration/common, classpath:db/migration/h2
     baseline-version: "1.1.0"
 
 logging:
