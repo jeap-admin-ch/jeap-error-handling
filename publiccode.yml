@@ -1,8 +1,8 @@
 publiccodeYmlVersion: 0.4.0
 name: jeap-error-handling
 applicationSuite: jEAP
-softwareVersion: 14.2.0
-releaseDate: 2025-11-06
+softwareVersion: 15.0.0
+releaseDate: 2025-11-10
 url: "https://github.com/jeap-admin-ch/jeap-error-handling.git"
 landingURL: "https://github.com/jeap-admin-ch/jeap"
 platforms:
