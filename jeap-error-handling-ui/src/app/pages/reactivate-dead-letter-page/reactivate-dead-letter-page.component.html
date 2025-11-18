@@ -1,6 +1,7 @@
 <div class="reactivate-dead-letter-container">
 	<ob-alert *ngIf="!isInProgress && isSuccessfull" type="success">{{ 'i18n.deadLetter.success-message' | translate }}</ob-alert>
 	<ob-alert *ngIf="!isInProgress && !isSuccessfull && isSuccessfull !== null" type="error">{{ 'i18n.deadLetter.error-message' | translate }}</ob-alert>
+
 	<div class="input-container">
 		<span>{{ 'i18n.deadLetter.number-of-messages' | translate }}</span>
 		<input type="number"
@@ -9,7 +10,7 @@
 			   [(ngModel)]="maxMessages"
 			   [disabled]="isInProgress"
 			   min="1"
-			   max="500"
+			   max="100000"
 			   required
 		/>
 	</div>

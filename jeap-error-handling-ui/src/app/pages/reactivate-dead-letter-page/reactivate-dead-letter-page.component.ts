@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { ReactivateDeadLetterService } from '../../shared/reactivate-dead-letter.service';
 import {FormsModule} from '@angular/forms';
 import {MatButton} from '@angular/material/button';
@@ -39,7 +39,7 @@ export class ReactivateDeadLetterPageComponent {
 		this.isInProgress = true;
 		this.reactivateDeadLetterService.reactivateDeadLetter(this.maxMessages).subscribe({
 			next: response => {
-				this.isSuccessfull = response.status === 200;
+				this.isSuccessfull = response.status === 202;
 				this.isInProgress = false;
 			},
 			error: error => {

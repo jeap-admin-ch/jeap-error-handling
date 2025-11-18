@@ -47,6 +47,8 @@ import static org.assertj.core.api.Assertions.assertThat;
         "jeap.messaging.kafka.cluster.second.schemaRegistryPassword=unused",
         "jeap.errorhandling.topic=errorTopic",
         "jeap.errorhandling.deadLetterTopicName=" + KafkaFailedEventResenderMulticlusterIT.DLQ_TOPIC,
+        "spring.kafka.consumer.properties.max-poll-interval-ms=60000",
+        "spring.kafka.consumer.properties.max-poll-records=10"
 })
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class KafkaFailedEventResenderMulticlusterIT {
@@ -183,5 +185,4 @@ class KafkaFailedEventResenderMulticlusterIT {
         props.remove(ConsumerConfig.INTERCEPTOR_CLASSES_CONFIG);
         return new KafkaConsumer<>(props);
     }
-
 }
