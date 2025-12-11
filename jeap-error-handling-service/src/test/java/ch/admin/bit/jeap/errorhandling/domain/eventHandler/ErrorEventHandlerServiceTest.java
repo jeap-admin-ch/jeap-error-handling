@@ -2,8 +2,8 @@ package ch.admin.bit.jeap.errorhandling.domain.eventHandler;
 
 import ch.admin.bit.jeap.errorhandling.TestMessageProcessingException;
 import ch.admin.bit.jeap.errorhandling.domain.error.ErrorService;
-import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.*;
+import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorEventData.Temporality;
 import ch.admin.bit.jeap.messaging.avro.errorevent.MessageProcessingFailedEvent;
 import ch.admin.bit.jeap.messaging.avro.errorevent.MessageProcessingFailedEventBuilder;
@@ -20,8 +20,10 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import java.nio.charset.StandardCharsets;
 import java.time.ZonedDateTime;
+import java.util.Optional;
 
 import static ch.admin.bit.jeap.messaging.avro.errorevent.MessageHandlerExceptionInformation.Temporality.PERMANENT;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
@@ -64,6 +66,31 @@ class ErrorEventHandlerServiceTest {
         assertTrue(causingEventRepository.findByCausingEventId(causingEvent.getMetadata().getId()).isPresent());
     }
 
+    @Test
+    void handleOtherPayloadFormat() {
+        MessageProcessingFailedEvent failedEvent = createMessageProcessingFailedEvent();
+        CausingEvent causingEvent = createCausingEvent(createEventMetadata(), new byte[]{0, 52, 52, 52});
+        CausingEvent causingEventOther = createCausingEvent(createEventMetadata(), new byte[]{4, 52, 52, 52});
+        doReturn(causingEvent).when(errorEventMapperMock).toCausingEvent("bit", failedEvent);
+        doReturn(causingEventOther).when(errorEventMapperMock).toCausingEvent("aws", failedEvent);
+        doReturn(errorMock).when(errorEventMapperMock).toError(any(), any());
+        doReturn(errorEventData).when(errorMock).getErrorEventData();
+        doReturn(Temporality.TEMPORARY).when(errorEventData).getTemporality();
+
+        ErrorEventHandlerService errorEventHandlerService = new ErrorEventHandlerService(errorServiceMock,
+                causingEventRepository, errorEventMapperMock, transactionManager);
+
+        errorEventHandlerService.handle("bit", failedEvent);
+
+        // Second call, same message other cluster and payload
+        errorEventHandlerService.handle("aws", failedEvent);
+
+        Optional<CausingEvent> persistentCausingEventOptional = causingEventRepository.findByCausingEventId(causingEvent.getMetadata().getId());
+        assertTrue(persistentCausingEventOptional.isPresent());
+        CausingEvent persistentCausingEvent = persistentCausingEventOptional.get();
+        assertArrayEquals(new byte[]{4, 52, 52, 52}, persistentCausingEvent.getMessage().getPayload());
+    }
+
     private MessageProcessingFailedEvent createMessageProcessingFailedEvent() {
         ConsumerRecord<?, ?> consumerRecord = new ConsumerRecord<>("Topic", 1, 1, null, "payload");
         TestMessageProcessingException eventHandleException = new TestMessageProcessingException(PERMANENT, "500", "Payload");
@@ -76,10 +103,14 @@ class ErrorEventHandlerServiceTest {
     }
 
     private CausingEvent createCausingEvent(EventMetadata metadata) {
+        return createCausingEvent(metadata, "test".getBytes(StandardCharsets.UTF_8));
+    }
+
+    private CausingEvent createCausingEvent(EventMetadata metadata, byte[] payload) {
         return CausingEvent.builder()
                 .message(EventMessage.builder()
                         .offset(1)
-                        .payload("test".getBytes(StandardCharsets.UTF_8))
+                        .payload(payload)
                         .topic("topic")
                         .clusterName("clusterName")
                         .build())

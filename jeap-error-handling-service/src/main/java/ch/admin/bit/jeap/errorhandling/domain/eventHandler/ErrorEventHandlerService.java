@@ -68,15 +68,20 @@ public class ErrorEventHandlerService implements ErrorEventHandler {
     private CausingEvent saveOrGetCausingEvent(CausingEvent causingEvent) {
         TransactionTemplate transactionTemplate = new TransactionTemplate(transactionManager);
         return transactionTemplate.execute(status -> {
-            Optional<CausingEvent> persistentCausingEvent = causingEventRepository.findByCausingEventId(causingEvent.getMetadata().getId());
+            Optional<CausingEvent> persistentCausingEventOptional = causingEventRepository.findByCausingEventId(causingEvent.getMetadata().getId());
 
-            if (persistentCausingEvent.isEmpty()) {
+            if (persistentCausingEventOptional.isEmpty()) {
                 log.debug("New causing event: {}.", causingEvent);
                 return causingEventRepository.save(causingEvent);
             }
+            CausingEvent persistentCausingEvent = persistentCausingEventOptional.get();
 
-            log.debug("Existing causing event: {}.", causingEvent);
-            return persistentCausingEvent.get();
+
+            persistentCausingEvent.setMessage(causingEvent.getMessage());
+            log.debug("Updated causing event: {}.", persistentCausingEvent);
+
+            return causingEventRepository.save(persistentCausingEvent);
         });
     }
+
 }

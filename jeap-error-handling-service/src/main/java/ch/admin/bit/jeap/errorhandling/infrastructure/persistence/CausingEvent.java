@@ -25,6 +25,7 @@ public class CausingEvent {
 
     @Embedded
     @NonNull
+    @Setter
     private EventMessage message;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
