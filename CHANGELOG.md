@@ -10,6 +10,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 - Update parent from 30.2.0 to 30.3.0
+- Removed unused KafkaFailedEventResenderMulticlusterIT
 
 ## [15.7.1] - 2025-12-12
 
