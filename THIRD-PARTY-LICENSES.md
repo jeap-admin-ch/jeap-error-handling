@@ -392,8 +392,6 @@ BSD License 3
 
  * Protocol Buffers [Core] - [com.google.protobuf:protobuf-java](https://developers.google.com/protocol-buffers/protobuf-java/)
  * ANTLR 4 Runtime - [org.antlr:antlr4-runtime](https://www.antlr.org/antlr4-runtime/)
- * commons-compiler - [org.codehaus.janino:commons-compiler](http://janino-compiler.github.io/commons-compiler/)
- * janino - [org.codehaus.janino:janino](http://janino-compiler.github.io/janino/)
  * Hamcrest - [org.hamcrest:hamcrest](http://hamcrest.org/JavaHamcrest/)
  * asm - [org.ow2.asm:asm](http://asm.ow2.io/)
 
