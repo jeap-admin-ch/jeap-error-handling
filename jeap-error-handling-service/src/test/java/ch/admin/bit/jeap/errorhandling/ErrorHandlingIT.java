@@ -22,6 +22,7 @@ import ch.admin.bit.jeap.messaging.avro.errorevent.MessageProcessingFailedEventB
 import ch.admin.bit.jeap.messaging.kafka.crypto.JeapKafkaAvroSerdeCryptoConfig;
 import ch.admin.bit.jeap.messaging.kafka.properties.KafkaProperties;
 import ch.admin.bit.jeap.messaging.kafka.serde.confluent.CustomKafkaAvroSerializer;
+import ch.admin.bit.jeap.messaging.kafka.signature.SignatureHeaders;
 import ch.admin.bit.jeap.security.resource.semanticAuthentication.SemanticApplicationRole;
 import ch.admin.bit.jeap.security.resource.token.JeapAuthenticationContext;
 import ch.admin.bit.jeap.security.test.jws.JwsBuilder;
@@ -29,6 +30,7 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.header.Header;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -174,7 +176,8 @@ class ErrorHandlingIT extends ErrorHandlingITBase {
     }
 
     @Test
-    @Transactional // for lazily fetched objects
+    @Transactional
+        // for lazily fetched objects
     void testCanGroupErrorsOfConsumedMessageProcessingFailedEvents() {
         // given
         TestEvent testEvent1 = createTestEvent("unexpected error");
@@ -278,6 +281,78 @@ class ErrorHandlingIT extends ErrorHandlingITBase {
         // Then assert that more errors have been created
         await("errors have been created").atMost(FORTY_SECONDS)
                 .until(() -> errorRepository.countErrorsForCausingEvent(domainEventId) > 1);
+    }
+
+    @SuppressWarnings("DataFlowIssue")
+    @Test
+    void testTemporaryFailure_expectRepublishedToOriginalTopic_makeSureMessageAndHeadersAreUpdated() {
+        // given
+        TestEvent domainEvent = createTestEvent(TEMPORARY_ERROR);
+        String domainEventId = domainEvent.getIdentity().getEventId();
+
+        // when
+        byte[] headerValueCert = {1, 2, 3}; // dummy value
+        byte[] headerValueSign = {1, 2, 3, 4}; // dummy value
+        byte[] headerValueSignKey = {1, 2, 3, 4, 5}; // dummy value
+        ProducerRecord<AvroMessageKey, AvroMessage> producerRecord = createProducerRecord(domainEvent, headerValueCert, headerValueSign, headerValueSignKey);
+        kafkaTemplate.send(producerRecord);
+
+        // Then wait until failure has been received and stored in repository
+        Error error = awaitSingleErrorInRepository();
+        assertSame(Temporality.TEMPORARY, error.getErrorEventData().getTemporality());
+
+        // Then wait until the event has been republished to the consumer
+        await("event is republished to consumer").atMost(FORTY_SECONDS)
+                .until(() -> !testConsumer.getConsumedEventsByIdempotenceId(domainEvent.getIdentity().getIdempotenceId()).isEmpty());
+
+        // Then assert that the event with the same event ID has been republished
+        List<TestEvent> consumedEvents = testConsumer.getConsumedEventsByIdempotenceId(domainEvent.getIdentity().getIdempotenceId());
+        assertEventId(domainEventId, consumedEvents.getFirst());
+
+        // Simulate another error for this event with the same event ID, but update
+        // - message contents by simulating an event with the same ID and different payload
+        // - metadata by setting a new idempotence ID
+        // - headers by simulating a different signature
+        String newMessageContent = "new message content";
+        domainEvent.getPayload().setMessage(newMessageContent);
+        String newIdempotenceId = UUID.randomUUID().toString();
+        domainEvent.getIdentity().setIdempotenceId(newIdempotenceId);
+        byte[] headerValueCert2 = {4, 5, 6}; // dummy value (updated)
+        byte[] headerValueSign2 = {4, 5, 6, 7}; // dummy value (updated)
+        byte[] headerValueSignKey2 = {4, 5, 6, 7, 8}; // dummy value (updated)
+        ProducerRecord<AvroMessageKey, AvroMessage> producerRecord2 = createProducerRecord(domainEvent, headerValueCert2, headerValueSign2, headerValueSignKey2);
+        kafkaTemplate.send(producerRecord2);
+
+        // Then wait until the event has been republished again to the consumer, and check whether the event has been updated
+        await("event is republished again to consumer").atMost(FORTY_SECONDS)
+                .until(() -> !testConsumer.getConsumedEventsByIdempotenceId(newIdempotenceId).isEmpty());
+        List<TestEvent> republishedConsumedEvents = testConsumer.getConsumedEventsByIdempotenceId(newIdempotenceId);
+        assertEquals(newMessageContent, republishedConsumedEvents.getFirst().getPayload().getMessage(), "Message content has been updated");
+        List<ConsumerRecord<AvroMessageKey, TestEvent>> updatedSignatureConsumerRecords = testConsumer.getConsumedRecordsByIdempotenceId(newIdempotenceId);
+        assertFalse(updatedSignatureConsumerRecords.isEmpty(), "Consumer record with updated signatures has been consumed");
+        ConsumerRecord<AvroMessageKey, TestEvent> consumerRecord = updatedSignatureConsumerRecords.getFirst();
+        byte[] certificateHeaderValue = getHeaderValue(SignatureHeaders.SIGNATURE_CERTIFICATE_HEADER_KEY, consumerRecord).value();
+        byte[] signatureHeaderValue = getHeaderValue(SignatureHeaders.SIGNATURE_VALUE_HEADER_KEY, consumerRecord).value();
+        byte[] signatureKeyHeaderValue = getHeaderValue(SignatureHeaders.SIGNATURE_KEY_HEADER_KEY, consumerRecord).value();
+        assertArrayEquals(headerValueCert2, certificateHeaderValue, "Certificate header value is updated");
+        assertArrayEquals(headerValueSign2, signatureHeaderValue, "Signature header value is updated");
+        assertArrayEquals(headerValueSignKey2, signatureKeyHeaderValue, "Signature key header value is updated");
+
+        await("errors have been created").atMost(FORTY_SECONDS)
+                .until(() -> errorRepository.countErrorsForCausingEvent(domainEventId) == 3);
+    }
+
+    private static ProducerRecord<AvroMessageKey, AvroMessage> createProducerRecord(
+            TestEvent domainEvent, byte[] headerValueCert, byte[] headerValueSign, byte[] headerValueSignKey) {
+        ProducerRecord<AvroMessageKey, AvroMessage> producerRecord =
+                new ProducerRecord<>(DOMAIN_EVENT_TOPIC, domainEvent);
+        String headerNameCert = SignatureHeaders.SIGNATURE_CERTIFICATE_HEADER_KEY;
+        String headerNameSign = SignatureHeaders.SIGNATURE_VALUE_HEADER_KEY;
+        String headerNameSignKey = SignatureHeaders.SIGNATURE_KEY_HEADER_KEY;
+        producerRecord.headers().add(headerNameCert, headerValueCert);
+        producerRecord.headers().add(headerNameSign, headerValueSign);
+        producerRecord.headers().add(headerNameSignKey, headerValueSignKey);
+        return producerRecord;
     }
 
     @Test
@@ -445,21 +520,13 @@ class ErrorHandlingIT extends ErrorHandlingITBase {
         TestEvent domainEvent = createTestEvent(RETRY_SUCCESS);
 
         // when
-        ProducerRecord<AvroMessageKey,AvroMessage> producerRecord =
-                new ProducerRecord<>(DOMAIN_EVENT_TOPIC, domainEvent);
-        String headerName = JeapKafkaAvroSerdeCryptoConfig.ENCRYPTED_VALUE_HEADER_NAME;
-        byte[] headerValue = JeapKafkaAvroSerdeCryptoConfig.ENCRYPTED_VALUE_HEADER_TRUE;
-        String headerNameCert = "jeap-cert";
-        byte[] headerValueCert = {1, 2, 3 }; // dummy value
-        String headerNameSign = "jeap-sign";
-        byte[] headerValueSign = {1, 2, 3, 4 }; // dummy value
-        String headerNameSignKey = "jeap-sign-key";
-        byte[] headerValueSignKey = {1, 2, 3, 4, 5 }; // dummy value
-
-        producerRecord.headers().add(headerName, headerValue);
-        producerRecord.headers().add(headerNameCert, headerValueCert);
-        producerRecord.headers().add(headerNameSign, headerValueSign);
-        producerRecord.headers().add(headerNameSignKey, headerValueSignKey);
+        byte[] headerValueCert = { 1, 2, 3 }; // dummy value
+        byte[] headerValueSign = { 1, 2, 3, 4 }; // dummy value
+        byte[] headerValueSignKey = { 1, 2, 3, 4, 5 }; // dummy value
+        ProducerRecord<AvroMessageKey, AvroMessage> producerRecord = createProducerRecord(domainEvent, headerValueCert, headerValueSign, headerValueSignKey);
+        String encHeaderName = JeapKafkaAvroSerdeCryptoConfig.ENCRYPTED_VALUE_HEADER_NAME;
+        byte[] encHeaderValue = JeapKafkaAvroSerdeCryptoConfig.ENCRYPTED_VALUE_HEADER_TRUE;
+        producerRecord.headers().add(encHeaderName, encHeaderValue);
         kafkaTemplate.send(producerRecord);
 
         // then
@@ -485,15 +552,16 @@ class ErrorHandlingIT extends ErrorHandlingITBase {
         List<ConsumerRecord<AvroMessageKey,TestEvent>> consumedRecords = testConsumer.getConsumedRecordsByIdempotenceId(domainEvent.getIdentity().getIdempotenceId());
         for(ConsumerRecord<AvroMessageKey,TestEvent> consumerRecord : consumedRecords) {
             assertNotNull(getHeaderValue(JeapKafkaAvroSerdeCryptoConfig.ENCRYPTED_VALUE_HEADER_NAME, consumerRecord),"Header value from original message is passed through");
-            assertNotNull(getHeaderValue(headerNameCert, consumerRecord),"Header value from original message is passed through");
-            assertNotNull(getHeaderValue(headerNameSign, consumerRecord),"Header value from original message is passed through");
-            assertNotNull(getHeaderValue(headerNameSignKey, consumerRecord),"Header value from original message is passed through");
+            assertNotNull(getHeaderValue(SignatureHeaders.SIGNATURE_CERTIFICATE_HEADER_KEY, consumerRecord),"Header value from original message is passed through");
+            assertNotNull(getHeaderValue(SignatureHeaders.SIGNATURE_VALUE_HEADER_KEY, consumerRecord),"Header value from original message is passed through");
+            assertNotNull(getHeaderValue(SignatureHeaders.SIGNATURE_KEY_HEADER_KEY, consumerRecord),"Header value from original message is passed through");
         }
     }
 
-    private Object getHeaderValue(String headerName, ConsumerRecord<AvroMessageKey,TestEvent> consumerRecord) {
+    private Header getHeaderValue(String headerName, ConsumerRecord<AvroMessageKey,TestEvent> consumerRecord) {
         if(consumerRecord.headers() == null)        {
-            return null;}
+            return null;
+        }
 
         return consumerRecord.headers().lastHeader(headerName);
     }

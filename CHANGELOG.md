@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [15.9.1] - 2025-12-18
+
+### Changed
+
+- Fixed: When saving reoccurring causing events, save headers and metadata as well
+- Update parent from 30.4.0 to 30.4.1
+
 ## [15.9.0] - 2025-12-17
 
 ### Changed

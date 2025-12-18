@@ -75,13 +75,14 @@ public class ErrorEventHandlerService implements ErrorEventHandler {
                 return causingEventRepository.save(causingEvent);
             }
             CausingEvent persistentCausingEvent = persistentCausingEventOptional.get();
-
-
-            persistentCausingEvent.setMessage(causingEvent.getMessage());
+            // If the causing event already exists, we update it with the latest information
+            // While this is not necessary usually, it might be required in certain migration cases (new heders,
+            // new message format due to cluster migrations with different binary record formats, etc)
+            // As there is no way to determine whether an update is strictly necessary, it is always performed.
+            persistentCausingEvent.update(causingEvent.getMetadata(), causingEvent.getMessage(), causingEvent.getHeaders());
             log.debug("Updated causing event: {}.", persistentCausingEvent);
 
             return causingEventRepository.save(persistentCausingEvent);
         });
     }
-
 }
