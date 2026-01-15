@@ -10,9 +10,7 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import java.util.Optional;
 
 public enum RecordBinaryFormat {
-    /**
-     * See {@link io.confluent.kafka.serializers.AbstractKafkaSchemaSerDe#MAGIC_BYTE}
-     */
+
     CONFLUENT_AVRO((byte) 0),
     /**
      * The version byte value for AWS Glue is '3'
