@@ -7,11 +7,17 @@ import ch.admin.bit.jeap.errorhandling.ErrorHandlingITBase;
 import ch.admin.bit.jeap.errorhandling.ErrorStubs;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.CausingEvent;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
+import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.MessageHeader;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.OriginalTraceContext;
 import ch.admin.bit.jeap.messaging.kafka.KafkaConfiguration;
 import ch.admin.bit.jeap.messaging.kafka.properties.KafkaProperties;
-import org.apache.kafka.clients.consumer.*;
+import org.apache.kafka.clients.consumer.Consumer;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.TopicPartition;
+import org.apache.kafka.common.header.Header;
 import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 import org.assertj.core.util.Streams;
 import org.junit.jupiter.api.AfterEach;
@@ -19,10 +25,17 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.util.ReflectionTestUtils;
 
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SuppressWarnings("resource")
 class KafkaFailedEventResenderIT extends ErrorHandlingITBase {
@@ -108,6 +121,56 @@ class KafkaFailedEventResenderIT extends ErrorHandlingITBase {
         kafkaFailedEventResender.resend(error);
 
         assertThat(hasEventBeenResent(error.getCausingEvent())).isTrue();
+    }
+
+    @Test
+    void testResend_serviceHeadersMustBeSetOnceIfResent() {
+        final Error error = ErrorStubs.createTemporaryError();
+
+        kafkaFailedEventResender.resend(error);
+
+        ConsumerRecords<Object, Object> consumerRecords = consumeAllEvents();
+        assertTrue(consumerRecords.count() > 0);
+        for (ConsumerRecord<Object, Object> consumerRecord : consumerRecords) {
+            assertHeaders(consumerRecord, "jeap_eh_target_service", 1, "test-service");
+            assertHeaders(consumerRecord, "jeap_eh_error_handling_service", 1, "jeap-error-handling-service");
+        }
+    }
+
+    @Test
+    void testResendSeveralTime_serviceHeadersMustBeSetOnceIfResent() {
+        final Error error = ErrorStubs.createTemporaryErrorWithHeaders(
+                MessageHeader.builder()
+                        .headerName("jeap_eh_target_service")
+                        .headerValue("dummy-service".getBytes(StandardCharsets.UTF_8))
+                        .build(),
+                MessageHeader.builder()
+                        .headerName("jeap_eh_error_handling_service")
+                        .headerValue("dummy-eh-service".getBytes(StandardCharsets.UTF_8))
+                        .build()
+        );
+
+        kafkaFailedEventResender.resend(error);
+        kafkaFailedEventResender.resend(error);
+        kafkaFailedEventResender.resend(error);
+
+        ConsumerRecords<Object, Object> consumerRecords = consumeAllEvents();
+        assertTrue(consumerRecords.count() > 0);
+        for (ConsumerRecord<Object, Object> consumerRecord : consumerRecords) {
+            assertHeaders(consumerRecord, "jeap_eh_target_service", 1, "test-service");
+            assertHeaders(consumerRecord, "jeap_eh_error_handling_service", 1, "jeap-error-handling-service");
+        }
+    }
+
+    private void assertHeaders(ConsumerRecord<Object, Object> consumerRecord, String headerName, int expectedCount, String expectedValue) {
+        Iterable<Header> allHeaders = consumerRecord.headers().headers(headerName);
+        int headersCount = 0;
+        for (Header header : allHeaders) {
+            headersCount++;
+            assertEquals(expectedValue, new String(header.value(), StandardCharsets.UTF_8));
+        }
+        assertEquals(expectedCount, headersCount);
+        assertEquals(expectedValue, new String(consumerRecord.headers().lastHeader(headerName).value(), StandardCharsets.UTF_8));
     }
 
     @AfterEach

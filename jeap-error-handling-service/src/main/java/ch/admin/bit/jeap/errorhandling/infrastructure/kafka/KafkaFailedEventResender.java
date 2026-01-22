@@ -17,6 +17,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
 
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,21 +29,27 @@ import static java.util.stream.Collectors.toMap;
 @Component
 @Slf4j
 public class KafkaFailedEventResender {
+
+    private static final String TARGET_SERVICE_HEADER_NAME = "jeap_eh_target_service";
+    private static final String ERROR_HANDLING_SERVICE_HEADER_NAME = "jeap_eh_error_handling_service";
+
     private final ResendClusterProvider resendClusterProvider;
     private final TraceContextUpdater traceContextUpdater;
+    private final int timeoutSeconds;
+    private final String errorHandlerServiceName;
 
     private final Map<String, KafkaTemplate<Object, Object>> kafkaTemplateByClusterName;
-
-    @Value("${jeap.errorhandling.timeout-seconds:60}")
-    private int timeoutSeconds;
 
     public KafkaFailedEventResender(ResendClusterProvider resendClusterProvider,
                                     KafkaProperties kafkaProperties,
                                     KafkaConfiguration kafkaConfiguration,
                                     KafkaTracing kafkaTracing,
-                                    TraceContextUpdater traceContextUpdater) {
+                                    TraceContextUpdater traceContextUpdater,
+                                    @Value("${jeap.errorhandling.timeout-seconds:60}") int timeoutSeconds) {
         this.resendClusterProvider = resendClusterProvider;
         this.traceContextUpdater = traceContextUpdater;
+        this.errorHandlerServiceName = kafkaProperties.getServiceName();
+        this.timeoutSeconds = timeoutSeconds;
         this.kafkaTemplateByClusterName = kafkaProperties.clusterNames().stream()
                 .collect(toMap(clusterName -> clusterName,
                         clusterName -> createKafkaTemplate(kafkaConfiguration, kafkaTracing, clusterName)));
@@ -73,6 +80,7 @@ public class KafkaFailedEventResender {
 
         ProducerRecord<Object, Object> producerRecord = new ProducerRecord<>(topic, key, message);
         addHeadersFromCausingEvent(error, producerRecord);
+        addResendInformationHeaders(error, producerRecord);
         sendResult = kafkaTemplateByClusterName.get(clusterName).send(producerRecord);
 
         try {
@@ -91,6 +99,19 @@ public class KafkaFailedEventResender {
                 producerRecord.headers().add(header.getHeaderName(), header.getHeaderValue());
             }
         }
+    }
+
+    private void addResendInformationHeaders(Error error, ProducerRecord<Object, Object> producerRecord) {
+        // Only headers from encryption and signing should be there, but we remove them anyway to be sure
+        producerRecord.headers().remove(TARGET_SERVICE_HEADER_NAME);
+        producerRecord.headers().remove(ERROR_HANDLING_SERVICE_HEADER_NAME);
+
+        addHeader(producerRecord, TARGET_SERVICE_HEADER_NAME, error.getCausingEvent().getMetadata().getPublisher().getService());
+        addHeader(producerRecord, ERROR_HANDLING_SERVICE_HEADER_NAME, errorHandlerServiceName);
+    }
+
+    private static void addHeader(ProducerRecord<Object, Object> producerRecord, String headerName, String headerValue) {
+        producerRecord.headers().add(headerName, headerValue.getBytes(StandardCharsets.UTF_8));
     }
 
     private static Map<String, Object> adaptKafkaConfiguration(String clusterName, KafkaConfiguration kafkaConfiguration) {

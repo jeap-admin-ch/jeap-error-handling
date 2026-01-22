@@ -9,7 +9,8 @@ import lombok.SneakyThrows;
 
 import java.security.SecureRandom;
 import java.time.ZonedDateTime;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class ErrorStubs {
@@ -33,6 +34,10 @@ public class ErrorStubs {
         return createError(Temporality.TEMPORARY, ErrorState.TEMPORARY_RETRY_PENDING, DATE_TIME);
     }
 
+    public static Error createTemporaryErrorWithHeaders(MessageHeader... headers) {
+        return createError(Temporality.TEMPORARY, ErrorState.TEMPORARY_RETRY_PENDING, DATE_TIME, headers);
+    }
+
     @SneakyThrows
     public static Error createTemporaryErrorWithAvroMagicBytePayload(String clusterName) {
         byte[] payload = new byte[100];
@@ -42,11 +47,26 @@ public class ErrorStubs {
         return createError(Temporality.TEMPORARY, ErrorState.TEMPORARY_RETRY_PENDING, DATE_TIME, clusterName, payload);
     }
 
-    private static Error createError(Temporality temporality, ErrorState errorState, ZonedDateTime createdTimestamp) {
-        return createError(temporality, errorState, createdTimestamp, KafkaProperties.DEFAULT_CLUSTER, "payload".getBytes());
+    private static Error createError(Temporality temporality, ErrorState errorState, ZonedDateTime createdTimestamp, MessageHeader... headers) {
+        return createError(temporality, errorState, createdTimestamp, KafkaProperties.DEFAULT_CLUSTER, "payload".getBytes(), headers);
     }
 
-    private static Error createError(Temporality temporality, ErrorState errorState, ZonedDateTime createdTimestamp, String clusterName, byte[] payload) {
+    private static Error createError(Temporality temporality, ErrorState errorState, ZonedDateTime createdTimestamp, String clusterName, byte[] payload, MessageHeader... headers) {
+        List<MessageHeader> messageHeaders = new ArrayList<>();
+        messageHeaders.add(MessageHeader.builder()
+                .headerName("dummy")
+                .headerValue("dummyValue".getBytes())
+                .build());
+        messageHeaders.add(MessageHeader.builder()
+                .headerName("jeap-cert")
+                .headerValue("jeap-cert-value".getBytes())
+                .build());
+        if (headers != null) {
+            for (MessageHeader header : headers) {
+                messageHeaders.add(header);
+            }
+        }
+
         EventPublisher publisher = EventPublisher.builder()
                 .system(EVENT_PUBLISHER_SYSTEM)
                 .service(EVENT_PUBLISHER_SERVICE)
@@ -74,16 +94,7 @@ public class ErrorStubs {
                                 .clusterName(clusterName)
                                 .build())
                         .metadata(eventMetadata)
-                        .headers(Arrays.asList(
-                                MessageHeader.builder()
-                                        .headerName("dummy")
-                                        .headerValue("dummyValue".getBytes())
-                                        .build(),
-                                MessageHeader.builder()
-                                        .headerName("jeap-cert")
-                                        .headerValue("jeap-cert-value".getBytes())
-                                        .build()
-                        ))
+                        .headers(messageHeaders)
                         .build())
                 .errorEventData(ErrorEventData.builder()
                         .temporality(temporality)
