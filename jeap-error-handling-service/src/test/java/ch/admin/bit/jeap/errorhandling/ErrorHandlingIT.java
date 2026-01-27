@@ -109,7 +109,7 @@ class ErrorHandlingIT extends ErrorHandlingITBase {
                         .build())
                 .setPublisher(AvroDomainEventPublisher.newBuilder()
                         .setSystem("TEST")
-                        .setService("test-service")
+                        .setService("jeap-error-handling-service")
                         .build())
                 .build();
     }
@@ -131,7 +131,7 @@ class ErrorHandlingIT extends ErrorHandlingITBase {
                         .build())
                 .setPublisher(AvroMessagePublisher.newBuilder()
                         .setSystem("TEST")
-                        .setService("test-service")
+                        .setService("jeap-error-handling-service")
                         .build())
                 .build();
     }
