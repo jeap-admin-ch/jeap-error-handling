@@ -106,7 +106,7 @@ public class KafkaFailedEventResender {
         producerRecord.headers().remove(TARGET_SERVICE_HEADER_NAME);
         producerRecord.headers().remove(ERROR_HANDLING_SERVICE_HEADER_NAME);
 
-        addHeader(producerRecord, TARGET_SERVICE_HEADER_NAME, error.getCausingEvent().getMetadata().getPublisher().getService());
+        addHeader(producerRecord, TARGET_SERVICE_HEADER_NAME, error.getErrorEventMetadata().getPublisher().getService());
         addHeader(producerRecord, ERROR_HANDLING_SERVICE_HEADER_NAME, errorHandlerServiceName);
     }
 

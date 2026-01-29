@@ -125,7 +125,7 @@ class KafkaFailedEventResenderIT extends ErrorHandlingITBase {
 
     @Test
     void testResend_serviceHeadersMustBeSetOnceIfResent() {
-        final Error error = ErrorStubs.createTemporaryError();
+        final Error error = ErrorStubs.createTemporaryError("test-service", "someOtherPublisherService");
 
         kafkaFailedEventResender.resend(error);
 
@@ -140,6 +140,7 @@ class KafkaFailedEventResenderIT extends ErrorHandlingITBase {
     @Test
     void testResendSeveralTime_serviceHeadersMustBeSetOnceIfResent() {
         final Error error = ErrorStubs.createTemporaryErrorWithHeaders(
+                "test-service", "someOtherPublisherService",
                 MessageHeader.builder()
                         .headerName("jeap_eh_target_service")
                         .headerValue("dummy-service".getBytes(StandardCharsets.UTF_8))

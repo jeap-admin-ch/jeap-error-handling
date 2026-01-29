@@ -27,15 +27,23 @@ public class ErrorStubs {
     }
 
     public static Error createPermanentError() {
-        return createError(Temporality.PERMANENT, ErrorState.PERMANENT, DATE_TIME);
+        return createError(Temporality.PERMANENT, ErrorState.PERMANENT, DATE_TIME, EVENT_PUBLISHER_SERVICE, EVENT_PUBLISHER_SERVICE);
+    }
+
+    public static Error createTemporaryError(String errorEventService, String causingEventService) {
+        return createError(Temporality.TEMPORARY, ErrorState.TEMPORARY_RETRY_PENDING, DATE_TIME, errorEventService, causingEventService);
     }
 
     public static Error createTemporaryError() {
-        return createError(Temporality.TEMPORARY, ErrorState.TEMPORARY_RETRY_PENDING, DATE_TIME);
+        return createTemporaryError(EVENT_PUBLISHER_SERVICE, EVENT_PUBLISHER_SERVICE);
     }
 
     public static Error createTemporaryErrorWithHeaders(MessageHeader... headers) {
-        return createError(Temporality.TEMPORARY, ErrorState.TEMPORARY_RETRY_PENDING, DATE_TIME, headers);
+        return createTemporaryErrorWithHeaders(EVENT_PUBLISHER_SERVICE, EVENT_PUBLISHER_SERVICE, headers);
+    }
+
+    public static Error createTemporaryErrorWithHeaders(String errorEventService, String causingEventService, MessageHeader... headers) {
+        return createError(Temporality.TEMPORARY, ErrorState.TEMPORARY_RETRY_PENDING, DATE_TIME, errorEventService, causingEventService, headers);
     }
 
     @SneakyThrows
@@ -44,14 +52,14 @@ public class ErrorStubs {
         SecureRandom.getInstanceStrong().nextBytes(payload);
         // Byte 0 is the confluent avro magic byte
         payload[0] = 0;
-        return createError(Temporality.TEMPORARY, ErrorState.TEMPORARY_RETRY_PENDING, DATE_TIME, clusterName, payload);
+        return createError(Temporality.TEMPORARY, ErrorState.TEMPORARY_RETRY_PENDING, DATE_TIME, clusterName, payload, EVENT_PUBLISHER_SERVICE, EVENT_PUBLISHER_SERVICE);
     }
 
-    private static Error createError(Temporality temporality, ErrorState errorState, ZonedDateTime createdTimestamp, MessageHeader... headers) {
-        return createError(temporality, errorState, createdTimestamp, KafkaProperties.DEFAULT_CLUSTER, "payload".getBytes(), headers);
+    private static Error createError(Temporality temporality, ErrorState errorState, ZonedDateTime createdTimestamp, String errorEventService, String causingEventService, MessageHeader... headers) {
+        return createError(temporality, errorState, createdTimestamp, KafkaProperties.DEFAULT_CLUSTER, "payload".getBytes(), errorEventService, causingEventService, headers);
     }
 
-    private static Error createError(Temporality temporality, ErrorState errorState, ZonedDateTime createdTimestamp, String clusterName, byte[] payload, MessageHeader... headers) {
+    private static Error createError(Temporality temporality, ErrorState errorState, ZonedDateTime createdTimestamp, String clusterName, byte[] payload, String errorEventService, String causingEventService, MessageHeader... headers) {
         List<MessageHeader> messageHeaders = new ArrayList<>();
         messageHeaders.add(MessageHeader.builder()
                 .headerName("dummy")
@@ -67,15 +75,30 @@ public class ErrorStubs {
             }
         }
 
-        EventPublisher publisher = EventPublisher.builder()
+        EventPublisher errorEventPublisher = EventPublisher.builder()
                 .system(EVENT_PUBLISHER_SYSTEM)
-                .service(EVENT_PUBLISHER_SERVICE)
+                .service(errorEventService)
                 .build();
-        EventMetadata eventMetadata = EventMetadata.builder()
+
+        EventPublisher causingEventPublisher = EventPublisher.builder()
+                .system(EVENT_PUBLISHER_SYSTEM)
+                .service(causingEventService)
+                .build();
+        EventMetadata causingEventMetadata = EventMetadata.builder()
                 .created(DATE_TIME)
                 .id(generateId())
                 .idempotenceId(generateId())
-                .publisher(publisher)
+                .publisher(causingEventPublisher)
+                .type(EventType.builder()
+                        .name(EVENT_NAME)
+                        .version("1")
+                        .build())
+                .build();
+        EventMetadata errorEventMetadata = EventMetadata.builder()
+                .created(DATE_TIME)
+                .id(generateId())
+                .idempotenceId(generateId())
+                .publisher(errorEventPublisher)
                 .type(EventType.builder()
                         .name(EVENT_NAME)
                         .version("1")
@@ -93,7 +116,7 @@ public class ErrorStubs {
                                 .offset(303)
                                 .clusterName(clusterName)
                                 .build())
-                        .metadata(eventMetadata)
+                        .metadata(causingEventMetadata)
                         .headers(messageHeaders)
                         .build())
                 .errorEventData(ErrorEventData.builder()
@@ -104,7 +127,7 @@ public class ErrorStubs {
                         .stackTrace("stack trace")
                         .stackTraceHash("stack trace hash")
                         .build())
-                .errorEventMetadata(eventMetadata)
+                .errorEventMetadata(errorEventMetadata)
                 .closingReason("")
                 .created(createdTimestamp)
                 .modified(createdTimestamp)
