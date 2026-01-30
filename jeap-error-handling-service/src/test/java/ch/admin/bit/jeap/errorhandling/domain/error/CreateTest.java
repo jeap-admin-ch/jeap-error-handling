@@ -39,7 +39,7 @@ class CreateTest {
     private static final UUID errorId = UUID.randomUUID();
     private static final UUID taskId = UUID.randomUUID();
     private static final ZonedDateTime resentAt = ZonedDateTime.now();
-    private static final String CAUSING_SERVICE = ErrorStubs.EVENT_PUBLISHER_SERVICE;
+    private static final String CAUSING_SERVICE = ErrorStubs.CAUSING_EVENT_PUBLISHER_SERVICE;
     @MockitoBean
     private ErrorRepository errorRepository;
     @MockitoBean

@@ -11,6 +11,7 @@ import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.MessageHeader;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.OriginalTraceContext;
 import ch.admin.bit.jeap.messaging.kafka.KafkaConfiguration;
 import ch.admin.bit.jeap.messaging.kafka.properties.KafkaProperties;
+import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -21,8 +22,10 @@ import org.apache.kafka.common.header.Header;
 import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 import org.assertj.core.util.Streams;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaAdmin;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.nio.charset.StandardCharsets;
@@ -35,7 +38,6 @@ import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SuppressWarnings("resource")
 class KafkaFailedEventResenderIT extends ErrorHandlingITBase {
@@ -51,6 +53,11 @@ class KafkaFailedEventResenderIT extends ErrorHandlingITBase {
 
     @Autowired
     private KafkaProperties kafkaProperties;
+
+    @Autowired
+    private KafkaAdmin kafkaAdmin;
+
+    private AdminClient adminClient;
 
     @Test
     void resend_noOriginalTraceIdFound_traceIdFromContextForwarded() {
@@ -125,14 +132,14 @@ class KafkaFailedEventResenderIT extends ErrorHandlingITBase {
 
     @Test
     void testResend_serviceHeadersMustBeSetOnceIfResent() {
-        final Error error = ErrorStubs.createTemporaryError("test-service", "someOtherPublisherService");
+        final Error error = ErrorStubs.createTemporaryError(ErrorStubs.ERROR_EVENT_PUBLISHER_SERVICE, ErrorStubs.CAUSING_EVENT_PUBLISHER_SERVICE);
 
         kafkaFailedEventResender.resend(error);
 
         ConsumerRecords<Object, Object> consumerRecords = consumeAllEvents();
-        assertTrue(consumerRecords.count() > 0);
+        assertEquals(1, consumerRecords.count());
         for (ConsumerRecord<Object, Object> consumerRecord : consumerRecords) {
-            assertHeaders(consumerRecord, "jeap_eh_target_service", 1, "test-service");
+            assertHeaders(consumerRecord, "jeap_eh_target_service", 1, ErrorStubs.ERROR_EVENT_PUBLISHER_SERVICE);
             assertHeaders(consumerRecord, "jeap_eh_error_handling_service", 1, "jeap-error-handling-service");
         }
     }
@@ -140,7 +147,7 @@ class KafkaFailedEventResenderIT extends ErrorHandlingITBase {
     @Test
     void testResendSeveralTime_serviceHeadersMustBeSetOnceIfResent() {
         final Error error = ErrorStubs.createTemporaryErrorWithHeaders(
-                "test-service", "someOtherPublisherService",
+                ErrorStubs.ERROR_EVENT_PUBLISHER_SERVICE, ErrorStubs.CAUSING_EVENT_PUBLISHER_SERVICE,
                 MessageHeader.builder()
                         .headerName("jeap_eh_target_service")
                         .headerValue("dummy-service".getBytes(StandardCharsets.UTF_8))
@@ -156,9 +163,9 @@ class KafkaFailedEventResenderIT extends ErrorHandlingITBase {
         kafkaFailedEventResender.resend(error);
 
         ConsumerRecords<Object, Object> consumerRecords = consumeAllEvents();
-        assertTrue(consumerRecords.count() > 0);
+        assertEquals(3, consumerRecords.count());
         for (ConsumerRecord<Object, Object> consumerRecord : consumerRecords) {
-            assertHeaders(consumerRecord, "jeap_eh_target_service", 1, "test-service");
+            assertHeaders(consumerRecord, "jeap_eh_target_service", 1, ErrorStubs.ERROR_EVENT_PUBLISHER_SERVICE);
             assertHeaders(consumerRecord, "jeap_eh_error_handling_service", 1, "jeap-error-handling-service");
         }
     }
@@ -174,12 +181,27 @@ class KafkaFailedEventResenderIT extends ErrorHandlingITBase {
         assertEquals(expectedValue, new String(consumerRecord.headers().lastHeader(headerName).value(), StandardCharsets.UTF_8));
     }
 
+    @BeforeEach
+    void setUp() {
+        adminClient = AdminClient.create(kafkaAdmin.getConfigurationProperties());
+
+        // Delete and recreate topic
+        try {
+            adminClient.deleteTopics(Collections.singletonList("topic")).all().get();
+        } catch (Exception e) {
+            // Topic might not exist yet
+        }
+    }
+
     @AfterEach
     void cleanUp() {
         scheduledResendRepository.deleteAll();
         auditLogRepository.deleteAll();
         errorRepository.deleteAll();
         causingEventRepository.deleteAll();
+        if (adminClient != null) {
+            adminClient.close();
+        }
     }
 
     private String retrieveHeaderFromConsumedMessage(long traceIdHigh) {

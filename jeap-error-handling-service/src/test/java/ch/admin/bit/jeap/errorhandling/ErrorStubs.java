@@ -15,7 +15,8 @@ import java.util.UUID;
 
 public class ErrorStubs {
 
-    public static final String EVENT_PUBLISHER_SERVICE = "test-service";
+    public static final String CAUSING_EVENT_PUBLISHER_SERVICE = "causing-event-publisher-service";
+    public static final String ERROR_EVENT_PUBLISHER_SERVICE = "error-event-publisher-service";
     public static final String TIMESTAMP = "2007-12-03 10:15:30";
     public static final String ERROR_CODE = "500";
     public static final String ERROR_MESSAGE = "error message";
@@ -27,7 +28,7 @@ public class ErrorStubs {
     }
 
     public static Error createPermanentError() {
-        return createError(Temporality.PERMANENT, ErrorState.PERMANENT, DATE_TIME, EVENT_PUBLISHER_SERVICE, EVENT_PUBLISHER_SERVICE);
+        return createError(Temporality.PERMANENT, ErrorState.PERMANENT, DATE_TIME, ERROR_EVENT_PUBLISHER_SERVICE, CAUSING_EVENT_PUBLISHER_SERVICE);
     }
 
     public static Error createTemporaryError(String errorEventService, String causingEventService) {
@@ -35,11 +36,11 @@ public class ErrorStubs {
     }
 
     public static Error createTemporaryError() {
-        return createTemporaryError(EVENT_PUBLISHER_SERVICE, EVENT_PUBLISHER_SERVICE);
+        return createTemporaryError(ERROR_EVENT_PUBLISHER_SERVICE, CAUSING_EVENT_PUBLISHER_SERVICE);
     }
 
     public static Error createTemporaryErrorWithHeaders(MessageHeader... headers) {
-        return createTemporaryErrorWithHeaders(EVENT_PUBLISHER_SERVICE, EVENT_PUBLISHER_SERVICE, headers);
+        return createTemporaryErrorWithHeaders(ERROR_EVENT_PUBLISHER_SERVICE, CAUSING_EVENT_PUBLISHER_SERVICE, headers);
     }
 
     public static Error createTemporaryErrorWithHeaders(String errorEventService, String causingEventService, MessageHeader... headers) {
@@ -52,7 +53,7 @@ public class ErrorStubs {
         SecureRandom.getInstanceStrong().nextBytes(payload);
         // Byte 0 is the confluent avro magic byte
         payload[0] = 0;
-        return createError(Temporality.TEMPORARY, ErrorState.TEMPORARY_RETRY_PENDING, DATE_TIME, clusterName, payload, EVENT_PUBLISHER_SERVICE, EVENT_PUBLISHER_SERVICE);
+        return createError(Temporality.TEMPORARY, ErrorState.TEMPORARY_RETRY_PENDING, DATE_TIME, clusterName, payload, ERROR_EVENT_PUBLISHER_SERVICE, CAUSING_EVENT_PUBLISHER_SERVICE);
     }
 
     private static Error createError(Temporality temporality, ErrorState errorState, ZonedDateTime createdTimestamp, String errorEventService, String causingEventService, MessageHeader... headers) {

@@ -158,7 +158,7 @@ class ErrorControllerTest {
         assertEquals(ErrorStubs.ERROR_MESSAGE, errorDTO.getErrorMessage());
         assertEquals("PERMANENT", errorDTO.getErrorState());
         assertEquals(ErrorStubs.EVENT_NAME, errorDTO.getEventName());
-        assertEquals(ErrorStubs.EVENT_PUBLISHER_SERVICE, errorDTO.getEventPublisher());
+        assertEquals(ErrorStubs.CAUSING_EVENT_PUBLISHER_SERVICE, errorDTO.getEventPublisher());
         assertEquals(ErrorStubs.TIMESTAMP, errorDTO.getTimestamp());
         assertNull(errorDTO.getStacktrace());
     }
