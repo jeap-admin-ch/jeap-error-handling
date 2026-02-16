@@ -1,4 +1,4 @@
-publiccodeYmlVersion: 0.4.0
+publiccodeYmlVersion: 0.5.0
 name: jeap-error-handling
 applicationSuite: jEAP
 softwareVersion: 15.16.2
@@ -17,11 +17,12 @@ organisation:
 description:
   en:
     localisedName: jeap-error-handling
-    shortDescription: Error Handling Service for applications based on jEAP messaging
+    shortDescription: Service template to support error handling patterns for errors, i.e. retry for temporary issues, persistence and retry/handling for permanent errors.
     longDescription: >
       The Error Handling Service supports error handling patterns for errors, i.e. retry for temporary issues, persistence
       and retry/handling for permanent errors. It is designed to be used with applications based on the jEAP messaging
       framework.
+      A service instance can be created by depending on this template, then adding specific configuration.
     features:
       - Error handling patterns for applications based on jEAP messaging
       - Automated retry for temporary issues
