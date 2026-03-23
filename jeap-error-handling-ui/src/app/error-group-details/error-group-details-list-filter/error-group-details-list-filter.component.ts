@@ -10,30 +10,29 @@ import {TranslateModule} from "@ngx-translate/core";
 import {endOfDay, startOfDay} from "date-fns";
 import {BaseComponent} from "../../shared/BaseComponent";
 import {MatIcon} from "@angular/material/icon";
-import {NgIf} from "@angular/common";
+
 
 @Component({
 	selector: 'app-error-group-details-list-filter',
 	standalone: true,
 	imports: [
-		MatCard,
-		MatCardContent,
-		MatButton,
-		MatDatepicker,
-		MatDatepickerInput,
-		MatDatepickerToggle,
-		MatFormField,
-		MatInput,
-		MatSuffix,
-		ObButtonDirective,
-		ReactiveFormsModule,
-		TranslateModule,
-		MatError,
-		MatIcon,
-		MatIconButton,
-		MatLabel,
-		NgIf
-	],
+    MatCard,
+    MatCardContent,
+    MatButton,
+    MatDatepicker,
+    MatDatepickerInput,
+    MatDatepickerToggle,
+    MatFormField,
+    MatInput,
+    MatSuffix,
+    ObButtonDirective,
+    ReactiveFormsModule,
+    TranslateModule,
+    MatError,
+    MatIcon,
+    MatIconButton,
+    MatLabel
+],
 	templateUrl: './error-group-details-list-filter.component.html',
 	styleUrls: ['./error-group-details-list-filter.component.scss']
 })

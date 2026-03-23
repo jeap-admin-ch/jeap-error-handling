@@ -42,7 +42,7 @@
     "jeap-error-handling-ui@1.0.0": {
       "reason": "Apache 2.0; LICENSE file is out of search scope (see package.json). BIT internal package"
     },
-    "@quadrel-services/qd-auth@19.0.12": {
+    "@quadrel-enterprise-ui/auth@19.0.12": {
       "reason": "UNKNOWN; BIT internal package"
     },
     "@ngx-translate/core@15.0.0": {

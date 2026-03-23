@@ -3,7 +3,7 @@
 // It will automatically be used on the cloud, but you can also start
 // it using `ng serve --prod`
 
-import {QdAppSetup, QdAuthConfigServerSide, QdLogLevel} from '@quadrel-services/qd-auth';
+import {QdAppSetup, QdAuthConfigServerSide, QdLogLevel} from '@quadrel-enterprise-ui/auth';
 
 export const appSetup: QdAppSetup = {
 	production: true,

@@ -6,7 +6,7 @@
 // This configuration will use a local mock server for authentication.
 // To use a local keycloak instance with PAMS use the environment localKeycloak
 // and start the keycloak from the jeap-pams-keycloak project
-import {QdAppSetup, QdAuthConfigServerSide, QdLogLevel} from '@quadrel-services/qd-auth';
+import {QdAppSetup, QdAuthConfigServerSide, QdLogLevel} from '@quadrel-enterprise-ui/auth';
 
 export const appSetup: QdAppSetup = {
 	production: false,

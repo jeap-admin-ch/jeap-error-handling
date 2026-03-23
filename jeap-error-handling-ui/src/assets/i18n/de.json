@@ -124,6 +124,6 @@
   "i18n.updateTicketNumberNoSuccess": "Ticketnummer konnte nicht aktualisiert werden",
   "i18n.goToErrorGroup": "Zur Fehlergruppe",
   "i18n.copyStacktrace": "Stracktrace kopieren",
-  "i18n.copyStacktraceSuccess": "Stacktrace wurde in die Zwischenablage kopiert"
-
+  "i18n.copyStacktraceSuccess": "Stacktrace wurde in die Zwischenablage kopiert",
+  "i18n.errorhandling.list.total": "Gesamt Elemente: {{count}}"
 }

@@ -30,7 +30,7 @@
               "src/Staticfile",
               {
                 "glob": "**/*",
-                "input": "node_modules/@quadrel-services/qd-auth/src/assets",
+                "input": "node_modules/@quadrel-enterprise-ui/auth/src/assets",
                 "output": "/assets/auth"
               },
               {

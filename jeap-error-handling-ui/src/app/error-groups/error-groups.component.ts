@@ -9,7 +9,7 @@ import {environment} from '../../environments/environment';
 import {startWith, switchMap} from 'rxjs/operators';
 import {NotifierService} from '../shared/notifier/notifier.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {QdAuthorizationService} from '@quadrel-services/qd-auth';
+import {QdAuthorizationService} from '@quadrel-enterprise-ui/auth';
 import {roleFilter_errorgroup_edit} from '../app-routing.module';
 import {ErrorGroupSearchFormDto} from '../shared/errorservice/error.model';
 

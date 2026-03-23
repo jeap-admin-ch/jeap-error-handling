@@ -12,7 +12,7 @@ import {
 import {ErrorService} from '../../shared/errorservice/error.service';
 import {ObButtonDirective} from '@oblique/oblique';
 import {ErrorDTO, ErrorGroupDetailsListSearchFormDto, ErrorListDTO} from '../../shared/errorservice/error.model';
-import {NgIf} from '@angular/common';
+
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatCard, MatCardContent} from '@angular/material/card';
 import {MatCheckbox} from '@angular/material/checkbox';
@@ -34,23 +34,22 @@ import {LogDeepLinkService} from '../../shared/logdeeplink/logdeeplink.service';
 	selector: 'app-error-group-details-list',
 	standalone: true,
 	imports: [
-		MatTableModule,
-		MatCard,
-		MatCardContent,
-		MatCheckbox,
-		MatSort,
-		MatIcon,
-		MatIconAnchor,
-		MatIconButton,
-		MatTooltip,
-		NgIf,
-		ObButtonDirective,
-		TranslateModule,
-		RouterLink,
-		MatPaginator,
-		MatPaginatorModule,
-		MatSortHeader
-	],
+    MatTableModule,
+    MatCard,
+    MatCardContent,
+    MatCheckbox,
+    MatSort,
+    MatIcon,
+    MatIconAnchor,
+    MatIconButton,
+    MatTooltip,
+    ObButtonDirective,
+    TranslateModule,
+    RouterLink,
+    MatPaginator,
+    MatPaginatorModule,
+    MatSortHeader
+],
 	templateUrl: './error-group-details-list.component.html',
 	styleUrls: ['./error-group-details-list.component.scss']
 })

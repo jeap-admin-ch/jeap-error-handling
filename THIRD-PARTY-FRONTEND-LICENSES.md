@@ -768,8 +768,8 @@
     - version: 2.11.8
     - licenses: MIT
     - repository: https://github.com/popperjs/popper-core
- - **[@quadrel-services/qd-auth@19.0.12](Repository)**
-    - name: @quadrel-services/qd-auth
+ - **[@quadrel-enterprise-ui/auth@19.0.12](Repository)**
+    - name: @quadrel-enterprise-ui/auth
     - version: 19.0.12
     - licenses: Custom: https://nx.dev
     - repository: Repository

@@ -10,7 +10,7 @@ import {TranslateModule} from '@ngx-translate/core';
 import {MatButton, MatIconButton} from '@angular/material/button';
 import {DropDownElement} from '../../shared/models/drop-down-element.model';
 import {ErrorService} from '../../shared/errorservice/error.service';
-import {NgForOf, NgIf} from '@angular/common';
+
 import {Router} from '@angular/router';
 import {MatAutocomplete, MatAutocompleteTrigger} from '@angular/material/autocomplete';
 import {endOfDay, startOfDay} from 'date-fns';
@@ -20,28 +20,26 @@ import {BaseComponent} from '../../shared/BaseComponent';
 	selector: 'app-error-group-filter',
 	standalone: true,
 	imports: [
-		MatFormField,
-		MatDatepickerToggle,
-		MatDatepicker,
-		MatDatepickerInput,
-		ReactiveFormsModule,
-		MatCheckbox,
-		MatInput,
-		MatSuffix,
-		MatLabel,
-		MatSelect,
-		MatOption,
-		MatIcon,
-		TranslateModule,
-		MatIconButton,
-		NgForOf,
-		NgIf,
-		MatButton,
-		ObButtonDirective,
-		MatAutocomplete,
-		MatAutocompleteTrigger,
-		MatError
-	],
+    MatFormField,
+    MatDatepickerToggle,
+    MatDatepicker,
+    MatDatepickerInput,
+    ReactiveFormsModule,
+    MatCheckbox,
+    MatInput,
+    MatSuffix,
+    MatLabel,
+    MatSelect,
+    MatOption,
+    MatIcon,
+    TranslateModule,
+    MatIconButton,
+    MatButton,
+    ObButtonDirective,
+    MatAutocomplete,
+    MatAutocompleteTrigger,
+    MatError
+],
 	templateUrl: './error-group-filter.component.html',
 	styleUrls: ['./error-group-filter.component.scss']
 })

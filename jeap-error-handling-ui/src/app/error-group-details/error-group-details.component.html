@@ -1,23 +1,26 @@
-<div *ngIf="errorGroupDetails">
-	<p><button mat-button obButton="primary" (click)="back()">{{ 'i18n.back' | translate }}</button></p>
-	<div class="ob-flex" *ngIf="errorGroupDetails">
-		<app-error-group-details-header [errorGroupDetails]="errorGroupDetails"></app-error-group-details-header>
-	</div>
-
-	<div class="ob-flex">
-		<div>
-			<app-error-group-details-list-filter
-				(searchClicked)="onSearch($event)"
-				(reset)="onReset()">
-			</app-error-group-details-list-filter>
-		</div>
-		<div class="ob-grow-4">
-			<app-error-group-details-list
-				[errorGroupId]="errorGroupDetails.errorGroupId"
-				[searchCriteria]="searchCriteria"
-			></app-error-group-details-list>
-		</div>
-	</div>
-</div>
+@if (errorGroupDetails) {
+  <div>
+    <p><button mat-button obButton="primary" (click)="back()">{{ 'i18n.back' | translate }}</button></p>
+    @if (errorGroupDetails) {
+      <div class="ob-flex">
+        <app-error-group-details-header [errorGroupDetails]="errorGroupDetails"></app-error-group-details-header>
+      </div>
+    }
+    <div class="ob-flex">
+      <div>
+        <app-error-group-details-list-filter
+          (searchClicked)="onSearch($event)"
+          (reset)="onReset()">
+        </app-error-group-details-list-filter>
+      </div>
+      <div class="ob-grow-4">
+        <app-error-group-details-list
+          [errorGroupId]="errorGroupDetails.errorGroupId"
+          [searchCriteria]="searchCriteria"
+        ></app-error-group-details-list>
+      </div>
+    </div>
+  </div>
+}
 
 

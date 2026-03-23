@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {ObMasterLayoutService} from '@oblique/oblique';
-import {QdAuthenticationService} from '@quadrel-services/qd-auth';
+import {QdAuthenticationService} from '@quadrel-enterprise-ui/auth';
 import {VersionDetectorService} from './shared/version-detector.service';
 
 @Component({

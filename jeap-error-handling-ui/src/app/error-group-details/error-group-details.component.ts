@@ -8,7 +8,7 @@ import {
     ErrorGroupDetailsListFilterComponent
 } from "./error-group-details-list-filter/error-group-details-list-filter.component";
 import {ErrorGroupDetailsListComponent} from "./error-group-details-list/error-group-details-list.component";
-import {NgIf} from "@angular/common";
+
 import {MatButton} from "@angular/material/button";
 import {TranslateModule} from "@ngx-translate/core";
 import {ErrorGroupDetailsListSearchFormDto} from "../shared/errorservice/error.model";
@@ -18,14 +18,13 @@ import {ErrorGroupDetailsListSearchFormDto} from "../shared/errorservice/error.m
     selector: 'app-error-group-details',
     standalone: true,
     imports: [
-        ErrorGroupDetailsHeaderComponent,
-        ErrorGroupDetailsListFilterComponent,
-        ErrorGroupDetailsListComponent,
-        NgIf,
-        MatButton,
-        TranslateModule,
-        ObButtonDirective
-    ],
+    ErrorGroupDetailsHeaderComponent,
+    ErrorGroupDetailsListFilterComponent,
+    ErrorGroupDetailsListComponent,
+    MatButton,
+    TranslateModule,
+    ObButtonDirective
+],
     templateUrl: './error-group-details.component.html',
     styleUrl: './error-group-details.component.scss'
 })

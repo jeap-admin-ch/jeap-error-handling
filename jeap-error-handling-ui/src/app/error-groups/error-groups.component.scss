@@ -52,3 +52,23 @@
 	-webkit-box-orient: vertical;
 }
 
+
+.paginator-container {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.paginator-container span {
+	font-family: var(--mat-paginator-container-text-font);
+	font-size: var(--mat-paginator-container-text-size);
+	font-weight: var(--mat-paginator-container-text-weight);
+	line-height: var(--mat-paginator-container-text-line-height);
+	letter-spacing: var(--mat-paginator-container-text-tracking);
+	color: var(--mat-paginator-container-text-color);
+	margin: 0 2px;
+}
+
+.paginator-container mat-paginator {
+	margin-left: auto;
+}

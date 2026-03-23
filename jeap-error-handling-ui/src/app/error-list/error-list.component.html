@@ -27,14 +27,18 @@
 					   placeholder="{{'i18n.errorhandling.form.messagetype' | translate}}"
 					   [matAutocomplete]="auto"/>
 				<mat-autocomplete #auto="matAutocomplete">
-					<mat-option *ngFor="let name of filteredEventNames | async" [value]="name">
-						{{ name }}
-					</mat-option>
+					@for (name of filteredEventNames | async; track name) {
+						<mat-option [value]="name">
+							{{ name }}
+						</mat-option>
+					}
 				</mat-autocomplete>
 				<mat-error></mat-error>
-				<button *ngIf="eventNameControl.value" matSuffix mat-icon-button (click)="eventNameControl.reset()">
-					<mat-icon svgIcon="xmark_circle"></mat-icon>
-				</button>
+				@if (eventNameControl.value) {
+					<button matSuffix mat-icon-button (click)="eventNameControl.reset()">
+						<mat-icon svgIcon="xmark_circle"></mat-icon>
+					</button>
+				}
 			</mat-form-field>
 
 			<!-- TraceId -->
@@ -44,9 +48,11 @@
 					   placeholder="{{'i18n.errorhandling.form.traceid' | translate}}"
 					   (change)="traceIdOrEventIdChanged($event)"/>
 				<mat-error></mat-error>
-				<button *ngIf="traceIdControl.value" matSuffix mat-icon-button (click)="traceIdControl.reset()">
-					<mat-icon svgIcon="xmark_circle"></mat-icon>
-				</button>
+				@if (traceIdControl.value) {
+					<button matSuffix mat-icon-button (click)="traceIdControl.reset()">
+						<mat-icon svgIcon="xmark_circle"></mat-icon>
+					</button>
+				}
 			</mat-form-field>
 
 			<!-- EventId -->
@@ -56,9 +62,11 @@
 					   placeholder="{{'i18n.errorhandling.form.eventid' | translate}}"
 					   (change)="traceIdOrEventIdChanged($event)"/>
 				<mat-error></mat-error>
-				<button *ngIf="eventIdControl.value" matSuffix mat-icon-button (click)="eventIdControl.reset()">
-					<mat-icon svgIcon="xmark_circle"></mat-icon>
-				</button>
+				@if (eventIdControl.value) {
+					<button matSuffix mat-icon-button (click)="eventIdControl.reset()">
+						<mat-icon svgIcon="xmark_circle"></mat-icon>
+					</button>
+				}
 			</mat-form-field>
 
 			<!-- Stacktrace -->
@@ -66,65 +74,85 @@
 				<mat-label>Stacktrace</mat-label>
 				<input type="text" formControlName="stacktrace" matInput
 					   placeholder="{{'i18n.errorhandling.form.stacktrace' | translate }}"/>
-				<mat-error
-					*ngIf="stacktraceControl.invalid">{{ 'i18n.regex.invalid' | translate }}
-				</mat-error>
-				<button *ngIf="stacktraceControl.value" matSuffix mat-icon-button (click)="stacktraceControl.reset()">
-					<mat-icon svgIcon="xmark_circle"></mat-icon>
-				</button>
+				@if (stacktraceControl.invalid) {
+					<mat-error
+					>{{ 'i18n.regex.invalid' | translate }}
+					</mat-error>
+				}
+				@if (stacktraceControl.value) {
+					<button matSuffix mat-icon-button (click)="stacktraceControl.reset()">
+						<mat-icon svgIcon="xmark_circle"></mat-icon>
+					</button>
+				}
 			</mat-form-field>
 
 			<!-- Quelle -->
 			<mat-form-field>
 				<mat-label>{{ 'i18n.errorhandling.form.source' | translate }}</mat-label>
 				<mat-select formControlName="dropDownEventSource">
-					<mat-option *ngFor="let dropDownElement of dropDownEventSources" [value]="dropDownElement.value">
-						{{ dropDownElement.viewValue }}
-					</mat-option>
+					@for (dropDownElement of dropDownEventSources; track dropDownElement) {
+						<mat-option [value]="dropDownElement.value">
+							{{ dropDownElement.viewValue }}
+						</mat-option>
+					}
 				</mat-select>
-				<button *ngIf="dropDownEventSourceControl.value" matSuffix mat-icon-button
-						(click)="dropDownEventSourceControl.reset()">
-					<mat-icon svgIcon="xmark_circle"></mat-icon>
-				</button>
+				@if (dropDownEventSourceControl.value) {
+					<button matSuffix mat-icon-button
+							(click)="dropDownEventSourceControl.reset()">
+						<mat-icon svgIcon="xmark_circle"></mat-icon>
+					</button>
+				}
 			</mat-form-field>
 
 			<!-- Status -->
 			<mat-form-field>
 				<mat-label>{{ 'i18n.errorhandling.form.status' | translate }}</mat-label>
 				<mat-select formControlName="dropDownState">
-					<mat-option *ngFor="let state of dropDownState" [value]="state.value">
-						{{ translateService.get(state.value) |  async }}
-					</mat-option>
+					@for (state of dropDownState; track state) {
+						<mat-option [value]="state.value">
+							{{ translateService.get(state.value) |  async }}
+						</mat-option>
+					}
 				</mat-select>
-				<button *ngIf="dropDownStateControl.value" matSuffix mat-icon-button (click)="resetStateSection()">
-					<mat-icon svgIcon="xmark_circle"></mat-icon>
-				</button>
+				@if (dropDownStateControl.value) {
+					<button matSuffix mat-icon-button (click)="resetStateSection()">
+						<mat-icon svgIcon="xmark_circle"></mat-icon>
+					</button>
+				}
 			</mat-form-field>
 
 			<!-- Schliessbegruendung -->
-			<mat-form-field *ngIf="dropDownStateControl.value?.startsWith('DELETE')">
-				<mat-label>{{ 'i18n.errorhandling.form.closing-reason' | translate }}</mat-label>
-				<input type="text" formControlName="closingReason" matInput
-					   placeholder="{{'i18n.errorhandling.form.closing-reason' | translate}}"/>
-				<mat-error></mat-error>
-				<button *ngIf="closingReasonControl.value" matSuffix mat-icon-button
-						(click)="closingReasonControl.reset()">
-					<mat-icon svgIcon="xmark_circle"></mat-icon>
-				</button>
-			</mat-form-field>
+			@if (dropDownStateControl.value?.startsWith('DELETE')) {
+				<mat-form-field>
+					<mat-label>{{ 'i18n.errorhandling.form.closing-reason' | translate }}</mat-label>
+					<input type="text" formControlName="closingReason" matInput
+						   placeholder="{{'i18n.errorhandling.form.closing-reason' | translate}}"/>
+					<mat-error></mat-error>
+					@if (closingReasonControl.value) {
+						<button matSuffix mat-icon-button
+								(click)="closingReasonControl.reset()">
+							<mat-icon svgIcon="xmark_circle"></mat-icon>
+						</button>
+					}
+				</mat-form-field>
+			}
 
 			<!-- Fehlercode -->
 			<mat-form-field>
 				<mat-label>{{ 'i18n.errorhandling.form.errorcode' | translate }}</mat-label>
 				<mat-select formControlName="dropDownErrorCode">
-					<mat-option *ngFor="let errorCode of dropDownErrorCodes" [value]="errorCode.value">
-						{{ errorCode.viewValue }}
-					</mat-option>
+					@for (errorCode of dropDownErrorCodes; track errorCode) {
+						<mat-option [value]="errorCode.value">
+							{{ errorCode.viewValue }}
+						</mat-option>
+					}
 				</mat-select>
-				<button *ngIf="dropDownErrorCodeControl.value" matSuffix mat-icon-button
-						(click)="dropDownErrorCodeControl.reset()">
-					<mat-icon svgIcon="xmark_circle"></mat-icon>
-				</button>
+				@if (dropDownErrorCodeControl.value) {
+					<button matSuffix mat-icon-button
+							(click)="dropDownErrorCodeControl.reset()">
+						<mat-icon svgIcon="xmark_circle"></mat-icon>
+					</button>
+				}
 			</mat-form-field>
 
 			<!-- TicketNumber -->
@@ -134,10 +162,12 @@
 					   placeholder="{{'i18n.error.timestamp.ticketNumber' | translate}}"
 					   (change)="traceIdOrEventIdChanged($event)"/>
 				<mat-error></mat-error>
-				<button *ngIf="ticketNumberControl.value" matSuffix mat-icon-button
-						(click)="ticketNumberControl.reset()">
-					<mat-icon svgIcon="xmark_circle"></mat-icon>
-				</button>
+				@if (ticketNumberControl.value) {
+					<button matSuffix mat-icon-button
+							(click)="ticketNumberControl.reset()">
+						<mat-icon svgIcon="xmark_circle"></mat-icon>
+					</button>
+				}
 			</mat-form-field>
 
 			<div class="ehs-form-buttons">
@@ -154,7 +184,8 @@
 
 	<div column-main-content>
 		<div style="position: relative; min-height: 200px;">
-			<table mat-table [dataSource]="data" matSort matSortActive="errorEventMetadata.created" matSortDirection="desc" [matSortDisableClear]="true" class="ob-table table-sm">
+			<table mat-table [dataSource]="data" matSort matSortActive="errorEventMetadata.created"
+				   matSortDirection="desc" [matSortDisableClear]="true" class="ob-table table-sm">
 				<caption>Error List</caption>
 				<ng-container matColumnDef="selection">
 					<th mat-header-cell *matHeaderCellDef>
@@ -253,12 +284,14 @@
 							   [matTooltip]="'i18n.errorhandling.details' | translate">
 								<mat-icon svgIcon="eye"></mat-icon>
 							</a>
-							<a mat-icon-button id="log-deep-link-btn" obButton="secondary"
-							   *ngIf="row.originalTraceIdString"
-							   [href]="logDeepLink" target="_blank" (click)="openDeepLink(row.originalTraceIdString)"
-							   [matTooltip]="'i18n.errorhandling.show-log' | translate">
-								<mat-icon svgIcon="link_external"></mat-icon>
-							</a>
+							@if (row.originalTraceIdString) {
+								<a mat-icon-button id="log-deep-link-btn" obButton="secondary"
+								   [href]="logDeepLink" target="_blank"
+								   (click)="openDeepLink(row.originalTraceIdString)"
+								   [matTooltip]="'i18n.errorhandling.show-log' | translate">
+									<mat-icon svgIcon="link_external"></mat-icon>
+								</a>
+							}
 							<button mat-icon-button color="primary" (click)="resendRow(row)" [disabled]="!row.canRetry"
 									obButton="secondary"
 									[matTooltip]="'i18n.errorhandling.resend' | translate">
@@ -269,7 +302,9 @@
 									[matTooltip]="'i18n.errorhandling.delete' | translate">
 								<mat-icon svgIcon="delete"></mat-icon>
 							</button>
-							<button mat-icon-button color="primary" [routerLink]="['/error-group-details', row.errorGroupId]" [disabled]="!row.errorGroupId"
+							<button mat-icon-button color="primary"
+									[routerLink]="['/error-group-details', row.errorGroupId]"
+									[disabled]="!row.errorGroupId"
 									obButton="secondary"
 									[matTooltip]="'i18n.goToErrorGroup' | translate">
 								<mat-icon>filter_none</mat-icon>
@@ -284,6 +319,9 @@
 			</table>
 		</div>
 		<div class="paginator-container">
+	  <span>
+		{{ 'i18n.errorhandling.list.total' | translate: {count: resultsLength} }}
+	  </span>
 			<mat-paginator [length]="resultsLength"
 						   [pageSize]="20"
 						   [pageSizeOptions]="[5,10,20,50,100]"/>

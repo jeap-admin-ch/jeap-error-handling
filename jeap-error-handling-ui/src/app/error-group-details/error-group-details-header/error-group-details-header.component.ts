@@ -7,7 +7,7 @@ import {MatButton} from '@angular/material/button';
 import {MatCard, MatCardContent, MatCardHeader} from '@angular/material/card';
 import {TranslateModule} from '@ngx-translate/core';
 import {FormsModule} from '@angular/forms';
-import {NgIf} from '@angular/common';
+
 import {ErrorGroupService} from '../../shared/errorgroupservice/error-group.service';
 import {environment} from '../../../environments/environment';
 
@@ -15,18 +15,17 @@ import {environment} from '../../../environments/environment';
 	selector: 'app-error-group-details-header',
 	standalone: true,
 	imports: [
-		MatFormFieldModule,
-		MatLabel,
-		MatInput,
-		MatButton,
-		MatCard,
-		MatCardContent,
-		MatCardHeader,
-		ObButtonDirective,
-		TranslateModule,
-		FormsModule,
-		NgIf
-	],
+    MatFormFieldModule,
+    MatLabel,
+    MatInput,
+    MatButton,
+    MatCard,
+    MatCardContent,
+    MatCardHeader,
+    ObButtonDirective,
+    TranslateModule,
+    FormsModule
+],
 	templateUrl: './error-group-details-header.component.html',
 	styleUrls: ['./error-group-details-header.component.scss']
 })

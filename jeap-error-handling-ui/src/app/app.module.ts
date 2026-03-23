@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule} from '@angular/core';
 import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import {TranslateModule} from '@ngx-translate/core';
 import {
@@ -46,7 +46,7 @@ import {ErrorListComponent} from './error-list/error-list.component';
 import {ErrorDetailsPageComponent} from './pages/error-details-page/error-details-page.component';
 import {ErrorDetailsComponent} from './error-details/error-details.component';
 import {CommonModule} from '@angular/common';
-import {QdAuthModule, QdConfigService} from '@quadrel-services/qd-auth';
+import {QdAuthModule, QdConfigService} from '@quadrel-enterprise-ui/auth';
 import {appSetup, authConfig} from '../environments/environment';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ConfirmationDialogComponent} from './shared/dialog/confirmation-dialog/confirmation-dialog.component';
@@ -140,7 +140,7 @@ export class AppModule {
 
 	constructor(readonly documentMetaService: ObDocumentMetaService,
 				readonly masterLayoutConfig: ObMasterLayoutConfig,
-				readonly configService: QdConfigService,
+				private readonly injector: Injector,
 	) {
 
 		// As the HEAD `title` element and the `description` meta element are outside any
@@ -161,12 +161,17 @@ export class AppModule {
 		masterLayoutConfig.header.serviceNavigation.displayAuthentication = true;
 		masterLayoutConfig.header.serviceNavigation.handleLogout = true;
 
-		this.configService.config$.subscribe(qdConfig => {
-			if (qdConfig) {
-				authConfig.clientId = qdConfig.clientId;
-				authConfig.systemName = qdConfig.systemName;
-				this.obEPamsEnvironment = this.mapEnvironmentEnum(qdConfig.pamsEnvironment);
-			}
+		// Use Promise.resolve().then() to defer QdConfigService retrieval until after
+		// the injector has fully initialized, breaking the circular dependency on _QdConfigService.
+		Promise.resolve().then(() => {
+			const configService = this.injector.get(QdConfigService);
+			configService.config$.subscribe(qdConfig => {
+				if (qdConfig) {
+					authConfig.clientId = qdConfig.clientId;
+					authConfig.systemName = qdConfig.systemName;
+					this.obEPamsEnvironment = this.mapEnvironmentEnum(qdConfig.pamsEnvironment);
+				}
+			});
 		});
 
 	}

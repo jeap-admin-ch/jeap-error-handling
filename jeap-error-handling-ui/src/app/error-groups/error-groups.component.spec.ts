@@ -11,7 +11,7 @@ import { of } from 'rxjs';
 // Services
 import { ErrorGroupService } from '../shared/errorgroupservice/error-group.service';
 import { NotifierService } from '../shared/notifier/notifier.service';
-import { QdAuthorizationService } from '@quadrel-services/qd-auth';
+import { QdAuthorizationService } from '@quadrel-enterprise-ui/auth';
 import {TranslateModule} from '@ngx-translate/core';
 
 describe('ErrorGroupsComponent', () => {

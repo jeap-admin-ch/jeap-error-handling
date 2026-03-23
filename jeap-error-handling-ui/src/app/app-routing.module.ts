@@ -8,7 +8,7 @@ import {
 	QdAuthorizationGuard,
 	QdRoleFilter,
 	QdRoleFilterMatcher
-} from '@quadrel-services/qd-auth';
+} from '@quadrel-enterprise-ui/auth';
 import {ErrorGroupPageComponent} from './pages/error-group-page/error-group-page.component';
 import {ForbiddenPageComponent} from './pages/error-pages/forbidden-page/forbidden-page.component';
 import {ReactivateDeadLetterPageComponent} from './pages/reactivate-dead-letter-page/reactivate-dead-letter-page.component';
