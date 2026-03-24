@@ -42,8 +42,38 @@
     "jeap-error-handling-ui@1.0.0": {
       "reason": "Apache 2.0; LICENSE file is out of search scope (see package.json). BIT internal package"
     },
-    "@quadrel-enterprise-ui/auth@19.0.12": {
-      "reason": "UNKNOWN; BIT internal package"
+    "@csstools/color-helpers@6.0.2": {
+      "reason": "MIT-0; see: https://github.com/csstools/postcss-plugins"
+    },
+    "@csstools/css-syntax-patches-for-csstree@1.1.1": {
+      "reason": "MIT-0; see: https://github.com/csstools/postcss-plugins"
+    },
+    "@quadrel-enterprise-ui/auth@20.1.0": {
+      "reason": "BIT internal package; see: https://github.com/BAZG-Quadrel/quadrel-auth"
+    },
+    "glob@13.0.6": {
+      "reason": "BlueOak-1.0.0; Dev dependency, see: https://github.com/isaacs/node-glob"
+    },
+    "isexe@3.1.5": {
+      "reason": "BlueOak-1.0.0; Dev dependency, see: https://github.com/isaacs/isexe"
+    },
+    "isexe@4.0.0": {
+      "reason": "BlueOak-1.0.0; Dev dependency, see: https://github.com/isaacs/isexe"
+    },
+    "lru-cache@11.2.7": {
+      "reason": "BlueOak-1.0.0; Dev dependency, see: https://github.com/isaacs/node-lru-cache"
+    },
+    "minimatch@10.2.4": {
+      "reason": "BlueOak-1.0.0; Dev dependency, see: https://github.com/isaacs/minimatch"
+    },
+    "minipass@7.1.3": {
+      "reason": "BlueOak-1.0.0; Dev dependency, see: https://github.com/isaacs/minipass"
+    },
+    "sax@1.6.0": {
+      "reason": "BlueOak-1.0.0; Dev dependency, see: https://github.com/isaacs/sax-js"
+    },
+    "tar@7.5.12": {
+      "reason": "BlueOak-1.0.0; Dev dependency, see: https://github.com/isaacs/node-tar"
     },
     "@ngx-translate/core@15.0.0": {
       "reason": "MIT; see: https://github.com/ngx-translate/core"
