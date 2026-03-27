@@ -140,7 +140,7 @@ export class AppModule {
 
 	constructor(readonly documentMetaService: ObDocumentMetaService,
 				readonly masterLayoutConfig: ObMasterLayoutConfig,
-				private readonly injector: Injector,
+				readonly configService: QdConfigService
 	) {
 
 		// As the HEAD `title` element and the `description` meta element are outside any
@@ -161,21 +161,14 @@ export class AppModule {
 		masterLayoutConfig.header.serviceNavigation.displayAuthentication = true;
 		masterLayoutConfig.header.serviceNavigation.handleLogout = true;
 
-		// Use Promise.resolve().then() to defer QdConfigService retrieval until after
-		// the injector has fully initialized, breaking the circular dependency on _QdConfigService.
-		Promise.resolve().then(() => {
-			const configService = this.injector.get(QdConfigService);
-			configService.config$.subscribe(qdConfig => {
-				if (qdConfig) {
-					authConfig.clientId = qdConfig.clientId;
-					authConfig.systemName = qdConfig.systemName;
-					this.obEPamsEnvironment = this.mapEnvironmentEnum(qdConfig.pamsEnvironment);
-				}
-			});
+		this.configService.config$.subscribe(qdConfig => {
+			if (qdConfig) {
+				authConfig.clientId = qdConfig.clientId;
+				authConfig.systemName = qdConfig.systemName;
+				this.obEPamsEnvironment = this.mapEnvironmentEnum(qdConfig.pamsEnvironment);
+			}
 		});
-
 	}
-
 	/**
 	 * Retrieves the current PAMS environment for the ServiceNavigation in Oblique.
 	 * Possible values: "-d", "-r", "-t", "-a", ""
