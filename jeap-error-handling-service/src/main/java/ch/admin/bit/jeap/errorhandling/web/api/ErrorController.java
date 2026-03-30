@@ -16,6 +16,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -251,8 +252,19 @@ public class ErrorController {
     @Schema(description = "Deletes a list of events")
     @PostMapping("/delete")
     @PreAuthorize("hasRole('error','delete')")
-    public void deleteErrorList(@RequestBody List<UUID> errorIds, @RequestParam(required = false) String reason) {
-        errorIds.forEach(id -> errorService.delete(id, reason));
+    public ResponseEntity<DeleteErrorsResultDTO> deleteErrorList(@RequestBody List<UUID> errorIds, @RequestParam(required = false) String reason) {
+        int totalItems = errorIds.size();
+        int totalErrors = 0;
+
+        for (UUID errorId : errorIds) {
+            try {
+                errorService.delete(errorId, reason);
+            } catch (Exception e) {
+                log.error("Failed to delete error with id {}", errorId, e);
+                totalErrors++;
+            }
+        }
+        return ResponseEntity.ok(DeleteErrorsResultDTO.builder().totalItems(totalItems).totalErrors(totalErrors).build());
     }
 
     private List<ErrorDTO> toErrorDtos(List<Error> errors) {

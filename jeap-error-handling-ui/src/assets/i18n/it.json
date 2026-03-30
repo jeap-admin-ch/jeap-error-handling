@@ -125,5 +125,6 @@
   "i18n.goToErrorGroup": "Vai al gruppo di errori",
   "i18n.copyStacktrace": "Copia traccia dello stack",
   "i18n.copyStacktraceSuccess": "La traccia dello stack è stata copiata negli appunti",
-  "i18n.errorhandling.list.total": "Articoli totali: {{count}}"
+  "i18n.errorhandling.list.total": "Articoli totali: {{count}}",
+  "i18n.error.massDelete.warning": "Alcuni ({{totalErrors}}) degli errori selezionati ({{totalItems}}) non sono stati eliminati perché si trovano già in uno stato chiuso. Si prega di rivedere la selezione e riprovare."
 }

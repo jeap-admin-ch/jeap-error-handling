@@ -2,7 +2,7 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {environment} from '../../../environments/environment';
-import {ErrorDTO, ErrorGroupDetailsListSearchFormDto, ErrorListDTO, ErrorSearchFormDto} from './error.model';
+import {DeleteErrorsResultDTO, ErrorDTO, ErrorGroupDetailsListSearchFormDto, ErrorListDTO, ErrorSearchFormDto} from './error.model';
 import {catchError} from 'rxjs/operators';
 import {DialogService} from "../dialog/dialog.service";
 import {NotifierService} from "../notifier/notifier.service";
@@ -69,9 +69,16 @@ export class ErrorService {
 					if (reason != null) {
 						const errorIds: string[] = selectedErrors.map(error => error.id);
 						this.massDelete(errorIds, reason).subscribe(
-							() => {
+							(deleteErrorsResultDto) => {
 								reloadCallback();
-								this.notifierService.notifySuccess('i18n.errorhandling.action.delete', 'i18n.errorhandling.action.success')();
+								if (deleteErrorsResultDto.totalErrors > 0) {
+									this.notifierService.notifySuccessWithParams(
+										'i18n.errorhandling.action.delete',
+										'i18n.error.massDelete.warning',
+										{'totalErrors': deleteErrorsResultDto.totalErrors, 'totalItems': deleteErrorsResultDto.totalItems})();
+								} else {
+									this.notifierService.notifySuccess('i18n.errorhandling.action.delete', 'i18n.errorhandling.action.success')();
+								}
 							},
 							(errorMessage) => {
 								failureCallback(errorMessage);
@@ -299,11 +306,11 @@ export class ErrorService {
 	 * Deletes multiple errors with a reason.
 	 * @param errorIds Array of error IDs.
 	 * @param reason Reason for deletion.
-	 * @returns Observable of any.
+	 * @returns Observable of DeleteErrorsResultDTO.
 	 */
-	massDelete(errorIds: string[], reason: string) {
+	massDelete(errorIds: string[], reason: string): Observable<DeleteErrorsResultDTO> {
 		const requestUrl = `${ErrorService.url}/delete?reason=${reason}`;
-		return this.http.post(requestUrl, errorIds).pipe(
+		return this.http.post<DeleteErrorsResultDTO>(requestUrl, errorIds).pipe(
 			catchError(ErrorService.errorHandler)
 		);
 	}

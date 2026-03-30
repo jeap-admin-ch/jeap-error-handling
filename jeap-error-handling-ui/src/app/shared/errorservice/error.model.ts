@@ -22,7 +22,7 @@ export interface ErrorDTO {
 	auditLogDTOs: AuditLogDTO[];
 	ticketNumber: string;
 	freeText: string;
-	signed : boolean;
+	signed: boolean;
 	jeapCert: string;
 	errorGroupId: string;
 }
@@ -77,6 +77,11 @@ export interface ErrorGroupDetailsListSearchFormDto {
 	messagePattern: string;
 	sortField: string;
 	sortOrder: string;
+}
+
+export interface DeleteErrorsResultDTO {
+	totalItems: number;
+	totalErrors: number;
 }
 
 

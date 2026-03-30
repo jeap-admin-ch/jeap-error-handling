@@ -21,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.ZonedDateTime;
@@ -157,6 +158,7 @@ public class ErrorService {
         handleTemporaryError(error);
     }
 
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void delete(UUID errorId, String reason) {
         log.info("Handling delete request for error {}", errorId);
         Error error = errorRepository.getReferenceById(errorId);

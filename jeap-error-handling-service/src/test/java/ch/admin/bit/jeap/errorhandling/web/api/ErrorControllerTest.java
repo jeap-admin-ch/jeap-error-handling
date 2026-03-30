@@ -31,6 +31,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
@@ -45,6 +46,7 @@ import java.util.UUID;
 import static ch.admin.bit.jeap.errorhandling.infrastructure.persistence.AuditLog.AuditedAction.DELETE_ERROR;
 import static ch.admin.bit.jeap.errorhandling.infrastructure.persistence.AuditLog.AuditedAction.RESEND_CAUSING_EVENT;
 import static java.util.Collections.singletonList;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -330,10 +332,35 @@ class ErrorControllerTest {
         List<UUID> errorIds = Arrays.asList(errorId1, errorId2);
         String reason = "because this is a test";
 
-        errorController.deleteErrorList(errorIds, reason);
+        ResponseEntity<DeleteErrorsResultDTO> resultDto = errorController.deleteErrorList(errorIds, reason);
+
+        assertThat(resultDto.getBody()).isNotNull();
+        assertThat(resultDto.getBody().getTotalErrors()).isZero();
+        assertThat(resultDto.getBody().getTotalItems()).isEqualTo(2);
 
         verify(errorService).delete(errorId1, reason);
         verify(errorService).delete(errorId2, reason);
+    }
+
+    @Test
+    @WithAuthentication("deleteRoleToken")
+    void testDeleteErrorList_withErrors() {
+        UUID errorId1 = UUID.randomUUID();
+        UUID errorId2 = UUID.randomUUID();
+        UUID errorId3 = UUID.randomUUID();
+        List<UUID> errorIds = Arrays.asList(errorId1, errorId2, errorId3);
+        String reason = "because this is a test";
+        doThrow(new IllegalStateException("Deletion failed for errorId1")).when(errorService).delete(errorId1, reason);
+
+        ResponseEntity<DeleteErrorsResultDTO> resultDto = errorController.deleteErrorList(errorIds, reason);
+
+        assertThat(resultDto.getBody()).isNotNull();
+        assertThat(resultDto.getBody().getTotalErrors()).isEqualTo(1);
+        assertThat(resultDto.getBody().getTotalItems()).isEqualTo(3);
+
+        verify(errorService).delete(errorId1, reason);
+        verify(errorService).delete(errorId2, reason);
+        verify(errorService).delete(errorId3, reason);
     }
 
     @Test

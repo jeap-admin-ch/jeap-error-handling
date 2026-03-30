@@ -22,6 +22,18 @@ export class NotifierService {
 		};
 	}
 
+	notifySuccessWithParams(titleKey: string, messageKey: string, messageParams: any) {
+		return () => {
+			this.notificationService.send({
+				channel: 'oblique',
+				message: messageKey,
+				messageParams: messageParams,
+				title: titleKey,
+				type: ObENotificationType.SUCCESS
+			});
+		};
+	}
+
 	notifyFailure(titleKey: string, messageKey: string): (any) => Observable<never> {
 		return errorMessage => {
 			this.showFailureNotification(errorMessage, messageKey, titleKey);

@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [16.1.2] - 2026-03-30
+
+### Fixed
+
+- Fix mass delete of errors by using a single transaction and skipping already deleted errors instead of failing the whole request
+
+
 ## [16.1.1] - 2026-03-27
 
 ### Fixed

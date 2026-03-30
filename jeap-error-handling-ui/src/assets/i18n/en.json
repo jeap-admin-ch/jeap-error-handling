@@ -125,5 +125,6 @@
   "i18n.goToErrorGroup": "Go to error group",
   "i18n.copyStacktrace": "Copy stacktrace",
   "i18n.copyStacktraceSuccess": "Stacktrace has been copied to the clipboard",
-  "i18n.errorhandling.list.total": "Total Items: {{count}}"
+  "i18n.errorhandling.list.total": "Total Items: {{count}}",
+  "i18n.error.massDelete.warning": "Some ({{totalErrors}}) of the selected errors ({{totalItems}}) were not deleted because they are already in a closed state. Please review your selection and try again."
 }

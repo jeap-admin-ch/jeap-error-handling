@@ -125,5 +125,6 @@
   "i18n.goToErrorGroup": "Aller au groupe d'erreurs",
   "i18n.copyStacktrace": "Copier la stracktrace",
   "i18n.copyStacktraceSuccess": "La stacktrace a été copiée dans le presse-papiers",
-  "i18n.errorhandling.list.total": "Total des éléments: {{count}}"
+  "i18n.errorhandling.list.total": "Total des éléments: {{count}}",
+  "i18n.error.massDelete.warning": "Certaines ({{totalErrors}}) des erreurs sélectionnées ({{totalItems}}) n'ont pas été supprimées car elles se trouvent déjà dans un état fermé. Veuillez vérifier votre sélection et réessayer."
 }
