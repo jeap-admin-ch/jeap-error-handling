@@ -48,7 +48,7 @@
     "@csstools/css-syntax-patches-for-csstree@1.1.1": {
       "reason": "MIT-0; see: https://github.com/csstools/postcss-plugins"
     },
-    "@quadrel-enterprise-ui/auth@20.1.1": {
+    "@quadrel-enterprise-ui/auth@20.1.2": {
       "reason": "BIT internal package; see: https://github.com/BAZG-Quadrel/quadrel-auth"
     },
     "glob@13.0.6": {
