@@ -45,7 +45,7 @@
     "@ngx-translate/http-loader": "^8.0.0",
     "@oblique/oblique": "^15.1.2",
     "@popperjs/core": "^2.11.8",
-    "@quadrel-enterprise-ui/auth": "^20.1.1",
+    "@quadrel-enterprise-ui/auth": "^20.1.2",
     "@types/istanbul-lib-report": "^3.0.3",
     "@types/istanbul-reports": "^3.0.4",
     "@types/ws": "^8.18.1",
