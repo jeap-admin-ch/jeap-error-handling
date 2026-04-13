@@ -6,10 +6,12 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.concurrent.CompletableFuture;
 
 @Tag(name = "DeadLetterReactivation")
 @RestController
@@ -33,15 +35,8 @@ public class DeadLetterReactivationController {
         }
         log.info("Starting dead-letter reactivation process with maxRecords={}", maxRecords);
 
-        CompletableFuture.runAsync(() -> {
-            int remaining = maxRecords;
-            while (remaining > 0) {
-                int batchSize = Math.min(remaining, 50);
-                int processed = kafkaDeadLetterBatchConsumerProducer.consumeAndProduceInBatch(batchSize);
-                if (processed == 0) break;
-                remaining -= processed;
-            }
-            log.info("Dead-letter reactivation process completed");
-        });
+        kafkaDeadLetterBatchConsumerProducer.consumeAndProduce(maxRecords);
+
+        log.info("Dead-letter reactivation process completed");
     }
 }

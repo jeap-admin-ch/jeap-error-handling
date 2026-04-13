@@ -16,11 +16,19 @@ import ch.admin.bit.jeap.messaging.avro.errorevent.MessageProcessingFailedEventB
 import ch.admin.bit.jeap.messaging.kafka.crypto.JeapKafkaAvroSerdeCryptoConfig;
 import ch.admin.bit.jeap.messaging.kafka.properties.KafkaProperties;
 import ch.admin.bit.jeap.messaging.kafka.serde.confluent.CustomKafkaAvroSerializer;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.junit.jupiter.api.Test;
+import java.time.Duration;
 import java.time.Instant;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -76,6 +84,29 @@ class KafkaDeadLetterBatchConsumerProducerIT extends ErrorHandlingITBase {
 
         //then
         awaitSingleErrorInRepository(2);
+    }
+
+    @Test
+    void consumeAndProduce_noMessagesRemainingOnDeadLetterTopic_afterConsumption() {
+        sendSync(DEAD_LETTER_TOPIC, createMessageProcessingFailedEvent());
+        sendSync(DEAD_LETTER_TOPIC, createMessageProcessingFailedEvent());
+
+        kafkaDeadLetterBatchConsumerProducer.consumeAndProduce(2);
+        awaitSingleErrorInRepository(2);
+
+        // poll the dead-letter topic with the same consumer group used by the batch consumer
+        // committed offsets mean the consumer starts past all processed messages and finds nothing
+        Map<String, Object> props = new HashMap<>(kafkaConfiguration.consumerConfig(KafkaProperties.DEFAULT_CLUSTER));
+        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class);
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class);
+        props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 100);
+        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+
+        try (KafkaConsumer<byte[], byte[]> verifyConsumer = new KafkaConsumer<>(props)) {
+            verifyConsumer.subscribe(Collections.singletonList(DEAD_LETTER_TOPIC));
+            ConsumerRecords<byte[], byte[]> remaining = verifyConsumer.poll(Duration.ofSeconds(5));
+            assertThat(remaining.isEmpty()).isTrue();
+        }
     }
 
     private void awaitSingleErrorInRepository(int size) {

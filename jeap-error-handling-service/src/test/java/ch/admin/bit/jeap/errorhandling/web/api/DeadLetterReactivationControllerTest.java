@@ -2,19 +2,14 @@ package ch.admin.bit.jeap.errorhandling.web.api;
 
 import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.KafkaDeadLetterBatchConsumerProducer;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
-import java.util.concurrent.TimeUnit;
-
-import static org.awaitility.Awaitility.await;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
-@ExtendWith(SpringExtension.class)
 class DeadLetterReactivationControllerTest {
 
     @Test
@@ -36,13 +31,11 @@ class DeadLetterReactivationControllerTest {
     @Test
     void reactivateDeadLetters_shouldProcessMessagesAsync() {
         KafkaDeadLetterBatchConsumerProducer mockProducer = mock(KafkaDeadLetterBatchConsumerProducer.class);
-        when(mockProducer.consumeAndProduceInBatch(anyInt())).thenReturn(10).thenReturn(0);
 
         DeadLetterReactivationController controller = new DeadLetterReactivationController(mockProducer);
 
         controller.reactivateDeadLetters(100);
 
-        await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(() -> verify(mockProducer, atLeastOnce()).consumeAndProduceInBatch(anyInt()));
+        verify(mockProducer).consumeAndProduce(100);
     }
 }
