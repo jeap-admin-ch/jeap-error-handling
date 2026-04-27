@@ -838,9 +838,9 @@
     - version: 2.11.8
     - licenses: MIT
     - repository: https://github.com/popperjs/popper-core
- - **[@quadrel-enterprise-ui/auth@20.1.1](https://github.com/BAZG-Quadrel/quadrel-auth)**
+ - **[@quadrel-enterprise-ui/auth@20.1.3](https://github.com/BAZG-Quadrel/quadrel-auth)**
     - name: @quadrel-enterprise-ui/auth
-    - version: 20.1.1
+    - version: 20.1.3
     - licenses: Custom: http://localhost
     - repository: https://github.com/BAZG-Quadrel/quadrel-auth
  - **[@rolldown/binding-linux-x64-gnu@1.0.0-rc.4](https://github.com/rolldown/rolldown)**
