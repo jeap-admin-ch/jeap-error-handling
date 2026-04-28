@@ -2,8 +2,8 @@ package ch.admin.bit.jeap.errorhandling.infrastructure.manualtask;
 
 import ch.admin.bit.jeap.security.restclient.JeapOAuth2RestClientBuilderFactory;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.web.client.ClientHttpRequestFactories;
-import org.springframework.boot.web.client.ClientHttpRequestFactorySettings;
+import org.springframework.boot.http.client.ClientHttpRequestFactoryBuilder;
+import org.springframework.boot.http.client.HttpClientSettings;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -38,8 +38,8 @@ public class TaskManagementClient {
     TaskManagementClient(JeapOAuth2RestClientBuilderFactory jeapOAuth2RestClientBuilderFactory, TaskManagementServiceProperties taskManagementServiceProperties) {
         this.taskManagementServiceProperties = taskManagementServiceProperties;
         if (this.taskManagementServiceProperties.isEnabled()) {
-            ClientHttpRequestFactory requestFactory = ClientHttpRequestFactories.get(ClientHttpRequestFactorySettings.DEFAULTS
-                    .withReadTimeout(taskManagementServiceProperties.getTimeout()));
+            ClientHttpRequestFactory requestFactory = ClientHttpRequestFactoryBuilder.detect()
+                    .build(HttpClientSettings.defaults().withReadTimeout(taskManagementServiceProperties.getTimeout()));
             this.restClient = jeapOAuth2RestClientBuilderFactory.createForClientRegistryId(this.taskManagementServiceProperties.getClientId())
                     .requestFactory(requestFactory)
                     .baseUrl(this.taskManagementServiceProperties.getUrl())
@@ -145,10 +145,9 @@ public class TaskManagementClient {
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(taskStateDto)
                 .retrieve()
-                .onStatus(httpStatus -> httpStatus.isSameCodeAs(HttpStatus.NOT_FOUND), (request, response) -> {
+                .onStatus(httpStatus -> httpStatus.isSameCodeAs(HttpStatus.NOT_FOUND), (request, response) ->
                     // Ignore when attempting to close a task that no longer exists
-                    log.warn("Task with id '{}' could not be closed as it no longer exists", taskId);
-                })
+                    log.warn("Task with id '{}' could not be closed as it no longer exists", taskId))
                 .toBodilessEntity();
             log.info("Successfully closed the task with id '{}'.", taskId);
         } catch (Exception e) {

@@ -87,16 +87,22 @@ class ErrorEventMapper {
                 build();
     }
 
-    private OriginalTraceContext retrieveTraceContextFromCurrentTraceContext() {
+    OriginalTraceContext retrieveTraceContextFromCurrentTraceContext() {
         try {
             final TraceContext traceContext = traceContextProvider.getTraceContext();
+            if (traceContext == null) {
+                log.debug("No tracing information available (trace context is null).");
+                return null;
+            }
 
             return OriginalTraceContext.builder()
                     .traceIdHigh(traceContext.getTraceIdHigh())
                     .traceId(traceContext.getTraceId())
                     .spanId(traceContext.getSpanId())
                     .parentSpanId(traceContext.getParentSpanId())
-                    .traceIdString(traceContext.getTraceIdString()).build();
+                    .traceIdString(traceContext.getTraceIdString())
+                    .sampled(traceContext.getSampled())
+                    .build();
 
         } catch (Exception e) {
             log.error("Error retrieving current trace context. Returning null.", e);

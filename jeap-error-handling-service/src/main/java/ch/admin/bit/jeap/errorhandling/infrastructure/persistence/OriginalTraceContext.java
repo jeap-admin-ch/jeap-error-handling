@@ -28,4 +28,6 @@ public class OriginalTraceContext {
 
     private String traceIdString;
 
+    private Boolean sampled;
+
 }

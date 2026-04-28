@@ -1,8 +1,5 @@
 package ch.admin.bit.jeap.errorhandling.infrastructure.kafka;
 
-import brave.internal.codec.HexCodec;
-import brave.kafka.clients.KafkaTracing;
-import brave.propagation.TraceContext;
 import ch.admin.bit.jeap.errorhandling.ErrorHandlingITBase;
 import ch.admin.bit.jeap.errorhandling.ErrorStubs;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.CausingEvent;
@@ -11,6 +8,10 @@ import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.MessageHeader;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.OriginalTraceContext;
 import ch.admin.bit.jeap.messaging.kafka.KafkaConfiguration;
 import ch.admin.bit.jeap.messaging.kafka.properties.KafkaProperties;
+import ch.admin.bit.jeap.messaging.kafka.tracing.TraceContext;
+import ch.admin.bit.jeap.messaging.kafka.tracing.TraceContextProvider;
+import ch.admin.bit.jeap.messaging.kafka.tracing.TraceContextScope;
+import ch.admin.bit.jeap.messaging.kafka.tracing.TraceContextUpdater;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -46,7 +47,10 @@ class KafkaFailedEventResenderIT extends ErrorHandlingITBase {
     private KafkaFailedEventResender kafkaFailedEventResender;
 
     @Autowired
-    private KafkaTracing kafkaTracing;
+    private TraceContextUpdater traceContextUpdater;
+
+    @Autowired
+    private TraceContextProvider traceContextProvider;
 
     @Autowired
     private KafkaConfiguration kafkaConfiguration;
@@ -65,23 +69,23 @@ class KafkaFailedEventResenderIT extends ErrorHandlingITBase {
         final Error temporaryError = ErrorStubs.createTemporaryError();
         final long traceId = new Random().nextLong();
         final long traceIdHigh = new Random().nextLong();
+        final long spanId = new Random().nextLong();
         ReflectionTestUtils.setField(temporaryError, "originalTraceContext", null);
-        kafkaTracing.messagingTracing().tracing().currentTraceContext().newScope(
-                TraceContext
-                        .newBuilder()
-                        .spanId(new Random().nextLong())
-                        .traceIdHigh(traceIdHigh)
-                        .traceId(traceId)
-                        .build());
 
-        final String traceIdString = kafkaTracing.messagingTracing().tracing().currentTraceContext().get().traceIdString();
+        // Activate a current tracing context with the desired trace id; resend should adopt it for the outgoing
+        // producer span (no OriginalTraceContext on the error, so fallback = current context).
+        try (TraceContextScope ignored = traceContextUpdater.setTraceContext(
+                new TraceContext(traceIdHigh, traceId, spanId, null, null, Boolean.TRUE))) {
 
-        //when
-        kafkaFailedEventResender.resend(temporaryError);
+            final String expectedTraceIdHex = toHex32(traceIdHigh, traceId);
 
-        //then
-        assertThat(temporaryError.getOriginalTraceContext()).isNull();
-        assertThat(retrieveHeaderFromConsumedMessage(traceIdHigh)).isEqualTo(traceIdString);
+            //when
+            kafkaFailedEventResender.resend(temporaryError);
+
+            //then
+            assertThat(temporaryError.getOriginalTraceContext()).isNull();
+            assertThat(retrieveHeaderFromConsumedMessage(traceIdHigh)).isEqualTo(expectedTraceIdHex);
+        }
     }
 
     @Test
@@ -91,32 +95,71 @@ class KafkaFailedEventResenderIT extends ErrorHandlingITBase {
         final long traceIdHigh = new Random().nextLong();
         final long traceId = new Random().nextLong();
         final long spanId = new Random().nextLong();
-        final String traceIdString = "myTraceIdString";
         ReflectionTestUtils.setField(temporaryError, "originalTraceContext", OriginalTraceContext.builder()
                 .traceIdHigh(traceIdHigh)
                 .traceId(traceId)
                 .spanId(spanId)
-                .traceIdString(traceIdString)
+                .traceIdString(toHex32(traceIdHigh, traceId))
                 .build());
-        kafkaTracing.messagingTracing().tracing().currentTraceContext().newScope(
-                TraceContext
-                        .newBuilder()
-                        .spanId(new Random().nextLong())
-                        .traceIdHigh(new Random().nextLong())
-                        .traceId(new Random().nextLong())
-                        .build());
 
-        //when
-        kafkaFailedEventResender.resend(temporaryError);
+        long currentTraceIdHigh = new Random().nextLong();
+        long currentTraceId = new Random().nextLong();
+        long currentSpanId = new Random().nextLong();
 
-        //then
-        assertThat(temporaryError.getOriginalTraceContext().getTraceIdHigh()).isEqualTo(traceIdHigh);
-        assertThat(temporaryError.getOriginalTraceContext().getTraceId()).isEqualTo(traceId);
-        assertThat(temporaryError.getOriginalTraceContext().getTraceIdString()).isEqualTo(traceIdString);
-        assertThat(retrieveHeaderFromConsumedMessage(traceIdHigh))
-                .isNotNull()
-                .startsWith(HexCodec.toLowerHex(traceIdHigh))
-                .endsWith(HexCodec.toLowerHex(traceId));
+        // Activate a DIFFERENT current context to prove that the error's OriginalTraceContext wins over the current.
+        try (TraceContextScope ignored = traceContextUpdater.setTraceContext(
+                new TraceContext(currentTraceIdHigh, currentTraceId, currentSpanId, null, null, Boolean.TRUE))) {
+
+            //when
+            kafkaFailedEventResender.resend(temporaryError);
+
+            //then
+            assertThat(temporaryError.getOriginalTraceContext().getTraceIdHigh()).isEqualTo(traceIdHigh);
+            assertThat(temporaryError.getOriginalTraceContext().getTraceId()).isEqualTo(traceId);
+            assertThat(retrieveHeaderFromConsumedMessage(traceIdHigh))
+                    .isEqualTo(toHex32(traceIdHigh, traceId));
+            assertThat(traceContextProvider.getTraceContext().getTraceIdString())
+                    .as("Resend must close the temporary original-trace scope and restore the previously active trace.")
+                    .isEqualTo(toHex32(currentTraceIdHigh, currentTraceId));
+        }
+    }
+
+    @Test
+    void resend_originalTraceContextSampledFalse_traceparentFlagsByteIsZero() {
+        // given an error that was originally received in an unsampled trace
+        final Error temporaryError = ErrorStubs.createTemporaryError();
+        final long traceIdHigh = new Random().nextLong();
+        final long traceId = new Random().nextLong();
+        final long spanId = new Random().nextLong();
+        ReflectionTestUtils.setField(temporaryError, "originalTraceContext", OriginalTraceContext.builder()
+                .traceIdHigh(traceIdHigh)
+                .traceId(traceId)
+                .spanId(spanId)
+                .traceIdString(toHex32(traceIdHigh, traceId))
+                .sampled(false)
+                .build());
+
+        // Activate a SAMPLED current context to prove the resend honors the original (unsampled) decision
+        // rather than falling back to the current trace's sampling flag.
+        try (TraceContextScope ignored = traceContextUpdater.setTraceContext(
+                new TraceContext(new Random().nextLong(), new Random().nextLong(), new Random().nextLong(),
+                        null, null, Boolean.TRUE))) {
+
+            // when
+            kafkaFailedEventResender.resend(temporaryError);
+        }
+
+        // then: traceparent layout is "00-<32-hex traceId>-<16-hex spanId>-<2-hex flags>"; flags must be "00".
+        String[] traceparentParts = retrieveTraceparentFromConsumedMessage(traceIdHigh).split("-");
+        assertThat(traceparentParts)
+                .as("traceparent must have the 4 W3C segments: version, trace-id, parent-id, flags")
+                .hasSize(4);
+        assertThat(traceparentParts[1])
+                .as("traceparent trace-id segment must equal the original trace id")
+                .isEqualTo(toHex32(traceIdHigh, traceId));
+        assertThat(traceparentParts[3])
+                .as("traceparent flags must be 00 when the original trace context is unsampled")
+                .isEqualTo("00");
     }
 
     @Test
@@ -205,12 +248,21 @@ class KafkaFailedEventResenderIT extends ErrorHandlingITBase {
     }
 
     private String retrieveHeaderFromConsumedMessage(long traceIdHigh) {
+        return retrieveTraceparentFromConsumedMessage(traceIdHigh).split("-")[1];
+    }
+
+    private String retrieveTraceparentFromConsumedMessage(long traceIdHigh) {
+        String expectedTraceIdPrefix = String.format("%016x", traceIdHigh);
         return Streams.stream(consumeAllEvents())
-                .filter(consumerRecord -> consumerRecord.headers().lastHeader("traceparent").value() != null)
+                .filter(consumerRecord -> consumerRecord.headers().lastHeader("traceparent") != null
+                        && consumerRecord.headers().lastHeader("traceparent").value() != null)
                 .map(consumerRecord -> new String(consumerRecord.headers().lastHeader("traceparent").value()))
-                .filter(traceparent -> traceparent.startsWith("00-" + HexCodec.toLowerHex(traceIdHigh)))
-                .findFirst().orElseThrow()
-                .split("-")[1];
+                .filter(traceparent -> traceparent.startsWith("00-" + expectedTraceIdPrefix))
+                .findFirst().orElseThrow();
+    }
+
+    private static String toHex32(long high, long low) {
+        return String.format("%016x%016x", high, low);
     }
 
     private boolean hasEventBeenResent(CausingEvent causingEvent) {

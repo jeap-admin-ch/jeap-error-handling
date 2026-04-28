@@ -26,7 +26,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.actuate.observability.AutoConfigureObservability;
+import org.springframework.boot.micrometer.metrics.test.autoconfigure.AutoConfigureMetrics;
+import org.springframework.boot.micrometer.tracing.test.autoconfigure.AutoConfigureTracing;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
@@ -62,7 +63,8 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
         "jeap.errorhandling.deadLetterTopicName=" + DLT_TOPIC})
 @Import({JeapOAuth2IntegrationTestResourceConfiguration.class})
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-@AutoConfigureObservability
+@AutoConfigureMetrics
+@AutoConfigureTracing
 class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
 
     static final String ERROR_HANDLING_SERVICE_TOPIC = "consumer-topic";

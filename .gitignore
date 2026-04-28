@@ -11,3 +11,5 @@ target/
 *.versionsBackup
 
 *.log
+
+.fastembed_cache/

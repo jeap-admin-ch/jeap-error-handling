@@ -5,8 +5,10 @@ import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.EventMetadata;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.EventPublisher;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,6 +24,7 @@ import static org.mockito.Mockito.*;
         properties = {"jeap.errorhandling.task-management.default-factory.system=testsystem",
                 "jeap.errorhandling.task-management.default-factory.errorServiceBaseUrl=http://localhost/"})
 @EnableConfigurationProperties
+@ExtendWith(MockitoExtension.class)
 class DefaultTaskFactoryTest {
 
     @MockitoBean

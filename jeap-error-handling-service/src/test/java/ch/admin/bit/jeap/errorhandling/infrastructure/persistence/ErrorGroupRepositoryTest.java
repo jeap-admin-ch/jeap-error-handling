@@ -3,8 +3,11 @@ package ch.admin.bit.jeap.errorhandling.infrastructure.persistence;
 import ch.admin.bit.jeap.errorhandling.domain.group.ErrorGroupAggregatedData;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +18,7 @@ import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 @DataJpaTest
 @Sql("/causing_event.sql")
@@ -113,43 +117,33 @@ class ErrorGroupRepositoryTest {
 
     }
 
-    @Test
-    void testFindErrorGroupAggregatedData_NoTicketsNotSet() {
-        // Given
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("filtersMatchingTwoGroups")
+    void testFindErrorGroupAggregatedData_returnsTwoGroups(
+            String label,
+            ZonedDateTime createdFrom,
+            ZonedDateTime createdTo,
+            String publisher,
+            String eventName) {
         Pageable pageable = PageRequest.of(0, 10);
-        // When
+
         Page<ErrorGroupAggregatedData> result = errorGroupRepository.findErrorGroupAggregatedData(
-                false,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                pageable);
-        // Then
+                false, createdFrom, createdTo, publisher, eventName, null, null, pageable);
+
         Assertions.assertThat(result).isNotNull().isNotEmpty();
         Assertions.assertThat(result.getContent()).hasSize(2);
     }
 
-    @Test
-    void testFindErrorGroupAggregatedData_DateInRange() {
-        // Given
-        Pageable pageable = PageRequest.of(0, 10);
-
-        // When
-        Page<ErrorGroupAggregatedData> result = errorGroupRepository.findErrorGroupAggregatedData(
-                false,
-                ZonedDateTime.parse("2023-01-01T00:00:00Z"),
-                ZonedDateTime.parse("2027-01-01T00:00:00Z"),
-                null,
-                null,
-                null,
-                null,
-                pageable);
-        // Then
-        Assertions.assertThat(result).isNotNull().isNotEmpty();
-        Assertions.assertThat(result.getContent()).hasSize(2);
+    private static Stream<Arguments> filtersMatchingTwoGroups() {
+        return Stream.of(
+                Arguments.of("no filter", null, null, null, null),
+                Arguments.of("date range covering all rows",
+                        ZonedDateTime.parse("2023-01-01T00:00:00Z"),
+                        ZonedDateTime.parse("2027-01-01T00:00:00Z"),
+                        null, null),
+                Arguments.of("matching publisher", null, null, "wvs-communication-service", null),
+                Arguments.of("matching event name", null, null, null, "MessageProcessingFailedEvent")
+        );
     }
 
     @Test
@@ -171,25 +165,6 @@ class ErrorGroupRepositoryTest {
     }
 
     @Test
-    void testFindErrorGroupAggregatedData_withSource() {
-        // Given
-        Pageable pageable = PageRequest.of(0, 10);
-        // When
-        Page<ErrorGroupAggregatedData> result = errorGroupRepository.findErrorGroupAggregatedData(
-                false,
-                null,
-                null,
-                "wvs-communication-service",
-                null,
-                null,
-                null,
-                pageable);
-        // Then
-        Assertions.assertThat(result).isNotNull().isNotEmpty();
-        Assertions.assertThat(result.getContent()).hasSize(2);
-    }
-
-    @Test
     void testFindErrorGroupAggregatedData_notExistingSource() {
         // Given
         Pageable pageable = PageRequest.of(0, 10);
@@ -205,25 +180,6 @@ class ErrorGroupRepositoryTest {
                 pageable);
         // Then
         Assertions.assertThat(result).isNotNull().isEmpty();
-    }
-
-    @Test
-    void testFindErrorGroupAggregatedData_EventName() {
-        // Given
-        Pageable pageable = PageRequest.of(0, 10);
-        // When
-        Page<ErrorGroupAggregatedData> result = errorGroupRepository.findErrorGroupAggregatedData(
-                false,
-                null,
-                null,
-                null,
-                "MessageProcessingFailedEvent",
-                null,
-                null,
-                pageable);
-        // Then
-        Assertions.assertThat(result).isNotNull().isNotEmpty();
-        Assertions.assertThat(result.getContent()).hasSize(2);
     }
 
     @Test

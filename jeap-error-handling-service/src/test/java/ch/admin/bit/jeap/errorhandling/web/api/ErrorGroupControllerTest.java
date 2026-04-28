@@ -3,6 +3,7 @@ package ch.admin.bit.jeap.errorhandling.web.api;
 import ch.admin.bit.jeap.errorhandling.domain.audit.AuditLogService;
 import ch.admin.bit.jeap.errorhandling.domain.error.ErrorSearchService;
 import ch.admin.bit.jeap.errorhandling.domain.error.ErrorService;
+import ch.admin.bit.jeap.errorhandling.domain.exceptions.GlobalExceptionHandler;
 import ch.admin.bit.jeap.errorhandling.domain.exceptions.InvalidUuidException;
 import ch.admin.bit.jeap.errorhandling.domain.group.ErrorGroupAggregatedData;
 import ch.admin.bit.jeap.errorhandling.domain.group.ErrorGroupAggregatedDataList;
@@ -24,10 +25,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -54,6 +56,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = ErrorGroupControllerTest.TestConfiguration.class)
 @WebMvcTest(ErrorGroupController.class)
+@Import(GlobalExceptionHandler.class)
 class ErrorGroupControllerTest {
 
     private static final String DATE_TIME_DTO_STRING = "2024-09-23 15:30:14";
@@ -203,8 +206,8 @@ class ErrorGroupControllerTest {
     @WithAuthentication("viewRoleToken")
     void getGroups_shouldHandleEmptyResults() {
         // Arrange
-        ErrorGroupAggregatedDataList errorGroupAggregatedDataList = new ErrorGroupAggregatedDataList(0L, List.of());
-        doReturn(errorGroupAggregatedDataList)
+        ErrorGroupAggregatedDataList emptyErrorGroupAggregatedDataList = new ErrorGroupAggregatedDataList(0L, List.of());
+        doReturn(emptyErrorGroupAggregatedDataList)
                 .when(errorGroupService)
                 .findErrorGroupAggregatedData(Mockito.any(ErrorGroupSearchCriteria.class));
         // Act
@@ -251,18 +254,18 @@ class ErrorGroupControllerTest {
         // Arrange
         final UUID groupId = UUID.randomUUID();
         UpdateTicketNumberRequest updateTicketNumberRequest = new UpdateTicketNumberRequest(groupId.toString(), "TAPAS-745");
-        ErrorGroupAggregatedData errorGroupAggregatedData = Mockito.mock(ErrorGroupAggregatedData.class);
-        Mockito.when(errorGroupAggregatedData.getGroupId()).thenReturn(groupId);
-        Mockito.when(errorGroupAggregatedData.getErrorCount()).thenReturn(10L);
-        Mockito.when(errorGroupAggregatedData.getErrorEvent()).thenReturn("MessageProcessingFailedEvent");
-        Mockito.when(errorGroupAggregatedData.getErrorPublisher()).thenReturn("wvs-communication-service");
-        Mockito.when(errorGroupAggregatedData.getErrorCode()).thenReturn("MESSAGE_NOT_FOUND");
-        Mockito.when(errorGroupAggregatedData.getErrorMessage()).thenReturn("MESSAGE_NOT_FOUND: No message found with dbMessageId=61314b01-a46a-4269-97d5-fab5690045f2");
-        Mockito.when(errorGroupAggregatedData.getFirstErrorAt()).thenReturn(DATE_TIME);
-        Mockito.when(errorGroupAggregatedData.getLatestErrorAt()).thenReturn(null);
-        Mockito.when(errorGroupAggregatedData.getTicketNumber()).thenReturn("TAPAS-745");
-        Mockito.when(errorGroupAggregatedData.getFreeText()).thenReturn("known issue");
-        Mockito.when(errorGroupService.getErrorGroupAggregatedData(groupId)).thenReturn(errorGroupAggregatedData);
+        ErrorGroupAggregatedData errorGroupAggregatedDataMock = Mockito.mock(ErrorGroupAggregatedData.class);
+        Mockito.when(errorGroupAggregatedDataMock.getGroupId()).thenReturn(groupId);
+        Mockito.when(errorGroupAggregatedDataMock.getErrorCount()).thenReturn(10L);
+        Mockito.when(errorGroupAggregatedDataMock.getErrorEvent()).thenReturn("MessageProcessingFailedEvent");
+        Mockito.when(errorGroupAggregatedDataMock.getErrorPublisher()).thenReturn("wvs-communication-service");
+        Mockito.when(errorGroupAggregatedDataMock.getErrorCode()).thenReturn("MESSAGE_NOT_FOUND");
+        Mockito.when(errorGroupAggregatedDataMock.getErrorMessage()).thenReturn("MESSAGE_NOT_FOUND: No message found with dbMessageId=61314b01-a46a-4269-97d5-fab5690045f2");
+        Mockito.when(errorGroupAggregatedDataMock.getFirstErrorAt()).thenReturn(DATE_TIME);
+        Mockito.when(errorGroupAggregatedDataMock.getLatestErrorAt()).thenReturn(null);
+        Mockito.when(errorGroupAggregatedDataMock.getTicketNumber()).thenReturn("TAPAS-745");
+        Mockito.when(errorGroupAggregatedDataMock.getFreeText()).thenReturn("known issue");
+        Mockito.when(errorGroupService.getErrorGroupAggregatedData(groupId)).thenReturn(errorGroupAggregatedDataMock);
 
         // Act
         ResponseEntity<ErrorGroupDTO> response = errorGroupController.updateTicketNumber(updateTicketNumberRequest);
@@ -309,18 +312,18 @@ class ErrorGroupControllerTest {
         // Arrange
         final UUID groupId = UUID.randomUUID();
         UpdateFreeTextRequest updateFreeTextRequest = new UpdateFreeTextRequest(groupId.toString(), "known issue");
-        ErrorGroupAggregatedData errorGroupAggregatedData = Mockito.mock(ErrorGroupAggregatedData.class);
-        Mockito.when(errorGroupAggregatedData.getGroupId()).thenReturn(groupId);
-        Mockito.when(errorGroupAggregatedData.getErrorCount()).thenReturn(10L);
-        Mockito.when(errorGroupAggregatedData.getErrorEvent()).thenReturn("MessageProcessingFailedEvent");
-        Mockito.when(errorGroupAggregatedData.getErrorPublisher()).thenReturn("wvs-communication-service");
-        Mockito.when(errorGroupAggregatedData.getErrorCode()).thenReturn("MESSAGE_NOT_FOUND");
-        Mockito.when(errorGroupAggregatedData.getErrorMessage()).thenReturn("MESSAGE_NOT_FOUND: No message found with dbMessageId=61314b01-a46a-4269-97d5-fab5690045f2");
-        Mockito.when(errorGroupAggregatedData.getFirstErrorAt()).thenReturn(DATE_TIME);
-        Mockito.when(errorGroupAggregatedData.getLatestErrorAt()).thenReturn(null);
-        Mockito.when(errorGroupAggregatedData.getTicketNumber()).thenReturn("");
-        Mockito.when(errorGroupAggregatedData.getFreeText()).thenReturn("known issue");
-        Mockito.when(errorGroupService.getErrorGroupAggregatedData(groupId)).thenReturn(errorGroupAggregatedData);
+        ErrorGroupAggregatedData errorGroupAggregatedDataMock = Mockito.mock(ErrorGroupAggregatedData.class);
+        Mockito.when(errorGroupAggregatedDataMock.getGroupId()).thenReturn(groupId);
+        Mockito.when(errorGroupAggregatedDataMock.getErrorCount()).thenReturn(10L);
+        Mockito.when(errorGroupAggregatedDataMock.getErrorEvent()).thenReturn("MessageProcessingFailedEvent");
+        Mockito.when(errorGroupAggregatedDataMock.getErrorPublisher()).thenReturn("wvs-communication-service");
+        Mockito.when(errorGroupAggregatedDataMock.getErrorCode()).thenReturn("MESSAGE_NOT_FOUND");
+        Mockito.when(errorGroupAggregatedDataMock.getErrorMessage()).thenReturn("MESSAGE_NOT_FOUND: No message found with dbMessageId=61314b01-a46a-4269-97d5-fab5690045f2");
+        Mockito.when(errorGroupAggregatedDataMock.getFirstErrorAt()).thenReturn(DATE_TIME);
+        Mockito.when(errorGroupAggregatedDataMock.getLatestErrorAt()).thenReturn(null);
+        Mockito.when(errorGroupAggregatedDataMock.getTicketNumber()).thenReturn("");
+        Mockito.when(errorGroupAggregatedDataMock.getFreeText()).thenReturn("known issue");
+        Mockito.when(errorGroupService.getErrorGroupAggregatedData(groupId)).thenReturn(errorGroupAggregatedDataMock);
 
         // Act
         ResponseEntity<ErrorGroupDTO> response = errorGroupController.updateFreeText(updateFreeTextRequest);
@@ -400,7 +403,7 @@ class ErrorGroupControllerTest {
     @WithAuthentication("viewRoleToken")
     void testForbiddenEdit() throws Exception {
         mockMvc.perform(post("/api/error-group/update-ticket-number")
-                .content("{\"key\":\"value\"}")
+                .content("{\"errorGroupId\":\"" + UUID.randomUUID() + "\",\"ticketNumber\":\"X-1\"}")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isForbidden());
     }

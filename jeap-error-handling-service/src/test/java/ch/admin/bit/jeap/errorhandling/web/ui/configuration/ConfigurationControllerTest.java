@@ -1,20 +1,16 @@
 package ch.admin.bit.jeap.errorhandling.web.ui.configuration;
 
 import ch.admin.bit.jeap.errorhandling.domain.group.ErrorGroupConfigProperties;
-import ch.admin.bit.jeap.security.test.resource.configuration.ServletJeapAuthorizationConfig;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -23,7 +19,6 @@ import java.util.List;
 
 @WebMvcTest(ConfigurationController.class)
 @ActiveProfiles("error-controller-test")
-@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = ConfigurationControllerTest.TestConfiguration.class)
 class ConfigurationControllerTest {
 
@@ -93,13 +88,7 @@ class ConfigurationControllerTest {
 
     @Profile(PROFILE) // prevent other tests using class path scanning picking up this configuration
     @Configuration
-    @ComponentScan
-    static class TestConfiguration extends ServletJeapAuthorizationConfig {
-
-        // You have to provide the system name and the application context to the test support base class.
-        TestConfiguration(ApplicationContext applicationContext) {
-            super("jme", applicationContext);
-        }
+    @Import(ConfigurationController.class)
+    static class TestConfiguration {
     }
 }
-

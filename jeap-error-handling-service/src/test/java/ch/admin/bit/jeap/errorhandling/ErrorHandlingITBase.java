@@ -24,7 +24,8 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.actuate.observability.AutoConfigureObservability;
+import org.springframework.boot.micrometer.metrics.test.autoconfigure.AutoConfigureMetrics;
+import org.springframework.boot.micrometer.tracing.test.autoconfigure.AutoConfigureTracing;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
@@ -48,7 +49,8 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
                 "jeap.errorhandling.deadLetterTopicName=" + ErrorHandlingITBase.DEAD_LETTER_TOPIC,
                 "jeap.security.oauth2.resourceserver.authorization-server.issuer=" + JwsBuilder.DEFAULT_ISSUER,
                 "jeap.security.oauth2.resourceserver.authorization-server.jwk-set-uri=http://localhost:${server.port}/.well-known/jwks.json"})
-@AutoConfigureObservability
+@AutoConfigureMetrics
+@AutoConfigureTracing
 @Import({ErrorHandlingITBase.TestConfig.class, JeapOAuth2IntegrationTestResourceConfiguration.class})
 public abstract class ErrorHandlingITBase extends KafkaIntegrationTestBase {
     protected static final String DOMAIN_EVENT_TOPIC = "originalTopic";

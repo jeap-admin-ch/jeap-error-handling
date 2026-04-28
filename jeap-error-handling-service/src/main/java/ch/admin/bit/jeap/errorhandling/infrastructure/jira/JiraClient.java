@@ -2,7 +2,7 @@ package ch.admin.bit.jeap.errorhandling.infrastructure.jira;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.http.client.ClientHttpRequestFactoryBuilder;
-import org.springframework.boot.http.client.ClientHttpRequestFactorySettings;
+import org.springframework.boot.http.client.HttpClientSettings;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.util.StringUtils;
@@ -24,7 +24,7 @@ public class JiraClient {
     public JiraClient(JiraConfigurationProperties jiraConfigurationProperties,
                       RestClient.Builder restClientBuilder) {
         this.jiraConfigurationProperties = jiraConfigurationProperties;
-        ClientHttpRequestFactorySettings httpSettings = ClientHttpRequestFactorySettings.defaults()
+        HttpClientSettings httpSettings = HttpClientSettings.defaults()
                 .withConnectTimeout(Duration.ofMillis(jiraConfigurationProperties.getConnectTimeoutMs()))
                 .withReadTimeout(Duration.ofMillis(jiraConfigurationProperties.getReadTimeoutMs()));
         ClientHttpRequestFactory requestFactory = ClientHttpRequestFactoryBuilder.detect().build(httpSettings);

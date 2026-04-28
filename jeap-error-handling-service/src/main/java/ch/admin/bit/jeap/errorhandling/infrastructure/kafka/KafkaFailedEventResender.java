@@ -1,18 +1,19 @@
 package ch.admin.bit.jeap.errorhandling.infrastructure.kafka;
 
-import brave.kafka.clients.KafkaTracing;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.MessageHeader;
 import ch.admin.bit.jeap.messaging.kafka.KafkaConfiguration;
 import ch.admin.bit.jeap.messaging.kafka.properties.KafkaProperties;
 import ch.admin.bit.jeap.messaging.kafka.tracing.TraceContext;
+import ch.admin.bit.jeap.messaging.kafka.tracing.TraceContextScope;
 import ch.admin.bit.jeap.messaging.kafka.tracing.TraceContextUpdater;
-import ch.admin.bit.jeap.messaging.kafka.tracing.TracingKafkaProducerFactory;
+import io.micrometer.observation.ObservationRegistry;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.ByteArraySerializer;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
@@ -43,8 +44,8 @@ public class KafkaFailedEventResender {
     public KafkaFailedEventResender(ResendClusterProvider resendClusterProvider,
                                     KafkaProperties kafkaProperties,
                                     KafkaConfiguration kafkaConfiguration,
-                                    KafkaTracing kafkaTracing,
                                     TraceContextUpdater traceContextUpdater,
+                                    ObservationRegistry observationRegistry,
                                     @Value("${jeap.errorhandling.timeout-seconds:60}") int timeoutSeconds) {
         this.resendClusterProvider = resendClusterProvider;
         this.traceContextUpdater = traceContextUpdater;
@@ -52,11 +53,19 @@ public class KafkaFailedEventResender {
         this.timeoutSeconds = timeoutSeconds;
         this.kafkaTemplateByClusterName = kafkaProperties.clusterNames().stream()
                 .collect(toMap(clusterName -> clusterName,
-                        clusterName -> createKafkaTemplate(kafkaConfiguration, kafkaTracing, clusterName)));
+                        clusterName -> createKafkaTemplate(kafkaConfiguration, observationRegistry, clusterName)));
     }
 
-    private static KafkaTemplate<Object, Object> createKafkaTemplate(KafkaConfiguration kafkaConfiguration, KafkaTracing kafkaTracing, String clusterName) {
-        return new KafkaTemplate<>(new TracingKafkaProducerFactory<>(kafkaTracing.messagingTracing(), adaptKafkaConfiguration(clusterName, kafkaConfiguration)));
+    private static KafkaTemplate<Object, Object> createKafkaTemplate(KafkaConfiguration kafkaConfiguration,
+                                                                     ObservationRegistry observationRegistry,
+                                                                     String clusterName) {
+        // ObservationRegistry must be wired explicitly because this template is built outside the Spring bean pipeline
+        // that would otherwise inject the registry via ApplicationContextAware.
+        KafkaTemplate<Object, Object> template = new KafkaTemplate<>(
+                new DefaultKafkaProducerFactory<>(adaptKafkaConfiguration(clusterName, kafkaConfiguration)));
+        template.setObservationEnabled(true);
+        template.setObservationRegistry(observationRegistry);
+        return template;
     }
 
     public void resend(final Error error) {
@@ -64,32 +73,45 @@ public class KafkaFailedEventResender {
         final byte[] key = error.getCausingEventMessage().getKey();
         final String topic = error.getCausingEventMessage().getTopic();
         final String clusterName = resendClusterProvider.getResendClusterNameFor(error.getCausingEvent());
-        final CompletableFuture<SendResult<Object, Object>> sendResult;
         log.info("Resending event {} for error {} to topic '{}' on cluster '{}'.",
                 error.getCausingEventMetadata().getId(), error.getId(), topic, clusterName);
 
-        if (error.getOriginalTraceContext() != null) {
-            log.debug("Original traceId found on the error to resend. Overriding the current tracing context with the original traceId {}", error.getOriginalTraceContext());
-            traceContextUpdater.setTraceContext(new TraceContext(
-                    error.getOriginalTraceContext().getTraceIdHigh(),
-                    error.getOriginalTraceContext().getTraceId(),
-                    error.getOriginalTraceContext().getSpanId(),
-                    error.getOriginalTraceContext().getParentSpanId(),
-                    error.getOriginalTraceContext().getTraceIdString()));
-        }
+        try (TraceContextScope _ = activateOriginalTraceContextIfPresent(error)) {
+            ProducerRecord<Object, Object> producerRecord = new ProducerRecord<>(topic, key, message);
+            addHeadersFromCausingEvent(error, producerRecord);
+            addResendInformationHeaders(error, producerRecord);
+            CompletableFuture<SendResult<Object, Object>> sendResult = kafkaTemplateByClusterName.get(clusterName).send(producerRecord);
 
-        ProducerRecord<Object, Object> producerRecord = new ProducerRecord<>(topic, key, message);
-        addHeadersFromCausingEvent(error, producerRecord);
-        addResendInformationHeaders(error, producerRecord);
-        sendResult = kafkaTemplateByClusterName.get(clusterName).send(producerRecord);
-
-        try {
-            sendResult.get(timeoutSeconds, TimeUnit.SECONDS);
-        } catch (Exception e) {
-            throw new RuntimeException("Cannot resend event on Kafka", e);
+            try {
+                sendResult.get(timeoutSeconds, TimeUnit.SECONDS);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                log.error("Resending event {} for error {} to topic '{}' on cluster '{}' interrupted.",
+                    error.getCausingEventMetadata().getId(), error.getId(), topic, clusterName);
+                throw ResendFailedException.resendToKafkaInterrupted(error.getCausingEventMetadata().getId(), error.getId(), topic, clusterName);
+            } catch (Exception e) {
+                log.error("Resending event {} for error {} to topic '{}' on cluster '{}' failed.",
+                        error.getCausingEventMetadata().getId(), error.getId(), topic, clusterName, e);
+                throw ResendFailedException.resendToKafkaFailed(error.getCausingEventMetadata().getId(), error.getId(), topic, clusterName, e);
+            }
+            log.info("Resent event {} for error {} to topic '{}' on cluster '{}'.",
+                    error.getCausingEventMetadata().getId(), error.getId(), topic, clusterName);
         }
-        log.info("Resent event {} for error {} to topic '{}' on cluster '{}'.",
-                error.getCausingEventMetadata().getId(), error.getId(), topic, clusterName);
+    }
+
+    private TraceContextScope activateOriginalTraceContextIfPresent(Error error) {
+        if (error.getOriginalTraceContext() == null) {
+            return TraceContextScope.NOOP;
+        }
+        log.debug("Original traceId found on the error to resend. Overriding the current tracing context with the original traceId {}",
+                error.getOriginalTraceContext());
+        return traceContextUpdater.setTraceContext(new TraceContext(
+                error.getOriginalTraceContext().getTraceIdHigh(),
+                error.getOriginalTraceContext().getTraceId(),
+                error.getOriginalTraceContext().getSpanId(),
+                error.getOriginalTraceContext().getParentSpanId(),
+                error.getOriginalTraceContext().getTraceIdString(),
+                error.getOriginalTraceContext().getSampled()));
     }
 
     private static void addHeadersFromCausingEvent(Error error, ProducerRecord<Object, Object> producerRecord) {
