@@ -600,6 +600,30 @@ class ErrorHandlingIT extends ErrorHandlingITBase {
     }
 
     @Test
+    void testApiCall_withoutAuthentication_expectUnauthorized() {
+        UUID someErrorId = UUID.randomUUID();
+        given().
+                spec(apiSpec).
+                when().
+                get("/api/error/{errorId}/details", someErrorId).
+                then().
+                statusCode(HttpStatus.UNAUTHORIZED.value());
+    }
+
+    @Test
+    void testApiCall_withInsufficientAuthorization_expectForbidden() {
+        UUID someErrorId = UUID.randomUUID();
+        // Authenticated but the token carries no roles, while the endpoint requires hasRole('error','view').
+        given().
+                spec(apiSpec).
+                auth().oauth2(createAuthTokenForUserRoles()).
+                when().
+                get("/api/error/{errorId}/details", someErrorId).
+                then().
+                statusCode(HttpStatus.FORBIDDEN.value());
+    }
+
+    @Test
     void testExposesMetrics() {
         // Create two permanent errors with the same stack trace hash (i.e. belonging to the same error group)
         // (Makes the test not depend on other tests for creating errors.)

@@ -32,13 +32,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -48,8 +47,6 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SuppressWarnings("unused")
 @ActiveProfiles("error-group-controller-test")
@@ -77,8 +74,6 @@ class ErrorGroupControllerTest {
             .resource("errorgroup")
             .operation("invalid")
             .build();
-    @Autowired
-    MockMvc mockMvc;
     @MockitoBean
     private ErrorGroupService errorGroupService;
     @MockitoBean
@@ -394,26 +389,25 @@ class ErrorGroupControllerTest {
 
     @Test
     @WithAuthentication("invalidRoleToken")
-    void testForbiddenView() throws Exception {
-        mockMvc.perform(post("/api/error-group"))
-                .andExpect(status().isForbidden());
+    void getGroups_expectNotAllowedForInvalidRole() {
+        Assertions.assertThrows(AccessDeniedException.class, () ->
+                errorGroupController.getGroups(0, 10, null));
     }
 
     @Test
     @WithAuthentication("viewRoleToken")
-    void testForbiddenEdit() throws Exception {
-        mockMvc.perform(post("/api/error-group/update-ticket-number")
-                .content("{\"errorGroupId\":\"" + UUID.randomUUID() + "\",\"ticketNumber\":\"X-1\"}")
-                .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isForbidden());
+    void updateTicketNumber_expectNotAllowedForViewRole() {
+        UpdateTicketNumberRequest request = new UpdateTicketNumberRequest(UUID.randomUUID().toString(), "X-1");
+        Assertions.assertThrows(AccessDeniedException.class, () ->
+                errorGroupController.updateTicketNumber(request));
     }
 
     @Test
     @WithAuthentication("viewRoleToken")
-    void testForbiddenCreateIssue() throws Exception {
+    void createIssue_expectNotAllowedForViewRole() {
         UUID groupId = UUID.randomUUID();
-        mockMvc.perform(post("/api/error-group/" + groupId + "/issue"))
-                .andExpect(status().isForbidden());
+        Assertions.assertThrows(AccessDeniedException.class, () ->
+                errorGroupController.createIssue(groupId));
     }
 
 
