@@ -13,6 +13,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - New column `original_trace_context_sampled boolean` on `error`. Needed so the sampling decision captured from the
   origin trace is preserved across persisted errors and honored when `KafkaFailedEventResender` replays the event.
   Rows written prior to this version carry `NULL` and are treated as sampled on resend (legacy-compatible default).
+- Upgrade some frontend dependencies to fix vulnerabilities
 
 ## [16.8.0] - 2026-04-29
 
