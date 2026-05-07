@@ -30,7 +30,6 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import static ch.admin.bit.jeap.errorhandling.web.api.DateTimeUtils.parseDate;
-import static java.util.stream.Collectors.toList;
 
 @Tag(name = "Errors")
 @RestController
@@ -270,7 +269,7 @@ public class ErrorController {
     private List<ErrorDTO> toErrorDtos(List<Error> errors) {
         return errors.stream()
                 .map(this::toErrorDto)
-                .collect(toList());
+                .toList();
     }
 
     private ErrorDTO toErrorDto(Error error) {
@@ -318,9 +317,9 @@ public class ErrorController {
                 ", Offset " + eventMessage.getOffset();
     }
 
+    @SuppressWarnings("java:S1854") // jeapCert is not unused!
     private ErrorDTO.ErrorDTOBuilder toErrorDtoBuilder(Error error) {
-        ZonedDateTime nextResendTime = scheduledResendService.getNextResendTimestamp(error.getId());
-        String jeapCert = extractJeapCert(error.getCausingEvent().getHeaders());
+        final String jeapCert = extractJeapCert(error.getCausingEvent().getHeaders());
         return ErrorDTO.builder()
                 .id(error.getId().toString())
                 .errorState(error.getState().name())
@@ -328,7 +327,7 @@ public class ErrorController {
                 .errorMessage(error.getErrorEventData().getMessage())
                 .errorCode(longStringEllipis(error.getErrorEventData().getCode()))
                 .errorPublisher(error.getErrorEventMetadata().getPublisher().getService())
-                .nextResendTimestamp(timestamp(nextResendTime))
+                .nextResendTimestamp(timestamp(scheduledResendService.getNextResendTimestamp(error.getId())))
                 .eventName(error.getCausingEventMetadata().getType().getName())
                 .eventId(error.getCausingEventMetadata().getId())
                 .eventTimestamp(timestamp(error.getCausingEventMetadata().getCreated()))
@@ -353,6 +352,7 @@ public class ErrorController {
         return extractHeaderValue(SignatureHeaders.SIGNATURE_CERTIFICATE_HEADER_KEY, headers);
     }
 
+    @SuppressWarnings("SameParameterValue")
     private String extractHeaderValue(String headerName, List<MessageHeader> headers) {
         if (headers == null) {
             return null;

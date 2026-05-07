@@ -74,7 +74,7 @@ class KafkaFailedEventResenderIT extends ErrorHandlingITBase {
 
         // Activate a current tracing context with the desired trace id; resend should adopt it for the outgoing
         // producer span (no OriginalTraceContext on the error, so fallback = current context).
-        try (TraceContextScope ignored = traceContextUpdater.setTraceContext(
+        try (TraceContextScope _ = traceContextUpdater.setTraceContext(
                 new TraceContext(traceIdHigh, traceId, spanId, null, null, Boolean.TRUE))) {
 
             final String expectedTraceIdHex = toHex32(traceIdHigh, traceId);
@@ -107,7 +107,7 @@ class KafkaFailedEventResenderIT extends ErrorHandlingITBase {
         long currentSpanId = new Random().nextLong();
 
         // Activate a DIFFERENT current context to prove that the error's OriginalTraceContext wins over the current.
-        try (TraceContextScope ignored = traceContextUpdater.setTraceContext(
+        try (TraceContextScope _ = traceContextUpdater.setTraceContext(
                 new TraceContext(currentTraceIdHigh, currentTraceId, currentSpanId, null, null, Boolean.TRUE))) {
 
             //when
@@ -141,7 +141,7 @@ class KafkaFailedEventResenderIT extends ErrorHandlingITBase {
 
         // Activate a SAMPLED current context to prove the resend honors the original (unsampled) decision
         // rather than falling back to the current trace's sampling flag.
-        try (TraceContextScope ignored = traceContextUpdater.setTraceContext(
+        try (TraceContextScope _ = traceContextUpdater.setTraceContext(
                 new TraceContext(new Random().nextLong(), new Random().nextLong(), new Random().nextLong(),
                         null, null, Boolean.TRUE))) {
 
@@ -213,6 +213,7 @@ class KafkaFailedEventResenderIT extends ErrorHandlingITBase {
         }
     }
 
+    @SuppressWarnings("SameParameterValue")
     private void assertHeaders(ConsumerRecord<Object, Object> consumerRecord, String headerName, int expectedCount, String expectedValue) {
         Iterable<Header> allHeaders = consumerRecord.headers().headers(headerName);
         int headersCount = 0;
