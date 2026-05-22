@@ -60,7 +60,7 @@
     "isexe@4.0.0": {
       "reason": "BlueOak-1.0.0; Dev dependency, see: https://github.com/isaacs/isexe"
     },
-    "lru-cache@11.3.6": {
+    "lru-cache@11.5.0": {
       "reason": "BlueOak-1.0.0; Dev dependency, see: https://github.com/isaacs/node-lru-cache"
     },
     "minimatch@10.2.5": {
@@ -75,7 +75,7 @@
     "sax@1.6.0": {
       "reason": "BlueOak-1.0.0; Dev dependency, see: https://github.com/isaacs/sax-js"
     },
-    "tar@7.5.14": {
+    "tar@7.5.15": {
       "reason": "BlueOak-1.0.0; Dev dependency, see: https://github.com/isaacs/node-tar"
     },
     "@ngx-translate/core@15.0.0": {
