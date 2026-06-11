@@ -55,11 +55,14 @@ describe('ReactivateDeadLetterPageComponent', () => {
 	});
 
 	it('should set status to error status on failed reactivation', () => {
+		const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 		component.reactivateDeadLetter();
 		const req = httpTestingController.expectOne('http://localhost:8072/error-handling/api/deadletter/reactivate?maxRecords=1');
 		expect(req.request.method).toEqual('POST');
 		req.flush({}, {status: 500, statusText: 'Internal Server Error'});
 		expect(component.isSuccessfull).toBe(false);
+		expect(consoleErrorSpy).toHaveBeenCalled();
+		consoleErrorSpy.mockRestore();
 	});
 
 	it('should display success message when status is 200', () => {

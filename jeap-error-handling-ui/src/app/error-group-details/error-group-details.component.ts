@@ -51,12 +51,9 @@ export class ErrorGroupDetailsComponent implements OnInit {
     }
 
     onSearch(filterValues: any) {
-        console.log("Search clicked with values:", filterValues);
         this.searchCriteria = filterValues;
-        console.log("Updated search criteria:", this.searchCriteria);
     }
 
     onReset() {
-        console.log("Reset clicked");
     }
 }

@@ -6,8 +6,7 @@ import {ErrorDetailsPageComponent} from './pages/error-details-page/error-detail
 import {
 	QdApplicationRoleFilter,
 	QdAuthorizationGuard,
-	QdRoleFilter,
-	QdRoleFilterMatcher
+	QdRoleFilter
 } from '@quadrel-enterprise-ui/auth';
 import {ErrorGroupPageComponent} from './pages/error-group-page/error-group-page.component';
 import {ForbiddenPageComponent} from './pages/error-pages/forbidden-page/forbidden-page.component';
@@ -15,29 +14,19 @@ import {ReactivateDeadLetterPageComponent} from './pages/reactivate-dead-letter-
 import {ErrorGroupDetailsComponent} from "./error-group-details/error-group-details.component";
 
 
-const roleFilter_view = QdApplicationRoleFilter.hasRole(
-	QdRoleFilterMatcher.ANY,
-	'error',
-	'view'
-);
+// Passing a complete QdRoleFilter to hasRole() avoids the deprecated multi-parameter signature.
+// '[a-zA-Z-]+' is the "any system" matcher the library applied internally for QdRoleFilterMatcher.ANY
+// (wildcards are not allowed for the system field, hence the explicit pattern).
+const ANY_SYSTEM = '[a-zA-Z-]+';
 
-const roleFilter_retry = QdApplicationRoleFilter.hasRole(
-	QdRoleFilterMatcher.ANY,
-	'error',
-	'retry'
-);
+const roleFilter_view = QdApplicationRoleFilter.hasRole({system: ANY_SYSTEM, resource: 'error', operation: 'view'});
 
-export const roleFilter_errorgroup_edit: QdRoleFilter = QdApplicationRoleFilter.hasRole(
-	QdRoleFilterMatcher.ANY,
-	'errorgroup',
-	'edit'
-);
+const roleFilter_retry = QdApplicationRoleFilter.hasRole({system: ANY_SYSTEM, resource: 'error', operation: 'retry'});
 
-const roleFilter_errorgroup_view = QdApplicationRoleFilter.hasRole(
-	QdRoleFilterMatcher.ANY,
-	'errorgroup',
-	'view'
-);
+export const roleFilter_errorgroup_edit: QdRoleFilter =
+	QdApplicationRoleFilter.hasRole({system: ANY_SYSTEM, resource: 'errorgroup', operation: 'edit'});
+
+const roleFilter_errorgroup_view = QdApplicationRoleFilter.hasRole({system: ANY_SYSTEM, resource: 'errorgroup', operation: 'view'});
 
 const appRoutes: Routes = [
 	{

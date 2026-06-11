@@ -20,6 +20,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Fix frontend unit test execution after the Angular 21 / jest-preset-angular upgrade and run the UI test suite during
   the Maven build before the production build
+- Make the error list date-range test timezone-independent so it passes on CI (UTC)
+- Clean up frontend test output: remove leftover debug logging, fix component test setups (missing modules / stubbed
+  child components / registered SVG icons) and migrate role filters off the deprecated `hasRole` signature
 
 ## [18.1.0] - 2026-06-04
 

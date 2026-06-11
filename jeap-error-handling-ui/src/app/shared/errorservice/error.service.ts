@@ -211,10 +211,6 @@ export class ErrorService {
 			searchCriteria.sortOrder = sortState.direction?.toUpperCase() ?? 'DESC';
 		}
 
-
-		console.log("## Search Criteria:", searchCriteria);
-
-
 		const requestUrl = `${ErrorService.url}/group`;
 		return this.http.post<ErrorListDTO>(requestUrl, searchCriteria, {params}).pipe(
 			catchError(ErrorService.errorHandler)

@@ -1,5 +1,9 @@
+import {Component} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {ErrorGroupPageComponent} from './error-group-page.component';
+
+@Component({selector: 'app-error-groups', template: '', standalone: false})
+class ErrorGroupsStubComponent {}
 
 describe('ErrorGroupPageComponent', () => {
 	let component: ErrorGroupPageComponent;
@@ -7,8 +11,7 @@ describe('ErrorGroupPageComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			declarations: [ErrorGroupPageComponent]
-			// imports: []  // add needed Angular/material modules here if template requires them
+			declarations: [ErrorGroupPageComponent, ErrorGroupsStubComponent]
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(ErrorGroupPageComponent);

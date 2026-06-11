@@ -21,6 +21,7 @@ import {ObliqueTestingModule, ObMockTranslateService} from '@oblique/oblique';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {ErrorDTO, ErrorSearchFormDto} from '../shared/errorservice/error.model';
+import {endOfDay, startOfDay} from 'date-fns';
 
 describe('ErrorListComponent', () => {
 	let component: ErrorListComponent;
@@ -195,8 +196,8 @@ describe('ErrorListComponent', () => {
 			const result: ErrorSearchFormDto = component.createErrorSearchCriteriaDto(sortState);
 
 			expect(result).toEqual({
-				dateFrom: '2022-12-31T23:00:00.000Z',
-				dateTo: '2023-01-31T22:59:59.999Z',
+				dateFrom: startOfDay(new Date('2023-01-01')).toISOString(),
+				dateTo: endOfDay(new Date('2023-01-31')).toISOString(),
 				eventName: 'EventName',
 				traceId: '123456',
 				eventId: '7890',

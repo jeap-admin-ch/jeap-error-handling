@@ -1,6 +1,10 @@
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ErrorListPageComponent } from './error-list-page.component';
 import { MatDialogModule } from '@angular/material/dialog';
+
+@Component({selector: 'error-list', template: '', standalone: false})
+class ErrorListStubComponent {}
 
 describe('ErrorListPageComponent', () => {
 	let component: ErrorListPageComponent;
@@ -8,7 +12,7 @@ describe('ErrorListPageComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			declarations: [ErrorListPageComponent],
+			declarations: [ErrorListPageComponent, ErrorListStubComponent],
 			imports: [MatDialogModule]
 		}).compileComponents();
 

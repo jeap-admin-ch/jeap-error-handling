@@ -78,8 +78,6 @@ export class ErrorGroupDetailsListComponent implements OnInit, AfterViewInit, On
 	}
 
 	ngAfterViewInit(): void {
-		console.log('### Error Group ID:', this.errorGroupId);
-		console.log('### Search Criteria:', this.searchCriteria);
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
 		this.paginator.page.pipe(
@@ -95,7 +93,6 @@ export class ErrorGroupDetailsListComponent implements OnInit, AfterViewInit, On
 	}
 
 	ngOnChanges(changes: SimpleChanges): void {
-		console.log('### Changes detected in ErrorGroupDetailsListComponent:', changes);
 		if (changes['searchCriteria'] && !changes['searchCriteria'].firstChange) {
 			this.reload(); // Reload data when search criteria changes
 		}
@@ -151,7 +148,6 @@ export class ErrorGroupDetailsListComponent implements OnInit, AfterViewInit, On
 	}
 
 	announceSortChange(sortState: Sort) {
-		console.log('Sort changed:', sortState);
 		this.loadErrors(this.errorGroupId, this.searchCriteria, this.dataSource.paginator.pageIndex, sortState).subscribe({
 			next: errorList => this.errorListLoaded(errorList)
 		});

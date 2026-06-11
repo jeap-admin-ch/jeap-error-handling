@@ -1,3 +1,4 @@
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ErrorGroupsComponent } from './error-groups.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -14,13 +15,19 @@ import { NotifierService } from '../shared/notifier/notifier.service';
 import { QdAuthorizationService } from '@quadrel-enterprise-ui/auth';
 import {TranslateModule} from '@ngx-translate/core';
 
+@Component({selector: 'app-error-group-filter', template: '', standalone: false})
+class ErrorGroupFilterStubComponent {}
+
+@Component({selector: 'ob-column-layout', template: '<ng-content></ng-content>', standalone: false})
+class ObColumnLayoutStubComponent {}
+
 describe('ErrorGroupsComponent', () => {
 	let component: ErrorGroupsComponent;
 	let fixture: ComponentFixture<ErrorGroupsComponent>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			declarations: [ErrorGroupsComponent],
+			declarations: [ErrorGroupsComponent, ErrorGroupFilterStubComponent, ObColumnLayoutStubComponent],
 			imports: [
 				HttpClientTestingModule,
 				MatPaginatorModule,

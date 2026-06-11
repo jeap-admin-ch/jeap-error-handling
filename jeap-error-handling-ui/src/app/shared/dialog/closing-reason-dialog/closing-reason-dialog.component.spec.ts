@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ClosingReasonDialogComponent } from './closing-reason-dialog.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
@@ -7,7 +7,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('ClosingReasonDialogComponent', () => {
 	let component: ClosingReasonDialogComponent;
@@ -23,6 +22,7 @@ describe('ClosingReasonDialogComponent', () => {
 				MatFormFieldModule,
 				MatInputModule,
 				MatButtonModule,
+				MatDialogModule,
 				BrowserAnimationsModule
 			],
 			declarations: [ClosingReasonDialogComponent],
@@ -34,8 +34,7 @@ describe('ClosingReasonDialogComponent', () => {
 					},
 				},
 				{ provide: MAT_DIALOG_DATA, useValue: matDialogData },
-			],
-			schemas: [CUSTOM_ELEMENTS_SCHEMA]
+			]
 		}).compileComponents();
 	});
 
