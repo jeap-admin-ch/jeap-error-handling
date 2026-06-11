@@ -8,10 +8,15 @@ module.exports = {
 		'^common\/(.*)$': '<rootDir>/src/app/common/$1',
 		'^generated\/(.*)$': '<rootDir>/src/app/generated/$1',
 	},
-	globals: {
-		'ts-jest': {
-			diagnostics: false
-		}
+	transform: {
+		'^.+\\.(ts|js|mjs|html|svg)$': [
+			'jest-preset-angular',
+			{
+				tsconfig: '<rootDir>/tsconfig.spec.json',
+				stringifyContentPathRegex: '\\.(html|svg)$',
+				diagnostics: false
+			}
+		]
 	},
 	coverageDirectory: '<rootDir>/coverage/sonarQube',
 	testResultsProcessor: 'jest-sonar-reporter',

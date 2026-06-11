@@ -13,7 +13,7 @@
     "build": "ng build --base-href /error-handling/ --deploy-url /error-handling/",
     "build-dev": "ng build -c dev --base-href /error-handling/ --deploy-url /error-handling/",
     "build-prod": "ng build -c production --base-href /error-handling/ --deploy-url /error-handling/",
-    "test": "ng test",
+    "test": "ng test --watch=false",
     "test:watch": "ng test --watchAll",
     "lint": "ng lint",
     "check-licenses": "apache2-license-checker",
