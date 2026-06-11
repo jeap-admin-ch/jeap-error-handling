@@ -20,5 +20,6 @@ module.exports = {
 		'**/src/app/**/*.ts',
 		'**/src/app/**/*.html'
 	],
-	testPathIgnorePatterns: ['/node_modules/', 'test.ts']
+	testPathIgnorePatterns: ['/node_modules/', 'test.ts'],
+	transformIgnorePatterns: ['node_modules/(?!(.*\\.mjs$|@angular/common/locales/.*\\.js$|@quadrel-enterprise-ui/.*\\.js$))']
 };

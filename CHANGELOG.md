@@ -5,11 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [18.2.0] - 2026-06-10
+## [18.2.0] - 2026-06-11
 
 ### Added
 
 - Add dependency `jeap-spring-boot-web-config-starter`
+
+### Changed
+
+- Update default Content Security Policy (CSP) for the SPA frontend to be compatible with Oblique
+- Serve `index.html` at the application root via forward instead of redirect
+
+### Fixed
+
+- Fix frontend unit test execution after the Angular 21 / jest-preset-angular upgrade and run the UI test suite during
+  the Maven build before the production build
 
 ## [18.1.0] - 2026-06-04
 

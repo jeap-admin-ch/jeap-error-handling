@@ -36,6 +36,8 @@ export class ErrorGroupsComponent implements AfterViewInit, OnInit, OnDestroy {
 	hasEditRole: boolean = false;
 	protected readonly environment = environment;
 
+	private viewInitialized = false;
+
 	constructor(private readonly errorGroupService: ErrorGroupService,
 				private readonly notifierService: NotifierService,
 				private readonly qdAuthorizationService: QdAuthorizationService,
@@ -74,11 +76,14 @@ export class ErrorGroupsComponent implements AfterViewInit, OnInit, OnDestroy {
 				sortOrder: this.sort.direction?.toUpperCase() ?? 'DESC'
 			};
 
-			const pageIndex = this.paginator.pageIndex;
-			this.loadGroupErrors(pageIndex, this.errorGroupSearchFormDto).subscribe(
-				errorGroupList => this.errorGroupListLoaded(errorGroupList),
-				errorMessage => this.notifyFailure(errorMessage)
-			);
+			// The initial load is triggered by ngAfterViewInit once the paginator is initialized.
+			// Here we only react to subsequent query param changes (e.g. filter/search updates).
+			if (this.viewInitialized) {
+				this.loadGroupErrors(this.paginator.pageIndex, this.errorGroupSearchFormDto).subscribe(
+					errorGroupList => this.errorGroupListLoaded(errorGroupList),
+					errorMessage => this.notifyFailure(errorMessage)
+				);
+			}
 		});
 	}
 
@@ -90,6 +95,7 @@ export class ErrorGroupsComponent implements AfterViewInit, OnInit, OnDestroy {
 	ngAfterViewInit(): void {
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
+		this.viewInitialized = true;
 		this.paginator.page.pipe(
 			startWith({}),
 			switchMap(() => {
@@ -101,7 +107,7 @@ export class ErrorGroupsComponent implements AfterViewInit, OnInit, OnDestroy {
 	}
 
 	announceSortChange(sortState: Sort) {
-		this.loadGroupErrors(this.dataSource.paginator.pageIndex, this.errorGroupSearchFormDto).subscribe(
+		this.loadGroupErrors(this.paginator.pageIndex, this.errorGroupSearchFormDto).subscribe(
 			errorGroupList => this.errorGroupListLoaded(errorGroupList)
 		);
 	}
@@ -109,14 +115,13 @@ export class ErrorGroupsComponent implements AfterViewInit, OnInit, OnDestroy {
 	loadGroupErrors(pageIndex: number, errorGroupSearchFormDto: ErrorGroupSearchFormDto): Observable<ErrorGroupResponse> {
 		errorGroupSearchFormDto.sortField = this.sort.active ?? 'latestErrorAt';
 		errorGroupSearchFormDto.sortOrder = this.sort.direction?.toUpperCase() ?? 'DESC';
-		console.log('Loading Error Groups with: ', pageIndex, this.dataSource.paginator.pageSize, errorGroupSearchFormDto);
 		this.isLoadingResults = true;
-		const pageSize = this.dataSource.paginator.pageSize;
+		const pageSize = this.paginator.pageSize;
 		return this.errorGroupService.getGroups(pageIndex, pageSize, errorGroupSearchFormDto);
 	}
 
 	announcePaginatorChange() {
-		this.loadGroupErrors(this.dataSource.paginator.pageIndex, this.errorGroupSearchFormDto).subscribe(
+		this.loadGroupErrors(this.paginator.pageIndex, this.errorGroupSearchFormDto).subscribe(
 			errorList => this.errorGroupListLoaded(errorList)
 		);
 	}

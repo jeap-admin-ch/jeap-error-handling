@@ -49,7 +49,7 @@ describe('ReactivateDeadLetterPageComponent', () => {
 		component.reactivateDeadLetter();
 		const req = httpTestingController.expectOne('http://localhost:8072/error-handling/api/deadletter/reactivate?maxRecords=1');
 		expect(req.request.method).toEqual('POST');
-		req.flush({ok: true}, {status: 200, statusText: 'OK'});
+		req.flush({ok: true}, {status: 202, statusText: 'Accepted'});
 		expect(component.isSuccessfull).toBe(true);
 		expect(component.isInProgress).toBe(false);
 	});
