@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -35,14 +34,6 @@ class FrontendWebConfig implements WebMvcConfigurer {
             origin += ":" + uriComponents.getPort();
         }
         return origin;
-    }
-
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        // Spring Boot 4 / Spring Framework 7 changed welcome page handling,
-        // causing an empty response for the root path. Forward to index.html so
-        // the SPA is served at "/" without a client-visible redirect.
-        registry.addViewController("/").setViewName("forward:/index.html");
     }
 
     @Bean
