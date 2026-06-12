@@ -43,7 +43,7 @@ class FrontendWebConfigTest {
     void rootForwardsToIndexHtml() throws Exception {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
-                .andExpect(forwardedUrl("/index.html"));
+                .andExpect(forwardedUrl("index.html"));
     }
 
     @Test
