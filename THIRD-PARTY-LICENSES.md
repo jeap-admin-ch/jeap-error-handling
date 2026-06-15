@@ -43,7 +43,6 @@ Apache License Version 2.0
  * AWS SDK for Java - Core - [com.amazonaws:aws-java-sdk-core](https://aws.amazon.com/sdkforjava)
  * AWS Java SDK for AWS STS - [com.amazonaws:aws-java-sdk-sts](https://aws.amazon.com/sdkforjava)
  * JMES Path Query library - [com.amazonaws:jmespath-java](https://aws.amazon.com/sdkforjava)
- * kaml - [com.charleskorn.kaml:kaml-jvm](https://github.com/charleskorn/kaml)
  * ClassMate - [com.fasterxml:classmate](https://github.com/FasterXML/java-classmate)
  * Jackson-annotations - [com.fasterxml.jackson.core:jackson-annotations](https://github.com/FasterXML/jackson)
  * Jackson-core - [com.fasterxml.jackson.core:jackson-core](https://github.com/FasterXML/jackson-core)
@@ -78,22 +77,11 @@ Apache License Version 2.0
  * Nimbus LangTag - [com.nimbusds:lang-tag](https://bitbucket.org/connect2id/nimbus-language-tags)
  * Nimbus JOSE+JWT - [com.nimbusds:nimbus-jose-jwt](https://bitbucket.org/connect2id/nimbus-jose-jwt)
  * OAuth 2.0 SDK with OpenID Connect extensions - [com.nimbusds:oauth2-oidc-sdk](https://bitbucket.org/connect2id/oauth-2.0-sdk-with-openid-connect-extensions)
- * javapoet - [com.palantir.javapoet:javapoet](https://github.com/palantir/javapoet)
- * KotlinPoet - [com.squareup:kotlinpoet-jvm](https://github.com/square/kotlinpoet)
- * okhttp - [com.squareup.okhttp3:okhttp](https://square.github.io/okhttp/)
  * okio - [com.squareup.okio:okio](https://github.com/square/okio/)
  * okio-fakefilesystem - [com.squareup.okio:okio-fakefilesystem](https://github.com/square/okio/)
  * okio-fakefilesystem - [com.squareup.okio:okio-fakefilesystem-jvm](https://github.com/square/okio/)
  * okio - [com.squareup.okio:okio-jvm](https://github.com/square/okio/)
- * wire-compiler - [com.squareup.wire:wire-compiler](https://github.com/square/wire/)
- * wire-grpc-client - [com.squareup.wire:wire-grpc-client-jvm](https://github.com/square/wire/)
- * wire-java-generator - [com.squareup.wire:wire-java-generator](https://github.com/square/wire/)
- * wire-kotlin-generator - [com.squareup.wire:wire-kotlin-generator](https://github.com/square/wire/)
- * wire-runtime - [com.squareup.wire:wire-runtime](https://github.com/square/wire/)
- * wire-runtime - [com.squareup.wire:wire-runtime-jvm](https://github.com/square/wire/)
  * wire-schema - [com.squareup.wire:wire-schema](https://github.com/square/wire/)
- * wire-schema - [com.squareup.wire:wire-schema-jvm](https://github.com/square/wire/)
- * wire-swift-generator - [com.squareup.wire:wire-swift-generator](https://github.com/square/wire/)
  * scala-logging - [com.typesafe.scala-logging:scala-logging_2.13](https://github.com/lightbend/scala-logging)
  * JSON library from Android SDK - [com.vaadin.external.google:android-json](http://developer.android.com/sdk)
  * Metrics Core Library - [com.yammer.metrics:metrics-core](http://metrics.codahale.com/metrics-core/)
@@ -158,7 +146,6 @@ Apache License Version 2.0
  * Netty/Transport/Classes/Epoll - [io.netty:netty-transport-classes-epoll](https://netty.io/netty-transport-classes-epoll/)
  * Netty/Transport/Native/Epoll - [io.netty:netty-transport-native-epoll](https://netty.io/netty-transport-native-epoll/)
  * Netty/Transport/Native/Unix/Common - [io.netty:netty-transport-native-unix-common](https://netty.io/netty-transport-native-unix-common/)
- * Swift Poet - [io.outfoxx:swiftpoet](https://github.com/outfoxx/swiftpoet)
  * perfmark:perfmark-api - [io.perfmark:perfmark-api](https://github.com/perfmark/perfmark)
  * Prometheus Metrics Config - [io.prometheus:prometheus-metrics-config](http://github.com/prometheus/client_java/client_java/prometheus-metrics-config)
  * Prometheus Metrics Core - [io.prometheus:prometheus-metrics-core](http://github.com/prometheus/client_java/client_java/prometheus-metrics-core)
@@ -183,7 +170,6 @@ Apache License Version 2.0
  * Brave Instrumentation: Kafka Clients - [io.zipkin.brave:brave-instrumentation-kafka-clients](https://github.com/openzipkin/brave/brave-instrumentation-parent/brave-instrumentation-kafka-clients)
  * Brave Instrumentation: Messaging Adapters - [io.zipkin.brave:brave-instrumentation-messaging](https://github.com/openzipkin/brave/brave-instrumentation-parent/brave-instrumentation-messaging)
  * Brave W3C Propagation: Trace Context - [io.zipkin.contrib.brave-propagation-w3c:brave-propagation-tracecontext](https://github.com/openzipkin-contrib/brave-propagation-w3c/brave-propagation-tracecontext)
- * SnakeYAML Engine KMP - [it.krzeminski:snakeyaml-engine-kmp-jvm](https://github.com/krzema12/snakeyaml-engine-kmp/)
  * Jakarta Dependency Injection - [jakarta.inject:jakarta.inject-api](https://github.com/eclipse-ee4j/injection-api)
  * Jakarta Bean Validation API - [jakarta.validation:jakarta.validation-api](https://beanvalidation.org)
  * Joda-Time - [joda-time:joda-time](http://www.joda.org/joda-time/)
@@ -199,7 +185,6 @@ Apache License Version 2.0
  * Logstash Logback Encoder - [net.logstash.logback:logstash-logback-encoder](https://github.com/logfellow/logstash-logback-encoder)
  * ASM based accessors helper used by json-smart - [net.minidev:accessors-smart](https://urielch.github.io/)
  * JSON Small and Fast Parser - [net.minidev:json-smart](https://urielch.github.io/)
- * UrlEncoder for Kotlin Multiplatform - [net.thauvin.erik.urlencoder:urlencoder-lib-jvm](https://github.com/ethauvin/urlencoder)
  * Apache Avro - [org.apache.avro:avro](https://avro.apache.org)
  * Apache Commons Collections - [org.apache.commons:commons-collections4](https://commons.apache.org/proper/commons-collections/)
  * Apache Commons Compress - [org.apache.commons:commons-compress](https://commons.apache.org/proper/commons-compress/)
@@ -411,6 +396,12 @@ Common Development and Distribution License (CDDL) v1.0
 
  * JavaBeans Activation Framework (JAF) - [javax.activation:activation](http://java.sun.com/products/javabeans/jaf/index.jsp)
 
+EPL-2.0
+-------------------------------
+
+ * Logback Classic Module - [ch.qos.logback:logback-classic](http://logback.qos.ch/logback-classic)
+ * Logback Core Module - [ch.qos.logback:logback-core](http://logback.qos.ch/logback-core)
+
 Eclipse Distribution License - v 1.0
 -------------------------------
 
@@ -426,8 +417,6 @@ Eclipse Distribution License - v 1.0
 Eclipse Public License v2.0
 -------------------------------
 
- * Logback Classic Module - [ch.qos.logback:logback-classic](http://logback.qos.ch/logback-classic)
- * Logback Core Module - [ch.qos.logback:logback-core](http://logback.qos.ch/logback-core)
  * Jakarta Annotations API - [jakarta.annotation:jakarta.annotation-api](https://projects.eclipse.org/projects/ee4j.ca)
  * Jakarta Persistence API - [jakarta.persistence:jakarta.persistence-api](https://github.com/eclipse-ee4j/jpa-api)
  * jakarta.transaction API - [jakarta.transaction:jakarta.transaction-api](https://projects.eclipse.org/projects/ee4j.jta)
@@ -451,12 +440,6 @@ GNU General Public License, version 2 (GPL2), with the classpath exception
  * Jakarta Annotations API - [jakarta.annotation:jakarta.annotation-api](https://projects.eclipse.org/projects/ee4j.ca)
  * jakarta.transaction API - [jakarta.transaction:jakarta.transaction-api](https://projects.eclipse.org/projects/ee4j.jta)
 
-GNU Lesser General Public License
--------------------------------
-
- * Logback Classic Module - [ch.qos.logback:logback-classic](http://logback.qos.ch/logback-classic)
- * Logback Core Module - [ch.qos.logback:logback-core](http://logback.qos.ch/logback-core)
-
 GNU Library General Public License v2.1 or later
 -------------------------------
 
@@ -476,6 +459,12 @@ LGPL 2.1
 -------------------------------
 
  * Javassist - [org.javassist:javassist](http://www.javassist.org/)
+
+LGPL-2.1-only
+-------------------------------
+
+ * Logback Classic Module - [ch.qos.logback:logback-classic](http://logback.qos.ch/logback-classic)
+ * Logback Core Module - [ch.qos.logback:logback-core](http://logback.qos.ch/logback-core)
 
 MIT License
 -------------------------------
