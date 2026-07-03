@@ -18,6 +18,8 @@ public class ErrorGroupConfigProperties {
      * If errors should be collected into error groups or not.
      */
     private boolean errorGroupingEnabled = true;
+    private String defaultSortField = ErrorGroupSort.DEFAULT_SORT_FIELD;
+    private String defaultSortOrder = ErrorGroupSort.DEFAULT_SORT_DIRECTION.name();
 
     @Valid
     @NestedConfigurationProperty
@@ -25,6 +27,14 @@ public class ErrorGroupConfigProperties {
 
     public boolean isIssueTrackingEnabled() {
         return issueTracking != null;
+    }
+
+    public String getDefaultSortField() {
+        return ErrorGroupSort.validSortFieldOrDefault(defaultSortField, ErrorGroupSort.DEFAULT_SORT_FIELD);
+    }
+
+    public String getDefaultSortOrder() {
+        return ErrorGroupSort.validSortDirectionOrDefault(defaultSortOrder, ErrorGroupSort.DEFAULT_SORT_DIRECTION.name()).name();
     }
 
 }

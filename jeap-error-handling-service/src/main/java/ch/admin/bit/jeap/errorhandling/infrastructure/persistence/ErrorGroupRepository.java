@@ -40,11 +40,20 @@ public interface ErrorGroupRepository extends JpaRepository<ErrorGroup, UUID> {
             "AND ((:messageType IS NULL OR :messageType = '') OR eg.eventName = :messageType) " +
             "AND ((:errorCode IS NULL OR :errorCode = '') OR eg.errorCode = :errorCode) " +
             "AND ((:jiraTicket IS NULL OR :jiraTicket = '') OR eg.ticketNumber = :jiraTicket) " +
-            ERROR_GROUP_AGGREGATED_DATA_GROUPING +
-            " order by errorCount desc " +
-            " offset :#{#pageable.offset} rows " +
-            " fetch next :#{#pageable.pageSize} rows only",
-            countQuery = "select count(*) from ErrorGroup")
+            ERROR_GROUP_AGGREGATED_DATA_GROUPING,
+            countQuery = """
+                    SELECT count(distinct eg.id)
+                    FROM Error e
+                    JOIN e.errorGroup eg
+                    WHERE e.state IN ('SEND_TO_MANUALTASK', 'PERMANENT')
+                    AND (:noTicket = true AND (eg.ticketNumber IS NULL OR eg.ticketNumber = '') OR :noTicket = false)
+                    AND (CAST(:dateFrom AS TIMESTAMP) IS NULL OR e.created >= CAST(:dateFrom AS TIMESTAMP))
+                    AND (CAST(:dateTo AS TIMESTAMP) IS NULL OR e.created <= CAST(:dateTo AS TIMESTAMP))
+                    AND ((:source IS NULL OR :source = '') OR eg.errorPublisher = :source)
+                    AND ((:messageType IS NULL OR :messageType = '') OR eg.eventName = :messageType)
+                    AND ((:errorCode IS NULL OR :errorCode = '') OR eg.errorCode = :errorCode)
+                    AND ((:jiraTicket IS NULL OR :jiraTicket = '') OR eg.ticketNumber = :jiraTicket)
+                    """)
     Page<ErrorGroupAggregatedData> findErrorGroupAggregatedData(
             @Param("noTicket") Boolean noTicket,
             @Param("dateFrom") ZonedDateTime dateFrom,

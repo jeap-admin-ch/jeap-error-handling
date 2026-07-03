@@ -10,4 +10,6 @@ import lombok.Data;
 public class ErrorGroupConfigurationDTO {
     private String ticketingSystemUrl;
     private boolean issueTrackingEnabled;
+    private String defaultSortField;
+    private String defaultSortOrder;
 }

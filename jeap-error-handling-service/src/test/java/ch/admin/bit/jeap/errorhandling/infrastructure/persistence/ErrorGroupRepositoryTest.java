@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.time.ZonedDateTime;
@@ -81,6 +82,26 @@ class ErrorGroupRepositoryTest {
         Assertions.assertThat(result.getContent().getLast().getGroupId()).isNotNull(); // UUID could be read
         Assertions.assertThat(result.getContent().getLast().getFirstErrorAt()).isNotNull(); // ZonedDateTime could be read
         Assertions.assertThat(result.getContent()).hasSize(2);
+    }
+
+    @Test
+    void testFindErrorGroupAggregatedData_appliesPageableSorting() {
+        Pageable pageable = PageRequest.of(0, 10, Sort.by(Sort.Direction.ASC, "errorCount"));
+
+        Page<ErrorGroupAggregatedData> result = errorGroupRepository.findErrorGroupAggregatedData(
+                false,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                pageable);
+
+        Assertions.assertThat(result).isNotNull().isNotEmpty();
+        Assertions.assertThat(result.getContent()).hasSize(2);
+        Assertions.assertThat(result.getContent().getFirst().getErrorCount())
+                .isLessThanOrEqualTo(result.getContent().getLast().getErrorCount());
     }
 
     @Test

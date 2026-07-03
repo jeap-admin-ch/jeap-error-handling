@@ -9,7 +9,11 @@
       @if (isLoading) {
         <mat-progress-bar mode="query"></mat-progress-bar>
       }
-      <table [dataSource]="dataSource" class="ob-table table-sm" mat-table matSort (matSortChange)="announceSortChange($event)">
+      <table [dataSource]="dataSource" class="ob-table table-sm" mat-table matSort
+        [matSortActive]="currentSort.active"
+        [matSortDirection]="currentSort.direction"
+        [matSortDisableClear]="true"
+        (matSortChange)="announceSortChange($event)">
         <caption>{{ "i18n.errorGroup" | translate }}</caption>
 
         <!-- Error Count -->

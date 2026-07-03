@@ -45,6 +45,8 @@ public class ErrorGroupController {
                 .messageType(errorGroupSearchFormDto.getMessageType())
                 .errorCode(errorGroupSearchFormDto.getErrorCode())
                 .jiraTicket(errorGroupSearchFormDto.getJiraTicket())
+                .sortField(errorGroupSearchFormDto.getSortField())
+                .sortOrder(errorGroupSearchFormDto.getSortOrder())
                 .pageIndex(pageIndex)
                 .pageSize(pageSize)
                 .build();

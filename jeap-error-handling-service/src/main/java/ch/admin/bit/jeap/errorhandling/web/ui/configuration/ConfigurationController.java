@@ -63,6 +63,8 @@ class ConfigurationController {
         return ErrorGroupConfigurationDTO.builder()
                 .ticketingSystemUrl(frontendConfigProperties.getTicketingSystemUrl())
                 .issueTrackingEnabled(errorGroupConfigProperties.isIssueTrackingEnabled())
+                .defaultSortField(errorGroupConfigProperties.getDefaultSortField())
+                .defaultSortOrder(errorGroupConfigProperties.getDefaultSortOrder())
                 .build();
     }
 }

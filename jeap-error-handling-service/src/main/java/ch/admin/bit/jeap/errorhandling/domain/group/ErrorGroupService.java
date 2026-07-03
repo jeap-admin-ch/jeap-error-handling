@@ -94,7 +94,7 @@ public class ErrorGroupService {
                 messageType,
                 errorCode,
                 jiraTicket,
-                criteria.getPageable());
+                criteria.getPageable(errorGroupConfigProperties.getDefaultSortField(), errorGroupConfigProperties.getDefaultSortOrder()));
         return new ErrorGroupAggregatedDataList(groupAggregatedData.getTotalElements(), groupAggregatedData.getContent());
     }
 

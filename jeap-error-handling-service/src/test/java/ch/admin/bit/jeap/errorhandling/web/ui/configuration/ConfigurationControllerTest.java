@@ -48,10 +48,14 @@ class ConfigurationControllerTest {
         final boolean issueTrackingEnabled = true;
         Mockito.when(frontendConfigProperties.getTicketingSystemUrl()).thenReturn(jiraUrl);
         Mockito.when(errorGroupConfigProperties.isIssueTrackingEnabled()).thenReturn(issueTrackingEnabled);
+        Mockito.when(errorGroupConfigProperties.getDefaultSortField()).thenReturn("errorCount");
+        Mockito.when(errorGroupConfigProperties.getDefaultSortOrder()).thenReturn("ASC");
         mockMvc.perform(MockMvcRequestBuilders.get("/api/configuration/error-group"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.ticketingSystemUrl").value(jiraUrl))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.issueTrackingEnabled").value(issueTrackingEnabled));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.issueTrackingEnabled").value(issueTrackingEnabled))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.defaultSortField").value("errorCount"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.defaultSortOrder").value("ASC"));
     }
 
     @Test

@@ -18,4 +18,6 @@ public class ErrorGroupSearchFormDto {
     private String messageType;
     private String errorCode;
     private String jiraTicket;
+    private String sortField;
+    private String sortOrder;
 }

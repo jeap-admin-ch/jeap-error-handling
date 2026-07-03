@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ErrorGroupsComponent } from './error-groups.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
+import { MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -22,10 +22,28 @@ class ErrorGroupFilterStubComponent {}
 class ObColumnLayoutStubComponent {}
 
 describe('ErrorGroupsComponent', () => {
+	const sortStorageKey = 'jeap-error-handling.error-groups.sort';
 	let component: ErrorGroupsComponent;
 	let fixture: ComponentFixture<ErrorGroupsComponent>;
+	let errorGroupService: {
+		getErrorGroupConfiguration: jest.Mock;
+		getGroups: jest.Mock;
+	};
 
 	beforeEach(async () => {
+		errorGroupService = {
+			getErrorGroupConfiguration: jest.fn().mockReturnValue(of({
+				ticketingSystemUrl: 'http://mock-url',
+				issueTrackingEnabled: true,
+				defaultSortField: 'latestErrorAt',
+				defaultSortOrder: 'DESC'
+			})),
+			getGroups: jest.fn().mockReturnValue(of({
+				totalErrorGroupCount: 0,
+				groups: []
+			}))
+		};
+
 		await TestBed.configureTestingModule({
 			declarations: [ErrorGroupsComponent, ErrorGroupFilterStubComponent, ObColumnLayoutStubComponent],
 			imports: [
@@ -40,16 +58,7 @@ describe('ErrorGroupsComponent', () => {
 			providers: [
 				{
 					provide: ErrorGroupService,
-					useValue: {
-						getErrorGroupConfiguration: jest.fn().mockReturnValue(of({
-							ticketingSystemUrl: 'http://mock-url',
-							issueTrackingEnabled: true
-						})),
-						getGroups: jest.fn().mockReturnValue(of({
-							totalErrorGroupCount: 0,
-							groups: []
-						}))
-					}
+					useValue: errorGroupService
 				},
 				{
 					provide: NotifierService,
@@ -65,13 +74,85 @@ describe('ErrorGroupsComponent', () => {
 				}
 			]
 		}).compileComponents();
+		localStorage.clear();
+	});
 
+	afterEach(() => {
+		localStorage.clear();
+	});
+
+	function createComponent(): void {
 		fixture = TestBed.createComponent(ErrorGroupsComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
-	});
+	}
 
 	it('should create', () => {
+		createComponent();
 		expect(component).toBeTruthy();
 	});
+
+	it('should use backend configured default sort when no local preference exists', () => {
+		errorGroupService.getErrorGroupConfiguration.mockReturnValue(of({
+			ticketingSystemUrl: 'http://mock-url',
+			issueTrackingEnabled: true,
+			defaultSortField: 'errorCount',
+			defaultSortOrder: 'ASC'
+		}));
+
+		createComponent();
+
+		expect(component.currentSort).toEqual({active: 'errorCount', direction: 'asc'});
+		const searchCriteria = latestSearchCriteria();
+		expect(searchCriteria.sortField).toBe('errorCount');
+		expect(searchCriteria.sortOrder).toBe('ASC');
+	});
+
+	it('should restore persisted sort from localStorage instead of backend configured default', () => {
+		localStorage.setItem(sortStorageKey, JSON.stringify({active: 'ticketNumber', direction: 'desc'}));
+		errorGroupService.getErrorGroupConfiguration.mockReturnValue(of({
+			ticketingSystemUrl: 'http://mock-url',
+			issueTrackingEnabled: true,
+			defaultSortField: 'errorCount',
+			defaultSortOrder: 'ASC'
+		}));
+
+		createComponent();
+
+		expect(component.currentSort).toEqual({active: 'ticketNumber', direction: 'desc'});
+		const searchCriteria = latestSearchCriteria();
+		expect(searchCriteria.sortField).toBe('ticketNumber');
+		expect(searchCriteria.sortOrder).toBe('DESC');
+	});
+
+	it('should ignore invalid persisted sort and use backend configured default', () => {
+		localStorage.setItem(sortStorageKey, JSON.stringify({active: 'unsupportedField', direction: 'desc'}));
+		errorGroupService.getErrorGroupConfiguration.mockReturnValue(of({
+			ticketingSystemUrl: 'http://mock-url',
+			issueTrackingEnabled: true,
+			defaultSortField: 'errorCount',
+			defaultSortOrder: 'ASC'
+		}));
+
+		createComponent();
+
+		expect(component.currentSort).toEqual({active: 'errorCount', direction: 'asc'});
+	});
+
+	it('should persist sort changes to localStorage and send updated sort criteria', () => {
+		createComponent();
+
+		const sortChange: Sort = {active: 'firstErrorAt', direction: 'asc'};
+		component.announceSortChange(sortChange);
+
+		expect(JSON.parse(localStorage.getItem(sortStorageKey) as string)).toEqual(sortChange);
+		const searchCriteria = latestSearchCriteria();
+		expect(searchCriteria.sortField).toBe('firstErrorAt');
+		expect(searchCriteria.sortOrder).toBe('ASC');
+	});
+
+	function latestSearchCriteria() {
+		const calls = errorGroupService.getGroups.mock.calls;
+		return calls[calls.length - 1][2];
+	}
 });
