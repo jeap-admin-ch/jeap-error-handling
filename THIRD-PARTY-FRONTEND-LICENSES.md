@@ -83,89 +83,89 @@
     - version: 21.0.3
     - licenses: MIT
     - repository: https://github.com/just-jeb/angular-builders
- - **[@angular-devkit/architect@0.2102.9](https://github.com/angular/angular-cli)**
+- **[@angular-devkit/architect@0.2102.12](https://github.com/angular/angular-cli)**
     - name: @angular-devkit/architect
-    - version: 0.2102.9
+   - version: 0.2102.12
     - licenses: MIT
     - repository: https://github.com/angular/angular-cli
- - **[@angular-devkit/core@21.2.9](https://github.com/angular/angular-cli)**
+- **[@angular-devkit/core@21.2.12](https://github.com/angular/angular-cli)**
     - name: @angular-devkit/core
-    - version: 21.2.9
+   - version: 21.2.12
     - licenses: MIT
     - repository: https://github.com/angular/angular-cli
- - **[@angular-devkit/schematics@21.2.9](https://github.com/angular/angular-cli)**
+- **[@angular-devkit/schematics@21.2.12](https://github.com/angular/angular-cli)**
     - name: @angular-devkit/schematics
-    - version: 21.2.9
+   - version: 21.2.12
     - licenses: MIT
     - repository: https://github.com/angular/angular-cli
- - **[@angular/animations@21.2.11](https://github.com/angular/angular)**
+- **[@angular/animations@21.2.17](https://github.com/angular/angular)**
     - name: @angular/animations
-    - version: 21.2.11
+   - version: 21.2.17
     - licenses: MIT
     - repository: https://github.com/angular/angular
- - **[@angular/build@21.2.9](https://github.com/angular/angular-cli)**
+- **[@angular/build@21.2.12](https://github.com/angular/angular-cli)**
     - name: @angular/build
-    - version: 21.2.9
+   - version: 21.2.12
     - licenses: MIT
     - repository: https://github.com/angular/angular-cli
- - **[@angular/cdk@21.2.9](https://github.com/angular/components)**
+- **[@angular/cdk@21.2.12](https://github.com/angular/components)**
     - name: @angular/cdk
-    - version: 21.2.9
+   - version: 21.2.12
     - licenses: MIT
     - repository: https://github.com/angular/components
- - **[@angular/cli@21.2.9](https://github.com/angular/angular-cli)**
+- **[@angular/cli@21.2.12](https://github.com/angular/angular-cli)**
     - name: @angular/cli
-    - version: 21.2.9
+   - version: 21.2.12
     - licenses: MIT
     - repository: https://github.com/angular/angular-cli
- - **[@angular/common@21.2.11](https://github.com/angular/angular)**
+- **[@angular/common@21.2.17](https://github.com/angular/angular)**
     - name: @angular/common
-    - version: 21.2.11
+   - version: 21.2.17
     - licenses: MIT
     - repository: https://github.com/angular/angular
- - **[@angular/compiler-cli@21.2.11](https://github.com/angular/angular)**
+- **[@angular/compiler-cli@21.2.17](https://github.com/angular/angular)**
     - name: @angular/compiler-cli
-    - version: 21.2.11
+   - version: 21.2.17
     - licenses: MIT
     - repository: https://github.com/angular/angular
- - **[@angular/compiler@21.2.11](https://github.com/angular/angular)**
+- **[@angular/compiler@21.2.17](https://github.com/angular/angular)**
     - name: @angular/compiler
-    - version: 21.2.11
+   - version: 21.2.17
     - licenses: MIT
     - repository: https://github.com/angular/angular
- - **[@angular/core@21.2.11](https://github.com/angular/angular)**
+- **[@angular/core@21.2.17](https://github.com/angular/angular)**
     - name: @angular/core
-    - version: 21.2.11
+   - version: 21.2.17
     - licenses: MIT
     - repository: https://github.com/angular/angular
- - **[@angular/forms@21.2.11](https://github.com/angular/angular)**
+- **[@angular/forms@21.2.17](https://github.com/angular/angular)**
     - name: @angular/forms
-    - version: 21.2.11
+   - version: 21.2.17
     - licenses: MIT
     - repository: https://github.com/angular/angular
- - **[@angular/localize@21.2.11](https://github.com/angular/angular)**
+- **[@angular/localize@21.2.17](https://github.com/angular/angular)**
     - name: @angular/localize
-    - version: 21.2.11
+   - version: 21.2.17
     - licenses: MIT
     - repository: https://github.com/angular/angular
- - **[@angular/material@21.2.9](https://github.com/angular/components)**
+- **[@angular/material@21.2.12](https://github.com/angular/components)**
     - name: @angular/material
-    - version: 21.2.9
+   - version: 21.2.12
     - licenses: MIT
     - repository: https://github.com/angular/components
- - **[@angular/platform-browser-dynamic@21.2.11](https://github.com/angular/angular)**
+- **[@angular/platform-browser-dynamic@21.2.17](https://github.com/angular/angular)**
     - name: @angular/platform-browser-dynamic
-    - version: 21.2.11
+   - version: 21.2.17
     - licenses: MIT
     - repository: https://github.com/angular/angular
- - **[@angular/platform-browser@21.2.11](https://github.com/angular/angular)**
+- **[@angular/platform-browser@21.2.17](https://github.com/angular/angular)**
     - name: @angular/platform-browser
-    - version: 21.2.11
+   - version: 21.2.17
     - licenses: MIT
     - repository: https://github.com/angular/angular
- - **[@angular/router@21.2.11](https://github.com/angular/angular)**
+- **[@angular/router@21.2.17](https://github.com/angular/angular)**
     - name: @angular/router
-    - version: 21.2.11
+   - version: 21.2.17
     - licenses: MIT
     - repository: https://github.com/angular/angular
  - **[@asamuzakjp/css-color@3.2.0](https://github.com/asamuzaK/cssColor)**
@@ -173,14 +173,14 @@
     - version: 3.2.0
     - licenses: MIT
     - repository: https://github.com/asamuzaK/cssColor
- - **[@babel/code-frame@7.29.0](https://github.com/babel/babel)**
+- **[@babel/code-frame@7.29.7](https://github.com/babel/babel)**
     - name: @babel/code-frame
-    - version: 7.29.0
+   - version: 7.29.7
     - licenses: MIT
     - repository: https://github.com/babel/babel
- - **[@babel/compat-data@7.29.3](https://github.com/babel/babel)**
+- **[@babel/compat-data@7.29.7](https://github.com/babel/babel)**
     - name: @babel/compat-data
-    - version: 7.29.3
+   - version: 7.29.7
     - licenses: MIT
     - repository: https://github.com/babel/babel
  - **[@babel/core@7.29.0](https://github.com/babel/babel)**
@@ -188,9 +188,14 @@
     - version: 7.29.0
     - licenses: MIT
     - repository: https://github.com/babel/babel
- - **[@babel/generator@7.29.1](https://github.com/babel/babel)**
+- **[@babel/core@7.29.7](https://github.com/babel/babel)**
+   - name: @babel/core
+   - version: 7.29.7
+   - licenses: MIT
+   - repository: https://github.com/babel/babel
+- **[@babel/generator@7.29.7](https://github.com/babel/babel)**
     - name: @babel/generator
-    - version: 7.29.1
+   - version: 7.29.7
     - licenses: MIT
     - repository: https://github.com/babel/babel
  - **[@babel/helper-annotate-as-pure@7.27.3](https://github.com/babel/babel)**
@@ -198,24 +203,24 @@
     - version: 7.27.3
     - licenses: MIT
     - repository: https://github.com/babel/babel
- - **[@babel/helper-compilation-targets@7.28.6](https://github.com/babel/babel)**
+- **[@babel/helper-compilation-targets@7.29.7](https://github.com/babel/babel)**
     - name: @babel/helper-compilation-targets
-    - version: 7.28.6
+   - version: 7.29.7
     - licenses: MIT
     - repository: https://github.com/babel/babel
- - **[@babel/helper-globals@7.28.0](https://github.com/babel/babel)**
+- **[@babel/helper-globals@7.29.7](https://github.com/babel/babel)**
     - name: @babel/helper-globals
-    - version: 7.28.0
+   - version: 7.29.7
     - licenses: MIT
     - repository: https://github.com/babel/babel
- - **[@babel/helper-module-imports@7.28.6](https://github.com/babel/babel)**
+- **[@babel/helper-module-imports@7.29.7](https://github.com/babel/babel)**
     - name: @babel/helper-module-imports
-    - version: 7.28.6
+   - version: 7.29.7
     - licenses: MIT
     - repository: https://github.com/babel/babel
- - **[@babel/helper-module-transforms@7.28.6](https://github.com/babel/babel)**
+- **[@babel/helper-module-transforms@7.29.7](https://github.com/babel/babel)**
     - name: @babel/helper-module-transforms
-    - version: 7.28.6
+   - version: 7.29.7
     - licenses: MIT
     - repository: https://github.com/babel/babel
  - **[@babel/helper-plugin-utils@7.28.6](https://github.com/babel/babel)**
@@ -228,29 +233,29 @@
     - version: 7.24.7
     - licenses: MIT
     - repository: https://github.com/babel/babel
- - **[@babel/helper-string-parser@7.27.1](https://github.com/babel/babel)**
+- **[@babel/helper-string-parser@7.29.7](https://github.com/babel/babel)**
     - name: @babel/helper-string-parser
-    - version: 7.27.1
+   - version: 7.29.7
     - licenses: MIT
     - repository: https://github.com/babel/babel
- - **[@babel/helper-validator-identifier@7.28.5](https://github.com/babel/babel)**
+- **[@babel/helper-validator-identifier@7.29.7](https://github.com/babel/babel)**
     - name: @babel/helper-validator-identifier
-    - version: 7.28.5
+   - version: 7.29.7
     - licenses: MIT
     - repository: https://github.com/babel/babel
- - **[@babel/helper-validator-option@7.27.1](https://github.com/babel/babel)**
+- **[@babel/helper-validator-option@7.29.7](https://github.com/babel/babel)**
     - name: @babel/helper-validator-option
-    - version: 7.27.1
+   - version: 7.29.7
     - licenses: MIT
     - repository: https://github.com/babel/babel
- - **[@babel/helpers@7.29.2](https://github.com/babel/babel)**
+- **[@babel/helpers@7.29.7](https://github.com/babel/babel)**
     - name: @babel/helpers
-    - version: 7.29.2
+   - version: 7.29.7
     - licenses: MIT
     - repository: https://github.com/babel/babel
- - **[@babel/parser@7.29.3](https://github.com/babel/babel)**
+- **[@babel/parser@7.29.7](https://github.com/babel/babel)**
     - name: @babel/parser
-    - version: 7.29.3
+   - version: 7.29.7
     - licenses: MIT
     - repository: https://github.com/babel/babel
  - **[@babel/plugin-syntax-async-generators@7.8.4](https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-async-generators)**
@@ -338,19 +343,19 @@
     - version: 7.28.6
     - licenses: MIT
     - repository: https://github.com/babel/babel
- - **[@babel/template@7.28.6](https://github.com/babel/babel)**
+- **[@babel/template@7.29.7](https://github.com/babel/babel)**
     - name: @babel/template
-    - version: 7.28.6
+   - version: 7.29.7
     - licenses: MIT
     - repository: https://github.com/babel/babel
- - **[@babel/traverse@7.29.0](https://github.com/babel/babel)**
+- **[@babel/traverse@7.29.7](https://github.com/babel/babel)**
     - name: @babel/traverse
-    - version: 7.29.0
+   - version: 7.29.7
     - licenses: MIT
     - repository: https://github.com/babel/babel
- - **[@babel/types@7.29.0](https://github.com/babel/babel)**
+- **[@babel/types@7.29.7](https://github.com/babel/babel)**
     - name: @babel/types
-    - version: 7.29.0
+   - version: 7.29.7
     - licenses: MIT
     - repository: https://github.com/babel/babel
  - **[@bbc/apache2-license-checker@1.1.4](https://github.com/bbc/apache2-license-checker)**
@@ -523,44 +528,44 @@
     - version: 0.1.6
     - licenses: MIT
     - repository: https://github.com/istanbuljs/schema
- - **[@jest/console@30.3.0](https://github.com/jestjs/jest)**
+- **[@jest/console@30.4.1](https://github.com/jestjs/jest)**
     - name: @jest/console
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[@jest/core@30.3.0](https://github.com/jestjs/jest)**
+- **[@jest/core@30.4.2](https://github.com/jestjs/jest)**
     - name: @jest/core
-    - version: 30.3.0
+   - version: 30.4.2
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[@jest/diff-sequences@30.3.0](https://github.com/jestjs/jest)**
+- **[@jest/diff-sequences@30.4.0](https://github.com/jestjs/jest)**
     - name: @jest/diff-sequences
-    - version: 30.3.0
+   - version: 30.4.0
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[@jest/environment-jsdom-abstract@30.3.0](https://github.com/jestjs/jest)**
+- **[@jest/environment-jsdom-abstract@30.4.1](https://github.com/jestjs/jest)**
     - name: @jest/environment-jsdom-abstract
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[@jest/environment@30.3.0](https://github.com/jestjs/jest)**
+- **[@jest/environment@30.4.1](https://github.com/jestjs/jest)**
     - name: @jest/environment
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[@jest/expect-utils@30.3.0](https://github.com/jestjs/jest)**
+- **[@jest/expect-utils@30.4.1](https://github.com/jestjs/jest)**
     - name: @jest/expect-utils
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[@jest/expect@30.3.0](https://github.com/jestjs/jest)**
+- **[@jest/expect@30.4.1](https://github.com/jestjs/jest)**
     - name: @jest/expect
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[@jest/fake-timers@30.3.0](https://github.com/jestjs/jest)**
+- **[@jest/fake-timers@30.4.1](https://github.com/jestjs/jest)**
     - name: @jest/fake-timers
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
  - **[@jest/get-type@30.1.0](https://github.com/jestjs/jest)**
@@ -568,19 +573,19 @@
     - version: 30.1.0
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[@jest/globals@30.3.0](https://github.com/jestjs/jest)**
+- **[@jest/globals@30.4.1](https://github.com/jestjs/jest)**
     - name: @jest/globals
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[@jest/pattern@30.0.1](https://github.com/jestjs/jest)**
+- **[@jest/pattern@30.4.0](https://github.com/jestjs/jest)**
     - name: @jest/pattern
-    - version: 30.0.1
+   - version: 30.4.0
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[@jest/reporters@30.3.0](https://github.com/jestjs/jest)**
+- **[@jest/reporters@30.4.1](https://github.com/jestjs/jest)**
     - name: @jest/reporters
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
  - **[@jest/schemas@29.6.3](https://github.com/jestjs/jest)**
@@ -588,14 +593,14 @@
     - version: 29.6.3
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[@jest/schemas@30.0.5](https://github.com/jestjs/jest)**
+- **[@jest/schemas@30.4.1](https://github.com/jestjs/jest)**
     - name: @jest/schemas
-    - version: 30.0.5
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[@jest/snapshot-utils@30.3.0](https://github.com/jestjs/jest)**
+- **[@jest/snapshot-utils@30.4.1](https://github.com/jestjs/jest)**
     - name: @jest/snapshot-utils
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
  - **[@jest/source-map@30.0.1](https://github.com/jestjs/jest)**
@@ -603,19 +608,19 @@
     - version: 30.0.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[@jest/test-result@30.3.0](https://github.com/jestjs/jest)**
+- **[@jest/test-result@30.4.1](https://github.com/jestjs/jest)**
     - name: @jest/test-result
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[@jest/test-sequencer@30.3.0](https://github.com/jestjs/jest)**
+- **[@jest/test-sequencer@30.4.1](https://github.com/jestjs/jest)**
     - name: @jest/test-sequencer
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[@jest/transform@30.3.0](https://github.com/jestjs/jest)**
+- **[@jest/transform@30.4.1](https://github.com/jestjs/jest)**
     - name: @jest/transform
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
  - **[@jest/types@29.6.3](https://github.com/jestjs/jest)**
@@ -623,9 +628,9 @@
     - version: 29.6.3
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[@jest/types@30.3.0](https://github.com/jestjs/jest)**
+- **[@jest/types@30.4.1](https://github.com/jestjs/jest)**
     - name: @jest/types
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
  - **[@jridgewell/gen-mapping@0.3.13](https://github.com/jridgewell/sourcemaps)**
@@ -703,6 +708,11 @@
     - version: 1.1.1
     - licenses: MIT
     - repository: https://github.com/Brooooooklyn/nice
+- **[@napi-rs/wasm-runtime@1.1.4](https://github.com/napi-rs/napi-rs)**
+   - name: @napi-rs/wasm-runtime
+   - version: 1.1.4
+   - licenses: MIT
+   - repository: https://github.com/napi-rs/napi-rs
  - **[@ngtools/json-schema@1.1.0](https://github.com/angular/angular-cli)**
     - name: @ngtools/json-schema
     - version: 1.1.0
@@ -823,19 +833,19 @@
     - version: 1.0.0-rc.4
     - licenses: MIT
     - repository: https://github.com/rolldown/rolldown
- - **[@rollup/rollup-linux-x64-gnu@4.60.3](https://github.com/rollup/rollup)**
+- **[@rollup/rollup-linux-x64-gnu@4.60.4](https://github.com/rollup/rollup)**
     - name: @rollup/rollup-linux-x64-gnu
-    - version: 4.60.3
+   - version: 4.60.4
     - licenses: MIT
     - repository: https://github.com/rollup/rollup
- - **[@rollup/rollup-linux-x64-musl@4.60.3](https://github.com/rollup/rollup)**
+- **[@rollup/rollup-linux-x64-musl@4.60.4](https://github.com/rollup/rollup)**
     - name: @rollup/rollup-linux-x64-musl
-    - version: 4.60.3
+   - version: 4.60.4
     - licenses: MIT
     - repository: https://github.com/rollup/rollup
- - **[@schematics/angular@21.2.9](https://github.com/angular/angular-cli)**
+- **[@schematics/angular@21.2.12](https://github.com/angular/angular-cli)**
     - name: @schematics/angular
-    - version: 21.2.9
+   - version: 21.2.12
     - licenses: MIT
     - repository: https://github.com/angular/angular-cli
  - **[@sigstore/bundle@4.0.0](https://github.com/sigstore/sigstore-js)**
@@ -998,9 +1008,9 @@
     - version: 21.1.7
     - licenses: MIT
     - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
- - **[@types/node@25.6.0](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+- **[@types/node@25.9.1](https://github.com/DefinitelyTyped/DefinitelyTyped)**
     - name: @types/node
-    - version: 25.6.0
+   - version: 25.9.1
     - licenses: MIT
     - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
  - **[@types/normalize-package-data@2.4.4](https://github.com/DefinitelyTyped/DefinitelyTyped)**
@@ -1038,14 +1048,14 @@
     - version: 1.3.1
     - licenses: ISC
     - repository: https://github.com/ungap/structured-clone
- - **[@unrs/resolver-binding-linux-x64-gnu@1.11.1](https://github.com/unrs/unrs-resolver)**
+- **[@unrs/resolver-binding-linux-x64-gnu@1.12.2](https://github.com/unrs/unrs-resolver)**
     - name: @unrs/resolver-binding-linux-x64-gnu
-    - version: 1.11.1
+   - version: 1.12.2
     - licenses: MIT
     - repository: https://github.com/unrs/unrs-resolver
- - **[@unrs/resolver-binding-linux-x64-musl@1.11.1](https://github.com/unrs/unrs-resolver)**
+- **[@unrs/resolver-binding-linux-x64-musl@1.12.2](https://github.com/unrs/unrs-resolver)**
     - name: @unrs/resolver-binding-linux-x64-musl
-    - version: 1.11.1
+   - version: 1.12.2
     - licenses: MIT
     - repository: https://github.com/unrs/unrs-resolver
  - **[@vitejs/plugin-basic-ssl@2.1.4](https://github.com/vitejs/vite-plugin-basic-ssl)**
@@ -1208,9 +1218,9 @@
     - version: 2.0.6
     - licenses: MIT
     - repository: https://github.com/kriskowal/asap
- - **[babel-jest@30.3.0](https://github.com/jestjs/jest)**
+- **[babel-jest@30.4.1](https://github.com/jestjs/jest)**
     - name: babel-jest
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
  - **[babel-plugin-istanbul@7.0.1](https://github.com/istanbuljs/babel-plugin-istanbul)**
@@ -1218,9 +1228,9 @@
     - version: 7.0.1
     - licenses: BSD-3-Clause
     - repository: https://github.com/istanbuljs/babel-plugin-istanbul
- - **[babel-plugin-jest-hoist@30.3.0](https://github.com/jestjs/jest)**
+- **[babel-plugin-jest-hoist@30.4.0](https://github.com/jestjs/jest)**
     - name: babel-plugin-jest-hoist
-    - version: 30.3.0
+   - version: 30.4.0
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
  - **[babel-preset-current-node-syntax@1.2.0](https://github.com/nicolo-ribaudo/babel-preset-current-node-syntax)**
@@ -1228,9 +1238,9 @@
     - version: 1.2.0
     - licenses: MIT
     - repository: https://github.com/nicolo-ribaudo/babel-preset-current-node-syntax
- - **[babel-preset-jest@30.3.0](https://github.com/jestjs/jest)**
+- **[babel-preset-jest@30.4.0](https://github.com/jestjs/jest)**
     - name: babel-preset-jest
-    - version: 30.3.0
+   - version: 30.4.0
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
  - **[balanced-match@1.0.2](https://github.com/juliangruber/balanced-match)**
@@ -1243,9 +1253,9 @@
     - version: 4.0.4
     - licenses: MIT
     - repository: https://github.com/juliangruber/balanced-match
- - **[baseline-browser-mapping@2.10.27](https://github.com/web-platform-dx/baseline-browser-mapping)**
+- **[baseline-browser-mapping@2.10.31](https://github.com/web-platform-dx/baseline-browser-mapping)**
     - name: baseline-browser-mapping
-    - version: 2.10.27
+   - version: 2.10.31
     - licenses: Apache-2.0
     - repository: https://github.com/web-platform-dx/baseline-browser-mapping
  - **[beasties@0.4.1](https://github.com/danielroe/beasties)**
@@ -1273,9 +1283,9 @@
     - version: 2.1.0
     - licenses: MIT
     - repository: https://github.com/juliangruber/brace-expansion
- - **[brace-expansion@5.0.5](https://github.com/juliangruber/brace-expansion)**
+- **[brace-expansion@5.0.6](https://github.com/juliangruber/brace-expansion)**
     - name: brace-expansion
-    - version: 5.0.5
+   - version: 5.0.6
     - licenses: MIT
     - repository: https://github.com/juliangruber/brace-expansion
  - **[browserslist@4.28.2](https://github.com/browserslist/browserslist)**
@@ -1338,9 +1348,9 @@
     - version: 6.3.0
     - licenses: MIT
     - repository: https://github.com/sindresorhus/camelcase
- - **[caniuse-lite@1.0.30001792](https://github.com/browserslist/caniuse-lite)**
+- **[caniuse-lite@1.0.30001793](https://github.com/browserslist/caniuse-lite)**
     - name: caniuse-lite
-    - version: 1.0.30001792
+   - version: 1.0.30001793
     - licenses: CC-BY-4.0
     - repository: https://github.com/browserslist/caniuse-lite
  - **[chalk@0.5.1](https://github.com/sindresorhus/chalk)**
@@ -1503,6 +1513,11 @@
     - version: 1.0.5
     - licenses: MIT
     - repository: https://github.com/jshttp/content-type
+- **[content-type@2.0.0](https://github.com/jshttp/content-type)**
+   - name: content-type
+   - version: 2.0.0
+   - licenses: MIT
+   - repository: https://github.com/jshttp/content-type
  - **[conventional-changelog-angular@8.3.1](https://github.com/conventional-changelog/conventional-changelog)**
     - name: conventional-changelog-angular
     - version: 8.3.1
@@ -1738,9 +1753,9 @@
     - version: 1.1.1
     - licenses: MIT
     - repository: https://github.com/jonathanong/ee-first
- - **[electron-to-chromium@1.5.351](https://github.com/Kilian/electron-to-chromium)**
+- **[electron-to-chromium@1.5.361](https://github.com/Kilian/electron-to-chromium)**
     - name: electron-to-chromium
-    - version: 1.5.351
+   - version: 1.5.361
     - licenses: ISC
     - repository: https://github.com/Kilian/electron-to-chromium
  - **[emittery@0.13.1](https://github.com/sindresorhus/emittery)**
@@ -1888,9 +1903,9 @@
     - version: 0.2.2
     - licenses: MIT
     - repository: https://github.com/gruntjs/node-exit-x
- - **[expect@30.3.0](https://github.com/jestjs/jest)**
+- **[expect@30.4.1](https://github.com/jestjs/jest)**
     - name: expect
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
  - **[exponential-backoff@3.1.3](https://github.com/coveooss/exponential-backoff)**
@@ -1898,9 +1913,9 @@
     - version: 3.1.3
     - licenses: Apache-2.0
     - repository: https://github.com/coveooss/exponential-backoff
- - **[express-rate-limit@8.5.1](https://github.com/express-rate-limit/express-rate-limit)**
+- **[express-rate-limit@8.5.2](https://github.com/express-rate-limit/express-rate-limit)**
     - name: express-rate-limit
-    - version: 8.5.1
+   - version: 8.5.2
     - licenses: MIT
     - repository: https://github.com/express-rate-limit/express-rate-limit
  - **[express@5.2.1](https://github.com/expressjs/express)**
@@ -1988,9 +2003,9 @@
     - version: 2.0.5
     - licenses: ISC
     - repository: https://github.com/stefanpenner/get-caller-file
- - **[get-east-asian-width@1.5.0](https://github.com/sindresorhus/get-east-asian-width)**
+- **[get-east-asian-width@1.6.0](https://github.com/sindresorhus/get-east-asian-width)**
     - name: get-east-asian-width
-    - version: 1.5.0
+   - version: 1.6.0
     - licenses: MIT
     - repository: https://github.com/sindresorhus/get-east-asian-width
  - **[get-intrinsic@1.3.0](https://github.com/ljharb/get-intrinsic)**
@@ -2083,9 +2098,9 @@
     - version: 2.0.3
     - licenses: MIT
     - repository: https://github.com/inspect-js/hasOwn
- - **[hono@4.12.18](https://github.com/honojs/hono)**
+- **[hono@4.12.22](https://github.com/honojs/hono)**
     - name: hono
-    - version: 4.12.18
+   - version: 4.12.22
     - licenses: MIT
     - repository: https://github.com/honojs/hono
  - **[hosted-git-info@2.8.9](https://github.com/npm/hosted-git-info)**
@@ -2313,74 +2328,74 @@
     - version: 1.0.0
     - licenses: UNLICENSED
     - repository: Repository
- - **[jest-changed-files@30.3.0](https://github.com/jestjs/jest)**
+- **[jest-changed-files@30.4.1](https://github.com/jestjs/jest)**
     - name: jest-changed-files
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[jest-circus@30.3.0](https://github.com/jestjs/jest)**
+- **[jest-circus@30.4.2](https://github.com/jestjs/jest)**
     - name: jest-circus
-    - version: 30.3.0
+   - version: 30.4.2
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[jest-cli@30.3.0](https://github.com/jestjs/jest)**
+- **[jest-cli@30.4.2](https://github.com/jestjs/jest)**
     - name: jest-cli
-    - version: 30.3.0
+   - version: 30.4.2
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[jest-config@30.3.0](https://github.com/jestjs/jest)**
+- **[jest-config@30.4.2](https://github.com/jestjs/jest)**
     - name: jest-config
-    - version: 30.3.0
+   - version: 30.4.2
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[jest-diff@30.3.0](https://github.com/jestjs/jest)**
+- **[jest-diff@30.4.1](https://github.com/jestjs/jest)**
     - name: jest-diff
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[jest-docblock@30.2.0](https://github.com/jestjs/jest)**
+- **[jest-docblock@30.4.0](https://github.com/jestjs/jest)**
     - name: jest-docblock
-    - version: 30.2.0
+   - version: 30.4.0
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[jest-each@30.3.0](https://github.com/jestjs/jest)**
+- **[jest-each@30.4.1](https://github.com/jestjs/jest)**
     - name: jest-each
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[jest-environment-jsdom@30.3.0](https://github.com/jestjs/jest)**
+- **[jest-environment-jsdom@30.4.1](https://github.com/jestjs/jest)**
     - name: jest-environment-jsdom
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[jest-environment-node@30.3.0](https://github.com/jestjs/jest)**
+- **[jest-environment-node@30.4.1](https://github.com/jestjs/jest)**
     - name: jest-environment-node
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[jest-haste-map@30.3.0](https://github.com/jestjs/jest)**
+- **[jest-haste-map@30.4.1](https://github.com/jestjs/jest)**
     - name: jest-haste-map
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[jest-leak-detector@30.3.0](https://github.com/jestjs/jest)**
+- **[jest-leak-detector@30.4.1](https://github.com/jestjs/jest)**
     - name: jest-leak-detector
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[jest-matcher-utils@30.3.0](https://github.com/jestjs/jest)**
+- **[jest-matcher-utils@30.4.1](https://github.com/jestjs/jest)**
     - name: jest-matcher-utils
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[jest-message-util@30.3.0](https://github.com/jestjs/jest)**
+- **[jest-message-util@30.4.1](https://github.com/jestjs/jest)**
     - name: jest-message-util
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[jest-mock@30.3.0](https://github.com/jestjs/jest)**
+- **[jest-mock@30.4.1](https://github.com/jestjs/jest)**
     - name: jest-mock
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
  - **[jest-pnp-resolver@1.2.3](https://github.com/arcanis/jest-pnp-resolver)**
@@ -2388,39 +2403,39 @@
     - version: 1.2.3
     - licenses: MIT
     - repository: https://github.com/arcanis/jest-pnp-resolver
- - **[jest-preset-angular@16.1.4](https://github.com/thymikee/jest-preset-angular)**
+- **[jest-preset-angular@16.1.5](https://github.com/thymikee/jest-preset-angular)**
     - name: jest-preset-angular
-    - version: 16.1.4
+   - version: 16.1.5
     - licenses: MIT
     - repository: https://github.com/thymikee/jest-preset-angular
- - **[jest-regex-util@30.0.1](https://github.com/jestjs/jest)**
+- **[jest-regex-util@30.4.0](https://github.com/jestjs/jest)**
     - name: jest-regex-util
-    - version: 30.0.1
+   - version: 30.4.0
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[jest-resolve-dependencies@30.3.0](https://github.com/jestjs/jest)**
+- **[jest-resolve-dependencies@30.4.2](https://github.com/jestjs/jest)**
     - name: jest-resolve-dependencies
-    - version: 30.3.0
+   - version: 30.4.2
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[jest-resolve@30.3.0](https://github.com/jestjs/jest)**
+- **[jest-resolve@30.4.1](https://github.com/jestjs/jest)**
     - name: jest-resolve
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[jest-runner@30.3.0](https://github.com/jestjs/jest)**
+- **[jest-runner@30.4.2](https://github.com/jestjs/jest)**
     - name: jest-runner
-    - version: 30.3.0
+   - version: 30.4.2
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[jest-runtime@30.3.0](https://github.com/jestjs/jest)**
+- **[jest-runtime@30.4.2](https://github.com/jestjs/jest)**
     - name: jest-runtime
-    - version: 30.3.0
+   - version: 30.4.2
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[jest-snapshot@30.3.0](https://github.com/jestjs/jest)**
+- **[jest-snapshot@30.4.1](https://github.com/jestjs/jest)**
     - name: jest-snapshot
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
  - **[jest-sonar-reporter@2.0.0](https://github.com/3dmind/jest-sonar-reporter)**
@@ -2433,29 +2448,29 @@
     - version: 29.7.0
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[jest-util@30.3.0](https://github.com/jestjs/jest)**
+- **[jest-util@30.4.1](https://github.com/jestjs/jest)**
     - name: jest-util
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[jest-validate@30.3.0](https://github.com/jestjs/jest)**
+- **[jest-validate@30.4.1](https://github.com/jestjs/jest)**
     - name: jest-validate
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[jest-watcher@30.3.0](https://github.com/jestjs/jest)**
+- **[jest-watcher@30.4.1](https://github.com/jestjs/jest)**
     - name: jest-watcher
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[jest-worker@30.3.0](https://github.com/jestjs/jest)**
+- **[jest-worker@30.4.1](https://github.com/jestjs/jest)**
     - name: jest-worker
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[jest@30.3.0](https://github.com/jestjs/jest)**
+- **[jest@30.4.2](https://github.com/jestjs/jest)**
     - name: jest
-    - version: 30.3.0
+   - version: 30.4.2
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
  - **[jose@6.2.3](https://github.com/panva/jose)**
@@ -2463,9 +2478,9 @@
     - version: 6.2.3
     - licenses: MIT
     - repository: https://github.com/panva/jose
- - **[js-cookie@3.0.5](https://github.com/js-cookie/js-cookie)**
+- **[js-cookie@3.0.7](https://github.com/js-cookie/js-cookie)**
     - name: js-cookie
-    - version: 3.0.5
+   - version: 3.0.7
     - licenses: MIT
     - repository: https://github.com/js-cookie/js-cookie
  - **[js-tokens@4.0.0](https://github.com/lydell/js-tokens)**
@@ -2588,9 +2603,9 @@
     - version: 10.4.3
     - licenses: ISC
     - repository: https://github.com/isaacs/node-lru-cache
- - **[lru-cache@11.3.6](https://github.com/isaacs/node-lru-cache)**
+- **[lru-cache@11.5.0](https://github.com/isaacs/node-lru-cache)**
     - name: lru-cache
-    - version: 11.3.6
+   - version: 11.5.0
     - licenses: BlueOak-1.0.0
     - repository: https://github.com/isaacs/node-lru-cache
  - **[lru-cache@5.1.1](https://github.com/isaacs/node-lru-cache)**
@@ -2818,9 +2833,9 @@
     - version: 0.4.0
     - licenses: MIT
     - repository: https://github.com/broofa/node-int64
- - **[node-releases@2.0.38](https://github.com/chicoxyzzy/node-releases)**
+- **[node-releases@2.0.46](https://github.com/chicoxyzzy/node-releases)**
     - name: node-releases
-    - version: 2.0.38
+   - version: 2.0.46
     - licenses: MIT
     - repository: https://github.com/chicoxyzzy/node-releases
  - **[nopt@2.2.1](https://github.com/isaacs/nopt)**
@@ -3113,14 +3128,14 @@
     - version: 7.0.1
     - licenses: MIT
     - repository: https://github.com/postcss/postcss-safe-parser
- - **[postcss@8.5.14](https://github.com/postcss/postcss)**
+- **[postcss@8.5.15](https://github.com/postcss/postcss)**
     - name: postcss
-    - version: 8.5.14
+   - version: 8.5.15
     - licenses: MIT
     - repository: https://github.com/postcss/postcss
- - **[pretty-format@30.3.0](https://github.com/jestjs/jest)**
+- **[pretty-format@30.4.1](https://github.com/jestjs/jest)**
     - name: pretty-format
-    - version: 30.3.0
+   - version: 30.4.1
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
  - **[proc-log@6.1.0](https://github.com/npm/proc-log)**
@@ -3148,9 +3163,9 @@
     - version: 7.0.1
     - licenses: MIT
     - repository: https://github.com/dubzzz/pure-rand
- - **[qs@6.15.1](https://github.com/ljharb/qs)**
+- **[qs@6.15.2](https://github.com/ljharb/qs)**
     - name: qs
-    - version: 6.15.1
+   - version: 6.15.2
     - licenses: BSD-3-Clause
     - repository: https://github.com/ljharb/qs
  - **[range-parser@1.2.1](https://github.com/jshttp/range-parser)**
@@ -3166,6 +3181,11 @@
  - **[react-is@18.3.1](https://github.com/facebook/react)**
     - name: react-is
     - version: 18.3.1
+   - licenses: MIT
+   - repository: https://github.com/facebook/react
+- **[react-is@19.2.6](https://github.com/facebook/react)**
+   - name: react-is
+   - version: 19.2.6
     - licenses: MIT
     - repository: https://github.com/facebook/react
  - **[read-installed@4.0.3](https://github.com/isaacs/read-installed)**
@@ -3258,9 +3278,9 @@
     - version: 1.0.0-rc.4
     - licenses: MIT
     - repository: https://github.com/rolldown/rolldown
- - **[rollup@4.60.3](https://github.com/rollup/rollup)**
+- **[rollup@4.60.4](https://github.com/rollup/rollup)**
     - name: rollup
-    - version: 4.60.3
+   - version: 4.60.4
     - licenses: MIT
     - repository: https://github.com/rollup/rollup
  - **[router@2.2.0](https://github.com/pillarjs/router)**
@@ -3283,14 +3303,14 @@
     - version: 2.1.2
     - licenses: MIT
     - repository: https://github.com/ChALkeR/safer-buffer
- - **[sass@1.97.3](https://github.com/sass/dart-sass)**
+- **[sass@1.100.0](https://github.com/sass/dart-sass)**
     - name: sass
-    - version: 1.97.3
+   - version: 1.100.0
     - licenses: MIT
     - repository: https://github.com/sass/dart-sass
- - **[sass@1.99.0](https://github.com/sass/dart-sass)**
+- **[sass@1.97.3](https://github.com/sass/dart-sass)**
     - name: sass
-    - version: 1.99.0
+   - version: 1.97.3
     - licenses: MIT
     - repository: https://github.com/sass/dart-sass
  - **[saxes@6.0.0](https://github.com/lddubeau/saxes)**
@@ -3313,6 +3333,11 @@
     - version: 7.7.4
     - licenses: ISC
     - repository: https://github.com/npm/node-semver
+- **[semver@7.8.1](https://github.com/npm/node-semver)**
+   - name: semver
+   - version: 7.8.1
+   - licenses: ISC
+   - repository: https://github.com/npm/node-semver
  - **[send@1.2.1](https://github.com/pillarjs/send)**
     - name: send
     - version: 1.2.1
@@ -3408,9 +3433,9 @@
     - version: 8.0.5
     - licenses: MIT
     - repository: https://github.com/TooTallNate/proxy-agents
- - **[socks@2.8.8](https://github.com/JoshGlazebrook/socks)**
+- **[socks@2.8.9](https://github.com/JoshGlazebrook/socks)**
     - name: socks
-    - version: 2.8.8
+   - version: 2.8.9
     - licenses: MIT
     - repository: https://github.com/JoshGlazebrook/socks
  - **[source-map-js@1.2.1](https://github.com/7rulnik/source-map-js)**
@@ -3598,9 +3623,9 @@
     - version: 0.11.12
     - licenses: MIT
     - repository: https://github.com/un-ts/synckit
- - **[tar@7.5.14](https://github.com/isaacs/node-tar)**
+- **[tar@7.5.15](https://github.com/isaacs/node-tar)**
     - name: tar
-    - version: 7.5.14
+   - version: 7.5.15
     - licenses: BlueOak-1.0.0
     - repository: https://github.com/isaacs/node-tar
  - **[test-exclude@6.0.0](https://github.com/istanbuljs/test-exclude)**
@@ -3653,9 +3678,9 @@
     - version: 29.1.3
     - licenses: MIT
     - repository: https://github.com/kulshekhar/ts-jest
- - **[ts-jest@29.4.9](https://github.com/kulshekhar/ts-jest)**
+- **[ts-jest@29.4.11](https://github.com/kulshekhar/ts-jest)**
     - name: ts-jest
-    - version: 29.4.9
+   - version: 29.4.11
     - licenses: MIT
     - repository: https://github.com/kulshekhar/ts-jest
  - **[ts-node@10.9.2](https://github.com/TypeStrong/ts-node)**
@@ -3708,9 +3733,9 @@
     - version: 4.41.0
     - licenses: (MIT OR CC0-1.0)
     - repository: https://github.com/sindresorhus/type-fest
- - **[type-is@2.0.1](https://github.com/jshttp/type-is)**
+- **[type-is@2.1.0](https://github.com/jshttp/type-is)**
     - name: type-is
-    - version: 2.0.1
+   - version: 2.1.0
     - licenses: MIT
     - repository: https://github.com/jshttp/type-is
  - **[typescript@5.9.3](https://github.com/microsoft/TypeScript)**
@@ -3723,9 +3748,9 @@
     - version: 3.19.3
     - licenses: BSD-2-Clause
     - repository: https://github.com/mishoo/UglifyJS
- - **[undici-types@7.19.2](https://github.com/nodejs/undici)**
+- **[undici-types@7.24.6](https://github.com/nodejs/undici)**
     - name: undici-types
-    - version: 7.19.2
+   - version: 7.24.6
     - licenses: MIT
     - repository: https://github.com/nodejs/undici
  - **[undici@6.25.0](https://github.com/nodejs/undici)**
@@ -3748,9 +3773,9 @@
     - version: 1.0.0
     - licenses: MIT
     - repository: https://github.com/stream-utils/unpipe
- - **[unrs-resolver@1.11.1](https://github.com/unrs/unrs-resolver)**
+- **[unrs-resolver@1.12.2](https://github.com/unrs/unrs-resolver)**
     - name: unrs-resolver
-    - version: 1.11.1
+   - version: 1.12.2
     - licenses: MIT
     - repository: https://github.com/unrs/unrs-resolver
  - **[update-browserslist-db@1.2.3](https://github.com/browserslist/update-db)**
@@ -3878,9 +3903,9 @@
     - version: 5.0.1
     - licenses: ISC
     - repository: https://github.com/npm/write-file-atomic
- - **[ws@8.20.0](https://github.com/websockets/ws)**
+- **[ws@8.20.1](https://github.com/websockets/ws)**
     - name: ws
-    - version: 8.20.0
+   - version: 8.20.1
     - licenses: MIT
     - repository: https://github.com/websockets/ws
  - **[xml-name-validator@5.0.0](https://github.com/jsdom/xml-name-validator)**
