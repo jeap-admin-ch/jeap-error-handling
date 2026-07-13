@@ -24,6 +24,11 @@ form button mat-icon {
 	display: flex;
 }
 
+.no-ticket-checkbox {
+	display: block;
+	margin-bottom: 16px;
+}
+
 .paginator-container {
 	display: flex;
 	justify-content: flex-end;

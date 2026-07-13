@@ -198,7 +198,7 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <pre>{{ causingEventPayload$ | async }}</pre>
+        <pre data-testid="causing-event-payload">{{ causingEventPayload$ | async }}</pre>
       </div>
     </div>
     @if (error.stacktrace) {

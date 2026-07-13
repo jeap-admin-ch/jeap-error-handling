@@ -25,6 +25,7 @@ public class ErrorSearchCriteria extends BaseSearchCriteria {
     private Pattern stacktracePattern;
     private String closingReason;
     private String ticketNumber;
+    private Boolean noTicket;
 
     public Optional<ZonedDateTime> getFrom() {
         return Optional.ofNullable(this.from);
@@ -58,6 +59,9 @@ public class ErrorSearchCriteria extends BaseSearchCriteria {
     }
     public Optional<String> getTicketNumber() {
         return Optional.ofNullable(this.ticketNumber);
+    }
+    public Optional<Boolean> getNoTicket() {
+        return Optional.ofNullable(this.noTicket);
     }
 
     @Override

@@ -1,35 +1,36 @@
-# jEAP Error Handling Service Core Logic Library
-Error Handling Service supports error handling patterns for errors, i.e. retry for temporary issues, persistence
-and retry/handling for permanent errors.
+# jEAP Error Handling Service
 
-## Installing / Getting started
+The jEAP Error Handling Service (EHS) makes sure that no Kafka message is lost when its processing fails in
+a business application. It consumes `MessageProcessingFailedEvent`s published by the jEAP messaging error
+handler, persists the failed messages, automatically retries temporary errors, escalates permanent errors
+to manual tasks, and provides a UI to inspect, resend and close errors — with optional grouping of related
+errors and Jira issue tracking.
 
-Normally you will not use this project directly, but instead set up your own error service depending on this common library. Check the documentation in confluence for details.
+This repository is published as a **library**: every business system creates and deploys its own EHS
+instance depending on it.
 
-## Developing
+## Documentation
 
-### Start the error service locally
+- [Getting Started](docs/getting-started.md) — set up an EHS instance for your system
+- [Architecture](docs/architecture.md) — context, building blocks, error state model, data model
+- [Message Flows](docs/message-flows.md) — sequence diagrams of the runtime behaviour
+- [MessageProcessingFailedEvent](docs/message-processing-failed-event.md) — the inbound event contract
+- [Configuration](docs/configuration.md) — the complete property reference
+- [User Interface](docs/user-interface.md) — views, filters, roles and persisted view settings
+- [Error Groups](docs/error-groups.md) — grouping of permanent errors and Jira integration
+- [Operations](docs/operations.md) — dead letter topic, housekeeping, metrics, multi-cluster
+- [Customization](docs/customization.md) — custom resending strategy, task factory and back-off
+- [Development](docs/development.md) — building, running and testing this repository
 
-1. Publish a local snapshot 
-2. Then use the jme-messaging-example with a dependency on the snapshot for tests
+## Versioning
 
-For UI: 
-1. Start the Docker Stuff in jme-messaging-example
-2. Start the Auth (OAuth-Mock Server) in jme-messaging-example under profile 'local'
-3. Start the Error-SCS as Backend in the jme-messaging-example (profile local-ui)
-4. Start the jeap-error-handling-ui as ng serve (localhost:4200) in this project
-
-### Versioning
-
-This library needs to be versioned using [Semantic Versioning](http://semver.org/) and all changed need to be documented at [CHANGELOG.md](./CHANGELOG.md) following the format defined in [Keep a Changelog](http://keepachangelog.com/)
-
-## Changes
-Change log is available at [CHANGELOG.md](./CHANGELOG.md)
+This library is versioned using [Semantic Versioning](http://semver.org/) and all changes are documented in
+[CHANGELOG.md](./CHANGELOG.md) following the format defined in [Keep a Changelog](http://keepachangelog.com/).
 
 ## Note
 
-This repository is part the open source distribution of jEAP. See [github.com/jeap-admin-ch/jeap](https://github.com/jeap-admin-ch/jeap)
-for more information.
+This repository is part of the open source distribution of jEAP. See
+[github.com/jeap-admin-ch/jeap](https://github.com/jeap-admin-ch/jeap) for more information.
 
 ## License
 

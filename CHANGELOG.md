@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [18.6.0] - 2026-07-09
+
+### Added
+
+- Add "no Jira ticket" filter to the error list view
+- Persist the "no Jira ticket" filter, sort order and page size of the error list view in local storage
+- Make the defaults of the "no Jira ticket" filter and the error state filter configurable
+  (`jeap.errorhandling.error-list.default-no-ticket-filter` / `default-state-filter`), locally persisted user settings take precedence
+- Add Playwright browser end-to-end tests for the main UI use cases
+- Add repository documentation under `docs/` (architecture, message flows, configuration, operations, ...)
+
 ## [18.5.0] - 2026-07-03
 
 ### Added

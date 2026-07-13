@@ -96,6 +96,7 @@ public class ErrorController {
                 .stacktracePattern(errorSearchFormDto.getStacktracePattern())
                 .closingReason(errorSearchFormDto.getClosingReason())
                 .ticketNumber(errorSearchFormDto.getTicketNumber())
+                .noTicket(errorSearchFormDto.getNoTicket())
                 .sort(sort)
                 .build();
 

@@ -31,6 +31,8 @@ class ConfigurationControllerTest {
     private FrontendConfigProperties frontendConfigProperties;
     @MockitoBean
     private ErrorGroupConfigProperties errorGroupConfigProperties;
+    @MockitoBean
+    private ErrorListConfigProperties errorListConfigProperties;
 
     @Test
     void getLogDeepLink() throws Exception {
@@ -56,6 +58,17 @@ class ConfigurationControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.issueTrackingEnabled").value(issueTrackingEnabled))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.defaultSortField").value("errorCount"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.defaultSortOrder").value("ASC"));
+    }
+
+    @Test
+    void getErrorListConfiguration() throws Exception {
+        Mockito.when(errorListConfigProperties.isDefaultNoTicketFilter()).thenReturn(true);
+        Mockito.when(errorListConfigProperties.getDefaultStateFilter()).thenReturn("DELETED");
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/configuration/error-list"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.defaultNoTicketFilter").value(true))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.defaultStateFilter").value("DELETED"));
     }
 
     @Test

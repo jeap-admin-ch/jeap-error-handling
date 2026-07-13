@@ -23,6 +23,8 @@ class ConfigurationController {
 
     private final ErrorGroupConfigProperties errorGroupConfigProperties;
 
+    private final ErrorListConfigProperties errorListConfigProperties;
+
 
     @Value("${jeap.security.oauth2.resourceserver.authorization-server.issuer}")
     private String authority;
@@ -55,6 +57,15 @@ class ConfigurationController {
     @GetMapping("/log-deeplink")
     public String getLogDeepLink() {
         return logDeepLinkProperties.getBaseUrl();
+    }
+
+    @Schema(description = "Returns the error list view configuration.")
+    @GetMapping("/error-list")
+    public ErrorListConfigurationDTO getErrorListConfiguration() {
+        return ErrorListConfigurationDTO.builder()
+                .defaultNoTicketFilter(errorListConfigProperties.isDefaultNoTicketFilter())
+                .defaultStateFilter(errorListConfigProperties.getDefaultStateFilter())
+                .build();
     }
 
     @Schema(description = "Returns the error group handling configuration.")

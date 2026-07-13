@@ -2,7 +2,8 @@
 <mat-dialog-content>
 	<p>{{'i18n.errorhandling.closing-dialog.prompt' | translate}}</p>
 	<mat-form-field>
-		<input matInput [(ngModel)]="data.inputText" maxlength="1000" />
+		<input matInput [(ngModel)]="data.inputText" maxlength="1000"
+			   [attr.aria-label]="'i18n.errorhandling.form.closing-reason' | translate" />
 	</mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

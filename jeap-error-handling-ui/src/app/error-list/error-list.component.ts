@@ -1,11 +1,12 @@
 import {AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {Observable, merge, Subject, tap} from 'rxjs';
+import {Observable, ReplaySubject, merge, Subject, tap} from 'rxjs';
 import {ErrorService} from '../shared/errorservice/error.service';
 import {ErrorDTO, ErrorListDTO, ErrorSearchFormDto} from '../shared/errorservice/error.model';
+import {ErrorListConfiguration} from '../shared/errorservice/error-list-config.model';
 import {NotifierService} from '../shared/notifier/notifier.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {MatSort, Sort} from '@angular/material/sort';
-import {map, startWith, switchMap, takeUntil} from 'rxjs/operators';
+import {map, startWith, switchMap, take, takeUntil} from 'rxjs/operators';
 import {LogDeepLinkService} from '../shared/logdeeplink/logdeeplink.service';
 import {SelectionModel} from '@angular/cdk/collections';
 import {TranslateService} from '@ngx-translate/core';
@@ -16,6 +17,23 @@ import {environment} from '../../environments/environment';
 import {DropDownElement} from '../shared/models/drop-down-element.model';
 import {BaseComponent} from '../shared/BaseComponent';
 import {MatPaginator} from '@angular/material/paginator';
+
+const ERROR_LIST_NO_TICKET_STORAGE_KEY = 'jeap-error-handling.error-list.no-ticket';
+const ERROR_LIST_STATE_FILTER_STORAGE_KEY = 'jeap-error-handling.error-list.state-filter';
+const ERROR_LIST_SORT_STORAGE_KEY = 'jeap-error-handling.error-list.sort';
+const ERROR_LIST_PAGE_SIZE_STORAGE_KEY = 'jeap-error-handling.error-list.page-size';
+const DEFAULT_STATE_FILTER = 'PERMANENT';
+const FALLBACK_SORT: Sort = {active: 'errorEventMetadata.created', direction: 'desc'};
+const SUPPORTED_SORT_FIELDS = new Set([
+	'errorEventMetadata.created',
+	'causingEvent.metadata.type.name',
+	'errorEventMetadata.publisher.service',
+	'state',
+	'errorEventData.message',
+	'errorEventData.code'
+]);
+const PAGE_SIZE_OPTIONS = [5, 10, 20, 50, 100];
+const DEFAULT_PAGE_SIZE = 20;
 
 @Component({
 	selector: 'error-list',
@@ -53,6 +71,13 @@ export class ErrorListComponent extends BaseComponent implements AfterViewInit, 
 	logDeepLinkTemplate: string;
 
 	errorSearchFilter = new ErrorSearchFilter();
+
+	initialSort: Sort = this.readStoredSort() ?? {...FALLBACK_SORT};
+	initialPageSize: number = this.readStoredPageSize();
+
+	private defaultNoTicketFilter = false;
+	private defaultStateFilter = DEFAULT_STATE_FILTER;
+	private filterDefaultsInitialized$ = new ReplaySubject<void>(1);
 
 	protected readonly environment = environment;
 
@@ -96,32 +121,64 @@ export class ErrorListComponent extends BaseComponent implements AfterViewInit, 
 			map(value => this.filterOptions(value || '')),
 		);
 
-		this.activatedRoute.queryParams.subscribe((params) => {
-			if (params.from) {
-				this.datePickerFromControl.setValue(new Date(params.from));
-			}
-			if (params.to) {
-				this.datePickerToControl.setValue(new Date(params.to));
-			}
-			this.eventNameControl.setValue(params.en);
-			this.traceIdControl.setValue(params.traceId);
-			this.eventIdControl.setValue(params.eventId);
-			this.stacktraceControl.setValue(params.st);
-			this.dropDownEventSourceControl.setValue(params.source);
-			this.dropDownStateControl.setValue(params.es ?? 'PERMANENT');
-			this.dropDownErrorCodeControl.setValue(params.ec);
-			this.ticketNumberControl.setValue(params.ticketNumber);
+		this.errorService.getErrorListConfiguration().subscribe({
+			next: config => this.initializeFilterDefaults(config),
+			error: () => this.initializeFilterDefaults(null)
 		});
+	}
 
+	/**
+	 * Applies the configured filter defaults, then wires up the query param handling. Locally persisted
+	 * user settings and query params take precedence over the configured defaults.
+	 */
+	private initializeFilterDefaults(config: ErrorListConfiguration | null): void {
+		if (config) {
+			this.defaultNoTicketFilter = config.defaultNoTicketFilter === true;
+			this.defaultStateFilter = this.isValidStateFilter(config.defaultStateFilter)
+				? config.defaultStateFilter : DEFAULT_STATE_FILTER;
+		}
+		this.subscribeToQueryParams();
+		this.filterDefaultsInitialized$.next();
+	}
+
+	private subscribeToQueryParams(): void {
+		this.activatedRoute.queryParams
+			.pipe(takeUntil(this.destroy$))
+			.subscribe((params) => {
+				if (params.from) {
+					this.datePickerFromControl.setValue(new Date(params.from));
+				}
+				if (params.to) {
+					this.datePickerToControl.setValue(new Date(params.to));
+				}
+				this.eventNameControl.setValue(params.en);
+				this.traceIdControl.setValue(params.traceId);
+				this.eventIdControl.setValue(params.eventId);
+				this.stacktraceControl.setValue(params.st);
+				this.dropDownEventSourceControl.setValue(params.source);
+				// precedence: query param, then locally persisted user setting, then configured default
+				this.dropDownStateControl.setValue(
+					params.es ?? this.readStoredStateFilter() ?? this.defaultStateFilter, {emitEvent: false});
+				this.dropDownErrorCodeControl.setValue(params.ec);
+				this.ticketNumberControl.setValue(params.ticketNumber);
+				this.noTicketControl.setValue(
+					params.noTicket != null ? params.noTicket === 'true' : (this.readStoredNoTicket() ?? this.defaultNoTicketFilter),
+					{emitEvent: false});
+			});
 	}
 
 	ngAfterViewInit(): void {
-		// Merge pagination and sort events
-		merge(
-			this.sort.sortChange.pipe(tap(() => this.paginator.firstPage())),
-			this.paginator.page
-		).pipe(
-			startWith({}),
+		// Trigger the initial load once the configured filter defaults are applied,
+		// then reload on pagination and sort events
+		this.filterDefaultsInitialized$.pipe(
+			take(1),
+			switchMap(() => merge(
+				this.sort.sortChange.pipe(tap(sortState => {
+					this.paginator.firstPage();
+					this.persistSort(sortState);
+				})),
+				this.paginator.page.pipe(tap(pageEvent => this.persistPageSize(pageEvent.pageSize)))
+			).pipe(startWith({}))),
 			tap(() => this.isLoadingResults = true),
 			switchMap(() => this.loadErrors(this.paginator.pageIndex, this.sort)),
 			takeUntil(this.destroy$)
@@ -173,6 +230,7 @@ export class ErrorListComponent extends BaseComponent implements AfterViewInit, 
 		this.errorSearchFilter.es = this.retrieveValue(this.dropDownStateControl);
 		this.errorSearchFilter.ec = this.retrieveValue(this.dropDownErrorCodeControl);
 		this.errorSearchFilter.ticketNumber = this.retrieveValue(this.ticketNumberControl);
+		this.errorSearchFilter.noTicket = this.noTicketControl.value === true;
 
 		this.router.navigate([], {
 			queryParams: this.errorSearchFilter,
@@ -197,7 +255,11 @@ export class ErrorListComponent extends BaseComponent implements AfterViewInit, 
 		this.resetFormGroup();
 		this.data = [];
 		this.resultsLength = 0;
-		this.dropDownStateControl.setValue('PERMANENT');
+		// drop the locally persisted filter settings and return to the configured defaults
+		localStorage.removeItem(ERROR_LIST_NO_TICKET_STORAGE_KEY);
+		localStorage.removeItem(ERROR_LIST_STATE_FILTER_STORAGE_KEY);
+		this.dropDownStateControl.setValue(this.defaultStateFilter, {emitEvent: false});
+		this.noTicketControl.setValue(this.defaultNoTicketFilter, {emitEvent: false});
 	}
 
 	filterOptions(val: string): string[] {
@@ -272,7 +334,8 @@ export class ErrorListComponent extends BaseComponent implements AfterViewInit, 
 			sortField: sortState.active,
 			sortOrder: sortState.direction,
 			closingReason: this.closingReasonControl.value ?? '',
-			ticketNumber: this.ticketNumberControl.value ?? ''
+			ticketNumber: this.ticketNumberControl.value ?? '',
+			noTicket: this.noTicketControl.value === true
 		};
 	}
 
@@ -339,9 +402,71 @@ export class ErrorListComponent extends BaseComponent implements AfterViewInit, 
 				dropDownState: new FormControl(),
 				dropDownErrorCode: new FormControl(),
 				closingReason: new FormControl(''),
-				ticketNumber: new FormControl('')
+				ticketNumber: new FormControl(''),
+				noTicket: new FormControl(false)
 			}
 		);
+		// persist user changes to the filters; programmatic changes are applied with emitEvent: false so
+		// that configured defaults do not end up as user settings in the local storage
+		this.noTicketControl.valueChanges
+			.pipe(takeUntil(this.destroy$))
+			.subscribe(value => localStorage.setItem(ERROR_LIST_NO_TICKET_STORAGE_KEY, String(value === true)));
+		this.dropDownStateControl.valueChanges
+			.pipe(takeUntil(this.destroy$))
+			.subscribe(value => {
+				if (value) {
+					localStorage.setItem(ERROR_LIST_STATE_FILTER_STORAGE_KEY, value);
+				} else {
+					localStorage.removeItem(ERROR_LIST_STATE_FILTER_STORAGE_KEY);
+				}
+			});
+	}
+
+	private readStoredNoTicket(): boolean | null {
+		const storedNoTicket = localStorage.getItem(ERROR_LIST_NO_TICKET_STORAGE_KEY);
+		return storedNoTicket == null ? null : storedNoTicket === 'true';
+	}
+
+	private readStoredStateFilter(): string | null {
+		const storedStateFilter = localStorage.getItem(ERROR_LIST_STATE_FILTER_STORAGE_KEY);
+		return storedStateFilter && this.isValidStateFilter(storedStateFilter) ? storedStateFilter : null;
+	}
+
+	private isValidStateFilter(value: string): boolean {
+		return this.dropDownState.some(state => state.value === value);
+	}
+
+	private readStoredSort(): Sort | null {
+		const storedSort = localStorage.getItem(ERROR_LIST_SORT_STORAGE_KEY);
+		if (!storedSort) {
+			return null;
+		}
+		try {
+			return this.normalizeSort(JSON.parse(storedSort));
+		} catch {
+			return null;
+		}
+	}
+
+	private normalizeSort(sort: Partial<Sort>): Sort | null {
+		const direction = sort?.direction === 'asc' || sort?.direction === 'desc' ? sort.direction : null;
+		if (sort?.active && SUPPORTED_SORT_FIELDS.has(sort.active) && direction) {
+			return {active: sort.active, direction};
+		}
+		return null;
+	}
+
+	private persistSort(sort: Sort): void {
+		localStorage.setItem(ERROR_LIST_SORT_STORAGE_KEY, JSON.stringify({active: sort.active, direction: sort.direction}));
+	}
+
+	private readStoredPageSize(): number {
+		const storedPageSize = Number(localStorage.getItem(ERROR_LIST_PAGE_SIZE_STORAGE_KEY));
+		return PAGE_SIZE_OPTIONS.includes(storedPageSize) ? storedPageSize : DEFAULT_PAGE_SIZE;
+	}
+
+	private persistPageSize(pageSize: number): void {
+		localStorage.setItem(ERROR_LIST_PAGE_SIZE_STORAGE_KEY, String(pageSize));
 	}
 
 	get datePickerFromControl(): FormControl {
@@ -386,5 +511,9 @@ export class ErrorListComponent extends BaseComponent implements AfterViewInit, 
 
 	get ticketNumberControl(): FormControl {
 		return this.searchFilterFormGroup.get('ticketNumber');
+	}
+
+	get noTicketControl(): FormControl {
+		return this.searchFilterFormGroup.get('noTicket');
 	}
 }

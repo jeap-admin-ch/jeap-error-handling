@@ -42,6 +42,9 @@ public class ErrorSearchFormDto {
 
     private String ticketNumber;
 
+    @Schema(description = "If true, only errors without a ticket number on their error group are returned")
+    private Boolean noTicket;
+
     public String getEventName() {
         return StringUtils.defaultIfBlank(eventName, null);
     }

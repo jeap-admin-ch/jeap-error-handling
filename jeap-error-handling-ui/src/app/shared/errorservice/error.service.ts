@@ -3,6 +3,7 @@ import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {DeleteErrorsResultDTO, ErrorDTO, ErrorGroupDetailsListSearchFormDto, ErrorListDTO, ErrorSearchFormDto} from './error.model';
+import {ErrorListConfiguration} from './error-list-config.model';
 import {catchError} from 'rxjs/operators';
 import {DialogService} from "../dialog/dialog.service";
 import {NotifierService} from "../notifier/notifier.service";
@@ -24,6 +25,14 @@ export class ErrorService {
 	private readonly translateService = inject(TranslateService);
 
 	private static readonly url: string = environment.BACKEND_SERVICE_API + '/error';
+	private static readonly configUrl: string = environment.BACKEND_SERVICE_API + '/configuration/error-list';
+
+	/**
+	 * Loads the configured defaults for the error list view (no-ticket filter and state filter).
+	 */
+	getErrorListConfiguration(): Observable<ErrorListConfiguration> {
+		return this.http.get<ErrorListConfiguration>(ErrorService.configUrl);
+	}
 
 	/**
 	 * Deletes a single error row after user confirmation via dialog.

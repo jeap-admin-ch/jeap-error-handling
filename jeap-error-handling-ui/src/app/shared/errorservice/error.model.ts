@@ -56,6 +56,7 @@ export interface ErrorSearchFormDto {
 	sortOrder: string;
 	closingReason: string;
 	ticketNumber: string;
+	noTicket: boolean;
 }
 
 export interface ErrorGroupSearchFormDto {

@@ -34,6 +34,7 @@ public class ErrorSearchSpecification {
             criteria.getStacktrace().ifPresent(stackTrace -> specs.add(ErrorSearchSpecification.withStacktrace(stackTrace).toPredicate(root, query, criteriaBuilder)));
             criteria.getClosingReason().ifPresent(closingReason -> specs.add(ErrorSearchSpecification.withClosingReason(closingReason).toPredicate(root, query, criteriaBuilder)));
             criteria.getTicketNumber().ifPresent(ticketNumber -> specs.add(ErrorSearchSpecification.withTicketNumber(ticketNumber).toPredicate(root, query, criteriaBuilder)));
+            criteria.getNoTicket().filter(Boolean::booleanValue).ifPresent(noTicket -> specs.add(ErrorSearchSpecification.withoutTicketNumber().toPredicate(root, query, criteriaBuilder)));
             return criteriaBuilder.and(specs.toArray(new Predicate[0]));
         };
     }
@@ -92,6 +93,16 @@ public class ErrorSearchSpecification {
         return (errorRoot, q, builder) -> {
             Join<Error, ErrorGroup> errorGroupJoin = errorRoot.join("errorGroup", JoinType.INNER);
             return builder.equal(errorGroupJoin.get("ticketNumber"), ticketNumber);
+        };
+    }
+
+    private Specification<Error> withoutTicketNumber() {
+        return (errorRoot, q, builder) -> {
+            // LEFT JOIN: errors without an error group have a null ticketNumber as well
+            Join<Error, ErrorGroup> errorGroupJoin = errorRoot.join("errorGroup", JoinType.LEFT);
+            return builder.or(
+                    builder.isNull(errorGroupJoin.get("ticketNumber")),
+                    builder.equal(errorGroupJoin.get("ticketNumber"), ""));
         };
     }
 }

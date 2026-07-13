@@ -87,7 +87,8 @@
             <div class="actions-wrapper">
               <a mat-icon-button obButton="secondary"
                 [routerLink]="['/error-group-details', row.errorGroupId]"
-                [matTooltip]="'i18n.errorhandling.details' | translate">
+                [matTooltip]="'i18n.errorhandling.details' | translate"
+                [attr.aria-label]="'i18n.errorhandling.details' | translate">
                 <mat-icon svgIcon="eye"></mat-icon>
               </a>
             </div>

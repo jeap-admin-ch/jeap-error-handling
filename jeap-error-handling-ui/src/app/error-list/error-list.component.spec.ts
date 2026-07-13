@@ -4,6 +4,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatIconModule} from '@angular/material/icon';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
@@ -22,6 +23,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {ErrorDTO, ErrorSearchFormDto} from '../shared/errorservice/error.model';
 import {endOfDay, startOfDay} from 'date-fns';
+import {of} from 'rxjs';
 
 describe('ErrorListComponent', () => {
 	let component: ErrorListComponent;
@@ -47,6 +49,7 @@ describe('ErrorListComponent', () => {
 				MatInputModule,
 				MatDatepickerModule,
 				MatSelectModule,
+				MatCheckboxModule,
 				MatAutocompleteModule,
 				MatIconModule,
 				MatNativeDateModule,
@@ -58,7 +61,7 @@ describe('ErrorListComponent', () => {
 			declarations: [ErrorListComponent],
 			providers: [
 				{ provide: TranslateService, useClass: ObMockTranslateService },
-				{ provide: ActivatedRoute, useValue: { snapshot: {} } },
+				{ provide: ActivatedRoute, useValue: { snapshot: {}, queryParams: of({}) } },
 				ErrorService,
 				NotifierService,
 				LogDeepLinkService,
@@ -69,9 +72,11 @@ describe('ErrorListComponent', () => {
 	}));
 
 	beforeEach(() => {
+		errorService = TestBed.inject(ErrorService);
+		jest.spyOn(errorService, 'getErrorListConfiguration').mockReturnValue(
+			of({defaultNoTicketFilter: false, defaultStateFilter: 'PERMANENT'}));
 		fixture = TestBed.createComponent(ErrorListComponent);
 		component = fixture.componentInstance;
-		errorService = TestBed.inject(ErrorService);
 		notifierService = TestBed.inject(NotifierService);
 		logDeepLinkService = TestBed.inject(LogDeepLinkService);
 		searchFilterFormGroup = new FormGroup({
@@ -85,7 +90,8 @@ describe('ErrorListComponent', () => {
 				dropDownState: new FormControl(),
 				dropDownErrorCode: new FormControl(),
 				closingReason: new FormControl(''),
-				ticketNumber: new FormControl('')
+				ticketNumber: new FormControl(''),
+				noTicket: new FormControl(false)
 			}
 		);
 		component.searchFilterFormGroup = searchFilterFormGroup;
@@ -208,7 +214,8 @@ describe('ErrorListComponent', () => {
 				sortOrder: 'desc',
 				closingReason: 'Reason',
 				states: null,
-				ticketNumber: ''
+				ticketNumber: '',
+				noTicket: false
 			});
 		});
 
@@ -216,6 +223,120 @@ describe('ErrorListComponent', () => {
 			const sortState: Sort = { active: 'timestamp', direction: '' };
 			const result: ErrorSearchFormDto = component.createErrorSearchCriteriaDto(sortState);
 			expect(result.sortOrder).toBe('desc');
+		});
+	});
+
+	describe('localStorage persistence', () => {
+		beforeEach(() => {
+			localStorage.clear();
+		});
+
+		afterEach(() => {
+			localStorage.clear();
+		});
+
+		it('should restore persisted sort and page size from localStorage', () => {
+			localStorage.setItem('jeap-error-handling.error-list.sort', JSON.stringify({active: 'errorEventData.code', direction: 'asc'}));
+			localStorage.setItem('jeap-error-handling.error-list.page-size', '50');
+
+			const localFixture = TestBed.createComponent(ErrorListComponent);
+
+			expect(localFixture.componentInstance.initialSort).toEqual({active: 'errorEventData.code', direction: 'asc'});
+			expect(localFixture.componentInstance.initialPageSize).toBe(50);
+		});
+
+		it('should fall back to defaults for unsupported stored sort and page size', () => {
+			localStorage.setItem('jeap-error-handling.error-list.sort', JSON.stringify({active: 'unsupportedField', direction: 'asc'}));
+			localStorage.setItem('jeap-error-handling.error-list.page-size', '42');
+
+			const localFixture = TestBed.createComponent(ErrorListComponent);
+
+			expect(localFixture.componentInstance.initialSort).toEqual({active: 'errorEventMetadata.created', direction: 'desc'});
+			expect(localFixture.componentInstance.initialPageSize).toBe(20);
+		});
+
+		it('should restore the noTicket filter from localStorage', () => {
+			localStorage.setItem('jeap-error-handling.error-list.no-ticket', 'true');
+
+			const localFixture = TestBed.createComponent(ErrorListComponent);
+			localFixture.componentInstance.ngOnInit();
+
+			expect(localFixture.componentInstance.noTicketControl.value).toBe(true);
+		});
+
+		it('should persist noTicket changes to localStorage', () => {
+			const localFixture = TestBed.createComponent(ErrorListComponent);
+			localFixture.componentInstance.ngOnInit();
+
+			localFixture.componentInstance.noTicketControl.setValue(true);
+
+			expect(localStorage.getItem('jeap-error-handling.error-list.no-ticket')).toBe('true');
+		});
+	});
+
+	describe('configurable filter defaults', () => {
+		beforeEach(() => {
+			localStorage.clear();
+		});
+
+		afterEach(() => {
+			localStorage.clear();
+		});
+
+		function createComponentWithConfig(config: any): ErrorListComponent {
+			(errorService.getErrorListConfiguration as jest.Mock).mockReturnValue(of(config));
+			const localFixture = TestBed.createComponent(ErrorListComponent);
+			localFixture.componentInstance.ngOnInit();
+			return localFixture.componentInstance;
+		}
+
+		it('should apply the configured defaults when nothing is stored locally', () => {
+			const localComponent = createComponentWithConfig({defaultNoTicketFilter: true, defaultStateFilter: 'TEMPORARY'});
+
+			expect(localComponent.noTicketControl.value).toBe(true);
+			expect(localComponent.dropDownStateControl.value).toBe('TEMPORARY');
+			// applying configured defaults must not persist them as user settings
+			expect(localStorage.getItem('jeap-error-handling.error-list.no-ticket')).toBeNull();
+			expect(localStorage.getItem('jeap-error-handling.error-list.state-filter')).toBeNull();
+		});
+
+		it('should prefer locally stored user settings over the configured defaults', () => {
+			localStorage.setItem('jeap-error-handling.error-list.no-ticket', 'false');
+			localStorage.setItem('jeap-error-handling.error-list.state-filter', 'DELETED');
+
+			const localComponent = createComponentWithConfig({defaultNoTicketFilter: true, defaultStateFilter: 'TEMPORARY'});
+
+			expect(localComponent.noTicketControl.value).toBe(false);
+			expect(localComponent.dropDownStateControl.value).toBe('DELETED');
+		});
+
+		it('should fall back to PERMANENT for an unsupported configured state filter', () => {
+			const localComponent = createComponentWithConfig({defaultNoTicketFilter: false, defaultStateFilter: 'BOGUS'});
+
+			expect(localComponent.dropDownStateControl.value).toBe('PERMANENT');
+		});
+
+		it('should persist user changes of the state filter and clear the setting when the filter is reset', () => {
+			const localComponent = createComponentWithConfig({defaultNoTicketFilter: false, defaultStateFilter: 'PERMANENT'});
+
+			localComponent.dropDownStateControl.setValue('DELETED');
+			expect(localStorage.getItem('jeap-error-handling.error-list.state-filter')).toBe('DELETED');
+
+			localComponent.dropDownStateControl.reset();
+			expect(localStorage.getItem('jeap-error-handling.error-list.state-filter')).toBeNull();
+		});
+
+		it('should return to the configured defaults on reset and drop the stored user settings', () => {
+			const localComponent = createComponentWithConfig({defaultNoTicketFilter: true, defaultStateFilter: 'TEMPORARY'});
+
+			localComponent.dropDownStateControl.setValue('DELETED');
+			localComponent.noTicketControl.setValue(false);
+			localComponent.reset();
+
+			expect(localComponent.dropDownStateControl.value).toBe('TEMPORARY');
+			expect(localComponent.noTicketControl.value).toBe(true);
+			expect(localStorage.getItem('jeap-error-handling.error-list.no-ticket')).toBeNull();
+			expect(localStorage.getItem('jeap-error-handling.error-list.state-filter')).toBeNull();
 		});
 	});
 

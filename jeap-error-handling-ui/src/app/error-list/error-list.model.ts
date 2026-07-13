@@ -9,4 +9,5 @@ export class ErrorSearchFilter {
 	es: string;
 	ec: string;
 	ticketNumber: string;
+	noTicket: boolean;
 }

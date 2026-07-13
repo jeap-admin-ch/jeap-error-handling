@@ -38,9 +38,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import org.mockito.ArgumentCaptor;
+
 import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import static ch.admin.bit.jeap.errorhandling.infrastructure.persistence.AuditLog.AuditedAction.DELETE_ERROR;
@@ -476,6 +479,33 @@ class ErrorControllerTest {
         ErrorSearchCriteria criteria = ErrorSearchCriteria.builder().ticketNumber("TAPAS-745").build();
         assertTrue(criteria.getTicketNumber().isPresent());
         assertEquals("TAPAS-745", criteria.getTicketNumber().get());
+    }
+
+    @Test
+    @WithAuthentication("viewRoleToken")
+    void whenNoTicket_thenCriteriaContainsNoTicket() {
+        // Given
+        final var errorSearchFormDto = ErrorSearchFormDto.builder().noTicket(true).build();
+        when(errorSearchService.search(any(ErrorSearchCriteria.class))).thenReturn(new ErrorList(0, List.of()));
+
+        //when
+        errorController.findErrors(0, 10, errorSearchFormDto);
+
+        //Then
+        ArgumentCaptor<ErrorSearchCriteria> criteriaCaptor = ArgumentCaptor.forClass(ErrorSearchCriteria.class);
+        verify(errorSearchService).search(criteriaCaptor.capture());
+        assertEquals(Optional.of(Boolean.TRUE), criteriaCaptor.getValue().getNoTicket());
+    }
+
+    @Test
+    @WithAuthentication("viewRoleToken")
+    void testErrorSearchCriteriaBuilder_noTicket() {
+        ErrorSearchCriteria criteria = ErrorSearchCriteria.builder().noTicket(true).build();
+        assertTrue(criteria.getNoTicket().isPresent());
+        assertEquals(Boolean.TRUE, criteria.getNoTicket().get());
+
+        ErrorSearchCriteria criteriaWithoutNoTicket = ErrorSearchCriteria.builder().build();
+        assertTrue(criteriaWithoutNoTicket.getNoTicket().isEmpty());
     }
 
     @Test

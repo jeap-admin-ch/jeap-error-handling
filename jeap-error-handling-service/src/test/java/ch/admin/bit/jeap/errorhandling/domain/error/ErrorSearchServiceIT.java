@@ -189,6 +189,40 @@ class ErrorSearchServiceIT extends ErrorHandlingITBase {
     }
 
 
+    @Test
+    void search_withNoTicket_onlyErrorsWithoutTicketFound() {
+
+        Error errorWithTicket = saveError(Error.ErrorState.PERMANENT, "service", "eventName", ZonedDateTime.now().minusDays(1), "123", "myTraceId");
+        Error errorWithEmptyTicket = saveError(Error.ErrorState.PERMANENT, "service", "eventName", ZonedDateTime.now().minusDays(2), "123", "myTraceId");
+        Error errorWithoutGroup = saveError(Error.ErrorState.PERMANENT, "service", "eventName", ZonedDateTime.now().minusDays(3), "123", "myTraceId");
+
+        ErrorGroup groupWithTicket = new ErrorGroup("123", "eventName", "service", "message", "hash1");
+        groupWithTicket.setTicketNumber("JEAP-4242");
+        errorGroupRepository.save(groupWithTicket);
+        errorWithTicket.setErrorGroup(groupWithTicket);
+        errorRepository.save(errorWithTicket);
+
+        ErrorGroup groupWithEmptyTicket = new ErrorGroup("123", "eventName", "service", "message", "hash2");
+        groupWithEmptyTicket.setTicketNumber("");
+        errorGroupRepository.save(groupWithEmptyTicket);
+        errorWithEmptyTicket.setErrorGroup(groupWithEmptyTicket);
+        errorRepository.save(errorWithEmptyTicket);
+
+        ErrorSearchCriteria criteria = ErrorSearchCriteria.builder()
+                .noTicket(true)
+                .sort(new String[]{"created,desc"}).build();
+        ErrorList errorList = service.search(criteria);
+
+        assertThat(errorList.getTotalElements()).isEqualTo(2);
+        assertThat(errorList.getErrors().get(0).getId()).isEqualTo(errorWithEmptyTicket.getId());
+        assertThat(errorList.getErrors().get(1).getId()).isEqualTo(errorWithoutGroup.getId());
+
+        ErrorSearchCriteria criteriaNoTicketFalse = ErrorSearchCriteria.builder()
+                .noTicket(false)
+                .sort(new String[]{"created,desc"}).build();
+        assertThat(service.search(criteriaNoTicketFalse).getTotalElements()).isEqualTo(3);
+    }
+
     private void storeErrors() {
         saveError(Error.ErrorState.TEMPORARY_RETRIED, "service", "eventName", ZonedDateTime.now(), "123", "myTraceId");
         saveError(Error.ErrorState.PERMANENT, "service", "eventName", ZonedDateTime.now(), "321", "myTraceId");
