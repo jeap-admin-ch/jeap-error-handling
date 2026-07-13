@@ -26,13 +26,13 @@ class UiErrorListBrowserIT extends UiBrowserTestBase {
 
         page.navigate(APP_URL + "error-list");
 
-        assertThat(page.locator("table tbody tr")).hasCount(3);
+        assertThat(errorListRows()).hasCount(3);
         assertThat(page.getByText("error with ticket")).isVisible();
 
         noTicketCheckbox().check();
         searchButton().click();
 
-        assertThat(page.locator("table tbody tr")).hasCount(2);
+        assertThat(errorListRows()).hasCount(2);
         assertThat(page.getByText("error with ticket")).not().isVisible();
         assertThat(page.getByText("error in group without ticket")).isVisible();
         assertThat(page.getByText("error without group")).isVisible();
@@ -43,7 +43,7 @@ class UiErrorListBrowserIT extends UiBrowserTestBase {
         saveError("some error", null);
 
         page.navigate(APP_URL + "error-list");
-        assertThat(page.locator("table tbody tr")).hasCount(1);
+        assertThat(errorListRows()).hasCount(1);
         noTicketCheckbox().check();
         assertThat(noTicketCheckbox()).isChecked();
 
@@ -58,18 +58,18 @@ class UiErrorListBrowserIT extends UiBrowserTestBase {
         saveError("error from service-b", null, "CODE-B", "service-b", ZonedDateTime.now());
 
         page.navigate(APP_URL + "error-list");
-        assertThat(page.locator("table tbody tr")).hasCount(2);
+        assertThat(errorListRows()).hasCount(2);
 
         selectDropDownOption(UiLabels.errorCodeFilter(), "CODE-A");
         searchButton().click();
-        assertThat(page.locator("table tbody tr")).hasCount(1);
+        assertThat(errorListRows()).hasCount(1);
         assertThat(page.getByText("error from service-a")).isVisible();
 
         // reset clears the error code filter, then filter by source
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName(UiLabels.reset())).click();
         selectDropDownOption(UiLabels.sourceFilter(), "service-b");
         searchButton().click();
-        assertThat(page.locator("table tbody tr")).hasCount(1);
+        assertThat(errorListRows()).hasCount(1);
         assertThat(page.getByText("error from service-b")).isVisible();
     }
 
@@ -80,7 +80,7 @@ class UiErrorListBrowserIT extends UiBrowserTestBase {
         saveError("mass delete three", null);
 
         page.navigate(APP_URL + "error-list");
-        assertThat(page.locator("table tbody tr")).hasCount(3);
+        assertThat(errorListRows()).hasCount(3);
 
         // select all rows via the header checkbox, then use the multi-delete header action
         page.getByRole(AriaRole.CHECKBOX, new Page.GetByRoleOptions().setName(UiLabels.selectAllErrors())).check();
@@ -92,7 +92,7 @@ class UiErrorListBrowserIT extends UiBrowserTestBase {
         page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName(UiLabels.closingReason())).fill("mass delete e2e");
         confirmDialog();
 
-        assertThat(page.locator("table tbody tr")).hasCount(0);
+        assertThat(errorListRows()).hasCount(0);
         await("all errors deleted").atMost(FORTY_SECONDS).until(() ->
                 errorRepository.findAll().stream().allMatch(error -> error.getState() == Error.ErrorState.DELETED));
     }
@@ -104,7 +104,7 @@ class UiErrorListBrowserIT extends UiBrowserTestBase {
         List<Error> originalErrors = awaitErrorsInRepository(2);
 
         page.navigate(APP_URL + "error-list");
-        assertThat(page.locator("table tbody tr")).hasCount(2);
+        assertThat(errorListRows()).hasCount(2);
 
         page.getByRole(AriaRole.CHECKBOX, new Page.GetByRoleOptions().setName(UiLabels.selectAllErrors())).check();
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName(UiLabels.resendSelectedErrors())).click();
@@ -120,9 +120,9 @@ class UiErrorListBrowserIT extends UiBrowserTestBase {
 
         // the retried errors leave the default PERMANENT filter, only the two new failures remain
         page.navigate(APP_URL + "error-list");
-        assertThat(page.locator("table tbody tr")).hasCount(2);
+        assertThat(errorListRows()).hasCount(2);
         originalErrors.forEach(error ->
-                assertThat(page.locator("a[href*='" + error.getId() + "']")).hasCount(0));
+                assertThat(errorDetailsLink(error)).hasCount(0));
     }
 
     @Test
@@ -132,20 +132,20 @@ class UiErrorListBrowserIT extends UiBrowserTestBase {
         }
 
         page.navigate(APP_URL + "error-list");
-        assertThat(page.locator("table tbody tr")).hasCount(6);
+        assertThat(errorListRows()).hasCount(6);
 
         // change the page size to 5 and sort by timestamp ascending (default is descending)
-        page.locator("mat-paginator").getByRole(AriaRole.COMBOBOX).click();
+        pageSizeDropDown().click();
         page.getByRole(AriaRole.OPTION, new Page.GetByRoleOptions().setName("5").setExact(true)).click();
-        assertThat(page.locator("table tbody tr")).hasCount(5);
+        assertThat(errorListRows()).hasCount(5);
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName(UiLabels.timestampColumn())).click();
-        assertThat(page.locator("table tbody tr").first()).containsText("error number 6");
+        assertThat(errorListRows().first()).containsText("error number 6");
 
         page.navigate(APP_URL + "error-list");
 
         // both settings are restored from local storage
-        assertThat(page.locator("table tbody tr")).hasCount(5);
-        assertThat(page.locator("table tbody tr").first()).containsText("error number 6");
+        assertThat(errorListRows()).hasCount(5);
+        assertThat(errorListRows().first()).containsText("error number 6");
     }
 
     private Locator searchButton() {
@@ -154,6 +154,12 @@ class UiErrorListBrowserIT extends UiBrowserTestBase {
 
     private Locator noTicketCheckbox() {
         return page.getByRole(AriaRole.CHECKBOX, new Page.GetByRoleOptions().setName(UiLabels.noJiraTicket()));
+    }
+
+    private Locator pageSizeDropDown() {
+        // the page size dropdown is labelled by the Material paginator internationalization, not by the
+        // application's own i18n file, so it is located by its role within the (only) paginator component
+        return page.locator("mat-paginator").getByRole(AriaRole.COMBOBOX);
     }
 
     private void selectDropDownOption(String dropDownLabel, String optionText) {

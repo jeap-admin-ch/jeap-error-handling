@@ -329,7 +329,8 @@
 				</ng-container>
 
 				<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-				<tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"
+					data-testid="error-list-row"></tr>
 			</table>
 		</div>
 		<div class="paginator-container">

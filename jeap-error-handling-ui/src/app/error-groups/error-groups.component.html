@@ -96,7 +96,7 @@
         </ng-container>
 
         <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
-        <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+        <tr *matRowDef="let row; columns: displayedColumns;" mat-row data-testid="error-group-row"></tr>
       </table>
     </div>
     <div class="paginator-container">

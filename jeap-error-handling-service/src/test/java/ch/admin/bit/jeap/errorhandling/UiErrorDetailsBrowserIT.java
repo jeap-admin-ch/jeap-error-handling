@@ -20,8 +20,8 @@ class UiErrorDetailsBrowserIT extends UiBrowserTestBase {
         awaitErrorsInRepository(1);
 
         page.navigate(APP_URL + "error-list");
-        assertThat(page.locator("table tbody tr")).hasCount(1);
-        page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName(UiLabels.details())).first().click();
+        assertThat(errorListRows()).hasCount(1);
+        page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName(UiLabels.details())).click();
         page.waitForURL("**/error-details/**");
 
         // metadata of the causing event and the error
@@ -40,7 +40,7 @@ class UiErrorDetailsBrowserIT extends UiBrowserTestBase {
         saveError("non-avro payload error", null);
 
         page.navigate(APP_URL + "error-list");
-        page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName(UiLabels.details())).first().click();
+        page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName(UiLabels.details())).click();
         page.waitForURL("**/error-details/**");
 
         assertThat(page.getByText("non-avro payload error").first()).isVisible();
@@ -72,8 +72,8 @@ class UiErrorDetailsBrowserIT extends UiBrowserTestBase {
 
         // the retried error leaves the default PERMANENT list filter, only the new failure remains
         page.navigate(APP_URL + "error-list");
-        assertThat(page.locator("table tbody tr")).hasCount(1);
-        assertThat(page.locator("a[href*='" + error.getId() + "']")).hasCount(0);
+        assertThat(errorListRows()).hasCount(1);
+        assertThat(errorDetailsLink(error)).hasCount(0);
     }
 
     @Test
@@ -98,7 +98,7 @@ class UiErrorDetailsBrowserIT extends UiBrowserTestBase {
 
         // deleted errors leave the default PERMANENT list filter
         page.navigate(APP_URL + "error-list");
-        assertThat(page.locator("table tbody tr")).hasCount(0);
+        assertThat(errorListRows()).hasCount(0);
     }
 
     @Test
@@ -106,7 +106,7 @@ class UiErrorDetailsBrowserIT extends UiBrowserTestBase {
         saveError("grouped error", errorGroup("hash-nav", "JEAP-3333"));
 
         page.navigate(APP_URL + "error-list");
-        assertThat(page.locator("table tbody tr")).hasCount(1);
+        assertThat(errorListRows()).hasCount(1);
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName(UiLabels.goToErrorGroup())).click();
         page.waitForURL("**/error-group-details/**");
 

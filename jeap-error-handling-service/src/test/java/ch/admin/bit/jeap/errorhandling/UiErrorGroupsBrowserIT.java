@@ -23,8 +23,8 @@ class UiErrorGroupsBrowserIT extends UiBrowserTestBase {
 
         page.navigate(APP_URL + "error-group");
 
-        assertThat(page.locator("table tbody tr")).hasCount(2);
-        Locator rowWithTicket = page.locator("table tbody tr")
+        assertThat(errorGroupRows()).hasCount(2);
+        Locator rowWithTicket = errorGroupRows()
                 .filter(new Locator.FilterOptions().setHasText("JEAP-2222"));
         assertThat(rowWithTicket).hasCount(1);
         // error count, message type, publisher, error code and stack trace hash of the group
@@ -40,8 +40,8 @@ class UiErrorGroupsBrowserIT extends UiBrowserTestBase {
         saveError("group edit error", errorGroup("hash-edit", null));
 
         page.navigate(APP_URL + "error-group");
-        assertThat(page.locator("table tbody tr")).hasCount(1);
-        page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName(UiLabels.details())).first().click();
+        assertThat(errorGroupRows()).hasCount(1);
+        page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName(UiLabels.details())).click();
         page.waitForURL("**/error-group-details/**");
 
         // the ticket number is saved on enter
@@ -59,5 +59,9 @@ class UiErrorGroupsBrowserIT extends UiBrowserTestBase {
         await("free text persisted").atMost(FORTY_SECONDS).until(() ->
                 errorGroupRepository.findAll().stream()
                         .anyMatch(group -> "free text from e2e test".equals(group.getFreeText())));
+    }
+
+    private Locator errorGroupRows() {
+        return page.getByTestId("error-group-row");
     }
 }

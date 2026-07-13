@@ -217,8 +217,23 @@ public abstract class UiBrowserTestBase extends ErrorHandlingITBase {
      * Clicks the submit button of the currently open confirmation or closing reason dialog.
      */
     protected void confirmDialog() {
-        page.locator("mat-dialog-container").getByRole(AriaRole.BUTTON,
+        page.getByRole(AriaRole.DIALOG).getByRole(AriaRole.BUTTON,
                 new Locator.GetByRoleOptions().setName(UiLabels.confirm())).click();
+    }
+
+    /**
+     * The data rows of the error list table.
+     */
+    protected Locator errorListRows() {
+        return page.getByTestId("error-list-row");
+    }
+
+    /**
+     * The details link of the given error. Errors produced by retrying a causing event are textually identical
+     * to the original error, so the details link href carrying the error ID is the only stable discriminator.
+     */
+    protected Locator errorDetailsLink(Error error) {
+        return page.locator("a[href$='/error-details/" + error.getId() + "']");
     }
 
     // --- test data seeding -------------------------------------------------------------------------------
