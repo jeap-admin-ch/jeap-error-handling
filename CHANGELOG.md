@@ -9,7 +9,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
-- Update fast-uri to version 4.0.1
+- Update fast-uri to version 4.1.1
 - Update immutable to version 5.1.8
 
 ## [16.11.1] - 2026-06-16
