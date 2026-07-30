@@ -42,10 +42,11 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutionException;
 
 import static ch.admin.bit.jeap.errorhandling.ErrorHandlingErrorHandlerIT.DLT_TOPIC;
@@ -115,11 +116,11 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
         producer.send(producerRecord).get();
 
         // then
-        await("event is sent to DLT 1 time").atMost(THIRTY_SECONDS).until(() -> dltConsumer.getConsumedMessages().size() == 1);
+        await("event is sent to DLT").atMost(THIRTY_SECONDS)
+                .until(() -> dltConsumer.getMessageWithOriginalMessage("fake Event") != null);
 
-        MessageProcessingFailedEvent genericMessage = dltConsumer.getConsumedMessages().getFirst();
+        MessageProcessingFailedEvent genericMessage = dltConsumer.getMessageWithOriginalMessage("fake Event");
         assertEquals("java.lang.Exception: Could not deserialize value", genericMessage.getPayload().getErrorMessage());
-        assertEquals("fake Event", StandardCharsets.UTF_8.decode(genericMessage.getPayload().getOriginalMessage()).toString());
         producer.close();
     }
 
@@ -195,10 +196,15 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
     //@formatter:on
 
     @BeforeEach
-    void waitForKafkaListener() {
-        MessageListenerContainer container = registry.getListenerContainers().stream().findFirst()
-                .orElseThrow(() -> new RuntimeException("No event listener found"));
-        ContainerTestUtils.waitForAssignment(container, 1);
+    void waitForKafkaListeners() {
+        Collection<MessageListenerContainer> containers = registry.getListenerContainers();
+        if (containers.isEmpty()) {
+            throw new IllegalStateException("No event listener found");
+        }
+        // Wait for every listener, not just for an arbitrary one: as long as the DLT consumer has not been
+        // assigned its partition, it misses the messages the service under test publishes to the DLT, because
+        // the consumer starts reading at the end of the topic.
+        containers.forEach(container -> ContainerTestUtils.waitForAssignment(container, 1));
     }
 
     @AfterEach
@@ -211,7 +217,8 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
     @Profile("error-handler-it")
     static class DLTConsumer {
 
-        private final List<MessageProcessingFailedEvent> consumedMessages = new ArrayList<>();
+        // written by the Kafka listener thread and read by the test thread
+        private final List<MessageProcessingFailedEvent> consumedMessages = new CopyOnWriteArrayList<>();
 
         @TestKafkaListener(topics = {DLT_TOPIC}, groupId = "dlt-consumer")
         public void consume(final MessageProcessingFailedEvent message) {
@@ -221,11 +228,29 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
         }
 
         boolean hasMessageWithIdempotenceId(String idempotenceId) {
-            return consumedMessages.stream().anyMatch(message -> message.getPayload().getFailedMessageMetadata().getIdempotenceId().equals(idempotenceId));
+            return getMessageWithIdempotenceId(idempotenceId) != null;
+        }
+
+        /**
+         * Looks up a consumed message by its original message, for messages that failed to deserialize and
+         * therefore carry no metadata of the failed message.
+         */
+        MessageProcessingFailedEvent getMessageWithOriginalMessage(String originalMessage) {
+            return consumedMessages.stream()
+                    .filter(message -> message.getPayload().getOriginalMessage() != null)
+                    .filter(message -> originalMessage.equals(
+                            StandardCharsets.UTF_8.decode(message.getPayload().getOriginalMessage().duplicate()).toString()))
+                    .findFirst()
+                    .orElse(null);
         }
 
         MessageProcessingFailedEvent getMessageWithIdempotenceId(String idempotenceId) {
-            return consumedMessages.stream().filter(message -> message.getPayload().getFailedMessageMetadata().getIdempotenceId().equals(idempotenceId)).findFirst().orElse(null);
+            // messages that failed to deserialize carry no metadata of the failed message
+            return consumedMessages.stream()
+                    .filter(message -> message.getPayload().getFailedMessageMetadata() != null)
+                    .filter(message -> idempotenceId.equals(message.getPayload().getFailedMessageMetadata().getIdempotenceId()))
+                    .findFirst()
+                    .orElse(null);
         }
 
         private void reset() {
