@@ -76,6 +76,25 @@ Scheduled jobs use **ShedLock** (JDBC lock provider) so only one instance runs e
 - Consumer-driven contract tests use **Pact** (`au.com.dius.pact`); the provider `publish` goal runs in CI (Jenkins), gated by the `cdct-enable-publishing-local` profile for local runs.
 - The parent is `ch.admin.bit.jeap:jeap-spring-boot-parent`.
 
+## Documentation
+
+- The documentation lives in `docs/`, indexed from the "Documentation" section of [README.md](./README.md).
+- **Keep `docs/` up to date with every change.** A change to a configuration property, a REST endpoint, an
+  error state, a metric or the UI is only complete once the corresponding page in `docs/` has been updated —
+  and a new page has been linked from the README index.
+- `README.md` and everything in `docs/` is published to the Docusaurus site at https://jeap-admin-ch.github.io,
+  which assembles the README and `docs/` of every jEAP repository. The markdown must therefore be **valid MDX**
+  (MDX v3, as used by Docusaurus v3):
+  - `<` and `{` outside of fenced code blocks and inline code spans are parsed as JSX and break the site build.
+    Always wrap placeholders such as `<system>-messageprocessing-deadletter`, `{traceId}` or generic types in
+    backticks or put them in a code fence.
+  - HTML comments (`<!-- ... -->`) are not valid MDX; use `{/* ... */}` inside a JSX context, or omit them.
+- The site builds with `onBrokenLinks: 'throw'`, so relative links between documents and their `#anchors` must
+  resolve. Anchors are slugged by github-slugger: lowercased, punctuation removed, each remaining whitespace
+  character replaced by a hyphen — avoid headings that produce surprising slugs (`A / B` becomes `a--b`).
+- The site adds its own front matter (`sidebar_position`, categories), so do not add generator-specific front
+  matter to the sources. `getting-started.md` is automatically pinned first in the sidebar.
+
 ## Versioning 
 
 - Semantic Versioning; all changes documented in [CHANGELOG.md](./CHANGELOG.md) (Keep a Changelog format).
