@@ -49,7 +49,7 @@ monitoring and alerting per business application:
 | `eh_permanent_pending_manualtask_create`  | Gauge   | Permanent errors for which no manual task could be created yet (e.g. task service unreachable).                                                             |
 | `eh_permanent_pending_manualtask_resolve` | Gauge   | Resolved permanent errors whose manual task could not be closed yet.                                                                                        |
 | `eh_permanent_pending_manualtask_delete`  | Gauge   | Deleted permanent errors whose manual task could not be deleted yet.                                                                                        |
-| `eh_open_errors_by_cluster`               | Gauge   | Current number of errors not in a final state, labelled by `cluster`.                                                                                       |
+| `eh_open_errors_by_cluster`               | Gauge   | Current number of errors not in a final state, labelled by `cluster`. Once a cluster has been seen, it keeps being reported with the value 0.                |
 | `eh_error_groups_with_open_errors`        | Gauge   | Current number of error groups with open errors.                                                                                                            |
 
 The gauge metrics are sampled every 60 seconds by default; the frequency is configurable with

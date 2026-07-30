@@ -12,6 +12,12 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   integration. With `pams-enabled: false`, the UI does not contact the ePortal backend, hides the header
   controls served by PAMS and mocks the PAMS session; `pams-environment` is then no longer required.
 
+### Fixed
+- Fix intermittent HTTP 500 responses of the prometheus scrape endpoint: the rows of the
+  `eh_open_errors_by_cluster` gauge were removed and re-registered on every metrics update, which made a
+  concurrent scrape fail with a duplicate labels error. Clusters without open errors are now reported with
+  the value 0 instead of being removed from the gauge.
+
 ## [18.7.1] - 2026-07-22
 
 ### Changed

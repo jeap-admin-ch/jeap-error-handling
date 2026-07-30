@@ -638,6 +638,7 @@ class ErrorHandlingIT extends ErrorHandlingITBase {
 
         awaitNonZeroMetricValue("eh_permanent_open");
         awaitNonZeroMetricValue("eh_error_groups_with_open_errors");
+        awaitNonZeroMetricValue("eh_open_errors_by_cluster{cluster=\"default\"}");
     }
 
     private void awaitNonZeroMetricValue(String metricName) {
@@ -651,7 +652,7 @@ class ErrorHandlingIT extends ErrorHandlingITBase {
     }
 
     private String extractMetricValue(String metricName, String metrics) {
-        Pattern pattern = Pattern.compile("^" + metricName + " (\\d+\\.\\d+)$", Pattern.MULTILINE);
+        Pattern pattern = Pattern.compile("^" + Pattern.quote(metricName) + " (\\d+\\.\\d+)$", Pattern.MULTILINE);
         Matcher matcher = pattern.matcher(metrics);
         if (matcher.find()) {
             return matcher.group(1);

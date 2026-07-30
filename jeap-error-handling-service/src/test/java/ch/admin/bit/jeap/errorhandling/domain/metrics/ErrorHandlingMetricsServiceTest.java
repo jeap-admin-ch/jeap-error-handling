@@ -3,6 +3,7 @@ package ch.admin.bit.jeap.errorhandling.domain.metrics;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorCountByClusterNameResult;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorGroupRepository;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorRepository;
+import io.micrometer.core.instrument.Gauge;
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
@@ -106,7 +107,27 @@ class ErrorHandlingMetricsServiceTest {
         Assertions.assertThat(meterRegistry.get("eh_error_groups_with_open_errors").gauge().value()).isEqualTo(7);
         Assertions.assertThat(meterRegistry.get("eh_open_errors_by_cluster").tag("cluster", "cluster-a").gauge().value()).isEqualTo(15);
         Assertions.assertThat(meterRegistry.get("eh_open_errors_by_cluster").tag("cluster", "cluster-c").gauge().value()).isEqualTo(3);
-        // cluster-b should be removed since it's not in the second result set (MultiGauge with overwrite=true)
+        // cluster-b is not in the second result set anymore and is therefore reported as zero (and not removed)
+        Assertions.assertThat(meterRegistry.get("eh_open_errors_by_cluster").tag("cluster", "cluster-b").gauge().value()).isZero();
+    }
+
+    @Test
+    void updateGaugesDoesNotReRegisterClusterGauges() {
+        when(errorRepository.countOpenErrorsByStateAndClusterName()).thenReturn(
+                List.of(new ErrorCountByClusterNameResult("cluster-a", 10L)),
+                List.of(new ErrorCountByClusterNameResult("cluster-a", 15L))
+        );
+
+        metricsService.initialize();
+        Gauge gaugeAfterInitialize = meterRegistry.get("eh_open_errors_by_cluster").tag("cluster", "cluster-a").gauge();
+
+        metricsService.updateGauges();
+
+        // Re-registering the multi gauge rows on every update unregisters and re-registers the prometheus collector
+        // of the metric, which makes a concurrent metrics scrape fail with a duplicate labels error.
+        Gauge gaugeAfterUpdate = meterRegistry.get("eh_open_errors_by_cluster").tag("cluster", "cluster-a").gauge();
+        Assertions.assertThat(gaugeAfterUpdate).isSameAs(gaugeAfterInitialize);
+        Assertions.assertThat(gaugeAfterUpdate.value()).isEqualTo(15);
     }
 
     @Test

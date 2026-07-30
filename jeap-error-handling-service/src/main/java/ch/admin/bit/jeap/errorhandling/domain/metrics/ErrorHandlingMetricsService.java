@@ -16,7 +16,10 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Component
 @Slf4j
@@ -36,11 +39,18 @@ public class ErrorHandlingMetricsService {
     public static final String CAUSING_SERVICE_TAG = "causing_service";
     public static final String CLUSTER_TAG = "cluster";
     private static final String ERROR_GROUPS_WITH_OPEN_ERRORS_GAUGE_METRIC = "eh_error_groups_with_open_errors";
+    private static final String UNKNOWN_CLUSTER = "unknown";
     private static final Set<Error.ErrorState> OPEN_ERROR_STATES = Set.of(Error.ErrorState.PERMANENT, Error.ErrorState.SEND_TO_MANUALTASK);
 
     private final MeterRegistry meterRegistry;
     private final ErrorRepository errorRepository;
     private final ErrorGroupRepository errorGroupRepository;
+
+    /**
+     * Holds the current open error count per cluster name. The multi gauge rows read their values from these
+     * counters, i.e. a row is registered once per cluster name and is never re-registered or removed afterwards.
+     */
+    private final Map<String, AtomicLong> openErrorCountsByClusterName = new ConcurrentHashMap<>();
 
     private int temporaryRetryPendingErrorCount = -1;
     private int pendingManualTaskCreationErrorCount = -1;
@@ -107,14 +117,38 @@ public class ErrorHandlingMetricsService {
         createdTemporaryErrors.increment();
     }
 
+    /**
+     * Updates the open error count per cluster name. Clusters that no longer have any open errors are reported as
+     * zero instead of being removed from the multi gauge: removing and re-registering multi gauge rows on every
+     * update unregisters and re-registers the underlying prometheus collector, which makes a metrics scrape
+     * running concurrently to the update fail with a duplicate labels error.
+     */
     private void updateClusterMetrics(List<ErrorCountByClusterNameResult> results) {
-        List<MultiGauge.Row<Number>> rows = results.stream()
-                .map(result -> MultiGauge.Row.of(
-                        Tags.of(CLUSTER_TAG, result.clusterName() != null ? result.clusterName() : "unknown"),
-                        result.errorCount()
-                ))
+        openErrorCountsByClusterName.values().forEach(count -> count.set(0));
+
+        boolean clusterNameAdded = false;
+        for (ErrorCountByClusterNameResult result : results) {
+            String clusterName = result.clusterName() != null ? result.clusterName() : UNKNOWN_CLUSTER;
+            AtomicLong count = openErrorCountsByClusterName.get(clusterName);
+            if (count == null) {
+                openErrorCountsByClusterName.put(clusterName, new AtomicLong(result.errorCount()));
+                clusterNameAdded = true;
+            } else {
+                count.set(result.errorCount());
+            }
+        }
+
+        if (clusterNameAdded) {
+            registerClusterGaugeRows();
+        }
+    }
+
+    private void registerClusterGaugeRows() {
+        List<MultiGauge.Row<AtomicLong>> rows = openErrorCountsByClusterName.entrySet().stream()
+                .map(entry -> MultiGauge.Row.of(Tags.of(CLUSTER_TAG, entry.getKey()), entry.getValue(), AtomicLong::doubleValue))
                 .toList();
 
-        openErrorsByClusterGauge.register(rows, true);
+        // Do not overwrite already registered rows, they read their value from the counter map anyway
+        openErrorsByClusterGauge.register(rows, false);
     }
 }
