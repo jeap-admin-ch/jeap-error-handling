@@ -82,9 +82,10 @@ class ConfigurationControllerTest {
         Boolean autoLogin = true;
         String redirectUrl = "/jeap-frontend/redirect";
         Mockito.when(frontendConfigProperties.getApplicationUrl()).thenReturn(applicationUrl);
-        Mockito.when(frontendConfigProperties.getPamsEnvironment()).thenReturn(pamsEnvironment);
+        Mockito.when(frontendConfigProperties.getPamsEnabled()).thenReturn(true);
+        Mockito.when(frontendConfigProperties.getEffectivePamsEnvironment()).thenReturn(pamsEnvironment);
         Mockito.when(frontendConfigProperties.getLogoutRedirectUri()).thenReturn(logoutRedirectUri);
-        Mockito.when(frontendConfigProperties.getMockPams()).thenReturn(mockPams);
+        Mockito.when(frontendConfigProperties.isMockPamsEffective()).thenReturn(mockPams);
         Mockito.when(frontendConfigProperties.getTokenAwarePattern()).thenReturn(List.of(tokenAwarePattern));
         Mockito.when(frontendConfigProperties.getClientId()).thenReturn(clientId);
         Mockito.when(frontendConfigProperties.getAutoLogin()).thenReturn(autoLogin);
@@ -92,6 +93,8 @@ class ConfigurationControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/configuration"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.pamsEnabled").value(true))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.mockPams").value(mockPams))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.pamsEnvironment").value(pamsEnvironment))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.logoutRedirectUri").value(logoutRedirectUri))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.tokenAwarePatterns").value(tokenAwarePattern))
@@ -101,6 +104,19 @@ class ConfigurationControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.useAutoLogin").value(autoLogin))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.redirectUrl").value(redirectUrl))
                 ;
+    }
+
+    @Test
+    void getAuthConfiguration_pamsDisabled_servesNoEnvironmentAndMocksPams() throws Exception {
+        Mockito.when(frontendConfigProperties.getPamsEnabled()).thenReturn(false);
+        Mockito.when(frontendConfigProperties.getEffectivePamsEnvironment()).thenReturn(null);
+        Mockito.when(frontendConfigProperties.isMockPamsEffective()).thenReturn(true);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/configuration"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.pamsEnabled").value(false))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.mockPams").value(true))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.pamsEnvironment").doesNotExist());
     }
 
     @Profile(PROFILE) // prevent other tests using class path scanning picking up this configuration

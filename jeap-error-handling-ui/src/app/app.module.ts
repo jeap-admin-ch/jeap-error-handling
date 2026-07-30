@@ -55,8 +55,7 @@ import {ErrorGroupPageComponent} from './pages/error-group-page/error-group-page
 import {ErrorGroupsComponent} from './error-groups/error-groups.component';
 import {ForbiddenPageComponent} from './pages/error-pages/forbidden-page/forbidden-page.component';
 import {ErrorGroupFilterComponent} from './error-groups/error-group-filter/error-group-filter.component';
-
-export type QdShellHeaderWidgetEnvironment = 'DEV' | 'TEST' | 'REF' | 'ABN' | 'PROD';
+import {configureServiceNavigation, PamsConfig} from './shared/pams/pams-header-config';
 
 @NgModule({
 	declarations: [
@@ -136,7 +135,7 @@ export type QdShellHeaderWidgetEnvironment = 'DEV' | 'TEST' | 'REF' | 'ABN' | 'P
 
 export class AppModule {
 
-	obEPamsEnvironment: ObEPamsEnvironment;
+	obEPamsEnvironment: ObEPamsEnvironment | null;
 
 	constructor(readonly documentMetaService: ObDocumentMetaService,
 				readonly masterLayoutConfig: ObMasterLayoutConfig,
@@ -154,48 +153,21 @@ export class AppModule {
 		masterLayoutConfig.locale.locales = ['de', 'fr', 'it', 'en'];
 		masterLayoutConfig.locale.defaultLanguage = 'de';
 		masterLayoutConfig.header.serviceNavigation.pamsAppId = 'notUsed';
-		masterLayoutConfig.header.serviceNavigation.displayInfo = false;
-		masterLayoutConfig.header.serviceNavigation.displayLanguages = true;
-		masterLayoutConfig.header.serviceNavigation.displayMessage = true;
-		masterLayoutConfig.header.serviceNavigation.displayProfile = true;
-		masterLayoutConfig.header.serviceNavigation.displayAuthentication = true;
-		masterLayoutConfig.header.serviceNavigation.handleLogout = true;
 
 		this.configService.config$.subscribe(qdConfig => {
 			if (qdConfig) {
 				authConfig.clientId = qdConfig.clientId;
 				authConfig.systemName = qdConfig.systemName;
-				this.obEPamsEnvironment = this.mapEnvironmentEnum(qdConfig.pamsEnvironment);
+				this.obEPamsEnvironment = configureServiceNavigation(qdConfig as PamsConfig, masterLayoutConfig);
 			}
 		});
 	}
+
 	/**
 	 * Retrieves the current PAMS environment for the ServiceNavigation in Oblique.
-	 * Possible values: "-d", "-r", "-t", "-a", ""
-	 *
+	 * Possible values: "-d", "-r", "-t", "-a", "", or null if the PAMS integration is disabled.
 	 */
 	getObPamsEnvironment() {
 		return {environment: this.obEPamsEnvironment};
-	}
-
-	/**
-	 * Maps a given QdShellHeaderWidgetEnvironment string to the corresponding ObEPamsEnvironment enumeration value.
-	 */
-	private mapEnvironmentEnum(qdEnv: '' | QdShellHeaderWidgetEnvironment): ObEPamsEnvironment {
-		switch (qdEnv) {
-			case 'DEV':
-				return ObEPamsEnvironment.DEV;
-			case 'REF':
-				return ObEPamsEnvironment.REF;
-			case 'ABN':
-				return ObEPamsEnvironment.ABN;
-			case 'TEST':
-				return ObEPamsEnvironment.TEST;
-			case 'PROD':
-				return ObEPamsEnvironment.PROD;
-			default:
-				console.warn(`Unrecognized pamsEnvironment: ${qdEnv}. ServiceNavigation will not work.`);
-				return null;
-		}
 	}
 }

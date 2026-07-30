@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [18.8.0] - 2026-07-30
+
+### Added
+- New property `jeap.errorhandling.frontend.pams-enabled` (default `true`) to deactivate the PAMS/ePortal
+  integration. With `pams-enabled: false`, the UI does not contact the ePortal backend, hides the header
+  controls served by PAMS and mocks the PAMS session; `pams-environment` is then no longer required.
+
 ## [18.7.1] - 2026-07-22
 
 ### Changed

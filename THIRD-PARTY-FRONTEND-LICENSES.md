@@ -183,11 +183,6 @@
     - version: 7.29.7
     - licenses: MIT
     - repository: https://github.com/babel/babel
- - **[@babel/core@7.29.0](https://github.com/babel/babel)**
-    - name: @babel/core
-    - version: 7.29.0
-    - licenses: MIT
-    - repository: https://github.com/babel/babel
  - **[@babel/core@7.29.7](https://github.com/babel/babel)**
     - name: @babel/core
     - version: 7.29.7
@@ -1933,9 +1928,9 @@
     - version: 2.1.0
     - licenses: MIT
     - repository: https://github.com/epoberezkin/fast-json-stable-stringify
- - **[fast-uri@3.1.2](https://github.com/fastify/fast-uri)**
+ - **[fast-uri@3.1.4](https://github.com/fastify/fast-uri)**
     - name: fast-uri
-    - version: 3.1.2
+    - version: 3.1.4
     - licenses: BSD-3-Clause
     - repository: https://github.com/fastify/fast-uri
  - **[fb-watchman@2.0.2](https://github.com/facebook/watchman)**
@@ -2173,9 +2168,9 @@
     - version: 8.0.0
     - licenses: ISC
     - repository: https://github.com/npm/ignore-walk
- - **[immutable@5.1.5](https://github.com/immutable-js/immutable-js)**
+ - **[immutable@5.1.9](https://github.com/immutable-js/immutable-js)**
     - name: immutable
-    - version: 5.1.5
+    - version: 5.1.9
     - licenses: MIT
     - repository: https://github.com/immutable-js/immutable-js
  - **[import-local@3.2.0](https://github.com/sindresorhus/import-local)**

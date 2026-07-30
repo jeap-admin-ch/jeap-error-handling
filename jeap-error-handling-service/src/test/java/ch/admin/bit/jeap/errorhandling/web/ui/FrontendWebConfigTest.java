@@ -24,6 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         "jeap.errorhandling.frontend.application-url=http://localhost:4200",
         "jeap.errorhandling.frontend.sts-server=http://localhost",
         "jeap.errorhandling.frontend.logout-redirect-uri=/logout",
+        "jeap.errorhandling.frontend.pams-enabled=true",
         "jeap.errorhandling.frontend.mock-pams=false",
         "jeap.errorhandling.frontend.pams-environment=dev",
         "jeap.errorhandling.frontend.client-id=test-client",

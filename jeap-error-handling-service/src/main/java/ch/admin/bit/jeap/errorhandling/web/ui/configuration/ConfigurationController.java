@@ -34,9 +34,10 @@ class ConfigurationController {
     public ConfigurationDTO getAuthConfiguration() {
         return ConfigurationDTO.builder()
                 .applicationUrl(frontendConfigProperties.getApplicationUrl())
-                .pamsEnvironment(frontendConfigProperties.getPamsEnvironment())
+                .pamsEnabled(frontendConfigProperties.getPamsEnabled())
+                .pamsEnvironment(frontendConfigProperties.getEffectivePamsEnvironment())
                 .logoutRedirectUri(frontendConfigProperties.getLogoutRedirectUri())
-                .mockPams(frontendConfigProperties.getMockPams())
+                .mockPams(frontendConfigProperties.isMockPamsEffective())
                 .tokenAwarePatterns(frontendConfigProperties.getTokenAwarePattern())
                 .appVersion(getVersion())
                 .authority(authority)

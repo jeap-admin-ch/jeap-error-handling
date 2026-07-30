@@ -21,8 +21,7 @@ jeap:
       ticketing-system-url: "http://anywhere.ch:8080"
       system-name: "jme"
       logout-redirect-uri: "/jeap-frontend/logout"
-      mock-pams: true
-      pams-environment: none
+      pams-enabled: false
       client-id: my-client-id
       auto-login: false
       renew-user-info-after-token-renew: true

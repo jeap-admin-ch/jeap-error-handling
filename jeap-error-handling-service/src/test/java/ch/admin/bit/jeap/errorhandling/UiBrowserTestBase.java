@@ -32,10 +32,13 @@ import org.springframework.test.context.TestPropertySource;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 import static org.awaitility.Awaitility.await;
 
@@ -72,6 +75,10 @@ public abstract class UiBrowserTestBase extends ErrorHandlingITBase {
     private static final String OAUTH_MOCK_BASE_PATH = "/oidc-mock";
     private static final int OAUTH_MOCK_PORT = 8305;
 
+    // the ePortal service navigation of Oblique talks to https://pams-api.eportal<env>.admin.ch and redirects
+    // to https://eportal<env>.admin.ch
+    private static final Pattern EPORTAL_REQUEST_PATTERN = Pattern.compile("eportal|pams", Pattern.CASE_INSENSITIVE);
+
     protected static final String ERROR_VIEW_ROLE = "jme_@error_#view";
     protected static final String ERROR_RETRY_ROLE = "jme_@error_#retry";
     protected static final String ERROR_DELETE_ROLE = "jme_@error_#delete";
@@ -106,6 +113,13 @@ public abstract class UiBrowserTestBase extends ErrorHandlingITBase {
 
     protected BrowserContext context;
     protected Page page;
+
+    /**
+     * Requests the browser sent to the ePortal/PAMS backend of the Oblique service navigation, recorded for
+     * the currently open page. Empty as long as the PAMS integration is disabled, see
+     * {@code jeap.errorhandling.frontend.pams-enabled}.
+     */
+    protected final List<String> ePortalRequests = Collections.synchronizedList(new ArrayList<>());
 
     @DynamicPropertySource
     static void oauthMockServerProperties(DynamicPropertyRegistry registry) {
@@ -163,6 +177,7 @@ public abstract class UiBrowserTestBase extends ErrorHandlingITBase {
         oauthMockServer.reset();
         oauthMockServer.setActiveProfile(profileName);
         closeCurrentContext();
+        ePortalRequests.clear();
         context = browser.newContext(new Browser.NewContextOptions().setLocale("en-US"));
         page = context.newPage();
         page.setDefaultTimeout(20_000);
@@ -178,6 +193,10 @@ public abstract class UiBrowserTestBase extends ErrorHandlingITBase {
         page.onRequest(request -> {
             if (request.url().contains(OAUTH_MOCK_BASE_PATH)) {
                 log.info("Browser request to OAuth mock: {} {}", request.method(), request.url());
+            }
+            if (EPORTAL_REQUEST_PATTERN.matcher(request.url()).find()) {
+                log.info("Browser request to ePortal/PAMS: {} {}", request.method(), request.url());
+                ePortalRequests.add(request.url());
             }
         });
         page.onFrameNavigated(frame -> {

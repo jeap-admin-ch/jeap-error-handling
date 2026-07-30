@@ -27,7 +27,11 @@ export class AppComponent {
 	}
 
 	loginStatus($event) {
-		this.authenticationService.pamsStatus.next($event);
+		// Oblique reports an undefined login state when the ePortal backend cannot be reached. Forwarding it
+		// would make the authentication service fail while reading the PAMS session status.
+		if ($event !== undefined && $event !== null) {
+			this.authenticationService.pamsStatus.next($event);
+		}
 	}
 
 	languageChange(lang: string) {
