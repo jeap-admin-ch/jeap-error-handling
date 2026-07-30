@@ -6,13 +6,23 @@ import org.junit.jupiter.api.Test;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 /**
- * Browser tests for the application header with the PAMS integration disabled, which is how the tests are
- * configured (jeap.errorhandling.frontend.pams-enabled=false in the test application.yml).
+ * Browser tests for a deployment without PAMS, which is how the tests are configured
+ * (jeap.errorhandling.frontend.pams-enabled=false in the test application.yml).
  */
-class UiHeaderBrowserIT extends UiBrowserTestBase {
+class UiWithoutPamsBrowserIT extends UiBrowserTestBase {
 
     @Test
-    void headerWithPamsDisabled_doesNotContactEportal() {
+    void withoutPams_errorListIsUsable() {
+        saveError("error without pams", null);
+
+        page.navigate(APP_URL + "error-list");
+
+        assertThat(errorListRows()).hasCount(1);
+        assertThat(page.getByText("error without pams")).isVisible();
+    }
+
+    @Test
+    void withoutPams_noRequestIsSentToEportal() {
         page.navigate(APP_URL + "error-list");
 
         // wait for the application to be fully loaded before asserting on the requests it has sent
@@ -22,7 +32,7 @@ class UiHeaderBrowserIT extends UiBrowserTestBase {
     }
 
     @Test
-    void headerWithPamsDisabled_hidesLoginAndProfileButKeepsLanguageSelection() {
+    void withoutPams_headerHidesLoginAndProfileButKeepsLanguageSelection() {
         page.navigate(APP_URL + "error-list");
 
         assertThat(languageSelection()).isVisible();
