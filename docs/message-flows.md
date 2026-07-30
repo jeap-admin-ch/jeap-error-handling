@@ -64,7 +64,7 @@ sequenceDiagram
         Consumer->>Consumer: business process continues
     else processing fails again
         Consumer->>EHS: new MessageProcessingFailedEvent
-        Note over EHS: new Error for the same causing event;<br/>the ResendingStrategy escalates to a permanent<br/>error once max-retries is reached
+        Note over EHS: new Error for the same causing event.<br/>The ResendingStrategy escalates to a permanent<br/>error once max-retries is reached
     end
 ```
 
