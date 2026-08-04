@@ -98,9 +98,9 @@
     - version: 21.2.12
     - licenses: MIT
     - repository: https://github.com/angular/angular-cli
- - **[@angular/animations@21.2.17](https://github.com/angular/angular)**
+ - **[@angular/animations@21.2.19](https://github.com/angular/angular)**
     - name: @angular/animations
-    - version: 21.2.17
+    - version: 21.2.19
     - licenses: MIT
     - repository: https://github.com/angular/angular
  - **[@angular/build@21.2.12](https://github.com/angular/angular-cli)**
@@ -118,34 +118,34 @@
     - version: 21.2.12
     - licenses: MIT
     - repository: https://github.com/angular/angular-cli
- - **[@angular/common@21.2.17](https://github.com/angular/angular)**
+ - **[@angular/common@21.2.19](https://github.com/angular/angular)**
     - name: @angular/common
-    - version: 21.2.17
+    - version: 21.2.19
     - licenses: MIT
     - repository: https://github.com/angular/angular
- - **[@angular/compiler-cli@21.2.17](https://github.com/angular/angular)**
+ - **[@angular/compiler-cli@21.2.19](https://github.com/angular/angular)**
     - name: @angular/compiler-cli
-    - version: 21.2.17
+    - version: 21.2.19
     - licenses: MIT
     - repository: https://github.com/angular/angular
- - **[@angular/compiler@21.2.17](https://github.com/angular/angular)**
+ - **[@angular/compiler@21.2.19](https://github.com/angular/angular)**
     - name: @angular/compiler
-    - version: 21.2.17
+    - version: 21.2.19
     - licenses: MIT
     - repository: https://github.com/angular/angular
- - **[@angular/core@21.2.17](https://github.com/angular/angular)**
+ - **[@angular/core@21.2.19](https://github.com/angular/angular)**
     - name: @angular/core
-    - version: 21.2.17
+    - version: 21.2.19
     - licenses: MIT
     - repository: https://github.com/angular/angular
- - **[@angular/forms@21.2.17](https://github.com/angular/angular)**
+ - **[@angular/forms@21.2.19](https://github.com/angular/angular)**
     - name: @angular/forms
-    - version: 21.2.17
+    - version: 21.2.19
     - licenses: MIT
     - repository: https://github.com/angular/angular
- - **[@angular/localize@21.2.17](https://github.com/angular/angular)**
+ - **[@angular/localize@21.2.19](https://github.com/angular/angular)**
     - name: @angular/localize
-    - version: 21.2.17
+    - version: 21.2.19
     - licenses: MIT
     - repository: https://github.com/angular/angular
  - **[@angular/material@21.2.12](https://github.com/angular/components)**
@@ -153,19 +153,19 @@
     - version: 21.2.12
     - licenses: MIT
     - repository: https://github.com/angular/components
- - **[@angular/platform-browser-dynamic@21.2.17](https://github.com/angular/angular)**
+ - **[@angular/platform-browser-dynamic@21.2.19](https://github.com/angular/angular)**
     - name: @angular/platform-browser-dynamic
-    - version: 21.2.17
+    - version: 21.2.19
     - licenses: MIT
     - repository: https://github.com/angular/angular
- - **[@angular/platform-browser@21.2.17](https://github.com/angular/angular)**
+ - **[@angular/platform-browser@21.2.19](https://github.com/angular/angular)**
     - name: @angular/platform-browser
-    - version: 21.2.17
+    - version: 21.2.19
     - licenses: MIT
     - repository: https://github.com/angular/angular
- - **[@angular/router@21.2.17](https://github.com/angular/angular)**
+ - **[@angular/router@21.2.19](https://github.com/angular/angular)**
     - name: @angular/router
-    - version: 21.2.17
+    - version: 21.2.19
     - licenses: MIT
     - repository: https://github.com/angular/angular
  - **[@asamuzakjp/css-color@3.2.0](https://github.com/asamuzaK/cssColor)**
@@ -1928,9 +1928,9 @@
     - version: 2.1.0
     - licenses: MIT
     - repository: https://github.com/epoberezkin/fast-json-stable-stringify
- - **[fast-uri@3.1.4](https://github.com/fastify/fast-uri)**
+ - **[fast-uri@3.1.5](https://github.com/fastify/fast-uri)**
     - name: fast-uri
-    - version: 3.1.4
+    - version: 3.1.5
     - licenses: BSD-3-Clause
     - repository: https://github.com/fastify/fast-uri
  - **[fb-watchman@2.0.2](https://github.com/facebook/watchman)**
