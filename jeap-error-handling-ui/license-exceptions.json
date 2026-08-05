@@ -3,7 +3,7 @@
     "caniuse-lite@*": {
       "reason": "CC-BY-4.0; see: https://github.com/browserslist/caniuse-lite"
     },
-    "minimatch@10.1.1": {
+    "minimatch@*": {
       "reason": "BlueOak-1.0.0; Dev dependency, see: https://github.com/isaacs/minimatch"
     },
     "chownr@*": {
@@ -62,9 +62,6 @@
     },
     "lru-cache@*": {
       "reason": "BlueOak-1.0.0; Dev dependency, see: https://github.com/isaacs/node-lru-cache"
-    },
-    "minimatch@10.2.5": {
-      "reason": "BlueOak-1.0.0; Dev dependency, see: https://github.com/isaacs/minimatch"
     },
     "minipass@7.1.3": {
       "reason": "BlueOak-1.0.0; Dev dependency, see: https://github.com/isaacs/minipass"
