@@ -2,10 +2,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ErrorGroupDetailsHeaderComponent } from './error-group-details-header.component';
 import { provideHttpClient } from '@angular/common/http';
-import { provideTranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { Observable, of } from 'rxjs';
 import { ErrorGroupService } from '../../shared/errorgroupservice/error-group.service';
 import { ObNotificationService } from '@oblique/oblique';
-import { of } from 'rxjs';
+
+class FakeTranslateLoader implements TranslateLoader {
+	getTranslation(lang: string): Observable<any> {
+		return of({});
+	}
+}
 
 describe('ErrorGroupDetailsHeaderComponent', () => {
 	let fixture: ComponentFixture<ErrorGroupDetailsHeaderComponent>;
@@ -15,9 +21,11 @@ describe('ErrorGroupDetailsHeaderComponent', () => {
 		await TestBed.configureTestingModule({
 			imports: [
 				ErrorGroupDetailsHeaderComponent,
+				TranslateModule.forRoot({
+					loader: { provide: TranslateLoader, useClass: FakeTranslateLoader }
+				})
 			],
 			providers: [
-				provideTranslateService({}),
 				provideHttpClient(),
 				{
 					provide: ErrorGroupService,

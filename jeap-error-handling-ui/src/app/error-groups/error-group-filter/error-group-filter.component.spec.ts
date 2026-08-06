@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ErrorGroupFilterComponent } from './error-group-filter.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { provideTranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { provideNativeDateAdapter } from '@angular/material/core';
 
 // Angular Material Module Imports
@@ -34,6 +34,7 @@ describe('ErrorGroupFilterComponent', () => {
 			imports: [
 				ErrorGroupFilterComponent,
 				HttpClientTestingModule,
+				TranslateModule.forRoot(),
 				MatDatepickerModule,
 				MatCheckboxModule,
 				MatInputModule,
@@ -45,7 +46,6 @@ describe('ErrorGroupFilterComponent', () => {
 				ObColumnLayoutModule
 			],
 			providers: [
-				provideTranslateService({}),
 				provideNativeDateAdapter(),
 				{ provide: DialogService, useValue: {} },
 				{ provide: NotifierService, useValue: {} },

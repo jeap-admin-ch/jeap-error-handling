@@ -2,7 +2,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {ReactivateDeadLetterPageComponent} from './reactivate-dead-letter-page.component';
 import {ReactivateDeadLetterService} from '../../shared/reactivate-dead-letter.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {provideTranslateService} from '@ngx-translate/core';
+import {TranslateModule} from '@ngx-translate/core';
 import {FormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
@@ -19,16 +19,14 @@ describe('ReactivateDeadLetterPageComponent', () => {
 		await TestBed.configureTestingModule({
 			imports: [
 				HttpClientTestingModule,
+				TranslateModule.forRoot(),
 				FormsModule,
 				MatButtonModule,
 				MatInputModule,
 				ObAlertComponent,
 				ReactivateDeadLetterPageComponent // Add the component here
 			],
-			providers: [
-				provideTranslateService({}),
-				ReactivateDeadLetterService
-			]
+			providers: [ReactivateDeadLetterService]
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(ReactivateDeadLetterPageComponent);

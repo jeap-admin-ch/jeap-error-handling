@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ClosingReasonDialogComponent } from './closing-reason-dialog.component';
-import { provideTranslateService, TranslatePipe } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -17,7 +17,7 @@ describe('ClosingReasonDialogComponent', () => {
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
 			imports: [
-				TranslatePipe,
+				TranslateModule.forRoot(),
 				FormsModule,
 				MatFormFieldModule,
 				MatInputModule,
@@ -27,7 +27,6 @@ describe('ClosingReasonDialogComponent', () => {
 			],
 			declarations: [ClosingReasonDialogComponent],
 			providers: [
-				provideTranslateService({}),
 				{
 					provide: MatDialogRef,
 					useValue: {

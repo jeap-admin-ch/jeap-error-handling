@@ -20,9 +20,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - **conventional-changelog**: 6.0.0 → 8.1.0 (major)
 - **commander**: 13.1.0 → 15.0.0 (major)
 - **angular-oauth2-oidc**: 20.0.3 → 22.0.2 (major)
-- **@ngx-translate/http-loader**: 8.0.0 → 18.0.0 (major)
-- **@ngx-translate/core**: 17.0.0 → 18.0.0 (major)
-- **@babel/core**: 7.29.7 → 8.0.1 (major)
+- **@babel/core**: removed erroneous override (transitive, managed by @angular/build)
 
 ## [19.0.1] - 2026-08-04
 
