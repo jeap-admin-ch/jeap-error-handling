@@ -4,14 +4,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { Observable, of } from 'rxjs';
-
-class FakeTranslateLoader implements TranslateLoader {
-	getTranslation(lang: string): Observable<any> {
-		return of({});
-	}
-}
+import { provideTranslateService } from '@ngx-translate/core';
 
 describe('ErrorGroupDetailsListFilterComponent', () => {
 	let component: ErrorGroupDetailsListFilterComponent;
@@ -25,9 +18,9 @@ describe('ErrorGroupDetailsListFilterComponent', () => {
 				MatNativeDateModule,
 				MatFormFieldModule,
 				MatInputModule,
-				TranslateModule.forRoot({
-					loader: { provide: TranslateLoader, useClass: FakeTranslateLoader }
-				})
+			],
+			providers: [
+				provideTranslateService({})
 			]
 		}).compileComponents();
 

@@ -21,7 +21,7 @@ import {MatSort, MatSortHeader, Sort} from '@angular/material/sort';
 import {MatIcon} from '@angular/material/icon';
 import {MatIconAnchor, MatIconButton} from '@angular/material/button';
 import {MatTooltip} from '@angular/material/tooltip';
-import {TranslateModule} from '@ngx-translate/core';
+import {TranslatePipe, TranslateDirective} from '@ngx-translate/core';
 import {RouterLink} from '@angular/router';
 import {NotifierService} from '../../shared/notifier/notifier.service';
 import {MatPaginator, MatPaginatorModule, PageEvent} from '@angular/material/paginator';
@@ -44,7 +44,7 @@ import {LogDeepLinkService} from '../../shared/logdeeplink/logdeeplink.service';
     MatIconButton,
     MatTooltip,
     ObButtonDirective,
-    TranslateModule,
+    TranslatePipe, TranslateDirective,
     RouterLink,
     MatPaginator,
     MatPaginatorModule,

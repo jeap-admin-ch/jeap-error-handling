@@ -10,7 +10,7 @@ module.exports = {
 	},
 	transform: {
 		'^.+\\.(ts|js|mjs|html|svg)$': [
-			'jest-preset-angular',
+			'<rootDir>/tests/jest-preset-angular-transformer',
 			{
 				tsconfig: '<rootDir>/tsconfig.spec.json',
 				stringifyContentPathRegex: '\\.(html|svg)$',

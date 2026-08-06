@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule} from '@angular/core';
 import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
-import {TranslateModule} from '@ngx-translate/core';
+import {TranslatePipe, TranslateDirective} from '@ngx-translate/core';
 import {
 	OB_PAMS_CONFIGURATION,
 	ObButtonModule,
@@ -103,7 +103,7 @@ import {configureServiceNavigation, PamsConfig} from './shared/pams/pams-header-
 		MatButtonToggleModule,
 		CommonModule,
 		ObMasterLayoutModule,
-		TranslateModule,
+		TranslatePipe, TranslateDirective,
 		AppRoutingModule,
 		QdAuthModule.forRoot(appSetup, authConfig),
 		ObColumnLayoutModule,

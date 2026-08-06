@@ -6,7 +6,7 @@ import {MatError, MatFormField, MatLabel, MatSuffix} from "@angular/material/for
 import {MatInput} from "@angular/material/input";
 import {ObButtonDirective} from "@oblique/oblique";
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
-import {TranslateModule} from "@ngx-translate/core";
+import {TranslatePipe, TranslateDirective} from "@ngx-translate/core";
 import {endOfDay, startOfDay} from "date-fns";
 import {BaseComponent} from "../../shared/BaseComponent";
 import {MatIcon} from "@angular/material/icon";
@@ -27,7 +27,7 @@ import {MatIcon} from "@angular/material/icon";
     MatSuffix,
     ObButtonDirective,
     ReactiveFormsModule,
-    TranslateModule,
+    TranslatePipe, TranslateDirective,
     MatError,
     MatIcon,
     MatIconButton,

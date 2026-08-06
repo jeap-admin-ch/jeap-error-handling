@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TranslateModule } from '@ngx-translate/core';
+import { provideTranslateService, TranslatePipe } from '@ngx-translate/core';
 import { ConfirmationDialogComponent } from './confirmation-dialog.component';
 
 describe('ConfirmationDialogComponent', () => {
@@ -13,8 +13,9 @@ describe('ConfirmationDialogComponent', () => {
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
 			declarations: [ ConfirmationDialogComponent ],
-			imports: [ BrowserAnimationsModule, TranslateModule.forRoot(), MatDialogModule, MatButtonModule ],
+			imports: [ BrowserAnimationsModule, TranslatePipe, MatDialogModule, MatButtonModule ],
 			providers: [
+				provideTranslateService({}),
 				{
 					provide: MatDialogRef,
 					useValue: { close: jest.fn() },

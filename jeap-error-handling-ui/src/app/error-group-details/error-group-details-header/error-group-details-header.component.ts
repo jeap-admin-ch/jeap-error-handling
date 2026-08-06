@@ -5,7 +5,7 @@ import {MatFormFieldModule, MatLabel} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
 import {MatButton} from '@angular/material/button';
 import {MatCard, MatCardContent, MatCardHeader} from '@angular/material/card';
-import {TranslateModule} from '@ngx-translate/core';
+import {TranslatePipe, TranslateDirective} from '@ngx-translate/core';
 import {FormsModule} from '@angular/forms';
 
 import {ErrorGroupService} from '../../shared/errorgroupservice/error-group.service';
@@ -23,7 +23,7 @@ import {environment} from '../../../environments/environment';
     MatCardContent,
     MatCardHeader,
     ObButtonDirective,
-    TranslateModule,
+    TranslatePipe, TranslateDirective,
     FormsModule
 ],
 	templateUrl: './error-group-details-header.component.html',

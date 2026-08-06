@@ -10,7 +10,7 @@ import {
 import {ErrorGroupDetailsListComponent} from "./error-group-details-list/error-group-details-list.component";
 
 import {MatButton} from "@angular/material/button";
-import {TranslateModule} from "@ngx-translate/core";
+import {TranslatePipe, TranslateDirective} from "@ngx-translate/core";
 import {ErrorGroupDetailsListSearchFormDto} from "../shared/errorservice/error.model";
 
 
@@ -22,7 +22,7 @@ import {ErrorGroupDetailsListSearchFormDto} from "../shared/errorservice/error.m
     ErrorGroupDetailsListFilterComponent,
     ErrorGroupDetailsListComponent,
     MatButton,
-    TranslateModule,
+    TranslatePipe, TranslateDirective,
     ObButtonDirective
 ],
     templateUrl: './error-group-details.component.html',

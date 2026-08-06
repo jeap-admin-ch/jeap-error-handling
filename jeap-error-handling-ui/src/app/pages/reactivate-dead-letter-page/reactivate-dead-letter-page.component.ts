@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import { ReactivateDeadLetterService } from '../../shared/reactivate-dead-letter.service';
 import {FormsModule} from '@angular/forms';
 import {MatButton} from '@angular/material/button';
-import {TranslateModule} from '@ngx-translate/core';
+import {TranslatePipe, TranslateDirective} from '@ngx-translate/core';
 import {MatInput} from '@angular/material/input';
 import {ObAlertComponent} from '@oblique/oblique';
 
@@ -15,7 +15,7 @@ import {MatIcon} from "@angular/material/icon";
 	imports: [
     FormsModule,
     MatButton,
-    TranslateModule,
+    TranslatePipe, TranslateDirective,
     MatInput,
     ObAlertComponent,
     MatProgressBar,

@@ -13,7 +13,7 @@ import { of } from 'rxjs';
 import { ErrorGroupService } from '../shared/errorgroupservice/error-group.service';
 import { NotifierService } from '../shared/notifier/notifier.service';
 import { QdAuthorizationService } from '@quadrel-enterprise-ui/auth';
-import {TranslateModule} from '@ngx-translate/core';
+import {provideTranslateService, TranslatePipe} from '@ngx-translate/core';
 
 @Component({selector: 'app-error-group-filter', template: '', standalone: false})
 class ErrorGroupFilterStubComponent {}
@@ -53,9 +53,10 @@ describe('ErrorGroupsComponent', () => {
 				MatTableModule,
 				BrowserAnimationsModule,
 				RouterTestingModule,
-				TranslateModule.forRoot()
+				TranslatePipe,
 			],
 			providers: [
+				provideTranslateService({}),
 				{
 					provide: ErrorGroupService,
 					useValue: errorGroupService

@@ -6,7 +6,7 @@ import {MatCheckbox} from '@angular/material/checkbox';
 import {MatError, MatFormField, MatInput, MatLabel, MatSuffix} from '@angular/material/input';
 import {MatOption, MatSelect} from '@angular/material/select';
 import {MatIcon} from '@angular/material/icon';
-import {TranslateModule} from '@ngx-translate/core';
+import {TranslatePipe, TranslateDirective} from '@ngx-translate/core';
 import {MatButton, MatIconButton} from '@angular/material/button';
 import {DropDownElement} from '../../shared/models/drop-down-element.model';
 import {ErrorService} from '../../shared/errorservice/error.service';
@@ -32,7 +32,7 @@ import {BaseComponent} from '../../shared/BaseComponent';
     MatSelect,
     MatOption,
     MatIcon,
-    TranslateModule,
+    TranslatePipe, TranslateDirective,
     MatIconButton,
     MatButton,
     ObButtonDirective,

@@ -11,7 +11,7 @@ import {MatIconModule, MatIconRegistry} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import {TranslateModule} from '@ngx-translate/core';
+import {provideTranslateService} from '@ngx-translate/core';
 import {RouterTestingModule} from '@angular/router/testing';
 import {ObButtonModule} from '@oblique/oblique';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -33,11 +33,11 @@ describe('ErrorGroupDetailsListComponent', () => {
 				MatButtonModule,
 				MatTooltipModule,
 				MatPaginatorModule,
-				TranslateModule.forRoot(),
 				RouterTestingModule,
 				ObButtonModule
 			],
 			providers: [
+				provideTranslateService({}),
 				{ provide: ErrorService, useValue: { someMethod: () => of() } },
 				{ provide: NotifierService, useValue: {} },
 				{ provide: LogDeepLinkService, useValue: { getLogDeepLink: () => of() } }
