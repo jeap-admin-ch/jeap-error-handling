@@ -56,8 +56,9 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 
 @SpringBootTest(webEnvironment = DEFINED_PORT,
         properties = {"server.port=8304",
-                // the failures of the test consumer are published to the dead letter topic, from where the
-                // dead letter relay hands them to the error handling service on its input topic
+                // the failures of the test consumer are published to the topic the error handling service
+                // consumes from, its own failures to the dead letter topic, see
+                // TestConsumerErrorTopicConfiguration
                 "jeap.errorhandling.deadLetterTopicName=" + ErrorHandlingITBase.DEAD_LETTER_TOPIC,
                 "jeap.errorhandling.topic=" + ErrorHandlingITBase.ERROR_TOPIC,
                 "jeap.security.oauth2.resourceserver.authorization-server.issuer=" + JwsBuilder.DEFAULT_ISSUER,
@@ -65,7 +66,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
                 "logging.level.ch.admin.bit.jeap.errorhandling=DEBUG",
                 "jeap.errorhandling.metrics.updateFrequencyMillis=500"
         })
-@ActiveProfiles(DeadLetterToErrorTopicRelay.PROFILE)
+@ActiveProfiles(TestConsumerErrorTopicConfiguration.PROFILE)
 @DirtiesContext
 class ErrorHandlingIT extends ErrorHandlingITBase {
 

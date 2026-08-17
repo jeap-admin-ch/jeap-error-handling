@@ -62,12 +62,12 @@ import static org.awaitility.Awaitility.await;
         // the resource server validates the token audience against the application name
         "jeap.errorhandling.frontend.client-id=jeap-error-handling-service",
         // mirroring the topic wiring of ErrorHandlingIT: the failures of the failing TestConsumer are
-        // published to the dead letter topic, from where the dead letter relay hands them to the error
-        // handling service on its input topic
+        // published to the topic the error handling service consumes from, its own failures to the dead
+        // letter topic, see TestConsumerErrorTopicConfiguration
         "jeap.errorhandling.deadLetterTopicName=" + ErrorHandlingITBase.DEAD_LETTER_TOPIC,
         "jeap.errorhandling.topic=" + ErrorHandlingITBase.ERROR_TOPIC
 })
-@ActiveProfiles(DeadLetterToErrorTopicRelay.PROFILE)
+@ActiveProfiles(TestConsumerErrorTopicConfiguration.PROFILE)
 public abstract class UiBrowserTestBase extends ErrorHandlingITBase {
 
     protected static final String APP_URL = "http://localhost:8303/error-handling/";
