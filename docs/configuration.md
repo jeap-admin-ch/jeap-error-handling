@@ -29,6 +29,15 @@ jeap:
 Note that for the EHS itself, `jeap.messaging.kafka.errorTopicName` always equals the dead letter topic —
 the EHS must not publish its own failures to the topic it consumes from.
 
+The topic configuration is validated at startup, the EHS refuses to start if:
+
+- `jeap.errorhandling.topic` or `jeap.errorhandling.deadLetterTopicName` is missing,
+- `jeap.errorhandling.topic` and `jeap.errorhandling.deadLetterTopicName` name the same topic — the EHS would
+  consume its own failures again and the [dead letter reactivation](operations.md#dead-letter-topic) would
+  republish messages into the topic it just read from,
+- `jeap.messaging.kafka.errorTopicName` is configured to something other than the dead letter topic, for the
+  default cluster or for any cluster in `jeap.messaging.kafka.cluster.*`.
+
 ### Retry of temporary EHS failures
 
 If the EHS hits a transient problem while consuming (e.g. the database is briefly unavailable), it retries

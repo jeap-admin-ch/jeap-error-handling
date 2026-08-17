@@ -36,6 +36,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Duration;
@@ -55,13 +56,16 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 
 @SpringBootTest(webEnvironment = DEFINED_PORT,
         properties = {"server.port=8304",
-                "jeap.errorhandling.deadLetterTopicName=" + ErrorHandlingITBase.ERROR_TOPIC,
-                "jeap.errorhandling.topic=${jeap.messaging.kafka.errorTopicName}",
+                // the failures of the test consumer are published to the dead letter topic, from where the
+                // dead letter relay hands them to the error handling service on its input topic
+                "jeap.errorhandling.deadLetterTopicName=" + ErrorHandlingITBase.DEAD_LETTER_TOPIC,
+                "jeap.errorhandling.topic=" + ErrorHandlingITBase.ERROR_TOPIC,
                 "jeap.security.oauth2.resourceserver.authorization-server.issuer=" + JwsBuilder.DEFAULT_ISSUER,
                 "jeap.security.oauth2.resourceserver.authorization-server.jwk-set-uri=http://localhost:${server.port}/.well-known/jwks.json",
                 "logging.level.ch.admin.bit.jeap.errorhandling=DEBUG",
                 "jeap.errorhandling.metrics.updateFrequencyMillis=500"
         })
+@ActiveProfiles(DeadLetterToErrorTopicRelay.PROFILE)
 @DirtiesContext
 class ErrorHandlingIT extends ErrorHandlingITBase {
 

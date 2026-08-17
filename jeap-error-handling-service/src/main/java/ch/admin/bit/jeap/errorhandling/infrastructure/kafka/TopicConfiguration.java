@@ -57,9 +57,16 @@ class TopicConfiguration {
 
     @PostConstruct
     public void checkTopicsConfiguration() {
-        log.info("Configured values for both error topics: deadLetterTopicName={}, errorTopicName={}", deadLetterTopicName, errorTopicName);
+        log.info("Configured values for the topics: topicName={}, deadLetterTopicName={}, errorTopicName={}", topicName, deadLetterTopicName, errorTopicName);
+        if (!StringUtils.hasText(topicName)) {
+            throw new IllegalArgumentException("Topic name is required to start this application. Please configure the property " + NAME);
+        }
         if (!StringUtils.hasText(deadLetterTopicName)) {
             throw new IllegalArgumentException("Dead letter topic name is required to start this application. Please configure the property " + DEAD_LETTER_TOPIC_NAME);
+        }
+        if (topicName.trim().equals(deadLetterTopicName.trim())) {
+            throw new IllegalArgumentException("The error handling service must not consume from its own dead letter topic: " + NAME + " and " + DEAD_LETTER_TOPIC_NAME +
+                    " are both configured to '" + topicName + "'. Please configure a dead letter topic that is different from the topic the error handling service consumes from.");
         }
         if (!deadLetterTopicName.equals(errorTopicName)) {
             throw new IllegalArgumentException("A configuration was found for " + ERROR_TOPIC_NAME + " (" + errorTopicName + "). This parameter must not be configured for the error handling service.");

@@ -25,6 +25,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.TestPropertySource;
@@ -60,11 +61,13 @@ import static org.awaitility.Awaitility.await;
         "jeap.errorhandling.frontend.auto-login=true",
         // the resource server validates the token audience against the application name
         "jeap.errorhandling.frontend.client-id=jeap-error-handling-service",
-        // let the error handling service consume the failed events published by the failing TestConsumer,
-        // mirroring the topic wiring of ErrorHandlingIT (errorTopicName always follows deadLetterTopicName)
-        "jeap.errorhandling.deadLetterTopicName=" + ErrorHandlingITBase.ERROR_TOPIC,
-        "jeap.errorhandling.topic=${jeap.messaging.kafka.errorTopicName}"
+        // mirroring the topic wiring of ErrorHandlingIT: the failures of the failing TestConsumer are
+        // published to the dead letter topic, from where the dead letter relay hands them to the error
+        // handling service on its input topic
+        "jeap.errorhandling.deadLetterTopicName=" + ErrorHandlingITBase.DEAD_LETTER_TOPIC,
+        "jeap.errorhandling.topic=" + ErrorHandlingITBase.ERROR_TOPIC
 })
+@ActiveProfiles(DeadLetterToErrorTopicRelay.PROFILE)
 public abstract class UiBrowserTestBase extends ErrorHandlingITBase {
 
     protected static final String APP_URL = "http://localhost:8303/error-handling/";

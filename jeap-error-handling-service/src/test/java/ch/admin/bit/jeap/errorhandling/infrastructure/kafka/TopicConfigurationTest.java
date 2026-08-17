@@ -14,6 +14,7 @@ class TopicConfigurationTest {
     void checkTopicsConfiguration_allOK(){
         TopicConfiguration topicConfiguration = new TopicConfiguration();
 
+        ReflectionTestUtils.setField(topicConfiguration, "topicName", "error-topic");
         ReflectionTestUtils.setField(topicConfiguration, "deadLetterTopicName", "test");
         ReflectionTestUtils.setField(topicConfiguration, "errorTopicName", "test");
         topicConfiguration.checkTopicsConfiguration();
@@ -21,9 +22,60 @@ class TopicConfigurationTest {
     }
 
     @Test
+    void checkTopicsConfiguration_missing_topicName(){
+        TopicConfiguration topicConfiguration = new TopicConfiguration();
+
+        ReflectionTestUtils.setField(topicConfiguration, "topicName", " ");
+        ReflectionTestUtils.setField(topicConfiguration, "deadLetterTopicName", "test");
+        ReflectionTestUtils.setField(topicConfiguration, "errorTopicName", "test");
+
+        Exception exception = assertThrows(IllegalArgumentException.class, topicConfiguration::checkTopicsConfiguration);
+
+        assertThat(exception.getMessage()).isEqualTo("Topic name is required to start this application. Please configure the property ${jeap.errorhandling.topic}");
+    }
+
+    @Test
+    void checkTopicsConfiguration_missing_deadLetterTopicName(){
+        TopicConfiguration topicConfiguration = new TopicConfiguration();
+
+        ReflectionTestUtils.setField(topicConfiguration, "topicName", "error-topic");
+        ReflectionTestUtils.setField(topicConfiguration, "deadLetterTopicName", "");
+        ReflectionTestUtils.setField(topicConfiguration, "errorTopicName", "");
+
+        Exception exception = assertThrows(IllegalArgumentException.class, topicConfiguration::checkTopicsConfiguration);
+
+        assertThat(exception.getMessage()).isEqualTo("Dead letter topic name is required to start this application. Please configure the property ${jeap.errorhandling.deadLetterTopicName}");
+    }
+
+    @Test
+    void checkTopicsConfiguration_topicName_equals_deadLetterTopicName(){
+        TopicConfiguration topicConfiguration = new TopicConfiguration();
+
+        ReflectionTestUtils.setField(topicConfiguration, "topicName", "error-topic");
+        ReflectionTestUtils.setField(topicConfiguration, "deadLetterTopicName", "error-topic");
+        ReflectionTestUtils.setField(topicConfiguration, "errorTopicName", "error-topic");
+
+        Exception exception = assertThrows(IllegalArgumentException.class, topicConfiguration::checkTopicsConfiguration);
+
+        assertThat(exception.getMessage()).isEqualTo("The error handling service must not consume from its own dead letter topic: ${jeap.errorhandling.topic} and ${jeap.errorhandling.deadLetterTopicName} are both configured to 'error-topic'. Please configure a dead letter topic that is different from the topic the error handling service consumes from.");
+    }
+
+    @Test
+    void checkTopicsConfiguration_topicName_equals_deadLetterTopicName_ignoringSurroundingWhitespace(){
+        TopicConfiguration topicConfiguration = new TopicConfiguration();
+
+        ReflectionTestUtils.setField(topicConfiguration, "topicName", "error-topic ");
+        ReflectionTestUtils.setField(topicConfiguration, "deadLetterTopicName", "error-topic");
+        ReflectionTestUtils.setField(topicConfiguration, "errorTopicName", "error-topic");
+
+        assertThrows(IllegalArgumentException.class, topicConfiguration::checkTopicsConfiguration);
+    }
+
+    @Test
     void checkTopicsConfiguration_wrong_deadLetterTopicName(){
         TopicConfiguration topicConfiguration = new TopicConfiguration();
 
+        ReflectionTestUtils.setField(topicConfiguration, "topicName", "error-topic");
         ReflectionTestUtils.setField(topicConfiguration, "deadLetterTopicName", "test");
         ReflectionTestUtils.setField(topicConfiguration, "errorTopicName", "dummy");
 
@@ -37,6 +89,7 @@ class TopicConfigurationTest {
     void checkTopicsConfiguration_wrong_deadLetterTopicName_multicluster(){
         TopicConfiguration topicConfiguration = new TopicConfiguration();
 
+        ReflectionTestUtils.setField(topicConfiguration, "topicName", "error-topic");
         ReflectionTestUtils.setField(topicConfiguration, "deadLetterTopicName", "deadletter-topic");
         ReflectionTestUtils.setField(topicConfiguration, "errorTopicName", "deadletter-topic");
         ReflectionTestUtils.setField(topicConfiguration, "multiClusterConfiguration", Map.of("cluster1", Map.of("errorTopicName", "some-other-topic")));
@@ -50,6 +103,7 @@ class TopicConfigurationTest {
     void checkTopicsConfiguration_deadLetterTopicName_multicluster_allOK(){
         TopicConfiguration topicConfiguration = new TopicConfiguration();
 
+        ReflectionTestUtils.setField(topicConfiguration, "topicName", "error-topic");
         ReflectionTestUtils.setField(topicConfiguration, "deadLetterTopicName", "deadletter-topic");
         ReflectionTestUtils.setField(topicConfiguration, "errorTopicName", "deadletter-topic");
         ReflectionTestUtils.setField(topicConfiguration, "multiClusterConfiguration", Map.of("cluster1", Map.of("errorTopicName", "deadletter-topic")));

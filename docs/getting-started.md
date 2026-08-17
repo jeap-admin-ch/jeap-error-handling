@@ -38,6 +38,9 @@ Two topics are needed per system (see the platform documentation on creating Kaf
 | Error topic       | `<system>-messageprocessing-failed`     | All message consumers of the system publish their failures here (`jeap.messaging.kafka.errorTopicName`); the EHS consumes it (`jeap.errorhandling.topic`). |
 | Dead letter topic | `<system>-messageprocessing-deadletter` | Failures of the EHS itself (`jeap.errorhandling.deadLetterTopicName`), see [Operations](operations.md#dead-letter-topic).                                  |
 
+The two topics must be different topics — the EHS checks this at startup and refuses to start otherwise, as
+it must not consume its own failures again.
+
 The Kafka user of the EHS needs read access to the error topic, write access to the dead letter topic, and
 **write access to every topic the EHS must be able to resend messages to**.
 
