@@ -42,7 +42,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
@@ -73,6 +73,14 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
     private static final Duration THIRTY_SECONDS = Duration.ofSeconds(30);
     @Autowired
     private KafkaListenerEndpointRegistry registry;
+
+    /**
+     * The listener containers registered as beans, i.e. the container the error handling service consumes the
+     * failed events with - the containers of the Kafka listener endpoints are not beans and are found in the
+     * {@link KafkaListenerEndpointRegistry} instead.
+     */
+    @Autowired
+    private List<MessageListenerContainer> messageListenerContainers;
 
     @Autowired
     private DLTConsumer dltConsumer;
@@ -197,13 +205,16 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
 
     @BeforeEach
     void waitForKafkaListeners() {
-        Collection<MessageListenerContainer> containers = registry.getListenerContainers();
+        // Wait for every listener, not just for an arbitrary one: as long as a consumer has not been assigned
+        // its partition, it misses the messages published to its topic, because it starts reading at the end
+        // of the topic. This holds for the DLT consumer of this test as well as for the listener of the error
+        // handling service itself, which is not registered as a Kafka listener endpoint but as a container
+        // bean, see KafkaMessageProcessingFailedEventConsumerFactory.
+        List<MessageListenerContainer> containers = new ArrayList<>(registry.getListenerContainers());
+        containers.addAll(messageListenerContainers);
         if (containers.isEmpty()) {
             throw new IllegalStateException("No event listener found");
         }
-        // Wait for every listener, not just for an arbitrary one: as long as the DLT consumer has not been
-        // assigned its partition, it misses the messages the service under test publishes to the DLT, because
-        // the consumer starts reading at the end of the topic.
         containers.forEach(container -> ContainerTestUtils.waitForAssignment(container, 1));
     }
 
