@@ -65,7 +65,7 @@
     "@angular/build": "^21.2.3",
     "@angular/cli": "^21.2.3",
     "@angular/compiler-cli": "^21.2.19",
-    "@jeap/jeap-frontend-license-checker": "^1.0.0",
+    "@jeap/jeap-frontend-license-checker": "^1.0.1",
     "@ngtools/json-schema": "^1.1.0",
     "@schematics/angular": "^21.2.3",
     "@types/jest": "^30.0.0",
