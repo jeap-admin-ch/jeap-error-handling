@@ -1,0 +1,13 @@
+{
+  "exceptions": {
+    "@quadrel-enterprise-ui/*": {
+      "reason": "Quadrel runtime dependencies whose published npm packages omit SPDX license metadata."
+    },
+    "@ngx-translate/http-loader@*": {
+      "reason": "MIT; the package declares \"SEE LICENSE IN LICENSE\" but ships no such file. See https://github.com/ngx-translate/http-loader"
+    }
+  },
+  "notices": {
+    "out": "../THIRD-PARTY-FRONTEND-LICENSES.md"
+  }
+}

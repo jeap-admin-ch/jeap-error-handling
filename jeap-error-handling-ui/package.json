@@ -16,8 +16,8 @@
     "test": "ng test --watch=false",
     "test:watch": "ng test --watchAll",
     "lint": "ng lint",
-    "check-licenses": "apache2-license-checker",
-    "generateLicenseFile": "license-checker --customPath custom-license-md-format.json --markdown > ../THIRD-PARTY-FRONTEND-LICENSES.md"
+    "check-licenses": "jeap-frontend-license-checker",
+    "generateLicenseFile": "jeap-frontend-license-checker notices"
   },
   "jest": {
     "testResultsProcessor": "jest-sonar-reporter"
@@ -65,7 +65,7 @@
     "@angular/build": "^21.2.3",
     "@angular/cli": "^21.2.3",
     "@angular/compiler-cli": "^21.2.19",
-    "@bbc/apache2-license-checker": "^1.1.4",
+    "@jeap/jeap-frontend-license-checker": "^1.0.0",
     "@ngtools/json-schema": "^1.1.0",
     "@schematics/angular": "^21.2.3",
     "@types/jest": "^30.0.0",
@@ -75,7 +75,6 @@
     "jest-environment-jsdom": "^30.3.0",
     "jest-preset-angular": "^17.0.0",
     "jest-sonar-reporter": "^2.0.0",
-    "license-checker": "25.0.1",
     "node-gyp": "^13.0.0",
     "simple-git": "^3.36.0",
     "ts-jest": "29.4.12",
