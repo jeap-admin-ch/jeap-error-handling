@@ -74,17 +74,17 @@
     - name: @angular-devkit/core
     - licenses: MIT
     - repository: https://github.com/angular/angular-cli
-    - license text: [third-party-licenses/@angular-devkit__core/LICENSE](third-party-licenses/@angular-devkit__core/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@angular-devkit__core/LICENSE](jeap-error-handling-ui/third-party-licenses/@angular-devkit__core/LICENSE)
  - **[@angular-devkit/schematics](https://github.com/angular/angular-cli)**
     - name: @angular-devkit/schematics
     - licenses: MIT
     - repository: https://github.com/angular/angular-cli
-    - license text: [third-party-licenses/@angular-devkit__schematics/LICENSE](third-party-licenses/@angular-devkit__schematics/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@angular-devkit__schematics/LICENSE](jeap-error-handling-ui/third-party-licenses/@angular-devkit__schematics/LICENSE)
  - **[@angular/animations](https://github.com/angular/angular)**
     - name: @angular/animations
     - licenses: MIT
     - repository: https://github.com/angular/angular
-    - license text: [third-party-licenses/@angular__animations/LICENSE](third-party-licenses/@angular__animations/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@angular__animations/LICENSE](jeap-error-handling-ui/third-party-licenses/@angular__animations/LICENSE)
  - **[@angular/build](https://github.com/angular/angular-cli)**
     - name: @angular/build
     - licenses: MIT
@@ -93,7 +93,7 @@
     - name: @angular/cdk
     - licenses: MIT
     - repository: https://github.com/angular/components
-    - license text: [third-party-licenses/@angular__cdk/LICENSE](third-party-licenses/@angular__cdk/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@angular__cdk/LICENSE](jeap-error-handling-ui/third-party-licenses/@angular__cdk/LICENSE)
  - **[@angular/cli](https://github.com/angular/angular-cli)**
     - name: @angular/cli
     - licenses: MIT
@@ -102,7 +102,7 @@
     - name: @angular/common
     - licenses: MIT
     - repository: https://github.com/angular/angular
-    - license text: [third-party-licenses/@angular__common/LICENSE](third-party-licenses/@angular__common/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@angular__common/LICENSE](jeap-error-handling-ui/third-party-licenses/@angular__common/LICENSE)
  - **[@angular/compiler-cli](https://github.com/angular/angular)**
     - name: @angular/compiler-cli
     - licenses: MIT
@@ -112,42 +112,42 @@
     - name: @angular/compiler
     - licenses: MIT
     - repository: https://github.com/angular/angular
-    - license text: [third-party-licenses/@angular__compiler/LICENSE](third-party-licenses/@angular__compiler/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@angular__compiler/LICENSE](jeap-error-handling-ui/third-party-licenses/@angular__compiler/LICENSE)
  - **[@angular/core](https://github.com/angular/angular)**
     - name: @angular/core
     - licenses: MIT
     - repository: https://github.com/angular/angular
-    - license text: [third-party-licenses/@angular__core/LICENSE](third-party-licenses/@angular__core/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@angular__core/LICENSE](jeap-error-handling-ui/third-party-licenses/@angular__core/LICENSE)
  - **[@angular/forms](https://github.com/angular/angular)**
     - name: @angular/forms
     - licenses: MIT
     - repository: https://github.com/angular/angular
-    - license text: [third-party-licenses/@angular__forms/LICENSE](third-party-licenses/@angular__forms/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@angular__forms/LICENSE](jeap-error-handling-ui/third-party-licenses/@angular__forms/LICENSE)
  - **[@angular/localize](https://github.com/angular/angular)**
     - name: @angular/localize
     - licenses: MIT
     - repository: https://github.com/angular/angular
-    - license text: [third-party-licenses/@angular__localize/LICENSE](third-party-licenses/@angular__localize/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@angular__localize/LICENSE](jeap-error-handling-ui/third-party-licenses/@angular__localize/LICENSE)
  - **[@angular/material](https://github.com/angular/components)**
     - name: @angular/material
     - licenses: MIT
     - repository: https://github.com/angular/components
-    - license text: [third-party-licenses/@angular__material/LICENSE](third-party-licenses/@angular__material/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@angular__material/LICENSE](jeap-error-handling-ui/third-party-licenses/@angular__material/LICENSE)
  - **[@angular/platform-browser-dynamic](https://github.com/angular/angular)**
     - name: @angular/platform-browser-dynamic
     - licenses: MIT
     - repository: https://github.com/angular/angular
-    - license text: [third-party-licenses/@angular__platform-browser-dynamic/LICENSE](third-party-licenses/@angular__platform-browser-dynamic/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@angular__platform-browser-dynamic/LICENSE](jeap-error-handling-ui/third-party-licenses/@angular__platform-browser-dynamic/LICENSE)
  - **[@angular/platform-browser](https://github.com/angular/angular)**
     - name: @angular/platform-browser
     - licenses: MIT
     - repository: https://github.com/angular/angular
-    - license text: [third-party-licenses/@angular__platform-browser/LICENSE](third-party-licenses/@angular__platform-browser/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@angular__platform-browser/LICENSE](jeap-error-handling-ui/third-party-licenses/@angular__platform-browser/LICENSE)
  - **[@angular/router](https://github.com/angular/angular)**
     - name: @angular/router
     - licenses: MIT
     - repository: https://github.com/angular/angular
-    - license text: [third-party-licenses/@angular__router/LICENSE](third-party-licenses/@angular__router/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@angular__router/LICENSE](jeap-error-handling-ui/third-party-licenses/@angular__router/LICENSE)
  - **[@asamuzakjp/css-color](https://github.com/asamuzaK/cssColor)**
     - name: @asamuzakjp/css-color
     - licenses: MIT
@@ -156,22 +156,22 @@
     - name: @babel/code-frame
     - licenses: MIT
     - repository: https://github.com/babel/babel
-    - license text: [third-party-licenses/@babel__code-frame/LICENSE](third-party-licenses/@babel__code-frame/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@babel__code-frame/LICENSE](jeap-error-handling-ui/third-party-licenses/@babel__code-frame/LICENSE)
  - **[@babel/compat-data](https://github.com/babel/babel)**
     - name: @babel/compat-data
     - licenses: MIT
     - repository: https://github.com/babel/babel
-    - license text: [third-party-licenses/@babel__compat-data/LICENSE](third-party-licenses/@babel__compat-data/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@babel__compat-data/LICENSE](jeap-error-handling-ui/third-party-licenses/@babel__compat-data/LICENSE)
  - **[@babel/core](https://github.com/babel/babel)**
     - name: @babel/core
     - licenses: MIT
     - repository: https://github.com/babel/babel
-    - license text: [third-party-licenses/@babel__core/LICENSE](third-party-licenses/@babel__core/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@babel__core/LICENSE](jeap-error-handling-ui/third-party-licenses/@babel__core/LICENSE)
  - **[@babel/generator](https://github.com/babel/babel)**
     - name: @babel/generator
     - licenses: MIT
     - repository: https://github.com/babel/babel
-    - license text: [third-party-licenses/@babel__generator/LICENSE](third-party-licenses/@babel__generator/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@babel__generator/LICENSE](jeap-error-handling-ui/third-party-licenses/@babel__generator/LICENSE)
  - **[@babel/helper-annotate-as-pure](https://github.com/babel/babel)**
     - name: @babel/helper-annotate-as-pure
     - licenses: MIT
@@ -180,22 +180,22 @@
     - name: @babel/helper-compilation-targets
     - licenses: MIT
     - repository: https://github.com/babel/babel
-    - license text: [third-party-licenses/@babel__helper-compilation-targets/LICENSE](third-party-licenses/@babel__helper-compilation-targets/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@babel__helper-compilation-targets/LICENSE](jeap-error-handling-ui/third-party-licenses/@babel__helper-compilation-targets/LICENSE)
  - **[@babel/helper-globals](https://github.com/babel/babel)**
     - name: @babel/helper-globals
     - licenses: MIT
     - repository: https://github.com/babel/babel
-    - license text: [third-party-licenses/@babel__helper-globals/LICENSE](third-party-licenses/@babel__helper-globals/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@babel__helper-globals/LICENSE](jeap-error-handling-ui/third-party-licenses/@babel__helper-globals/LICENSE)
  - **[@babel/helper-module-imports](https://github.com/babel/babel)**
     - name: @babel/helper-module-imports
     - licenses: MIT
     - repository: https://github.com/babel/babel
-    - license text: [third-party-licenses/@babel__helper-module-imports/LICENSE](third-party-licenses/@babel__helper-module-imports/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@babel__helper-module-imports/LICENSE](jeap-error-handling-ui/third-party-licenses/@babel__helper-module-imports/LICENSE)
  - **[@babel/helper-module-transforms](https://github.com/babel/babel)**
     - name: @babel/helper-module-transforms
     - licenses: MIT
     - repository: https://github.com/babel/babel
-    - license text: [third-party-licenses/@babel__helper-module-transforms/LICENSE](third-party-licenses/@babel__helper-module-transforms/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@babel__helper-module-transforms/LICENSE](jeap-error-handling-ui/third-party-licenses/@babel__helper-module-transforms/LICENSE)
  - **[@babel/helper-plugin-utils](https://github.com/babel/babel)**
     - name: @babel/helper-plugin-utils
     - licenses: MIT
@@ -208,27 +208,27 @@
     - name: @babel/helper-string-parser
     - licenses: MIT
     - repository: https://github.com/babel/babel
-    - license text: [third-party-licenses/@babel__helper-string-parser/LICENSE](third-party-licenses/@babel__helper-string-parser/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@babel__helper-string-parser/LICENSE](jeap-error-handling-ui/third-party-licenses/@babel__helper-string-parser/LICENSE)
  - **[@babel/helper-validator-identifier](https://github.com/babel/babel)**
     - name: @babel/helper-validator-identifier
     - licenses: MIT
     - repository: https://github.com/babel/babel
-    - license text: [third-party-licenses/@babel__helper-validator-identifier/LICENSE](third-party-licenses/@babel__helper-validator-identifier/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@babel__helper-validator-identifier/LICENSE](jeap-error-handling-ui/third-party-licenses/@babel__helper-validator-identifier/LICENSE)
  - **[@babel/helper-validator-option](https://github.com/babel/babel)**
     - name: @babel/helper-validator-option
     - licenses: MIT
     - repository: https://github.com/babel/babel
-    - license text: [third-party-licenses/@babel__helper-validator-option/LICENSE](third-party-licenses/@babel__helper-validator-option/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@babel__helper-validator-option/LICENSE](jeap-error-handling-ui/third-party-licenses/@babel__helper-validator-option/LICENSE)
  - **[@babel/helpers](https://github.com/babel/babel)**
     - name: @babel/helpers
     - licenses: MIT
     - repository: https://github.com/babel/babel
-    - license text: [third-party-licenses/@babel__helpers/LICENSE](third-party-licenses/@babel__helpers/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@babel__helpers/LICENSE](jeap-error-handling-ui/third-party-licenses/@babel__helpers/LICENSE)
  - **[@babel/parser](https://github.com/babel/babel)**
     - name: @babel/parser
     - licenses: MIT
     - repository: https://github.com/babel/babel
-    - license text: [third-party-licenses/@babel__parser/LICENSE](third-party-licenses/@babel__parser/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@babel__parser/LICENSE](jeap-error-handling-ui/third-party-licenses/@babel__parser/LICENSE)
  - **[@babel/plugin-syntax-async-generators](https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-async-generators)**
     - name: @babel/plugin-syntax-async-generators
     - licenses: MIT
@@ -301,17 +301,17 @@
     - name: @babel/template
     - licenses: MIT
     - repository: https://github.com/babel/babel
-    - license text: [third-party-licenses/@babel__template/LICENSE](third-party-licenses/@babel__template/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@babel__template/LICENSE](jeap-error-handling-ui/third-party-licenses/@babel__template/LICENSE)
  - **[@babel/traverse](https://github.com/babel/babel)**
     - name: @babel/traverse
     - licenses: MIT
     - repository: https://github.com/babel/babel
-    - license text: [third-party-licenses/@babel__traverse/LICENSE](third-party-licenses/@babel__traverse/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@babel__traverse/LICENSE](jeap-error-handling-ui/third-party-licenses/@babel__traverse/LICENSE)
  - **[@babel/types](https://github.com/babel/babel)**
     - name: @babel/types
     - licenses: MIT
     - repository: https://github.com/babel/babel
-    - license text: [third-party-licenses/@babel__types/LICENSE](third-party-licenses/@babel__types/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@babel__types/LICENSE](jeap-error-handling-ui/third-party-licenses/@babel__types/LICENSE)
  - **[@bcoe/v8-coverage](https://github.com/demurgos/v8-coverage)**
     - name: @bcoe/v8-coverage
     - licenses: MIT
@@ -528,27 +528,27 @@
     - name: @jridgewell/gen-mapping
     - licenses: MIT
     - repository: https://github.com/jridgewell/sourcemaps
-    - license text: [third-party-licenses/@jridgewell__gen-mapping/LICENSE](third-party-licenses/@jridgewell__gen-mapping/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@jridgewell__gen-mapping/LICENSE](jeap-error-handling-ui/third-party-licenses/@jridgewell__gen-mapping/LICENSE)
  - **[@jridgewell/remapping](https://github.com/jridgewell/sourcemaps)**
     - name: @jridgewell/remapping
     - licenses: MIT
     - repository: https://github.com/jridgewell/sourcemaps
-    - license text: [third-party-licenses/@jridgewell__remapping/LICENSE](third-party-licenses/@jridgewell__remapping/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@jridgewell__remapping/LICENSE](jeap-error-handling-ui/third-party-licenses/@jridgewell__remapping/LICENSE)
  - **[@jridgewell/resolve-uri](https://github.com/jridgewell/resolve-uri)**
     - name: @jridgewell/resolve-uri
     - licenses: MIT
     - repository: https://github.com/jridgewell/resolve-uri
-    - license text: [third-party-licenses/@jridgewell__resolve-uri/LICENSE](third-party-licenses/@jridgewell__resolve-uri/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@jridgewell__resolve-uri/LICENSE](jeap-error-handling-ui/third-party-licenses/@jridgewell__resolve-uri/LICENSE)
  - **[@jridgewell/sourcemap-codec](https://github.com/jridgewell/sourcemaps)**
     - name: @jridgewell/sourcemap-codec
     - licenses: MIT
     - repository: https://github.com/jridgewell/sourcemaps
-    - license text: [third-party-licenses/@jridgewell__sourcemap-codec/LICENSE](third-party-licenses/@jridgewell__sourcemap-codec/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@jridgewell__sourcemap-codec/LICENSE](jeap-error-handling-ui/third-party-licenses/@jridgewell__sourcemap-codec/LICENSE)
  - **[@jridgewell/trace-mapping](https://github.com/jridgewell/sourcemaps)**
     - name: @jridgewell/trace-mapping
     - licenses: MIT
     - repository: https://github.com/jridgewell/sourcemaps
-    - license text: [third-party-licenses/@jridgewell__trace-mapping/LICENSE](third-party-licenses/@jridgewell__trace-mapping/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@jridgewell__trace-mapping/LICENSE](jeap-error-handling-ui/third-party-licenses/@jridgewell__trace-mapping/LICENSE)
  - **[@jridgewell/trace-mapping](https://github.com/jridgewell/trace-mapping)**
     - name: @jridgewell/trace-mapping
     - licenses: MIT
@@ -605,7 +605,7 @@
     - name: @ngx-translate/core
     - licenses: MIT
     - repository: https://github.com/ngx-translate/core
-    - license text: [third-party-licenses/@ngx-translate__core/LICENSE](third-party-licenses/@ngx-translate__core/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@ngx-translate__core/LICENSE](jeap-error-handling-ui/third-party-licenses/@ngx-translate__core/LICENSE)
  - **@ngx-translate/http-loader**
     - name: @ngx-translate/http-loader
     - licenses: UNKNOWN
@@ -650,7 +650,7 @@
     - name: @oblique/oblique
     - licenses: MIT
     - repository: https://github.com/oblique-bit/oblique
-    - license text: [third-party-licenses/@oblique__oblique/LICENSE](third-party-licenses/@oblique__oblique/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@oblique__oblique/LICENSE](jeap-error-handling-ui/third-party-licenses/@oblique__oblique/LICENSE)
  - **[@oxc-project/types](https://github.com/oxc-project/oxc)**
     - name: @oxc-project/types
     - licenses: MIT
@@ -659,17 +659,17 @@
     - name: @parcel/watcher-linux-x64-glibc
     - licenses: MIT
     - repository: https://github.com/parcel-bundler/watcher
-    - license text: [third-party-licenses/@parcel__watcher-linux-x64-glibc/LICENSE](third-party-licenses/@parcel__watcher-linux-x64-glibc/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@parcel__watcher-linux-x64-glibc/LICENSE](jeap-error-handling-ui/third-party-licenses/@parcel__watcher-linux-x64-glibc/LICENSE)
  - **[@parcel/watcher-linux-x64-musl](https://github.com/parcel-bundler/watcher)**
     - name: @parcel/watcher-linux-x64-musl
     - licenses: MIT
     - repository: https://github.com/parcel-bundler/watcher
-    - license text: [third-party-licenses/@parcel__watcher-linux-x64-musl/LICENSE](third-party-licenses/@parcel__watcher-linux-x64-musl/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@parcel__watcher-linux-x64-musl/LICENSE](jeap-error-handling-ui/third-party-licenses/@parcel__watcher-linux-x64-musl/LICENSE)
  - **[@parcel/watcher](https://github.com/parcel-bundler/watcher)**
     - name: @parcel/watcher
     - licenses: MIT
     - repository: https://github.com/parcel-bundler/watcher
-    - license text: [third-party-licenses/@parcel__watcher/LICENSE](third-party-licenses/@parcel__watcher/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@parcel__watcher/LICENSE](jeap-error-handling-ui/third-party-licenses/@parcel__watcher/LICENSE)
  - **[@pkgjs/parseargs](https://github.com/pkgjs/parseargs)**
     - name: @pkgjs/parseargs
     - licenses: MIT
@@ -682,7 +682,7 @@
     - name: @popperjs/core
     - licenses: MIT
     - repository: github:popperjs/popper-core
-    - license text: [third-party-licenses/@popperjs__core/LICENSE.md](third-party-licenses/@popperjs__core/LICENSE.md)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@popperjs__core/LICENSE.md](jeap-error-handling-ui/third-party-licenses/@popperjs__core/LICENSE.md)
  - **[@quadrel-enterprise-ui/auth](https://github.com/BAZG-Quadrel/quadrel-auth)**
     - name: @quadrel-enterprise-ui/auth
     - licenses: UNKNOWN
@@ -712,7 +712,7 @@
     - name: @schematics/angular
     - licenses: MIT
     - repository: https://github.com/angular/angular-cli
-    - license text: [third-party-licenses/@schematics__angular/LICENSE](third-party-licenses/@schematics__angular/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@schematics__angular/LICENSE](jeap-error-handling-ui/third-party-licenses/@schematics__angular/LICENSE)
  - **[@sigstore/bundle](https://github.com/sigstore/sigstore-js)**
     - name: @sigstore/bundle
     - licenses: Apache-2.0
@@ -777,7 +777,7 @@
     - name: @standard-schema/spec
     - licenses: MIT
     - repository: https://github.com/standard-schema/standard-schema
-    - license text: [third-party-licenses/@standard-schema__spec/LICENSE](third-party-licenses/@standard-schema__spec/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@standard-schema__spec/LICENSE](jeap-error-handling-ui/third-party-licenses/@standard-schema__spec/LICENSE)
  - **[@tsconfig/node10](https://github.com/tsconfig/bases)**
     - name: @tsconfig/node10
     - licenses: MIT
@@ -810,22 +810,22 @@
     - name: @types/babel__core
     - licenses: MIT
     - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
-    - license text: [third-party-licenses/@types__babel__core/LICENSE](third-party-licenses/@types__babel__core/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@types__babel__core/LICENSE](jeap-error-handling-ui/third-party-licenses/@types__babel__core/LICENSE)
  - **[@types/babel__generator](https://github.com/DefinitelyTyped/DefinitelyTyped)**
     - name: @types/babel__generator
     - licenses: MIT
     - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
-    - license text: [third-party-licenses/@types__babel__generator/LICENSE](third-party-licenses/@types__babel__generator/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@types__babel__generator/LICENSE](jeap-error-handling-ui/third-party-licenses/@types__babel__generator/LICENSE)
  - **[@types/babel__template](https://github.com/DefinitelyTyped/DefinitelyTyped)**
     - name: @types/babel__template
     - licenses: MIT
     - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
-    - license text: [third-party-licenses/@types__babel__template/LICENSE](third-party-licenses/@types__babel__template/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@types__babel__template/LICENSE](jeap-error-handling-ui/third-party-licenses/@types__babel__template/LICENSE)
  - **[@types/babel__traverse](https://github.com/DefinitelyTyped/DefinitelyTyped)**
     - name: @types/babel__traverse
     - licenses: MIT
     - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
-    - license text: [third-party-licenses/@types__babel__traverse/LICENSE](third-party-licenses/@types__babel__traverse/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@types__babel__traverse/LICENSE](jeap-error-handling-ui/third-party-licenses/@types__babel__traverse/LICENSE)
  - **[@types/estree](https://github.com/DefinitelyTyped/DefinitelyTyped)**
     - name: @types/estree
     - licenses: MIT
@@ -834,17 +834,17 @@
     - name: @types/istanbul-lib-coverage
     - licenses: MIT
     - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
-    - license text: [third-party-licenses/@types__istanbul-lib-coverage/LICENSE](third-party-licenses/@types__istanbul-lib-coverage/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@types__istanbul-lib-coverage/LICENSE](jeap-error-handling-ui/third-party-licenses/@types__istanbul-lib-coverage/LICENSE)
  - **[@types/istanbul-lib-report](https://github.com/DefinitelyTyped/DefinitelyTyped)**
     - name: @types/istanbul-lib-report
     - licenses: MIT
     - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
-    - license text: [third-party-licenses/@types__istanbul-lib-report/LICENSE](third-party-licenses/@types__istanbul-lib-report/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@types__istanbul-lib-report/LICENSE](jeap-error-handling-ui/third-party-licenses/@types__istanbul-lib-report/LICENSE)
  - **[@types/istanbul-reports](https://github.com/DefinitelyTyped/DefinitelyTyped)**
     - name: @types/istanbul-reports
     - licenses: MIT
     - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
-    - license text: [third-party-licenses/@types__istanbul-reports/LICENSE](third-party-licenses/@types__istanbul-reports/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@types__istanbul-reports/LICENSE](jeap-error-handling-ui/third-party-licenses/@types__istanbul-reports/LICENSE)
  - **[@types/jest](https://github.com/DefinitelyTyped/DefinitelyTyped)**
     - name: @types/jest
     - licenses: MIT
@@ -857,7 +857,7 @@
     - name: @types/node
     - licenses: MIT
     - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
-    - license text: [third-party-licenses/@types__node/LICENSE](third-party-licenses/@types__node/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@types__node/LICENSE](jeap-error-handling-ui/third-party-licenses/@types__node/LICENSE)
  - **[@types/stack-utils](https://github.com/DefinitelyTyped/DefinitelyTyped)**
     - name: @types/stack-utils
     - licenses: MIT
@@ -870,7 +870,7 @@
     - name: @types/ws
     - licenses: MIT
     - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
-    - license text: [third-party-licenses/@types__ws/LICENSE](third-party-licenses/@types__ws/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/@types__ws/LICENSE](jeap-error-handling-ui/third-party-licenses/@types__ws/LICENSE)
  - **[@types/yargs-parser](https://github.com/DefinitelyTyped/DefinitelyTyped)**
     - name: @types/yargs-parser
     - licenses: MIT
@@ -927,17 +927,17 @@
     - name: ajv-formats
     - licenses: MIT
     - repository: https://github.com/ajv-validator/ajv-formats
-    - license text: [third-party-licenses/ajv-formats/LICENSE](third-party-licenses/ajv-formats/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/ajv-formats/LICENSE](jeap-error-handling-ui/third-party-licenses/ajv-formats/LICENSE)
  - **[ajv](ajv-validator/ajv)**
     - name: ajv
     - licenses: MIT
     - repository: ajv-validator/ajv
-    - license text: [third-party-licenses/ajv@8.18.0/LICENSE](third-party-licenses/ajv@8.18.0/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/ajv@8.18.0/LICENSE](jeap-error-handling-ui/third-party-licenses/ajv@8.18.0/LICENSE)
  - **[ajv](ajv-validator/ajv)**
     - name: ajv
     - licenses: MIT
     - repository: ajv-validator/ajv
-    - license text: [third-party-licenses/ajv@8.20.0/LICENSE](third-party-licenses/ajv@8.20.0/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/ajv@8.20.0/LICENSE](jeap-error-handling-ui/third-party-licenses/ajv@8.20.0/LICENSE)
  - **[algoliasearch](https://github.com/algolia/algoliasearch-client-javascript)**
     - name: algoliasearch
     - licenses: MIT
@@ -946,17 +946,17 @@
     - name: angular-auth-oidc-client
     - licenses: MIT
     - repository: https://github.com/damienbod/angular-auth-oidc-client
-    - license text: [third-party-licenses/angular-auth-oidc-client/LICENSE](third-party-licenses/angular-auth-oidc-client/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/angular-auth-oidc-client/LICENSE](jeap-error-handling-ui/third-party-licenses/angular-auth-oidc-client/LICENSE)
  - **[angular-oauth2-oidc](https://github.com/manfredsteyer/angular-oauth2-oidc)**
     - name: angular-oauth2-oidc
     - licenses: MIT
     - repository: https://github.com/manfredsteyer/angular-oauth2-oidc
-    - license text: [third-party-licenses/angular-oauth2-oidc/LICENSE](third-party-licenses/angular-oauth2-oidc/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/angular-oauth2-oidc/LICENSE](jeap-error-handling-ui/third-party-licenses/angular-oauth2-oidc/LICENSE)
  - **[ansi-colors](doowb/ansi-colors)**
     - name: ansi-colors
     - licenses: MIT
     - repository: doowb/ansi-colors
-    - license text: [third-party-licenses/ansi-colors/LICENSE](third-party-licenses/ansi-colors/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/ansi-colors/LICENSE](jeap-error-handling-ui/third-party-licenses/ansi-colors/LICENSE)
  - **[ansi-escapes](sindresorhus/ansi-escapes)**
     - name: ansi-escapes
     - licenses: MIT
@@ -973,7 +973,7 @@
     - name: ansi-regex
     - licenses: MIT
     - repository: chalk/ansi-regex
-    - license text: [third-party-licenses/ansi-regex/license](third-party-licenses/ansi-regex/license)
+    - license text: [jeap-error-handling-ui/third-party-licenses/ansi-regex/license](jeap-error-handling-ui/third-party-licenses/ansi-regex/license)
  - **[ansi-styles](chalk/ansi-styles)**
     - name: ansi-styles
     - licenses: MIT
@@ -990,7 +990,7 @@
     - name: ansi-styles
     - licenses: MIT
     - repository: chalk/ansi-styles
-    - license text: [third-party-licenses/ansi-styles/license](third-party-licenses/ansi-styles/license)
+    - license text: [jeap-error-handling-ui/third-party-licenses/ansi-styles/license](jeap-error-handling-ui/third-party-licenses/ansi-styles/license)
  - **[anymatch](https://github.com/micromatch/anymatch)**
     - name: anymatch
     - licenses: ISC
@@ -1039,7 +1039,7 @@
     - name: baseline-browser-mapping
     - licenses: Apache-2.0
     - repository: https://github.com/web-platform-dx/baseline-browser-mapping
-    - license text: [third-party-licenses/baseline-browser-mapping/LICENSE.txt](third-party-licenses/baseline-browser-mapping/LICENSE.txt)
+    - license text: [jeap-error-handling-ui/third-party-licenses/baseline-browser-mapping/LICENSE.txt](jeap-error-handling-ui/third-party-licenses/baseline-browser-mapping/LICENSE.txt)
  - **[beasties](https://github.com/danielroe/beasties)**
     - name: beasties
     - licenses: Apache-2.0
@@ -1068,7 +1068,7 @@
     - name: browserslist
     - licenses: MIT
     - repository: browserslist/browserslist
-    - license text: [third-party-licenses/browserslist/LICENSE](third-party-licenses/browserslist/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/browserslist/LICENSE](jeap-error-handling-ui/third-party-licenses/browserslist/LICENSE)
  - **[bs-logger](https://github.com/huafu/bs-logger)**
     - name: bs-logger
     - licenses: MIT
@@ -1117,7 +1117,7 @@
     - name: caniuse-lite
     - licenses: CC-BY-4.0
     - repository: browserslist/caniuse-lite
-    - license text: [third-party-licenses/caniuse-lite/LICENSE](third-party-licenses/caniuse-lite/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/caniuse-lite/LICENSE](jeap-error-handling-ui/third-party-licenses/caniuse-lite/LICENSE)
  - **[chalk](chalk/chalk)**
     - name: chalk
     - licenses: MIT
@@ -1130,7 +1130,7 @@
     - name: chalk
     - licenses: MIT
     - repository: chalk/chalk
-    - license text: [third-party-licenses/chalk/license](third-party-licenses/chalk/license)
+    - license text: [jeap-error-handling-ui/third-party-licenses/chalk/license](jeap-error-handling-ui/third-party-licenses/chalk/license)
  - **[char-regex](https://github.com/Richienb/char-regex)**
     - name: char-regex
     - licenses: MIT
@@ -1147,7 +1147,7 @@
     - name: chokidar
     - licenses: MIT
     - repository: https://github.com/paulmillr/chokidar
-    - license text: [third-party-licenses/chokidar/LICENSE](third-party-licenses/chokidar/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/chokidar/LICENSE](jeap-error-handling-ui/third-party-licenses/chokidar/LICENSE)
  - **[chownr](https://github.com/isaacs/chownr)**
     - name: chownr
     - licenses: BlueOak-1.0.0
@@ -1164,12 +1164,12 @@
     - name: cli-cursor
     - licenses: MIT
     - repository: sindresorhus/cli-cursor
-    - license text: [third-party-licenses/cli-cursor/license](third-party-licenses/cli-cursor/license)
+    - license text: [jeap-error-handling-ui/third-party-licenses/cli-cursor/license](jeap-error-handling-ui/third-party-licenses/cli-cursor/license)
  - **[cli-spinners](sindresorhus/cli-spinners)**
     - name: cli-spinners
     - licenses: MIT
     - repository: sindresorhus/cli-spinners
-    - license text: [third-party-licenses/cli-spinners/license](third-party-licenses/cli-spinners/license)
+    - license text: [jeap-error-handling-ui/third-party-licenses/cli-spinners/license](jeap-error-handling-ui/third-party-licenses/cli-spinners/license)
  - **[cli-truncate](sindresorhus/cli-truncate)**
     - name: cli-truncate
     - licenses: MIT
@@ -1186,7 +1186,7 @@
     - name: cliui
     - licenses: ISC
     - repository: yargs/cliui
-    - license text: [third-party-licenses/cliui/LICENSE.txt](third-party-licenses/cliui/LICENSE.txt)
+    - license text: [jeap-error-handling-ui/third-party-licenses/cliui/LICENSE.txt](jeap-error-handling-ui/third-party-licenses/cliui/LICENSE.txt)
  - **[co](tj/co)**
     - name: co
     - licenses: MIT
@@ -1263,12 +1263,12 @@
     - name: convert-source-map
     - licenses: MIT
     - repository: https://github.com/thlorenz/convert-source-map
-    - license text: [third-party-licenses/convert-source-map@1.9.0/LICENSE](third-party-licenses/convert-source-map@1.9.0/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/convert-source-map@1.9.0/LICENSE](jeap-error-handling-ui/third-party-licenses/convert-source-map@1.9.0/LICENSE)
  - **[convert-source-map](https://github.com/thlorenz/convert-source-map)**
     - name: convert-source-map
     - licenses: MIT
     - repository: https://github.com/thlorenz/convert-source-map
-    - license text: [third-party-licenses/convert-source-map@2.0.0/LICENSE](third-party-licenses/convert-source-map@2.0.0/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/convert-source-map@2.0.0/LICENSE](jeap-error-handling-ui/third-party-licenses/convert-source-map@2.0.0/LICENSE)
  - **[cookie-signature](https://github.com/visionmedia/node-cookie-signature)**
     - name: cookie-signature
     - licenses: MIT
@@ -1309,12 +1309,12 @@
     - name: date-fns
     - licenses: MIT
     - repository: https://github.com/date-fns/date-fns
-    - license text: [third-party-licenses/date-fns/LICENSE.md](third-party-licenses/date-fns/LICENSE.md)
+    - license text: [jeap-error-handling-ui/third-party-licenses/date-fns/LICENSE.md](jeap-error-handling-ui/third-party-licenses/date-fns/LICENSE.md)
  - **[debug](https://github.com/debug-js/debug)**
     - name: debug
     - licenses: MIT
     - repository: https://github.com/debug-js/debug
-    - license text: [third-party-licenses/debug/LICENSE](third-party-licenses/debug/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/debug/LICENSE](jeap-error-handling-ui/third-party-licenses/debug/LICENSE)
  - **[decimal.js](https://github.com/MikeMcl/decimal.js)**
     - name: decimal.js
     - licenses: MIT
@@ -1335,7 +1335,7 @@
     - name: detect-libc
     - licenses: Apache-2.0
     - repository: https://github.com/lovell/detect-libc
-    - license text: [third-party-licenses/detect-libc/LICENSE](third-party-licenses/detect-libc/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/detect-libc/LICENSE](jeap-error-handling-ui/third-party-licenses/detect-libc/LICENSE)
  - **[detect-newline](sindresorhus/detect-newline)**
     - name: detect-newline
     - licenses: MIT
@@ -1376,7 +1376,7 @@
     - name: electron-to-chromium
     - licenses: ISC
     - repository: https://github.com/Kilian/electron-to-chromium
-    - license text: [third-party-licenses/electron-to-chromium/LICENSE](third-party-licenses/electron-to-chromium/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/electron-to-chromium/LICENSE](jeap-error-handling-ui/third-party-licenses/electron-to-chromium/LICENSE)
  - **[emittery](sindresorhus/emittery)**
     - name: emittery
     - licenses: MIT
@@ -1385,7 +1385,7 @@
     - name: emoji-regex
     - licenses: MIT
     - repository: https://github.com/mathiasbynens/emoji-regex
-    - license text: [third-party-licenses/emoji-regex/LICENSE-MIT.txt](third-party-licenses/emoji-regex/LICENSE-MIT.txt)
+    - license text: [jeap-error-handling-ui/third-party-licenses/emoji-regex/LICENSE-MIT.txt](jeap-error-handling-ui/third-party-licenses/emoji-regex/LICENSE-MIT.txt)
  - **[emoji-regex](https://github.com/mathiasbynens/emoji-regex)**
     - name: emoji-regex
     - licenses: MIT
@@ -1414,7 +1414,7 @@
     - name: entities
     - licenses: BSD-2-Clause
     - repository: https://github.com/fb55/entities
-    - license text: [third-party-licenses/entities/LICENSE](third-party-licenses/entities/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/entities/LICENSE](jeap-error-handling-ui/third-party-licenses/entities/LICENSE)
  - **[env-paths](sindresorhus/env-paths)**
     - name: env-paths
     - licenses: MIT
@@ -1451,7 +1451,7 @@
     - name: escalade
     - licenses: MIT
     - repository: lukeed/escalade
-    - license text: [third-party-licenses/escalade/license](third-party-licenses/escalade/license)
+    - license text: [jeap-error-handling-ui/third-party-licenses/escalade/license](jeap-error-handling-ui/third-party-licenses/escalade/license)
  - **[escape-html](component/escape-html)**
     - name: escape-html
     - licenses: MIT
@@ -1512,7 +1512,7 @@
     - name: fast-deep-equal
     - licenses: MIT
     - repository: https://github.com/epoberezkin/fast-deep-equal
-    - license text: [third-party-licenses/fast-deep-equal/LICENSE](third-party-licenses/fast-deep-equal/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/fast-deep-equal/LICENSE](jeap-error-handling-ui/third-party-licenses/fast-deep-equal/LICENSE)
  - **[fast-json-stable-stringify](https://github.com/epoberezkin/fast-json-stable-stringify)**
     - name: fast-json-stable-stringify
     - licenses: MIT
@@ -1521,7 +1521,7 @@
     - name: fast-uri
     - licenses: BSD-3-Clause
     - repository: https://github.com/fastify/fast-uri
-    - license text: [third-party-licenses/fast-uri/LICENSE](third-party-licenses/fast-uri/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/fast-uri/LICENSE](jeap-error-handling-ui/third-party-licenses/fast-uri/LICENSE)
  - **[fb-watchman](https://github.com/facebook/watchman)**
     - name: fb-watchman
     - licenses: Apache-2.0
@@ -1534,7 +1534,7 @@
     - name: fdir
     - licenses: MIT
     - repository: https://github.com/thecodrr/fdir
-    - license text: [third-party-licenses/fdir/LICENSE](third-party-licenses/fdir/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/fdir/LICENSE](jeap-error-handling-ui/third-party-licenses/fdir/LICENSE)
  - **[finalhandler](pillarjs/finalhandler)**
     - name: finalhandler
     - licenses: MIT
@@ -1571,17 +1571,17 @@
     - name: gensync
     - licenses: MIT
     - repository: https://github.com/loganfsmyth/gensync
-    - license text: [third-party-licenses/gensync/LICENSE](third-party-licenses/gensync/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/gensync/LICENSE](jeap-error-handling-ui/third-party-licenses/gensync/LICENSE)
  - **[get-caller-file](https://github.com/stefanpenner/get-caller-file)**
     - name: get-caller-file
     - licenses: ISC
     - repository: https://github.com/stefanpenner/get-caller-file
-    - license text: [third-party-licenses/get-caller-file/LICENSE.md](third-party-licenses/get-caller-file/LICENSE.md)
+    - license text: [jeap-error-handling-ui/third-party-licenses/get-caller-file/LICENSE.md](jeap-error-handling-ui/third-party-licenses/get-caller-file/LICENSE.md)
  - **[get-east-asian-width](sindresorhus/get-east-asian-width)**
     - name: get-east-asian-width
     - licenses: MIT
     - repository: sindresorhus/get-east-asian-width
-    - license text: [third-party-licenses/get-east-asian-width/license](third-party-licenses/get-east-asian-width/license)
+    - license text: [jeap-error-handling-ui/third-party-licenses/get-east-asian-width/license](jeap-error-handling-ui/third-party-licenses/get-east-asian-width/license)
  - **[get-intrinsic](https://github.com/ljharb/get-intrinsic)**
     - name: get-intrinsic
     - licenses: MIT
@@ -1698,7 +1698,7 @@
     - name: immutable
     - licenses: MIT
     - repository: https://github.com/immutable-js/immutable-js
-    - license text: [third-party-licenses/immutable/LICENSE](third-party-licenses/immutable/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/immutable/LICENSE](jeap-error-handling-ui/third-party-licenses/immutable/LICENSE)
  - **[import-local](sindresorhus/import-local)**
     - name: import-local
     - licenses: MIT
@@ -1739,7 +1739,7 @@
     - name: is-extglob
     - licenses: MIT
     - repository: jonschlinkert/is-extglob
-    - license text: [third-party-licenses/is-extglob/LICENSE](third-party-licenses/is-extglob/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/is-extglob/LICENSE](jeap-error-handling-ui/third-party-licenses/is-extglob/LICENSE)
  - **[is-fullwidth-code-point](sindresorhus/is-fullwidth-code-point)**
     - name: is-fullwidth-code-point
     - licenses: MIT
@@ -1756,12 +1756,12 @@
     - name: is-glob
     - licenses: MIT
     - repository: micromatch/is-glob
-    - license text: [third-party-licenses/is-glob/LICENSE](third-party-licenses/is-glob/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/is-glob/LICENSE](jeap-error-handling-ui/third-party-licenses/is-glob/LICENSE)
  - **[is-interactive](sindresorhus/is-interactive)**
     - name: is-interactive
     - licenses: MIT
     - repository: sindresorhus/is-interactive
-    - license text: [third-party-licenses/is-interactive/license](third-party-licenses/is-interactive/license)
+    - license text: [jeap-error-handling-ui/third-party-licenses/is-interactive/license](jeap-error-handling-ui/third-party-licenses/is-interactive/license)
  - **[is-potential-custom-element-name](https://github.com/mathiasbynens/is-potential-custom-element-name)**
     - name: is-potential-custom-element-name
     - licenses: MIT
@@ -1778,7 +1778,7 @@
     - name: is-unicode-supported
     - licenses: MIT
     - repository: sindresorhus/is-unicode-supported
-    - license text: [third-party-licenses/is-unicode-supported/license](third-party-licenses/is-unicode-supported/license)
+    - license text: [jeap-error-handling-ui/third-party-licenses/is-unicode-supported/license](jeap-error-handling-ui/third-party-licenses/is-unicode-supported/license)
  - **[isexe](https://github.com/isaacs/isexe)**
     - name: isexe
     - licenses: ISC
@@ -1935,12 +1935,12 @@
     - name: js-cookie
     - licenses: MIT
     - repository: https://github.com/js-cookie/js-cookie
-    - license text: [third-party-licenses/js-cookie/LICENSE](third-party-licenses/js-cookie/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/js-cookie/LICENSE](jeap-error-handling-ui/third-party-licenses/js-cookie/LICENSE)
  - **[js-tokens](lydell/js-tokens)**
     - name: js-tokens
     - licenses: MIT
     - repository: lydell/js-tokens
-    - license text: [third-party-licenses/js-tokens/LICENSE](third-party-licenses/js-tokens/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/js-tokens/LICENSE](jeap-error-handling-ui/third-party-licenses/js-tokens/LICENSE)
  - **[js-yaml](nodeca/js-yaml)**
     - name: js-yaml
     - licenses: MIT
@@ -1953,7 +1953,7 @@
     - name: jsesc
     - licenses: MIT
     - repository: https://github.com/mathiasbynens/jsesc
-    - license text: [third-party-licenses/jsesc/LICENSE-MIT.txt](third-party-licenses/jsesc/LICENSE-MIT.txt)
+    - license text: [jeap-error-handling-ui/third-party-licenses/jsesc/LICENSE-MIT.txt](jeap-error-handling-ui/third-party-licenses/jsesc/LICENSE-MIT.txt)
  - **[json-parse-even-better-errors](https://github.com/npm/json-parse-even-better-errors)**
     - name: json-parse-even-better-errors
     - licenses: MIT
@@ -1966,7 +1966,7 @@
     - name: json-schema-traverse
     - licenses: MIT
     - repository: https://github.com/epoberezkin/json-schema-traverse
-    - license text: [third-party-licenses/json-schema-traverse/LICENSE](third-party-licenses/json-schema-traverse/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/json-schema-traverse/LICENSE](jeap-error-handling-ui/third-party-licenses/json-schema-traverse/LICENSE)
  - **[json-schema-typed](https://github.com/RemyRylan/json-schema-typed)**
     - name: json-schema-typed
     - licenses: BSD-2-Clause
@@ -1975,12 +1975,12 @@
     - name: json5
     - licenses: MIT
     - repository: https://github.com/json5/json5
-    - license text: [third-party-licenses/json5/LICENSE.md](third-party-licenses/json5/LICENSE.md)
+    - license text: [jeap-error-handling-ui/third-party-licenses/json5/LICENSE.md](jeap-error-handling-ui/third-party-licenses/json5/LICENSE.md)
  - **[jsonc-parser](https://github.com/microsoft/node-jsonc-parser)**
     - name: jsonc-parser
     - licenses: MIT
     - repository: https://github.com/microsoft/node-jsonc-parser
-    - license text: [third-party-licenses/jsonc-parser/LICENSE.md](third-party-licenses/jsonc-parser/LICENSE.md)
+    - license text: [jeap-error-handling-ui/third-party-licenses/jsonc-parser/LICENSE.md](jeap-error-handling-ui/third-party-licenses/jsonc-parser/LICENSE.md)
  - **[jsonparse](http://github.com/creationix/jsonparse)**
     - name: jsonparse
     - licenses: MIT
@@ -1989,7 +1989,7 @@
     - name: jwt-decode
     - licenses: MIT
     - repository: https://github.com/auth0/jwt-decode
-    - license text: [third-party-licenses/jwt-decode/LICENSE](third-party-licenses/jwt-decode/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/jwt-decode/LICENSE](jeap-error-handling-ui/third-party-licenses/jwt-decode/LICENSE)
  - **[leven](sindresorhus/leven)**
     - name: leven
     - licenses: MIT
@@ -2018,12 +2018,12 @@
     - name: lodash
     - licenses: MIT
     - repository: lodash/lodash
-    - license text: [third-party-licenses/lodash/LICENSE](third-party-licenses/lodash/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/lodash/LICENSE](jeap-error-handling-ui/third-party-licenses/lodash/LICENSE)
  - **[log-symbols](sindresorhus/log-symbols)**
     - name: log-symbols
     - licenses: MIT
     - repository: sindresorhus/log-symbols
-    - license text: [third-party-licenses/log-symbols/license](third-party-licenses/log-symbols/license)
+    - license text: [jeap-error-handling-ui/third-party-licenses/log-symbols/license](jeap-error-handling-ui/third-party-licenses/log-symbols/license)
  - **[log-update](sindresorhus/log-update)**
     - name: log-update
     - licenses: MIT
@@ -2040,12 +2040,12 @@
     - name: lru-cache
     - licenses: ISC
     - repository: https://github.com/isaacs/node-lru-cache
-    - license text: [third-party-licenses/lru-cache/LICENSE](third-party-licenses/lru-cache/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/lru-cache/LICENSE](jeap-error-handling-ui/third-party-licenses/lru-cache/LICENSE)
  - **[magic-string](https://github.com/Rich-Harris/magic-string)**
     - name: magic-string
     - licenses: MIT
     - repository: https://github.com/Rich-Harris/magic-string
-    - license text: [third-party-licenses/magic-string/LICENSE](third-party-licenses/magic-string/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/magic-string/LICENSE](jeap-error-handling-ui/third-party-licenses/magic-string/LICENSE)
  - **[make-dir](sindresorhus/make-dir)**
     - name: make-dir
     - licenses: MIT
@@ -2094,7 +2094,7 @@
     - name: mimic-function
     - licenses: MIT
     - repository: sindresorhus/mimic-function
-    - license text: [third-party-licenses/mimic-function/license](third-party-licenses/mimic-function/license)
+    - license text: [jeap-error-handling-ui/third-party-licenses/mimic-function/license](jeap-error-handling-ui/third-party-licenses/mimic-function/license)
  - **[minimatch](https://github.com/isaacs/minimatch)**
     - name: minimatch
     - licenses: BlueOak-1.0.0
@@ -2154,7 +2154,7 @@
     - name: ms
     - licenses: MIT
     - repository: vercel/ms
-    - license text: [third-party-licenses/ms/license.md](third-party-licenses/ms/license.md)
+    - license text: [jeap-error-handling-ui/third-party-licenses/ms/license.md](jeap-error-handling-ui/third-party-licenses/ms/license.md)
  - **[msgpackr-extract](http://github.com/kriszyp/msgpackr-extract)**
     - name: msgpackr-extract
     - licenses: MIT
@@ -2195,7 +2195,7 @@
     - name: node-addon-api
     - licenses: MIT
     - repository: https://github.com/nodejs/node-addon-api
-    - license text: [third-party-licenses/node-addon-api/LICENSE.md](third-party-licenses/node-addon-api/LICENSE.md)
+    - license text: [jeap-error-handling-ui/third-party-licenses/node-addon-api/LICENSE.md](jeap-error-handling-ui/third-party-licenses/node-addon-api/LICENSE.md)
  - **[node-gyp-build-optional-packages](https://github.com/prebuild/node-gyp-build)**
     - name: node-gyp-build-optional-packages
     - licenses: MIT
@@ -2216,7 +2216,7 @@
     - name: node-releases
     - licenses: MIT
     - repository: https://github.com/chicoxyzzy/node-releases
-    - license text: [third-party-licenses/node-releases/LICENSE](third-party-licenses/node-releases/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/node-releases/LICENSE](jeap-error-handling-ui/third-party-licenses/node-releases/LICENSE)
  - **[nopt](https://github.com/npm/nopt)**
     - name: nopt
     - licenses: ISC
@@ -2293,12 +2293,12 @@
     - name: onetime
     - licenses: MIT
     - repository: sindresorhus/onetime
-    - license text: [third-party-licenses/onetime/license](third-party-licenses/onetime/license)
+    - license text: [jeap-error-handling-ui/third-party-licenses/onetime/license](jeap-error-handling-ui/third-party-licenses/onetime/license)
  - **[ora](sindresorhus/ora)**
     - name: ora
     - licenses: MIT
     - repository: sindresorhus/ora
-    - license text: [third-party-licenses/ora/license](third-party-licenses/ora/license)
+    - license text: [jeap-error-handling-ui/third-party-licenses/ora/license](jeap-error-handling-ui/third-party-licenses/ora/license)
  - **[ordered-binary](http://github.com/kriszyp/ordered-binary)**
     - name: ordered-binary
     - licenses: MIT
@@ -2351,7 +2351,7 @@
     - name: parse5
     - licenses: MIT
     - repository: https://github.com/inikulin/parse5
-    - license text: [third-party-licenses/parse5/LICENSE](third-party-licenses/parse5/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/parse5/LICENSE](jeap-error-handling-ui/third-party-licenses/parse5/LICENSE)
  - **[parseurl](pillarjs/parseurl)**
     - name: parseurl
     - licenses: MIT
@@ -2388,12 +2388,12 @@
     - name: picocolors
     - licenses: ISC
     - repository: alexeyraspopov/picocolors
-    - license text: [third-party-licenses/picocolors/LICENSE](third-party-licenses/picocolors/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/picocolors/LICENSE](jeap-error-handling-ui/third-party-licenses/picocolors/LICENSE)
  - **[picomatch](micromatch/picomatch)**
     - name: picomatch
     - licenses: MIT
     - repository: micromatch/picomatch
-    - license text: [third-party-licenses/picomatch/LICENSE](third-party-licenses/picomatch/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/picomatch/LICENSE](jeap-error-handling-ui/third-party-licenses/picomatch/LICENSE)
  - **[pirates](https://github.com/danez/pirates)**
     - name: pirates
     - licenses: MIT
@@ -2474,12 +2474,12 @@
     - name: readdirp
     - licenses: MIT
     - repository: https://github.com/paulmillr/readdirp
-    - license text: [third-party-licenses/readdirp/LICENSE](third-party-licenses/readdirp/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/readdirp/LICENSE](jeap-error-handling-ui/third-party-licenses/readdirp/LICENSE)
  - **[reflect-metadata](https://github.com/rbuckton/reflect-metadata)**
     - name: reflect-metadata
     - licenses: Apache-2.0
     - repository: https://github.com/rbuckton/reflect-metadata
-    - license text: [third-party-licenses/reflect-metadata/LICENSE](third-party-licenses/reflect-metadata/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/reflect-metadata/LICENSE](jeap-error-handling-ui/third-party-licenses/reflect-metadata/LICENSE)
  - **[require-directory](https://github.com/troygoode/node-require-directory)**
     - name: require-directory
     - licenses: MIT
@@ -2488,7 +2488,7 @@
     - name: require-from-string
     - licenses: MIT
     - repository: floatdrop/require-from-string
-    - license text: [third-party-licenses/require-from-string/license](third-party-licenses/require-from-string/license)
+    - license text: [jeap-error-handling-ui/third-party-licenses/require-from-string/license](jeap-error-handling-ui/third-party-licenses/require-from-string/license)
  - **[resolve-cwd](sindresorhus/resolve-cwd)**
     - name: resolve-cwd
     - licenses: MIT
@@ -2505,12 +2505,12 @@
     - name: restore-cursor
     - licenses: MIT
     - repository: sindresorhus/restore-cursor
-    - license text: [third-party-licenses/restore-cursor/license](third-party-licenses/restore-cursor/license)
+    - license text: [jeap-error-handling-ui/third-party-licenses/restore-cursor/license](jeap-error-handling-ui/third-party-licenses/restore-cursor/license)
  - **[rfc4648](https://github.com/swansontec/rfc4648.js)**
     - name: rfc4648
     - licenses: MIT
     - repository: https://github.com/swansontec/rfc4648.js
-    - license text: [third-party-licenses/rfc4648/LICENSE](third-party-licenses/rfc4648/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/rfc4648/LICENSE](jeap-error-handling-ui/third-party-licenses/rfc4648/LICENSE)
  - **[rfdc](https://github.com/davidmarkclements/rfdc)**
     - name: rfdc
     - licenses: MIT
@@ -2535,7 +2535,7 @@
     - name: rxjs
     - licenses: Apache-2.0
     - repository: https://github.com/reactivex/rxjs
-    - license text: [third-party-licenses/rxjs/LICENSE.txt](third-party-licenses/rxjs/LICENSE.txt)
+    - license text: [jeap-error-handling-ui/third-party-licenses/rxjs/LICENSE.txt](jeap-error-handling-ui/third-party-licenses/rxjs/LICENSE.txt)
  - **[safer-buffer](https://github.com/ChALkeR/safer-buffer)**
     - name: safer-buffer
     - licenses: MIT
@@ -2544,7 +2544,7 @@
     - name: sass
     - licenses: MIT
     - repository: https://github.com/sass/dart-sass
-    - license text: [third-party-licenses/sass/LICENSE](third-party-licenses/sass/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/sass/LICENSE](jeap-error-handling-ui/third-party-licenses/sass/LICENSE)
  - **[sass](https://github.com/sass/dart-sass)**
     - name: sass
     - licenses: MIT
@@ -2561,12 +2561,12 @@
     - name: semver
     - licenses: ISC
     - repository: https://github.com/npm/node-semver
-    - license text: [third-party-licenses/semver@6.3.1/LICENSE](third-party-licenses/semver@6.3.1/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/semver@6.3.1/LICENSE](jeap-error-handling-ui/third-party-licenses/semver@6.3.1/LICENSE)
  - **[semver](https://github.com/npm/node-semver)**
     - name: semver
     - licenses: ISC
     - repository: https://github.com/npm/node-semver
-    - license text: [third-party-licenses/semver@7.7.4/LICENSE](third-party-licenses/semver@7.7.4/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/semver@7.7.4/LICENSE](jeap-error-handling-ui/third-party-licenses/semver@7.7.4/LICENSE)
  - **[semver](https://github.com/npm/node-semver)**
     - name: semver
     - licenses: ISC
@@ -2615,7 +2615,7 @@
     - name: signal-exit
     - licenses: ISC
     - repository: https://github.com/tapjs/signal-exit
-    - license text: [third-party-licenses/signal-exit/LICENSE.txt](third-party-licenses/signal-exit/LICENSE.txt)
+    - license text: [jeap-error-handling-ui/third-party-licenses/signal-exit/LICENSE.txt](jeap-error-handling-ui/third-party-licenses/signal-exit/LICENSE.txt)
  - **[sigstore](https://github.com/sigstore/sigstore-js)**
     - name: sigstore
     - licenses: Apache-2.0
@@ -2652,7 +2652,7 @@
     - name: source-map-js
     - licenses: BSD-3-Clause
     - repository: 7rulnik/source-map-js
-    - license text: [third-party-licenses/source-map-js/LICENSE](third-party-licenses/source-map-js/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/source-map-js/LICENSE](jeap-error-handling-ui/third-party-licenses/source-map-js/LICENSE)
  - **[source-map-support](https://github.com/evanw/node-source-map-support)**
     - name: source-map-support
     - licenses: MIT
@@ -2669,7 +2669,7 @@
     - name: source-map
     - licenses: BSD-3-Clause
     - repository: http://github.com/mozilla/source-map
-    - license text: [third-party-licenses/source-map/LICENSE](third-party-licenses/source-map/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/source-map/LICENSE](jeap-error-handling-ui/third-party-licenses/source-map/LICENSE)
  - **[spdx-exceptions](kemitchell/spdx-exceptions.json)**
     - name: spdx-exceptions
     - licenses: CC-BY-3.0
@@ -2702,7 +2702,7 @@
     - name: stdin-discarder
     - licenses: MIT
     - repository: sindresorhus/stdin-discarder
-    - license text: [third-party-licenses/stdin-discarder/license](third-party-licenses/stdin-discarder/license)
+    - license text: [jeap-error-handling-ui/third-party-licenses/stdin-discarder/license](jeap-error-handling-ui/third-party-licenses/stdin-discarder/license)
  - **[string-length](sindresorhus/string-length)**
     - name: string-length
     - licenses: MIT
@@ -2719,12 +2719,12 @@
     - name: string-width
     - licenses: MIT
     - repository: sindresorhus/string-width
-    - license text: [third-party-licenses/string-width@7.2.0/license](third-party-licenses/string-width@7.2.0/license)
+    - license text: [jeap-error-handling-ui/third-party-licenses/string-width@7.2.0/license](jeap-error-handling-ui/third-party-licenses/string-width@7.2.0/license)
  - **[string-width](sindresorhus/string-width)**
     - name: string-width
     - licenses: MIT
     - repository: sindresorhus/string-width
-    - license text: [third-party-licenses/string-width@8.2.2/license](third-party-licenses/string-width@8.2.2/license)
+    - license text: [jeap-error-handling-ui/third-party-licenses/string-width@8.2.2/license](jeap-error-handling-ui/third-party-licenses/string-width@8.2.2/license)
  - **[strip-ansi](chalk/strip-ansi)**
     - name: strip-ansi
     - licenses: MIT
@@ -2733,7 +2733,7 @@
     - name: strip-ansi
     - licenses: MIT
     - repository: chalk/strip-ansi
-    - license text: [third-party-licenses/strip-ansi/license](third-party-licenses/strip-ansi/license)
+    - license text: [jeap-error-handling-ui/third-party-licenses/strip-ansi/license](jeap-error-handling-ui/third-party-licenses/strip-ansi/license)
  - **[strip-bom](sindresorhus/strip-bom)**
     - name: strip-bom
     - licenses: MIT
@@ -2786,7 +2786,7 @@
     - name: tinyglobby
     - licenses: MIT
     - repository: https://github.com/SuperchupuDev/tinyglobby
-    - license text: [third-party-licenses/tinyglobby/LICENSE](third-party-licenses/tinyglobby/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/tinyglobby/LICENSE](jeap-error-handling-ui/third-party-licenses/tinyglobby/LICENSE)
  - **[tldts-core](https://github.com/remusao/tldts)**
     - name: tldts-core
     - licenses: MIT
@@ -2831,7 +2831,7 @@
     - name: tslib
     - licenses: 0BSD
     - repository: https://github.com/Microsoft/tslib
-    - license text: [third-party-licenses/tslib/LICENSE.txt](third-party-licenses/tslib/LICENSE.txt)
+    - license text: [jeap-error-handling-ui/third-party-licenses/tslib/LICENSE.txt](jeap-error-handling-ui/third-party-licenses/tslib/LICENSE.txt)
  - **[tslint](https://github.com/palantir/tslint)**
     - name: tslint
     - licenses: Apache-2.0
@@ -2872,7 +2872,7 @@
     - name: undici-types
     - licenses: MIT
     - repository: https://github.com/nodejs/undici
-    - license text: [third-party-licenses/undici-types/LICENSE](third-party-licenses/undici-types/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/undici-types/LICENSE](jeap-error-handling-ui/third-party-licenses/undici-types/LICENSE)
  - **[undici](https://github.com/nodejs/undici)**
     - name: undici
     - licenses: MIT
@@ -2897,7 +2897,7 @@
     - name: update-browserslist-db
     - licenses: MIT
     - repository: browserslist/update-db
-    - license text: [third-party-licenses/update-browserslist-db/LICENSE](third-party-licenses/update-browserslist-db/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/update-browserslist-db/LICENSE](jeap-error-handling-ui/third-party-licenses/update-browserslist-db/LICENSE)
  - **[v8-compile-cache-lib](https://github.com/cspotcode/v8-compile-cache-lib)**
     - name: v8-compile-cache-lib
     - licenses: MIT
@@ -2986,7 +2986,7 @@
     - name: wrap-ansi
     - licenses: MIT
     - repository: chalk/wrap-ansi
-    - license text: [third-party-licenses/wrap-ansi/license](third-party-licenses/wrap-ansi/license)
+    - license text: [jeap-error-handling-ui/third-party-licenses/wrap-ansi/license](jeap-error-handling-ui/third-party-licenses/wrap-ansi/license)
  - **[wrappy](https://github.com/npm/wrappy)**
     - name: wrappy
     - licenses: ISC
@@ -3015,12 +3015,12 @@
     - name: y18n
     - licenses: ISC
     - repository: yargs/y18n
-    - license text: [third-party-licenses/y18n/LICENSE](third-party-licenses/y18n/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/y18n/LICENSE](jeap-error-handling-ui/third-party-licenses/y18n/LICENSE)
  - **[yallist](https://github.com/isaacs/yallist)**
     - name: yallist
     - licenses: ISC
     - repository: https://github.com/isaacs/yallist
-    - license text: [third-party-licenses/yallist/LICENSE](third-party-licenses/yallist/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/yallist/LICENSE](jeap-error-handling-ui/third-party-licenses/yallist/LICENSE)
  - **[yallist](https://github.com/isaacs/yallist)**
     - name: yallist
     - licenses: ISC
@@ -3037,7 +3037,7 @@
     - name: yargs-parser
     - licenses: ISC
     - repository: https://github.com/yargs/yargs-parser
-    - license text: [third-party-licenses/yargs-parser/LICENSE.txt](third-party-licenses/yargs-parser/LICENSE.txt)
+    - license text: [jeap-error-handling-ui/third-party-licenses/yargs-parser/LICENSE.txt](jeap-error-handling-ui/third-party-licenses/yargs-parser/LICENSE.txt)
  - **[yargs](https://github.com/yargs/yargs)**
     - name: yargs
     - licenses: MIT
@@ -3046,7 +3046,7 @@
     - name: yargs
     - licenses: MIT
     - repository: https://github.com/yargs/yargs
-    - license text: [third-party-licenses/yargs/LICENSE](third-party-licenses/yargs/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/yargs/LICENSE](jeap-error-handling-ui/third-party-licenses/yargs/LICENSE)
  - **[yn](sindresorhus/yn)**
     - name: yn
     - licenses: MIT
@@ -3063,7 +3063,7 @@
     - name: yoctocolors
     - licenses: MIT
     - repository: sindresorhus/yoctocolors
-    - license text: [third-party-licenses/yoctocolors/license](third-party-licenses/yoctocolors/license)
+    - license text: [jeap-error-handling-ui/third-party-licenses/yoctocolors/license](jeap-error-handling-ui/third-party-licenses/yoctocolors/license)
  - **[zod-to-json-schema](https://github.com/StefanTerdell/zod-to-json-schema)**
     - name: zod-to-json-schema
     - licenses: ISC
@@ -3076,5 +3076,5 @@
     - name: zone.js
     - licenses: MIT
     - repository: https://github.com/angular/angular
-    - license text: [third-party-licenses/zone.js/LICENSE](third-party-licenses/zone.js/LICENSE)
-    - license text: [third-party-licenses/zone.js/LICENSE.wrapped](third-party-licenses/zone.js/LICENSE.wrapped)
+    - license text: [jeap-error-handling-ui/third-party-licenses/zone.js/LICENSE](jeap-error-handling-ui/third-party-licenses/zone.js/LICENSE)
+    - license text: [jeap-error-handling-ui/third-party-licenses/zone.js/LICENSE.wrapped](jeap-error-handling-ui/third-party-licenses/zone.js/LICENSE.wrapped)

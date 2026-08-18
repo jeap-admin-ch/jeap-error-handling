@@ -8,6 +8,7 @@
     }
   },
   "notices": {
-    "out": "../THIRD-PARTY-FRONTEND-LICENSES.md"
+    "out": "../THIRD-PARTY-FRONTEND-LICENSES.md",
+    "textsDir": "jeap-error-handling-ui/third-party-licenses"
   }
 }
