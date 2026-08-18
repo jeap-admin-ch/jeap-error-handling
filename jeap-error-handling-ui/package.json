@@ -10,9 +10,9 @@
   "private": true,
   "scripts": {
     "start": "ng serve",
-    "build": "ng build --base-href /error-handling/ --deploy-url /error-handling/",
-    "build-dev": "ng build -c dev --base-href /error-handling/ --deploy-url /error-handling/",
-    "build-prod": "ng build -c production --base-href /error-handling/ --deploy-url /error-handling/",
+    "build": "npm run check-licenses && npm run generateLicenseFile && ng build --base-href /error-handling/ --deploy-url /error-handling/",
+    "build-dev": "npm run check-licenses && npm run generateLicenseFile && ng build -c dev --base-href /error-handling/ --deploy-url /error-handling/",
+    "build-prod": "npm run check-licenses && npm run generateLicenseFile && ng build -c production --base-href /error-handling/ --deploy-url /error-handling/",
     "test": "ng test --watch=false",
     "test:watch": "ng test --watchAll",
     "lint": "ng lint",
@@ -85,7 +85,6 @@
   "overrides": {
     "fast-uri": "4.1.2",
     "set-value": "4.1.0",
-    "picomatch": "4.0.5",
-    "brace-expansion": "1.1.13"
+    "picomatch": "4.0.5"
   }
 }

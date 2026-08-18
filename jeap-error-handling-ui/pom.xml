@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>ch.admin.bit.jeap</groupId>
 		<artifactId>jeap-error-handling-parent</artifactId>
-		<version>21.0.1-SNAPSHOT</version>
+		<version>21.0.2-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>jeap-error-handling-ui</artifactId>
@@ -40,34 +40,6 @@
 							<executable>npm</executable>
 							<arguments>
 								<argument>ci</argument>
-							</arguments>
-						</configuration>
-					</execution>
-					<execution>
-						<id>generate-license-file</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-						<configuration>
-							<executable>npm</executable>
-							<arguments>
-								<argument>run</argument>
-								<argument>generateLicenseFile</argument>
-							</arguments>
-						</configuration>
-					</execution>
-					<execution>
-						<id>check-licenses</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-						<configuration>
-							<executable>npm</executable>
-							<arguments>
-								<argument>run</argument>
-								<argument>check-licenses</argument>
 							</arguments>
 						</configuration>
 					</execution>

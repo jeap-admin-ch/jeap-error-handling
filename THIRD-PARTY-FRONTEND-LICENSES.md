@@ -1031,6 +1031,10 @@
     - name: balanced-match
     - licenses: MIT
     - repository: https://github.com/juliangruber/balanced-match
+ - **[balanced-match](https://github.com/juliangruber/balanced-match)**
+    - name: balanced-match
+    - licenses: MIT
+    - repository: https://github.com/juliangruber/balanced-match
  - **[baseline-browser-mapping](https://github.com/web-platform-dx/baseline-browser-mapping)**
     - name: baseline-browser-mapping
     - licenses: Apache-2.0
@@ -1048,6 +1052,14 @@
     - name: boolbase
     - licenses: ISC
     - repository: https://github.com/fb55/boolbase
+ - **[brace-expansion](https://github.com/juliangruber/brace-expansion)**
+    - name: brace-expansion
+    - licenses: MIT
+    - repository: https://github.com/juliangruber/brace-expansion
+ - **[brace-expansion](https://github.com/juliangruber/brace-expansion)**
+    - name: brace-expansion
+    - licenses: MIT
+    - repository: https://github.com/juliangruber/brace-expansion
  - **[brace-expansion](https://github.com/juliangruber/brace-expansion)**
     - name: brace-expansion
     - licenses: MIT
