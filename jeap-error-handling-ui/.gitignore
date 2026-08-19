@@ -41,3 +41,7 @@ Thumbs.db
 /docker/keycloakconfig/hsperfdata_jboss/282
 /jeap-microservice-examples-oauth-ui.iml
 /docker/keycloakconfig/hsperfdata_jboss/285
+
+# generated license notices shipped in the artifact
+/src/assets/THIRD-PARTY-LICENSES.md
+/src/assets/third-party-licenses/

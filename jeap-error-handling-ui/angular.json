@@ -77,8 +77,7 @@
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true
+              "aot": true
             },
             "localKeycloak": {
               "budgets": [
@@ -96,8 +95,7 @@
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true
+              "aot": true
             },
             "production": {
               "budgets": [
@@ -116,8 +114,7 @@
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true
+              "aot": true
             }
           },
           "defaultConfiguration": ""

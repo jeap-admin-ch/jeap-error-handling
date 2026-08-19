@@ -17,7 +17,7 @@
     "test:watch": "ng test --watchAll",
     "lint": "ng lint",
     "check-licenses": "jeap-frontend-license-checker",
-    "generateLicenseFile": "jeap-frontend-license-checker notices"
+    "generateLicenseFile": "jeap-frontend-license-checker notices && jeap-frontend-license-checker notices --out src/assets/THIRD-PARTY-LICENSES.md --texts folder --texts-dir third-party-licenses"
   },
   "jest": {
     "testResultsProcessor": "jest-sonar-reporter"
