@@ -7,6 +7,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [22.0.0] - 2026-08-21
 
+### Changed
+- `ErrorEventHandlerServiceTest` installs the Avro class whitelist introduced by jeap-messaging 18.0.0, as the
+  `@DataJpaTest` slice does not apply the auto configuration installing it.
+
 ### Dependencies
 - **ch.admin.bit.jeap:jeap-spring-boot-parent**: 39.5.0 → 40.0.0 (major)
 - **sass**: 1.103.0 → 1.103.1 (patch)

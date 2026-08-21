@@ -7,7 +7,9 @@ import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorEventData.Temporality;
 import ch.admin.bit.jeap.messaging.avro.errorevent.MessageProcessingFailedEvent;
 import ch.admin.bit.jeap.messaging.avro.errorevent.MessageProcessingFailedEventBuilder;
+import ch.admin.bit.jeap.messaging.avro.security.AvroClassSecurity;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -47,6 +49,11 @@ class ErrorEventHandlerServiceTest {
     private Error errorMock;
     @Mock
     private ErrorEventData errorEventData;
+
+    @BeforeAll
+    static void installAvroClassSecurity() {
+        AvroClassSecurity.installDefaultIfMissing();
+    }
 
     @Test
     void handle() {
