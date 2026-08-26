@@ -85,6 +85,6 @@
   "overrides": {
     "fast-uri": "4.1.3",
     "set-value": "4.1.0",
-    "picomatch": "4.0.5"
+    "picomatch": "4.0.7"
   }
 }
