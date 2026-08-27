@@ -8,6 +8,7 @@ import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorEventData
 import ch.admin.bit.jeap.messaging.avro.errorevent.MessageProcessingFailedEvent;
 import ch.admin.bit.jeap.messaging.avro.errorevent.MessageProcessingFailedEventBuilder;
 import ch.admin.bit.jeap.messaging.avro.security.AvroClassSecurity;
+import ch.admin.bit.jeap.modulith.event.publicationprocessingfailed.ModulithPublicationProcessingFailedEvent;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -27,8 +28,10 @@ import java.util.Optional;
 import static ch.admin.bit.jeap.messaging.avro.errorevent.MessageHandlerExceptionInformation.Temporality.PERMANENT;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Answers.RETURNS_DEEP_STUBS;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 @DataJpaTest
@@ -45,6 +48,8 @@ class ErrorEventHandlerServiceTest {
     private ErrorService errorServiceMock;
     @Mock
     private ErrorEventMapper errorEventMapperMock;
+    @Mock
+    private ModulithErrorEventMapper modulithErrorEventMapperMock;
     @Mock
     private Error errorMock;
     @Mock
@@ -65,7 +70,7 @@ class ErrorEventHandlerServiceTest {
         doReturn(Temporality.TEMPORARY).when(errorEventData).getTemporality();
 
         ErrorEventHandlerService errorEventHandlerService = new ErrorEventHandlerService(errorServiceMock,
-                causingEventRepository, errorEventMapperMock, transactionManager);
+                causingEventRepository, errorEventMapperMock, modulithErrorEventMapperMock, transactionManager);
 
         errorEventHandlerService.handle("testcluster", failedEvent);
 
@@ -85,7 +90,7 @@ class ErrorEventHandlerServiceTest {
         doReturn(Temporality.TEMPORARY).when(errorEventData).getTemporality();
 
         ErrorEventHandlerService errorEventHandlerService = new ErrorEventHandlerService(errorServiceMock,
-                causingEventRepository, errorEventMapperMock, transactionManager);
+                causingEventRepository, errorEventMapperMock, modulithErrorEventMapperMock, transactionManager);
 
         errorEventHandlerService.handle("bit", failedEvent);
 
@@ -96,6 +101,33 @@ class ErrorEventHandlerServiceTest {
         assertTrue(persistentCausingEventOptional.isPresent());
         CausingEvent persistentCausingEvent = persistentCausingEventOptional.get();
         assertArrayEquals(new byte[]{4, 52, 52, 52}, persistentCausingEvent.getMessage().getPayload());
+    }
+
+    @Test
+    void handleModulithPublicationFailure() {
+        ModulithPublicationProcessingFailedEvent failedEvent = mock(ModulithPublicationProcessingFailedEvent.class,
+                RETURNS_DEEP_STUBS);
+        CausingEvent causingEvent = CausingEvent.builder()
+                .origin(CausingEvent.Origin.MODULITH_PUBLICATION)
+                .metadata(createEventMetadata())
+                .modulithPublication(ModulithPublicationData.builder()
+                        .publicationId("publication-id")
+                        .listener("listener-id")
+                        .eventType("example.Event")
+                        .retryCommandTopic("retry-topic")
+                        .discardCommandTopic("discard-topic")
+                        .build())
+                .build();
+        doReturn(causingEvent).when(modulithErrorEventMapperMock).toCausingEvent(failedEvent);
+        doReturn(errorMock).when(modulithErrorEventMapperMock).toError(any(), any(CausingEvent.class));
+
+        ErrorEventHandlerService errorEventHandlerService = new ErrorEventHandlerService(errorServiceMock,
+                causingEventRepository, errorEventMapperMock, modulithErrorEventMapperMock, transactionManager);
+
+        errorEventHandlerService.handle("testcluster", failedEvent);
+
+        verify(errorServiceMock).handlePermanentError(errorMock);
+        assertTrue(causingEventRepository.findByCausingEventId(causingEvent.getMetadata().getId()).isPresent());
     }
 
     private MessageProcessingFailedEvent createMessageProcessingFailedEvent() {

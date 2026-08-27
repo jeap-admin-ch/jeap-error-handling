@@ -1,11 +1,12 @@
 # Architecture
 
-The jEAP Error Handling Service (EHS) is a self-contained system that guarantees that no Kafka message is
-lost when its processing fails in a business application. Business services never retry failed messages
+The jEAP Error Handling Service (EHS) is a self-contained system that handles failed Kafka messages and
+Spring Modulith event publications. Business services never retry failed Kafka messages
 themselves: the [jEAP messaging error handler](https://jeap-admin-ch.github.io/docs/jeap-messaging/) wraps the
 failed message into a `MessageProcessingFailedEvent` and publishes it to an error topic. The EHS consumes
 that topic, persists the failure, retries temporary errors, escalates permanent errors to manual tasks, and
-offers a UI to inspect, resend and close errors.
+offers a UI to inspect, resend and close errors. Services using the Modulith error handling starter report
+exhausted publications to the same error topic and receive retry or discard commands from the EHS.
 
 ## Goals and constraints
 

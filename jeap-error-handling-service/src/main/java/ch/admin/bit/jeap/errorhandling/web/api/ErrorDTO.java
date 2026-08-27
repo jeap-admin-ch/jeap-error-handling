@@ -20,6 +20,7 @@ class ErrorDTO {
     private String errorMessage;
     private String errorCode;
     private String errorPublisher;
+    private String origin;
     private String errorTemporality;
     private String eventName;
     private String eventId;
@@ -27,6 +28,10 @@ class ErrorDTO {
     private String eventTimestamp;
     private String eventTopicDetails;
     private String eventClusterName;
+    private String publicationId;
+    private String publicationListener;
+    private String publicationEventType;
+    private String publicationPayloadContentType;
     private String stacktrace;
     private String nextResendTimestamp;
     private int errorCountForEvent;

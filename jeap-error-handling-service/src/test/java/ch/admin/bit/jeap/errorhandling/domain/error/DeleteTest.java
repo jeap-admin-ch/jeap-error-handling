@@ -7,7 +7,7 @@ import ch.admin.bit.jeap.errorhandling.domain.manualtask.taskFactory.TaskFactory
 import ch.admin.bit.jeap.errorhandling.domain.metrics.ErrorHandlingMetricsService;
 import ch.admin.bit.jeap.errorhandling.domain.resend.scheduler.ScheduledResendService;
 import ch.admin.bit.jeap.errorhandling.domain.resend.strategy.ResendingStrategy;
-import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.KafkaFailedEventResender;
+import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.FailedEventResender;
 import ch.admin.bit.jeap.errorhandling.infrastructure.manualtask.TaskManagementClient;
 import ch.admin.bit.jeap.errorhandling.infrastructure.manualtask.TaskManagementException;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
@@ -43,7 +43,7 @@ class DeleteTest {
     @Mock
     private ScheduledResendService scheduledResendService;
     @Mock
-    private KafkaFailedEventResender failedEventResender;
+    private FailedEventResender failedEventResender;
     @Mock
     private TaskManagementClient taskManagementClient;
     @Mock

@@ -184,7 +184,7 @@ class ErrorEventMapper {
         return hasEventId ? toString(identity.get(EVENT_ID)) : toString(identity.get("id"));
     }
 
-    private EventMetadata extractErrorEventMetadata(MessageProcessingFailedEvent errorEvent) {
+    EventMetadata extractErrorEventMetadata(MessageProcessingFailedEvent errorEvent) {
         AvroDomainEventIdentity srcEventIdentity = errorEvent.getIdentity();
         AvroDomainEventType srcEventTyp = errorEvent.getType();
         AvroDomainEventPublisher srcEventPublisher = errorEvent.getPublisher();

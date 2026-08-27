@@ -22,6 +22,10 @@
       <div class="col-10">{{ error.errorPublisher }}</div>
     </div>
     <div class="row">
+      <div class="col-2"><strong>{{ 'i18n.error.origin' | translate }}</strong></div>
+      <div class="col-10">{{ ('i18n.error.origin.' + (error.origin || 'KAFKA_MESSAGE')) | translate }}</div>
+    </div>
+    <div class="row">
       <div class="col-2"><strong>{{ 'i18n.error.errormessage' | translate }}</strong></div>
       <div class="col-10">{{ error.errorMessage }}</div>
     </div>
@@ -101,19 +105,38 @@
       <div class="col-2"><strong>{{ 'i18n.error.event.publisher' | translate }}</strong></div>
       <div class="col-10">{{ error.eventPublisher }}</div>
     </div>
-    <div class="row">
-      <div class="col-2"><strong>{{ 'i18n.error.event.topic' | translate }}</strong></div>
-      <div class="col-10">{{ error.eventTopicDetails }}</div>
-    </div>
-    <div class="row">
-      <div class="col-2"><strong>{{ 'i18n.error.event.cluster' | translate }}</strong></div>
-      <div class="col-10">{{ error.eventClusterName }}</div>
-    </div>
-    <div class="row">
-      <div class="col-2"><strong>{{ 'i18n.error.event.signed' | translate }}</strong></div>
-      <div class="col-10">{{ ('i18n.error.event.signed.' + error.signed)| translate }}</div>
-    </div>
-    @if (error.signed) {
+    @if (error.origin === 'MODULITH_PUBLICATION') {
+      <div class="row">
+        <div class="col-2"><strong>{{ 'i18n.error.publication.id' | translate }}</strong></div>
+        <div class="col-10">{{ error.publicationId }}</div>
+      </div>
+      <div class="row">
+        <div class="col-2"><strong>{{ 'i18n.error.publication.listener' | translate }}</strong></div>
+        <div class="col-10">{{ error.publicationListener }}</div>
+      </div>
+      <div class="row">
+        <div class="col-2"><strong>{{ 'i18n.error.publication.event-type' | translate }}</strong></div>
+        <div class="col-10">{{ error.publicationEventType }}</div>
+      </div>
+      <div class="row">
+        <div class="col-2"><strong>{{ 'i18n.error.publication.content-type' | translate }}</strong></div>
+        <div class="col-10">{{ error.publicationPayloadContentType }}</div>
+      </div>
+    } @else {
+      <div class="row">
+        <div class="col-2"><strong>{{ 'i18n.error.event.topic' | translate }}</strong></div>
+        <div class="col-10">{{ error.eventTopicDetails }}</div>
+      </div>
+      <div class="row">
+        <div class="col-2"><strong>{{ 'i18n.error.event.cluster' | translate }}</strong></div>
+        <div class="col-10">{{ error.eventClusterName }}</div>
+      </div>
+      <div class="row">
+        <div class="col-2"><strong>{{ 'i18n.error.event.signed' | translate }}</strong></div>
+        <div class="col-10">{{ ('i18n.error.event.signed.' + error.signed)| translate }}</div>
+      </div>
+    }
+    @if (error.signed && error.origin !== 'MODULITH_PUBLICATION') {
       <div>
         <div class="row">
           <div class="col-2"><strong>{{ 'i18n.error.event.certificate' | translate }}</strong></div>
@@ -134,11 +157,11 @@
         }
         @if (error.canRetry) {
           <button mat-flat-button color="accent" [disabled]="actionsDisabled" class="button-right"
-          (click)="resendRow(error)">{{ 'i18n.errorhandling.action.retry' | translate }}</button>
+          (click)="resendRow(error)">{{ (error.origin === 'MODULITH_PUBLICATION' ? 'i18n.errorhandling.action.retry-publication' : 'i18n.errorhandling.action.retry') | translate }}</button>
         }
         @if (error.canDelete) {
           <button mat-stroked-button color="warn" [disabled]="actionsDisabled" class="button-right"
-          (click)="delete(error.id)">{{ 'i18n.errorhandling.action.delete' | translate }}</button>
+          (click)="delete(error.id)">{{ (error.origin === 'MODULITH_PUBLICATION' ? 'i18n.errorhandling.action.discard-publication' : 'i18n.errorhandling.action.delete') | translate }}</button>
         }
       </div>
     </div>

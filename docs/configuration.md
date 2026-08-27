@@ -7,7 +7,8 @@ configuration can be found in the `jme-messaging-error-scs` module of the
 
 ## Kafka
 
-The EHS consumes `MessageProcessingFailedEvent`s from the error topic of the system. The general Kafka and
+The EHS consumes `MessageProcessingFailedEvent`s and `ModulithPublicationProcessingFailedEvent`s from the
+error topic of the system. The general Kafka and
 schema registry access is configured through the standard
 [jEAP messaging properties](https://jeap-admin-ch.github.io/docs/jeap-messaging/) (`jeap.messaging.kafka.*`).
 The essential EHS-specific settings are:
@@ -28,6 +29,11 @@ jeap:
 
 Note that for the EHS itself, `jeap.messaging.kafka.errorTopicName` always equals the dead letter topic —
 the EHS must not publish its own failures to the topic it consumes from.
+
+An EHS instance that handles Modulith failures must declare a consumer contract for
+`ModulithPublicationProcessingFailedEvent` on this error topic and producer contracts for the retry and
+discard command topics used by its source services. The command topic names are carried in each failure event
+and persisted by the EHS; no additional EHS topic property is required.
 
 The topic configuration is validated at startup, the EHS refuses to start if:
 

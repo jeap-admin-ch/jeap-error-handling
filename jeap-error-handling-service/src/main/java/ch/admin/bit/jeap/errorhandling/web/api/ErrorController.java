@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.ZonedDateTime;
+import java.nio.charset.StandardCharsets;
 import java.time.format.DateTimeFormatter;
 import java.util.HexFormat;
 import java.util.List;
@@ -210,6 +211,10 @@ public class ErrorController {
     @Transactional(readOnly = true)
     public String getCausingEventPayload(@PathVariable("errorId") UUID errorId) {
         Error error = errorService.getError(errorId);
+        if (error.getCausingEvent().getOrigin() == CausingEvent.Origin.MODULITH_PUBLICATION) {
+            byte[] payload = error.getCausingEvent().getModulithPublication().getSerializedEvent();
+            return payload == null ? "" : new String(payload, StandardCharsets.UTF_8);
+        }
         String clusterName = resendClusterProvider.getResendClusterNameFor(error.getCausingEvent());
         EventMessage causingEventMessage = error.getCausingEventMessage();
         try {
@@ -281,16 +286,24 @@ public class ErrorController {
         boolean canRetry = error.getState().isRetryAllowed() && userCanRetry;
         boolean canDelete = error.getState().isDeleteAllowed() && userCanDelete;
         int errorCountForEvent = errorService.getErrorCountForCausingEvent(error.getCausingEventMetadata().getId());
-        return toErrorDtoBuilder(error)
+        ErrorDTO.ErrorDTOBuilder builder = toErrorDtoBuilder(error)
                 .canRetry(canRetry)
                 .canDelete(canDelete)
                 .errorCountForEvent(errorCountForEvent)
                 .errorTemporality(error.getErrorEventData().getTemporality().name())
                 .stacktrace(error.getErrorEventData().getStackTrace())
-                .eventTopicDetails(topicDetails(error.getCausingEventMessage()))
-                .eventClusterName(resendClusterProvider.getResendClusterNameFor(error.getCausingEvent()))
-                .auditLogDTOs(getAuditLogDtos(error))
-                .build();
+                .auditLogDTOs(getAuditLogDtos(error));
+        if (error.getCausingEvent().getOrigin() == CausingEvent.Origin.MODULITH_PUBLICATION) {
+            ModulithPublicationData publication = error.getCausingEvent().getModulithPublication();
+            builder.publicationId(publication.getPublicationId())
+                    .publicationListener(publication.getListener())
+                    .publicationEventType(publication.getEventType())
+                    .publicationPayloadContentType(publication.getSerializedEventContentType());
+        } else {
+            builder.eventTopicDetails(topicDetails(error.getCausingEventMessage()))
+                    .eventClusterName(resendClusterProvider.getResendClusterNameFor(error.getCausingEvent()));
+        }
+        return builder.build();
     }
 
     private List<AuditLogDTO> getAuditLogDtos(Error error) {
@@ -328,6 +341,7 @@ public class ErrorController {
                 .errorMessage(error.getErrorEventData().getMessage())
                 .errorCode(longStringEllipis(error.getErrorEventData().getCode()))
                 .errorPublisher(error.getErrorEventMetadata().getPublisher().getService())
+                .origin(error.getCausingEvent().getOrigin().name())
                 .nextResendTimestamp(timestamp(scheduledResendService.getNextResendTimestamp(error.getId())))
                 .eventName(error.getCausingEventMetadata().getType().getName())
                 .eventId(error.getCausingEventMetadata().getId())

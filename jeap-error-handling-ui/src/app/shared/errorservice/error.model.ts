@@ -5,6 +5,7 @@ export interface ErrorDTO {
 	errorMessage: string;
 	errorCode: string;
 	errorPublisher: string;
+	origin?: 'KAFKA_MESSAGE' | 'MODULITH_PUBLICATION';
 	errorTemporality: string;
 	eventName: string;
 	eventId: string;
@@ -12,6 +13,10 @@ export interface ErrorDTO {
 	eventPublisher: string;
 	eventTopicDetails: string;
 	eventClusterName: string;
+	publicationId?: string;
+	publicationListener?: string;
+	publicationEventType?: string;
+	publicationPayloadContentType?: string;
 	stacktrace: string;
 	nextResendTimestamp: string;
 	errorCountForEvent: number;
@@ -84,7 +89,6 @@ export interface DeleteErrorsResultDTO {
 	totalItems: number;
 	totalErrors: number;
 }
-
 
 
 

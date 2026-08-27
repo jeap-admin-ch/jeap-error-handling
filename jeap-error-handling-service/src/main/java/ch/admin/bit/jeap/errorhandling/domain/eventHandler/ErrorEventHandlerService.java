@@ -6,6 +6,7 @@ import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.CausingEvent;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.CausingEventRepository;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
 import ch.admin.bit.jeap.messaging.avro.errorevent.MessageProcessingFailedEvent;
+import ch.admin.bit.jeap.modulith.event.publicationprocessingfailed.ModulithPublicationProcessingFailedEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -23,6 +24,7 @@ public class ErrorEventHandlerService implements ErrorEventHandler {
     private final ErrorService errorService;
     private final CausingEventRepository causingEventRepository;
     private final ErrorEventMapper errorEventMapper;
+    private final ModulithErrorEventMapper modulithErrorEventMapper;
     private final PlatformTransactionManager transactionManager;
 
     /**
@@ -49,6 +51,28 @@ public class ErrorEventHandlerService implements ErrorEventHandler {
                 break;
             default:
                 errorService.handleUnknownTemporalityError(error);
+        }
+    }
+
+    @Override
+    public void handle(String clusterName, ModulithPublicationProcessingFailedEvent errorEvent) {
+        if (errorService.isEventDuplicate(errorEvent.getIdentity().getIdempotenceId())) {
+            log.info("Received an error event with an already handled idempotence ID. Skipping this event: {}.", errorEvent);
+            return;
+        }
+        CausingEvent causingEvent = createOrGetCausingEvent(errorEvent);
+        errorService.handlePermanentError(modulithErrorEventMapper.toError(errorEvent, causingEvent));
+    }
+
+    private CausingEvent createOrGetCausingEvent(ModulithPublicationProcessingFailedEvent errorEvent) {
+        CausingEvent causingEvent = modulithErrorEventMapper.toCausingEvent(errorEvent);
+        try {
+            return saveOrGetCausingEvent(causingEvent);
+        } catch (TransactionException ex) {
+            if (ex.contains(DataIntegrityViolationException.class)) {
+                return saveOrGetCausingEvent(causingEvent);
+            }
+            throw ex;
         }
     }
 
@@ -79,7 +103,11 @@ public class ErrorEventHandlerService implements ErrorEventHandler {
             // While this is not necessary usually, it might be required in certain migration cases (new heders,
             // new message format due to cluster migrations with different binary record formats, etc)
             // As there is no way to determine whether an update is strictly necessary, it is always performed.
-            persistentCausingEvent.update(causingEvent.getMetadata(), causingEvent.getMessage(), causingEvent.getHeaders());
+            if (causingEvent.getOrigin() == CausingEvent.Origin.MODULITH_PUBLICATION) {
+                persistentCausingEvent.update(causingEvent.getMetadata(), causingEvent.getModulithPublication());
+            } else {
+                persistentCausingEvent.update(causingEvent.getMetadata(), causingEvent.getMessage(), causingEvent.getHeaders());
+            }
             log.debug("Updated causing event: {}.", persistentCausingEvent);
 
             return causingEventRepository.save(persistentCausingEvent);

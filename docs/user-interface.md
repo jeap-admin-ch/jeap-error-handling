@@ -40,10 +40,12 @@ for mass retry and mass delete; deleting asks for an optional closing reason tha
 
 ## Error details
 
-The details page of an error shows the failure data (error message, code, temporality, stack trace), the
-metadata of the causing message (type, publisher, topic, partition and offset, cluster), and the **payload
-of the causing message deserialized to JSON** — if the payload is not valid Avro (or encrypted), a fallback
-message is displayed instead. Actions on the details page: retry, delete/ignore, copy stack trace, and a
+The details page of an error shows the failure data (error message, code, temporality, stack trace) and its
+origin. Kafka errors show message metadata (type, publisher, topic, partition and offset, cluster) and the
+**payload of the causing message deserialized to JSON** — if the payload is not valid Avro (or encrypted), a
+fallback message is displayed instead. Modulith errors show the publication ID, listener, internal event type,
+payload content type and the serialized internal event. The details page offers retry and delete/ignore for
+Kafka errors, or retry publication and discard publication for Modulith errors, as well as copy stack trace and a
 deep link into the log system based on the trace ID (see
 [Configuration](configuration.md#log-deep-link)).
 

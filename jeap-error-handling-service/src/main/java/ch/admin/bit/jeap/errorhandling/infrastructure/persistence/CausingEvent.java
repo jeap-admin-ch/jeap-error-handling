@@ -20,13 +20,20 @@ public class CausingEvent {
     @NonNull
     private UUID id = UUID.randomUUID();
 
+    @NonNull
+    @Builder.Default
+    @Enumerated(EnumType.STRING)
+    private Origin origin = Origin.KAFKA_MESSAGE;
+
     @Embedded
     @NonNull
     private EventMetadata metadata;
 
     @Embedded
-    @NonNull
     private EventMessage message;
+
+    @Embedded
+    private ModulithPublicationData modulithPublication;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "causing_event_id", referencedColumnName = "id")
@@ -41,11 +48,24 @@ public class CausingEvent {
         }
     }
 
+    public void update(EventMetadata eventMetadata, ModulithPublicationData modulithPublication) {
+        this.origin = Origin.MODULITH_PUBLICATION;
+        this.metadata = eventMetadata;
+        this.message = null;
+        this.modulithPublication = modulithPublication;
+        clearHeaders();
+    }
+
     private void clearHeaders() {
         if (this.headers == null) {
             this.headers = new ArrayList<>(); // Hibernate requires a mutable collection
         } else {
             this.headers.clear(); // Make sure to re-use collection provided by Hibernate
         }
+    }
+
+    public enum Origin {
+        KAFKA_MESSAGE,
+        MODULITH_PUBLICATION
     }
 }

@@ -147,7 +147,7 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
         await("event is sent to DLT 1 time").atMost(THIRTY_SECONDS).until(() -> dltConsumer.hasMessageWithIdempotenceId(testEventIdempotenceId));
 
         MessageProcessingFailedEvent genericMessage = dltConsumer.getMessageWithIdempotenceId(testEventIdempotenceId);
-        assertTrue(genericMessage.getPayload().getErrorMessage().contains("TestEvent cannot be cast to class"));
+        assertTrue(genericMessage.getPayload().getErrorMessage().contains("Unsupported error event type"));
         assertTrue(StandardCharsets.UTF_8.decode(genericMessage.getPayload().getOriginalMessage()).toString().contains("Content Test Event"));
         producer.close();
     }

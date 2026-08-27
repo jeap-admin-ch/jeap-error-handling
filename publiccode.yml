@@ -1,8 +1,8 @@
 publiccodeYmlVersion: 0.5.0
 name: jeap-error-handling
 applicationSuite: jEAP
-softwareVersion: 22.5.1
-releaseDate: 2026-08-31
+softwareVersion: 22.6.0
+releaseDate: 2026-09-01
 url: "https://github.com/jeap-admin-ch/jeap-error-handling.git"
 landingURL: "https://github.com/jeap-admin-ch/jeap"
 platforms:
@@ -25,6 +25,7 @@ description:
       A service instance can be created by depending on this template, then adding specific configuration.
     features:
       - Error handling patterns for applications based on jEAP messaging
+      - Error handling for failed Spring Modulith event publications
       - Automated retry for temporary issues
       - A UI for operators to manage errors
 legal:

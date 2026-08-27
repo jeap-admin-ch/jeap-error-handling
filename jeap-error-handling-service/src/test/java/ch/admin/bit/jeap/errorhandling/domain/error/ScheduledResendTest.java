@@ -8,7 +8,7 @@ import ch.admin.bit.jeap.errorhandling.domain.manualtask.taskFactory.TaskFactory
 import ch.admin.bit.jeap.errorhandling.domain.metrics.ErrorHandlingMetricsService;
 import ch.admin.bit.jeap.errorhandling.domain.resend.scheduler.ScheduledResendService;
 import ch.admin.bit.jeap.errorhandling.domain.resend.strategy.ResendingStrategy;
-import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.KafkaFailedEventResender;
+import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.FailedEventResender;
 import ch.admin.bit.jeap.errorhandling.infrastructure.manualtask.TaskDto;
 import ch.admin.bit.jeap.errorhandling.infrastructure.manualtask.TaskManagementClient;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
@@ -60,7 +60,7 @@ class ScheduledResendTest {
     @MockitoBean
     private ScheduledResendService scheduledResendService;
     @MockitoBean
-    private KafkaFailedEventResender failedEventResender;
+    private FailedEventResender failedEventResender;
     @MockitoBean
     private TaskManagementClient taskManagementClient;
     @MockitoBean

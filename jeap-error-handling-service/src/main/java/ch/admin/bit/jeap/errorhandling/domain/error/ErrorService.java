@@ -6,11 +6,12 @@ import ch.admin.bit.jeap.errorhandling.domain.manualtask.taskFactory.TaskFactory
 import ch.admin.bit.jeap.errorhandling.domain.metrics.ErrorHandlingMetricsService;
 import ch.admin.bit.jeap.errorhandling.domain.resend.scheduler.ScheduledResendService;
 import ch.admin.bit.jeap.errorhandling.domain.resend.strategy.ResendingStrategy;
-import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.KafkaFailedEventResender;
+import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.FailedEventResender;
 import ch.admin.bit.jeap.errorhandling.infrastructure.manualtask.TaskDto;
 import ch.admin.bit.jeap.errorhandling.infrastructure.manualtask.TaskManagementClient;
 import ch.admin.bit.jeap.errorhandling.infrastructure.manualtask.TaskManagementException;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
+import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.CausingEvent;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error.ErrorState;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorEventData;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorRepository;
@@ -35,7 +36,7 @@ import java.util.UUID;
 public class ErrorService {
     private final ErrorRepository errorRepository;
     private final ScheduledResendService scheduledResendService;
-    private final KafkaFailedEventResender failedEventResender;
+    private final FailedEventResender failedEventResender;
     private final TaskManagementClient taskManagementClient;
     private final TaskFactory taskFactory;
     private final ResendingStrategy resendingStrategy;
@@ -184,6 +185,10 @@ public class ErrorService {
                 break;
             default:
                 throw new IllegalStateException("Error is not in deletable state: " + error.getState());
+        }
+        if (error.getCausingEvent() != null
+                && error.getCausingEvent().getOrigin() == CausingEvent.Origin.MODULITH_PUBLICATION) {
+            failedEventResender.discardIfModulith(error, reason);
         }
         auditLogService.logDeleteError(error);
     }

@@ -1,6 +1,7 @@
 package ch.admin.bit.jeap.errorhandling.infrastructure.kafka;
 
 import ch.admin.bit.jeap.messaging.avro.errorevent.MessageProcessingFailedEvent;
+import ch.admin.bit.jeap.modulith.event.publicationprocessingfailed.ModulithPublicationProcessingFailedEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
-class MessageProcessingFailedEventListener implements AcknowledgingMessageListener<Object, MessageProcessingFailedEvent> {
+class MessageProcessingFailedEventListener implements AcknowledgingMessageListener<Object, Object> {
 
     private static final List<Class<? extends Throwable>> RECOVERABLE_EXCEPTIONS = List.of(
             org.springframework.dao.DataAccessResourceFailureException.class,
@@ -28,7 +29,7 @@ class MessageProcessingFailedEventListener implements AcknowledgingMessageListen
     private final String clusterName;
 
     @Override
-    public void onMessage(ConsumerRecord<Object, MessageProcessingFailedEvent> data, Acknowledgment acknowledgment) {
+    public void onMessage(ConsumerRecord<Object, Object> data, Acknowledgment acknowledgment) {
         try {
             consume(data.value());
         } catch (Exception e) {
@@ -43,8 +44,14 @@ class MessageProcessingFailedEventListener implements AcknowledgingMessageListen
      * In case of an error, the event will be published in the DLT, which is configured using the property
      * jeap.errorhandling.deadLetterTopicName
      */
-    private void consume(MessageProcessingFailedEvent messageProcessingFailedEvent) {
-        errorEventHandler.handle(clusterName, messageProcessingFailedEvent);
+    private void consume(Object errorEvent) {
+        if (errorEvent instanceof MessageProcessingFailedEvent messageProcessingFailedEvent) {
+            errorEventHandler.handle(clusterName, messageProcessingFailedEvent);
+        } else if (errorEvent instanceof ModulithPublicationProcessingFailedEvent modulithFailure) {
+            errorEventHandler.handle(clusterName, modulithFailure);
+        } else {
+            throw new IllegalArgumentException("Unsupported error event type: " + errorEvent.getClass().getName());
+        }
     }
 
     private RuntimeException mapException(Throwable t) {

@@ -42,6 +42,15 @@ If the EHS itself fails to process the failed event, the classification in
 - fatal problems route the event to the dead letter topic (`FatalEhsProcessingException`), see
   [Operations](operations.md#dead-letter-topic).
 
+## Failed Modulith publication intake
+
+A service using the Modulith error handling starter publishes a
+`ModulithPublicationProcessingFailedEvent` after the publication exhausts its local retry budget. The EHS
+persists the publication ID, listener, internal event payload, and the source service's retry and discard
+command topics as a permanent error. A manual retry queues `RetryModulithPublicationCommand`; closing the
+error queues `DiscardModulithPublicationCommand`. Both commands are inserted into the transactional outbox in
+the same transaction as the EHS state change.
+
 ## Automatic retry of temporary errors
 
 ```mermaid
@@ -75,7 +84,8 @@ consumers of the same topic to ignore messages that are resent for a different s
 ## Manual retry and delete from the UI
 
 Operators with the corresponding roles can manually resend or close permanent errors in the UI. Both
-actions are recorded in the audit log with the acting user from the JWT token.
+actions are recorded in the audit log with the acting user from the JWT token. Kafka errors resend the
+stored causing message. Modulith errors publish a UUID-exact command through the transactional outbox.
 
 ```mermaid
 sequenceDiagram
@@ -84,19 +94,33 @@ sequenceDiagram
     participant UI as EHS UI
     participant EHS as Error Handling Service
     participant Topic as original topic
+    participant Outbox as transactional outbox
+    participant CommandTopic as Modulith command topic
+    participant Starter as Modulith error handling starter
     participant Agir as Agir task management
     participant DB as Database
 
     alt manual retry (role error:retry)
         Operator->>UI: retry error
         UI->>EHS: POST /api/error/:errorId/event/retry
-        EHS->>Topic: republish causing message
+        alt Kafka message origin
+            EHS->>Topic: republish causing message
+        else Modulith publication origin
+            EHS->>Outbox: queue RetryModulithPublicationCommand
+            Outbox->>CommandTopic: publish command
+            CommandTopic->>Starter: retry publicationId
+        end
         EHS->>DB: state = RESOLVE_ON_MANUALTASK
         EHS->>Agir: close manual task
         EHS->>DB: state = PERMANENT_RETRIED, audit log entry
     else delete / ignore (role error:delete)
         Operator->>UI: delete error with closing reason
         UI->>EHS: DELETE /api/error/:errorId
+        opt Modulith publication origin
+            EHS->>Outbox: queue DiscardModulithPublicationCommand
+            Outbox->>CommandTopic: publish command
+            CommandTopic->>Starter: complete publicationId
+        end
         EHS->>DB: state = DELETE_ON_MANUALTASK
         EHS->>Agir: delete manual task
         EHS->>DB: state = DELETED, audit log entry
