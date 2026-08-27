@@ -295,7 +295,8 @@ public class ErrorController {
                 .auditLogDTOs(getAuditLogDtos(error));
         if (error.getCausingEvent().getOrigin() == CausingEvent.Origin.MODULITH_PUBLICATION) {
             ModulithPublicationData publication = error.getCausingEvent().getModulithPublication();
-            builder.publicationId(publication.getPublicationId())
+            builder.eventClusterName(publication.getClusterName())
+                    .publicationId(publication.getPublicationId())
                     .publicationListener(publication.getListener())
                     .publicationEventType(publication.getEventType())
                     .publicationPayloadContentType(publication.getSerializedEventContentType());

@@ -33,7 +33,9 @@ the EHS must not publish its own failures to the topic it consumes from.
 An EHS instance that handles Modulith failures must declare a consumer contract for
 `ModulithPublicationProcessingFailedEvent` on this error topic and producer contracts for the retry and
 discard command topics used by its source services. The command topic names are carried in each failure event
-and persisted by the EHS; no additional EHS topic property is required.
+and persisted by the EHS; no additional EHS topic property is required. The EHS also persists the cluster on which it
+consumed the failure and selects that cluster's `TransactionalOutbox` for both commands. Every cluster referenced by an
+open Modulith error must therefore remain configured until the error has been retried or discarded.
 
 The topic configuration is validated at startup, the EHS refuses to start if:
 

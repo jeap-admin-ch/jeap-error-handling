@@ -52,10 +52,11 @@ class ModulithErrorEventMapperTest {
         when(payload.getStackTrace()).thenReturn("stack trace");
         when(payload.getStackTraceHash()).thenReturn("stack-trace-hash");
 
-        CausingEvent causingEvent = mapper.toCausingEvent(event);
+        CausingEvent causingEvent = mapper.toCausingEvent("aws", event);
         Error error = mapper.toError(event, causingEvent);
 
         assertEquals(CausingEvent.Origin.MODULITH_PUBLICATION, causingEvent.getOrigin());
+        assertEquals("aws", causingEvent.getModulithPublication().getClusterName());
         assertEquals("publication-id", causingEvent.getMetadata().getId());
         assertEquals("publication-id", causingEvent.getMetadata().getIdempotenceId());
         assertEquals("example.Event", causingEvent.getMetadata().getType().getName());

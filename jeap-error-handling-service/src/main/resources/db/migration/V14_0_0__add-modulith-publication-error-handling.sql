@@ -8,6 +8,7 @@ ALTER TABLE causing_event ALTER COLUMN message_partition DROP NOT NULL;
 ALTER TABLE causing_event ALTER COLUMN message_offset DROP NOT NULL;
 
 ALTER TABLE causing_event ADD COLUMN modulith_publication_id VARCHAR;
+ALTER TABLE causing_event ADD COLUMN modulith_cluster_name VARCHAR;
 ALTER TABLE causing_event ADD COLUMN modulith_listener VARCHAR;
 ALTER TABLE causing_event ADD COLUMN modulith_event_type VARCHAR;
 ALTER TABLE causing_event ADD COLUMN modulith_serialized_event BYTEA;

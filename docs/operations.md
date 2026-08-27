@@ -75,7 +75,9 @@ clustered deployment:
 The EHS supports multiple Kafka clusters as described in the jEAP messaging documentation, with one
 particularity: the EHS **consumes exclusively from the default cluster**. When resending, the target cluster
 is taken from the stored causing event, so signatures and schema references stay consistent with the
-original cluster.
+original cluster. Failed Modulith publications likewise store the consumed cluster and use that cluster's
+transactional outbox for retry and discard commands. If a stored cluster has been removed from configuration, the
+operator action fails without a default-cluster fallback and leaves the error open.
 
 ## Related
 

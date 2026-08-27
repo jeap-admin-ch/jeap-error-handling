@@ -27,7 +27,7 @@ class ModulithErrorEventMapper {
         this.traceContextProvider = traceContextProvider;
     }
 
-    CausingEvent toCausingEvent(ModulithPublicationProcessingFailedEvent event) {
+    CausingEvent toCausingEvent(String clusterName, ModulithPublicationProcessingFailedEvent event) {
         var payload = event.getPayload();
         String publicationId = event.getReferences().getPublication().getPublicationId();
         var publisher = EventPublisher.builder()
@@ -42,6 +42,7 @@ class ModulithErrorEventMapper {
                 .publisher(publisher)
                 .build();
         var publication = ModulithPublicationData.builder()
+                .clusterName(clusterName)
                 .publicationId(publicationId)
                 .listener(payload.getListener())
                 .eventType(payload.getEventType())

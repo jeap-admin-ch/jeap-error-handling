@@ -19,6 +19,10 @@ import lombok.ToString;
 public class ModulithPublicationData {
 
     @NonNull
+    @Column(name = "modulith_cluster_name")
+    private String clusterName;
+
+    @NonNull
     @Column(name = "modulith_publication_id")
     private String publicationId;
 

@@ -111,6 +111,7 @@ class ErrorEventHandlerServiceTest {
                 .origin(CausingEvent.Origin.MODULITH_PUBLICATION)
                 .metadata(createEventMetadata())
                 .modulithPublication(ModulithPublicationData.builder()
+                        .clusterName("testcluster")
                         .publicationId("publication-id")
                         .listener("listener-id")
                         .eventType("example.Event")
@@ -118,7 +119,7 @@ class ErrorEventHandlerServiceTest {
                         .discardCommandTopic("discard-topic")
                         .build())
                 .build();
-        doReturn(causingEvent).when(modulithErrorEventMapperMock).toCausingEvent(failedEvent);
+        doReturn(causingEvent).when(modulithErrorEventMapperMock).toCausingEvent("testcluster", failedEvent);
         doReturn(errorMock).when(modulithErrorEventMapperMock).toError(any(), any(CausingEvent.class));
 
         ErrorEventHandlerService errorEventHandlerService = new ErrorEventHandlerService(errorServiceMock,

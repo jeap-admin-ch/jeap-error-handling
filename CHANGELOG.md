@@ -9,6 +9,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 - Handle failed Spring Modulith publications and send retry or discard commands through the transactional outbox.
+- Route Modulith retry and discard commands through the Kafka cluster on which the failure event was consumed.
 - Show the error origin and Modulith publication details and actions in the UI.
 
 ## [22.5.1] - 2026-08-31

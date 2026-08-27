@@ -4,6 +4,7 @@ import ch.admin.bit.jeap.command.avro.AvroCommandBuilder;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ModulithPublicationData;
 import ch.admin.bit.jeap.messaging.kafka.properties.KafkaProperties;
+import ch.admin.bit.jeap.messaging.kafka.spring.JeapKafkaBeanNames;
 import ch.admin.bit.jeap.messaging.transactionaloutbox.outbox.TransactionalOutbox;
 import ch.admin.bit.jeap.modulith.command.discardpublication.DiscardModulithPublicationCommand;
 import ch.admin.bit.jeap.modulith.command.discardpublication.DiscardModulithPublicationCommandPayload;
@@ -14,23 +15,40 @@ import ch.admin.bit.jeap.modulith.command.retrypublication.RetryModulithPublicat
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
+
 @Component
 @RequiredArgsConstructor
 class ModulithPublicationCommandSender {
 
-    private final TransactionalOutbox outbox;
+    private static final String TRANSACTIONAL_OUTBOX_BEAN_TYPE = "TransactionalOutbox";
+
+    private final Map<String, TransactionalOutbox> outboxesByBeanName;
     private final KafkaProperties kafkaProperties;
 
     void retry(Error error) {
         ModulithPublicationData publication = error.getCausingEvent().getModulithPublication();
-        outbox.sendMessage(new RetryCommandBuilder(kafkaProperties, publication, error.getId().toString()).build(),
+        outboxFor(publication).sendMessage(
+                new RetryCommandBuilder(kafkaProperties, publication, error.getId().toString()).build(),
                 publication.getRetryCommandTopic());
     }
 
     void discard(Error error, String reason) {
         ModulithPublicationData publication = error.getCausingEvent().getModulithPublication();
-        outbox.sendMessage(new DiscardCommandBuilder(kafkaProperties, publication, error.getId().toString(), reason).build(),
+        outboxFor(publication).sendMessage(
+                new DiscardCommandBuilder(kafkaProperties, publication, error.getId().toString(), reason).build(),
                 publication.getDiscardCommandTopic());
+    }
+
+    private TransactionalOutbox outboxFor(ModulithPublicationData publication) {
+        String clusterName = publication.getClusterName();
+        String beanName = new JeapKafkaBeanNames(kafkaProperties.getDefaultClusterName())
+                .getBeanName(clusterName, TRANSACTIONAL_OUTBOX_BEAN_TYPE);
+        TransactionalOutbox outbox = outboxesByBeanName.get(beanName);
+        if (outbox == null) {
+            throw new IllegalStateException("No transactional outbox configured for Kafka cluster '" + clusterName + "'");
+        }
+        return outbox;
     }
 
     private static final class RetryCommandBuilder

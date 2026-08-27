@@ -60,12 +60,13 @@ public class ErrorEventHandlerService implements ErrorEventHandler {
             log.info("Received an error event with an already handled idempotence ID. Skipping this event: {}.", errorEvent);
             return;
         }
-        CausingEvent causingEvent = createOrGetCausingEvent(errorEvent);
+        CausingEvent causingEvent = createOrGetCausingEvent(clusterName, errorEvent);
         errorService.handlePermanentError(modulithErrorEventMapper.toError(errorEvent, causingEvent));
     }
 
-    private CausingEvent createOrGetCausingEvent(ModulithPublicationProcessingFailedEvent errorEvent) {
-        CausingEvent causingEvent = modulithErrorEventMapper.toCausingEvent(errorEvent);
+    private CausingEvent createOrGetCausingEvent(String clusterName,
+            ModulithPublicationProcessingFailedEvent errorEvent) {
+        CausingEvent causingEvent = modulithErrorEventMapper.toCausingEvent(clusterName, errorEvent);
         try {
             return saveOrGetCausingEvent(causingEvent);
         } catch (TransactionException ex) {

@@ -46,10 +46,11 @@ If the EHS itself fails to process the failed event, the classification in
 
 A service using the Modulith error handling starter publishes a
 `ModulithPublicationProcessingFailedEvent` after the publication exhausts its local retry budget. The EHS
-persists the publication ID, listener, internal event payload, and the source service's retry and discard
-command topics as a permanent error. A manual retry queues `RetryModulithPublicationCommand`; closing the
-error queues `DiscardModulithPublicationCommand`. Both commands are inserted into the transactional outbox in
-the same transaction as the EHS state change.
+persists the publication ID, listener, internal event payload, consumed Kafka cluster, and the source service's retry
+and discard command topics as a permanent error. A manual retry queues `RetryModulithPublicationCommand`; closing the
+error queues `DiscardModulithPublicationCommand`. Both commands are inserted into the transactional outbox for that
+same Kafka cluster in the same transaction as the EHS state change. If the cluster is no longer configured, the action
+fails and the EHS error remains open rather than silently sending the command through the default cluster.
 
 ## Automatic retry of temporary errors
 
@@ -95,7 +96,7 @@ sequenceDiagram
     participant EHS as Error Handling Service
     participant Topic as original topic
     participant Outbox as transactional outbox
-    participant CommandTopic as Modulith command topic
+    participant CommandTopic as Modulith command topic<br/>(failure event cluster)
     participant Starter as Modulith error handling starter
     participant Agir as Agir task management
     participant DB as Database
