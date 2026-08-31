@@ -188,12 +188,18 @@ class ErrorRepositoryTest {
         CausingEvent causingEventClusterA = saveCausingEventWithCluster(metadata1, "cluster-a");
         CausingEvent causingEventClusterB = saveCausingEventWithCluster(metadata2, "cluster-b");
         CausingEvent causingEventClusterC = saveCausingEventWithCluster(metadata3, null); // Test null cluster
+        CausingEvent modulithPublicationClusterA = saveModulithPublicationWithCluster(
+                getEventMetadata("modulith-cluster-test-a"), "cluster-a");
+        CausingEvent modulithPublicationClusterB = saveModulithPublicationWithCluster(
+                getEventMetadata("modulith-cluster-test-b"), "cluster-b");
 
         // cluster-a: 2 PERMANENT, 1 TEMPORARY_RETRY_PENDING, 1 SEND_TO_MANUALTASK = 4 total
         saveError(ErrorState.PERMANENT, causingEventClusterA);
         saveError(ErrorState.PERMANENT, causingEventClusterA);
         saveError(ErrorState.TEMPORARY_RETRY_PENDING, causingEventClusterA);
         saveError(ErrorState.SEND_TO_MANUALTASK, causingEventClusterA);
+        saveError(ErrorState.PERMANENT, modulithPublicationClusterA);
+        saveError(ErrorState.TEMPORARY_RETRY_PENDING, modulithPublicationClusterA);
         // These should NOT be counted:
         saveError(ErrorState.DELETED, causingEventClusterA);
         saveError(ErrorState.TEMPORARY_RETRIED, causingEventClusterA);
@@ -203,9 +209,11 @@ class ErrorRepositoryTest {
         saveError(ErrorState.PERMANENT, causingEventClusterB);
         saveError(ErrorState.PERMANENT, causingEventClusterB);
         saveError(ErrorState.SEND_TO_MANUALTASK, causingEventClusterB);
+        saveError(ErrorState.SEND_TO_MANUALTASK, modulithPublicationClusterB);
         saveError(ErrorState.SEND_TO_MANUALTASK, causingEventClusterB);
         // These should NOT be counted:
         saveError(ErrorState.RESOLVE_ON_MANUALTASK, causingEventClusterB);
+        saveError(ErrorState.DELETED, modulithPublicationClusterB);
 
         // null cluster: 1 TEMPORARY_RETRY_PENDING = 1 total
         saveError(ErrorState.TEMPORARY_RETRY_PENDING, causingEventClusterC);
@@ -221,13 +229,13 @@ class ErrorRepositoryTest {
                 .filter(r -> "cluster-a".equals(r.clusterName()))
                 .findFirst()
                 .orElseThrow();
-        assertThat(clusterAResult.errorCount()).isEqualTo(4L);
+        assertThat(clusterAResult.errorCount()).isEqualTo(6L);
 
         ErrorCountByClusterNameResult clusterBResult = results.stream()
                 .filter(r -> "cluster-b".equals(r.clusterName()))
                 .findFirst()
                 .orElseThrow();
-        assertThat(clusterBResult.errorCount()).isEqualTo(5L);
+        assertThat(clusterBResult.errorCount()).isEqualTo(6L);
 
         ErrorCountByClusterNameResult nullClusterResult = results.stream()
                 .filter(r -> r.clusterName() == null)
@@ -244,6 +252,23 @@ class ErrorRepositoryTest {
                         .payload("test".getBytes(StandardCharsets.UTF_8))
                         .topic("topic")
                         .clusterName(clusterName)
+                        .build())
+                .metadata(metadata)
+                .build();
+        causingEventRepository.save(causingEvent);
+        return causingEvent;
+    }
+
+    private CausingEvent saveModulithPublicationWithCluster(EventMetadata metadata, String clusterName) {
+        CausingEvent causingEvent = CausingEvent.builder()
+                .origin(CausingEvent.Origin.MODULITH_PUBLICATION)
+                .modulithPublication(ModulithPublicationData.builder()
+                        .clusterName(clusterName)
+                        .publicationId(UUID.randomUUID().toString())
+                        .listener("example.Listener")
+                        .eventType("example.Event")
+                        .retryCommandTopic("retry-topic")
+                        .discardCommandTopic("discard-topic")
                         .build())
                 .metadata(metadata)
                 .build();

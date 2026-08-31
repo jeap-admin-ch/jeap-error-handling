@@ -29,14 +29,16 @@ class ModulithPublicationCommandSender {
     void retry(Error error) {
         ModulithPublicationData publication = error.getCausingEvent().getModulithPublication();
         outboxFor(publication).sendMessage(
-                new RetryCommandBuilder(kafkaProperties, publication, error.getId().toString()).build(),
+                new RetryCommandBuilder(kafkaProperties, publication, error.getId().toString(),
+                        error.getErrorEventMetadata().getId()).build(),
                 publication.getRetryCommandTopic());
     }
 
     void discard(Error error, String reason) {
         ModulithPublicationData publication = error.getCausingEvent().getModulithPublication();
         outboxFor(publication).sendMessage(
-                new DiscardCommandBuilder(kafkaProperties, publication, error.getId().toString(), reason).build(),
+                new DiscardCommandBuilder(kafkaProperties, publication, error.getId().toString(),
+                        error.getErrorEventMetadata().getId(), reason).build(),
                 publication.getDiscardCommandTopic());
     }
 
@@ -56,11 +58,14 @@ class ModulithPublicationCommandSender {
 
         private final KafkaProperties properties;
         private final ModulithPublicationData publication;
+        private final String failureEventId;
 
-        private RetryCommandBuilder(KafkaProperties properties, ModulithPublicationData publication, String errorId) {
+        private RetryCommandBuilder(KafkaProperties properties, ModulithPublicationData publication, String errorId,
+                String failureEventId) {
             super(RetryModulithPublicationCommand::new);
             this.properties = properties;
             this.publication = publication;
+            this.failureEventId = failureEventId;
             idempotenceId("retry:" + errorId);
         }
 
@@ -83,7 +88,7 @@ class ModulithPublicationCommandSender {
         public RetryModulithPublicationCommand build() {
             setReferences(new RetryModulithPublicationCommandReferences(
                     new ch.admin.bit.jeap.modulith.command.retrypublication.ModulithPublicationReference(
-                            "modulithPublication", publication.getPublicationId())));
+                            "modulithPublication", publication.getPublicationId(), failureEventId)));
             setPayload(new RetryModulithPublicationCommandPayload());
             return super.build();
         }
@@ -94,13 +99,15 @@ class ModulithPublicationCommandSender {
 
         private final KafkaProperties properties;
         private final ModulithPublicationData publication;
+        private final String failureEventId;
         private final String reason;
 
         private DiscardCommandBuilder(KafkaProperties properties, ModulithPublicationData publication,
-                String errorId, String reason) {
+                String errorId, String failureEventId, String reason) {
             super(DiscardModulithPublicationCommand::new);
             this.properties = properties;
             this.publication = publication;
+            this.failureEventId = failureEventId;
             this.reason = reason;
             idempotenceId("discard:" + errorId);
         }
@@ -124,7 +131,7 @@ class ModulithPublicationCommandSender {
         public DiscardModulithPublicationCommand build() {
             setReferences(new DiscardModulithPublicationCommandReferences(
                     new ch.admin.bit.jeap.modulith.command.discardpublication.ModulithPublicationReference(
-                            "modulithPublication", publication.getPublicationId())));
+                            "modulithPublication", publication.getPublicationId(), failureEventId)));
             setPayload(new DiscardModulithPublicationCommandPayload(reason));
             return super.build();
         }

@@ -40,6 +40,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import org.mockito.ArgumentCaptor;
 
+import java.nio.charset.StandardCharsets;
 import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -226,6 +227,40 @@ class ErrorControllerTest {
         assertAuditLogDTO(response.getAuditLogDTOs().get(1), RESEND_CAUSING_EVENT, user);
     }
 
+    @Test
+    @WithAuthentication("viewRetryAndDeleteRoleToken")
+    void getErrorDetails_forModulithPublication() {
+        Error error = createPermanentModulithError();
+        UUID errorId = error.getId();
+        doReturn(error).when(errorService).getError(errorId);
+        stubEmptyAuditLog(errorId);
+
+        ErrorDTO response = errorController.getErrorDetails(errorId);
+
+        assertEquals("MODULITH_PUBLICATION", response.getOrigin());
+        assertEquals("modulith-cluster", response.getEventClusterName());
+        assertEquals("publication-id", response.getPublicationId());
+        assertEquals("example.Listener", response.getPublicationListener());
+        assertEquals("example.InternalEvent", response.getPublicationEventType());
+        assertEquals("application/json", response.getPublicationPayloadContentType());
+        assertNull(response.getEventTopicDetails());
+        assertTrue(response.isCanRetry());
+        assertTrue(response.isCanDelete());
+        assertFalse(response.isSigned());
+    }
+
+    @Test
+    @WithAuthentication("viewRoleToken")
+    void getCausingEventPayload_forModulithPublicationReturnsSerializedEvent() {
+        Error error = createPermanentModulithError();
+        doReturn(error).when(errorService).getError(error.getId());
+
+        String payload = errorController.getCausingEventPayload(error.getId());
+
+        assertEquals("{\"value\":42}", payload);
+        verifyNoInteractions(domainEventDeserializer);
+    }
+
     private void assertAuditLogDTO(final AuditLogDTO auditLogDTO, final AuditedAction action, User user) {
         assertEquals(user.getAuthContext(), auditLogDTO.getAuthContext());
         assertEquals(user.getSubject(), auditLogDTO.getSubject());
@@ -312,6 +347,16 @@ class ErrorControllerTest {
         errorController.retryEvent(errorId);
 
         verify(errorService).manualResend(errorId);
+    }
+
+    @Test
+    @WithAuthentication("deleteRoleToken")
+    void deleteModulithPublication_expectAllowedForDeleteRole() {
+        UUID errorId = UUID.randomUUID();
+
+        errorController.deleteError(errorId, "not applicable");
+
+        verify(errorService).delete(errorId, "not applicable");
     }
 
     @Test
@@ -559,6 +604,25 @@ class ErrorControllerTest {
 
     private JeapAuthenticationToken viewAndRetryRoleToken() {
         return createAuthenticationForUserRoles(VIEW_ROLE, RETRY_ROLE);
+    }
+
+    private JeapAuthenticationToken viewRetryAndDeleteRoleToken() {
+        return createAuthenticationForUserRoles(VIEW_ROLE, RETRY_ROLE, DELETE_ROLE);
+    }
+
+    private Error createPermanentModulithError() {
+        Error error = ErrorStubs.createPermanentError();
+        error.getCausingEvent().update(error.getCausingEventMetadata(), ModulithPublicationData.builder()
+                .clusterName("modulith-cluster")
+                .publicationId("publication-id")
+                .listener("example.Listener")
+                .eventType("example.InternalEvent")
+                .serializedEvent("{\"value\":42}".getBytes(StandardCharsets.UTF_8))
+                .serializedEventContentType("application/json")
+                .retryCommandTopic("retry-topic")
+                .discardCommandTopic("discard-topic")
+                .build());
+        return error;
     }
 
     private UUID stubPermanentError() {

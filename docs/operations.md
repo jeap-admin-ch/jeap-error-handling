@@ -51,7 +51,7 @@ monitoring and alerting per business application:
 | `eh_permanent_pending_manualtask_create`  | Gauge   | Permanent errors for which no manual task could be created yet (e.g. task service unreachable).                                                             |
 | `eh_permanent_pending_manualtask_resolve` | Gauge   | Resolved permanent errors whose manual task could not be closed yet.                                                                                        |
 | `eh_permanent_pending_manualtask_delete`  | Gauge   | Deleted permanent errors whose manual task could not be deleted yet.                                                                                        |
-| `eh_open_errors_by_cluster`               | Gauge   | Current number of errors not in a final state, labelled by `cluster`. Once a cluster has been seen, it keeps being reported with the value 0.                |
+| `eh_open_errors_by_cluster`               | Gauge   | Current number of errors not in a final state, labelled by the effective Kafka or Modulith publication `cluster`. Both origins on the same cluster are aggregated. Once a cluster has been seen, it keeps being reported with the value 0. |
 | `eh_error_groups_with_open_errors`        | Gauge   | Current number of error groups with open errors.                                                                                                            |
 
 The gauge metrics are sampled every 60 seconds by default; the frequency is configurable with
@@ -78,6 +78,10 @@ is taken from the stored causing event, so signatures and schema references stay
 original cluster. Failed Modulith publications likewise store the consumed cluster and use that cluster's
 transactional outbox for retry and discard commands. If a stored cluster has been removed from configuration, the
 operator action fails without a default-cluster fallback and leaves the error open.
+
+The commands include the publication ID and failure event ID, but do not currently carry custom Kafka target
+headers. The transactional outbox has no per-message API for those headers; adding that capability is intentionally
+isolated to future `jeap-messaging-outbox` work and is not part of this change.
 
 ## Related
 

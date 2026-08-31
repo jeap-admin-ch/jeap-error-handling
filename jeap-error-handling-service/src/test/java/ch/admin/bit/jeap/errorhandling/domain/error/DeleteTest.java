@@ -10,6 +10,7 @@ import ch.admin.bit.jeap.errorhandling.domain.resend.strategy.ResendingStrategy;
 import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.FailedEventResender;
 import ch.admin.bit.jeap.errorhandling.infrastructure.manualtask.TaskManagementClient;
 import ch.admin.bit.jeap.errorhandling.infrastructure.manualtask.TaskManagementException;
+import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.CausingEvent;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error.ErrorState;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorRepository;
@@ -17,6 +18,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
@@ -56,6 +58,8 @@ class DeleteTest {
     private AuditLogService auditLogService;
     @Mock
     private Error error;
+    @Mock
+    private CausingEvent causingEvent;
     private ErrorState state;
     private ErrorService target;
 
@@ -114,6 +118,39 @@ class DeleteTest {
         verify(taskManagementClient).closeTask(taskId);
         verify(auditLogService).logDeleteError(error);
         verifyNoMoreInteractions(scheduledResendService, failedEventResender, taskManagementClient, auditLogService, errorGroupService);
+    }
+
+    @Test
+    void deletePermanentModulithDefersManualTaskClose() throws TaskManagementException {
+        state = ErrorState.PERMANENT;
+        when(error.getCausingEvent()).thenReturn(causingEvent);
+        when(causingEvent.getOrigin()).thenReturn(CausingEvent.Origin.MODULITH_PUBLICATION);
+
+        target.delete(errorId, "resolved manually");
+
+        Assertions.assertEquals(ErrorState.DELETE_ON_MANUALTASK, state);
+        InOrder ordering = inOrder(failedEventResender, error);
+        ordering.verify(failedEventResender).discardIfModulith(error, "resolved manually");
+        ordering.verify(error).setState(ErrorState.DELETE_ON_MANUALTASK);
+        verify(taskManagementClient, never()).closeTask(any());
+        verify(auditLogService).logDeleteError(error);
+    }
+
+    @Test
+    void deletePermanentModulithCommandFailureLeavesErrorOpen() {
+        state = ErrorState.PERMANENT;
+        when(error.getCausingEvent()).thenReturn(causingEvent);
+        when(causingEvent.getOrigin()).thenReturn(CausingEvent.Origin.MODULITH_PUBLICATION);
+        doThrow(new IllegalStateException("outbox failed")).when(failedEventResender)
+                .discardIfModulith(error, "resolved manually");
+
+        Assertions.assertThrows(IllegalStateException.class,
+                () -> target.delete(errorId, "resolved manually"));
+
+        Assertions.assertEquals(ErrorState.PERMANENT, state);
+        verify(error, never()).setState(any());
+        verify(taskManagementClient, never()).closeTask(any());
+        verifyNoInteractions(auditLogService);
     }
 
     @Test

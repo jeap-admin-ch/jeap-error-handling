@@ -9,7 +9,10 @@ import net.javacrumbs.shedlock.spring.annotation.SchedulerLock;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 import java.util.function.Consumer;
 
 @Component
@@ -30,13 +33,16 @@ class TasksSynchronize {
 
     private void syncState(Error.ErrorState state, Consumer<Error> handler, String action) {
         int processedChunks = 0;
+        Set<UUID> attemptedErrorIds = new HashSet<>();
         while (processedChunks < tasksSynchronizeProperties.getMaxConsecutiveChunks()) {
             log.trace("Fetching at max {} errors not yet {} at manual task service.", tasksSynchronizeProperties.getMaxResendChunkSize(), action);
-            List<Error> chunk = errorService.getErrorListByState(state, 0, tasksSynchronizeProperties.getMaxResendChunkSize()).getErrors();
+            List<Error> chunk = errorService.getErrorListByStateExcluding(
+                    state, attemptedErrorIds, tasksSynchronizeProperties.getMaxResendChunkSize()).getErrors();
             log.debug("Got {} tasks not yet {}", chunk.size(), action);
+            chunk.forEach(error -> attemptedErrorIds.add(error.getId()));
             chunk.forEach(handler);
             processedChunks++;
-            if (processedChunks < tasksSynchronizeProperties.getMaxResendChunkSize()) {
+            if (chunk.size() < tasksSynchronizeProperties.getMaxResendChunkSize()) {
                 log.trace("As not full, this was the last page");
                 return;
             }

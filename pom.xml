@@ -44,7 +44,8 @@
     </modules>
 
     <properties>
-        <modulith-publication-message-types.version>1.1.0</modulith-publication-message-types.version>
+        <modulith-publication-processing-failed-event.version>1.0.0</modulith-publication-processing-failed-event.version>
+        <modulith-publication-command-message-types.version>1.1.0</modulith-publication-command-message-types.version>
         <!-- Sonar config -->
         <sonar.exclusions>
             **/org/**/*.java,**/com/**/*.java
@@ -79,17 +80,17 @@
             <dependency>
                 <groupId>ch.admin.bit.jeap.messagetype.jeap</groupId>
                 <artifactId>modulith-publication-processing-failed-event</artifactId>
-                <version>${modulith-publication-message-types.version}</version>
+                <version>${modulith-publication-processing-failed-event.version}</version>
             </dependency>
             <dependency>
                 <groupId>ch.admin.bit.jeap.messagetype.jeap</groupId>
                 <artifactId>retry-modulith-publication-command</artifactId>
-                <version>${modulith-publication-message-types.version}</version>
+                <version>${modulith-publication-command-message-types.version}</version>
             </dependency>
             <dependency>
                 <groupId>ch.admin.bit.jeap.messagetype.jeap</groupId>
                 <artifactId>discard-modulith-publication-command</artifactId>
-                <version>${modulith-publication-message-types.version}</version>
+                <version>${modulith-publication-command-message-types.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

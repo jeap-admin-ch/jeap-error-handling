@@ -128,6 +128,11 @@ The intermediate states `SEND_TO_MANUALTASK`, `RESOLVE_ON_MANUALTASK` and `DELET
 state changes from the availability of the task management service: if Agir cannot be reached, the scheduled
 `TasksSynchronize` job picks the errors up later and completes the transition.
 
+For a manual retry or discard of a Modulith publication, the command outbox entry and the corresponding
+`RESOLVE_ON_MANUALTASK` or `DELETE_ON_MANUALTASK` state are committed in one database transaction. The external
+manual task is closed only by a later `TasksSynchronize` run, after that transaction has committed. Kafka-origin
+actions retain their synchronous manual-task close attempt.
+
 ## Data model
 
 ```mermaid

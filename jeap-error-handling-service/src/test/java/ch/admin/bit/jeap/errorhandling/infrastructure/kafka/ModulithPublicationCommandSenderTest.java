@@ -71,6 +71,7 @@ class ModulithPublicationCommandSenderTest {
         verify(defaultOutbox, never()).sendMessage(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.anyString());
         verify(kafkaResender, never()).resend(error);
         assertEquals("publication-id", command.getValue().getReferences().getPublication().getPublicationId());
+        assertEquals("failure-event-id", command.getValue().getReferences().getPublication().getFailureEventId());
         assertEquals("retry:0b1ae887-815c-4e0c-b3e4-dd20ade03359",
                 command.getValue().getIdentity().getIdempotenceId());
     }
@@ -86,6 +87,7 @@ class ModulithPublicationCommandSenderTest {
         verify(awsOutbox).sendMessage(command.capture(), org.mockito.ArgumentMatchers.eq("discard-topic"));
         verify(defaultOutbox, never()).sendMessage(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.anyString());
         assertEquals("publication-id", command.getValue().getReferences().getPublication().getPublicationId());
+        assertEquals("failure-event-id", command.getValue().getReferences().getPublication().getFailureEventId());
         assertEquals("resolved manually", command.getValue().getPayload().getReason());
         assertEquals("discard:0b1ae887-815c-4e0c-b3e4-dd20ade03359",
                 command.getValue().getIdentity().getIdempotenceId());
@@ -130,5 +132,9 @@ class ModulithPublicationCommandSenderTest {
         when(kafkaProperties.getSystemName()).thenReturn("test-system");
         when(kafkaProperties.getServiceName()).thenReturn("test-service");
         when(error.getId()).thenReturn(UUID.fromString("0b1ae887-815c-4e0c-b3e4-dd20ade03359"));
+        ch.admin.bit.jeap.errorhandling.infrastructure.persistence.EventMetadata metadata =
+                org.mockito.Mockito.mock(ch.admin.bit.jeap.errorhandling.infrastructure.persistence.EventMetadata.class);
+        when(metadata.getId()).thenReturn("failure-event-id");
+        when(error.getErrorEventMetadata()).thenReturn(metadata);
     }
 }

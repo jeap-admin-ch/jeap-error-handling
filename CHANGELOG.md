@@ -12,6 +12,15 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Route Modulith retry and discard commands through the Kafka cluster on which the failure event was consumed.
 - Show the error origin and Modulith publication details and actions in the UI.
 
+### Changed
+- Correlate Modulith retry and discard commands with the processing failure event and defer manual-task closure
+  until their transactional outbox entry and pending error state have committed.
+- Aggregate open-error metrics for Kafka messages and Modulith publications by their effective cluster.
+
+### Dependencies
+- **retry-modulith-publication-command**: 1.0.0 -> 1.1.0
+- **discard-modulith-publication-command**: 1.0.0 -> 1.1.0
+
 ## [22.5.1] - 2026-08-31
 
 ### Dependencies

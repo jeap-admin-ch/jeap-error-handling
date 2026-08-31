@@ -10,6 +10,7 @@ import ch.admin.bit.jeap.errorhandling.domain.resend.strategy.ResendingStrategy;
 import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.FailedEventResender;
 import ch.admin.bit.jeap.errorhandling.infrastructure.manualtask.TaskManagementClient;
 import ch.admin.bit.jeap.errorhandling.infrastructure.manualtask.TaskManagementException;
+import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.CausingEvent;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error.ErrorState;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorGroupRepository;
@@ -18,6 +19,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +63,8 @@ class ManualResendTest {
     private AuditLogService auditLogService;
     @Mock(lenient = true)
     private Error error;
+    @Mock
+    private CausingEvent causingEvent;
     private ErrorState state;
     @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
@@ -124,6 +128,35 @@ class ManualResendTest {
         verify(failedEventResender).resend(error);
         verify(auditLogService).logResendCausingEvent(error);
         verifyNoMoreInteractions(scheduledResendService, failedEventResender, taskManagementClient, auditLogService);
+    }
+
+    @Test
+    void manualResendPermanentModulithDefersManualTaskClose() throws TaskManagementException {
+        state = ErrorState.PERMANENT;
+        when(error.getCausingEvent()).thenReturn(causingEvent);
+        when(causingEvent.getOrigin()).thenReturn(CausingEvent.Origin.MODULITH_PUBLICATION);
+
+        target.manualResend(errorId);
+
+        Assertions.assertEquals(ErrorState.RESOLVE_ON_MANUALTASK, state);
+        InOrder ordering = inOrder(failedEventResender, error);
+        ordering.verify(failedEventResender).resend(error);
+        ordering.verify(error).setState(ErrorState.RESOLVE_ON_MANUALTASK);
+        verify(taskManagementClient, never()).closeTask(any());
+        verify(auditLogService).logResendCausingEvent(error);
+    }
+
+    @Test
+    void manualResendPermanentModulithCommandFailureLeavesErrorOpen() {
+        state = ErrorState.PERMANENT;
+        doThrow(new IllegalStateException("outbox failed")).when(failedEventResender).resend(error);
+
+        Assertions.assertThrows(IllegalStateException.class, () -> target.manualResend(errorId));
+
+        Assertions.assertEquals(ErrorState.PERMANENT, state);
+        verify(error, never()).setState(any());
+        verify(taskManagementClient, never()).closeTask(any());
+        verifyNoInteractions(auditLogService);
     }
 
     @Test

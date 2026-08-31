@@ -28,6 +28,8 @@ public interface ErrorRepository extends JpaRepository<Error, UUID>, JpaSpecific
 
     Page<Error> findAllByStateEqualsOrderByCreatedDesc(ErrorState errorState, Pageable pageable);
 
+    Page<Error> findAllByStateEqualsAndIdNotInOrderByCreatedDesc(ErrorState errorState, Set<UUID> excludedIds, Pageable pageable);
+
     @Query("select count(e) from Error e where e.errorEventMetadata.idempotenceId = ?1")
     int countErrorsByErrorEventIdempotenceId(String errorEventIdempotenceId);
 
@@ -49,7 +51,7 @@ public interface ErrorRepository extends JpaRepository<Error, UUID>, JpaSpecific
     @Query("select count(e) from Error e where e.state = 'DELETE_ON_MANUALTASK'")
     int countErrorsInStateDeleteOnManualTask();
 
-    @Query("select new ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorCountByClusterNameResult(e.causingEvent.message.clusterName, count(e)) from Error e where e.causingEvent.origin = 'KAFKA_MESSAGE' and e.state in ('PERMANENT', 'TEMPORARY_RETRY_PENDING', 'SEND_TO_MANUALTASK') group by e.causingEvent.message.clusterName")
+    @Query("select new ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorCountByClusterNameResult(case when e.causingEvent.origin = 'MODULITH_PUBLICATION' then e.causingEvent.modulithPublication.clusterName else e.causingEvent.message.clusterName end, count(e)) from Error e where e.state in ('PERMANENT', 'TEMPORARY_RETRY_PENDING', 'SEND_TO_MANUALTASK') group by case when e.causingEvent.origin = 'MODULITH_PUBLICATION' then e.causingEvent.modulithPublication.clusterName else e.causingEvent.message.clusterName end")
     List<ErrorCountByClusterNameResult> countOpenErrorsByStateAndClusterName();
 
     Slice<ErrorQueryResult> findIdByStateInAndCreatedBefore(List<ErrorState> state, ZonedDateTime created, Pageable pageable);

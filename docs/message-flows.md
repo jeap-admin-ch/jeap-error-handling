@@ -99,6 +99,7 @@ sequenceDiagram
     participant CommandTopic as Modulith command topic<br/>(failure event cluster)
     participant Starter as Modulith error handling starter
     participant Agir as Agir task management
+    participant Sync as TasksSynchronize
     participant DB as Database
 
     alt manual retry (role error:retry)
@@ -106,30 +107,46 @@ sequenceDiagram
         UI->>EHS: POST /api/error/:errorId/event/retry
         alt Kafka message origin
             EHS->>Topic: republish causing message
+            EHS->>DB: state = RESOLVE_ON_MANUALTASK
+            EHS->>Agir: close manual task
+            EHS->>DB: state = PERMANENT_RETRIED, audit log entry
         else Modulith publication origin
             EHS->>Outbox: queue RetryModulithPublicationCommand
-            Outbox->>CommandTopic: publish command
-            CommandTopic->>Starter: retry publicationId
+            EHS->>DB: state = RESOLVE_ON_MANUALTASK, audit log entry
+            Note over EHS,DB: outbox entry and state commit atomically
+            par asynchronous command delivery
+                Outbox->>CommandTopic: publish command
+                CommandTopic->>Starter: retry publicationId
+            and asynchronous task synchronization
+                Sync->>Agir: close manual task after commit
+                Sync->>DB: state = PERMANENT_RETRIED
+            end
         end
-        EHS->>DB: state = RESOLVE_ON_MANUALTASK
-        EHS->>Agir: close manual task
-        EHS->>DB: state = PERMANENT_RETRIED, audit log entry
     else delete / ignore (role error:delete)
         Operator->>UI: delete error with closing reason
         UI->>EHS: DELETE /api/error/:errorId
-        opt Modulith publication origin
+        alt Modulith publication origin
             EHS->>Outbox: queue DiscardModulithPublicationCommand
-            Outbox->>CommandTopic: publish command
-            CommandTopic->>Starter: complete publicationId
+            EHS->>DB: state = DELETE_ON_MANUALTASK, audit log entry
+            Note over EHS,DB: outbox entry and state commit atomically
+            par asynchronous command delivery
+                Outbox->>CommandTopic: publish command
+                CommandTopic->>Starter: complete publicationId
+            and asynchronous task synchronization
+                Sync->>Agir: close manual task after commit
+                Sync->>DB: state = DELETED
+            end
+        else Kafka message origin
+            EHS->>DB: state = DELETE_ON_MANUALTASK
+            EHS->>Agir: close manual task
+            EHS->>DB: state = DELETED, audit log entry
         end
-        EHS->>DB: state = DELETE_ON_MANUALTASK
-        EHS->>Agir: delete manual task
-        EHS->>DB: state = DELETED, audit log entry
     end
 ```
 
-If Agir is unavailable, the state remains at `RESOLVE_ON_MANUALTASK` / `DELETE_ON_MANUALTASK` and the
-scheduled `TasksSynchronize` job completes the transition later.
+For Modulith publications, the command references the ID of the consumed publication failure event. If command
+enqueueing fails, the database transaction rolls back and the error remains open. If Agir is unavailable, the state
+remains at `RESOLVE_ON_MANUALTASK` / `DELETE_ON_MANUALTASK` and a later `TasksSynchronize` run retries the close.
 
 ## Error handling of the Error Handling Service itself
 

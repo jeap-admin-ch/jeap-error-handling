@@ -27,6 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.ZonedDateTime;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -94,6 +95,14 @@ public class ErrorService {
     @Transactional(readOnly = true)
     public ErrorList getErrorListByState(ErrorState errorState, int pageIndex, int pageSize) {
         Page<Error> errors = errorRepository.findAllByStateEqualsOrderByCreatedDesc(errorState, PageRequest.of(pageIndex, pageSize));
+        return new ErrorList(errors.getTotalElements(), errors.getContent());
+    }
+
+    @Transactional(readOnly = true)
+    public ErrorList getErrorListByStateExcluding(ErrorState errorState, Set<UUID> excludedIds, int pageSize) {
+        Page<Error> errors = excludedIds.isEmpty()
+                ? errorRepository.findAllByStateEqualsOrderByCreatedDesc(errorState, PageRequest.of(0, pageSize))
+                : errorRepository.findAllByStateEqualsAndIdNotInOrderByCreatedDesc(errorState, excludedIds, PageRequest.of(0, pageSize));
         return new ErrorList(errors.getTotalElements(), errors.getContent());
     }
 
@@ -171,24 +180,32 @@ public class ErrorService {
         }
 
         ErrorState state = error.getState();
+        boolean modulithPublication = isModulithPublication(error);
         switch (state) {
             case PERMANENT:
-                error.setState(ErrorState.DELETE_ON_MANUALTASK);
-                deleteManualTask(error);
+                if (modulithPublication) {
+                    failedEventResender.discardIfModulith(error, reason);
+                    error.setState(ErrorState.DELETE_ON_MANUALTASK);
+                } else {
+                    error.setState(ErrorState.DELETE_ON_MANUALTASK);
+                    deleteManualTask(error);
+                }
                 break;
             case TEMPORARY_RETRY_PENDING:
+                if (modulithPublication) {
+                    failedEventResender.discardIfModulith(error, reason);
+                }
                 scheduledResendService.cancelScheduledResends(error);
                 error.setState(ErrorState.DELETED);
                 break;
             case SEND_TO_MANUALTASK:
+                if (modulithPublication) {
+                    failedEventResender.discardIfModulith(error, reason);
+                }
                 error.setState(ErrorState.DELETED);
                 break;
             default:
                 throw new IllegalStateException("Error is not in deletable state: " + error.getState());
-        }
-        if (error.getCausingEvent() != null
-                && error.getCausingEvent().getOrigin() == CausingEvent.Origin.MODULITH_PUBLICATION) {
-            failedEventResender.discardIfModulith(error, reason);
         }
         auditLogService.logDeleteError(error);
     }
@@ -223,7 +240,9 @@ public class ErrorService {
                 break;
             case PERMANENT:
                 error.setState(ErrorState.RESOLVE_ON_MANUALTASK);
-                closeManualTask(error);
+                if (!isModulithPublication(error)) {
+                    closeManualTask(error);
+                }
                 break;
             case SEND_TO_MANUALTASK:
                 error.setState(ErrorState.PERMANENT_RETRIED);
@@ -281,5 +300,10 @@ public class ErrorService {
         } catch (TaskManagementException e) {
             log.warn("Could not close task to manual task service, retry later", e);
         }
+    }
+
+    private boolean isModulithPublication(Error error) {
+        return error.getCausingEvent() != null
+                && error.getCausingEvent().getOrigin() == CausingEvent.Origin.MODULITH_PUBLICATION;
     }
 }
