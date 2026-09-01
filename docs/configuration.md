@@ -7,8 +7,8 @@ configuration can be found in the `jme-messaging-error-scs` module of the
 
 ## Kafka
 
-The EHS consumes `MessageProcessingFailedEvent`s and `ModulithPublicationProcessingFailedEvent`s from the
-error topic of the system. The general Kafka and
+The EHS consumes `MessageProcessingFailedEvent`s from the error topic of the system. When Modulith error handling
+is enabled, it consumes `ModulithPublicationProcessingFailedEvent`s from a separate topic. The general Kafka and
 schema registry access is configured through the standard
 [jEAP messaging properties](https://jeap-admin-ch.github.io/docs/jeap-messaging/) (`jeap.messaging.kafka.*`).
 The essential EHS-specific settings are:
@@ -16,9 +16,11 @@ The essential EHS-specific settings are:
 ```yaml
 jeap:
   errorhandling:
-    # The topic the EHS consumes failed events from. All message consumers of the system
-    # must publish their failures to this topic (jeap.messaging.kafka.errorTopicName).
+    # The topic the EHS consumes MessageProcessingFailedEvents from. All Kafka message
+    # consumers of the system publish their failures here (jeap.messaging.kafka.errorTopicName).
     topic: "yoursystem-messageprocessing-failed"
+    # Optional: the dedicated topic the EHS consumes Modulith publication failures from.
+    modulithPublicationProcessingFailedTopic: "yoursystem-modulith-publication-processing-failed"
     # The dead letter topic for failures of the EHS itself, see Operations.
     deadLetterTopicName: "yoursystem-messageprocessing-deadletter"
   messaging:
@@ -30,12 +32,14 @@ jeap:
 Note that for the EHS itself, `jeap.messaging.kafka.errorTopicName` always equals the dead letter topic —
 the EHS must not publish its own failures to the topic it consumes from.
 
-An EHS instance that handles Modulith failures must declare a consumer contract for
-`ModulithPublicationProcessingFailedEvent` on this error topic and producer contracts for the retry and
-discard command topics used by its source services. The command topic names are carried in each failure event
-and persisted by the EHS; no additional EHS topic property is required. The EHS also persists the cluster on which it
-consumed the failure and selects that cluster's `TransactionalOutbox` for both commands. Every cluster referenced by an
-open Modulith error must therefore remain configured until the error has been retried or discarded.
+An EHS instance that handles Modulith failures configures
+`jeap.errorhandling.modulithPublicationProcessingFailedTopic`, declares a consumer contract for
+`ModulithPublicationProcessingFailedEvent` on that topic, and declares producer contracts for the retry and discard
+command topics used by its source services. When the property is not set, the EHS does not create a Modulith failure
+consumer. The command topic names are carried in each failure event and persisted by the EHS; no additional command
+topic property is required. The EHS also persists the cluster on which it consumed the failure and selects that
+cluster's `TransactionalOutbox` for both commands. Every cluster referenced by an open Modulith error must therefore
+remain configured until the error has been retried or discarded.
 
 The topic configuration is validated at startup, the EHS refuses to start if:
 
@@ -43,6 +47,8 @@ The topic configuration is validated at startup, the EHS refuses to start if:
 - `jeap.errorhandling.topic` and `jeap.errorhandling.deadLetterTopicName` name the same topic — the EHS would
   consume its own failures again and the [dead letter reactivation](operations.md#dead-letter-topic) would
   republish messages into the topic it just read from,
+- `jeap.errorhandling.modulithPublicationProcessingFailedTopic`, when configured, names either the regular error
+  topic or the dead letter topic,
 - `jeap.messaging.kafka.errorTopicName` is configured to something other than the dead letter topic, for the
   default cluster or for any cluster in `jeap.messaging.kafka.cluster.*`.
 

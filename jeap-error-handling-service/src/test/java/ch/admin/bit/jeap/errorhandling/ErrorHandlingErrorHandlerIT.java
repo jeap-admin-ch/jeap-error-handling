@@ -7,12 +7,19 @@ import ch.admin.bit.jeap.errorhandling.event.test.TestEvent;
 import ch.admin.bit.jeap.errorhandling.event.test.TestPayload;
 import ch.admin.bit.jeap.errorhandling.event.test.TestReferences;
 import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.KafkaDeadLetterBatchConsumerProducer;
+import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.CausingEvent;
+import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.CausingEventRepository;
+import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorRepository;
 import ch.admin.bit.jeap.messaging.avro.AvroMessage;
 import ch.admin.bit.jeap.messaging.avro.errorevent.MessageProcessingFailedEvent;
 import ch.admin.bit.jeap.messaging.avro.errorevent.MessageProcessingFailedEventBuilder;
 import ch.admin.bit.jeap.messaging.kafka.serde.confluent.CustomKafkaAvroSerializer;
 import ch.admin.bit.jeap.messaging.kafka.test.KafkaIntegrationTestBase;
 import ch.admin.bit.jeap.messaging.kafka.test.TestKafkaListener;
+import ch.admin.bit.jeap.modulith.event.publicationprocessingfailed.ModulithPublicationProcessingFailedEvent;
+import ch.admin.bit.jeap.modulith.event.publicationprocessingfailed.ModulithPublicationProcessingFailedPayload;
+import ch.admin.bit.jeap.modulith.event.publicationprocessingfailed.ModulithPublicationProcessingFailedReferences;
+import ch.admin.bit.jeap.modulith.event.publicationprocessingfailed.ModulithPublicationReference;
 import ch.admin.bit.jeap.security.test.resource.configuration.JeapOAuth2IntegrationTestResourceConfiguration;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +46,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.time.Instant;
@@ -51,6 +59,7 @@ import java.util.concurrent.ExecutionException;
 
 import static ch.admin.bit.jeap.errorhandling.ErrorHandlingErrorHandlerIT.DLT_TOPIC;
 import static ch.admin.bit.jeap.errorhandling.ErrorHandlingErrorHandlerIT.ERROR_HANDLING_SERVICE_TOPIC;
+import static ch.admin.bit.jeap.errorhandling.ErrorHandlingErrorHandlerIT.MODULITH_FAILURE_TOPIC;
 import static ch.admin.bit.jeap.messaging.avro.errorevent.MessageHandlerExceptionInformation.Temporality.PERMANENT;
 import static org.awaitility.Awaitility.await;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -61,6 +70,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @ActiveProfiles("error-handler-it")
 @SpringBootTest(webEnvironment = RANDOM_PORT, properties = {
         "jeap.errorhandling.topic=" + ERROR_HANDLING_SERVICE_TOPIC,
+        "jeap.errorhandling.modulithPublicationProcessingFailedTopic=" + MODULITH_FAILURE_TOPIC,
         "jeap.errorhandling.deadLetterTopicName=" + DLT_TOPIC})
 @Import({JeapOAuth2IntegrationTestResourceConfiguration.class})
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
@@ -69,6 +79,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
 
     static final String ERROR_HANDLING_SERVICE_TOPIC = "consumer-topic";
+    static final String MODULITH_FAILURE_TOPIC = "modulith-failure-topic";
     static final String DLT_TOPIC = "errorTopic";
     private static final Duration THIRTY_SECONDS = Duration.ofSeconds(30);
     @Autowired
@@ -88,8 +99,35 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
     @Autowired
     protected KafkaAdmin kafkaAdmin;
 
+    @Autowired
+    private ErrorRepository errorRepository;
+
+    @Autowired
+    private CausingEventRepository causingEventRepository;
+
     @MockitoBean
     protected KafkaDeadLetterBatchConsumerProducer kafkaDeadLetterBatchConsumerProducer;
+
+    @Test
+    void registersOneListenerContainerPerFailureEventType() {
+        assertEquals(2, messageListenerContainers.size());
+    }
+
+    @Test
+    void consumesModulithFailureFromDedicatedTopic() throws ExecutionException, InterruptedException {
+        String publicationId = UUID.randomUUID().toString();
+        ModulithPublicationProcessingFailedEvent event = createModulithFailureEvent(publicationId);
+
+        try (Producer<String, AvroMessage> producer = createAvroMessageProducer()) {
+            producer.send(new ProducerRecord<>(MODULITH_FAILURE_TOPIC, event)).get();
+        }
+
+        await("Modulith failure is persisted").atMost(THIRTY_SECONDS)
+                .until(() -> causingEventRepository.findByCausingEventId(publicationId).isPresent());
+        CausingEvent causingEvent = causingEventRepository.findByCausingEventId(publicationId).orElseThrow();
+        assertEquals(CausingEvent.Origin.MODULITH_PUBLICATION, causingEvent.getOrigin());
+        assertEquals(publicationId, causingEvent.getModulithPublication().getPublicationId());
+    }
 
     private static TestEvent createTestEvent(String messagePayload) {
         return TestEvent.newBuilder()
@@ -111,6 +149,44 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
                         .setSystem("TEST")
                         .setService("test-service")
                         .build())
+                .build();
+    }
+
+    private static ModulithPublicationProcessingFailedEvent createModulithFailureEvent(String publicationId) {
+        return ModulithPublicationProcessingFailedEvent.newBuilder()
+                .setIdentity(AvroDomainEventIdentity.newBuilder()
+                        .setEventId(UUID.randomUUID().toString())
+                        .setIdempotenceId(UUID.randomUUID().toString())
+                        .setCreated(Instant.now())
+                        .build())
+                .setType(AvroDomainEventType.newBuilder()
+                        .setName("ModulithPublicationProcessingFailedEvent")
+                        .setVersion("1.0.0")
+                        .build())
+                .setPublisher(AvroDomainEventPublisher.newBuilder()
+                        .setSystem("TEST")
+                        .setService("test-service")
+                        .build())
+                .setReferences(ModulithPublicationProcessingFailedReferences.newBuilder()
+                        .setPublication(ModulithPublicationReference.newBuilder()
+                                .setType("publication")
+                                .setPublicationId(publicationId)
+                                .build())
+                        .build())
+                .setPayload(ModulithPublicationProcessingFailedPayload.newBuilder()
+                        .setListener("example.Listener")
+                        .setEventType("example.Event")
+                        .setErrorMessage("Publication failed")
+                        .setErrorDescription("Test failure")
+                        .setStackTrace("stack trace")
+                        .setStackTraceHash("stack-trace-hash")
+                        .setTemporality(ch.admin.bit.jeap.modulith.event.publicationprocessingfailed.Temporality.PERMANENT)
+                        .setSerializedEvent(ByteBuffer.wrap("payload".getBytes(StandardCharsets.UTF_8)))
+                        .setSerializedEventContentType("application/json")
+                        .setRetryCommandTopicName("retry-topic")
+                        .setDiscardCommandTopicName("discard-topic")
+                        .build())
+                .setDomainEventVersion("1.0.0")
                 .build();
     }
 
@@ -209,7 +285,7 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
         // its partition, it misses the messages published to its topic, because it starts reading at the end
         // of the topic. This holds for the DLT consumer of this test as well as for the listener of the error
         // handling service itself, which is not registered as a Kafka listener endpoint but as a container
-        // bean, see KafkaMessageProcessingFailedEventConsumerFactory.
+        // bean, see KafkaErrorEventConsumerFactory.
         List<MessageListenerContainer> containers = new ArrayList<>(registry.getListenerContainers());
         containers.addAll(messageListenerContainers);
         if (containers.isEmpty()) {
@@ -220,6 +296,8 @@ class ErrorHandlingErrorHandlerIT extends KafkaIntegrationTestBase {
 
     @AfterEach
     void clearRepository() {
+        errorRepository.deleteAll();
+        causingEventRepository.deleteAll();
         dltConsumer.reset();
     }
 

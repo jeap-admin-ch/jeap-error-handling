@@ -34,8 +34,8 @@ sequenceDiagram
     end
 ```
 
-If the EHS itself fails to process the failed event, the classification in
-`MessageProcessingFailedEventListener` decides between an in-place retry and the dead letter topic:
+If the EHS itself fails to process a failed event, the corresponding typed listener decides between an in-place retry
+and the shared dead letter topic:
 
 - transient problems (database unavailable, locks, read-only transactions) trigger a Kafka retry with a
   configurable back-off (`RecoverableEhsProcessingException`),
@@ -45,12 +45,26 @@ If the EHS itself fails to process the failed event, the classification in
 ## Failed Modulith publication intake
 
 A service using the Modulith error handling starter publishes a
-`ModulithPublicationProcessingFailedEvent` after the publication exhausts its local retry budget. The EHS
+`ModulithPublicationProcessingFailedEvent` to the dedicated Modulith publication failure topic after the publication
+exhausts its local retry budget. The EHS
 persists the publication ID, listener, internal event payload, consumed Kafka cluster, and the source service's retry
 and discard command topics as a permanent error. A manual retry queues `RetryModulithPublicationCommand`; closing the
 error queues `DiscardModulithPublicationCommand`. Both commands are inserted into the transactional outbox for that
 same Kafka cluster in the same transaction as the EHS state change. If the cluster is no longer configured, the action
 fails and the EHS error remains open rather than silently sending the command through the default cluster.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant Starter as Modulith error handling starter
+    participant FailureTopic as Modulith publication failure topic
+    participant EHS as Error Handling Service
+    participant DB as Database
+
+    Starter->>FailureTopic: publish ModulithPublicationProcessingFailedEvent
+    FailureTopic->>EHS: consume ModulithPublicationProcessingFailedEvent
+    EHS->>DB: persist permanent Error + ModulithPublicationData
+```
 
 ## Automatic retry of temporary errors
 
@@ -157,11 +171,11 @@ publishes its own processing failures to a dedicated dead letter topic:
 ```mermaid
 sequenceDiagram
     autonumber
-    participant ErrorTopic as error topic
+    participant FailureTopic as inbound failure topic
     participant EHS as Error Handling Service
     participant DLT as dead letter topic
 
-    ErrorTopic->>EHS: consume MessageProcessingFailedEvent
+    FailureTopic->>EHS: consume typed failure event
     alt transient EHS problem (e.g. database down)
         EHS->>EHS: retry consumption with back-off<br/>(does not commit the offset)
     else fatal EHS problem

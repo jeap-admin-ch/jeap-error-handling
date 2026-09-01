@@ -12,6 +12,11 @@
       "description": "Dead letter topic to publish errors inside the error handling service to."
     },
     {
+      "name": "jeap.errorhandling.modulithPublicationProcessingFailedTopic",
+      "type": "java.lang.String",
+      "description": "Optional topic from which to consume ModulithPublicationProcessingFailedEvent messages."
+    },
+    {
       "name": "jeap.errorhandling.timeout-seconds",
       "type": "java.lang.Integer",
       "description": "Timeout in seconds when resending a failed event to its target Kafka topic.",
@@ -19,4 +24,3 @@
     }
   ]
 }
-

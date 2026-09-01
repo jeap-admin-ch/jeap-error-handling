@@ -15,10 +15,45 @@ class TopicConfigurationTest {
         TopicConfiguration topicConfiguration = new TopicConfiguration();
 
         ReflectionTestUtils.setField(topicConfiguration, "topicName", "error-topic");
+        ReflectionTestUtils.setField(topicConfiguration, "modulithPublicationProcessingFailedTopic", "modulith-error-topic");
         ReflectionTestUtils.setField(topicConfiguration, "deadLetterTopicName", "test");
         ReflectionTestUtils.setField(topicConfiguration, "errorTopicName", "test");
         topicConfiguration.checkTopicsConfiguration();
 
+    }
+
+    @Test
+    void checkTopicsConfiguration_modulithTopicIsOptional() {
+        TopicConfiguration topicConfiguration = new TopicConfiguration();
+        ReflectionTestUtils.setField(topicConfiguration, "topicName", "error-topic");
+        ReflectionTestUtils.setField(topicConfiguration, "deadLetterTopicName", "deadletter-topic");
+        ReflectionTestUtils.setField(topicConfiguration, "errorTopicName", "deadletter-topic");
+
+        topicConfiguration.checkTopicsConfiguration();
+    }
+
+    @Test
+    void checkTopicsConfiguration_modulithTopicEqualsMessageProcessingFailedTopic() {
+        TopicConfiguration topicConfiguration = new TopicConfiguration();
+        ReflectionTestUtils.setField(topicConfiguration, "topicName", "error-topic");
+        ReflectionTestUtils.setField(topicConfiguration, "modulithPublicationProcessingFailedTopic", " error-topic ");
+        ReflectionTestUtils.setField(topicConfiguration, "deadLetterTopicName", "deadletter-topic");
+        ReflectionTestUtils.setField(topicConfiguration, "errorTopicName", "deadletter-topic");
+
+        Exception exception = assertThrows(IllegalArgumentException.class, topicConfiguration::checkTopicsConfiguration);
+
+        assertThat(exception.getMessage()).contains("one topic per message type");
+    }
+
+    @Test
+    void checkTopicsConfiguration_modulithTopicEqualsDeadLetterTopic() {
+        TopicConfiguration topicConfiguration = new TopicConfiguration();
+        ReflectionTestUtils.setField(topicConfiguration, "topicName", "error-topic");
+        ReflectionTestUtils.setField(topicConfiguration, "modulithPublicationProcessingFailedTopic", "deadletter-topic");
+        ReflectionTestUtils.setField(topicConfiguration, "deadLetterTopicName", "deadletter-topic");
+        ReflectionTestUtils.setField(topicConfiguration, "errorTopicName", "deadletter-topic");
+
+        assertThrows(IllegalArgumentException.class, topicConfiguration::checkTopicsConfiguration);
     }
 
     @Test

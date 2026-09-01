@@ -31,17 +31,19 @@ project parent matches the one used by the EHS dependency.
 
 ## 2. Order the Kafka topics
 
-Two topics are needed per system (see the platform documentation on creating Kafka topics):
+Two topics are required per system, plus one when the EHS handles failed Modulith publications (see the platform
+documentation on creating Kafka topics):
 
-| Topic             | Naming convention                       | Purpose                                                                                                                                                    |
-|-------------------|-----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Error topic       | `<system>-messageprocessing-failed`     | All message consumers of the system publish their failures here (`jeap.messaging.kafka.errorTopicName`); the EHS consumes it (`jeap.errorhandling.topic`). |
-| Dead letter topic | `<system>-messageprocessing-deadletter` | Failures of the EHS itself (`jeap.errorhandling.deadLetterTopicName`), see [Operations](operations.md#dead-letter-topic).                                  |
+| Topic                              | Naming convention                                 | Purpose                                                                                                                                                                |
+|------------------------------------|---------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Message processing failure topic   | `<system>-messageprocessing-failed`               | Kafka message consumers publish `MessageProcessingFailedEvent`s here (`jeap.messaging.kafka.errorTopicName`); the EHS consumes it (`jeap.errorhandling.topic`).        |
+| Modulith publication failure topic | `<system>-modulith-publication-processing-failed` | Services using the Modulith starter publish `ModulithPublicationProcessingFailedEvent`s here; configure `jeap.errorhandling.modulithPublicationProcessingFailedTopic`. |
+| Dead letter topic                  | `<system>-messageprocessing-deadletter`           | Failures of the EHS itself (`jeap.errorhandling.deadLetterTopicName`), see [Operations](operations.md#dead-letter-topic).                                              |
 
-The two topics must be different topics — the EHS checks this at startup and refuses to start otherwise, as
-it must not consume its own failures again.
+The configured topics must be distinct. The EHS checks this at startup and refuses to start otherwise, as it must
+not consume its own failures again and each inbound topic carries exactly one event type.
 
-The Kafka user of the EHS needs read access to the error topic, write access to the dead letter topic, and
+The Kafka user of the EHS needs read access to both configured failure topics, write access to the dead letter topic, and
 **write access to every topic the EHS must be able to resend messages to**.
 
 ## 3. Configure the consumers of your system
@@ -60,6 +62,8 @@ Minimal configuration of the instance (see [Configuration](configuration.md) for
 jeap:
   errorhandling:
     topic: "yoursystem-messageprocessing-failed"
+    # Required only when this EHS handles failed Modulith publications
+    modulithPublicationProcessingFailedTopic: "yoursystem-modulith-publication-processing-failed"
     deadLetterTopicName: "yoursystem-messageprocessing-deadletter"
     frontend:
       client-id: "error-handling-ui"

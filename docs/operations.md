@@ -13,9 +13,9 @@ letter topic (DLT). Failed events the EHS cannot process are published there
 - Naming convention: `<system>-messageprocessing-deadletter` (e.g. `jme-messageprocessing-deadletter`).
 - The maximum message size of the DLT must match the size of the messages processed by the system.
 - The Kafka user of the EHS needs write permission on the DLT.
-- Configured with `jeap.errorhandling.deadLetterTopicName`. It must be a different topic than the error topic
-  the EHS consumes from (`jeap.errorhandling.topic`); the EHS validates this at startup and refuses to start
-  if both properties name the same topic.
+- Configured with `jeap.errorhandling.deadLetterTopicName`. It must be different from every topic the EHS consumes
+  (`jeap.errorhandling.topic` and, when configured,
+  `jeap.errorhandling.modulithPublicationProcessingFailedTopic`); the EHS validates this at startup.
 
 The dead letter topic should always be empty — messages on it generally mean interrupted business
 processes. The platform team sets up alerting on the DLT by default when the topic is ordered. If messages

@@ -3,8 +3,8 @@
 The jEAP Error Handling Service (EHS) makes sure that no Kafka message is lost when its processing fails in
 a business application. It consumes `MessageProcessingFailedEvent`s published by the jEAP messaging error
 handler, persists the failed messages, automatically retries temporary errors, escalates permanent errors
-to manual tasks, and provides a UI to inspect, resend and close errors — with optional grouping of related
-errors and Jira issue tracking.
+to manual tasks, and provides a UI to inspect, resend and close errors. It also handles failed Spring Modulith
+publications, with optional grouping of related errors and Jira issue tracking.
 
 This repository is published as a **library**: every business system creates and deploys its own EHS
 instance depending on it.

@@ -20,11 +20,12 @@ import org.springframework.core.env.Environment;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 @Component
 @Slf4j
 @RequiredArgsConstructor
-class KafkaMessageProcessingFailedEventConsumerFactory implements BeanDefinitionRegistryPostProcessor, BeanFactoryAware, EnvironmentAware {
+class KafkaErrorEventConsumerFactory implements BeanDefinitionRegistryPostProcessor, BeanFactoryAware, EnvironmentAware {
 
     @Setter
     private Environment environment;
@@ -35,30 +36,45 @@ class KafkaMessageProcessingFailedEventConsumerFactory implements BeanDefinition
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
         KafkaProperties kafkaProperties = JeapKafkaPropertyFactory.createJeapKafkaProperties(environment);
         String defaultClusterName = kafkaProperties.getDefaultClusterName();
-        log.info("Registering MessageProcessingFailedEventListener container for default cluster '{}'", defaultClusterName);
-        registerConsumerContainerBeanDefinition(registry, defaultClusterName);
+        log.info("Registering MessageProcessingFailedEvent listener container for default cluster '{}'", defaultClusterName);
+        registerContainer(registry, "message-processing-failed-container-" + defaultClusterName,
+                defaultClusterName, false);
+
+        String modulithTopic = environment.getProperty(
+                TopicConfiguration.MODULITH_PUBLICATION_PROCESSING_FAILED_TOPIC_PROPERTY, "");
+        if (StringUtils.hasText(modulithTopic)) {
+            log.info("Registering ModulithPublicationProcessingFailedEvent listener container for default cluster '{}'",
+                    defaultClusterName);
+            registerContainer(registry, "modulith-publication-processing-failed-container-" + defaultClusterName,
+                    defaultClusterName, true);
+        }
     }
 
-    private void registerConsumerContainerBeanDefinition(BeanDefinitionRegistry registry, String clusterName) {
+    private void registerContainer(BeanDefinitionRegistry registry, String beanName, String clusterName,
+                                   boolean modulithPublication) {
         GenericBeanDefinition beanDefinition = new GenericBeanDefinition();
         beanDefinition.setBeanClass(ConcurrentMessageListenerContainer.class);
         beanDefinition.addQualifier(new AutowireCandidateQualifier(Qualifier.class, clusterName));
-        beanDefinition.setInstanceSupplier(() -> createContainer(clusterName));
-        registry.registerBeanDefinition("message-processing-failed-container-" + clusterName, beanDefinition);
+        beanDefinition.setInstanceSupplier(() -> createContainer(clusterName, modulithPublication));
+        registry.registerBeanDefinition(beanName, beanDefinition);
     }
 
-    private ConcurrentMessageListenerContainer<?, ?> createContainer(String clusterName) {
+    private ConcurrentMessageListenerContainer<?, ?> createContainer(String clusterName, boolean modulithPublication) {
         TopicConfiguration topicConfiguration = beanFactory.getBean(TopicConfiguration.class);
-        ConcurrentMessageListenerContainer<?, ?> container = getContainerFactory(clusterName).createContainer(topicConfiguration.getTopicName());
+        String topic = modulithPublication
+                ? topicConfiguration.getModulithPublicationProcessingFailedTopic()
+                : topicConfiguration.getTopicName();
+        ConcurrentMessageListenerContainer<?, ?> container = getContainerFactory(clusterName).createContainer(topic);
         ErrorEventHandler errorEventHandler = beanFactory.getBean(ErrorEventHandler.class);
-        MessageProcessingFailedEventListener listener = new MessageProcessingFailedEventListener(errorEventHandler, clusterName);
-        container.setupMessageListener(listener);
+        container.setupMessageListener(modulithPublication
+                ? new ModulithPublicationProcessingFailedEventListener(errorEventHandler, clusterName)
+                : new MessageProcessingFailedEventListener(errorEventHandler, clusterName));
         return container;
     }
 
     private ConcurrentKafkaListenerContainerFactory<?, ?> getContainerFactory(String clusterName) {
-        String listenerContainerFactoryBeanName = new JeapKafkaBeanNames(clusterName).getListenerContainerFactoryBeanName(clusterName);
-        return (ConcurrentKafkaListenerContainerFactory<?, ?>) beanFactory.getBean(listenerContainerFactoryBeanName);
+        String beanName = new JeapKafkaBeanNames(clusterName).getListenerContainerFactoryBeanName(clusterName);
+        return (ConcurrentKafkaListenerContainerFactory<?, ?>) beanFactory.getBean(beanName);
     }
 
     @Override

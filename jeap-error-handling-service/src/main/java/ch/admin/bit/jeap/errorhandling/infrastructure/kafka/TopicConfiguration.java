@@ -1,6 +1,5 @@
 package ch.admin.bit.jeap.errorhandling.infrastructure.kafka;
 
-
 import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.kafka.core.KafkaAdmin;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -25,9 +25,19 @@ class TopicConfiguration {
 
     static final String ERROR_TOPIC_NAME = "${jeap.messaging.kafka.errorTopicName}";
 
+    static final String MODULITH_PUBLICATION_PROCESSING_FAILED_TOPIC_PROPERTY =
+            "jeap.errorhandling.modulithPublicationProcessingFailedTopic";
+
+    static final String MODULITH_PUBLICATION_PROCESSING_FAILED_TOPIC =
+            "${" + MODULITH_PUBLICATION_PROCESSING_FAILED_TOPIC_PROPERTY + ":}";
+
     @Getter
     @Value(NAME)
     private String topicName;
+
+    @Getter
+    @Value(MODULITH_PUBLICATION_PROCESSING_FAILED_TOPIC)
+    private String modulithPublicationProcessingFailedTopic;
 
     @Value(DEAD_LETTER_TOPIC_NAME)
     private String deadLetterTopicName;
@@ -50,14 +60,19 @@ class TopicConfiguration {
         @SuppressWarnings("findbugs:RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE")
         public void checkIfTopicExist() throws ExecutionException, InterruptedException {
             try (AdminClient adminClient = AdminClient.create(kafkaAdmin.getConfigurationProperties())) {
-                adminClient.describeTopics(List.of(topicConfiguration.getTopicName())).allTopicNames().get();
+                List<String> topics = new ArrayList<>(List.of(topicConfiguration.getTopicName()));
+                if (StringUtils.hasText(topicConfiguration.getModulithPublicationProcessingFailedTopic())) {
+                    topics.add(topicConfiguration.getModulithPublicationProcessingFailedTopic());
+                }
+                adminClient.describeTopics(topics).allTopicNames().get();
             }
         }
     }
 
     @PostConstruct
     public void checkTopicsConfiguration() {
-        log.info("Configured values for the topics: topicName={}, deadLetterTopicName={}, errorTopicName={}", topicName, deadLetterTopicName, errorTopicName);
+        log.info("Configured values for the topics: topicName={}, modulithPublicationProcessingFailedTopic={}, deadLetterTopicName={}, errorTopicName={}",
+                topicName, modulithPublicationProcessingFailedTopic, deadLetterTopicName, errorTopicName);
         if (!StringUtils.hasText(topicName)) {
             throw new IllegalArgumentException("Topic name is required to start this application. Please configure the property " + NAME);
         }
@@ -67,6 +82,18 @@ class TopicConfiguration {
         if (topicName.trim().equals(deadLetterTopicName.trim())) {
             throw new IllegalArgumentException("The error handling service must not consume from its own dead letter topic: " + NAME + " and " + DEAD_LETTER_TOPIC_NAME +
                     " are both configured to '" + topicName + "'. Please configure a dead letter topic that is different from the topic the error handling service consumes from.");
+        }
+        if (StringUtils.hasText(modulithPublicationProcessingFailedTopic)) {
+            String modulithTopic = modulithPublicationProcessingFailedTopic.trim();
+            if (topicName.trim().equals(modulithTopic)) {
+                throw new IllegalArgumentException("The Modulith publication failure topic must be different from " +
+                        NAME + ". Please configure one topic per message type using " +
+                        MODULITH_PUBLICATION_PROCESSING_FAILED_TOPIC_PROPERTY + ".");
+            }
+            if (deadLetterTopicName.trim().equals(modulithTopic)) {
+                throw new IllegalArgumentException("The Modulith publication failure topic must be different from " +
+                        DEAD_LETTER_TOPIC_NAME + ".");
+            }
         }
         if (!deadLetterTopicName.equals(errorTopicName)) {
             throw new IllegalArgumentException("A configuration was found for " + ERROR_TOPIC_NAME + " (" + errorTopicName + "). This parameter must not be configured for the error handling service.");

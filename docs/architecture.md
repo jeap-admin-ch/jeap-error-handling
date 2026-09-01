@@ -6,7 +6,8 @@ themselves: the [jEAP messaging error handler](https://jeap-admin-ch.github.io/d
 failed message into a `MessageProcessingFailedEvent` and publishes it to an error topic. The EHS consumes
 that topic, persists the failure, retries temporary errors, escalates permanent errors to manual tasks, and
 offers a UI to inspect, resend and close errors. Services using the Modulith error handling starter report
-exhausted publications to the same error topic and receive retry or discard commands from the EHS.
+exhausted publications to a separate Modulith publication failure topic and receive retry or discard commands from
+the EHS.
 
 ## Goals and constraints
 
@@ -24,15 +25,18 @@ flowchart LR
   Producer["Message producer"]
   Topic[/"Business topic"/]
   Consumer["Business service<br/>(jEAP messaging error handler)"]
+  ModulithService["Business service<br/>(Modulith error handling starter)"]
 
   subgraph ERROR_HANDLING["Error handling"]
     direction TB
     ErrorTopic[/"Error topic"/]
+    ModulithErrorTopic[/"Modulith publication<br/>failure topic"/]
     EHS["Error Handling Service"]
     DB[("PostgreSQL")]
     UI["Angular UI<br/>(bundled)"]
     DLT[/"Dead letter topic"/]
     ErrorTopic --> EHS
+    ModulithErrorTopic --> EHS
     UI --- EHS
     EHS --> DB
     EHS -->|" Failed events that<br/>cannot be processed "| DLT
@@ -47,6 +51,7 @@ flowchart LR
   Producer -->|" Business messages "| Topic
   Topic --> Consumer
   Consumer -->|" MessageProcessingFailedEvent "| ErrorTopic
+  ModulithService -->|" ModulithPublicationProcessingFailedEvent "| ModulithErrorTopic
   EHS -->|" Resend original message "| Topic
   EHS -->|" Create Agir manual tasks for permanent errors "| Agir
   EHS -->|" Create JIRA issue or link tickets "| Jira
@@ -66,6 +71,7 @@ Inside `jeap-error-handling-service` the main components are:
 flowchart TB
     subgraph inbound["infrastructure/kafka"]
         Listener["MessageProcessingFailedEventListener"]
+        ModulithListener["ModulithPublicationProcessingFailedEventListener"]
         Resender["KafkaFailedEventResender"]
     end
     subgraph domain["domain"]
@@ -86,6 +92,7 @@ flowchart TB
     Web["web/api REST controllers + web/ui"]
 
     Listener --> Handler --> Service
+    ModulithListener --> Handler
     Service --> Strategy
     Service --> Persistence
     Scheduler --> Resender
