@@ -829,10 +829,6 @@
     - name: @unrs/resolver-binding-linux-x64-gnu
     - licenses: MIT
     - repository: https://github.com/unrs/unrs-resolver
- - **[@unrs/resolver-binding-linux-x64-musl](https://github.com/unrs/unrs-resolver)**
-    - name: @unrs/resolver-binding-linux-x64-musl
-    - licenses: MIT
-    - repository: https://github.com/unrs/unrs-resolver
  - **[@vitejs/plugin-basic-ssl](https://github.com/vitejs/vite-plugin-basic-ssl)**
     - name: @vitejs/plugin-basic-ssl
     - licenses: MIT
@@ -1353,6 +1349,10 @@
     - name: es-errors
     - licenses: MIT
     - repository: https://github.com/ljharb/es-errors
+ - **[es-module-lexer](https://github.com/guybedford/es-module-lexer)**
+    - name: es-module-lexer
+    - licenses: MIT
+    - repository: https://github.com/guybedford/es-module-lexer
  - **[es-object-atoms](https://github.com/ljharb/es-object-atoms)**
     - name: es-object-atoms
     - licenses: MIT
@@ -1773,10 +1773,6 @@
     - name: jest-mock
     - licenses: MIT
     - repository: https://github.com/jestjs/jest
- - **[jest-pnp-resolver](https://github.com/arcanis/jest-pnp-resolver)**
-    - name: jest-pnp-resolver
-    - licenses: MIT
-    - repository: https://github.com/arcanis/jest-pnp-resolver
  - **[jest-preset-angular](https://github.com/thymikee/jest-preset-angular)**
     - name: jest-preset-angular
     - licenses: MIT
@@ -1953,10 +1949,6 @@
     - name: make-fetch-happen
     - licenses: ISC
     - repository: https://github.com/npm/make-fetch-happen
- - **[makeerror](https://github.com/daaku/nodejs-makeerror)**
-    - name: makeerror
-    - licenses: BSD-3-Clause
-    - repository: https://github.com/daaku/nodejs-makeerror
  - **[math-intrinsics](https://github.com/es-shims/math-intrinsics)**
     - name: math-intrinsics
     - licenses: MIT
@@ -2532,10 +2524,6 @@
     - name: source-map-support
     - licenses: MIT
     - repository: https://github.com/evanw/node-source-map-support
- - **[source-map-support](https://github.com/evanw/node-source-map-support)**
-    - name: source-map-support
-    - licenses: MIT
-    - repository: https://github.com/evanw/node-source-map-support
  - **[source-map](http://github.com/mozilla/source-map)**
     - name: source-map
     - licenses: BSD-3-Clause
@@ -2664,10 +2652,6 @@
     - name: tldts
     - licenses: MIT
     - repository: https://github.com/remusao/tldts
- - **[tmpl](https://github.com/daaku/nodejs-tmpl)**
-    - name: tmpl
-    - licenses: BSD-3-Clause
-    - repository: https://github.com/daaku/nodejs-tmpl
  - **[toidentifier](component/toidentifier)**
     - name: toidentifier
     - licenses: MIT
@@ -2792,10 +2776,6 @@
     - name: walk-up-path
     - licenses: ISC
     - repository: https://github.com/isaacs/walk-up-path
- - **[walker](https://github.com/daaku/nodejs-walker)**
-    - name: walker
-    - licenses: Apache-2.0
-    - repository: https://github.com/daaku/nodejs-walker
  - **[watchpack](https://github.com/webpack/watchpack)**
     - name: watchpack
     - licenses: MIT
