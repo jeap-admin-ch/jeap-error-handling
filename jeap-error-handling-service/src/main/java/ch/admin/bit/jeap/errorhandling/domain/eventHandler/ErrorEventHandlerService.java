@@ -5,6 +5,7 @@ import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.ErrorEventHandler;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.CausingEvent;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.CausingEventRepository;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
+import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorEventData;
 import ch.admin.bit.jeap.messaging.avro.errorevent.MessageProcessingFailedEvent;
 import ch.admin.bit.jeap.modulith.event.publicationprocessingfailed.ModulithPublicationProcessingFailedEvent;
 import lombok.RequiredArgsConstructor;
@@ -61,7 +62,17 @@ public class ErrorEventHandlerService implements ErrorEventHandler {
             return;
         }
         CausingEvent causingEvent = createOrGetCausingEvent(clusterName, errorEvent);
-        errorService.handlePermanentError(modulithErrorEventMapper.toError(errorEvent, causingEvent));
+
+        Error error = modulithErrorEventMapper.toError(errorEvent, causingEvent);
+        // The temporality of a failed Modulith publication mirrors the temporality of a MessageProcessingFailedEvent:
+        // a temporary failure is retried automatically by sending a retry command to the publishing application,
+        // anything else has to be dealt with manually. The Avro enum only knows TEMPORARY and PERMANENT, and an
+        // unknown symbol read from a newer schema resolves to PERMANENT, so there is no unknown temporality here.
+        if (error.getErrorEventData().getTemporality() == ErrorEventData.Temporality.TEMPORARY) {
+            errorService.handleTemporaryError(error);
+        } else {
+            errorService.handlePermanentError(error);
+        }
     }
 
     private CausingEvent createOrGetCausingEvent(String clusterName,

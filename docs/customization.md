@@ -37,6 +37,10 @@ containing the fully qualified class name:
 ch.admin.bit.jeap.yoursystem.error.CustomResendingStrategy
 ```
 
+The strategy is also asked for temporary
+[failed Modulith publications](message-flows.md#failed-modulith-publication-intake). Those have no causing Kafka
+message, so `message` is `null` for them — a custom implementation must cope with that.
+
 ## Custom task factory
 
 The definition of the manual tasks created in Agir is done by the `DefaultTaskFactory`

@@ -72,6 +72,9 @@ public abstract class UiBrowserTestBase extends ErrorHandlingITBase {
 
     protected static final String APP_URL = "http://localhost:8303/error-handling/";
     protected static final String SUBJECT = "69368608-D736-43C8-5F76-55B7BF168299";
+    protected static final String MODULITH_LISTENER = "example.order.OrderPlacedListener";
+    protected static final String MODULITH_EVENT_TYPE = "example.order.OrderPlacedEvent";
+    protected static final String MODULITH_CONTENT_TYPE = "application/json";
     // must match the application name, as the resource server validates the token audience against it
     private static final String CLIENT_ID = "jeap-error-handling-service";
 
@@ -343,8 +346,52 @@ public abstract class UiBrowserTestBase extends ErrorHandlingITBase {
         return errorRepository.save(error);
     }
 
-    private static EventMetadata eventMetadata(String serviceName, ZonedDateTime created) {
-        return EventMetadata.builder()
+    /**
+     * Saves a permanent error for a failed Spring Modulith publication, as the error handling service records it
+     * after having consumed a ModulithPublicationProcessingFailedEvent. Seeded through the repositories rather than
+     * over Kafka, so that the browser tests do not have to configure the optional Modulith failure topic - the
+     * ingestion path itself is covered by {@link ModulithPublicationErrorHandlingIT}.
+     *
+     * @param serializedEvent the publication payload as the publishing application stored it, shown verbatim in the
+     *                        details view
+     */
+    protected Error saveModulithError(String errorMessage, String publicationId, String serializedEvent) {
+        EventMetadata metadata = eventMetadata("order-service", ZonedDateTime.now());
+        CausingEvent causingEvent = causingEventRepository.save(CausingEvent.builder()
+                .origin(CausingEvent.Origin.MODULITH_PUBLICATION)
+                .metadata(metadata)
+                .modulithPublication(ModulithPublicationData.builder()
+                        // use a known cluster name so that the retry and discard commands can be routed to the
+                        // transactional outbox of that cluster
+                        .clusterName(kafkaProperties.getDefaultProducerClusterName())
+                        .publicationId(publicationId)
+                        .listener(MODULITH_LISTENER)
+                        .eventType(MODULITH_EVENT_TYPE)
+                        .serializedEvent(serializedEvent.getBytes(StandardCharsets.UTF_8))
+                        .serializedEventContentType(MODULITH_CONTENT_TYPE)
+                        .retryCommandTopic("modulith-retry-command-topic")
+                        .discardCommandTopic("modulith-discard-command-topic")
+                        .build())
+                .build());
+        return errorRepository.save(Error.builder()
+                .state(Error.ErrorState.PERMANENT)
+                .causingEvent(causingEvent)
+                .errorEventData(ErrorEventData.builder()
+                        .code("MODULITH_PUBLICATION_PROCESSING_FAILED")
+                        .temporality(ErrorEventData.Temporality.PERMANENT)
+                        .message(errorMessage)
+                        .stackTrace("stacktrace")
+                        .build())
+                .errorEventMetadata(metadata)
+                .originalTraceContext(OriginalTraceContext.builder()
+                        .traceIdString("traceId")
+                        .build())
+                .created(ZonedDateTime.now())
+                .closingReason("")
+                .build());
+    }
+
+    private static EventMetadata eventMetadata(String serviceName, ZonedDateTime created) {        return EventMetadata.builder()
                 .id(UUID.randomUUID().toString())
                 .created(created)
                 .idempotenceId(UUID.randomUUID().toString())

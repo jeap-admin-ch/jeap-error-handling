@@ -49,6 +49,10 @@ needed). Run them individually with:
 ./mvnw -pl jeap-error-handling-service verify -Dit.test='Ui*BrowserIT'
 ```
 
+Test data is seeded either over Kafka, so that the failure travels the production path, or directly through the
+repositories where the ingestion path is covered elsewhere — `UiModulithPublicationBrowserIT` seeds its failed
+Modulith publications that way, because their intake is covered by `ModulithPublicationErrorHandlingIT`.
+
 ## Related
 
 - [Getting Started](getting-started.md) — setting up an EHS instance for a business system

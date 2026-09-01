@@ -60,6 +60,7 @@ class ModulithErrorEventMapper {
 
     Error toError(ModulithPublicationProcessingFailedEvent event, CausingEvent causingEvent) {
         var payload = event.getPayload();
+        var temporality = ErrorEventData.Temporality.valueOf(payload.getTemporality().name());
         var errorMetadata = EventMetadata.builder()
                 .id(event.getIdentity().getEventId())
                 .idempotenceId(event.getIdentity().getIdempotenceId())
@@ -71,11 +72,11 @@ class ModulithErrorEventMapper {
                         .build())
                 .build();
         return Error.builder()
-                .state(Error.ErrorState.PERMANENT)
+                .state(initialState(temporality))
                 .causingEvent(causingEvent)
                 .errorEventData(ErrorEventData.builder()
                         .code(ERROR_CODE)
-                        .temporality(ErrorEventData.Temporality.valueOf(payload.getTemporality().name()))
+                        .temporality(temporality)
                         .message(payload.getErrorMessage())
                         .description(payload.getErrorDescription())
                         .stackTrace(payload.getStackTrace())
@@ -86,6 +87,17 @@ class ModulithErrorEventMapper {
                 .closingReason("")
                 .originalTraceContext(currentTraceContext())
                 .build();
+    }
+
+    /**
+     * The state the error is created with. It is overwritten by the {@code ErrorService} as soon as the error
+     * is handled, but it keeps a freshly mapped error consistent with the temporality reported by the failing
+     * application, exactly as {@link ErrorEventMapper} does for Kafka message failures.
+     */
+    private static Error.ErrorState initialState(ErrorEventData.Temporality temporality) {
+        return temporality == ErrorEventData.Temporality.TEMPORARY
+                ? Error.ErrorState.TEMPORARY_RETRY_PENDING
+                : Error.ErrorState.PERMANENT;
     }
 
     private OriginalTraceContext currentTraceContext() {

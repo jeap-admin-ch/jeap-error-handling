@@ -90,6 +90,44 @@ public class UiLabels {
         return resolve("i18n.goToErrorGroup");
     }
 
+    // --- Modulith publication errors ---------------------------------------------------------------------
+
+    public static String origin() {
+        return resolve("i18n.error.origin");
+    }
+
+    public static String modulithPublicationOrigin() {
+        return resolve("i18n.error.origin.MODULITH_PUBLICATION");
+    }
+
+    public static String publicationId() {
+        return resolve("i18n.error.publication.id");
+    }
+
+    public static String publicationListener() {
+        return resolve("i18n.error.publication.listener");
+    }
+
+    public static String publicationEventType() {
+        return resolve("i18n.error.publication.event-type");
+    }
+
+    public static String publicationContentType() {
+        return resolve("i18n.error.publication.content-type");
+    }
+
+    public static String eventTopic() {
+        return resolve("i18n.error.event.topic");
+    }
+
+    public static String retryPublication() {
+        return resolve("i18n.errorhandling.action.retry-publication");
+    }
+
+    public static String discardPublication() {
+        return resolve("i18n.errorhandling.action.discard-publication");
+    }
+
     // --- dialogs -----------------------------------------------------------------------------------------
 
     public static String confirm() {

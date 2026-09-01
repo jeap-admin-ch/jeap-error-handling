@@ -32,6 +32,7 @@ import static org.mockito.Answers.RETURNS_DEEP_STUBS;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 @DataJpaTest
@@ -105,6 +106,24 @@ class ErrorEventHandlerServiceTest {
 
     @Test
     void handleModulithPublicationFailure() {
+        CausingEvent causingEvent = handleModulithPublicationFailure(Temporality.PERMANENT);
+
+        verify(errorServiceMock).handlePermanentError(errorMock);
+        assertTrue(causingEventRepository.findByCausingEventId(causingEvent.getMetadata().getId()).isPresent());
+    }
+
+    @Test
+    void handleTemporaryModulithPublicationFailure() {
+        CausingEvent causingEvent = handleModulithPublicationFailure(Temporality.TEMPORARY);
+
+        // a temporary Modulith publication failure is retried automatically, just like a temporary message
+        // processing failure - it is not escalated to a manual task right away
+        verify(errorServiceMock).handleTemporaryError(errorMock);
+        verify(errorServiceMock, never()).handlePermanentError(any());
+        assertTrue(causingEventRepository.findByCausingEventId(causingEvent.getMetadata().getId()).isPresent());
+    }
+
+    private CausingEvent handleModulithPublicationFailure(Temporality temporality) {
         ModulithPublicationProcessingFailedEvent failedEvent = mock(ModulithPublicationProcessingFailedEvent.class,
                 RETURNS_DEEP_STUBS);
         CausingEvent causingEvent = CausingEvent.builder()
@@ -121,14 +140,15 @@ class ErrorEventHandlerServiceTest {
                 .build();
         doReturn(causingEvent).when(modulithErrorEventMapperMock).toCausingEvent("testcluster", failedEvent);
         doReturn(errorMock).when(modulithErrorEventMapperMock).toError(any(), any(CausingEvent.class));
+        doReturn(errorEventData).when(errorMock).getErrorEventData();
+        doReturn(temporality).when(errorEventData).getTemporality();
 
         ErrorEventHandlerService errorEventHandlerService = new ErrorEventHandlerService(errorServiceMock,
                 causingEventRepository, errorEventMapperMock, modulithErrorEventMapperMock, transactionManager);
 
         errorEventHandlerService.handle("testcluster", failedEvent);
 
-        verify(errorServiceMock).handlePermanentError(errorMock);
-        assertTrue(causingEventRepository.findByCausingEventId(causingEvent.getMetadata().getId()).isPresent());
+        return causingEvent;
     }
 
     private MessageProcessingFailedEvent createMessageProcessingFailedEvent() {

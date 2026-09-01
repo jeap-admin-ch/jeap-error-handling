@@ -12,6 +12,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Consume failed Modulith publications from a dedicated, configurable Kafka topic.
 - Route Modulith retry and discard commands through the Kafka cluster on which the failure event was consumed.
 - Show the error origin and Modulith publication details and actions in the UI.
+- Retry temporary Modulith publication failures automatically with the resend scheduler, escalating them to a
+  permanent error once the resending strategy stops retrying.
 
 ### Changed
 - Correlate Modulith retry and discard commands with the processing failure event and defer manual-task closure

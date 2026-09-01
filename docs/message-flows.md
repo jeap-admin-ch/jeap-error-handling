@@ -48,7 +48,18 @@ A service using the Modulith error handling starter publishes a
 `ModulithPublicationProcessingFailedEvent` to the dedicated Modulith publication failure topic after the publication
 exhausts its local retry budget. The EHS
 persists the publication ID, listener, internal event payload, consumed Kafka cluster, and the source service's retry
-and discard command topics as a permanent error. A manual retry queues `RetryModulithPublicationCommand`; closing the
+and discard command topics.
+
+The temporality reported in the failure event decides what happens next, exactly as it does for a
+`MessageProcessingFailedEvent`:
+
+- `PERMANENT` — the publication is recorded as a permanent error and escalated to a manual task. It is only retried
+  when someone triggers the retry in the UI.
+- `TEMPORARY` — the publication is recorded as a temporary error and retried automatically by the
+  [resend scheduler](#automatic-retry-of-temporary-errors), which queues a `RetryModulithPublicationCommand` instead
+  of republishing a message. Once the `ResendingStrategy` stops retrying, the error is escalated to a permanent one.
+
+A retry queues `RetryModulithPublicationCommand`; closing the
 error queues `DiscardModulithPublicationCommand`. Both commands are inserted into the transactional outbox for that
 same Kafka cluster in the same transaction as the EHS state change. If the cluster is no longer configured, the action
 fails and the EHS error remains open rather than silently sending the command through the default cluster.
@@ -63,7 +74,11 @@ sequenceDiagram
 
     Starter->>FailureTopic: publish ModulithPublicationProcessingFailedEvent
     FailureTopic->>EHS: consume ModulithPublicationProcessingFailedEvent
-    EHS->>DB: persist permanent Error + ModulithPublicationData
+    alt temporality = PERMANENT
+        EHS->>DB: persist permanent Error + ModulithPublicationData
+    else temporality = TEMPORARY
+        EHS->>DB: persist temporary Error + ModulithPublicationData<br/>and schedule a resend
+    end
 ```
 
 ## Automatic retry of temporary errors
@@ -95,6 +110,12 @@ sequenceDiagram
 The message is republished to the cluster it was originally consumed from (see
 [Operations](operations.md#multi-cluster-support)). The header `jeap_eh_target_service` allows other
 consumers of the same topic to ignore messages that are resent for a different service.
+
+For a temporary [Modulith publication error](#failed-modulith-publication-intake) the scheduler follows the same
+loop, but instead of republishing a message it queues a `RetryModulithPublicationCommand` for the publishing
+application through the transactional outbox. If the publication fails again, that application reports it as a new
+failure event for the same publication, so the `ResendingStrategy` counts the attempts and eventually escalates the
+publication to a permanent error.
 
 ## Manual retry and delete from the UI
 
