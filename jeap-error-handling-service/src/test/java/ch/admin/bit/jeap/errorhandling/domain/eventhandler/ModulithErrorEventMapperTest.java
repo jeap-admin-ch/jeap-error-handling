@@ -1,4 +1,4 @@
-package ch.admin.bit.jeap.errorhandling.domain.eventHandler;
+package ch.admin.bit.jeap.errorhandling.domain.eventhandler;
 
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.CausingEvent;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
@@ -61,6 +61,16 @@ class ModulithErrorEventMapperTest {
         assertEquals(Error.ErrorState.TEMPORARY_RETRY_PENDING, error.getState());
     }
 
+    @Test
+    void mapsMissingSerializedEventToEmptyPayload() {
+        ModulithPublicationProcessingFailedEvent event =
+                failureEvent(Temporality.PERMANENT, ZonedDateTime.now(), null);
+
+        CausingEvent causingEvent = mapper.toCausingEvent("aws", event);
+
+        assertArrayEquals(new byte[0], causingEvent.getModulithPublication().getSerializedEvent());
+    }
+
     private static ModulithPublicationProcessingFailedEvent failureEvent(Temporality temporality,
                                                                         ZonedDateTime created,
                                                                         byte[] serializedEvent) {
@@ -78,7 +88,8 @@ class ModulithErrorEventMapperTest {
         when(event.getReferences().getPublication().getPublicationId()).thenReturn("publication-id");
         when(payload.getListener()).thenReturn("listener-id");
         when(payload.getEventType()).thenReturn("example.Event");
-        when(payload.getSerializedEvent()).thenReturn(ByteBuffer.wrap(serializedEvent));
+        when(payload.getSerializedEvent())
+                .thenReturn(serializedEvent == null ? null : ByteBuffer.wrap(serializedEvent));
         when(payload.getSerializedEventContentType()).thenReturn("application/json");
         when(payload.getRetryCommandTopicName()).thenReturn("retry-topic");
         when(payload.getDiscardCommandTopicName()).thenReturn("discard-topic");

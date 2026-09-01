@@ -1,4 +1,4 @@
-package ch.admin.bit.jeap.errorhandling.domain.eventHandler;
+package ch.admin.bit.jeap.errorhandling.domain.eventhandler;
 
 import ch.admin.bit.jeap.domainevent.avro.AvroDomainEventIdentity;
 import ch.admin.bit.jeap.domainevent.avro.AvroDomainEventPublisher;

@@ -1,4 +1,4 @@
-package ch.admin.bit.jeap.errorhandling.domain.eventHandler;
+package ch.admin.bit.jeap.errorhandling.domain.eventhandler;
 
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.CausingEvent;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
@@ -114,7 +114,7 @@ class ModulithErrorEventMapper {
 
     private static byte[] bytes(ByteBuffer value) {
         if (value == null) {
-            return null;
+            return new byte[0];
         }
         ByteBuffer copy = value.asReadOnlyBuffer();
         byte[] bytes = new byte[copy.remaining()];

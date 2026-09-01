@@ -1,4 +1,4 @@
-package ch.admin.bit.jeap.errorhandling.domain.eventHandler;
+package ch.admin.bit.jeap.errorhandling.domain.eventhandler;
 
 import ch.admin.bit.jeap.errorhandling.domain.error.ErrorService;
 import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.ErrorEventHandler;

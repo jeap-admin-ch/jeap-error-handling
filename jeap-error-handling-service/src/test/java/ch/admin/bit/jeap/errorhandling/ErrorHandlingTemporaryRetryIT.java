@@ -3,7 +3,7 @@ package ch.admin.bit.jeap.errorhandling;
 import ch.admin.bit.jeap.domainevent.avro.AvroDomainEventIdentity;
 import ch.admin.bit.jeap.domainevent.avro.AvroDomainEventPublisher;
 import ch.admin.bit.jeap.domainevent.avro.AvroDomainEventType;
-import ch.admin.bit.jeap.errorhandling.domain.eventHandler.ErrorEventHandlerService;
+import ch.admin.bit.jeap.errorhandling.domain.eventhandler.ErrorEventHandlerService;
 import ch.admin.bit.jeap.errorhandling.event.test.TestEvent;
 import ch.admin.bit.jeap.errorhandling.event.test.TestPayload;
 import ch.admin.bit.jeap.errorhandling.event.test.TestReferences;

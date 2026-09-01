@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [23.0.0] - 2026-09-02
+
+### Breaking
+- Renamed the package `ch.admin.bit.jeap.errorhandling.domain.eventHandler` to
+  `ch.admin.bit.jeap.errorhandling.domain.eventhandler` to follow the Java package naming convention.
+  `ErrorEventHandlerService` is the only public type in that package. Service instances that import it have to
+  update the import; no other change is required.
+
 ## [22.6.0] - 2026-09-01
 
 ### Added
