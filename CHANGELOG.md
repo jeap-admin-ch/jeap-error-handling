@@ -33,6 +33,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   `ErrorEventHandlerService` is the only public type in that package. Service instances that import it have to
   update the import; no other change is required.
 
+### Changed
+- Document that framework-owned Modulith transport messages require topic configuration but no EHS instance
+  contracts, including the command-topic provisioning and access requirements.
+
 ## [22.6.0] - 2026-09-01
 
 ### Added
