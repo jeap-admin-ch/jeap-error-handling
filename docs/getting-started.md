@@ -79,8 +79,12 @@ jeap:
       serviceName: ${spring.application.name}
 ```
 
-No message contract annotations are required for the Modulith publication failure event or its retry and discard
-commands. They are framework-owned transport messages.
+The EHS instance needs no message contract annotations for the Modulith publication failure event or its retry and
+discard commands. Its existing `ErrorServiceContractValidator` deliberately performs no contract checks.
+The source microservice using the Modulith error handling starter must, however, declare consumer contracts for
+`RetryModulithPublicationCommand` and `DiscardModulithPublicationCommand` on its configured command topics. The enabled
+starter validates these contracts at startup using the microservice's normal validator. The failure event does not
+need a producer contract in the source microservice because jEAP Messaging exempts that framework-owned event.
 
 ## 5. Set up authorization
 

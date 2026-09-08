@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [23.3.1] - 2026-09-08
+
+### Changed
+- Document that framework-owned Modulith transport messages require topic configuration but no EHS instance
+  contracts, including the command-topic provisioning and access requirements. Clarify that the source microservice
+  requires retry/discard consumer contracts, checked by the enabled starter at startup.
+
 ## [23.3.0] - 2026-09-06
 
 ### Dependencies
@@ -32,10 +39,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   `ch.admin.bit.jeap.errorhandling.domain.eventhandler` to follow the Java package naming convention.
   `ErrorEventHandlerService` is the only public type in that package. Service instances that import it have to
   update the import; no other change is required.
-
-### Changed
-- Document that framework-owned Modulith transport messages require topic configuration but no EHS instance
-  contracts, including the command-topic provisioning and access requirements.
 
 ## [22.6.0] - 2026-09-01
 

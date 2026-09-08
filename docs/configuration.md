@@ -40,6 +40,11 @@ persisted by the EHS; no additional command topic property is required. The EHS 
 consumed the failure and selects that cluster's `TransactionalOutbox` for both commands. Every cluster referenced by
 an open Modulith error must therefore remain configured until the error has been retried or discarded.
 
+The EHS keeps its deliberately no-op `ErrorServiceContractValidator`. This does not exempt the source
+microservice's command consumers: an application using the Modulith error handling starter must declare both
+retry and discard consumer contracts for its configured topics. The enabled starter checks these at startup
+using the application's existing validator.
+
 The topic configuration is validated at startup, the EHS refuses to start if:
 
 - `jeap.errorhandling.topic` or `jeap.errorhandling.deadLetterTopicName` is missing,
