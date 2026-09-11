@@ -5,6 +5,8 @@ import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ModulithPublicationData;
 import ch.admin.bit.jeap.messaging.kafka.properties.KafkaProperties;
 import ch.admin.bit.jeap.messaging.kafka.spring.JeapKafkaBeanNames;
+import ch.admin.bit.jeap.messaging.model.Message;
+import ch.admin.bit.jeap.messaging.transactionaloutbox.config.TransactionalOutboxConfigurationProperties;
 import ch.admin.bit.jeap.messaging.transactionaloutbox.outbox.TransactionalOutbox;
 import ch.admin.bit.jeap.modulith.command.discardpublication.DiscardModulithPublicationCommand;
 import ch.admin.bit.jeap.modulith.command.discardpublication.DiscardModulithPublicationCommandPayload;
@@ -13,8 +15,11 @@ import ch.admin.bit.jeap.modulith.command.retrypublication.RetryModulithPublicat
 import ch.admin.bit.jeap.modulith.command.retrypublication.RetryModulithPublicationCommandPayload;
 import ch.admin.bit.jeap.modulith.command.retrypublication.RetryModulithPublicationCommandReferences;
 import lombok.RequiredArgsConstructor;
+import org.apache.kafka.common.header.Headers;
+import org.apache.kafka.common.header.internals.RecordHeaders;
 import org.springframework.stereotype.Component;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 @Component
@@ -25,21 +30,34 @@ class ModulithPublicationCommandSender {
 
     private final Map<String, TransactionalOutbox> outboxesByBeanName;
     private final KafkaProperties kafkaProperties;
+    private final TransactionalOutboxConfigurationProperties outboxProperties;
 
     void retry(Error error) {
         ModulithPublicationData publication = error.getCausingEvent().getModulithPublication();
-        outboxFor(publication).sendMessage(
+        sendCommand(outboxFor(publication),
                 new RetryCommandBuilder(kafkaProperties, publication, error.getId().toString(),
                         error.getErrorEventMetadata().getId()).build(),
-                publication.getRetryCommandTopic());
+                publication.getRetryCommandTopic(), error);
     }
 
     void discard(Error error, String reason) {
         ModulithPublicationData publication = error.getCausingEvent().getModulithPublication();
-        outboxFor(publication).sendMessage(
+        sendCommand(outboxFor(publication),
                 new DiscardCommandBuilder(kafkaProperties, publication, error.getId().toString(),
                         error.getErrorEventMetadata().getId(), reason).build(),
-                publication.getDiscardCommandTopic());
+                publication.getDiscardCommandTopic(), error);
+    }
+
+    private void sendCommand(TransactionalOutbox outbox, Message command, String topic, Error error) {
+        if (outboxProperties.isHeadersEnabled()) {
+            Headers headers = new RecordHeaders()
+                    .add("jeap_eh_target_service", error.getErrorEventMetadata().getPublisher().getService()
+                            .getBytes(StandardCharsets.UTF_8))
+                    .add("jeap_eh_error_handling_service", kafkaProperties.getServiceName().getBytes(StandardCharsets.UTF_8));
+            outbox.sendMessage(command, null, topic, headers);
+        } else {
+            outbox.sendMessage(command, topic);
+        }
     }
 
     private TransactionalOutbox outboxFor(ModulithPublicationData publication) {

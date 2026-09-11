@@ -56,6 +56,31 @@ The topic configuration is validated at startup, the EHS refuses to start if:
 - `jeap.messaging.kafka.errorTopicName` is configured to something other than the dead letter topic, for the
   default cluster or for any cluster in `jeap.messaging.kafka.cluster.*`.
 
+### Target-service headers for Modulith commands
+
+EHS enables durable outbox headers by default, so retry and discard commands carry
+`jeap_eh_target_service` (the failure event's publishing service) and
+`jeap_eh_error_handling_service` (this EHS's service name). No instance configuration is required.
+The headers are stored atomically with the command and survive delayed outbox relay and resend.
+The existing jEAP target filter discards commands addressed to a different service before invoking
+its listener; UUID and failure-generation validation remain unchanged. This does not change command
+topics, Kafka ACLs, signing, or contracts.
+
+Header storage can be disabled explicitly if an instance must temporarily retain legacy command delivery:
+
+```yaml
+jeap:
+  messaging:
+    transactional-outbox:
+      headers-enabled: false
+```
+
+Flyway is enabled by default for EHS and migration `V15_0_0` automatically creates the additive
+`deferred_message_header` table before header storage is used. No existing column changes. During a rolling
+upgrade, run the migration before an upgraded instance starts sending header-bearing commands and do not run
+old relay code while such commands remain eligible for delivery or resend. Existing headerless commands remain
+readable and retain their previous behavior; the migration does not retrofit target headers onto them.
+
 ### Retry of temporary EHS failures
 
 If the EHS hits a transient problem while consuming (e.g. the database is briefly unavailable), it retries

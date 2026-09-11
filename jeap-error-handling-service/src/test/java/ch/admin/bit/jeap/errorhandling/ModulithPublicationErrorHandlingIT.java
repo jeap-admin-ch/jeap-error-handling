@@ -10,6 +10,15 @@ import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error.ErrorSta
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ErrorEventData;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ModulithPublicationData;
 import ch.admin.bit.jeap.messaging.kafka.test.TestKafkaListener;
+import ch.admin.bit.jeap.messaging.kafka.filter.ErrorHandlingTargetFilter;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.common.header.Headers;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
+import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
+import org.springframework.kafka.core.ConsumerFactory;
+import org.springframework.kafka.listener.ContainerProperties;
 import ch.admin.bit.jeap.modulith.command.discardpublication.DiscardModulithPublicationCommand;
 import ch.admin.bit.jeap.modulith.command.retrypublication.RetryModulithPublicationCommand;
 import ch.admin.bit.jeap.modulith.event.publicationprocessingfailed.ModulithPublicationProcessingFailedEvent;
@@ -43,6 +52,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import static ch.admin.bit.jeap.errorhandling.ModulithPublicationErrorHandlingIT.DISCARD_COMMAND_TOPIC;
@@ -66,6 +77,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
  */
 @Slf4j
 @ActiveProfiles(ModulithPublicationErrorHandlingIT.PROFILE)
+@Import(ModulithPublicationErrorHandlingIT.CommandConsumerConfiguration.class)
 @SpringBootTest(webEnvironment = DEFINED_PORT, properties = {
         "server.port=8306",
         "jeap.errorhandling.deadLetterTopicName=" + ErrorHandlingITBase.DEAD_LETTER_TOPIC,
@@ -99,6 +111,9 @@ class ModulithPublicationErrorHandlingIT extends ErrorHandlingITBase {
     @Autowired
     private ModulithCommandConsumer commandConsumer;
 
+    @Autowired
+    private CommandRoutingProbe routingProbe;
+
     /**
      * The listener containers of the error handling service itself. They are registered as beans by
      * {@code KafkaErrorEventConsumerFactory} and are therefore not part of the {@code KafkaListenerEndpointRegistry}
@@ -119,6 +134,7 @@ class ModulithPublicationErrorHandlingIT extends ErrorHandlingITBase {
         containers.addAll(messageListenerContainers);
         containers.forEach(container -> ContainerTestUtils.waitForAssignment(container, 1));
         commandConsumer.reset();
+        routingProbe.filteredCommandIds.clear();
     }
 
     @Test
@@ -142,6 +158,7 @@ class ModulithPublicationErrorHandlingIT extends ErrorHandlingITBase {
                 statusCode(HttpStatus.OK.value());
 
         RetryModulithPublicationCommand command = awaitRetryCommand(publicationId);
+        assertCommandRouting(command.getIdentity().getId());
         assertThat(command.getIdentity().getIdempotenceId()).isEqualTo("retry:" + error.getId());
         assertThat(command.getReferences().getPublication().getFailureEventId())
                 .isEqualTo(failureEvent.getIdentity().getEventId());
@@ -168,6 +185,7 @@ class ModulithPublicationErrorHandlingIT extends ErrorHandlingITBase {
                 statusCode(HttpStatus.OK.value());
 
         DiscardModulithPublicationCommand command = awaitDiscardCommand(publicationId);
+        assertCommandRouting(command.getIdentity().getId());
         assertThat(command.getIdentity().getIdempotenceId()).isEqualTo("discard:" + error.getId());
         assertThat(command.getPayload().getReason()).isEqualTo("publication is obsolete");
         assertThat(command.getReferences().getPublication().getFailureEventId())
@@ -192,6 +210,7 @@ class ModulithPublicationErrorHandlingIT extends ErrorHandlingITBase {
         // no user interaction: the resend scheduler picks the error up and asks the publishing application to
         // retry the publication
         RetryModulithPublicationCommand command = awaitRetryCommand(publicationId);
+        assertCommandRouting(command.getIdentity().getId());
         assertThat(command.getIdentity().getIdempotenceId()).isEqualTo("retry:" + error.getId());
 
         await("error has been retried").atMost(FORTY_SECONDS)
@@ -331,14 +350,23 @@ class ModulithPublicationErrorHandlingIT extends ErrorHandlingITBase {
         private final List<RetryModulithPublicationCommand> retryCommands = new CopyOnWriteArrayList<>();
         private final List<DiscardModulithPublicationCommand> discardCommands = new CopyOnWriteArrayList<>();
 
-        @TestKafkaListener(topics = {RETRY_COMMAND_TOPIC}, groupId = "modulith-retry-command-consumer")
-        public void consumeRetryCommand(RetryModulithPublicationCommand command) {
+        private final Map<String, Headers> headersByCommandId = new ConcurrentHashMap<>();
+        private final List<Object> otherServiceCommands = new CopyOnWriteArrayList<>();
+
+        @TestKafkaListener(topics = {RETRY_COMMAND_TOPIC}, groupId = "modulith-retry-command-consumer",
+                containerFactory = "orderServiceCommandFactory")
+        public void consumeRetryCommand(ConsumerRecord<Object, RetryModulithPublicationCommand> record) {
+            RetryModulithPublicationCommand command = record.value();
+            headersByCommandId.put(command.getIdentity().getId(), record.headers());
             log.info("Consuming retry command in ModulithCommandConsumer: {}", command);
             retryCommands.add(command);
         }
 
-        @TestKafkaListener(topics = {DISCARD_COMMAND_TOPIC}, groupId = "modulith-discard-command-consumer")
-        public void consumeDiscardCommand(DiscardModulithPublicationCommand command) {
+        @TestKafkaListener(topics = {DISCARD_COMMAND_TOPIC}, groupId = "modulith-discard-command-consumer",
+                containerFactory = "orderServiceCommandFactory")
+        public void consumeDiscardCommand(ConsumerRecord<Object, DiscardModulithPublicationCommand> record) {
+            DiscardModulithPublicationCommand command = record.value();
+            headersByCommandId.put(command.getIdentity().getId(), record.headers());
             log.info("Consuming discard command in ModulithCommandConsumer: {}", command);
             discardCommands.add(command);
         }
@@ -362,6 +390,75 @@ class ModulithPublicationErrorHandlingIT extends ErrorHandlingITBase {
         void reset() {
             retryCommands.clear();
             discardCommands.clear();
+            headersByCommandId.clear();
+            otherServiceCommands.clear();
+        }
+
+        @TestKafkaListener(topics = RETRY_COMMAND_TOPIC, groupId = "other-service-retry-consumer",
+                containerFactory = "otherServiceCommandFactory")
+        public void consumeRetryForOtherService(ConsumerRecord<Object, Object> record) {
+            otherServiceCommands.add(record.value());
+        }
+
+        @TestKafkaListener(topics = DISCARD_COMMAND_TOPIC, groupId = "other-service-discard-consumer",
+                containerFactory = "otherServiceCommandFactory")
+        public void consumeDiscardForOtherService(ConsumerRecord<Object, Object> record) {
+            otherServiceCommands.add(record.value());
+        }
+    }
+
+    private void assertCommandRouting(String commandId) {
+        Headers headers = commandConsumer.headersByCommandId.get(commandId);
+        assertThat(new String(headers.lastHeader("jeap_eh_target_service").value(), StandardCharsets.UTF_8))
+                .isEqualTo("order-service");
+        assertThat(new String(headers.lastHeader("jeap_eh_error_handling_service").value(), StandardCharsets.UTF_8))
+                .isEqualTo("jeap-error-handling-service");
+        await().atMost(FORTY_SECONDS).untilAsserted(() ->
+                assertThat(routingProbe.filteredCommandIds).contains(commandId));
+        assertThat(commandConsumer.otherServiceCommands).isEmpty();
+    }
+
+    static class CommandRoutingProbe {
+        final List<String> filteredCommandIds = new CopyOnWriteArrayList<>();
+    }
+
+    @TestConfiguration(proxyBeanMethods = false)
+    static class CommandConsumerConfiguration {
+
+        @Bean
+        CommandRoutingProbe commandRoutingProbe() {
+            return new CommandRoutingProbe();
+        }
+
+        @Bean
+        ConcurrentKafkaListenerContainerFactory<Object, Object> orderServiceCommandFactory(ConsumerFactory<Object, Object> consumers) {
+            var factory = commandFactory(consumers);
+            factory.setRecordFilterStrategy(new ErrorHandlingTargetFilter("order-service"));
+            return factory;
+        }
+
+        @Bean
+        ConcurrentKafkaListenerContainerFactory<Object, Object> otherServiceCommandFactory(
+                ConsumerFactory<Object, Object> consumers, CommandRoutingProbe probe) {
+            var factory = commandFactory(consumers);
+            var filter = new ErrorHandlingTargetFilter("other-service");
+            factory.setRecordFilterStrategy(record -> {
+                boolean filtered = filter.filter(record);
+                if (filtered) {
+                    var message = (ch.admin.bit.jeap.messaging.model.Message) record.value();
+                    probe.filteredCommandIds.add(message.getIdentity().getId());
+                }
+                return filtered;
+            });
+            return factory;
+        }
+
+        private static ConcurrentKafkaListenerContainerFactory<Object, Object> commandFactory(ConsumerFactory<Object, Object> consumers) {
+            var factory = new ConcurrentKafkaListenerContainerFactory<Object, Object>();
+            factory.setConsumerFactory(consumers);
+            factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.RECORD);
+            factory.setAckDiscarded(true);
+            return factory;
         }
     }
 }

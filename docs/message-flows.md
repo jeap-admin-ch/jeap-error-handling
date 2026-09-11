@@ -205,6 +205,15 @@ sequenceDiagram
     end
 ```
 
+## Modulith command targeting
+
+When [optional outbox headers](configuration.md#optional-target-service-headers-for-modulith-commands)
+are enabled, the EHS addresses retry/discard commands to the service that published the failure event
+using `jeap_eh_target_service`. Other services sharing the command topic filter them out. The Kafka
+cluster and topic still determine delivery; publication UUID and failure-event identity still determine
+which failed generation can be retried or discarded. Without the opt-in, the existing UUID/generation
+targeting behavior is preserved.
+
 ## Related
 
 - [Architecture](architecture.md) — error state model and data model

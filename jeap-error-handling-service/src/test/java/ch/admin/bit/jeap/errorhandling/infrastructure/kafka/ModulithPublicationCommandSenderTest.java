@@ -2,10 +2,13 @@ package ch.admin.bit.jeap.errorhandling.infrastructure.kafka;
 
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.CausingEvent;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.Error;
+import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.EventPublisher;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.ModulithPublicationData;
 import ch.admin.bit.jeap.messaging.avro.security.AvroClassSecurity;
 import ch.admin.bit.jeap.messaging.kafka.properties.KafkaProperties;
 import ch.admin.bit.jeap.messaging.transactionaloutbox.outbox.TransactionalOutbox;
+import ch.admin.bit.jeap.messaging.transactionaloutbox.config.TransactionalOutboxConfigurationProperties;
+import org.apache.kafka.common.header.Headers;
 import ch.admin.bit.jeap.modulith.command.discardpublication.DiscardModulithPublicationCommand;
 import ch.admin.bit.jeap.modulith.command.retrypublication.RetryModulithPublicationCommand;
 import org.junit.jupiter.api.BeforeAll;
@@ -18,12 +21,17 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Map;
 import java.util.UUID;
+import java.nio.charset.StandardCharsets;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.isNull;
+import static org.mockito.Mockito.verifyNoInteractions;
 
 @ExtendWith(MockitoExtension.class)
 class ModulithPublicationCommandSenderTest {
@@ -40,6 +48,7 @@ class ModulithPublicationCommandSenderTest {
     private Error error;
     private CausingEvent causingEvent;
     private FailedEventResender resender;
+    private final TransactionalOutboxConfigurationProperties outboxProperties = new TransactionalOutboxConfigurationProperties();
 
     @BeforeAll
     static void installAvroClassSecurity() {
@@ -48,6 +57,7 @@ class ModulithPublicationCommandSenderTest {
 
     @BeforeEach
     void setUp() {
+        outboxProperties.setHeadersEnabled(true);
         when(kafkaProperties.getDefaultClusterName()).thenReturn("bit");
         causingEvent = org.mockito.Mockito.mock(CausingEvent.class);
         when(causingEvent.getOrigin()).thenReturn(CausingEvent.Origin.MODULITH_PUBLICATION);
@@ -55,7 +65,7 @@ class ModulithPublicationCommandSenderTest {
         when(error.getCausingEvent()).thenReturn(causingEvent);
         ModulithPublicationCommandSender commandSender = new ModulithPublicationCommandSender(Map.of(
                 "kafkaTransactionalOutbox", defaultOutbox,
-                "awsKafkaTransactionalOutbox", awsOutbox), kafkaProperties);
+                "awsKafkaTransactionalOutbox", awsOutbox), kafkaProperties, outboxProperties);
         resender = new FailedEventResender(kafkaResender, commandSender);
     }
 
@@ -67,8 +77,10 @@ class ModulithPublicationCommandSenderTest {
         resender.resend(error);
 
         ArgumentCaptor<RetryModulithPublicationCommand> command = ArgumentCaptor.forClass(RetryModulithPublicationCommand.class);
-        verify(awsOutbox).sendMessage(command.capture(), org.mockito.ArgumentMatchers.eq("retry-topic"));
-        verify(defaultOutbox, never()).sendMessage(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.anyString());
+        ArgumentCaptor<Headers> headers = ArgumentCaptor.forClass(Headers.class);
+        verify(awsOutbox).sendMessage(command.capture(), isNull(), eq("retry-topic"), headers.capture());
+        assertTargetHeaders(headers.getValue());
+        verifyNoInteractions(defaultOutbox);
         verify(kafkaResender, never()).resend(error);
         assertEquals("publication-id", command.getValue().getReferences().getPublication().getPublicationId());
         assertEquals("failure-event-id", command.getValue().getReferences().getPublication().getFailureEventId());
@@ -84,8 +96,10 @@ class ModulithPublicationCommandSenderTest {
         resender.discardIfModulith(error, "resolved manually");
 
         ArgumentCaptor<DiscardModulithPublicationCommand> command = ArgumentCaptor.forClass(DiscardModulithPublicationCommand.class);
-        verify(awsOutbox).sendMessage(command.capture(), org.mockito.ArgumentMatchers.eq("discard-topic"));
-        verify(defaultOutbox, never()).sendMessage(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.anyString());
+        ArgumentCaptor<Headers> headers = ArgumentCaptor.forClass(Headers.class);
+        verify(awsOutbox).sendMessage(command.capture(), isNull(), eq("discard-topic"), headers.capture());
+        assertTargetHeaders(headers.getValue());
+        verifyNoInteractions(defaultOutbox);
         assertEquals("publication-id", command.getValue().getReferences().getPublication().getPublicationId());
         assertEquals("failure-event-id", command.getValue().getReferences().getPublication().getFailureEventId());
         assertEquals("resolved manually", command.getValue().getPayload().getReason());
@@ -100,9 +114,8 @@ class ModulithPublicationCommandSenderTest {
 
         resender.resend(error);
 
-        verify(defaultOutbox).sendMessage(org.mockito.ArgumentMatchers.any(RetryModulithPublicationCommand.class),
-                org.mockito.ArgumentMatchers.eq("retry-topic"));
-        verify(awsOutbox, never()).sendMessage(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.anyString());
+        verify(defaultOutbox).sendMessage(any(RetryModulithPublicationCommand.class), isNull(), eq("retry-topic"), any(Headers.class));
+        verifyNoInteractions(awsOutbox);
     }
 
     @Test
@@ -135,6 +148,29 @@ class ModulithPublicationCommandSenderTest {
         ch.admin.bit.jeap.errorhandling.infrastructure.persistence.EventMetadata metadata =
                 org.mockito.Mockito.mock(ch.admin.bit.jeap.errorhandling.infrastructure.persistence.EventMetadata.class);
         when(metadata.getId()).thenReturn("failure-event-id");
+        if (outboxProperties.isHeadersEnabled()) {
+            when(metadata.getPublisher()).thenReturn(EventPublisher.builder().system("test-system").service("source-service").build());
+        }
         when(error.getErrorEventMetadata()).thenReturn(metadata);
+    }
+
+    @Test
+    void disabledHeadersPreserveLegacyCommandDelivery() {
+        outboxProperties.setHeadersEnabled(false);
+        stubCommandMetadata();
+        useCluster("bit");
+
+        resender.resend(error);
+        resender.discardIfModulith(error, "resolved");
+
+        verify(defaultOutbox).sendMessage(any(RetryModulithPublicationCommand.class), eq("retry-topic"));
+        verify(defaultOutbox).sendMessage(any(DiscardModulithPublicationCommand.class), eq("discard-topic"));
+        verify(defaultOutbox, never()).sendMessage(any(), any(), any(), any());
+        verifyNoInteractions(awsOutbox);
+    }
+
+    private static void assertTargetHeaders(Headers headers) {
+        assertEquals("source-service", new String(headers.lastHeader("jeap_eh_target_service").value(), StandardCharsets.UTF_8));
+        assertEquals("test-service", new String(headers.lastHeader("jeap_eh_error_handling_service").value(), StandardCharsets.UTF_8));
     }
 }
