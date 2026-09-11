@@ -50,6 +50,16 @@ another message type.
 The Kafka user of the EHS needs read access to both configured failure topics, write access to the dead letter and
 Modulith command topics, and **write access to every topic the EHS must be able to resend messages to**.
 
+For Modulith onboarding, reuse the system's existing EHS with Modulith support. The application publishes failure
+events; the EHS consumes them and publishes retry/discard commands back to that application. Permissions must be
+granted separately to the application and EHS Kafka identities. No additional command-topic properties are needed
+in EHS: the failure event supplies the reply destinations. Roll out the configuration and restart EHS to activate
+the failure listener before testing.
+
+The starter's [Kafka topics and service responsibilities](https://github.com/jeap-admin-ch/jeap-spring-modulith-error-handling-starter/blob/main/docs/getting-started.md#kafka-topics-and-service-responsibilities)
+guide lists the producers, consumers, topic properties, contracts and permissions on each side, together with signing
+requirements and a first end-to-end check. Internal Modulith events do not themselves require Kafka topics.
+
 ## 3. Configure the consumers of your system
 
 Enable the jEAP messaging error handling in every service that consumes messages: configure
