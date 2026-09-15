@@ -355,18 +355,18 @@ class ModulithPublicationErrorHandlingIT extends ErrorHandlingITBase {
 
         @TestKafkaListener(topics = {RETRY_COMMAND_TOPIC}, groupId = "modulith-retry-command-consumer",
                 containerFactory = "orderServiceCommandFactory")
-        public void consumeRetryCommand(ConsumerRecord<Object, RetryModulithPublicationCommand> record) {
-            RetryModulithPublicationCommand command = record.value();
-            headersByCommandId.put(command.getIdentity().getId(), record.headers());
+        public void consumeRetryCommand(ConsumerRecord<Object, RetryModulithPublicationCommand> consumerRecord) {
+            RetryModulithPublicationCommand command = consumerRecord.value();
+            headersByCommandId.put(command.getIdentity().getId(), consumerRecord.headers());
             log.info("Consuming retry command in ModulithCommandConsumer: {}", command);
             retryCommands.add(command);
         }
 
         @TestKafkaListener(topics = {DISCARD_COMMAND_TOPIC}, groupId = "modulith-discard-command-consumer",
                 containerFactory = "orderServiceCommandFactory")
-        public void consumeDiscardCommand(ConsumerRecord<Object, DiscardModulithPublicationCommand> record) {
-            DiscardModulithPublicationCommand command = record.value();
-            headersByCommandId.put(command.getIdentity().getId(), record.headers());
+        public void consumeDiscardCommand(ConsumerRecord<Object, DiscardModulithPublicationCommand> consumerRecord) {
+            DiscardModulithPublicationCommand command = consumerRecord.value();
+            headersByCommandId.put(command.getIdentity().getId(), consumerRecord.headers());
             log.info("Consuming discard command in ModulithCommandConsumer: {}", command);
             discardCommands.add(command);
         }
@@ -396,14 +396,14 @@ class ModulithPublicationErrorHandlingIT extends ErrorHandlingITBase {
 
         @TestKafkaListener(topics = RETRY_COMMAND_TOPIC, groupId = "other-service-retry-consumer",
                 containerFactory = "otherServiceCommandFactory")
-        public void consumeRetryForOtherService(ConsumerRecord<Object, Object> record) {
-            otherServiceCommands.add(record.value());
+        public void consumeRetryForOtherService(ConsumerRecord<Object, Object> consumerRecord) {
+            otherServiceCommands.add(consumerRecord.value());
         }
 
         @TestKafkaListener(topics = DISCARD_COMMAND_TOPIC, groupId = "other-service-discard-consumer",
                 containerFactory = "otherServiceCommandFactory")
-        public void consumeDiscardForOtherService(ConsumerRecord<Object, Object> record) {
-            otherServiceCommands.add(record.value());
+        public void consumeDiscardForOtherService(ConsumerRecord<Object, Object> consumerRecord) {
+            otherServiceCommands.add(consumerRecord.value());
         }
     }
 
@@ -442,10 +442,10 @@ class ModulithPublicationErrorHandlingIT extends ErrorHandlingITBase {
                 ConsumerFactory<Object, Object> consumers, CommandRoutingProbe probe) {
             var factory = commandFactory(consumers);
             var filter = new ErrorHandlingTargetFilter("other-service");
-            factory.setRecordFilterStrategy(record -> {
-                boolean filtered = filter.filter(record);
+            factory.setRecordFilterStrategy(consumerRecord -> {
+                boolean filtered = filter.filter(consumerRecord);
                 if (filtered) {
-                    var message = (ch.admin.bit.jeap.messaging.model.Message) record.value();
+                    var message = (ch.admin.bit.jeap.messaging.model.Message) consumerRecord.value();
                     probe.filteredCommandIds.add(message.getIdentity().getId());
                 }
                 return filtered;
