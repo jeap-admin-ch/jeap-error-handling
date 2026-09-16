@@ -71,6 +71,30 @@ class ModulithErrorEventMapperTest {
         assertArrayEquals(new byte[0], causingEvent.getModulithPublication().getSerializedEvent());
     }
 
+    @Test
+    void sanitizesTextThatCannotBeStoredInPostgres() {
+        ModulithPublicationProcessingFailedEvent event =
+                failureEvent(Temporality.PERMANENT, ZonedDateTime.now(), null);
+        when(event.getPayload().getErrorMessage()).thenReturn("processing\u0000failed");
+        when(event.getPayload().getStackTrace()).thenReturn("stack\u0000trace");
+
+        Error error = mapper.toError(event, mapper.toCausingEvent("aws", event));
+
+        assertEquals("processing failed", error.getErrorEventData().getMessage());
+        assertEquals("stack trace", error.getErrorEventData().getStackTrace());
+    }
+
+    @Test
+    void ignoresTraceContextProviderFailures() {
+        ModulithPublicationProcessingFailedEvent event =
+                failureEvent(Temporality.PERMANENT, ZonedDateTime.now(), null);
+        when(traceContextProvider.getTraceContext()).thenThrow(new IllegalStateException("tracing unavailable"));
+
+        Error error = mapper.toError(event, mapper.toCausingEvent("aws", event));
+
+        assertNull(error.getOriginalTraceContext());
+    }
+
     private static ModulithPublicationProcessingFailedEvent failureEvent(Temporality temporality,
                                                                         ZonedDateTime created,
                                                                         byte[] serializedEvent) {

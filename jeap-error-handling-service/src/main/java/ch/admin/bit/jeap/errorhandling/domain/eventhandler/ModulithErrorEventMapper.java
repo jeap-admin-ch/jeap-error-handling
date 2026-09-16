@@ -11,12 +11,14 @@ import ch.admin.bit.jeap.messaging.kafka.tracing.TraceContext;
 import ch.admin.bit.jeap.messaging.kafka.tracing.TraceContextProvider;
 import ch.admin.bit.jeap.errorhandling.infrastructure.persistence.OriginalTraceContext;
 import ch.admin.bit.jeap.modulith.event.publicationprocessingfailed.ModulithPublicationProcessingFailedEvent;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.nio.ByteBuffer;
 import java.time.ZonedDateTime;
 
 @Component
+@Slf4j
 class ModulithErrorEventMapper {
 
     static final String ERROR_CODE = "MODULITH_PUBLICATION_PROCESSING_FAILED";
@@ -77,9 +79,9 @@ class ModulithErrorEventMapper {
                 .errorEventData(ErrorEventData.builder()
                         .code(ERROR_CODE)
                         .temporality(temporality)
-                        .message(payload.getErrorMessage())
+                        .message(ErrorEventTextSanitizer.sanitize(payload.getErrorMessage()))
                         .description(payload.getErrorDescription())
-                        .stackTrace(payload.getStackTrace())
+                        .stackTrace(ErrorEventTextSanitizer.sanitize(payload.getStackTrace()))
                         .stackTraceHash(payload.getStackTraceHash())
                         .build())
                 .errorEventMetadata(errorMetadata)
@@ -101,15 +103,20 @@ class ModulithErrorEventMapper {
     }
 
     private OriginalTraceContext currentTraceContext() {
-        TraceContext traceContext = traceContextProvider.getTraceContext();
-        return traceContext == null ? null : OriginalTraceContext.builder()
-                .traceIdHigh(traceContext.getTraceIdHigh())
-                .traceId(traceContext.getTraceId())
-                .spanId(traceContext.getSpanId())
-                .parentSpanId(traceContext.getParentSpanId())
-                .traceIdString(traceContext.getTraceIdString())
-                .sampled(traceContext.getSampled())
-                .build();
+        try {
+            TraceContext traceContext = traceContextProvider.getTraceContext();
+            return traceContext == null ? null : OriginalTraceContext.builder()
+                    .traceIdHigh(traceContext.getTraceIdHigh())
+                    .traceId(traceContext.getTraceId())
+                    .spanId(traceContext.getSpanId())
+                    .parentSpanId(traceContext.getParentSpanId())
+                    .traceIdString(traceContext.getTraceIdString())
+                    .sampled(traceContext.getSampled())
+                    .build();
+        } catch (Exception exception) {
+            log.error("Error retrieving current trace context. Returning null.", exception);
+            return null;
+        }
     }
 
     private static byte[] bytes(ByteBuffer value) {

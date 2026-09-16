@@ -48,7 +48,8 @@ A service using the Modulith error handling starter publishes a
 `ModulithPublicationProcessingFailedEvent` to the dedicated Modulith publication failure topic after the publication
 exhausts its local retry budget. The EHS
 persists the publication ID, listener, internal event payload, consumed Kafka cluster, and the source service's retry
-and discard command topics.
+and discard command topics. Exception messages and stack traces are made safe for PostgreSQL text columns before they
+are stored, and unavailable tracing information does not prevent the failure from being recorded.
 
 The temporality reported in the failure event decides what happens next, exactly as it does for a
 `MessageProcessingFailedEvent`:

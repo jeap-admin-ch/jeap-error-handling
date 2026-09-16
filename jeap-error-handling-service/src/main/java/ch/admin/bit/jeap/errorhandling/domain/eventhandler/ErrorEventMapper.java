@@ -220,24 +220,11 @@ class ErrorEventMapper {
         return ErrorEventData.builder().
                 code(errorTypeReference.getCode()).
                 temporality(Temporality.valueOf(errorTypeReference.getTemporality())).
-                message(replaceNullCharWithBlank(errorPayload.getErrorMessage())).
+                message(ErrorEventTextSanitizer.sanitize(errorPayload.getErrorMessage())).
                 description(errorPayload.getErrorDescription()).
-                stackTrace(replaceNullCharWithBlank(errorPayload.getStackTrace())).
+                stackTrace(ErrorEventTextSanitizer.sanitize(errorPayload.getStackTrace())).
                 stackTraceHash(errorPayload.getStackTraceHash()).
                 build();
-    }
-
-    /**
-     * Postgres cannot store null chars as text. Replacing the null chars with blanks.
-     *
-     * @param message the original string
-     * @return the string without null chars
-     */
-    private String replaceNullCharWithBlank(String message) {
-        if (message == null) {
-            return null;
-        }
-        return message.replace('\u0000', ' ');
     }
 
     @PreDestroy
