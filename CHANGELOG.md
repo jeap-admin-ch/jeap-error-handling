@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [24.3.1] - 2026-09-17
+
+### Removed
+- Removed the explicit version on `io.rest-assured:spring-mock-mvc`: it used the parent's own `${rest-assured.version}` for an artifact `jeap-internal-spring-boot-parent` already manages.
+
 ## [24.3.0] - 2026-09-16
 
 ### Dependencies
