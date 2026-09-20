@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [24.5.0] - 2026-09-20
+
+### Dependencies
+- **jest-environment-jsdom**: 30.5.1 → 30.5.2 (patch)
+- **jest**: 30.5.1 → 30.5.2 (patch)
+- **fast-uri**: 4.1.5 → 4.2.1 (minor)
+
 ## [24.4.0] - 2026-09-17
 
 ### Dependencies
