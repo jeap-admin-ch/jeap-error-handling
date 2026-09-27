@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [25.0.0] - 2026-09-27
+
+### Dependencies
+- **ch.admin.bit.jeap:jeap-spring-boot-parent**: 41.9.0 → 41.10.0 (minor)
+- **ts-jest**: 29.4.13 → 29.4.14 (patch)
+- **simple-git**: 3.36.0 → 4.0.2 (major)
+- **jest-preset-angular**: 17.0.0 → 17.0.1 (patch)
+
 ## [24.6.0] - 2026-09-23
 
 ### Dependencies
