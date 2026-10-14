@@ -23,7 +23,7 @@ Create a source code repository for your EHS instance containing:
 - configuration files (`application-<env>.yml`), see [Configuration](configuration.md).
 
 An instance can initially be created after the template of the `jme-messaging-error-scs` module in the
-[jme-messaging-example](https://git.example.com/jme/jme-messaging-example)
+[jme-messaging-example](https://github.com/jme-admin-ch/jme-messaging-example)
 project. Note that this template shows the instantiation inside a multi-module project: it does not use
 `jeap-error-handling-service-instance` as parent and therefore adds the `jeap-error-handling-service`
 dependency explicitly. In multi-module setups, make sure the `jeap-spring-boot-parent` version of the
@@ -42,10 +42,8 @@ topics for each source service (see the platform documentation on creating Kafka
 | Modulith discard command topic     | `<system>-<service>-discard-modulith-publication` | The EHS publishes discard commands here; configure `jeap.modulith.error-handling.discard-command-topic` in the source service.                                        |
 | Dead letter topic                  | `<system>-messageprocessing-deadletter`           | Failures of the EHS itself (`jeap.errorhandling.deadLetterTopicName`), see [Operations](operations.md#dead-letter-topic).                                              |
 
-The regular failure, Modulith failure, and dead letter topics configured in the EHS must be distinct. The EHS checks
-these three properties at startup and refuses to start otherwise, as it must not consume its own failures again and
-each inbound topic carries exactly one event type. Retry and discard topics must likewise not overlap topics carrying
-another message type.
+The configured topics must be distinct; see [Kafka configuration](configuration.md#kafka) for startup
+validation rules. Retry and discard topics must likewise not overlap topics carrying another message type.
 
 The Kafka user of the EHS needs read access to both configured failure topics, write access to the dead letter and
 Modulith command topics, and **write access to every topic the EHS must be able to resend messages to**.
@@ -56,7 +54,7 @@ granted separately to the application and EHS Kafka identities. No additional co
 in EHS: the failure event supplies the reply destinations. Roll out the configuration and restart EHS to activate
 the failure listener before testing.
 
-The starter's [Kafka topics and service responsibilities](https://github.com/jeap-admin-ch/jeap-spring-modulith-error-handling-starter/blob/main/docs/getting-started.md#kafka-topics-and-service-responsibilities)
+The starter's [Kafka topics and service responsibilities](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-modulith-error-handling-starter/getting-started#kafka-topics-and-service-responsibilities)
 guide lists the producers, consumers, topic properties, contracts and permissions on each side, together with signing
 requirements and a first end-to-end check. Internal Modulith events do not themselves require Kafka topics.
 
@@ -70,7 +68,12 @@ Classify failures that are worth retrying as temporary by throwing exceptions th
 
 ## 4. Configure the EHS instance
 
-Minimal configuration of the instance (see [Configuration](configuration.md) for everything else):
+The following excerpt shows the main service-specific settings. It is not a complete runnable
+configuration. Supply the deployment's datasource connection and credentials, Kafka/schema-registry
+connection and authentication, and OAuth issuer. Complete the [frontend settings](configuration.md#frontend-and-oauth),
+including the required ticket URL and either the PAMS environment or `pams-enabled=false`, and configure
+the [log link](configuration.md#log-deep-link). Configure Agir or explicitly disable it as described below.
+The [complete integration examples](#complete-integration-examples) show how these settings fit together.
 
 ```yaml
 jeap:
@@ -89,12 +92,8 @@ jeap:
       serviceName: ${spring.application.name}
 ```
 
-The EHS instance needs no message contract annotations for the Modulith publication failure event or its retry and
-discard commands. Its existing `ErrorServiceContractValidator` deliberately performs no contract checks.
-The source microservice using the Modulith error handling starter must, however, declare consumer contracts for
-`RetryModulithPublicationCommand` and `DiscardModulithPublicationCommand` on its configured command topics. The enabled
-starter validates these contracts at startup using the microservice's normal validator. The failure event does not
-need a producer contract in the source microservice because jEAP Messaging exempts that framework-owned event.
+For Modulith message-contract requirements on the EHS and source-service sides, see
+[Kafka configuration](configuration.md#kafka).
 
 ## 5. Set up authorization
 
@@ -120,3 +119,13 @@ tickets on [error groups](error-groups.md).
 - [Message Flows](message-flows.md) — runtime behaviour
 - [Configuration](configuration.md) — the complete property reference
 - [Development](development.md) — working on this repository itself
+
+## Complete integration examples
+
+The following source examples include the complete build, configuration and plugin implementations.
+Use them with the version of the service you integrate; the examples evolve with their repositories.
+
+- [jme-messaging-example](https://github.com/jme-admin-ch/jme-messaging-example)
+- [jme-messaging-example / jme-messaging-error-scs/src/main/resources/application.yml](https://github.com/jme-admin-ch/jme-messaging-example/blob/main/jme-messaging-error-scs/src/main/resources/application.yml)
+- [jme-messaging-example / jme-messaging-error-scs](https://github.com/jme-admin-ch/jme-messaging-example/tree/main/jme-messaging-error-scs)
+- [jme-messaging-example / jme-messaging-error-scs/src/main/resources](https://github.com/jme-admin-ch/jme-messaging-example/tree/main/jme-messaging-error-scs/src/main/resources)

@@ -10,12 +10,9 @@ own failures to the error topic it consumes from, every system must order an add
 letter topic (DLT). Failed events the EHS cannot process are published there
 (see [Message Flows](message-flows.md#error-handling-of-the-error-handling-service-itself)).
 
-- Naming convention: `<system>-messageprocessing-deadletter` (e.g. `jme-messageprocessing-deadletter`).
+- Topic naming and permissions: see [Getting Started](getting-started.md#2-order-the-kafka-topics).
 - The maximum message size of the DLT must match the size of the messages processed by the system.
-- The Kafka user of the EHS needs write permission on the DLT.
-- Configured with `jeap.errorhandling.deadLetterTopicName`. It must be different from every topic the EHS consumes
-  (`jeap.errorhandling.topic` and, when configured,
-  `jeap.errorhandling.modulithPublicationProcessingFailedTopic`); the EHS validates this at startup.
+- Configuration and startup validation: see [Kafka configuration](configuration.md#kafka).
 
 The dead letter topic should always be empty — messages on it generally mean interrupted business
 processes. The platform team sets up alerting on the DLT by default when the topic is ordered. If messages
@@ -28,14 +25,8 @@ A nightly job deletes old errors so the database does not grow indefinitely. Del
 older than the configured maximum age **and** in one of the states `TEMPORARY_RETRIED`, `PERMANENT_RETRIED`,
 `DELETED` or `PERMANENT`. Error groups without any remaining errors are deleted as well.
 
-| Property                                                   | Description                                                            | Type / Format | Default                          |
-|------------------------------------------------------------|------------------------------------------------------------------------|---------------|----------------------------------|
-| `jeap.errorhandling.housekeeping.scheduler.cronExpression` | When the housekeeping scheduler runs.                                  | Cron          | `0 40 00 * * *` (daily at 00:40) |
-| `jeap.errorhandling.housekeeping.scheduler.lockAtLeast`    | Minimum duration the ShedLock lock is held.                            | Duration      | `5S`                             |
-| `jeap.errorhandling.housekeeping.scheduler.lockAtMost`     | Maximum duration the ShedLock lock is held.                            | Duration      | `30M`                            |
-| `jeap.errorhandling.housekeeping.errorMaxAge`              | Age after which errors are deleted.                                    | Duration      | `180D`                           |
-| `jeap.errorhandling.housekeeping.pageSize`                 | Entries deleted per page; each page is deleted in its own transaction. | int           | `100`                            |
-| `jeap.errorhandling.housekeeping.maxPages`                 | Maximum number of pages cleaned per run.                               | int           | `100000`                         |
+For retention, paging and scheduling properties, see
+[Configuration](configuration.md#housekeeping-and-metrics).
 
 ## Metrics
 
@@ -54,9 +45,7 @@ monitoring and alerting per business application:
 | `eh_open_errors_by_cluster`               | Gauge   | Current number of errors not in a final state, labelled by the effective Kafka or Modulith publication `cluster`. Both origins on the same cluster are aggregated. Once a cluster has been seen, it keeps being reported with the value 0. |
 | `eh_error_groups_with_open_errors`        | Gauge   | Current number of error groups with open errors.                                                                                                            |
 
-The gauge metrics are sampled every 60 seconds by default; the frequency is configurable with
-`jeap.errorhandling.metrics.updateFrequencyMillis`. Each sampling executes counts on the database, so a
-higher sampling frequency is not recommended.
+The gauge sampling interval is described in [Configuration](configuration.md#housekeeping-and-metrics).
 
 ## Scheduled jobs and clustering
 
@@ -79,11 +68,10 @@ original cluster. Failed Modulith publications likewise store the consumed clust
 transactional outbox for retry and discard commands. If a stored cluster has been removed from configuration, the
 operator action fails without a default-cluster fallback and leaves the error open.
 
-The commands include the publication ID and failure event ID, but do not currently carry custom Kafka target
-headers. The transactional outbox has no per-message API for those headers; adding that capability is intentionally
-isolated to future `jeap-messaging-outbox` work and is not part of this change.
+For command targeting and rolling-upgrade requirements, see
+[Target-service headers for Modulith commands](configuration.md#target-service-headers-for-modulith-commands).
 
 ## Related
 
 - [Message Flows](message-flows.md) — how failures of the EHS itself reach the dead letter topic
-- [Configuration](configuration.md) — all other configuration properties
+- [Configuration](configuration.md) — configuration properties and defaults

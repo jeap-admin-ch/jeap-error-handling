@@ -2,7 +2,7 @@
 
 The jEAP Error Handling Service (EHS) is a self-contained system that handles failed Kafka messages and
 Spring Modulith event publications. Business services never retry failed Kafka messages
-themselves: the [jEAP messaging error handler](https://jeap-admin-ch.github.io/docs/jeap-messaging/) wraps the
+themselves: the [jEAP messaging error handler](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-messaging/error-handling) wraps the
 failed message into a `MessageProcessingFailedEvent` and publishes it to an error topic. The EHS consumes
 that topic, persists the failure, retries temporary errors, escalates permanent errors to manual tasks, and
 offers a UI to inspect, resend and close errors. Services using the Modulith error handling starter report
@@ -127,18 +127,10 @@ stateDiagram-v2
     DELETED --> [*]
 ```
 
-A message whose processing fails again after a resend simply produces a new `MessageProcessingFailedEvent`,
-i.e. a new `Error` for the same causing event. The `ResendingStrategy` sees the error count per causing event
-and escalates a temporary error to a permanent one once the maximum number of retries is reached.
-
-The intermediate states `SEND_TO_MANUALTASK`, `RESOLVE_ON_MANUALTASK` and `DELETE_ON_MANUALTASK` decouple the
-state changes from the availability of the task management service: if Agir cannot be reached, the scheduled
-`TasksSynchronize` job picks the errors up later and completes the transition.
-
-For a manual retry or discard of a Modulith publication, the command outbox entry and the corresponding
-`RESOLVE_ON_MANUALTASK` or `DELETE_ON_MANUALTASK` state are committed in one database transaction. The external
-manual task is closed only by a later `TasksSynchronize` run, after that transaction has committed. Kafka-origin
-actions retain their synchronous manual-task close attempt.
+The intermediate states `SEND_TO_MANUALTASK`, `RESOLVE_ON_MANUALTASK` and `DELETE_ON_MANUALTASK`
+allow pending task-management actions to be completed later if Agir is unavailable. See
+[Message Flows](message-flows.md) for retry escalation and the transaction boundaries of Kafka and
+Modulith retry/delete actions.
 
 ## Data model
 
@@ -211,13 +203,24 @@ erDiagram
 The causing message is stored exactly as it was read from Kafka (key and payload as byte arrays), so it can
 be republished unchanged, even if it could not be deserialized in the first place.
 
+### Failure metadata and shared causing messages
+
+A failure record carries two kinds of metadata: the error event's identity, timestamp, type and
+publisher, and the causing message's identity, type, publisher and Kafka location. The error data
+contains the code, message, description, stack trace and temporality (`TEMPORARY`, `PERMANENT` or
+`UNKNOWN`). This distinction matters when the EHS itself reports an error: the reporting service and
+the service that originally published the business message need not be the same.
+
+For Kafka-origin errors, the EHS reuses an existing `CausingEvent` with the same causing-event ID
+rather than storing that message again for each failure. A scheduled resend records its planned time,
+actual resend time and cancellation flag. The [state model](#error-state-model) and
+[message flows](message-flows.md) describe how these records change during retries and manual actions.
+
 ## Deployment view
 
-The EHS runs as a standard jEAP Spring Boot microservice. All scheduled jobs — `ResendScheduler`,
-`HouseKeepingScheduler`, `TasksSynchronize` and the metrics sampling — use ShedLock with a JDBC lock
-provider, so multiple instances can run in parallel and each job executes on exactly one instance.
-
-Production uses PostgreSQL with Flyway migrations; integration tests run against H2.
+The EHS runs as a standard jEAP Spring Boot microservice. Production uses PostgreSQL with Flyway
+migrations; integration tests run against H2. See [Operations](operations.md#scheduled-jobs-and-clustering)
+for scheduled jobs and their coordination across instances.
 
 ## Related
 

@@ -4,8 +4,7 @@ Every message that cannot be processed must be wrapped into a `MessageProcessing
 to the error topic of the system. The jEAP messaging error handler does this automatically for all
 consumers; the Error Handling Service consumes these events. The event is itself a regular jEAP domain
 event. Its canonical Avro definition lives in the
-[jeap-messaging](https://jeap-admin-ch.github.io/docs/jeap-messaging/) repository
-(`jeap-messaging-avro-errorevent`).
+`jeap-messaging-avro-errorevent` module; see [Avro IDL](#avro-idl).
 
 ## Content
 
@@ -31,70 +30,17 @@ unchanged on retry.
 
 ## Avro IDL
 
-```text
-@namespace("ch.admin.bit.jeap.messaging.avro.errorevent")
-protocol MessageProcessingFailedEventProtocol {
-    import idl "DomainEventBaseTypes.avdl";
-
-    record MessageProcessingFailedPayload {
-        bytes originalMessage;
-        union{null, bytes} originalKey = null;
-        string errorMessage;
-        union{null, string} errorDescription = null;
-        union{null, string} stackTrace = null;
-        union{null, string} stackTraceHash = null;
-        union{null, FailedMessageMetadata} failedMessageMetadata = null;
-    }
-
-    record FailedMessageMetadata {
-        union{null, string} eventId = null;
-        union{null, string} idempotenceId = null;
-        union{null, timestamp_ms} created = null;
-        union{null, string} system = null;
-        union{null, string} service = null;
-        union{null, string} messageTypeName = null;
-        union{null, string} messageTypeVersion = null;
-        map<bytes> headers = {};
-    }
-
-    record MessageProcessingFailedReferences {
-        MessageReference message;
-        ErrorTypeReference errorType;
-    }
-
-    record MessageReference {
-        string type;
-        string topicName;
-        string partition;
-        string offset;
-    }
-
-    record ErrorTypeReference {
-        string type;
-        string temporality;
-        string code;
-    }
-
-    record MessageProcessingFailedEvent {
-        ch.admin.bit.jeap.domainevent.avro.AvroDomainEventIdentity identity;
-        ch.admin.bit.jeap.domainevent.avro.AvroDomainEventType type;
-        ch.admin.bit.jeap.domainevent.avro.AvroDomainEventPublisher publisher;
-        MessageProcessingFailedReferences references;
-        MessageProcessingFailedPayload payload;
-        union{null, string} processId = null;
-        string domainEventVersion;
-    }
-}
-```
+The authoritative [Avro IDL](https://github.com/jeap-admin-ch/jeap-messaging/blob/master/jeap-messaging-avro-errorevent/src/main/avro/MessageProcessingFailedEvent.avdl)
+is maintained in `jeap-messaging-avro-errorevent`. Use the schema shipped with the messaging version
+of your application; the linked source shows the current repository definition.
 
 ## Producing the event
 
-The event is generated automatically by the jEAP messaging error handler and published to the configured
-error topic. If the thrown exception implements
-`ch.admin.bit.jeap.messaging.avro.errorevent.MessageHandlerExceptionInformation` (or extends the provided
-`MessageHandlerException`), the error information — in particular the temporality that decides between
-retry and manual task — is taken from the exception. By default, failures are treated as permanent; it is
-the responsibility of the business application to classify failures as temporary where a retry makes sense.
+The event is generated and published by the jEAP Messaging error handler. See
+[Temporary exceptions](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-messaging/error-handling#temporary-exceptions)
+for automatic framework-exception classification, application-provided error information and resolver
+customization. The EHS consumes the resulting temporality to determine its
+[retry and escalation flow](message-flows.md#automatic-retry-of-temporary-errors).
 
 ## Related
 

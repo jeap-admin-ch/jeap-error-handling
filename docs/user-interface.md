@@ -60,8 +60,10 @@ free text and the ticket number, creating a Jira ticket (with configured
 [Jira integration](configuration.md#jira-issue-tracking)) and jumping to the ticket in the ticketing system.
 The default sorting is configurable and locally overridable per user.
 
+![Example error-group list with counts, source, first and latest occurrence, free text and Jira tickets](images/error-group-list.png)
+
 ## Related
 
-- [Error Groups](error-groups.md) — grouping concept and roles
+- [Error Groups](error-groups.md) — grouping concept and Jira integration
 - [Configuration](configuration.md) — frontend, OAuth and view default properties
 - [Development](development.md) — running the UI locally, browser end-to-end tests

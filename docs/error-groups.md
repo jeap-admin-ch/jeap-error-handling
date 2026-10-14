@@ -47,22 +47,12 @@ yet, see [User Interface](user-interface.md#error-list).
 
 ## Roles
 
-Viewing and editing error groups requires roles on the `errorgroup` resource:
-
-| Role                             | Allows                                                 |
-|----------------------------------|--------------------------------------------------------|
-| `<systemname>_@errorgroup_#view` | Viewing error groups (required to use the group view). |
-| `<systemname>_@errorgroup_#edit` | Saving free text and Jira ticket number.               |
+The `errorgroup` view and edit roles are listed in [User Interface](user-interface.md#roles).
 
 ## Default sorting
 
-The default sorting of the error group view is configurable; a user's locally persisted sorting takes
-precedence over the configured default:
-
-| Property                                             | Description                              | Default         |
-|------------------------------------------------------|------------------------------------------|-----------------|
-| `jeap.errorhandling.error-groups.default-sort-field` | Default sort column of the group view.   | `latestErrorAt` |
-| `jeap.errorhandling.error-groups.default-sort-order` | Default sort direction (`ASC` / `DESC`). | `DESC`          |
+See [Configuration](configuration.md#error-groups) for the sort properties and defaults. A user's
+locally persisted sorting takes precedence over those defaults.
 
 ## Housekeeping
 

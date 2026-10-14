@@ -1,16 +1,18 @@
 # Configuration
 
-All configuration properties of the Error Handling Service (EHS), grouped by topic. Baseline defaults are
+Configuration properties and defaults of the Error Handling Service (EHS), grouped by topic.
+Runtime behavior is documented in [Message Flows](message-flows.md), operational procedures in
+[Operations](operations.md). Baseline defaults are
 defined in `errorhandlerDefaultProperties.properties` of the service library. A complete example
 configuration can be found in the `jme-messaging-error-scs` module of the
-[jme-messaging-example](https://git.example.com/jme/jme-messaging-example) project.
+[jme-messaging-example](https://github.com/jme-admin-ch/jme-messaging-example) project.
 
 ## Kafka
 
 The EHS consumes `MessageProcessingFailedEvent`s from the error topic of the system. When Modulith error handling
 is enabled, it consumes `ModulithPublicationProcessingFailedEvent`s from a separate topic. The general Kafka and
 schema registry access is configured through the standard
-[jEAP messaging properties](https://jeap-admin-ch.github.io/docs/jeap-messaging/) (`jeap.messaging.kafka.*`).
+[jEAP messaging properties](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-messaging/configuration) (`jeap.messaging.kafka.*`).
 The essential EHS-specific settings are:
 
 ```yaml
@@ -32,18 +34,17 @@ jeap:
 Note that for the EHS itself, `jeap.messaging.kafka.errorTopicName` always equals the dead letter topic —
 the EHS must not publish its own failures to the topic it consumes from.
 
-An EHS instance that handles Modulith failures only configures
-`jeap.errorhandling.modulithPublicationProcessingFailedTopic`. The failure event and retry and discard commands are
-framework-owned transport messages and do not require contracts in the EHS instance. When the property is not set,
-the EHS does not create a Modulith failure consumer. The command topic names are carried in each failure event and
-persisted by the EHS; no additional command topic property is required. The EHS also persists the cluster on which it
-consumed the failure and selects that cluster's `TransactionalOutbox` for both commands. Every cluster referenced by
-an open Modulith error must therefore remain configured until the error has been retried or discarded.
+To also handle Modulith failures, set `jeap.errorhandling.modulithPublicationProcessingFailedTopic`.
+When it is unset, EHS does not create a Modulith failure consumer. Retry and discard destinations
+come from the failure event, so no command-topic properties are required in EHS. See
+[Multi-cluster support](operations.md#multi-cluster-support) for the cluster configuration lifecycle.
 
-The EHS keeps its deliberately no-op `ErrorServiceContractValidator`. This does not exempt the source
+The EHS keeps its deliberately no-op `ErrorServiceContractValidator`; the failure event and retry/discard
+commands require no message contracts in the EHS instance. This does not exempt the source
 microservice's command consumers: an application using the Modulith error handling starter must declare both
 retry and discard consumer contracts for its configured topics. The enabled starter checks these at startup
-using the application's existing validator.
+using the application's existing validator. The source microservice needs no producer contract for the
+failure event because jEAP Messaging exempts that framework-owned event.
 
 The topic configuration is validated at startup, the EHS refuses to start if:
 
@@ -97,7 +98,7 @@ provided for more detailed control, see [Customization](customization.md).
 
 The EHS UI is secured with OAuth2/OIDC; the backend is a jEAP OAuth2 resource server
 (`jeap.security.oauth2.resourceserver.*`, see the
-[jEAP security documentation](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-starters/)).
+[jEAP security documentation](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/jeap-spring-boot-security-starter)).
 
 ```yaml
 jeap:
@@ -123,16 +124,22 @@ The required user roles are described in [User Interface](user-interface.md#role
 
 ### PAMS / ePortal
 
-The UI header contains the ePortal service navigation of Oblique, which is backed by PAMS
-(`https://pams-api.eportal<environment>.admin.ch`).
+The UI uses Oblique's ePortal service navigation. See the shared
+[PAMS and ePortal guide](https://jeap-admin-ch.github.io/docs/concepts/frontend/pams-and-eportal)
+for integration responsibilities and environment alignment.
 
-| Property           | Description                                                                                                        | Default |
-|--------------------|--------------------------------------------------------------------------------------------------------------------|---------|
-| `pams-enabled`     | Whether the application is integrated with PAMS/ePortal.                                                             | `true`  |
-| `pams-environment` | ePortal environment of the service navigation: `DEV`, `TEST`, `REF`, `ABN` or `PROD`. Required unless PAMS is disabled. | -       |
-| `mock-pams`        | Treat the PAMS session as always active instead of reading it from the service navigation. Implied by `pams-enabled: false`. | `false` |
+Configure this service under `jeap.errorhandling.frontend`:
 
-Set `pams-enabled: false` for deployments without PAMS:
+| Property suffix | Meaning | Default |
+| --- | --- | --- |
+| `pams-enabled` | Enable PAMS/ePortal integration. | `true` |
+| `pams-environment` | Service-navigation environment: `DEV`, `TEST`, `REF`, `ABN` or `PROD`. Required unless PAMS is disabled. | None |
+| `mock-pams` | Treat the PAMS session as active instead of reading its state from the service navigation. Also implied by `pams-enabled: false`. | `false` |
+
+The selected environment determines the portal endpoint used by the service navigation. Select the
+environment matching the UI's identity provider; do not construct endpoint names from the enum values.
+
+For a deployment without PAMS:
 
 ```yaml
 jeap:
@@ -141,14 +148,10 @@ jeap:
       pams-enabled: false
 ```
 
-The UI then does not contact the ePortal backend at all - no service navigation requests, no ePortal session
-timeout handling - and authentication is based solely on OAuth2/OIDC. The header controls served by PAMS
-(login/logout, profile, messages) would be non-functional and are hidden; the language selection remains
-available.
-
-Note that `pams-environment` must match the environment of the identity provider the UI authenticates
-against. Pointing the service navigation at a different environment than the authentication leads to an
-inconsistent login state in the header and to logout and timeout redirects into the wrong ePortal.
+This disables ePortal requests and PAMS session-timeout handling. Authentication uses OAuth2/OIDC;
+PAMS header controls (login/logout, profile and messages) are hidden, while language
+selection remains available. `mock-pams` only mocks session state; use `pams-enabled` to disable
+portal integration.
 
 ## Error list view defaults
 
@@ -162,19 +165,15 @@ settings (browser local storage) take precedence over these defaults.
 
 ## Log deep link
 
-The UI can link from an error directly into the log system, using the trace ID of the failed processing.
-The query template must contain the token `{traceId}`.
+The UI opens the log system from the failed processing on the error details page.
 
-| Property                 | Description                       | Default                    |
-|--------------------------|-----------------------------------|----------------------------|
-| `log.deep-link.base-url` | Query template of the log system. | Splunk template, see below |
+| Property | Meaning |
+| --- | --- |
+| `log.deep-link.base-url` | Log query URL template containing the literal `{traceId}` token, replaced by the UI. |
 
-Example templates:
-
-| Log system       | Query template                                                                                                        |
-|------------------|-----------------------------------------------------------------------------------------------------------------------|
-| Splunk (example) | `https://splunk.example.com/en-GB/app/search?q=search%20msg.traceId%3D{traceId}%20earliest%3D-1mon` |
-| AWS CloudWatch   | CloudWatch Logs Insights URL with a `filter traceId = "{traceId}"` query                                              |
+Set the URL for the deployment's logging environment. The shared
+[Log deep links guide](https://jeap-admin-ch.github.io/docs/concepts/logging/log-deep-links)
+explains the approach and provides Splunk and CloudWatch query examples.
 
 ## Resending
 
@@ -239,6 +238,32 @@ jeap.errorhandling.task-management.default-factory:
 
 A custom `TaskFactory` bean can replace the default, see [Customization](customization.md).
 
+### OAuth client registration for Agir
+
+The task-management `client-id` property selects the Spring registration name, for example
+`agir-client`. It is distinct from the OAuth client ID supplied by the identity provider:
+
+```yaml
+jeap:
+  errorhandling:
+    task-management:
+      service:
+        client-id: agir-client
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          agir-client:
+            client-id: ${AGIR_CLIENT_ID}
+            client-secret: ${AGIR_CLIENT_SECRET}
+            authorization-grant-type: client_credentials
+            provider: agir-provider
+        provider:
+          agir-provider:
+            issuer-uri: ${AGIR_ISSUER_URI}
+```
+
 ## Jira issue tracking
 
 The Jira integration for [error groups](error-groups.md) is optional — simply omit the issue tracking and
@@ -287,13 +312,34 @@ Recommended setup for the Jira access:
 | Property                                               | Description                                                                  | Default                                           |
 |--------------------------------------------------------|------------------------------------------------------------------------------|---------------------------------------------------|
 | `jeap.errorhandling.error-groups.errorGroupingEnabled` | Enable or disable the creation of error groups.                              | `true`                                            |
-| `jeap.errorhandling.frontend.ticketingSystemUrl`       | URL of a ticket in the ticketing system with a `{ticketNumber}` placeholder. | `https://jira.example.com/browse/{ticketNumber}` |
+| `jeap.errorhandling.frontend.ticketingSystemUrl`       | URL of a ticket in the ticketing system with a `{ticketNumber}` placeholder. | None — required; for example `https://jira.example.com/browse/{ticketNumber}` |
 
-The default sorting of the error group view is also configurable, see [Error Groups](error-groups.md).
+The default sorting of the error group view is configurable; a user's locally persisted sorting takes
+precedence over the configured default:
+
+| Property                                             | Description                              | Default         |
+|------------------------------------------------------|------------------------------------------|-----------------|
+| `jeap.errorhandling.error-groups.default-sort-field` | Default sort column of the group view.   | `latestErrorAt` |
+| `jeap.errorhandling.error-groups.default-sort-order` | Default sort direction (`ASC` / `DESC`). | `DESC`          |
 
 ## Housekeeping and metrics
 
-See [Operations](operations.md) for the housekeeping and metrics configuration.
+Housekeeping retention and scheduling properties:
+
+| Property                                                   | Description                                                            | Type / Format | Default                          |
+|------------------------------------------------------------|------------------------------------------------------------------------|---------------|----------------------------------|
+| `jeap.errorhandling.housekeeping.scheduler.cronExpression` | When the housekeeping scheduler runs.                                  | Cron          | `0 40 00 * * *` (daily at 00:40) |
+| `jeap.errorhandling.housekeeping.scheduler.lockAtLeast`    | Minimum duration the ShedLock lock is held.                            | Duration      | `5S`                             |
+| `jeap.errorhandling.housekeeping.scheduler.lockAtMost`     | Maximum duration the ShedLock lock is held.                            | Duration      | `30M`                            |
+| `jeap.errorhandling.housekeeping.errorMaxAge`              | Age after which errors are deleted.                                    | Duration      | `180D`                           |
+| `jeap.errorhandling.housekeeping.pageSize`                 | Entries deleted per page; each page is deleted in its own transaction. | int           | `100`                            |
+| `jeap.errorhandling.housekeeping.maxPages`                 | Maximum number of pages cleaned per run.                               | int           | `100000`                         |
+
+See [Operations](operations.md#housekeeping) for the deletion criteria.
+
+The metric gauges are sampled every 60 seconds by default. Configure the interval with
+`jeap.errorhandling.metrics.updateFrequencyMillis`. Each sampling executes database counts, so a
+higher sampling frequency is not recommended. See [Operations](operations.md#metrics) for the metrics.
 
 ## Related
 

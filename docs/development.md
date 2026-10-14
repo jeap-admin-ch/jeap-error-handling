@@ -16,7 +16,7 @@ delete that folder to force a rebuild.
 ## Run locally
 
 1. Publish a local snapshot of this repository.
-2. Use the [jme-messaging-example](https://git.example.com/jme/jme-messaging-example)
+2. Use the [jme-messaging-example](https://github.com/jme-admin-ch/jme-messaging-example)
    project with a dependency on the snapshot:
    start its Docker infrastructure, the OAuth mock server (profile `local`), and the Error-SCS backend
    (profile `local-ui`).

@@ -11,15 +11,32 @@ instance depending on it.
 
 ## Documentation
 
-- [Getting Started](docs/getting-started.md) — set up an EHS instance for your system
+### Getting started
+
+- [Getting started](docs/getting-started.md) — set up an EHS instance for your system
+
+### Architecture
+
 - [Architecture](docs/architecture.md) — context, building blocks, error state model, data model
-- [Message Flows](docs/message-flows.md) — sequence diagrams of the runtime behaviour
-- [MessageProcessingFailedEvent](docs/message-processing-failed-event.md) — the inbound event contract
+- [Message flows](docs/message-flows.md) — sequence diagrams of the runtime behaviour
+
+### Configuration
+
 - [Configuration](docs/configuration.md) — the complete property reference
-- [User Interface](docs/user-interface.md) — views, filters, roles and persisted view settings
-- [Error Groups](docs/error-groups.md) — grouping of permanent errors and Jira integration
-- [Operations](docs/operations.md) — dead letter topic, housekeeping, metrics, multi-cluster
+
+### Service-specific topics
+
+- [MessageProcessingFailedEvent](docs/message-processing-failed-event.md) — the inbound event contract
+- [User interface](docs/user-interface.md) — views, filters, roles and persisted view settings
+- [Error groups](docs/error-groups.md) — grouping of permanent errors and Jira integration
 - [Customization](docs/customization.md) — custom resending strategy, task factory and back-off
+
+### Operations
+
+- [Operations](docs/operations.md) — dead letter topic, housekeeping, metrics, multi-cluster
+
+### Development
+
 - [Development](docs/development.md) — building, running and testing this repository
 
 ## Versioning

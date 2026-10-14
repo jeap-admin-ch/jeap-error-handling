@@ -34,13 +34,7 @@ sequenceDiagram
     end
 ```
 
-If the EHS itself fails to process a failed event, the corresponding typed listener decides between an in-place retry
-and the shared dead letter topic:
-
-- transient problems (database unavailable, locks, read-only transactions) trigger a Kafka retry with a
-  configurable back-off (`RecoverableEhsProcessingException`),
-- fatal problems route the event to the dead letter topic (`FatalEhsProcessingException`), see
-  [Operations](operations.md#dead-letter-topic).
+Failures during intake follow the [EHS error-handling flow](#error-handling-of-the-error-handling-service-itself).
 
 ## Failed Modulith publication intake
 
@@ -188,7 +182,10 @@ remains at `RESOLVE_ON_MANUALTASK` / `DELETE_ON_MANUALTASK` and a later `TasksSy
 
 So that no message is lost even when the EHS fails, the EHS uses the regular jEAP messaging error handling
 for its own consumption — but publishing to its own error topic would create a loop. The EHS therefore
-publishes its own processing failures to a dedicated dead letter topic:
+publishes fatal processing failures to a dedicated dead letter topic. The typed listeners classify
+database availability, lock and read-only transaction problems as `RecoverableEhsProcessingException`
+and retry consumption with a [configurable back-off](configuration.md#retry-of-temporary-ehs-failures).
+`FatalEhsProcessingException` routes the event to the dead letter topic:
 
 ```mermaid
 sequenceDiagram
@@ -208,12 +205,10 @@ sequenceDiagram
 
 ## Modulith command targeting
 
-When [optional outbox headers](configuration.md#optional-target-service-headers-for-modulith-commands)
-are enabled, the EHS addresses retry/discard commands to the service that published the failure event
-using `jeap_eh_target_service`. Other services sharing the command topic filter them out. The Kafka
-cluster and topic still determine delivery; publication UUID and failure-event identity still determine
-which failed generation can be retried or discarded. Without the opt-in, the existing UUID/generation
-targeting behavior is preserved.
+Retry and discard commands use the [target-service headers](configuration.md#target-service-headers-for-modulith-commands)
+configured by EHS. That reference also covers legacy delivery and rolling upgrades. The Kafka cluster
+and topic determine delivery; publication UUID and failure-event identity determine which failed
+generation can be retried or discarded.
 
 ## Related
 
