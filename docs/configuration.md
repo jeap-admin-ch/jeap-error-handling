@@ -50,7 +50,7 @@ The topic configuration is validated at startup, the EHS refuses to start if:
 
 - `jeap.errorhandling.topic` or `jeap.errorhandling.deadLetterTopicName` is missing,
 - `jeap.errorhandling.topic` and `jeap.errorhandling.deadLetterTopicName` name the same topic — the EHS would
-  consume its own failures again and the [dead letter reactivation](operations.md#dead-letter-topic) would
+  consume its own failures again and the [dead letter reactivation](operations.md#reactivating-dead-letter-messages) would
   republish messages into the topic it just read from,
 - `jeap.errorhandling.modulithPublicationProcessingFailedTopic`, when configured, names either the regular error
   topic or the dead letter topic,
@@ -93,6 +93,15 @@ the consumption instead of routing the event to the dead letter topic:
 
 A custom Spring Kafka `BackOff` bean named `KafkaErrorHandlingConfiguration.BACKOFF_BEAN_NAME` can be
 provided for more detailed control, see [Customization](customization.md).
+
+### Dead letter reactivation
+
+Tuning of the [dead letter reactivation](operations.md#reactivating-dead-letter-messages):
+
+| Property                                                       | Description                                                                                                      | Default |
+|----------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|---------|
+| `jeap.errorhandling.dead-letter-reactivation.max-poll-records` | Maximum number of dead letter messages forwarded and committed as one batch.                                     | `500`   |
+| `jeap.errorhandling.dead-letter-reactivation.idle-timeout`     | A reactivation run ends if it could not make any progress for this duration (any Spring `Duration` format).      | `60s`   |
 
 ## Frontend and OAuth
 

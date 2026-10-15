@@ -31,12 +31,12 @@ public class DeadLetterReactivationController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void reactivateDeadLetters(@RequestParam int maxRecords) {
         if (maxRecords < 1 || maxRecords > 100000) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "maxRecords must be between 1 and 500");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "maxRecords must be between 1 and 100000");
         }
         log.info("Starting dead-letter reactivation process with maxRecords={}", maxRecords);
 
         kafkaDeadLetterBatchConsumerProducer.consumeAndProduce(maxRecords);
 
-        log.info("Dead-letter reactivation process completed");
+        log.info("Dead-letter reactivation process started");
     }
 }

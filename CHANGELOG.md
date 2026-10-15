@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [25.8.1] - 2026-10-19
+
+### Fixed
+- Dead letter reactivation is much faster: one consumer and producer per run instead of per batch of 50 messages,
+  so the error event listener is only rebalanced twice per run (5000 messages in about 2 s instead of minutes).
+- Dead letter reactivation commits its progress only after the error topic has acknowledged the forwarded messages,
+  so messages are no longer lost when publishing fails.
+- Dead letter reactivation no longer stops early on an empty poll and no longer forwards messages that arrived on
+  the dead letter topic during the run.
+- Validation message of the reactivation endpoint now states the valid range of 1 to 100000.
+
+### Added
+- Start, progress and summary logs as well as the metrics `eh_deadletter_reactivated_messages` and
+  `eh_deadletter_reactivation_runs` for dead letter reactivation runs, and the properties
+  `jeap.errorhandling.dead-letter-reactivation.max-poll-records` and `idle-timeout`.
+
 ## [25.8.0] - 2026-10-18
 
 ### Dependencies

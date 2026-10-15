@@ -542,10 +542,6 @@
     - name: @msgpackr-extract/msgpackr-extract-linux-x64
     - licenses: MIT
     - repository: http://github.com/kriszyp/msgpackr-extract
- - **[@napi-rs/lzma-linux-x64-gnu](https://github.com/Brooooooklyn/lzma)**
-    - name: @napi-rs/lzma-linux-x64-gnu
-    - licenses: MIT
-    - repository: https://github.com/Brooooooklyn/lzma
  - **[@napi-rs/nice-linux-x64-gnu](https://github.com/Brooooooklyn/nice)**
     - name: @napi-rs/nice-linux-x64-gnu
     - licenses: MIT
@@ -831,6 +827,10 @@
     - repository: https://github.com/ungap/structured-clone
  - **[@unrs/resolver-binding-linux-x64-gnu](https://github.com/unrs/unrs-resolver)**
     - name: @unrs/resolver-binding-linux-x64-gnu
+    - licenses: MIT
+    - repository: https://github.com/unrs/unrs-resolver
+ - **[@unrs/resolver-binding-linux-x64-musl](https://github.com/unrs/unrs-resolver)**
+    - name: @unrs/resolver-binding-linux-x64-musl
     - licenses: MIT
     - repository: https://github.com/unrs/unrs-resolver
  - **[@vitejs/plugin-basic-ssl](https://github.com/vitejs/vite-plugin-basic-ssl)**

@@ -16,6 +16,9 @@ import ch.admin.bit.jeap.messaging.avro.errorevent.MessageProcessingFailedEventB
 import ch.admin.bit.jeap.messaging.kafka.crypto.JeapKafkaAvroSerdeCryptoConfig;
 import ch.admin.bit.jeap.messaging.kafka.properties.KafkaProperties;
 import ch.admin.bit.jeap.messaging.kafka.serde.confluent.CustomKafkaAvroSerializer;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Timer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -23,6 +26,7 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Collections;
@@ -36,6 +40,11 @@ import static org.awaitility.Awaitility.await;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class KafkaDeadLetterBatchConsumerProducerIT extends ErrorHandlingITBase {
+
+    private static final String MAX_RECORDS_OUTCOME = DeadLetterReactivationRun.EndReason.MAX_RECORDS.tagValue();
+
+    @Autowired
+    private MeterRegistry meterRegistry;
 
     @Test
     void consumeAndProduce_fetchOneMessage_oneMessageResent() {
@@ -107,6 +116,29 @@ class KafkaDeadLetterBatchConsumerProducerIT extends ErrorHandlingITBase {
             ConsumerRecords<byte[], byte[]> remaining = verifyConsumer.poll(Duration.ofSeconds(5));
             assertThat(remaining.isEmpty()).isTrue();
         }
+    }
+
+    @Test
+    void consumeAndProduce_forwardedMessagesCountedAndRunRecorded() {
+        Counter counter = meterRegistry.counter(KafkaDeadLetterBatchConsumerProducer.REACTIVATED_MESSAGES_COUNTER_METRIC);
+        double forwardedBefore = counter.count();
+        long runsBefore = reactivationRuns(MAX_RECORDS_OUTCOME);
+        sendSync(DEAD_LETTER_TOPIC, createMessageProcessingFailedEvent());
+        sendSync(DEAD_LETTER_TOPIC, createMessageProcessingFailedEvent());
+        sendSync(DEAD_LETTER_TOPIC, createMessageProcessingFailedEvent());
+
+        kafkaDeadLetterBatchConsumerProducer.consumeAndProduce(3);
+
+        awaitSingleErrorInRepository(3);
+        assertThat(counter.count()).isEqualTo(forwardedBefore + 3);
+        assertThat(reactivationRuns(MAX_RECORDS_OUTCOME)).isEqualTo(runsBefore + 1);
+    }
+
+    private long reactivationRuns(String outcome) {
+        Timer timer = meterRegistry.find(KafkaDeadLetterBatchConsumerProducer.REACTIVATION_RUNS_TIMER_METRIC)
+                .tag(KafkaDeadLetterBatchConsumerProducer.OUTCOME_TAG, outcome)
+                .timer();
+        return timer == null ? 0 : timer.count();
     }
 
     private void awaitSingleErrorInRepository(int size) {

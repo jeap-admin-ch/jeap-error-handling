@@ -14,7 +14,7 @@ import org.springframework.util.backoff.FixedBackOff;
 import static org.springframework.util.backoff.FixedBackOff.UNLIMITED_ATTEMPTS;
 
 @AutoConfiguration
-@EnableConfigurationProperties(KafkaErrorHandlingConfigProperties.class)
+@EnableConfigurationProperties({KafkaErrorHandlingConfigProperties.class, DeadLetterReactivationProperties.class})
 public class KafkaErrorHandlingConfiguration {
 
     public static final String BACKOFF_BEAN_NAME = "ehsKafkaErrorHandlingBackOff";

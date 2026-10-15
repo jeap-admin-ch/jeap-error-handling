@@ -19,6 +19,44 @@ processes. The platform team sets up alerting on the DLT by default when the top
 end up on the DLT, they can be inspected with a Kafka tool (e.g. Kafdrop): like all failed messages they are
 wrapped in a `MessageProcessingFailedEvent`, whose string attributes are directly readable.
 
+### Reactivating dead letter messages
+
+Once the cause of the failures is fixed, the messages on the DLT can be moved back to the error topic, where the
+EHS processes them again. Users with the `error`/`retry` permission start a reactivation on the
+*Reactivate dead letter messages* page of the UI, or with `POST /api/deadletter/reactivate?maxRecords=<n>`
+(`maxRecords` between 1 and 100000; the endpoint responds with `202 Accepted`).
+
+- **Run boundary:** a run forwards at most `maxRecords` messages, and only messages that were on the DLT when the
+  run started. Messages arriving on the DLT during a run, e.g. reactivated messages that fail again, are left for
+  the next run.
+- **Progress and at-least-once delivery:** the messages are forwarded unchanged (key, value and headers). The
+  progress is committed per batch in the consumer group of the EHS (`spring.application.name`), only after the
+  error topic has acknowledged the forwarded messages. If publishing a message fails, the run stops without
+  committing the batch, so the next run forwards it again. Messages forwarded more than once are recognized by
+  the EHS as duplicates by their idempotence id.
+- **Offset retention:** while no reactivation runs, the consumer group is not subscribed to the DLT, so the broker
+  removes the committed progress after its `offsets.retention.minutes` (7 days by default). The next run then
+  starts at the earliest message on the DLT; errors that are still stored in the EHS are skipped as duplicates.
+- **Concurrent runs:** runs started at the same time, on the same or another instance, share the DLT partitions
+  through the consumer group, so no message is forwarded twice. A run that is assigned no DLT partition ends
+  immediately and logs that a concurrent run continues the reactivation.
+- **Impact on the error event listener:** a run joins and leaves the consumer group once, so the error event
+  listener is rebalanced twice per run, independently of the number of forwarded messages.
+- **Stalled runs:** a run that cannot make progress for the `idle-timeout` (default 60 seconds) ends with a
+  warning, see [Configuration](configuration.md#dead-letter-reactivation).
+
+Each run logs its start with the number of pending messages, its progress every 10 seconds, and a summary at
+its end, for example:
+
+```text
+Dead letter reactivation ended (max-records): forwarded 5000 messages from topic ... to topic ... in 1811 ms (2760.9 messages/s)
+```
+
+The end reason is one of `max-records`, `boundary-reached` (all messages present at the start forwarded),
+`idle-timeout`, `concurrent-run`, `send-failed`, `commit-failed` (consumer group rebalanced while committing) or
+`error` (unexpected failure). The same values are used as `outcome` tag of the
+`eh_deadletter_reactivation_runs` metric, see [Metrics](#metrics).
+
 ## Housekeeping
 
 A nightly job deletes old errors so the database does not grow indefinitely. Deleted are errors that are
@@ -44,6 +82,8 @@ monitoring and alerting per business application:
 | `eh_permanent_pending_manualtask_delete`  | Gauge   | Deleted permanent errors whose manual task could not be deleted yet.                                                                                        |
 | `eh_open_errors_by_cluster`               | Gauge   | Current number of errors not in a final state, labelled by the effective Kafka or Modulith publication `cluster`. Both origins on the same cluster are aggregated. Once a cluster has been seen, it keeps being reported with the value 0. |
 | `eh_error_groups_with_open_errors`        | Gauge   | Current number of error groups with open errors.                                                                                                            |
+| `eh_deadletter_reactivated_messages`      | Counter | Messages forwarded from the dead letter topic to the error topic and acknowledged by the error topic since the start of the instance. Its rate is the reactivation throughput. |
+| `eh_deadletter_reactivation_runs`         | Timer   | Duration of [dead letter reactivation](#reactivating-dead-letter-messages) runs, tagged with the reason the run ended (`outcome`).                            |
 
 The gauge sampling interval is described in [Configuration](configuration.md#housekeeping-and-metrics).
 
