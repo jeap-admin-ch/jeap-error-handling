@@ -8,6 +8,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [25.8.1] - 2026-10-19
 
 ### Fixed
+- Dead letter reactivation stops when partitions with pending commits are lost, preventing stale offsets from
+  overwriting another consumer's progress.
 - Dead letter reactivation is much faster: one consumer and producer per run instead of per batch of 50 messages,
   so the error event listener is only rebalanced twice per run (5000 messages in about 2 s instead of minutes).
 - Dead letter reactivation commits its progress only after the error topic has acknowledged the forwarded messages,

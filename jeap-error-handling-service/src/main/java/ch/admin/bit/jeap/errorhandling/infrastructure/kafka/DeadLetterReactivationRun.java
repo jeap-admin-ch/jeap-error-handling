@@ -367,6 +367,12 @@ class DeadLetterReactivationRun {
         @Override
         public void onPartitionsLost(Collection<TopicPartition> partitions) {
             assignment.removeAll(partitions);
+            if (pendingCommit != null && partitions.stream().anyMatch(pendingCommit::containsKey)) {
+                pendingCommit = null;
+                pendingCommitCount = 0;
+                commitFailure = new CommitFailedException(
+                        "Dead letter reactivation lost partitions with uncommitted progress: " + partitions);
+            }
         }
     }
 

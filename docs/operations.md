@@ -34,6 +34,9 @@ EHS processes them again. Users with the `error`/`retry` permission start a reac
   error topic has acknowledged the forwarded messages. If publishing a message fails, the run stops without
   committing the batch, so the next run forwards it again. Messages forwarded more than once are recognized by
   the EHS as duplicates by their idempotence id.
+- **Partition loss:** if a run loses ownership of partitions with uncommitted progress, it stops with
+  `commit-failed` and discards its pending offsets rather than overwriting another consumer's progress.
+  The uncommitted messages may be forwarded again by the next owner.
 - **Offset retention:** while no reactivation runs, the consumer group is not subscribed to the DLT, so the broker
   removes the committed progress after its `offsets.retention.minutes` (7 days by default). The next run then
   starts at the earliest message on the DLT; errors that are still stored in the EHS are skipped as duplicates.
