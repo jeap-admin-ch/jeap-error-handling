@@ -116,7 +116,7 @@ class DeadLetterReactivationRunIT extends ErrorHandlingITBase {
     void reactivate_slowStart_doesNotEndTheRun() {
         support.produce(source, 2);
         // The run cannot join the group until the stuck member has been removed after its max.poll.interval.ms
-        try (KafkaConsumer<byte[], byte[]> ignored = support.createStuckGroupMember(groupId, source, Duration.ofSeconds(6))) {
+        try (KafkaConsumer<byte[], byte[]> _ = support.createStuckGroupMember(groupId, source, Duration.ofSeconds(6))) {
 
             Result result = reactivate(100);
 
@@ -131,7 +131,7 @@ class DeadLetterReactivationRunIT extends ErrorHandlingITBase {
         support.produce(source, 3);
         assertThat(reactivate(1).forwarded()).isEqualTo(1);
 
-        try (KafkaConsumer<byte[], byte[]> ignored = support.createStuckGroupMember(groupId, source, Duration.ofSeconds(10))) {
+        try (KafkaConsumer<byte[], byte[]> _ = support.createStuckGroupMember(groupId, source, Duration.ofSeconds(10))) {
 
             Result result = run(source, target, 100, Map.of(), Duration.ofSeconds(3));
 
@@ -184,7 +184,7 @@ class DeadLetterReactivationRunIT extends ErrorHandlingITBase {
     void reactivate_partitionsHeldByConcurrentRun_endsWithoutForwarding() throws Exception {
         support.produce(source, 5);
 
-        try (AutoCloseable ignored = support.startActiveGroupMember(groupId, source)) {
+        try (AutoCloseable _ = support.startActiveGroupMember(groupId, source)) {
             Result result = reactivate(100);
 
             assertThat(result.forwarded()).isZero();

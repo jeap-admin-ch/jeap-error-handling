@@ -134,39 +134,65 @@ class DeadLetterReactivationRun {
         consumer.subscribe(List.of(deadLetterTopic), new AssignmentListener());
         while (true) {
             ConsumerRecords<byte[], byte[]> records = consumer.poll(POLL_TIMEOUT);
-            if (commitFailure != null) {
-                throw commitFailure;
+            EndReason endReason = processRecords(records);
+            if (endReason != null) {
+                return endReason;
             }
-            if (pendingCommit != null) {
-                commitPending();
-            }
-            if (assignmentChanged) {
-                assignmentChanged = false;
-                markProgress();
-                if (!assignmentReceived) {
-                    assignmentReceived = true;
-                    if (assignment.isEmpty()) {
-                        log.info("Dead letter reactivation: no partition of topic {} assigned, a concurrent run " +
-                                 "continues the reactivation", deadLetterTopic);
-                        return EndReason.CONCURRENT_RUN;
-                    }
-                }
-            }
-            forwardBatch(records);
-            if (pendingCommit == null) {
-                if (forwarded >= maxRecords) {
-                    return EndReason.MAX_RECORDS;
-                }
-                if (boundaryReached()) {
-                    return EndReason.BOUNDARY_REACHED;
-                }
-            }
-            if (System.nanoTime() - lastProgressNanos > idleTimeout.toNanos()) {
-                log.warn("Dead letter reactivation made no progress for {}, ending the run", idleTimeout);
-                return EndReason.IDLE_TIMEOUT;
-            }
-            logProgressIfDue();
         }
+    }
+
+    private EndReason processRecords(ConsumerRecords<byte[], byte[]> records) {
+        if (commitFailure != null) {
+            throw commitFailure;
+        }
+        if (pendingCommit != null) {
+            commitPending();
+        }
+        EndReason assignmentEndReason = processAssignmentChange();
+        if (assignmentEndReason != null) {
+            return assignmentEndReason;
+        }
+        forwardBatch(records);
+        EndReason completionReason = completionReason();
+        if (completionReason != null) {
+            return completionReason;
+        }
+        if (System.nanoTime() - lastProgressNanos > idleTimeout.toNanos()) {
+            log.warn("Dead letter reactivation made no progress for {}, ending the run", idleTimeout);
+            return EndReason.IDLE_TIMEOUT;
+        }
+        logProgressIfDue();
+        return null;
+    }
+
+    private EndReason processAssignmentChange() {
+        if (!assignmentChanged) {
+            return null;
+        }
+        assignmentChanged = false;
+        markProgress();
+        if (!assignmentReceived) {
+            assignmentReceived = true;
+            if (assignment.isEmpty()) {
+                log.info("Dead letter reactivation: no partition of topic {} assigned, a concurrent run " +
+                         "continues the reactivation", deadLetterTopic);
+                return EndReason.CONCURRENT_RUN;
+            }
+        }
+        return null;
+    }
+
+    private EndReason completionReason() {
+        if (pendingCommit != null) {
+            return null;
+        }
+        if (forwarded >= maxRecords) {
+            return EndReason.MAX_RECORDS;
+        }
+        if (boundaryReached()) {
+            return EndReason.BOUNDARY_REACHED;
+        }
+        return null;
     }
 
     private void captureBoundary() {
@@ -195,11 +221,7 @@ class DeadLetterReactivationRun {
         for (TopicPartition partition : records.partitions()) {
             long endOffset = endOffsets.getOrDefault(partition, 0L);
             for (ConsumerRecord<byte[], byte[]> data : records.records(partition)) {
-                if (data.offset() >= endOffset) {
-                    consumer.pause(List.of(partition));
-                    break;
-                }
-                if (forwarded + pendingCommitCount + batchCount >= maxRecords) {
+                if (forwardingLimitReached(partition, data.offset(), endOffset, batchCount)) {
                     break;
                 }
                 send(data, sendFailure);
@@ -222,6 +244,14 @@ class DeadLetterReactivationRun {
         pendingCommit.putAll(offsetsToCommit);
         pendingCommitCount += batchCount;
         commitPending();
+    }
+
+    private boolean forwardingLimitReached(TopicPartition partition, long offset, long endOffset, int batchCount) {
+        if (offset >= endOffset) {
+            consumer.pause(List.of(partition));
+            return true;
+        }
+        return forwarded + pendingCommitCount + batchCount >= maxRecords;
     }
 
     /**
@@ -286,22 +316,38 @@ class DeadLetterReactivationRun {
             }
         }
         if (done && !unassigned.isEmpty()) {
-            Map<TopicPartition, OffsetAndMetadata> committed = consumer.committed(unassigned);
-            for (TopicPartition partition : unassigned) {
-                long position = committedPosition(partition, committed.get(partition));
-                progressSum += position;
-                if (position < endOffsets.get(partition)) {
-                    done = false;
-                }
+            BoundaryProgress progress = committedBoundaryProgress(unassigned);
+            progressSum += progress.positionSum();
+            done = progress.reached();
+        }
+        updateProgress(progressSum);
+        return done;
+    }
+
+    private BoundaryProgress committedBoundaryProgress(Set<TopicPartition> partitions) {
+        Map<TopicPartition, OffsetAndMetadata> committed = consumer.committed(partitions);
+        long progressSum = 0;
+        boolean done = true;
+        for (TopicPartition partition : partitions) {
+            long position = committedPosition(partition, committed.get(partition));
+            progressSum += position;
+            if (position < endOffsets.get(partition)) {
+                done = false;
             }
         }
+        return new BoundaryProgress(progressSum, done);
+    }
+
+    private record BoundaryProgress(long positionSum, boolean reached) {
+    }
+
+    private void updateProgress(long progressSum) {
         if (progressSum > lastProgressSum) {
             if (lastProgressSum >= 0) {
                 markProgress();
             }
             lastProgressSum = progressSum;
         }
-        return done;
     }
 
     /**
