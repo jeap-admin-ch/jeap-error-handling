@@ -33,6 +33,8 @@ class ConfigurationControllerTest {
     private ErrorGroupConfigProperties errorGroupConfigProperties;
     @MockitoBean
     private ErrorListConfigProperties errorListConfigProperties;
+    @MockitoBean
+    private DeadLetterCountConfigProperties deadLetterCountConfigProperties;
 
     @Test
     void getLogDeepLink() throws Exception {
@@ -42,6 +44,15 @@ class ConfigurationControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/configuration/log-deeplink"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string(expectedTemplate));
+    }
+
+    @Test
+    void getDeadLetterCountUpdateFrequencyMillis() throws Exception {
+        Mockito.when(deadLetterCountConfigProperties.getUpdateFrequencyMillis()).thenReturn(12345L);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/configuration/dead-letter-count-update-frequency"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string("12345"));
     }
 
     @Test

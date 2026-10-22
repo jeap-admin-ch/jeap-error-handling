@@ -103,6 +103,44 @@ Tuning of the [dead letter reactivation](operations.md#reactivating-dead-letter-
 | `jeap.errorhandling.dead-letter-reactivation.max-poll-records` | Maximum number of dead letter messages forwarded and committed as one batch.                                     | `500`   |
 | `jeap.errorhandling.dead-letter-reactivation.idle-timeout`     | A reactivation run ends if it could not make any progress for this duration (any Spring `Duration` format).      | `60s`   |
 
+The number of messages pending on the dead letter topic, shown on every page of the UI and published as the
+`eh_deadletter_pending_messages` gauge (see [Operations](operations.md#metrics)), is re-determined periodically
+and immediately after a reactivation run. Each refresh reads topic and consumer group offset metadata only
+(no messages are fetched), so a shorter interval than the database-backed metrics is fine:
+
+| Property                                                 | Description                                   | Default |
+|-----------------------------------------------------------|------------------------------------------------|---------|
+| `jeap.errorhandling.dead-letter-count.updateFrequencyMillis` | Interval at which the pending message count is re-determined, in milliseconds. | `30000` |
+
+The broker expires the committed progress of a reactivation after `offsets.retention.minutes` if the consumer
+group does not commit. A scheduled job therefore commits the existing offsets again, see
+[Operations](operations.md#reactivating-dead-letter-messages):
+
+| Property                                                     | Description                                                                                                                                          | Default |
+|--------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| `jeap.errorhandling.dead-letter-offset-keep-alive.enabled`   | Enables the job.                                                                                                                                     | `true`  |
+| `jeap.errorhandling.dead-letter-offset-keep-alive.interval`  | Minimum time between two renewals (ISO-8601 duration), enforced across all instances by a database lock. Must be clearly shorter than the broker's `offsets.retention.minutes` (7 days by default). | `PT24H` |
+| `jeap.errorhandling.dead-letter-offset-keep-alive.check-interval` | How often each instance checks whether a renewal is due. The actual period between renewals is `interval` plus up to `check-interval`. | `PT3H` |
+| `jeap.errorhandling.dead-letter-offset-keep-alive.initial-delay` | Delay after startup before the first check. Short, so that instances restarting more often than `interval` still renew. | `PT10M` |
+
+Every renewal and every skipped or failed round is logged (`info` and `warn`). A round that fails or is skipped
+because a reactivation is active is retried only after `interval`, as the database lock is held either way.
+
+The job needs the same Kafka permissions as the reactivation consumer (read access to the dead letter topic and
+the consumer group).
+
+Each refresh opens a short-lived Kafka consumer, which is closed again right after reading the offsets, on
+every instance. There is deliberately no long-lived client: it would keep its connections to the brokers open
+permanently, which counts against the brokers' connection limits, whereas the short-lived consumer holds
+connections only for the duration of the refresh. The price is a new connection and login per refresh and
+instance. If the connection rate matters on a cluster, increase `updateFrequencyMillis` (the UI follows
+automatically); the count then lags behind by up to that interval, except after a reactivation run, which
+triggers an immediate refresh.
+
+The UI polls the count at the same interval: it reads the configured value from
+`GET /api/configuration/dead-letter-count-update-frequency` once on load, so the two stay in sync without
+separate frontend configuration.
+
 ## Frontend and OAuth
 
 The EHS UI is secured with OAuth2/OIDC; the backend is a jEAP OAuth2 resource server

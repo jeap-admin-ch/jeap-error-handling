@@ -10,6 +10,7 @@ import ch.admin.bit.jeap.errorhandling.domain.group.ErrorGroupAggregatedDataList
 import ch.admin.bit.jeap.errorhandling.domain.group.ErrorGroupAggregatedDataRecord;
 import ch.admin.bit.jeap.errorhandling.domain.group.ErrorGroupService;
 import ch.admin.bit.jeap.errorhandling.domain.resend.scheduler.ScheduledResendService;
+import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.DeadLetterTopicMetrics;
 import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.DomainEventDeserializer;
 import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.KafkaDeadLetterBatchConsumerProducer;
 import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.ResendClusterProvider;
@@ -90,6 +91,8 @@ class ErrorGroupControllerTest {
     private AuditLogService auditLogService;
     @MockitoBean
     KafkaDeadLetterBatchConsumerProducer kafkaDeadLetterBatchConsumerProducer;
+    @MockitoBean
+    DeadLetterTopicMetrics deadLetterTopicMetrics;
     @MockitoBean
     private DomainEventDeserializer domainEventDeserializer;
     @MockitoBean

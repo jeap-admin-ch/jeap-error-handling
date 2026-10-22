@@ -19,6 +19,21 @@ processes. The platform team sets up alerting on the DLT by default when the top
 end up on the DLT, they can be inspected with a Kafka tool (e.g. Kafdrop): like all failed messages they are
 wrapped in a `MessageProcessingFailedEvent`, whose string attributes are directly readable.
 
+The number of messages currently pending on the DLT (end offset minus committed consumer group offset, summed
+over all partitions) is shown on every page of the UI, so this does not have to be checked through a separate
+Kafka tool. The count is periodically re-determined and is refreshed immediately once a reactivation run (see
+below) has finished, see [Metrics](#metrics) for the underlying `eh_deadletter_pending_messages` gauge and
+`GET /api/deadletter/count`, which the UI polls.
+
+**Kafka connections:** the pending message count is determined with a short-lived Kafka consumer per instance and
+refresh (every 30 seconds by default), see [Configuration](configuration.md#dead-letter-reactivation). Its
+connections are closed again after each refresh, so they do not add to the permanent connection count of the
+brokers, but the connection rate grows with the number of instances. On clusters with tight connection or
+login-rate limits, increase `jeap.errorhandling.dead-letter-count.updateFrequencyMillis`.
+
+The gauge is calculated by every instance independently, so with several instances each one reports the same
+value. Aggregate it with `max()` or `avg()` rather than `sum()`.
+
 ### Reactivating dead letter messages
 
 Once the cause of the failures is fixed, the messages on the DLT can be moved back to the error topic, where the
@@ -38,8 +53,20 @@ EHS processes them again. Users with the `error`/`retry` permission start a reac
   `commit-failed` and discards its pending offsets rather than overwriting another consumer's progress.
   The uncommitted messages may be forwarded again by the next owner.
 - **Offset retention:** while no reactivation runs, the consumer group is not subscribed to the DLT, so the broker
-  removes the committed progress after its `offsets.retention.minutes` (7 days by default). The next run then
-  starts at the earliest message on the DLT; errors that are still stored in the EHS are skipped as duplicates.
+  would remove the committed progress after its `offsets.retention.minutes` (7 days by default). The next run
+  would then start at the earliest message on the DLT, and the pending message count would jump back to all
+  retained messages. To prevent this, the EHS commits the existing offsets again, unchanged, once a day (a
+  database lock makes this one instance per day, however often the instances restart)
+  (`DeadLetterOffsetKeepAlive`, see [Scheduled jobs and clustering](#scheduled-jobs-and-clustering) and
+  [Configuration](configuration.md#dead-letter-reactivation)), which restarts the broker's retention timer. The
+  commit is made by a short-lived consumer that joins the consumer group (which also contains the error event
+  listener, so the broker does not accept commits from outside the group), and the error event listener is
+  rebalanced twice per round. The round is skipped while a reactivation run is active, i.e. while a group member
+  is assigned a DLT partition, so it never takes partitions away from a run; the run commits its own offsets.
+  Progress is only lost if the interval is longer than `offsets.retention.minutes` or the job is disabled; the
+  retention of the DLT itself must also be longer than the time between reactivations, otherwise the messages are
+  gone. Errors that are still stored in the EHS are skipped as duplicates if a run does restart at the earliest
+  message.
 - **Concurrent runs:** runs started at the same time, on the same or another instance, share the DLT partitions
   through the consumer group, so no message is forwarded twice. A run that is assigned no DLT partition ends
   immediately and logs that a concurrent run continues the reactivation.
@@ -87,6 +114,7 @@ monitoring and alerting per business application:
 | `eh_error_groups_with_open_errors`        | Gauge   | Current number of error groups with open errors.                                                                                                            |
 | `eh_deadletter_reactivated_messages`      | Counter | Messages forwarded from the dead letter topic to the error topic and acknowledged by the error topic since the start of the instance. Its rate is the reactivation throughput. |
 | `eh_deadletter_reactivation_runs`         | Timer   | Duration of [dead letter reactivation](#reactivating-dead-letter-messages) runs, tagged with the reason the run ended (`outcome`).                            |
+| `eh_deadletter_pending_messages`          | Gauge   | Messages currently pending on the dead letter topic (`NaN` until the first count is determined). Also shown on every page of the UI, see [Configuration](configuration.md#dead-letter-reactivation) for the refresh interval. |
 
 The gauge sampling interval is described in [Configuration](configuration.md#housekeeping-and-metrics).
 
@@ -101,6 +129,7 @@ clustered deployment:
 | `HouseKeepingScheduler` | Deletes old errors and empty error groups.                                                      |
 | `TasksSynchronize`      | Reconciles the manual task state with Agir (completes pending create/close/delete transitions). |
 | Metrics sampling        | Samples the gauge metrics from the database.                                                    |
+| `DeadLetterOffsetKeepAlive` | Commits the dead letter reactivation's consumer group offsets again so the broker does not expire them. |
 
 ## Multi-cluster support
 

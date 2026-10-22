@@ -25,6 +25,8 @@ class ConfigurationController {
 
     private final ErrorListConfigProperties errorListConfigProperties;
 
+    private final DeadLetterCountConfigProperties deadLetterCountConfigProperties;
+
 
     @Value("${jeap.security.oauth2.resourceserver.authorization-server.issuer}")
     private String authority;
@@ -78,5 +80,11 @@ class ConfigurationController {
                 .defaultSortField(errorGroupConfigProperties.getDefaultSortField())
                 .defaultSortOrder(errorGroupConfigProperties.getDefaultSortOrder())
                 .build();
+    }
+
+    @Schema(description = "Returns the interval, in milliseconds, at which the UI should poll the dead letter pending message count")
+    @GetMapping("/dead-letter-count-update-frequency")
+    public long getDeadLetterCountUpdateFrequencyMillis() {
+        return deadLetterCountConfigProperties.getUpdateFrequencyMillis();
     }
 }

@@ -1,11 +1,13 @@
 package ch.admin.bit.jeap.errorhandling.web.api;
 
+import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.DeadLetterTopicMetrics;
 import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.KafkaDeadLetterBatchConsumerProducer;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,9 +22,12 @@ import org.springframework.web.server.ResponseStatusException;
 public class DeadLetterReactivationController {
 
     private final KafkaDeadLetterBatchConsumerProducer kafkaDeadLetterBatchConsumerProducer;
+    private final DeadLetterTopicMetrics deadLetterTopicMetrics;
 
-    public DeadLetterReactivationController(KafkaDeadLetterBatchConsumerProducer kafkaDeadLetterBatchConsumerProducer) {
+    public DeadLetterReactivationController(KafkaDeadLetterBatchConsumerProducer kafkaDeadLetterBatchConsumerProducer,
+                                             DeadLetterTopicMetrics deadLetterTopicMetrics) {
         this.kafkaDeadLetterBatchConsumerProducer = kafkaDeadLetterBatchConsumerProducer;
+        this.deadLetterTopicMetrics = deadLetterTopicMetrics;
     }
 
     @Schema(description = "Reactivates messages from the dead-letter queue and produces them to the target topic")
@@ -38,5 +43,14 @@ public class DeadLetterReactivationController {
         kafkaDeadLetterBatchConsumerProducer.consumeAndProduce(maxRecords);
 
         log.info("Dead-letter reactivation process started");
+    }
+
+    @Schema(description = "Returns the number of messages currently pending on the dead-letter topic")
+    @GetMapping("/count")
+    @PreAuthorize("hasRole('error','view')")
+    public DeadLetterCountDTO getDeadLetterCount() {
+        return DeadLetterCountDTO.builder()
+                .pendingMessageCount(deadLetterTopicMetrics.getPendingMessageCount())
+                .build();
     }
 }

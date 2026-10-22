@@ -7,7 +7,10 @@ import {FormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {ObAlertComponent} from '@oblique/oblique';
+import {QdAuthenticationService} from '@quadrel-enterprise-ui/auth';
+import {of} from 'rxjs';
 import {By} from '@angular/platform-browser';
+import {environment} from '../../../environments/environment';
 
 describe('ReactivateDeadLetterPageComponent', () => {
 	let component: ReactivateDeadLetterPageComponent;
@@ -26,7 +29,10 @@ describe('ReactivateDeadLetterPageComponent', () => {
 				ObAlertComponent,
 				ReactivateDeadLetterPageComponent // Add the component here
 			],
-			providers: [ReactivateDeadLetterService]
+			providers: [
+				ReactivateDeadLetterService,
+				{provide: QdAuthenticationService, useValue: {isAuthenticated$: of(true)}}
+			]
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(ReactivateDeadLetterPageComponent);
@@ -34,6 +40,14 @@ describe('ReactivateDeadLetterPageComponent', () => {
 		reactivateDeadLetterService = TestBed.inject(ReactivateDeadLetterService);
 		httpTestingController = TestBed.inject(HttpTestingController);
 		fixture.detectChanges();
+
+		// DeadLetterCountService (injected by the component to refresh the count after a reactivation) fetches
+		// the pending count and the configured poll interval immediately on construction; flush both so they
+		// do not interfere with the reactivation requests asserted below
+		httpTestingController.expectOne(`${environment.BACKEND_SERVICE_API}/deadletter/count`)
+			.flush({pendingMessageCount: 0});
+		httpTestingController.expectOne(`${environment.BACKEND_SERVICE_API}/configuration/dead-letter-count-update-frequency`)
+			.flush('30000');
 	});
 
 	afterEach(() => {
@@ -52,6 +66,10 @@ describe('ReactivateDeadLetterPageComponent', () => {
 		req.flush({ok: true}, {status: 202, statusText: 'Accepted'});
 		expect(component.isSuccessfull).toBe(true);
 		expect(component.isInProgress).toBe(false);
+
+		// a successful reactivation triggers an immediate refresh of the dead-letter count
+		httpTestingController.expectOne(`${environment.BACKEND_SERVICE_API}/deadletter/count`)
+			.flush({pendingMessageCount: 0});
 	});
 
 	it('should set status to error status on failed reactivation', () => {

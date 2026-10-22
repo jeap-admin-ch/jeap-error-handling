@@ -1,5 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { ReactivateDeadLetterService } from '../../shared/reactivate-dead-letter.service';
+import { DeadLetterCountService } from '../../shared/dead-letter-count.service';
 import {FormsModule} from '@angular/forms';
 import {MatButton} from '@angular/material/button';
 import {TranslateModule} from '@ngx-translate/core';
@@ -30,7 +31,8 @@ export class ReactivateDeadLetterPageComponent {
 	isInProgress = false;
 
 	constructor(
-		private readonly reactivateDeadLetterService: ReactivateDeadLetterService
+		private readonly reactivateDeadLetterService: ReactivateDeadLetterService,
+		private readonly deadLetterCountService: DeadLetterCountService
 	) {
 	}
 
@@ -40,6 +42,7 @@ export class ReactivateDeadLetterPageComponent {
 			next: response => {
 				this.isSuccessfull = response.status === 202;
 				this.isInProgress = false;
+				this.deadLetterCountService.refresh();
 			},
 			error: error => {
 				console.error('Error occurred:', error);

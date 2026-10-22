@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [25.10.0] - 2026-10-27
+
+### Added
+- The number of messages pending on the dead letter topic is now shown in the UI (on the *Reactivate dead
+  letter messages* navigation entry), polled periodically and refreshed immediately after a reactivation.
+  New endpoint `GET /api/deadletter/count`, metric `eh_deadletter_pending_messages`, and property
+  `jeap.errorhandling.dead-letter-count.updateFrequencyMillis`.
+- A daily job (`DeadLetterOffsetKeepAlive`) commits the dead letter reactivation's consumer group offsets again so
+  the broker does not expire them after `offsets.retention.minutes` while no reactivation runs. Properties
+  `jeap.errorhandling.dead-letter-offset-keep-alive.enabled`, `.interval`, `.check-interval` and `.initial-delay`.
+
+### Dependencies
+- **ch.admin.bit.jeap:jeap-spring-boot-parent**: 41.23.0 → 41.25.0 (minor)
+
 ## [25.9.1] - 2026-10-25
 
 ### Dependencies

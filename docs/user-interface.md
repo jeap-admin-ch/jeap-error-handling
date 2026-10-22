@@ -19,6 +19,14 @@ Access to the UI and its actions is controlled with jEAP semantic roles:
 The backend checks `hasRole(..)`, i.e. it is sufficient for a user to have the role for any business
 partner. Typically the roles are assigned as user roles for the internal business partner.
 
+## Dead letter indicator
+
+The *Reactivate dead letter messages* navigation tab, visible on every page, shows a warning icon and the
+pending message count in its label (e.g. "Reactivate dead letter messages (23)") whenever there are messages
+on the dead letter topic; with none pending, it shows the plain label with no icon. The count is polled
+periodically and refreshed immediately after a reactivation is started from that page, see
+[reactivate dead letter messages](operations.md#reactivating-dead-letter-messages).
+
 ## Error list
 
 The error list is the main view and shows errors filtered by state — by default the permanent errors that

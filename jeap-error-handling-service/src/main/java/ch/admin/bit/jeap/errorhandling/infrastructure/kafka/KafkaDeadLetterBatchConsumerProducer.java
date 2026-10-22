@@ -6,6 +6,7 @@ import ch.admin.bit.jeap.messaging.kafka.spring.JeapKafkaPropertyFactory;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Timer;
+import net.javacrumbs.shedlock.core.LockProvider;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -42,13 +43,17 @@ public class KafkaDeadLetterBatchConsumerProducer {
     private final MeterRegistry meterRegistry;
     private final String defaultClusterName;
     private final Counter reactivatedMessagesCounter;
+    private final DeadLetterTopicMetrics deadLetterTopicMetrics;
+    private final LockProvider lockProvider;
 
     public KafkaDeadLetterBatchConsumerProducer(@Value("${jeap.errorhandling.deadLetterTopicName}") String deadLetterTopicName,
                                                 @Value("${jeap.errorhandling.topic}") String errorTopicName,
                                                 KafkaConfiguration kafkaConfiguration,
                                                 DeadLetterReactivationProperties properties,
                                                 MeterRegistry meterRegistry,
-                                                Environment environment) {
+                                                Environment environment,
+                                                DeadLetterTopicMetrics deadLetterTopicMetrics,
+                                                LockProvider lockProvider) {
         this.deadLetterTopicName = deadLetterTopicName;
         this.errorTopicName = errorTopicName;
         this.kafkaConfiguration = kafkaConfiguration;
@@ -59,11 +64,19 @@ public class KafkaDeadLetterBatchConsumerProducer {
         this.reactivatedMessagesCounter = Counter.builder(REACTIVATED_MESSAGES_COUNTER_METRIC)
                 .description("Messages forwarded from the dead letter topic to the error topic and acknowledged by the error topic")
                 .register(meterRegistry);
+        this.deadLetterTopicMetrics = deadLetterTopicMetrics;
+        this.lockProvider = lockProvider;
     }
 
     @Async
     public void consumeAndProduce(int maxRecords) {
-        reactivate(deadLetterTopicName, errorTopicName, maxRecords, Map.of(), properties.getIdleTimeout());
+        try {
+            reactivate(deadLetterTopicName, errorTopicName, maxRecords, Map.of(), properties.getIdleTimeout());
+        } finally {
+            // Refresh the pending-message count immediately instead of waiting for the next scheduled refresh,
+            // so the UI reflects the consumption right away, also if a partial run committed offsets before failing.
+            deadLetterTopicMetrics.refresh();
+        }
     }
 
     /**
@@ -77,7 +90,7 @@ public class KafkaDeadLetterBatchConsumerProducer {
         try (KafkaConsumer<byte[], byte[]> consumer = createConsumer(consumerConfigOverrides);
              KafkaProducer<byte[], byte[]> producer = createProducer()) {
             result = new DeadLetterReactivationRun(consumer, producer, sourceTopic, targetTopic, maxRecords,
-                    idleTimeout, reactivatedMessagesCounter::increment).execute();
+                    idleTimeout, reactivatedMessagesCounter::increment, lockProvider).execute();
             return result;
         } finally {
             String outcome = result == null ? DeadLetterReactivationRun.EndReason.ERROR.tagValue() : result.endReason().tagValue();

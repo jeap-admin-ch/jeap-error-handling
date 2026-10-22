@@ -1,6 +1,8 @@
 package ch.admin.bit.jeap.errorhandling.infrastructure.kafka;
 
 import lombok.extern.slf4j.Slf4j;
+import net.javacrumbs.shedlock.core.LockProvider;
+import net.javacrumbs.shedlock.core.SimpleLock;
 import org.apache.kafka.clients.consumer.CommitFailedException;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRebalanceListener;
@@ -20,6 +22,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.IntConsumer;
@@ -66,6 +69,7 @@ class DeadLetterReactivationRun {
     private final long maxRecords;
     private final Duration idleTimeout;
     private final IntConsumer forwardedListener;
+    private final LockProvider lockProvider;
 
     private final Map<TopicPartition, Long> endOffsets = new HashMap<>();
     private final Map<TopicPartition, Long> beginningOffsets = new HashMap<>();
@@ -89,7 +93,7 @@ class DeadLetterReactivationRun {
      */
     DeadLetterReactivationRun(Consumer<byte[], byte[]> consumer, Producer<byte[], byte[]> producer,
                               String deadLetterTopic, String errorTopic, long maxRecords, Duration idleTimeout,
-                              IntConsumer forwardedListener) {
+                              IntConsumer forwardedListener, LockProvider lockProvider) {
         this.consumer = consumer;
         this.producer = producer;
         this.deadLetterTopic = deadLetterTopic;
@@ -97,6 +101,7 @@ class DeadLetterReactivationRun {
         this.maxRecords = maxRecords;
         this.idleTimeout = idleTimeout;
         this.forwardedListener = forwardedListener;
+        this.lockProvider = lockProvider;
     }
 
     Result execute() {
@@ -131,12 +136,35 @@ class DeadLetterReactivationRun {
         log.info("Dead letter reactivation started: {} messages pending on topic {}, forwarding at most {} to topic {}",
                 pendingAtStart, deadLetterTopic, maxRecords, errorTopic);
 
+        Optional<SimpleLock> subscribeLock = DeadLetterTopicSubscribeLock.await(lockProvider);
+        if (subscribeLock.isEmpty()) {
+            log.warn("Dead letter reactivation: could not get the dead letter topic subscribe lock, aborting this run");
+            return EndReason.ERROR;
+        }
         consumer.subscribe(List.of(deadLetterTopic), new AssignmentListener());
-        while (true) {
-            ConsumerRecords<byte[], byte[]> records = consumer.poll(POLL_TIMEOUT);
-            EndReason endReason = processRecords(records);
-            if (endReason != null) {
-                return endReason;
+        SimpleLock lockToRelease = subscribeLock.get();
+        long subscribeLockDeadline = System.nanoTime() + DeadLetterTopicSubscribeLock.MAX_DURATION.toNanos();
+        try {
+            while (true) {
+                ConsumerRecords<byte[], byte[]> records = consumer.poll(POLL_TIMEOUT);
+                EndReason endReason = processRecords(records);
+                // Subscribing joined the consumer group, triggering a rebalance. Holding the dead letter topic
+                // subscribe lock from before that until the resulting assignment is resolved (here) excludes
+                // DeadLetterOffsetKeepAlive, which also joins the group transiently, from subscribing at the same
+                // moment and splitting the dead letter topic's partitions with this run on the rebalance - see
+                // DeadLetterTopicSubscribeLock. The records of the poll that resolves the assignment are still
+                // processed above before releasing the lock, so none of them are lost.
+                if (lockToRelease != null && (assignmentReceived || System.nanoTime() >= subscribeLockDeadline)) {
+                    lockToRelease.unlock();
+                    lockToRelease = null;
+                }
+                if (endReason != null) {
+                    return endReason;
+                }
+            }
+        } finally {
+            if (lockToRelease != null) {
+                lockToRelease.unlock();
             }
         }
     }
@@ -355,8 +383,7 @@ class DeadLetterReactivationRun {
      * there is no committed offset or the committed offset is no longer available.
      */
     private long committedPosition(TopicPartition partition, OffsetAndMetadata committed) {
-        long beginning = beginningOffsets.getOrDefault(partition, 0L);
-        return committed == null ? beginning : Math.max(committed.offset(), beginning);
+        return DeadLetterOffsets.committedPosition(beginningOffsets, partition, committed);
     }
 
     private void markProgress() {

@@ -7,6 +7,7 @@ import ch.admin.bit.jeap.errorhandling.domain.error.ErrorSearchService;
 import ch.admin.bit.jeap.errorhandling.domain.error.ErrorService;
 import ch.admin.bit.jeap.errorhandling.domain.group.ErrorGroupService;
 import ch.admin.bit.jeap.errorhandling.domain.resend.scheduler.ScheduledResendService;
+import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.DeadLetterTopicMetrics;
 import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.DomainEventDeserializer;
 import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.KafkaDeadLetterBatchConsumerProducer;
 import ch.admin.bit.jeap.errorhandling.infrastructure.kafka.ResendClusterProvider;
@@ -69,6 +70,9 @@ class ErrorControllerTest {
 
     @MockitoBean
     KafkaDeadLetterBatchConsumerProducer kafkaDeadLetterBatchConsumerProducer;
+
+    @MockitoBean
+    DeadLetterTopicMetrics deadLetterTopicMetrics;
 
     @Profile(PROFILE) // prevent other tests using class path scanning picking up this configuration
     @Configuration
