@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [25.15.0] - 2026-11-06
+
+### Changed
+
+- Update Quadrel Auth to 21.2.0 and align the Angular 21 authentication dependencies without legacy peer resolution.
+
 ## [25.14.0] - 2026-11-01
 
 ### Dependencies

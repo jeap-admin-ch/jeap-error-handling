@@ -29,27 +29,27 @@
     "sonar56x": true
   },
   "dependencies": {
-    "@angular/animations": "^21.2.19",
+    "@angular/animations": "21.2.26",
     "@angular/cdk": "^21.2.3",
-    "@angular/common": "^21.2.19",
-    "@angular/compiler": "^21.2.19",
-    "@angular/core": "^21.2.19",
-    "@angular/forms": "^21.2.19",
-    "@angular/localize": "^21.2.19",
+    "@angular/common": "21.2.26",
+    "@angular/compiler": "21.2.26",
+    "@angular/core": "21.2.26",
+    "@angular/forms": "21.2.26",
+    "@angular/localize": "21.2.26",
     "@angular/material": "^21.2.3",
-    "@angular/platform-browser": "^21.2.19",
-    "@angular/platform-browser-dynamic": "^21.2.19",
-    "@angular/router": "^21.2.24",
+    "@angular/platform-browser": "21.2.26",
+    "@angular/platform-browser-dynamic": "21.2.26",
+    "@angular/router": "21.2.26",
     "@ngx-translate/core": "^17.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
     "@oblique/oblique": "^15.1.2",
     "@popperjs/core": "^2.11.8",
-    "@quadrel-enterprise-ui/auth": "^20.1.3",
+    "@quadrel-enterprise-ui/auth": "21.2.0",
     "@types/istanbul-lib-report": "^3.0.3",
     "@types/istanbul-reports": "^3.0.4",
     "@types/ws": "^8.18.1",
     "ajv": "^8.12.0",
-    "angular-oauth2-oidc": "^22.0.0",
+    "angular-oauth2-oidc": "^20.0.0",
     "date-fns": "^4.0.0",
     "fast-deep-equal": "^3.1.3",
     "js-cookie": "^3.0.7",
@@ -62,12 +62,12 @@
   },
   "devDependencies": {
     "@angular-builders/jest": "^21.0.3",
-    "@angular/build": "^21.2.3",
-    "@angular/cli": "^21.2.3",
-    "@angular/compiler-cli": "^21.2.19",
+    "@angular/build": "21.2.29",
+    "@angular/cli": "21.2.29",
+    "@angular/compiler-cli": "21.2.26",
     "@jeap/jeap-frontend-license-checker": "^1.0.1",
     "@ngtools/json-schema": "^1.1.0",
-    "@schematics/angular": "^21.2.3",
+    "@schematics/angular": "21.2.29",
     "@types/jest": "^30.0.0",
     "commander": "^15.0.0",
     "conventional-changelog": "^8.0.0",
@@ -80,11 +80,15 @@
     "ts-jest": "29.4.15",
     "ts-node": "^10.9.2",
     "tslint": "~6.1.0",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "@angular-devkit/build-angular": "21.2.29"
   },
   "overrides": {
     "fast-uri": "4.2.3",
     "set-value": "4.1.0",
     "picomatch": "4.0.7"
+  },
+  "engines": {
+    "node": "^20.19.0 || ^22.12.0 || >=24.0.0"
   }
 }

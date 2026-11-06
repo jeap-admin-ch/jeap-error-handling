@@ -129,3 +129,9 @@ Use them with the version of the service you integrate; the examples evolve with
 - [jme-messaging-example / jme-messaging-error-scs/src/main/resources/application.yml](https://github.com/jme-admin-ch/jme-messaging-example/blob/main/jme-messaging-error-scs/src/main/resources/application.yml)
 - [jme-messaging-example / jme-messaging-error-scs](https://github.com/jme-admin-ch/jme-messaging-example/tree/main/jme-messaging-error-scs)
 - [jme-messaging-example / jme-messaging-error-scs/src/main/resources](https://github.com/jme-admin-ch/jme-messaging-example/tree/main/jme-messaging-error-scs/src/main/resources)
+
+## Frontend dependency compatibility
+
+The UI uses Angular 21, Oblique 15 and Quadrel Auth 21. Quadrel Auth currently requires
+Angular 21; upgrading to Oblique 16 / Angular 22 also requires a compatible Quadrel
+release. Install dependencies with `npm ci` without `--legacy-peer-deps`.
