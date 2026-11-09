@@ -421,6 +421,9 @@ BSD 2-Clause License
 -------------------------------
 
  * zstd-jni - [com.github.luben:zstd-jni](https://github.com/luben/zstd-jni)
+ * commonmark-java core - [org.commonmark:commonmark](https://github.com/commonmark/commonmark-java/commonmark)
+ * commonmark-java extension for strikethrough - [org.commonmark:commonmark-ext-gfm-strikethrough](https://github.com/commonmark/commonmark-java/commonmark-ext-gfm-strikethrough)
+ * commonmark-java extension for tables - [org.commonmark:commonmark-ext-gfm-tables](https://github.com/commonmark/commonmark-java/commonmark-ext-gfm-tables)
  * HdrHistogram - [org.hdrhistogram:HdrHistogram](http://hdrhistogram.github.io/HdrHistogram/)
  * PostgreSQL JDBC Driver - [org.postgresql:postgresql](https://jdbc.postgresql.org)
 
