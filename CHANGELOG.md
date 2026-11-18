@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [25.19.1] - 2026-11-18
+
+### Dependencies
+- **@angular-devkit/build-angular**: 21.2.29 → 21.2.30 (patch)
+
 ## [25.19.0] - 2026-11-18
 
 ### Dependencies
